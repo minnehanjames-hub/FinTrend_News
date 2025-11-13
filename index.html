@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FinTrend News | Student Market Newsletter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts for news-style typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 1150px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 24px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    /* HEADER */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.82));
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 0, #fbbf24, #f97316 35%, #7c2d12 95%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      color: #020617;
+      box-shadow: 0 12px 30px rgba(248, 250, 252, 0.35);
+    }
+
+    .brand-text h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      font-size: 12px;
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav a:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-main);
+    }
+
+    nav a.tag-monday {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    nav a.tag-friday {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    /* LAYOUT */
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1.4fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 830px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+    }
+
+    /* PANELS */
+
+    .panel {
+      background: rgba(15, 23, 42, 0.94);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 18px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .panel-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .time-indicator {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* HERO ARTICLE */
+
+    .hero-article {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 780px) {
+      .hero-article {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-copy {
+      padding-right: 4px;
+    }
+
+    .hero-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pill-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .pill-tag.monday {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .pill-tag.friday {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .hero-headline {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .hero-headline span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-meta strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-lede {
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 14px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-btn {
+      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .hero-btn:hover {
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .hero-btn.secondary {
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .hero-highlight-box {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 12px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .hero-highlight-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .hero-highlight-number {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-highlight-number span {
+      font-size: 11px;
+      font-weight: 400;
+      margin-left: 6px;
+      color: var(--success);
+    }
+
+    .hero-highlight-detail {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-highlight-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .mini-move {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .mini-move-label {
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+    }
+
+    .mini-move-value {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mini-move-value.negative {
+      color: var(--danger);
+    }
+
+    .mini-move-value.positive {
+      color: var(--success);
+    }
+
+    /* SECONDARY ARTICLES */
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 14px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 780px) {
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .article-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+      padding: 10px 12px 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(circle at top right, rgba(75, 85, 99, 0.18), transparent 50%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .article-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .article-date {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .article-title {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .article-title a {
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .article-title a:hover {
+      text-decoration: underline;
+    }
+
+    .article-summary {
+      position: relative;
+      z-index: 1;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .article-meta {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar-block + .sidebar-block {
+      margin-top: 18px;
+    }
+
+    .sidebar-header {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .sidebar-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 12px 12px 10px;
+      font-size: 12px;
+    }
+
+    .byline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .byline-list li span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .day-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .day-list strong {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .day-list span {
+      color: var(--accent);
+    }
+
+    .subtle-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .pill-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.55);
+      padding: 5px 9px;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-text">
+          <h1>FinTrend News</h1>
+          <span>Student Financial Market Newsletter</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#monday" class="tag-monday">Monday Outlook</a>
+        <a href="#wednesday">Wed Momentum</a>
+        <a href="#friday" class="tag-friday">Friday Recap</a>
+        <a href="#sunday">Sunday Macro Note</a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <!-- LEFT: MAIN CONTENT -->
+      <section>
+        <!-- MONDAY PANEL -->
+        <section class="panel" id="monday">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Monday Market Outlook</div>
+              <div class="panel-subtitle">
+                Key themes heading into the new trading week.
+              </div>
+            </div>
+            <div class="time-indicator">Published Mondays</div>
+          </div>
+
+          <div class="hero-article">
+            <div class="hero-copy">
+              <div class="hero-tag-row">
+                <div class="pill-tag monday">This Week</div>
+                <div class="pill-tag">Equities</div>
+                <div class="pill-tag">Macro</div>
+              </div>
+
+              <h2 class="hero-headline">
+                <span>Markets Watch Inflation & Earnings</span> as Risk Appetite Returns
+              </h2>
+
+              <div class="hero-meta">
+                Written by <strong>Your Name</strong> · FinTrend News ·
+                <span>Monday Outlook</span>
+              </div>
+
+              <p class="hero-lede">
+                This is where your Monday lede goes: one tight paragraph that frames the
+                dominant story for the week — inflation prints, earnings clusters, policy
+                expectations, or any catalyst driving futures in pre-market.
+              </p>
+
+              <div class="hero-links">
+                <a href="#monday-article" class="hero-btn">
+                  Read Full Outlook
+                  <span>↗</span>
+                </a>
+                <a href="#friday" class="hero-btn secondary">
+                  See Last Week’s Recap
+                </a>
+              </div>
+            </div>
+
+            <aside class="hero-highlight-box">
+              <div>
+                <div class="hero-highlight-title">index snapshot</div>
+                <div class="hero-highlight-number">
+                  S&P 500 · 5,125
+                  <span>+0.42%</span>
+                </div>
+                <p class="hero-highlight-detail">
+                  Futures imply a modestly positive open as investors lean into growth
+                  ahead of macro data, with cyclicals catching a bid.
+                </p>
+              </div>
+
+              <div class="hero-highlight-row">
+                <div class="mini-move">
+                  <span class="mini-move-label">Nasdaq</span>
+                  <span class="mini-move-value positive">+0.78%</span>
+                </div>
+                <div class="mini-move">
+                  <span class="mini-move-label">10y Yield</span>
+                  <span class="mini-move-value negative">4.21%</span>
+                </div>
+                <div class="mini-move">
+                  <span class="mini-move-label">WTI</span>
+                  <span class="mini-move-value">78.40</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Monday secondary cards -->
+          <div class="article-grid" id="monday-article">
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Equities · Earnings</div>
+                <div class="article-date">Mon · 8:30 AM</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Tech Leads Futures Higher into Mega-Cap Earnings Week
+                </a>
+              </h3>
+              <p class="article-summary">
+                Brief summary of your equity angle here: which sectors are setting the
+                tone, how positioning looks, and where you expect volatility.
+              </p>
+              <div class="article-meta">
+                <span>By Roommate Name</span>
+                <span>Preview · 3 min read</span>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Macro · Data Watch</div>
+                <div class="article-date">Mon · 7:15 AM</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  CPI, Jobs, and Fed Speak: The Macro Calendar that Matters
+                </a>
+              </h3>
+              <p class="article-summary">
+                Short overview of the week’s key macro releases and how they might shift
+                rate expectations or risk sentiment across assets.
+              </p>
+              <div class="article-meta">
+                <span>By Your Name</span>
+                <span>Macro View · 4 min read</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- WEDNESDAY PANEL -->
+        <section class="panel" id="wednesday">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Wednesday Momentum Check</div>
+              <div class="panel-subtitle">
+                Midweek look at how the market traded versus the Monday narrative.
+              </div>
+            </div>
+            <div class="time-indicator">Published Wednesdays</div>
+          </div>
+
+          <div class="article-grid">
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Tape · Flows</div>
+                <div class="article-date">Wed · Midday</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Rotation into Cyclicals as Defensives Lag: Real or Head-Fake?
+                </a>
+              </h3>
+              <p class="article-summary">
+                Quick read on sector rotation so far this week, who’s leading, who’s
+                lagging, and whether the move fits the macro story you laid out Monday.
+              </p>
+              <div class="article-meta">
+                <span>By Your Name</span>
+                <span>Momentum Check · 3 min read</span>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Single Names · Highlights</div>
+                <div class="article-date">Wed · Close</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Earnings Reactions: Where Guidance Beat the Whisper Numbers
+                </a>
+              </h3>
+              <p class="article-summary">
+                Your roommate’s space for a few notable earnings reactions — who
+                surprised, who disappointed, and how the market priced it.
+              </p>
+              <div class="article-meta">
+                <span>By Roommate Name</span>
+                <span>Equity Focus · 4 min read</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- FRIDAY PANEL -->
+        <section class="panel" id="friday">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Friday Market Recap</div>
+              <div class="panel-subtitle">
+                How the week actually traded vs. expectations.
+              </div>
+            </div>
+            <div class="time-indicator">Published Fridays</div>
+          </div>
+
+          <div class="article-grid">
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Equities · Week in Review</div>
+                <div class="article-date">Fri · Close</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  From Relief Rally to Late-Week Profit-Taking: Inside the Tape
+                </a>
+              </h3>
+              <p class="article-summary">
+                Use this space to walk through how indices moved across the week, which
+                days surprised you, and where sentiment ended into the weekend.
+              </p>
+              <div class="article-meta">
+                <span>By Roommate Name</span>
+                <span>Week in Review · 5 min read</span>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Macro · Cross-Asset</div>
+                <div class="article-date">Fri · 5:10 PM</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Yields, Dollar, and Oil: What Cross-Asset Flows Signaled This Week
+                </a>
+              </h3>
+              <p class="article-summary">
+                Your macro recap: how rates, FX, and commodities traded and what that
+                says about growth, inflation, and risk appetite going into next week.
+              </p>
+              <div class="article-meta">
+                <span>By Your Name</span>
+                <span>Macro Recap · 4 min read</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- SUNDAY PANEL -->
+        <section class="panel" id="sunday">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Sunday Macro & Positioning Note</div>
+              <div class="panel-subtitle">
+                Big-picture themes and what matters over the next 1–2 weeks.
+              </div>
+            </div>
+            <div class="time-indicator">Published Sundays</div>
+          </div>
+
+          <div class="article-grid">
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Macro · Frameworks</div>
+                <div class="article-date">Sun · Evening</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Three Macro Themes Driving Markets into Next Week
+                </a>
+              </h3>
+              <p class="article-summary">
+                Use this as your “big picture” note: outline a few themes you think
+                actually matter, rather than just listing headlines.
+              </p>
+              <div class="article-meta">
+                <span>By Your Name</span>
+                <span>Macro Note · 4 min read</span>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-label-row">
+                <div class="article-tag">Positioning · Sentiment</div>
+                <div class="article-date">Sun · Late</div>
+              </div>
+              <h3 class="article-title">
+                <a href="#">
+                  Positioning, Volatility, and Where the Next Surprise Might Come From
+                </a>
+              </h3>
+              <p class="article-summary">
+                Room for a short, thoughtful piece on sentiment, volatility, and where
+                you think the market is most exposed to upside or downside surprises.
+              </p>
+              <div class="article-meta">
+                <span>By Roommate Name</span>
+                <span>Sentiment · 3 min read</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- RIGHT: SIDEBAR -->
+      <aside>
+        <div class="sidebar-block">
+          <div class="sidebar-header">About FinTrend News</div>
+          <div class="sidebar-card">
+            FinTrend News is a student-run financial market newsletter covering macro,
+            equities, and key catalysts four times a week — a Monday outlook, Wednesday
+            momentum check, Friday recap, and Sunday macro note designed to read like a
+            concise sell-side briefing.
+            <div class="pill-label">
+              <span>Focus:</span>
+              Macro · Earnings · Positioning · Cross-Asset
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-block">
+          <div class="sidebar-header">Editors & Contributors</div>
+          <div class="sidebar-card">
+            <ul class="byline-list">
+              <li>
+                <strong>Your Name</strong>
+                <span>
+                  Macro & Cross-Asset — focuses on rates, FX, commodities, and
+                  macro data releases.
+                </span>
+              </li>
+              <li>
+                <strong>Roommate Name</strong>
+                <span>
+                  Equity Strategy — covers earnings, sector moves, and single-name
+                  highlights.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-block">
+          <div class="sidebar-header">Publishing Rhythm</div>
+          <div class="sidebar-card">
+            <ul class="day-list">
+              <li>
+                <strong>Monday</strong><br />
+                Weekly Outlook · <span>Macro drivers & key catalysts.</span>
+              </li>
+              <li>
+                <strong>Wednesday</strong><br />
+                Momentum Check · <span>How the tape is trading so far.</span>
+              </li>
+              <li>
+                <strong>Friday</strong><br />
+                Market Recap · <span>Winners, losers, and surprises.</span>
+              </li>
+              <li>
+                <strong>Sunday</strong><br />
+                Macro Note · <span>Positioning & themes into the new week.</span>
+              </li>
+            </ul>
+            <p class="subtle-note">
+              Over time, you can add special editions: FOMC reaction notes, earnings
+              season playbooks, or year-ahead outlooks.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      FinTrend News · Student Market Commentary · Designed & coded by the FinTrend team.
+    </footer>
+  </div>
+</body>
+</html>
