@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Archive & Calendar | FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #050816;
+      font-family: "Inter", sans-serif;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 32px auto 60px;
+      padding: 0 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0, #fbbf24, #f97316 35%, #7c2d12 95%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #020617;
+      font-size: 16px;
+    }
+
+    .brand h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #9ca3af;
+    }
+
+    .back-link:hover {
+      color: #f4c15d;
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 22px;
+    }
+
+    .calendar-wrapper {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 18px 18px 12px;
+      margin-bottom: 30px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .calendar-header span {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    table.calendar {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    table.calendar th {
+      padding: 6px 0;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    table.calendar td {
+      padding: 6px 0;
+      height: 30px;
+    }
+
+    table.calendar td span {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      border-radius: 999px;
+    }
+
+    table.calendar td a {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #f9fafb;
+      background: rgba(244, 193, 93, 0.18);
+      border: 1px solid #f4c15d;
+      font-size: 13px;
+    }
+
+    .legend {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+
+    .legend span {
+      display: inline-block;
+      margin-right: 14px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-right: 6px;
+    }
+
+    .dot-monday { background: #4ade80; }
+    .dot-wed { background: #60a5fa; }
+
+    .archive-list {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 16px 18px;
+      font-size: 13px;
+    }
+
+    .archive-list h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .archive-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .archive-list li {
+      margin-bottom: 6px;
+    }
+
+    .archive-list a {
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .archive-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div>
+          <h1>FinTrend News</h1>
+          <span>Archive & Calendar</span>
+        </div>
+      </div>
+      <a href="index.html" class="back-link">← Back to Homepage</a>
+    </header>
+
+    <h2>Article Archive</h2>
+    <p class="subtitle">
+      Start of coverage: week of Monday, November 10, 2025. Click a date to view that day’s article.
+    </p>
+
+    <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <h3>November 2025</h3>
+        <span>FinTrend publication days highlighted</span>
+      </div>
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Week row 1 (Nov 3–9) -->
+          <tr>
+            <td><span>3</span></td>
+            <td><span>4</span></td>
+            <td><span>5</span></td>
+            <td><span>6</span></td>
+            <td><span>7</span></td>
+            <td><span>8</span></td>
+            <td><span>9</span></td>
+          </tr>
+          <!-- Week row 2 (Nov 10–16) -->
+          <tr>
+            <td>
+              <!-- Monday 10th: clickable -->
+              <a href="articles/2025-11-17-monday.html">10</a>
+            </td>
+            <td><span>11</span></td>
+            <td>
+              <!-- Wednesday 12th: clickable -->
+              <a href="articles/2025-11-19-wednesday.html">12</a>
+            </td>
+            <td><span>13</span></td>
+            <td><span>14</span></td>
+            <td><span>15</span></td>
+            <td><span>16</span></td>
+          </tr>
+          <!-- Future weeks - you can fill later -->
+          <tr>
+            <td><span>17</span></td>
+            <td><span>18</span></td>
+            <td><span>19</span></td>
+            <td><span>20</span></td>
+            <td><span>21</span></td>
+            <td><span>22</span></td>
+            <td><span>23</span></td>
+          </tr>
+          <tr>
+            <td><span>24</span></td>
+            <td><span>25</span></td>
+            <td><span>26</span></td>
+            <td><span>27</span></td>
+            <td><span>28</span></td>
+            <td><span>29</span></td>
+            <td><span>30</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="legend">
+        <span><span class="dot dot-monday"></span>Monday Outlook</span>
+        <span><span class="dot dot-wed"></span>Wednesday Momentum</span>
+      </div>
+    </div>
+
+    <div class="archive-list">
+      <h3>November 2025 — Detailed Links</h3>
+      <ul>
+        <li>
+          <strong>Mon, Nov 10:</strong>
+          <a href="articles/2025-11-17-monday.html">
+            Monday Market Outlook — CPI Hangover, Dow Leadership, and a Tired Market
+          </a>
+        </li>
+        <li>
+          <strong>Wed, Nov 12:</strong>
+          <a href="articles/2025-11-19-wednesday.html">
+            Wednesday Momentum Check — Rotation and Late-Cycle Positioning
+          </a>
+        </li>
+        <!-- Later, you’ll add:
+        <li>Fri, Nov XX: <a href="articles/...">Friday Market Recap — ...</a></li>
+        <li>Sun, Nov XX: <a href="articles/...">Sunday Macro Note — ...</a></li>
+        -->
+      </ul>
+    </div>
+
+    <footer>
+      FinTrend News · Archive & Calendar
+    </footer>
+  </div>
+</body>
+</html>
