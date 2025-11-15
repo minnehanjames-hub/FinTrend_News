@@ -70,37 +70,16 @@
       align-items: center;
       gap: 12px;
     }
+    .logo-img {
+  height: 40px;
+  width: auto;
+}
 
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 20% 0, #fbbf24, #f97316 35%, #7c2d12 95%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.05em;
-      color: #020617;
-      box-shadow: 0 12px 30px rgba(248, 250, 252, 0.35);
-    }
-
-    .brand-text h1 {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand-text span {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-top: 2px;
-    }
+@media (max-width: 480px) {
+  .logo-img {
+    height: 32px;
+  }
+}
 
     nav {
       display: flex;
