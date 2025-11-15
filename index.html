@@ -55,7 +55,7 @@
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 16px;
       padding: 18px 22px;
       border-radius: var(--radius-xl);
@@ -68,52 +68,72 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .logo-img {
-      height: 64px;   /* ⬅ bigger logo */
+      height: 64px;
       width: auto;
       display: block;
     }
 
-    @media (max-width: 480px) {
-      .logo-img {
-        height: 40px; /* a bit smaller on phones */
-      }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    nav {
+    .brand-text h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 24px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .brand-text span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(244, 193, 93, 0.85);
+    }
+
+    /* MAIN NAV (DAYS) */
+
+    .day-nav {
+      margin-top: 14px;
+      padding: 10px 22px 0;
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
 
-    nav a {
+    .day-nav a {
       font-size: 12px;
       text-decoration: none;
       color: var(--text-muted);
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 999px;
-      border: 1px solid transparent;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.9);
       transition: all 0.2s ease;
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
 
-    nav a:hover {
-      border-color: rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.8);
+    .day-nav a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
       color: var(--text-main);
     }
 
-    nav a.tag-monday {
+    .day-nav a.tag-monday {
       border-color: var(--success);
       color: var(--success);
     }
 
-    nav a.tag-friday {
+    .day-nav a.tag-friday {
       border-color: var(--danger);
       color: var(--danger);
     }
@@ -137,8 +157,13 @@
         align-items: flex-start;
       }
 
-      nav {
-        justify-content: flex-start;
+      .logo-img {
+        height: 48px;
+      }
+
+      .day-nav {
+        padding-left: 18px;
+        padding-right: 18px;
       }
     }
 
@@ -552,16 +577,21 @@
     <header>
       <div class="brand">
         <img src="assets/img/FTN-logo.png" alt="FinTrend News logo" class="logo-img">
+        <div class="brand-text">
+          <h1>FinTrend News</h1>
+          <span>Financial Market Newsletter</span>
+        </div>
       </div>
-
-      <nav>
-        <a href="articles/2025-11-17-monday.html" class="tag-monday">Monday Outlook</a>
-        <a href="articles/2025-11-19-wednesday.html">Wed Momentum</a>
-        <a href="articles/2025-11-14-friday.html" class="tag-friday">Friday Recap</a>
-        <a href="javascript:void(0)">Sunday Macro Note</a>
-        <a href="archive.html">Archive / Calendar</a>
-      </nav>
     </header>
+
+    <!-- MAIN NAV BAR FOR THE DIFFERENT NOTES -->
+    <nav class="day-nav">
+      <a href="articles/2025-11-17-monday.html" class="tag-monday">Monday Outlook</a>
+      <a href="articles/2025-11-19-wednesday.html">Wed Momentum</a>
+      <a href="articles/2025-11-14-friday.html" class="tag-friday">Friday Recap</a>
+      <a href="javascript:void(0)">Sunday Macro Note</a>
+      <a href="archive.html">Archive / Calendar</a>
+    </nav>
 
     <main class="layout">
       <!-- LEFT: MAIN CONTENT -->
