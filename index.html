@@ -50,17 +50,37 @@
       padding: 0 16px 32px;
     }
 
-    /* === TOP HEADER: LOGO LEFT, TITLE CENTER, LINKS RIGHT === */
+    /* === TOP HEADER WITH EMBEDDED TICKER === */
 
     .top-header {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      padding: 18px 22px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
       border-radius: var(--radius-xl);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.82));
       border: 1px solid rgba(148, 163, 184, 0.25);
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    /* Ticker row inside header */
+    .ticker-row {
+      padding: 4px 18px;
+      background: radial-gradient(circle at top, #020617 0, #000 65%);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .ticker-row .tradingview-widget-container {
+      height: 28px;
+    }
+
+    /* Main header content: logo | title | actions */
+    .header-main {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 12px 22px 16px;
     }
 
     /* LEFT: LOGO */
@@ -136,7 +156,7 @@
     }
 
     @media (max-width: 830px) {
-      .top-header {
+      .header-main {
         grid-template-columns: 1fr;
         row-gap: 8px;
         justify-items: flex-start;
@@ -162,8 +182,8 @@
     /* === NAV UNDER HEADER: MON/WED/FRI/SUN/ARCHIVE === */
 
     .day-nav {
-      margin-top: 14px;
-      padding: 10px 22px 0;
+      margin-top: 4px;
+      padding: 6px 4px 0;
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
@@ -201,8 +221,8 @@
 
     @media (max-width: 830px) {
       .day-nav {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 0;
+        padding-right: 0;
       }
     }
 
@@ -212,7 +232,7 @@
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(260px, 1.4fr);
       gap: 24px;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     @media (max-width: 830px) {
@@ -451,6 +471,43 @@
       color: var(--success);
     }
 
+    /* VIX SCALE VISUAL */
+    .vix-scale {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 10px;
+    }
+
+    .vix-segment {
+      flex: 1;
+      border-radius: 999px;
+      padding: 4px 6px;
+      text-align: center;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .vix-segment span {
+      display: block;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .vix-low {
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    .vix-normal {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .vix-high {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
     /* SECONDARY ARTICLES */
 
     .article-grid {
@@ -628,25 +685,51 @@
 </head>
 <body>
   <div class="page">
-    <!-- HEADER -->
+    <!-- HEADER WITH TICKER INSIDE -->
     <header class="top-header">
-      <!-- LEFT: LOGO -->
-      <div class="header-left">
-        <img src="assets/img/FTN-logo.png" alt="FinTrend News logo" class="logo-img">
+      <!-- TICKER ROW -->
+      <div class="ticker-row">
+        <div class="tradingview-widget-container">
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{
+  "symbols": [
+    { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+    { "proName": "NASDAQ:NDX", "title": "Nasdaq 100" },
+    { "proName": "DJI", "title": "Dow 30" },
+    { "proName": "RUSSELL:RTY", "title": "Russell 2000" },
+    { "proName": "TVC:US10Y", "title": "US 10Y" },
+    { "proName": "OANDA:WTICOUSD", "title": "WTI Crude" },
+    { "proName": "OANDA:XAUUSD", "title": "Gold" }
+  ],
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "displayMode": "adaptive",
+  "locale": "en"
+}
+          </script>
+        </div>
       </div>
 
-      <!-- CENTER: NAME ONLY -->
-      <div class="header-center">
-        <h1 class="brand-title">FinTrend News</h1>
-      </div>
+      <!-- MAIN HEADER CONTENT -->
+      <div class="header-main">
+        <!-- LEFT: LOGO -->
+        <div class="header-left">
+          <img src="assets/img/FTN-logo.png" alt="FinTrend News logo" class="logo-img">
+        </div>
 
-      <!-- RIGHT: SIGN IN / SUBSCRIBE / SOCIALS -->
-      <div class="header-right">
-        <a href="#" class="header-link">Sign In</a>
-        <a href="#" class="subscribe-btn">Subscribe</a>
-        <div class="social-icons">
-          <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
-          <a href="https://linkedin.com" target="_blank" class="social-icon">in</a>
+        <!-- CENTER: NAME ONLY -->
+        <div class="header-center">
+          <h1 class="brand-title">FinTrend News</h1>
+        </div>
+
+        <!-- RIGHT: SIGN IN / SUBSCRIBE / SOCIALS -->
+        <div class="header-right">
+          <a href="#" class="header-link">Sign In</a>
+          <a href="#" class="subscribe-btn">Subscribe</a>
+          <div class="social-icons">
+            <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon">in</a>
+          </div>
         </div>
       </div>
     </header>
@@ -711,39 +794,41 @@
               </div>
             </div>
 
+            <!-- RIGHT: VIX / FEAR INDEX BOX -->
             <aside class="hero-highlight-box">
               <div>
-                <div class="hero-highlight-title">Index Snapshot</div>
+                <div class="hero-highlight-title">VIX · Fear Index</div>
                 <div class="hero-highlight-number">
-                  S&amp;P 500 <span>Live quote</span>
+                  VIX (CBOE) <span>Live quote</span>
                 </div>
                 <p class="hero-highlight-detail">
-                  After a choppy stretch near record highs, index levels remain elevated
-                  but momentum has slowed as investors rotate toward value and quality.
+                  The VIX tracks expected 30-day volatility from S&amp;P 500 options — often
+                  called the market’s “fear gauge.” Lower readings mean calmer conditions;
+                  higher readings signal stress and demand for protection.
                 </p>
 
                 <div class="hero-highlight-row">
                   <div class="mini-move">
-                    <span class="mini-move-label">Nasdaq</span>
-                    <span class="mini-move-value negative">-0.3% Wed</span>
+                    <span class="mini-move-label">Calm</span>
+                    <span class="mini-move-value positive">&lt; 15 · Low fear</span>
                   </div>
                   <div class="mini-move">
-                    <span class="mini-move-label">10y Yield</span>
-                    <span class="mini-move-value">~4.1%</span>
+                    <span class="mini-move-label">Typical</span>
+                    <span class="mini-move-value">15–25 · Normal volatility</span>
                   </div>
                   <div class="mini-move">
-                    <span class="mini-move-label">WTI</span>
-                    <span class="mini-move-value">~$58.5</span>
+                    <span class="mini-move-label">Stress</span>
+                    <span class="mini-move-value negative">&gt; 25 · Elevated risk</span>
                   </div>
                 </div>
 
-                <!-- Live S&P 500 widget -->
+                <!-- Live VIX widget -->
                 <div style="margin-top:10px;">
-                  <div class="mini-move-label">S&amp;P 500 Live</div>
+                  <div class="mini-move-label">VIX Live</div>
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
 {
-  "symbol": "SP:SPX",
+  "symbol": "CBOE:VIX",
   "width": "100%",
   "colorTheme": "dark",
   "isTransparent": true,
@@ -753,6 +838,22 @@
                   </div>
                 </div>
                 <!-- End widget -->
+
+                <!-- Simple visual scale -->
+                <div class="vix-scale">
+                  <div class="vix-segment vix-low">
+                    Calm
+                    <span>&lt; 15</span>
+                  </div>
+                  <div class="vix-segment vix-normal">
+                    Typical
+                    <span>15–25</span>
+                  </div>
+                  <div class="vix-segment vix-high">
+                    High Fear
+                    <span>&gt; 25</span>
+                  </div>
+                </div>
               </div>
             </aside>
           </div>
@@ -848,7 +949,7 @@
             <ul class="day-list">
               <li>
                 <strong>Monday</strong><br />
-                Weekly Outlook · <span>Macro drivers & key catalysts.</span>
+                Weekly Outlook · <span>Macro drivers &amp; key catalysts.</span>
               </li>
               <li>
                 <strong>Wednesday</strong><br />
@@ -860,7 +961,7 @@
               </li>
               <li>
                 <strong>Sunday</strong><br />
-                Macro Note · <span>Positioning & themes into the new week.</span>
+                Macro Note · <span>Positioning &amp; themes into the new week.</span>
               </li>
             </ul>
             <p class="subtle-note">
