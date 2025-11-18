@@ -2,341 +2,328 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Archive & Calendar | FinTrend News</title>
+  <title>Archive · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   />
+
   <style>
-    body {
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 950px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: #050816;
-      font-family: "Inter", sans-serif;
-      color: #e5e7eb;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       line-height: 1.7;
+      min-height: 100vh;
     }
 
     .page {
-      max-width: 900px;
-      margin: 32px auto 60px;
-      padding: 0 20px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: radial-gradient(circle at 20% 0, #fbbf24, #f97316 35%, #7c2d12 95%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #020617;
-      font-size: 16px;
-    }
-
-    .brand h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand span {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #9ca3af;
+      max-width: var(--max-width);
+      margin: 32px auto 40px;
+      padding: 0 16px 32px;
     }
 
     .back-link {
-      font-size: 13px;
+      font-size: 12px;
+      color: var(--text-muted);
       text-decoration: none;
-      color: #9ca3af;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
     }
 
     .back-link:hover {
-      color: #f4c15d;
+      color: var(--accent);
     }
 
-    h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 24px;
+    .title-block {
+      margin-bottom: 18px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 28px;
+      line-height: 1.2;
       margin-bottom: 6px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .subtitle {
       font-size: 13px;
-      color: #9ca3af;
-      margin-bottom: 22px;
+      color: var(--text-muted);
+      max-width: 560px;
     }
 
-    .calendar-wrapper {
+    .archive-container {
+      margin-top: 22px;
       background: rgba(15, 23, 42, 0.96);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 18px 18px 12px;
-      margin-bottom: 30px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 16px 20px;
     }
 
-    .calendar-header {
+    .archive-section + .archive-section {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .archive-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .archive-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .archive-item {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
       align-items: baseline;
-      margin-bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      transition: 0.18s ease;
     }
 
-    .calendar-header h3 {
-      margin: 0;
-      font-size: 16px;
+    .archive-item:hover {
+      border-color: var(--accent);
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.96));
+      transform: translateY(-1px);
     }
 
-    .calendar-header span {
-      font-size: 12px;
-      color: #9ca3af;
+    .archive-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    table.calendar {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    table.calendar th {
-      padding: 6px 0;
-      color: #9ca3af;
+    .archive-link {
+      color: #e5e7eb;
+      text-decoration: none;
       font-weight: 500;
     }
 
-    table.calendar td {
-      padding: 6px 0;
-      height: 30px;
-    }
-
-    table.calendar td span {
-      display: inline-block;
-      width: 26px;
-      height: 26px;
-      line-height: 26px;
-      border-radius: 999px;
-    }
-
-    table.calendar td a {
-      display: inline-block;
-      width: 26px;
-      height: 26px;
-      line-height: 26px;
-      border-radius: 999px;
-      text-decoration: none;
-      color: #f9fafb;
-      background: rgba(244, 193, 93, 0.18);
-      border: 1px solid #f4c15d;
-      font-size: 13px;
-    }
-
-    .legend {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 8px;
-    }
-
-    .legend span {
-      display: inline-block;
-      margin-right: 14px;
-    }
-
-    .dot {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      margin-right: 6px;
-    }
-
-    .dot-monday { background: #4ade80; }
-    .dot-wed { background: #60a5fa; }
-
-    .archive-list {
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 16px 18px;
-      font-size: 13px;
-    }
-
-    .archive-list h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .archive-list ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .archive-list li {
-      margin-bottom: 6px;
-    }
-
-    .archive-list a {
-      color: #e5e7eb;
-      text-decoration: none;
-    }
-
-    .archive-list a:hover {
+    .archive-link:hover {
       text-decoration: underline;
     }
 
-    footer {
-      margin-top: 26px;
+    .archive-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .archive-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .tag-monday {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .tag-wednesday {
+      border-color: #60a5fa;
+      color: #60a5fa;
+    }
+
+    .tag-friday {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .tag-sunday {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .archive-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .archive-date {
+        font-size: 11px;
+      }
+    }
+
+    .disclaimer {
+      margin-top: 20px;
       font-size: 11px;
-      color: #9ca3af;
-      text-align: center;
-      opacity: 0.85;
+      color: var(--text-muted);
+      max-width: 640px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="brand">
-        <div class="brand-logo">F</div>
-        <div>
-          <h1>FinTrend News</h1>
-          <span>Archive & Calendar</span>
-        </div>
-      </div>
-      <a href="index.html" class="back-link">← Back to Homepage</a>
-    </header>
+    <a href="index.html" class="back-link">
+      <span>←</span>
+      <span>Back to FinTrend News</span>
+    </a>
 
-    <h2>Article Archive</h2>
-    <p class="subtitle">
-      Start of coverage: week of Monday, November 10, 2025. Click a date to view that day’s article.
+    <div class="title-block">
+      <div class="kicker">Archive / Calendar</div>
+      <h1><span>FinTrend</span> Article Archive</h1>
+      <p class="subtitle">
+        Past Monday outlooks, Wednesday momentum checks, Friday recaps, and Sunday macro notes.
+        Newest entries appear at the top of each section.
+      </p>
+    </div>
+
+    <div class="archive-container">
+      <!-- SUNDAY NOTES -->
+      <div class="archive-section">
+        <div class="archive-section-title">Sunday Macro &amp; Positioning Notes</div>
+        <ul class="archive-list">
+          <li class="archive-item">
+            <div class="archive-main">
+              <span class="tag-pill tag-sunday">Sunday</span>
+              <a href="articles/2025-11-16-sunday.html" class="archive-link">
+                Sunday Macro &amp; Positioning Note — November 16, 2025
+              </a>
+              <span class="archive-meta">
+                Big-picture themes, cross-asset positioning, and where the next surprise might come from.
+              </span>
+            </div>
+            <span class="archive-date">Nov 16, 2025</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- MONDAY OUTLOOKS -->
+      <div class="archive-section">
+        <div class="archive-section-title">Monday Market Outlook</div>
+        <ul class="archive-list">
+          <li class="archive-item">
+            <div class="archive-main">
+              <span class="tag-pill tag-monday">Monday</span>
+              <a href="articles/2025-11-17-monday.html" class="archive-link">
+                CPI Hangover, Dow Leadership and a Market That’s Getting Tired
+              </a>
+              <span class="archive-meta">
+                Weekly equity &amp; macro briefing heading into the new trading week.
+              </span>
+            </div>
+            <span class="archive-date">Nov 17, 2025</span>
+          </li>
+          <!-- If you add older Mondays later, stack them below here -->
+        </ul>
+      </div>
+
+      <!-- WEDNESDAY MOMENTUM -->
+      <div class="archive-section">
+        <div class="archive-section-title">Wednesday Momentum Checks</div>
+        <ul class="archive-list">
+          <li class="archive-item">
+            <div class="archive-main">
+              <span class="tag-pill tag-wednesday">Wednesday</span>
+              <a href="articles/2025-11-19-wednesday.html" class="archive-link">
+                Rotation into Cyclicals as Defensives Lag: Real or Head-Fake?
+              </a>
+              <span class="archive-meta">
+                Midweek look at sector rotation, flows, and whether the tape matches Monday’s story.
+              </span>
+            </div>
+            <span class="archive-date">Nov 19, 2025</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FRIDAY RECAPS -->
+      <div class="archive-section">
+        <div class="archive-section-title">Friday Market Recaps</div>
+        <ul class="archive-list">
+          <li class="archive-item">
+            <div class="archive-main">
+              <span class="tag-pill tag-friday">Friday</span>
+              <a href="articles/2025-11-14-friday.html" class="archive-link">
+                Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift
+              </a>
+              <span class="archive-meta">
+                How the week actually traded versus expectations across indices and cross-asset.
+              </span>
+            </div>
+            <span class="archive-date">Nov 14, 2025</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      Archive links point to previously published notes for reference and education only.
+      None of this content is financial advice or a recommendation to buy or sell any security.
     </p>
-
-    <div class="calendar-wrapper">
-      <div class="calendar-header">
-        <h3>November 2025</h3>
-        <span>FinTrend publication days highlighted</span>
-      </div>
-      <table class="calendar">
-        <thead>
-          <tr>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-            <th>Sun</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Week row 1 (Nov 3–9) -->
-          <tr>
-            <td><span>3</span></td>
-            <td><span>4</span></td>
-            <td><span>5</span></td>
-            <td><span>6</span></td>
-            <td><span>7</span></td>
-            <td><span>8</span></td>
-            <td><span>9</span></td>
-          </tr>
-          <!-- Week row 2 (Nov 10–16) -->
-          <tr>
-            <td>
-              <!-- Monday 10th: clickable -->
-              <a href="articles/2025-11-10-monday.html">10</a>
-            </td>
-            <td><span>11</span></td>
-            <td>
-              <!-- Wednesday 12th: clickable -->
-              <a href="articles/2025-11-12-wednesday.html">12</a>
-            </td>
-            <td><span>13</span></td>
-           <td><a href="articles/2025-11-14-friday.html">14</a></td>
-            <td><span>15</span></td>
-            <td><a href="articles/2025-11-15-sunday.html">15</a></td>
-          </tr>
-          <!-- Future weeks - you can fill later -->
-          <tr>
-            <td><span>17</span></td>
-            <td><span>18</span></td>
-            <td><span>19</span></td>
-            <td><span>20</span></td>
-            <td><span>21</span></td>
-            <td><span>22</span></td>
-            <td><span>23</span></td>
-          </tr>
-          <tr>
-            <td><span>24</span></td>
-            <td><span>25</span></td>
-            <td><span>26</span></td>
-            <td><span>27</span></td>
-            <td><span>28</span></td>
-            <td><span>29</span></td>
-            <td><span>30</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="legend">
-        <span><span class="dot dot-monday"></span>Monday Outlook</span>
-        <span><span class="dot dot-wed"></span>Wednesday Momentum</span>
-      </div>
-    </div>
-
-    <div class="archive-list">
-      <h3>November 2025 — Detailed Links</h3>
-      <ul>
-        <li>
-          <strong>Mon, Nov 10:</strong>
-          <a href="articles/2025-11-17-monday.html">
-            Monday Market Outlook — CPI Hangover, Dow Leadership, and a Tired Market
-          </a>
-        </li>
-        <li>
-          <strong>Wed, Nov 12:</strong>
-          <a href="articles/2025-11-19-wednesday.html">
-            Wednesday Momentum Check — Rotation and Late-Cycle Positioning
-          </a>
-        </li>
-        <li>
-  <strong>Fri, Nov 14:</strong>
-  <a href="articles/2025-11-14-friday.html">
-    Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift
-  </a>
-</li>
-<!-- Later, you’ll add:
-        <li>Fri, Nov XX: <a href="articles/...">Friday Market Recap — ...</a></li>
-        <li>Sun, Nov XX: <a href="articles/...">Sunday Macro Note — ...</a></li>
-        -->
-      </ul>
-    </div>
-
-    <footer>
-      FinTrend News · Archive & Calendar
-    </footer>
   </div>
 </body>
 </html>
