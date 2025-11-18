@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Archive · FinTrend News</title>
+  <title>Archive Calendar · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Fonts -->
@@ -24,10 +24,10 @@
       --border-subtle: rgba(148, 163, 184, 0.35);
       --danger: #f97373;
       --success: #4ade80;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
-      --max-width: 950px;
+      --max-width: 980px;
     }
 
     * {
@@ -93,10 +93,12 @@
     .subtitle {
       font-size: 13px;
       color: var(--text-muted);
-      max-width: 560px;
+      max-width: 600px;
     }
 
-    .archive-container {
+    /* CALENDAR WRAPPER */
+
+    .calendar-wrapper {
       margin-top: 22px;
       background: rgba(15, 23, 42, 0.96);
       border-radius: var(--radius-xl);
@@ -105,85 +107,111 @@
       padding: 18px 16px 20px;
     }
 
-    .archive-section + .archive-section {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-    }
-
-    .archive-section-title {
-      font-size: 12px;
+    .calendar-header {
+      display: grid;
+      grid-template-columns: 0.9fr repeat(4, 1fr);
+      gap: 8px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      padding-bottom: 8px;
     }
 
-    .archive-list {
-      list-style: none;
+    .calendar-header div {
+      text-align: center;
+    }
+
+    .calendar-header .week-col-label {
+      text-align: left;
+    }
+
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 0.9fr repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: stretch;
+    }
+
+    .week-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding-top: 4px;
+    }
+
+    .day-cell {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.94);
+      padding: 8px 9px;
+      font-size: 12px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      font-size: 14px;
-    }
-
-    .archive-item {
-      display: flex;
       justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(31, 41, 55, 0.9);
+      min-height: 70px;
       transition: 0.18s ease;
     }
 
-    .archive-item:hover {
+    .day-cell.has-note:hover {
       border-color: var(--accent);
       background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.96));
       transform: translateY(-1px);
     }
 
-    .archive-main {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .day-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
     }
 
-    .archive-link {
+    .day-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .day-link {
+      font-size: 12px;
       color: #e5e7eb;
       text-decoration: none;
       font-weight: 500;
     }
 
-    .archive-link:hover {
+    .day-link:hover {
       text-decoration: underline;
     }
 
-    .archive-meta {
-      font-size: 12px;
+    .day-meta {
+      font-size: 11px;
       color: var(--text-muted);
+      margin-top: 3px;
     }
 
-    .archive-date {
-      font-size: 12px;
+    .empty-note {
+      font-size: 11px;
       color: var(--text-muted);
-      white-space: nowrap;
+      font-style: italic;
+      margin-top: 8px;
+      text-align: center;
     }
 
     .tag-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
+      gap: 4px;
+      padding: 1px 7px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .tag-monday {
@@ -206,14 +234,19 @@
       color: var(--accent);
     }
 
-    @media (max-width: 640px) {
-      .archive-item {
-        flex-direction: column;
-        align-items: flex-start;
+    @media (max-width: 720px) {
+      .calendar-header {
+        display: none;
       }
 
-      .archive-date {
-        font-size: 11px;
+      .calendar-row {
+        grid-template-columns: 1fr;
+      }
+
+      .week-label {
+        font-weight: 500;
+        padding-top: 0;
+        margin-bottom: 4px;
       }
     }
 
@@ -234,95 +267,127 @@
 
     <div class="title-block">
       <div class="kicker">Archive / Calendar</div>
-      <h1><span>FinTrend</span> Article Archive</h1>
+      <h1><span>FinTrend</span> Article Calendar</h1>
       <p class="subtitle">
-        Past Monday outlooks, Wednesday momentum checks, Friday recaps, and Sunday macro notes.
-        Newest entries appear at the top of each section.
+        Weekly view of Monday outlooks, Wednesday momentum checks, Friday recaps, and Sunday macro notes.
+        Newer weeks appear at the top.
       </p>
     </div>
 
-    <div class="archive-container">
-      <!-- SUNDAY NOTES -->
-      <div class="archive-section">
-        <div class="archive-section-title">Sunday Macro &amp; Positioning Notes</div>
-        <ul class="archive-list">
-          <li class="archive-item">
-            <div class="archive-main">
-              <span class="tag-pill tag-sunday">Sunday</span>
-              <a href="articles/2025-11-16-sunday.html" class="archive-link">
-                Sunday Macro &amp; Positioning Note — November 16, 2025
-              </a>
-              <span class="archive-meta">
-                Big-picture themes, cross-asset positioning, and where the next surprise might come from.
-              </span>
-            </div>
-            <span class="archive-date">Nov 16, 2025</span>
-          </li>
-        </ul>
+    <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <div class="week-col-label">Week</div>
+        <div>Monday</div>
+        <div>Wednesday</div>
+        <div>Friday</div>
+        <div>Sunday</div>
       </div>
 
-      <!-- MONDAY OUTLOOKS -->
-      <div class="archive-section">
-        <div class="archive-section-title">Monday Market Outlook</div>
-        <ul class="archive-list">
-          <li class="archive-item">
-            <div class="archive-main">
-              <span class="tag-pill tag-monday">Monday</span>
-              <a href="articles/2025-11-17-monday.html" class="archive-link">
-                CPI Hangover, Dow Leadership and a Market That’s Getting Tired
-              </a>
-              <span class="archive-meta">
-                Weekly equity &amp; macro briefing heading into the new trading week.
-              </span>
-            </div>
-            <span class="archive-date">Nov 17, 2025</span>
-          </li>
-          <!-- If you add older Mondays later, stack them below here -->
-        </ul>
+      <!-- WEEK: NOV 17–23, 2025 -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Nov 17, 2025</div>
+
+        <!-- Monday 17 - HAS NOTE -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Nov 17</div>
+            <span class="tag-pill tag-monday">Monday Outlook</span>
+            <a href="articles/2025-11-17-monday.html" class="day-link">
+              CPI Hangover, Dow Leadership and a Market That’s Getting Tired
+            </a>
+          </div>
+          <div class="day-meta">Weekly equity &amp; macro briefing.</div>
+        </div>
+
+        <!-- Wednesday 19 - HAS NOTE -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Nov 19</div>
+            <span class="tag-pill tag-wednesday">Momentum</span>
+            <a href="articles/2025-11-19-wednesday.html" class="day-link">
+              Rotation into Cyclicals as Defensives Lag: Real or Head-Fake?
+            </a>
+          </div>
+          <div class="day-meta">Midweek tape &amp; sector rotation check.</div>
+        </div>
+
+        <!-- Friday (none yet) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">—</div>
+          </div>
+          <div class="empty-note">— No note yet for this Friday —</div>
+        </div>
+
+        <!-- Sunday (none yet for this week) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">—</div>
+          </div>
+          <div class="empty-note">— No note yet for this Sunday —</div>
+        </div>
       </div>
 
-      <!-- WEDNESDAY MOMENTUM -->
-      <div class="archive-section">
-        <div class="archive-section-title">Wednesday Momentum Checks</div>
-        <ul class="archive-list">
-          <li class="archive-item">
-            <div class="archive-main">
-              <span class="tag-pill tag-wednesday">Wednesday</span>
-              <a href="articles/2025-11-19-wednesday.html" class="archive-link">
-                Rotation into Cyclicals as Defensives Lag: Real or Head-Fake?
-              </a>
-              <span class="archive-meta">
-                Midweek look at sector rotation, flows, and whether the tape matches Monday’s story.
-              </span>
-            </div>
-            <span class="archive-date">Nov 19, 2025</span>
-          </li>
-        </ul>
+      <!-- WEEK: NOV 10–16, 2025 -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Nov 10, 2025</div>
+
+        <!-- Monday (no standalone file yet) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Nov 10</div>
+          </div>
+          <div class="empty-note">— No separate Monday file —</div>
+        </div>
+
+        <!-- Wednesday (no standalone file yet) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Nov 12</div>
+          </div>
+          <div class="empty-note">— No note for this Wednesday —</div>
+        </div>
+
+        <!-- Friday 14 - HAS NOTE -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">Nov 14</div>
+            <span class="tag-pill tag-friday">Friday Recap</span>
+            <a href="articles/2025-11-14-friday.html" class="day-link">
+              Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift
+            </a>
+          </div>
+          <div class="day-meta">Week in review across indices and cross-asset.</div>
+        </div>
+
+        <!-- Sunday 16 - HAS NOTE -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">Nov 16</div>
+            <span class="tag-pill tag-sunday">Sunday Macro</span>
+            <a href="articles/2025-11-16-sunday.html" class="day-link">
+              Sunday Macro &amp; Positioning Note — November 16, 2025
+            </a>
+          </div>
+          <div class="day-meta">Big-picture themes &amp; positioning into the week.</div>
+        </div>
       </div>
 
-      <!-- FRIDAY RECAPS -->
-      <div class="archive-section">
-        <div class="archive-section-title">Friday Market Recaps</div>
-        <ul class="archive-list">
-          <li class="archive-item">
-            <div class="archive-main">
-              <span class="tag-pill tag-friday">Friday</span>
-              <a href="articles/2025-11-14-friday.html" class="archive-link">
-                Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift
-              </a>
-              <span class="archive-meta">
-                How the week actually traded versus expectations across indices and cross-asset.
-              </span>
-            </div>
-            <span class="archive-date">Nov 14, 2025</span>
-          </li>
-        </ul>
-      </div>
+      <!-- Add older weeks below this comment if you create more notes later -->
     </div>
 
     <p class="disclaimer">
-      Archive links point to previously published notes for reference and education only.
-      None of this content is financial advice or a recommendation to buy or sell any security.
+      This calendar is for reference and education only. Each note reflects views at the
+      time of writing and is not financial advice or a recommendation to buy or sell any
+      security or instrument.
     </p>
   </div>
 </body>
