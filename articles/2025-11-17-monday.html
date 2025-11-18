@@ -1,1 +1,584 @@
-s
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monday Market Outlook · November 17, 2025 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 900px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 32px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    /* TOP BAR */
+
+    .top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .top-meta span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    /* TITLE BLOCK */
+
+    .title-block {
+      margin-bottom: 18px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .byline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .byline strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* LEDE */
+
+    .lede {
+      margin-top: 18px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    /* ARTICLE BODY */
+
+    article {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 22px;
+    }
+
+    section + section {
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    ul {
+      margin: 8px 0 10px 18px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    ul li {
+      margin-bottom: 4px;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 18px 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(148, 163, 184, 0.6),
+        transparent
+      );
+    }
+
+    /* CALL-OUT CARDS */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 720px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.94), #020617);
+      padding: 10px 12px 12px;
+      font-size: 13px;
+    }
+
+    .card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .levels-list {
+      font-size: 13px;
+      list-style: none;
+      margin: 6px 0 0;
+      padding: 0;
+    }
+
+    .levels-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .tag-green {
+      color: var(--success);
+    }
+
+    .tag-red {
+      color: var(--danger);
+    }
+
+    /* VIX CARD + SCALE */
+
+    .vix-scale {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 10px;
+    }
+
+    .vix-segment {
+      flex: 1;
+      border-radius: 999px;
+      padding: 4px 6px;
+      text-align: center;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .vix-segment span {
+      display: block;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .vix-low {
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    .vix-normal {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .vix-high {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .mini-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html" class="back-link">
+      <span>←</span>
+      <span>Back to FinTrend News</span>
+    </a>
+
+    <div class="top-meta">
+      <div>
+        <span class="label">Monday Market Outlook</span>
+      </div>
+      <div>November 17, 2025</div>
+    </div>
+
+    <div class="title-block">
+      <div class="kicker">Weekly Equity & Macro Briefing</div>
+      <h1>
+        <span>CPI Hangover, Dow Leadership</span> and a Market That’s Getting Tired
+      </h1>
+      <p class="byline">
+        Written by <strong>James Minnehan</strong> · FinTrend News
+      </p>
+    </div>
+
+    <p class="lede">
+      After a multi-week rally, U.S. equities are heading into the new week with stretched
+      valuations, a quiet but persistent rotation toward value and cyclicals, and a tape
+      that feels less driven by mega-cap narratives and more by positioning and data
+      surprises. With inflation still above the Fed’s target and the 10-year hovering just
+      above 4%, the next leg is less about “good headlines” and more about how much
+      patience investors still have for the soft-landing story.
+    </p>
+
+    <article>
+      <!-- SECTION 1: BIG PICTURE -->
+      <section>
+        <h2>1 · Big Picture</h2>
+        <p>
+          The macro story hasn’t changed dramatically: growth is slowing at the margin,
+          core inflation is drifting lower but remains sticky, and policy is firmly in
+          “wait and see” mode. What has changed is how the market is trading that story.
+          The moves are smaller, sector leadership is rotating, and the tape is punishing
+          crowded themes faster than it did over the summer.
+        </p>
+        <p>
+          The rally off the last CPI and jobs prints left the S&amp;P within reach of the
+          prior highs, but breadth has narrowed again and follow-through has been uneven.
+          This is less a clean “risk-on” phase and more a late-cycle grind where every
+          data point is judged against already-optimistic expectations.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 2: INDEX LEVELS & CROSS-ASSET -->
+      <section>
+        <h2>2 · Index Levels & Cross-Asset Snapshot</h2>
+        <div class="grid-2">
+          <div>
+            <p>
+              On the equity side, the key question this week is whether the tape can
+              sustain the breakout without another round of support from lower yields or
+              “goldilocks” data. If the 10-year holds near 4–4.2% and economic surprises
+              stay mixed, there’s less mechanical support from duration and more focus on
+              earnings revisions and positioning.
+            </p>
+            <ul>
+              <li>
+                <strong>Upside scenario:</strong> Data stays benign, credit spreads remain
+                well-behaved, and investors are forced to chase year-end performance.
+              </li>
+              <li>
+                <strong>Downside scenario:</strong> A hot inflation print or weak growth
+                data re-opens the debate on whether the landing is “soft” or simply
+                “delayed,” and high-beta pockets give back recent gains.
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">Levels to Watch (Indicative)</div>
+            <ul class="levels-list">
+              <li>
+                <span>S&amp;P 500</span>
+                <span>Support: ~4,950 · Resistance: ~5,150</span>
+              </li>
+              <li>
+                <span>Nasdaq 100</span>
+                <span>Key area: prior highs near 18,400</span>
+              </li>
+              <li>
+                <span>10y U.S. Yield</span>
+                <span>Range: 3.9–4.3%</span>
+              </li>
+              <li>
+                <span>WTI Crude</span>
+                <span>Balance zone: $55–62</span>
+              </li>
+            </ul>
+            <p class="muted" style="margin-top:6px;">
+              Levels are directional zones, not precise trade recommendations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 3: VIX / FEAR INDEX -->
+      <section>
+        <h2>3 · Volatility & the “Fear Index”</h2>
+        <div class="grid-2">
+          <div>
+            <p>
+              The VIX — often called the market’s “fear index” — tracks implied volatility
+              on S&amp;P 500 options over the next 30 days. In plain language: it reflects
+              how much price movement investors are expecting, and how much they are
+              willing to pay for protection.
+            </p>
+            <p>
+              Very low VIX readings (sub-15) usually mean investors are comfortable and
+              complacency risk is building. Spikes above ~25 tend to coincide with growth,
+              policy, or liquidity scares. Where we sit this Monday is somewhere in
+              between: not crisis territory, but no longer the ultra-calm regime that
+              encourages maximum risk-taking.
+            </p>
+            <p class="muted">
+              For this week, think of the VIX less as a “crash signal” and more as a gauge
+              of how much room markets have to absorb bad news without breaking trend.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">VIX · Fear Index Snapshot</div>
+            <p style="font-size:13px;margin-bottom:6px;">
+              A simple way to read the VIX:
+            </p>
+            <div class="vix-scale">
+              <div class="vix-segment vix-low">
+                Calm
+                <span>&lt; 15 · Low fear</span>
+              </div>
+              <div class="vix-segment vix-normal">
+                Typical
+                <span>15–25 · Normal volatility</span>
+              </div>
+              <div class="vix-segment vix-high">
+                High Fear
+                <span>&gt; 25 · Elevated risk</span>
+              </div>
+            </div>
+            <p class="mini-label">VIX Live</p>
+            <div class="tradingview-widget-container" style="margin-top:4px;">
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "CBOE:VIX",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+              </script>
+            </div>
+            <p class="muted" style="margin-top:8px;">
+              Use the VIX as context, not a trading signal by itself.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 4: THIS WEEK'S MACRO CALENDAR -->
+      <section>
+        <h2>4 · Macro Calendar That Matters</h2>
+        <p>
+          The calendar is light on “headline” risk events but rich in second-tier data
+          that shapes the soft-landing debate. The focus is less on any single release and
+          more on whether the overall mix supports “slowing but not breaking.”
+        </p>
+        <ul>
+          <li>
+            <strong>Regional manufacturing surveys:</strong> Help confirm whether the
+            recent stabilization in activity is real or just noise.
+          </li>
+          <li>
+            <strong>Retail sales:</strong> Key for the consumer narrative — are higher
+            rates and tighter credit finally biting, or does spending remain resilient?
+          </li>
+          <li>
+            <strong>Producer price data:</strong> A look at pipeline inflation pressures,
+            especially important after the latest CPI print.
+          </li>
+          <li>
+            <strong>Fed speak:</strong> Less about immediate hikes or cuts, more about how
+            comfortable policymakers are with current financial conditions.
+          </li>
+        </ul>
+        <p class="muted">
+          Into this backdrop, markets are likely to favor companies and sectors that can
+          grow earnings without relying on multiple expansion or aggressive rate-cut
+          assumptions.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 5: POSITIONING & RISKS -->
+      <section>
+        <h2>5 · Positioning, Rotations & Key Risks</h2>
+        <p>
+          One of the quiet themes of the past few weeks has been the shift away from a
+          pure mega-cap leadership structure. Flows into cyclicals, quality value, and
+          parts of small- and mid-caps suggest investors are experimenting with a broader
+          playbook — but they haven’t fully abandoned the “safe” large-cap compounders
+          either.
+        </p>
+        <p>
+          That leaves the tape vulnerable to two types of risk:
+        </p>
+        <ul>
+          <li>
+            <strong>Disappointment risk:</strong> Any sign that earnings or margins are
+            rolling over faster than expected can quickly hit the new “rotation winners.”
+          </li>
+          <li>
+            <strong>Positioning resets:</strong> If the data re-opens the hard-landing
+            narrative, crowded longs in quality and mega-cap could see fast de-risking.
+          </li>
+        </ul>
+        <p class="muted">
+          In other words: the market isn’t in panic mode, but it’s no longer priced for
+          endless good news either.
+        </p>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 6: WHAT TO WATCH -->
+      <section>
+        <h2>6 · What to Watch This Week</h2>
+        <p>
+          For this Monday outlook, the focus is less on calling each day’s move and more
+          on knowing which developments actually matter for the next 1–2 weeks:
+        </p>
+        <ul>
+          <li>
+            <strong>Does the VIX stay contained?</strong> A calm or only mildly elevated
+            VIX gives the market room to digest bad news without breaking trend.
+          </li>
+          <li>
+            <strong>Do cyclicals hold their bid?</strong> If value and cyclicals keep
+            working, it supports the idea of a “broadening” market rather than a narrow
+            melt-up.
+          </li>
+          <li>
+            <strong>How do financial conditions evolve?</strong> If yields back up and
+            credit spreads widen at the same time, the growth narrative becomes harder to
+            defend.
+          </li>
+          <li>
+            <strong>Are earnings revisions stabilizing?</strong> Stable to modestly
+            improving revisions would justify current valuation levels; renewed downward
+            revisions would not.
+          </li>
+        </ul>
+        <p>
+          Put simply: this week is less about chasing every move and more about reading
+          whether the current late-cycle grind can continue without a bigger volatility
+          shock.
+        </p>
+      </section>
+
+      <p class="disclaimer">
+        This article is for informational and educational purposes only and reflects a
+        personal macro and market framework. It is not financial advice, and it is not a
+        recommendation to buy or sell any security or instrument. Always do your own
+        research and consider your risk tolerance before making investment decisions.
+      </p>
+    </article>
+  </div>
+</body>
+</html>
