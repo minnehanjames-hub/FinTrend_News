@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>FinTrend News | Market Newsletter</title>
+  <meta name="description" content="FinTrend News is a four-times-a-week market newsletter covering macro, equities, and key catalysts in a concise, sell-side style." />
+
+  <meta property="og:title" content="FinTrend News" />
+  <meta property="og:description" content="Four-times-a-week market notes: Monday outlook, Wednesday momentum, Friday recap, and Sunday macro." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:image" content="https://yourdomain.com/assets/img/FTN-logo.png" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Google Fonts for news-style typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -724,18 +732,18 @@
 
         <!-- RIGHT: SIGN IN / SUBSCRIBE / SOCIALS -->
         <div class="header-right">
-          <a href="#" class="header-link">Sign In</a>
-          <a href="#" class="subscribe-btn">Subscribe</a>
+          <a href="signin.html" class="header-link">Sign In</a>
+          <a href="#subscribe" class="subscribe-btn">Subscribe</a>
           <div class="social-icons">
-            <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
-            <a href="https://linkedin.com" target="_blank" class="social-icon">in</a>
+            <a href="https://instagram.com" target="_blank" class="social-icon" title="FinTrend News Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon" title="FinTrend News LinkedIn">in</a>
           </div>
         </div>
       </div>
     </header>
 
     <!-- NAV FOR DIFFERENT NOTES -->
-    <nav class="day-nav">
+    <nav class="day-nav" aria-label="FinTrend weekday notes navigation">
       <a href="articles/2025-11-24-monday.html" class="tag-monday">Monday Outlook</a>
       <a href="articles/2025-11-19-wednesday.html">Wed Momentum</a>
       <a href="articles/2025-11-21-friday.html" class="tag-friday">Friday Recap</a>
@@ -864,7 +872,7 @@
                 <div class="article-date">Mon · 8:30 AM</div>
               </div>
               <h3 class="article-title">
-                <a href="javascript:void(0)">
+                <a href="articles/2025-11-24-data-watch.html">
                   Data Watch: Empire State, Retail Sales, and Producer Prices
                 </a>
               </h3>
@@ -886,7 +894,7 @@
                 <div class="article-date">Mon · 7:15 AM</div>
               </div>
               <h3 class="article-title">
-                <a href="javascript:void(0)">
+                <a href="articles/2025-11-24-cpi-jobs-fed.html">
                   CPI, Jobs, and Fed Speak: The Macro Calendar that Matters
                 </a>
               </h3>
@@ -895,7 +903,7 @@
                 rate expectations or risk sentiment across assets.
               </p>
               <div class="article-meta">
-                <span>By Your Name</span>
+                <span>By FinTrend News Editorial Team</span>
                 <span>Macro View · 4 min read</span>
               </div>
             </article>
@@ -908,10 +916,10 @@
         <div class="sidebar-block">
           <div class="sidebar-header">About FinTrend News</div>
           <div class="sidebar-card">
-            FinTrend News is a financial market newsletter covering macro,
-            equities, and key catalysts four times a week — a Monday outlook, Wednesday
-            momentum check, Friday recap, and Sunday macro note designed to read like a
-            concise sell-side briefing.
+            FinTrend News is a four-times-a-week market newsletter covering macro,
+            equities, and key catalysts — a Monday outlook, Wednesday momentum check,
+            Friday recap, and Sunday macro note. Each edition is written to read like a
+            concise sell-side briefing for active traders and investors.
             <div class="pill-label">
               <span>Focus:</span>
               Macro · Earnings · Positioning · Cross-Asset
@@ -971,13 +979,55 @@
       </aside>
     </main>
 
-    <p style="margin-top:18px;font-size:11px;color:#9ca3af;max-width:740px;">
-      <strong>Disclaimer:</strong>
-      This content is for informational and educational purposes only, not financial
-      advice. I am not a licensed financial advisor. Nothing in this
-      newsletter should be interpreted as a recommendation to buy or sell any
-      financial asset.
-    </p>
+    <!-- SUBSCRIBE PANEL (TARGET FOR #subscribe) -->
+    <section id="subscribe" class="panel" style="margin-top: 22px;">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Subscribe to FinTrend News</div>
+          <div class="panel-subtitle">
+            Get the Monday outlook, Wednesday momentum check, Friday recap, and Sunday macro note straight to your inbox.
+          </div>
+        </div>
+        <div class="time-indicator">4x Weekly · Free</div>
+      </div>
+
+      <div style="position:relative;z-index:1;">
+        <p style="font-size:13px;color:#e5e7eb;margin-bottom:10px;">
+          No spam, no hype — just concise, sell-side-style market briefings.
+        </p>
+        <form action="#" method="post" style="display:flex;flex-wrap:wrap;gap:8px;max-width:420px;">
+          <input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            style="flex:1;min-width:180px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
+          />
+          <button
+            type="submit"
+            style="padding:8px 16px;border-radius:999px;border:none;background:var(--accent);color:#000;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
+          (You can later hook this form to a real email service like Substack, Mailchimp, or Buttondown.)
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p style="max-width:740px;margin:0 auto 6px;">
+        <strong>Disclaimer:</strong>
+        This content is for informational and educational purposes only, not financial
+        advice. I am not a licensed financial advisor. Nothing in this
+        newsletter should be interpreted as a recommendation to buy or sell any
+        financial asset.
+      </p>
+      <p>
+        © 2025 FinTrend News · <a href="archive.html">Archive / Calendar</a>
+      </p>
+    </footer>
 
   </div>
 </body>
