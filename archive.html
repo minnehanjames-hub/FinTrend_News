@@ -5,7 +5,7 @@
   <title>Archive Calendar · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -24,10 +24,10 @@
       --border-subtle: rgba(148, 163, 184, 0.35);
       --danger: #f97373;
       --success: #4ade80;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
-      --max-width: 1150px;
+      --max-width: 980px;
     }
 
     * {
@@ -41,744 +41,416 @@
       color: var(--text-main);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      line-height: 1.6;
+      line-height: 1.7;
       min-height: 100vh;
     }
 
     .page {
       max-width: var(--max-width);
-      margin: 24px auto 40px;
+      margin: 32px auto 40px;
       padding: 0 16px 32px;
     }
 
-    /* === HEADER (similar vibe to index, but simpler) === */
-
-    .top-header {
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.82));
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-
-    .header-main {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+    .back-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
       align-items: center;
-      padding: 12px 22px 16px;
+      gap: 6px;
+      margin-bottom: 18px;
     }
 
-    .header-left .logo-img {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
-
-    .header-center {
-      text-align: center;
-    }
-
-    .brand-title {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 24px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .back-link:hover {
       color: var(--accent);
     }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      justify-self: end;
-      font-size: 12px;
+    .title-block {
+      margin-bottom: 18px;
     }
 
-    .header-link {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .header-link:hover {
-      color: var(--text-main);
-    }
-
-    @media (max-width: 830px) {
-      .header-main {
-        grid-template-columns: 1fr;
-        row-gap: 8px;
-        justify-items: flex-start;
-      }
-
-      .header-center {
-        text-align: left;
-      }
-
-      .brand-title {
-        font-size: 20px;
-      }
-
-      .header-left .logo-img {
-        height: 44px;
-      }
-    }
-
-    /* === NAV UNDER HEADER (same classes as index) === */
-
-    .day-nav {
-      margin-top: 4px;
-      padding: 6px 4px 0;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .day-nav a {
-      font-size: 12px;
-      text-decoration: none;
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.9);
-      transition: all 0.2s ease;
+    .kicker {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
     }
 
-    .day-nav a:hover {
+    h1 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* CALENDAR WRAPPER */
+
+    .calendar-wrapper {
+      margin-top: 22px;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 16px 20px;
+    }
+
+    .calendar-header {
+      display: grid;
+      grid-template-columns: 0.9fr repeat(4, 1fr);
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      padding-bottom: 8px;
+    }
+
+    .calendar-header div {
+      text-align: center;
+    }
+
+    .calendar-header .week-col-label {
+      text-align: left;
+    }
+
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 0.9fr repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: stretch;
+    }
+
+    .week-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding-top: 4px;
+    }
+
+    .day-cell {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.94);
+      padding: 8px 9px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 70px;
+      transition: 0.18s ease;
+    }
+
+    .day-cell.has-note:hover {
       border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--text-main);
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.96));
+      transform: translateY(-1px);
     }
 
-    .day-nav a.tag-monday {
+    .day-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .day-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .day-link {
+      font-size: 12px;
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .day-link:hover {
+      text-decoration: underline;
+    }
+
+    .day-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .empty-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .tag-monday {
       border-color: var(--success);
       color: var(--success);
     }
 
-    .day-nav a.tag-friday {
+    .tag-wednesday {
+      border-color: #60a5fa;
+      color: #60a5fa;
+    }
+
+    .tag-friday {
       border-color: var(--danger);
       color: var(--danger);
     }
 
-    @media (max-width: 830px) {
-      .day-nav {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-
-    /* === PANEL SHELL (reusing your index look) === */
-
-    .panel {
-      background: rgba(15, 23, 42, 0.94);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 20px 20px 18px;
-      position: relative;
-      overflow: hidden;
-      margin-top: 18px;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
-      pointer-events: none;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-    }
-
-    .panel-subtitle {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .time-indicator {
-      font-size: 11px;
+    .tag-sunday {
+      border-color: var(--accent);
       color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
     }
 
-    /* === CALENDAR LAYOUT === */
+    @media (max-width: 720px) {
+      .calendar-header {
+        display: none;
+      }
 
-    .archive-main {
-      position: relative;
-      z-index: 1;
-    }
-
-    .archive-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(230px, 1.3fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 780px) {
-      .archive-grid {
+      .calendar-row {
         grid-template-columns: 1fr;
       }
+
+      .week-label {
+        font-weight: 500;
+        padding-top: 0;
+        margin-bottom: 4px;
+      }
     }
 
-    /* Calendar block */
-
-    .calendar-box {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), #020617);
-      padding: 14px 14px 12px;
-      font-size: 12px;
-    }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .calendar-month-year {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .calendar-nav-btn {
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-      font-size: 12px;
-      padding: 4px 9px;
-      cursor: pointer;
-    }
-
-    .calendar-nav-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      margin-top: 6px;
-      font-size: 11px;
-    }
-
-    .calendar-day-name {
-      text-align: center;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 3px 0;
-      border-bottom: 1px solid rgba(55, 65, 81, 0.9);
-    }
-
-    .calendar-cell {
-      height: 40px;
-      border-radius: 10px;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      background: rgba(15, 23, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 4px 6px;
-      cursor: default;
-      opacity: 0.8;
-    }
-
-    .calendar-cell.empty {
-      border: none;
-      background: transparent;
-      cursor: default;
-      opacity: 0;
-    }
-
-    .calendar-cell.has-articles {
-      cursor: pointer;
-      border-color: var(--accent);
-      opacity: 1;
-    }
-
-    .calendar-cell.has-articles:hover {
-      background: var(--accent-soft);
-    }
-
-    .calendar-cell-today {
-      border-color: var(--success);
-    }
-
-    .calendar-date-number {
-      font-size: 11px;
-      color: #e5e7eb;
-    }
-
-    .calendar-article-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      align-self: flex-start;
-    }
-
-    .calendar-article-count {
-      font-size: 9px;
-      color: var(--text-muted);
-      align-self: flex-start;
-    }
-
-    /* Right column: selected date + article list */
-
-    .articles-box {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.98);
-      padding: 12px 12px 10px;
-      font-size: 12px;
-    }
-
-    .articles-header {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .selected-date-label {
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .selected-date-label span {
-      color: var(--accent);
-    }
-
-    .articles-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .articles-list li {
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
-    }
-
-    .articles-list li:last-child {
-      border-bottom: none;
-    }
-
-    .article-link {
-      color: #e5e7eb;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .article-link:hover {
-      text-decoration: underline;
-    }
-
-    .article-meta {
+    .disclaimer {
+      margin-top: 20px;
       font-size: 11px;
       color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .article-tag {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    .article-slot {
-      font-size: 11px;
-      color: var(--accent);
-    }
-
-    .articles-empty {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    footer {
-      margin-top: 24px;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: center;
-      opacity: 0.85;
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
+      max-width: 640px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HEADER -->
-    <header class="top-header">
-      <div class="header-main">
-        <div class="header-left">
-          <img src="assets/img/FTN-logo.png" alt="FinTrend News logo" class="logo-img">
-        </div>
-        <div class="header-center">
-          <h1 class="brand-title">FinTrend News</h1>
-        </div>
-        <div class="header-right">
-          <a href="index.html" class="header-link">Home</a>
-          <a href="signin.html" class="header-link">Sign In</a>
-        </div>
-      </div>
-    </header>
+    <a href="index.html" class="back-link">
+      <span>←</span>
+      <span>Back to FinTrend News</span>
+    </a>
 
-    <!-- NAV, same as index -->
-    <nav class="day-nav" aria-label="FinTrend weekday notes navigation">
-      <a href="articles/2025-11-24-monday.html" class="tag-monday">Monday Outlook</a>
-      <a href="articles/2025-11-19-wednesday.html">Wed Momentum</a>
-      <a href="articles/2025-11-21-friday.html" class="tag-friday">Friday Recap</a>
-      <a href="articles/2025-11-23-sunday.html">Sunday Macro Note</a>
-      <a href="archive.html">Archive / Calendar</a>
-    </nav>
-
-    <!-- ARCHIVE PANEL -->
-    <section class="panel">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title">Archive Calendar</div>
-          <div class="panel-subtitle">
-            Browse FinTrend issues by date. Click a highlighted day to see all notes from that session.
-          </div>
-        </div>
-        <div class="time-indicator">Early Issues · 2025</div>
-      </div>
-
-      <div class="archive-main">
-        <div class="archive-grid">
-          <!-- LEFT: CALENDAR -->
-          <div class="calendar-box">
-            <div class="calendar-header">
-              <button id="prev-month" class="calendar-nav-btn" type="button">‹ Prev</button>
-              <div id="calendar-month-year" class="calendar-month-year"></div>
-              <button id="next-month" class="calendar-nav-btn" type="button">Next ›</button>
-            </div>
-            <div id="calendar-grid" class="calendar-grid">
-              <!-- JS will fill this -->
-            </div>
-          </div>
-
-          <!-- RIGHT: SELECTED DATE ARTICLES -->
-          <aside class="articles-box">
-            <div class="articles-header">Issues on Selected Date</div>
-            <div id="selected-date-label" class="selected-date-label">
-              Select a highlighted day on the calendar.
-            </div>
-            <ul id="articles-list" class="articles-list">
-              <!-- JS fills entries here -->
-            </ul>
-            <div id="articles-empty" class="articles-empty">
-              No issues loaded yet — choose a date on the left.
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>
-        © 2025 FinTrend News · <a href="index.html">Back to homepage</a>
+    <div class="title-block">
+      <div class="kicker">Archive / Calendar</div>
+      <h1><span>FinTrend</span> Article Calendar</h1>
+      <p class="subtitle">
+        Weekly view of Monday outlooks, Wednesday momentum checks, Friday recaps, and Sunday macro notes.
       </p>
-    </footer>
+    </div>
+
+    <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <div class="week-col-label">Week</div>
+        <div>Monday</div>
+        <div>Wednesday</div>
+        <div>Friday</div>
+        <div>Sunday</div>
+      </div>
+
+      <!-- WEEK 1 -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Nov 10</div>
+
+        <!-- Monday 10 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Nov 10</div>
+            <span class="tag-pill tag-monday">Monday Outlook</span>
+            <a href="articles/2025-11-10-monday.html" class="day-link">
+              Monday Market Outlook — November 10
+            </a>
+          </div>
+          <div class="day-meta">Kickoff note for the week.</div>
+        </div>
+
+        <!-- Wednesday 12 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Nov 12</div>
+            <span class="tag-pill tag-wednesday">Momentum</span>
+            <a href="articles/2025-11-12-wednesday.html" class="day-link">
+              Wednesday Momentum Check — November 12
+            </a>
+          </div>
+          <div class="day-meta">Midweek tape &amp; sector rotation.</div>
+        </div>
+
+        <!-- Friday 14 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">Nov 14</div>
+            <span class="tag-pill tag-friday">Friday Recap</span>
+            <a href="articles/2025-11-14-friday.html" class="day-link">
+              Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift
+            </a>
+          </div>
+          <div class="day-meta">End-of-week equity &amp; macro wrap.</div>
+        </div>
+
+        <!-- Sunday 15 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">Nov 15</div>
+            <span class="tag-pill tag-sunday">Sunday Macro</span>
+            <a href="articles/2025-11-16-sunday.html" class="day-link">
+              Sunday Macro &amp; Positioning Note — November 15
+            </a>
+          </div>
+          <div class="day-meta">Big-picture themes &amp; positioning for next week.</div>
+        </div>
+      </div>
+
+      <!-- WEEK 2 -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Nov 16</div>
+
+        <!-- Monday 17 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Nov 16</div>
+            <span class="tag-pill tag-monday">Monday Outlook</span>
+            <a href="articles/2025-11-17-monday.html" class="day-link">
+              Monday Market Outlook — November 16
+            </a>
+          </div>
+          <div class="day-meta">Second Monday outlook in the series.</div>
+        </div>
+
+        <!-- Wednesday 19 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Nov 19</div>
+            <span class="tag-pill tag-wednesday">Momentum</span>
+            <a href="articles/2025-11-19-wednesday.html" class="day-link">
+              Wednesday Momentum Check — November 19
+            </a>
+          </div>
+          <div class="day-meta">Midweek tape &amp; sector rotation.</div>
+        </div>
+
+        <!-- Friday 21 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">Nov 21</div>
+            <span class="tag-pill tag-friday">Friday Recap</span>
+            <a href="articles/2025-11-21-friday.html" class="day-link">
+              Friday Market Recap — Futures Fade, Fed Speak Steady, Tech Pauses
+            </a>
+          </div>
+          <div class="day-meta">End-of-week equity &amp; macro wrap.</div>
+        </div>
+
+        <!-- Sunday 23 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">Nov 23</div>
+            <span class="tag-pill tag-sunday">Sunday Macro</span>
+            <a href="articles/2025-11-23-sunday.html" class="day-link">
+              Sunday Macro &amp; Positioning Note — November 23
+            </a>
+          </div>
+          <div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div>
+        </div>
+      </div>
+
+      <!-- WEEK 3 -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Nov 23</div>
+
+        <!-- Monday 24 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Nov 24</div>
+            <span class="tag-pill tag-monday">Monday Outlook</span>
+            <a href="articles/2025-11-24-monday.html" class="day-link">
+              Monday Market Outlook — November 24
+            </a>
+          </div>
+          <div class="day-meta">Weekly kickoff heading into holiday trading.</div>
+        </div>
+
+        <!-- Wednesday 26 — NEW -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Nov 26</div>
+            <span class="tag-pill tag-wednesday">Momentum</span>
+            <a href="articles/2025-11-26-wednesday.html" class="day-link">
+              Wednesday Momentum Check — November 26
+            </a>
+          </div>
+          <div class="day-meta">Holiday-week tape &amp; midweek flows.</div>
+        </div>
+
+        <!-- Friday — empty for now -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">—</div>
+          </div>
+          <div class="empty-note">— No note yet for this Friday —</div>
+        </div>
+
+        <!-- Sunday — empty for now -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">—</div>
+          </div>
+          <div class="empty-note">— No note yet for this Sunday —</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      This calendar is for reference and education only. Each note reflects views at the
+      time of writing and is not financial advice or a recommendation to buy or sell any
+      security or instrument.
+    </p>
   </div>
-
-  <!-- CALENDAR SCRIPT -->
-  <script>
-    // All your articles, grouped by date (YYYY-MM-DD)
-    const articlesByDate = {
-      "2025-11-10": [
-        {
-          title: "Monday Outlook — November 10, 2025",
-          href: "articles/2025-11-10-monday.html",
-          tag: "Monday Outlook",
-          slot: "Weekly Outlook"
-        }
-      ],
-      "2025-11-12": [
-        {
-          title: "Wednesday Momentum — November 12, 2025",
-          href: "articles/2025-11-12-wednesday.html",
-          tag: "Wednesday Momentum",
-          slot: "Midweek Note"
-        }
-      ],
-      "2025-11-14": [
-        {
-          title: "Friday Market Recap — November 14, 2025",
-          href: "articles/2025-11-14-friday.html",
-          tag: "Friday Recap",
-          slot: "After Close"
-        }
-      ],
-      "2025-11-16": [
-        {
-          title: "Sunday Macro Note — November 16, 2025",
-          href: "articles/2025-11-16-sunday.html",
-          tag: "Sunday Macro Note",
-          slot: "Evening"
-        }
-      ],
-      "2025-11-17": [
-        {
-          title: "Monday Outlook — November 17, 2025",
-          href: "articles/2025-11-17-monday.html",
-          tag: "Monday Outlook",
-          slot: "Weekly Outlook"
-        }
-      ],
-      "2025-11-19": [
-        {
-          title: "Midweek Momentum Check",
-          href: "articles/2025-11-19-wednesday.html",
-          tag: "Wednesday Momentum",
-          slot: "Midweek Note"
-        }
-      ],
-      "2025-11-21": [
-        {
-          title: "Friday Market Recap",
-          href: "articles/2025-11-21-friday.html",
-          tag: "Friday Recap",
-          slot: "After Close"
-        }
-      ],
-      "2025-11-23": [
-        {
-          title: "Sunday Macro Positioning Note",
-          href: "articles/2025-11-23-sunday.html",
-          tag: "Sunday Macro Note",
-          slot: "Evening"
-        }
-      ],
-      "2025-11-24": [
-        {
-          title: "Thanksgiving Liquidity, Seasonality and a Market Waiting for Fed Clarity",
-          href: "articles/2025-11-24-monday.html",
-          tag: "Monday Outlook",
-          slot: "Weekly Outlook"
-        },
-        {
-          title: "Data Watch: Empire State, Retail Sales, and Producer Prices",
-          href: "articles/2025-11-24-data-watch.html",
-          tag: "Macro · Data Watch",
-          slot: "Morning"
-        },
-        {
-          title: "CPI, Jobs, and Fed Speak: The Macro Calendar that Matters",
-          href: "articles/2025-11-24-cpi-jobs-fed.html",
-          tag: "Macro · Data Watch",
-          slot: "Morning"
-        }
-      ]
-    };
-
-    const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-
-    const monthYearLabel = document.getElementById("calendar-month-year");
-    const calendarGrid = document.getElementById("calendar-grid");
-    const selectedDateLabel = document.getElementById("selected-date-label");
-    const articlesList = document.getElementById("articles-list");
-    const articlesEmpty = document.getElementById("articles-empty");
-
-    // Start on November 2025 since that's where your first issues are
-    let currentYear = 2025;
-    let currentMonth = 10; // 0 = Jan, so 10 = November
-
-    function pad(num) {
-      return num.toString().padStart(2, "0");
-    }
-
-    function renderCalendar(year, month) {
-      // Set header text
-      monthYearLabel.textContent = months[month] + " " + year;
-
-      // Clear grid
-      calendarGrid.innerHTML = "";
-
-      // Day names row
-      const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      dayNames.forEach(name => {
-        const el = document.createElement("div");
-        el.className = "calendar-day-name";
-        el.textContent = name;
-        calendarGrid.appendChild(el);
-      });
-
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // Blank cells before the first day
-      for (let i = 0; i < firstDay; i++) {
-        const blank = document.createElement("div");
-        blank.className = "calendar-cell empty";
-        calendarGrid.appendChild(blank);
-      }
-
-      const today = new Date();
-      const todayKey = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-" + pad(today.getDate());
-
-      // Actual day cells
-      for (let day = 1; day <= daysInMonth; day++) {
-        const cell = document.createElement("div");
-        cell.className = "calendar-cell";
-
-        const dateKey = year + "-" + pad(month + 1) + "-" + pad(day);
-        const hasArticles = !!articlesByDate[dateKey];
-
-        if (hasArticles) {
-          cell.classList.add("has-articles");
-        }
-
-        if (dateKey === todayKey) {
-          cell.classList.add("calendar-cell-today");
-        }
-
-        const dateNumber = document.createElement("div");
-        dateNumber.className = "calendar-date-number";
-        dateNumber.textContent = day;
-
-        cell.appendChild(dateNumber);
-
-        if (hasArticles) {
-          const dot = document.createElement("div");
-          dot.className = "calendar-article-dot";
-          cell.appendChild(dot);
-
-          const count = document.createElement("div");
-          const countNum = articlesByDate[dateKey].length;
-          count.className = "calendar-article-count";
-          count.textContent = countNum + " issue" + (countNum > 1 ? "s" : "");
-          cell.appendChild(count);
-
-          cell.addEventListener("click", () => {
-            showArticlesFor(dateKey);
-          });
-        }
-
-        calendarGrid.appendChild(cell);
-      }
-    }
-
-    function showArticlesFor(dateKey) {
-      const parts = dateKey.split("-");
-      const year = parts[0];
-      const monthIndex = Number(parts[1]) - 1;
-      const day = Number(parts[2]);
-
-      const niceLabel = `${months[monthIndex]} ${day}, ${year}`;
-      selectedDateLabel.innerHTML = `Issues on <span>${niceLabel}</span>`;
-
-      const articles = articlesByDate[dateKey] || [];
-
-      articlesList.innerHTML = "";
-      if (articles.length === 0) {
-        articlesEmpty.textContent = "No issues published on this date.";
-        articlesEmpty.style.display = "block";
-        return;
-      }
-
-      articles.forEach(article => {
-        const li = document.createElement("li");
-
-        const link = document.createElement("a");
-        link.href = article.href;
-        link.textContent = article.title;
-        link.className = "article-link";
-
-        const meta = document.createElement("div");
-        meta.className = "article-meta";
-        meta.innerHTML = `<span class="article-tag">${article.tag}</span> · <span class="article-slot">${article.slot}</span>`;
-
-        li.appendChild(link);
-        li.appendChild(meta);
-        articlesList.appendChild(li);
-      });
-
-      articlesEmpty.style.display = "none";
-    }
-
-    // Month nav
-    document.getElementById("prev-month").addEventListener("click", () => {
-      currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-      }
-      renderCalendar(currentYear, currentMonth);
-      // Clear selection when you change month
-      selectedDateLabel.textContent = "Select a highlighted day on the calendar.";
-      articlesList.innerHTML = "";
-      articlesEmpty.style.display = "block";
-      articlesEmpty.textContent = "No issues loaded yet — choose a date on the left.";
-    });
-
-    document.getElementById("next-month").addEventListener("click", () => {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
-      renderCalendar(currentYear, currentMonth);
-      selectedDateLabel.textContent = "Select a highlighted day on the calendar.";
-      articlesList.innerHTML = "";
-      articlesEmpty.style.display = "block";
-      articlesEmpty.textContent = "No issues loaded yet — choose a date on the left.";
-    });
-
-    // Initial render
-    renderCalendar(currentYear, currentMonth);
-
-    // Optional: auto-select Nov 24, 2025 (your big Monday)
-    const defaultKey = "2025-11-24";
-    if (articlesByDate[defaultKey]) {
-      showArticlesFor(defaultKey);
-    }
-  </script>
 </body>
 </html>
