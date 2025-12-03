@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Friday Market Recap — November 28, 2025 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 840px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 28px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .article-shell {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--danger);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fecaca, #f97373, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .meta strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .lede {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    .tag-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pill-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .pill-tag.friday {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .pill-tag.equities {
+      border-color: #60a5fa;
+      color: #60a5fa;
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 18px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .section p {
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 8px;
+    }
+
+    .section ul {
+      font-size: 13px;
+      color: #d1d5db;
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .section li + li {
+      margin-top: 4px;
+    }
+
+    .inline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .wrap-up {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      margin-top: 14px;
+      padding-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .wrap-up strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html" class="back-link">
+      <span>←</span>
+      <span>Back to FinTrend home</span>
+    </a>
+
+    <article class="article-shell">
+      <div class="kicker">Friday Market Recap</div>
+      <h1><span>Thin Holiday Tape</span> and a Market Still Leaning Long Risk</h1>
+      <div class="meta">
+        Written by <strong>James Minnehan</strong> · FinTrend News ·
+        <span>Friday Recap · November 28, 2025</span>
+      </div>
+
+      <p class="lede">
+        Post-Thanksgiving trading delivered exactly what the calendar promised: thin volume,
+        mechanical flows, and a market that still prefers to buy dips rather than de-risk
+        aggressively. Under the surface, however, leadership keeps narrowing and the
+        “everything’s fine” consensus looks increasingly priced in.
+      </p>
+
+      <div class="tag-row">
+        <span class="pill-tag friday">Friday Recap</span>
+        <span class="pill-tag equities">Equities</span>
+        <span class="pill-tag">Rates</span>
+        <span class="pill-tag">Positioning</span>
+      </div>
+
+      <section class="section">
+        <h2>1 · Index moves — calm on the surface</h2>
+        <p>
+          With many desks lightly staffed, index moves looked orderly rather than dramatic:
+        </p>
+        <ul>
+          <li>S&amp;P 500 finished roughly flat on the day after a small gap higher faded.</li>
+          <li>Nasdaq underperformed modestly as mega-cap tech took a breather.</li>
+          <li>Dow held up better, helped by defensives and select value sectors.</li>
+        </ul>
+        <p>
+          In a low-liquidity backdrop, small program trades and ETF flows can push prices
+          more than usual. The absence of a real selloff today says more about positioning
+          and sentiment than about conviction buying.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2 · Sector rotation — growth rests, defensives quietly bid</h2>
+        <p>
+          Beneath the indices, the tape continued a pattern we’ve seen through November:
+          growth leaders pausing while defensives and “quality value” attract interest.
+        </p>
+        <ul>
+          <li>
+            <strong>Tech &amp; communication services</strong> saw mild profit-taking, especially
+            in the year-to-date winners.
+          </li>
+          <li>
+            <strong>Staples, health care, and utilities</strong> were quietly bid as investors
+            looked for ballast into year-end.
+          </li>
+          <li>
+            <strong>Financials</strong> were mixed, with stronger money-center banks offset by
+            softer regional names.
+          </li>
+        </ul>
+        <p>
+          The key question for next week: does this rotation broaden into a healthier advance,
+          or is it just a late-cycle dash for safety?
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>3 · Rates and FX — “higher for longer” still the base case</h2>
+        <p>
+          The rates market stayed mostly in wait-and-see mode, but the message hasn’t
+          changed much:
+        </p>
+        <ul>
+          <li>
+            The <span class="inline-label">10Y U.S. Treasury</span> hovered just above 4%,
+            reflecting a market that believes in disinflation but doesn’t fully buy a rapid
+            easing cycle.
+          </li>
+          <li>
+            The front end still prices a modest easing path for 2026–2027, but little urgency
+            to cut in the very near term.
+          </li>
+          <li>
+            The dollar traded in a tight range, with mild softness against cyclicals and
+            commodity-linked FX.
+          </li>
+        </ul>
+        <p>
+          For equities, this backdrop is “good enough” so long as growth data doesn’t crack.
+          A re-test of the 10Y near 4.25–4.5% would quickly stress that assumption.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>4 · Flows &amp; positioning — year-end games begin</h2>
+        <p>
+          Even in a shortened session, you could see early hints of year-end behavior:
+        </p>
+        <ul>
+          <li>Performance chasers adding to winners to protect rankings and P&amp;L.</li>
+          <li>Tax-loss selling in laggards, especially in small caps and unprofitable growth.</li>
+          <li>Overlay hedges being adjusted rather than aggressively added.</li>
+        </ul>
+        <p>
+          The path into December will be heavily influenced by how much “FOMO buying” is
+          still left among underperforming funds — and whether incoming data gives them
+          cover to stay long beta.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>5 · What matters for next week</h2>
+        <p>
+          With the holiday behind us, liquidity should normalize and macro catalysts come
+          back into focus. For the Monday outlook, we’ll be watching:
+        </p>
+        <ul>
+          <li>Fresh reads on the labor market and consumer spending.</li>
+          <li>Any change in tone from Fed speakers as markets price a soft landing.</li>
+          <li>Whether breadth improves, or the rally remains dependent on a narrow group of leaders.</li>
+        </ul>
+        <p>
+          If the data stay “goldilocks” and rates remain contained, the seasonal tailwind
+          into December is still intact — but the room for positive surprise is smaller than
+          it was a month ago.
+        </p>
+      </section>
+
+      <div class="wrap-up">
+        <strong>Bottom line:</strong> Friday’s calm finish shouldn’t be over-interpreted given
+        the holiday volume, but the message is consistent: investors remain reluctant to fight
+        the uptrend, even as leadership narrows and macro uncertainty lingers. The real test
+        comes when full liquidity returns next week.
+      </div>
+    </article>
+  </div>
+</body>
+</html>
