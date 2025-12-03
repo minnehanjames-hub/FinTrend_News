@@ -66,7 +66,7 @@
     }
 
     .title-block {
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     .kicker {
@@ -96,10 +96,51 @@
       max-width: 600px;
     }
 
+    /* MONTH NAV */
+
+    .month-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 10px 0 6px;
+    }
+
+    .month-nav-link {
+      font-size: 12px;
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.9);
+      transition: 0.18s ease;
+    }
+
+    .month-nav-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .month-nav-link.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .month-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      text-align: center;
+      flex: 1;
+    }
+
     /* CALENDAR WRAPPER */
 
     .calendar-wrapper {
-      margin-top: 22px;
+      margin-top: 10px;
       background: rgba(15, 23, 42, 0.96);
       border-radius: var(--radius-xl);
       border: 1px solid var(--border-subtle);
@@ -197,7 +238,7 @@
       color: var(--text-muted);
       font-style: italic;
       margin-top: 8px;
-      text-align: center;
+      text-align: left;
     }
 
     .tag-pill {
@@ -273,6 +314,12 @@
       </p>
     </div>
 
+    <div class="month-nav">
+      <a href="#" class="month-nav-link disabled">← Previous Month</a>
+      <div class="month-label">November &amp; December 2025</div>
+      <a href="#" class="month-nav-link">Next Month →</a>
+    </div>
+
     <div class="calendar-wrapper">
       <div class="calendar-header">
         <div class="week-col-label">Week</div>
@@ -282,7 +329,7 @@
         <div>Sunday</div>
       </div>
 
-      <!-- WEEK 1 -->
+      <!-- WEEK 1: HAS Mon 10, Wed 12, Fri 14, Sun 15 -->
       <div class="calendar-row">
         <div class="week-label">Week of Nov 10</div>
 
@@ -325,7 +372,7 @@
           <div class="day-meta">End-of-week equity &amp; macro wrap.</div>
         </div>
 
-        <!-- Sunday 15 -->
+        <!-- Sunday 15 (file name still 2025-11-16-sunday.html) -->
         <div class="day-cell has-note">
           <div>
             <div class="day-label">Sunday</div>
@@ -339,11 +386,11 @@
         </div>
       </div>
 
-      <!-- WEEK 2 -->
+      <!-- WEEK 2: HAS Monday 16, Wednesday 19, Friday 21, Sunday 23 -->
       <div class="calendar-row">
         <div class="week-label">Week of Nov 16</div>
 
-        <!-- Monday 17 -->
+        <!-- Monday 16 -->
         <div class="day-cell has-note">
           <div>
             <div class="day-label">Monday</div>
@@ -396,9 +443,9 @@
         </div>
       </div>
 
-      <!-- WEEK 3 -->
+      <!-- WEEK 3: Week of Nov 24 (Mon 24, Wed 26, Fri 28, Sun 30 empty) -->
       <div class="calendar-row">
-        <div class="week-label">Week of Nov 23</div>
+        <div class="week-label">Week of Nov 24</div>
 
         <!-- Monday 24 -->
         <div class="day-cell has-note">
@@ -410,10 +457,10 @@
               Monday Market Outlook — November 24
             </a>
           </div>
-          <div class="day-meta">Weekly kickoff heading into holiday trading.</div>
+          <div class="day-meta">Holiday-week setup: liquidity, seasonality, Fed uncertainty.</div>
         </div>
 
-        <!-- Wednesday 26 — NEW -->
+        <!-- Wednesday 26 -->
         <div class="day-cell has-note">
           <div>
             <div class="day-label">Wednesday</div>
@@ -423,27 +470,82 @@
               Wednesday Momentum Check — November 26
             </a>
           </div>
-          <div class="day-meta">Holiday-week tape &amp; midweek flows.</div>
+          <div class="day-meta">Post-earnings tape and pre-holiday flows.</div>
         </div>
 
-        <!-- Friday — empty for now -->
-        <div class="day-cell">
+        <!-- Friday 28 -->
+        <div class="day-cell has-note">
           <div>
             <div class="day-label">Friday</div>
-            <div class="day-date">—</div>
+            <div class="day-date">Nov 28</div>
+            <span class="tag-pill tag-friday">Friday Recap</span>
+            <a href="articles/2025-11-28-friday.html" class="day-link">
+              Friday Market Recap — Thin Holiday Tape and a Market Still Leaning Long Risk
+            </a>
           </div>
-          <div class="empty-note">— No note yet for this Friday —</div>
+          <div class="day-meta">Post-Thanksgiving recap: flows, sectors, and positioning.</div>
         </div>
 
-        <!-- Sunday — empty for now -->
+        <!-- Sunday 30 (no note) -->
         <div class="day-cell">
           <div>
             <div class="day-label">Sunday</div>
-            <div class="day-date">—</div>
+            <div class="day-date">Nov 30</div>
           </div>
-          <div class="empty-note">— No note yet for this Sunday —</div>
+          <div class="empty-note">No Sunday macro note published.</div>
         </div>
       </div>
+
+      <!-- WEEK 4: Week of Dec 1 (Mon 1, Wed 3, Fri/Sun placeholders) -->
+      <div class="calendar-row">
+        <div class="week-label">Week of Dec 1</div>
+
+        <!-- Monday Dec 1 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Monday</div>
+            <div class="day-date">Dec 1</div>
+            <span class="tag-pill tag-monday">Monday Outlook</span>
+            <a href="articles/2025-12-01-monday.html" class="day-link">
+              Monday Market Outlook — December 1
+            </a>
+          </div>
+          <div class="day-meta">December seasonality, Fed messaging, and soft-landing odds.</div>
+        </div>
+
+        <!-- Wednesday Dec 3 -->
+        <div class="day-cell has-note">
+          <div>
+            <div class="day-label">Wednesday</div>
+            <div class="day-date">Dec 3</div>
+            <span class="tag-pill tag-wednesday">Momentum</span>
+            <a href="articles/2025-12-03-wednesday.html" class="day-link">
+              Wednesday Momentum Check — December 3
+            </a>
+          </div>
+          <div class="day-meta">Post-holiday follow-through and real-volume test of the rally.</div>
+        </div>
+
+        <!-- Friday Dec 5 (placeholder) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Friday</div>
+            <div class="day-date">Dec 5</div>
+          </div>
+          <div class="empty-note">Friday recap not yet published.</div>
+        </div>
+
+        <!-- Sunday Dec 7 (placeholder) -->
+        <div class="day-cell">
+          <div>
+            <div class="day-label">Sunday</div>
+            <div class="day-date">Dec 7</div>
+          </div>
+          <div class="empty-note">Sunday macro note not yet published.</div>
+        </div>
+      </div>
+
+      <!-- You can add more weeks below this comment later -->
     </div>
 
     <p class="disclaimer">
