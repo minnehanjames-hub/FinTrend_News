@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monday Market Outlook — December 1, 2025 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 840px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 28px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .article-shell {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--success);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .meta strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .lede {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    .tag-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pill-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .pill-tag.monday {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .pill-tag.equities {
+      border-color: #60a5fa;
+      color: #60a5fa;
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 18px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .section p {
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 8px;
+    }
+
+    .section ul {
+      font-size: 13px;
+      color: #d1d5db;
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .section li + li {
+      margin-top: 4px;
+    }
+
+    .inline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .wrap-up {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      margin-top: 14px;
+      padding-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .wrap-up strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="../index.html" class="back-link">
+      <span>←</span>
+      <span>Back to FinTrend home</span>
+    </a>
+
+    <article class="article-shell">
+      <div class="kicker">Monday Market Outlook</div>
+      <h1><span>December Seasonality</span>, Fed Messaging, and a Market Priced for Perfection</h1>
+      <div class="meta">
+        Written by <strong>James Minnehan</strong> · FinTrend News ·
+        <span>Monday Outlook · December 1, 2025</span>
+      </div>
+
+      <p class="lede">
+        The calendar has rolled into December with U.S. equities near the top of the year’s
+        range, volatility suppressed, and the market comfortably leaning into a soft-landing
+        narrative. The bar for positive surprise is now high — and the risk is that “good
+        but not great” data suddenly stops being good enough.
+      </p>
+
+      <div class="tag-row">
+        <span class="pill-tag monday">This Week</span>
+        <span class="pill-tag equities">Equities</span>
+        <span class="pill-tag">Macro</span>
+        <span class="pill-tag">Positioning</span>
+      </div>
+
+      <section class="section">
+        <h2>1 · Big picture — bullish consensus meets event risk</h2>
+        <p>
+          After a strong run through November, markets are entering December with three key
+          features:
+        </p>
+        <ul>
+          <li>Valuations rich versus history, especially in quality growth and mega-cap tech.</li>
+          <li>Volatility compressed, with the VIX hovering in “complacent but not absurd” territory.</li>
+          <li>
+            A data calendar that can still challenge the soft-landing story: jobs, inflation,
+            and global PMIs are all on deck in coming weeks.
+          </li>
+        </ul>
+        <p>
+          Our base case: the tape wants to grind higher into year-end, but upside depends on
+          data that validate “slowing, not stalling” growth and an inflation path that keeps
+          the Fed patient.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2 · What’s on deck this week</h2>
+        <p>
+          The macro calendar is front-loaded with data that matter for both the Fed and the
+          growth narrative:
+        </p>
+        <ul>
+          <li>
+            <strong>ISM manufacturing &amp; services:</strong> key for gauging whether the
+            goods slowdown is bottoming and how resilient services activity remains.
+          </li>
+          <li>
+            <strong>Labor data:</strong> jobless claims and payrolls expectations will drive
+            the debate on “re-acceleration vs normalization.”
+          </li>
+          <li>
+            <strong>Fed speak:</strong> any pushback against easing expectations or concern
+            about financial conditions will be watched closely.
+          </li>
+        </ul>
+        <p>
+          For equities, the question is less about whether the data are strong or weak, and
+          more about whether they force a repricing in rates or earnings expectations.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>3 · Equities — can the rally broaden?</h2>
+        <p>
+          Leadership remains concentrated, but there are early hints of broadening that
+          matter for sustainability:
+        </p>
+        <ul>
+          <li>
+            <strong>Large-cap growth</strong> is still the core of the year’s return, but some
+            “old economy” sectors have quietly outperformed in November.
+          </li>
+          <li>
+            <strong>Small caps</strong> have lagged, but any sign of improving breadth would
+            support the idea of a durable cycle rather than a narrow regime.
+          </li>
+          <li>
+            <strong>Defensives</strong> (staples, healthcare, utilities) are acting better,
+            hinting that some investors are hedging their year-end optimism.
+          </li>
+        </ul>
+        <p>
+          For traders, the key tell this week will be how the tape reacts to even slightly
+          disappointing data: do dips still get bought instantly, or does patience finally
+          appear?
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>4 · Rates, dollar, and cross-asset signals</h2>
+        <p>
+          The cross-asset picture is supportive, but not without tension:
+        </p>
+        <ul>
+          <li>
+            The <span class="inline-label">10Y U.S. Treasury</span> sitting near 4% is
+            equity-friendly, but leaves little room if inflation surprises higher.
+          </li>
+          <li>
+            The <span class="inline-label">dollar</span> has softened from the highs,
+            providing relief to EM and global risk assets.
+          </li>
+          <li>
+            <span class="inline-label">Credit spreads</span> remain tight, consistent with
+            a benign default outlook — or a late-cycle underpricing of risk.
+          </li>
+        </ul>
+        <p>
+          If this benign backdrop holds, it supports a “carry and grind” environment into
+          year-end. Any abrupt move higher in yields would quickly test that assumption.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>5 · Trading playbook — what to watch</h2>
+        <p>
+          For this week, our focus is less on calling the next 3–4% in the index and more
+          on reading how the tape digests incoming information:
+        </p>
+        <ul>
+          <li>
+            Does breadth improve on up days, or do we keep seeing narrow leadership with
+            mixed participation?
+          </li>
+          <li>
+            Do cyclicals and small caps respond positively to better-than-feared data?
+          </li>
+          <li>
+            Does any hawkish shift in Fed rhetoric actually push yields higher, or do markets
+            fade it quickly?
+          </li>
+        </ul>
+        <p>
+          Those tells will matter more for the first quarter of 2026 than for the final
+          weeks of this year — but markets are already trading that transition.
+        </p>
+      </section>
+
+      <div class="wrap-up">
+        <strong>Bottom line:</strong> December starts with markets priced for a neat soft
+        landing, a cooperative Fed, and no major growth scare. The seasonal tailwind is real,
+        but so is the risk that “perfect” expectations get challenged by imperfect data.
+        Use this week’s reactions — not just the headlines — to gauge how much optimism is
+        truly left in the tank.
+      </div>
+    </article>
+  </div>
+</body>
+</html>
