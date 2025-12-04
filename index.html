@@ -1020,14 +1020,26 @@
         <p style="font-size:13px;color:#e5e7eb;margin-bottom:10px;">
           No spam, no hype — just concise, sell-side-style market briefings.
         </p>
-        <form action="#" method="post" style="display:flex;flex-wrap:wrap;gap:8px;max-width:420px;">
+
+        <!-- Mailchimp-powered subscribe form, styled to match your site -->
+        <form
+          action="https://github.us1.list-manage.com/subscribe/post?u=f93d4125631bb82d0915cc5d5&id=0ad7096e52&f_id=00addae4f0"
+          method="post"
+          target="_blank"
+          novalidate
+          style="display:flex;flex-wrap:wrap;gap:8px;max-width:420px;"
+        >
           <input
             type="email"
-            name="email"
+            name="EMAIL"
             placeholder="your@email.com"
             required
             style="flex:1;min-width:180px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
           />
+          <!-- Honeypot field to reduce bot signups -->
+          <div style="position:absolute;left:-5000px;" aria-hidden="true">
+            <input type="text" name="b_f93d4125631bb82d0915cc5d5_0ad7096e52" tabindex="-1" value="">
+          </div>
           <button
             type="submit"
             style="padding:8px 16px;border-radius:999px;border:none;background:var(--accent);color:#000;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;"
@@ -1035,8 +1047,9 @@
             Subscribe
           </button>
         </form>
+
         <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-          (You can later hook this form to a real email service like Substack, Mailchimp, or Buttondown.)
+          Powered by Mailchimp — you’ll receive FinTrend News in your inbox when new notes are published.
         </p>
       </div>
     </section>
