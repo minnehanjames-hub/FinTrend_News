@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Friday Market Recap · FinTrend News</title>
+  <meta name="description" content="FinTrend News Friday market recap – winners, losers, and the key catalysts that drove this week's tape." />
+  <link rel="canonical" href="https://fintrend.news/articles/2025-12-05-friday.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Friday Market Recap · FinTrend News" />
+  <meta property="og:description" content="Winners, losers, and the catalysts behind this week’s moves across equities, rates, and FX." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fintrend.news/articles/2025-12-05-friday.html" />
+  <meta property="og:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Friday Market Recap · FinTrend News" />
+  <meta name="twitter:description" content="Sell-side style Friday recap for active traders and investors." />
+  <meta name="twitter:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 24px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+      text-decoration: underline;
+    }
+
+    .article-panel {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .kicker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    .date-pill {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    h1.article-title {
+      position: relative;
+      z-index: 1;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    h1.article-title span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .meta strong {
+      color: var(--accent);
+    }
+
+    .lede {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    article {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    article h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    article p {
+      margin-bottom: 10px;
+    }
+
+    article ul {
+      margin: 6px 0 10px 18px;
+      padding-left: 0;
+    }
+
+    article li {
+      margin-bottom: 6px;
+    }
+
+    .inline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <img src="../assets/img/FTN-logo.png" alt="FinTrend News logo" />
+        <div class="brand-name">FinTrend News</div>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../archive.html">Archive</a>
+      </nav>
+    </header>
+
+    <section class="article-panel">
+      <div class="kicker-row">
+        <div class="tag-pill">Friday Recap</div>
+        <div class="date-pill">Week ending · December 5, 2025</div>
+      </div>
+
+      <h1 class="article-title">
+        <span>Growth & Rates Reprice</span> as the Tape Leans into a Soft Landing
+      </h1>
+
+      <div class="meta">
+        Written by <strong>James Minnehan</strong> · FinTrend News · Friday Market Recap
+      </div>
+
+      <p class="lede">
+        Equities finished the week higher, led by large-cap growth and quality cyclicals,
+        as investors leaned further into the “soft landing, lower inflation, steady growth”
+        narrative. Under the surface, the move was less about broad risk-on and more about
+        a continued re-rating of duration-sensitive assets as yields moved lower and the
+        Federal Reserve’s reaction function looked incrementally less hawkish.
+      </p>
+
+      <article>
+        <h2>Equities · Broad Indices Grind Higher</h2>
+        <p>
+          The <span class="inline-label">S&P 500</span> added modestly on the week, with price
+          action characterized by shallow intraday dips that were quickly bought. Mega-cap
+          tech, semis, and select communication services names did most of the work, while
+          small caps lagged as investors stayed selective rather than embracing a
+          blanket beta trade.
+        </p>
+        <p>
+          Factor performance was consistent with a “quality growth over speculative beta”
+          preference: profitability, balance sheet strength, and earnings revision momentum
+          all outperformed high-leverage and no-earnings cohorts. Defensive sectors
+          (staples, utilities) underperformed but saw better sponsorship late in the week
+          as investors took some profit in the more crowded winners.
+        </p>
+
+        <h2>Rates & FX · Yields Drift Lower, Dollar Softer</h2>
+        <p>
+          Across the curve, yields moved lower as another round of inflation data came in
+          benign and Fed speakers emphasized a data-dependent stance rather than pre-committing
+          to additional hikes. Real yields compressed more than breakevens, a supportive
+          backdrop for duration-sensitive assets from growth equities to REITs.
+        </p>
+        <p>
+          In FX, the dollar traded softer versus G10 peers, particularly against high
+          beta currencies and the euro. The move was orderly rather than disorderly, but
+          it helped ease financial conditions at the margin and supported capital flows
+          back into non-US risk assets.
+        </p>
+
+        <h2>Credit & Commodities · Spreads Stable, Crude Rangebound</h2>
+        <p>
+          Credit markets stayed firmly open. Investment-grade spreads were little changed
+          on the week, while high yield tightened a few basis points alongside the grind
+          higher in equities. Primary issuance met solid demand, suggesting that investors
+          remain comfortable extending credit as long as the macro data stay “good enough.”
+        </p>
+        <p>
+          Commodities were mixed. Crude oil chopped sideways inside a well-defined range,
+          balancing ongoing concerns about global demand with supply discipline and
+          geopolitical risk. Gold caught a bid late in the week as real yields edged lower
+          and the dollar softened, reinforcing its role as a portfolio hedge rather than
+          a pure risk-off asset.
+        </p>
+
+        <h2>Positioning & Flows · From Underweight to Neutral</h2>
+        <p>
+          Flow data and positioning surveys continue to tell a similar story: the extreme
+          underweights to equities seen earlier in the year have been reduced, but most
+          allocators still describe their stance as “closer to neutral than outright long.”
+          Systematic strategies have been slowly adding exposure as realized volatility
+          compresses, while discretionary investors remain quick to fade outsized moves
+          in either direction.
+        </p>
+        <p>
+          Options markets show a modest demand for downside protection but far from panic
+          levels. Skew remains elevated compared with pre-COVID norms, reflecting structural
+          demand for hedges, yet outright implied volatility continues to sit near the lower
+          end of the post-pandemic range.
+        </p>
+
+        <h2>What Matters for Next Week</h2>
+        <p>
+          The next leg of the move will depend on whether incoming data can validate the
+          market’s current “just right” narrative. Three things to watch:
+        </p>
+        <ul>
+          <li>
+            <strong>Labor data:</strong> A cooling but not collapsing jobs market would keep
+            the soft-landing story intact; a sharp downside surprise or renewed acceleration
+            would both create headaches for the Fed.
+          </li>
+          <li>
+            <strong>Inflation details:</strong> Behaving headline numbers are helpful, but
+            the composition — especially services ex-shelter — will drive how comfortable
+            the Fed feels about staying on hold for longer.
+          </li>
+          <li>
+            <strong>Corporate guidance:</strong> Any signs that management teams are pivoting
+            from “resilient” to “cautiously optimistic” on margins and demand will be key
+            for next year’s earnings path.
+          </li>
+        </ul>
+        <p>
+          For now, the market enters mid-December with risk assets well-supported, positioning
+          no longer extreme, and the bar for further upside a bit higher. The burden of
+          proof increasingly shifts back to the data.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      © 2025 FinTrend News · <a href="../archive.html">Archive / Calendar</a>
+    </footer>
+  </div>
+</body>
+</html>
