@@ -2,10 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Monday Market Outlook · December 15 · FinTrend News</title>
-  <meta name="description" content="Monday Market Outlook — December 15. Key themes, catalysts, and risk considerations for the week ahead." />
+  <title>Monday Market Outlook · FinTrend News</title>
+  <meta name="description" content="FinTrend News Monday outlook – key themes, catalysts, and the market setup heading into the new trading week." />
+  <link rel="canonical" href="https://fintrend.news/articles/2025-12-15-monday.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Monday Market Outlook · FinTrend News" />
+  <meta property="og:description" content="Key themes and catalysts heading into the new week." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fintrend.news/articles/2025-12-15-monday.html" />
+  <meta property="og:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Monday Market Outlook · FinTrend News" />
+  <meta name="twitter:description" content="Your Monday setup note in a concise, sell-side style briefing." />
+  <meta name="twitter:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
@@ -16,77 +40,316 @@
     gtag('config', 'G-KSK5YVPJBR');
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background:#020617;
-      color:#f9fafb;
-      font-family:Inter,sans-serif;
-      line-height:1.7;
-      padding:24px;
-      max-width:900px;
-      margin:auto;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
     }
-    h1 {
-      font-family:"Playfair Display",serif;
-      font-size:30px;
-      margin-bottom:6px;
+
+    .page {
+      max-width: var(--max-width);
+      margin: 24px auto 40px;
+      padding: 0 16px 32px;
     }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+      text-decoration: underline;
+    }
+
+    .article-panel {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .kicker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+
+    .date-pill {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    h1.article-title {
+      position: relative;
+      z-index: 1;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    h1.article-title span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
     .meta {
-      font-size:12px;
-      color:#9ca3af;
-      margin-bottom:18px;
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
     }
-    h2 {
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      color:#9ca3af;
-      margin-top:28px;
+
+    .meta strong {
+      color: var(--accent);
     }
-    p { font-size:14px; margin:12px 0; }
-    ul { margin-left:18px; }
-    li { margin:8px 0; }
+
+    .lede {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    article {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    article h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    article p {
+      margin-bottom: 10px;
+    }
+
+    article ul {
+      margin: 6px 0 10px 18px;
+      padding-left: 0;
+    }
+
+    article li {
+      margin-bottom: 6px;
+    }
+
+    .inline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
-
 <body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <img src="../assets/img/FTN-logo.png" alt="FinTrend News logo" />
+        <div class="brand-name">FinTrend News</div>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../archive.html">Archive</a>
+      </nav>
+    </header>
 
-<a href="../index.html">← Back to Home</a>
+    <section class="article-panel">
+      <div class="kicker-row">
+        <div class="tag-pill">Monday Market Outlook</div>
+        <div class="date-pill">Week of · December 15, 2025</div>
+      </div>
 
-<h1>Monday Market Outlook — December 15</h1>
+      <h1 class="article-title">
+        <span>Rates, Breadth, and Year-End Flows</span> — The Three Inputs That Matter This Week
+      </h1>
 
-<div class="meta">
-  Written by <strong>FinTrend News</strong> · Monday Outlook · December 15
-</div>
+      <div class="meta">
+        Written by <strong>James Minnehan</strong> · FinTrend News · Monday Outlook
+      </div>
 
-<p>
-The week opens with markets still leaning risk-on, but with far less room for complacency.
-Rates remain the primary lever — and December liquidity can amplify even modest surprises.
-</p>
+      <p class="lede">
+        The market enters this week in a familiar posture: risk is supported, volatility is
+        contained, and the tape still trades like a rates product. The question is not
+        “bull or bear,” but whether leadership can broaden as liquidity thins and year-end
+        flows start to dominate the marginal move.
+      </p>
 
-<h2>Core theme</h2>
-<p>
-The path higher is still open, but it’s narrow. Equities need stable yields and improving
-breadth to extend gains without added volatility.
-</p>
+      <article>
+        <h2>Setup · What the Market Is Pricing</h2>
+        <p>
+          The market is effectively pricing a continuation of the “soft landing” framework:
+          inflation continues to cool gradually, growth stays positive, and policy remains
+          restrictive but not actively tightening. In that world, dips tend to be bought
+          and volatility tends to be sold — until a catalyst forces a repricing.
+        </p>
 
-<h2>What to watch</h2>
-<ul>
-  <li><strong>10Y yields:</strong> The clearest risk-on / risk-off signal.</li>
-  <li><strong>Volatility:</strong> Any repricing from low levels deserves respect.</li>
-  <li><strong>Market breadth:</strong> Broad participation signals durability.</li>
-</ul>
+        <h2>Key Theme 1 · Rates Are Still the Primary Driver</h2>
+        <p>
+          The best one-line summary of recent tape behavior is: <em>when rates calm, equities
+          breathe</em>. When yields drift higher, leadership narrows and the market reverts to
+          quality. When yields drift lower, the market is willing to broaden exposure.
+        </p>
+        <p>
+          This week, watch whether rates are trending (clean signal) or choppy (risk for
+          whipsaws). Choppy rates tend to produce choppy equity leadership.
+        </p>
 
-<h2>Trading mindset</h2>
-<p>
-Stay flexible, trade levels, and avoid forcing exposure. December rewards patience
-and punishes overconfidence.
-</p>
+        <h2>Key Theme 2 · Breadth Is the “Truth Serum”</h2>
+        <p>
+          Price can be lifted by a handful of names; breadth cannot. If breadth improves this
+          week, the rally structure strengthens. If breadth stays narrow, the market can still
+          grind higher — but it becomes more vulnerable around macro catalysts.
+        </p>
+        <p>
+          A simple way to frame it: markets can tolerate narrow breadth when volatility is
+          suppressed. They struggle with narrow breadth when volatility rises.
+        </p>
 
-<p style="font-size:11px;color:#9ca3af;margin-top:32px;">
-Disclaimer: This content is for informational purposes only and is not financial advice.
-</p>
+        <h2>Key Theme 3 · December Flows Can Distort the Signal</h2>
+        <p>
+          Into year-end, flows matter: systematic rebalancing, tax-related positioning, and
+          lower liquidity can exaggerate moves. That does not mean moves are “fake” — it just
+          means you should be careful over-interpreting one or two sessions as a regime shift.
+        </p>
 
+        <h2>Catalysts · What to Watch</h2>
+        <ul>
+          <li>
+            <strong>Inflation and growth check-ins:</strong> “in-line” data keeps the market comfortable;
+            upside inflation surprises push duration-sensitive assets first.
+          </li>
+          <li>
+            <strong>Fed communication:</strong> markets will parse tone for any hint of confidence on the
+            inflation path versus renewed caution.
+          </li>
+          <li>
+            <strong>Cross-asset tells:</strong> watch the dollar and oil for early signals that financial
+            conditions are tightening or inflation expectations are shifting.
+          </li>
+        </ul>
+
+        <h2>How to Trade It · A Simple Framework</h2>
+        <p>
+          The playbook remains straightforward: stay aligned with the prevailing trend, but be
+          precise about entries around data. In this regime, the market is less likely to trend
+          in a straight line and more likely to “lurch” around catalysts — then mean-revert.
+        </p>
+        <p>
+          We’ll track whether leadership broadens and whether momentum is improving in Wednesday’s
+          midweek check.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      © 2025 FinTrend News · <a href="../archive.html">Archive / Calendar</a>
+    </footer>
+  </div>
 </body>
 </html>
