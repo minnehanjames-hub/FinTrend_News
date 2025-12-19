@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Friday Market Recap · FinTrend News</title>
+  <meta name="description" content="FinTrend News Friday recap – what moved markets, rates, and risk into the close, plus the key setup for next week." />
+  <link rel="canonical" href="https://fintrend.news/articles/2025-12-19-friday.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Friday Market Recap · FinTrend News" />
+  <meta property="og:description" content="A concise, sell-side-style Friday market recap: equities, rates, macro drivers, and what matters next." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fintrend.news/articles/2025-12-19-friday.html" />
+  <meta property="og:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Friday Market Recap · FinTrend News" />
+  <meta name="twitter:description" content="Your Friday market wrap in a concise, sell-side style note." />
+  <meta name="twitter:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 780px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 24px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+      text-decoration: underline;
+    }
+
+    .article-panel {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .kicker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    .date-pill {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    h1.article-title {
+      position: relative;
+      z-index: 1;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    h1.article-title span {
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .meta strong { color: var(--accent); }
+
+    .lede {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+
+    .quick-stats {
+      position: relative;
+      z-index: 1;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(2, 6, 23, 0.35);
+      padding: 12px 12px 10px;
+      margin-bottom: 16px;
+    }
+
+    .quick-stats-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .stat-grid span {
+      color: var(--text-muted);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    article {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    article h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    article p { margin-bottom: 10px; }
+
+    article ul {
+      margin: 6px 0 10px 18px;
+      padding-left: 0;
+    }
+
+    article li { margin-bottom: 6px; }
+
+    .inline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <img src="../assets/img/FTN-logo.png" alt="FinTrend News logo" />
+        <div class="brand-name">FinTrend News</div>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../archive.html">Archive</a>
+      </nav>
+    </header>
+
+    <section class="article-panel">
+      <div class="kicker-row">
+        <div class="tag-pill">Friday Market Recap</div>
+        <div class="date-pill">Close · December 19, 2025</div>
+      </div>
+
+      <h1 class="article-title">
+        <span>Year-End Crosscurrents</span> — Rates Hold Firm, Risk Stays Resilient into Expiration
+      </h1>
+
+      <div class="meta">
+        Written by <strong>James Minnehan</strong> · FinTrend News · Friday Recap
+      </div>
+
+      <p class="lede">
+        Friday’s tape had a familiar late-year feel: liquidity pockets, positioning effects, and
+        a market more focused on “how tight is financial conditions?” than on any single headline.
+        The key read-through into the weekend is straightforward — the risk bid is still intact,
+        but the market is increasingly sensitive to rates at the margin.
+      </p>
+
+      <div class="quick-stats">
+        <div class="quick-stats-title">At-a-glance (end of day)</div>
+        <div class="stat-grid">
+          <div><span>S&amp;P 500</span><br />6,823.91</div>
+          <div><span>U.S. 10Y Yield</span><br />4.16%</div>
+          <div><span>WTI Crude</span><br />$72.39</div>
+          <div><span>Setup</span><br />Year-end flows + options expiration</div>
+        </div>
+      </div>
+
+      <article>
+        <h2>1 · The Big Picture: Risk Is Still Being Bought</h2>
+        <p>
+          U.S. equities finished the week with a “don’t fight the tape” posture, with the headline
+          index level holding elevated ground into the Friday close. The S&amp;P 500 ended at
+          <strong>6,823.91</strong>, keeping the broader trend constructive even as intraday moves
+          remained choppy. :contentReference[oaicite:0]{index=0}
+        </p>
+        <p>
+          The important nuance: late-year price action can be amplified by positioning and
+          mechanical flows. This was a major options-expiration Friday (quarterly expiration),
+          so pin risk and dealer hedging can matter as much as fundamentals over short windows.
+        </p>
+
+        <h2>2 · Rates: The Constraint the Market Keeps Returning To</h2>
+        <p>
+          The rate backdrop remains the primary governor on how aggressively investors are willing
+          to pay up for risk. The Treasury curve closed with the <span class="inline-label">10-year</span>
+          around <strong>4.16%</strong>, a level that keeps “easy financial conditions” from fully
+          taking over the narrative. :contentReference[oaicite:1]{index=1}
+        </p>
+        <p>
+          Translation: as long as yields are not breaking higher, equities can grind. If yields push
+          materially above recent ranges, the market’s “multiple expansion” impulse tends to fade
+          quickly — especially into year-end when incremental liquidity is thinner.
+        </p>
+
+        <h2>3 · Commodities: Oil Stays in the Conversation</h2>
+        <p>
+          Crude ended the day near <strong>$72.39</strong> (WTI). For macro, the signpost is less
+          “oil direction day-to-day” and more “does energy re-ignite inflation anxiety?”
+          For now, the price level is not screaming re-acceleration, but it remains a variable
+          markets can’t ignore. :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <h2>4 · What Actually Matters Next Week</h2>
+        <p>
+          Heading into the next full week, the framework stays the same:
+        </p>
+        <ul>
+          <li>
+            <strong>Rates first:</strong> watch whether yields drift lower (risk-supportive) or firm up
+            (headwind for duration-sensitive risk).
+          </li>
+          <li>
+            <strong>Liquidity &amp; positioning:</strong> late December trading can exaggerate moves —
+            don’t over-interpret single-session swings.
+          </li>
+          <li>
+            <strong>Macro narrative:</strong> the market is still living in a “growth slowing, not breaking”
+            regime — any data that threatens that balance can create outsized reactions.
+          </li>
+        </ul>
+
+        <h2>5 · How to Think About Positioning</h2>
+        <p>
+          Into year-end, the cleanest playbook is to prioritize process over prediction:
+          manage exposure, avoid chasing thin-liquidity breakouts, and use volatility spikes
+          to adjust risk rather than react emotionally. If the tape stays constructive, there
+          will be opportunities — but the setup rewards patience more than hero trades.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      © 2025 FinTrend News · <a href="../archive.html">Archive / Calendar</a>
+    </footer>
+  </div>
+</body>
+</html>
