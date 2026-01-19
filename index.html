@@ -63,20 +63,44 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-   body{
-  background-image:
-    radial-gradient(circle at top, rgba(17, 24, 39, 0.92) 0, rgba(2, 6, 23, 0.92) 45%, rgba(0, 0, 0, 0.95) 100%),
-    url("assets/img/bg-candles.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
+    /* ✅ FIX: restore text color + fonts, keep background, brighten readability */
+    body {
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+
+      background-image:
+        radial-gradient(circle at top, rgba(17, 24, 39, 0.78) 0, rgba(2, 6, 23, 0.82) 45%, rgba(0, 0, 0, 0.92) 100%),
+        url("assets/img/bg-candles.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* subtle overlay to keep text readable + brighten */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(2,6,23,0.25),
+        rgba(2,6,23,0.40) 40%,
+        rgba(2,6,23,0.55)
+      );
+      pointer-events:none;
+      z-index: -1;
+    }
+
+    /* Make sure external styles.css can't turn things black */
+    body, p, h1, h2, h3, h4, h5, h6, a, li, span, div { color: inherit; }
 
     .page {
       max-width: var(--max-width);
-      margin: 18px auto 40px;
-      padding: 0 16px 32px;
+      margin: 18px auto 56px;
+      padding: 0 16px 36px;
       position: relative;
     }
 
@@ -99,10 +123,8 @@
       background: radial-gradient(circle at top, #020617 0, #000 65%);
       border-bottom: 1px solid rgba(148, 163, 184, 0.35);
     }
-
     .ticker-row .tradingview-widget-container { height: 28px; }
 
-    /* More space for title area */
     .header-main {
       display: grid;
       grid-template-columns: auto 1fr auto;
@@ -112,7 +134,6 @@
     }
 
     .header-left .logo-img { height: 56px; width: auto; display: block; }
-
     .header-center { text-align: center; }
 
     .brand-title {
@@ -184,7 +205,7 @@
       .header-left .logo-img { height: 46px; }
     }
 
-    /* ===== Tooltips (micro-interaction) ===== */
+    /* ===== Tooltips ===== */
     .tip {
       position: relative;
       display: inline-flex;
@@ -194,17 +215,10 @@
       border-bottom: 1px dotted rgba(148,163,184,0.45);
     }
     .tip .q {
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: #000;
-      background: var(--accent);
-      font-weight: 700;
-      line-height: 1;
+      width: 16px; height: 16px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #000; background: var(--accent);
+      font-weight: 700; line-height: 1;
     }
     .tip::after {
       content: attr(data-tip);
@@ -228,20 +242,15 @@
       z-index: 10000;
       white-space: normal;
     }
-    .tip:hover::after,
-    .tip:focus::after,
-    .tip:focus-within::after {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .tip:hover::after, .tip:focus::after, .tip:focus-within::after { opacity: 1; transform: translateY(0); }
 
-    /* ===== (7) Anchor cues: quick jump buttons ===== */
+    /* ===== Jump row ===== */
     .jump-row {
       margin-top: 12px;
-      padding: 14px 16px;
+      padding: 16px 18px;
       border-radius: var(--radius-xl);
       border: 1px solid rgba(148,163,184,0.25);
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(15, 23, 42, 0.72);
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.55);
       display: flex;
       align-items: center;
@@ -249,12 +258,6 @@
       gap: 12px;
       flex-wrap: wrap;
       backdrop-filter: blur(6px);
-    }
-
-    .jump-left {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
     }
 
     .jump-kicker {
@@ -306,15 +309,15 @@
     }
     .jump-btn.primary:hover { background: #f7d680; }
 
-    /* ===== (1) Sticky Market Snapshot bar (collapses on scroll) ===== */
+    /* ===== Sticky Snapshot ===== */
     .snapshot-bar {
       position: sticky;
-      top: 106px; /* sits under sticky header */
+      top: 106px;
       z-index: 9998;
       margin-top: 10px;
       border-radius: var(--radius-xl);
       border: 1px solid rgba(148,163,184,0.22);
-      background: rgba(15, 23, 42, 0.78);
+      background: rgba(15, 23, 42, 0.74);
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.55);
       overflow: hidden;
       backdrop-filter: blur(6px);
@@ -389,26 +392,16 @@
     }
     .snap-link:hover { color: var(--text-main); border-color: rgba(244,193,93,0.35); transform: translateY(-1px); }
 
-    /* Collapse behavior */
-    .snapshot-bar.compact .snapshot-inner {
-      padding: 8px 12px;
-    }
-    .snapshot-bar.compact .snapshot-title {
-      opacity: 0.9;
-    }
-    .snapshot-bar.compact .snap-pill {
-      padding: 6px 9px;
-      font-size: 11px;
-    }
+    .snapshot-bar.compact .snapshot-inner { padding: 8px 12px; }
+    .snapshot-bar.compact .snap-pill { padding: 6px 9px; font-size: 11px; }
 
     @media (max-width: 830px) {
       .snapshot-bar { top: 92px; }
       .snapshot-inner { grid-template-columns: 1fr; justify-items: flex-start; }
-      .snapshot-pills { justify-content: flex-start; }
-      .snapshot-right { justify-content: flex-start; }
+      .snapshot-pills, .snapshot-right { justify-content: flex-start; }
     }
 
-    /* === NAV UNDER HEADER === */
+    /* === NAV === */
     .day-nav {
       margin-top: 14px;
       padding: 6px 4px 0;
@@ -425,7 +418,7 @@
       padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.86);
       transition: all 0.2s ease;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -453,7 +446,7 @@
 
     /* PANELS */
     .panel {
-      background: rgba(15, 23, 42, 0.94);
+      background: rgba(15, 23, 42, 0.90);
       border-radius: var(--radius-xl);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
@@ -468,7 +461,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 55%);
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.07), transparent 55%);
       pointer-events: none;
     }
 
@@ -488,9 +481,7 @@
       letter-spacing: 0.16em;
       color: var(--text-muted);
     }
-
     .panel-subtitle { font-size: 11px; color: var(--text-muted); }
-
     .time-indicator {
       font-size: 11px;
       color: var(--accent);
@@ -498,19 +489,158 @@
       letter-spacing: 0.14em;
     }
 
-    /* ===== Scroll reveal ===== */
+    /* Scroll reveal */
     .reveal {
       opacity: 0;
       transform: translateY(12px);
       transition: opacity 0.6s ease, transform 0.6s ease;
       will-change: opacity, transform;
     }
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* ===== NEW: “How to use” tiles (adds scroll, not wordy) ===== */
+    .tiles-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 900px){ .tiles-grid{ grid-template-columns: 1fr; } }
+
+    .tile{
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(2,6,23,0.38);
+      padding: 16px 16px 14px;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.45);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      overflow: hidden;
+      position: relative;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(244,193,93,0.35);
+    }
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
+      pointer-events:none;
+      opacity: 0.85;
+    }
+    .tile-top{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .tile-num{
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .tile-pill{
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(2,6,23,0.35);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .tile-title{
+      position:relative;
+      z-index:1;
+      font-weight: 700;
+      color: #e5e7eb;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .tile-line{
+      position:relative;
+      z-index:1;
+      color: var(--text-muted);
+      font-size: 12px;
     }
 
-    /* HERO ARTICLE */
+    /* ===== NEW: Watchlist section (interactive) ===== */
+    .watchlist-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      position:relative;
+      z-index:1;
+      margin-bottom: 12px;
+    }
+    .watch-btn{
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.30);
+      background: rgba(2,6,23,0.40);
+      color: var(--text-main);
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+    .watch-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+    }
+    .watch-btn.active{
+      background: rgba(244,193,93,0.14);
+      border-color: rgba(244,193,93,0.55);
+      color: var(--accent);
+    }
+
+    /* ===== FAQ accordion ===== */
+    .faq{
+      position:relative; z-index:1;
+      display:flex; flex-direction:column; gap: 10px;
+    }
+    details.faq-item{
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.26);
+      background: rgba(2,6,23,0.34);
+      padding: 12px 14px;
+      overflow:hidden;
+    }
+    details.faq-item summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      font-weight: 700;
+      color: #e5e7eb;
+      font-size: 13px;
+    }
+    details.faq-item summary::-webkit-details-marker{ display:none; }
+    .faq-ans{
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .chev{
+      color: var(--text-muted);
+      transition: 0.18s ease;
+      font-size: 16px;
+    }
+    details[open] .chev{ transform: rotate(180deg); color: var(--accent); }
+
+    /* HERO ARTICLE (keep yours) */
     .hero-article {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -521,14 +651,7 @@
     }
     @media (max-width: 780px) { .hero-article { grid-template-columns: 1fr; } }
 
-    .hero-copy { padding-right: 4px; }
-
-    .hero-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .hero-tag-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
 
     .pill-tag {
       font-size: 11px;
@@ -540,7 +663,6 @@
       color: var(--text-muted);
     }
     .pill-tag.monday { border-color: var(--success); color: var(--success); }
-    .pill-tag.friday { border-color: var(--danger); color: var(--danger); }
 
     .hero-headline {
       font-family: "Playfair Display", "Times New Roman", serif;
@@ -553,13 +675,10 @@
       -webkit-background-clip: text;
       color: transparent;
     }
-
     .hero-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
     .hero-meta strong { color: var(--accent); font-weight: 500; }
-
     .hero-lede { font-size: 14px; color: #e5e7eb; margin-bottom: 14px; }
-
-    .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-links { display:flex; flex-wrap:wrap; gap:10px; }
 
     .hero-btn {
       font-size: 12px;
@@ -574,7 +693,6 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      cursor: pointer;
       transition: all 0.18s ease;
     }
     .hero-btn:hover { background: var(--accent-soft); transform: translateY(-1px); }
@@ -587,7 +705,6 @@
       padding: 12px 12px 10px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 8px;
     }
 
@@ -598,7 +715,6 @@
       color: var(--text-muted);
       margin-bottom: 2px;
     }
-
     .hero-highlight-number {
       font-size: 18px;
       font-weight: 650;
@@ -611,33 +727,7 @@
       color: var(--success);
     }
 
-    .hero-highlight-detail { font-size: 12px; color: var(--text-muted); }
-
-    .hero-highlight-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 11px;
-    }
-
-    .mini-move { display: flex; flex-direction: column; gap: 2px; }
-    .mini-move-label {
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 10px;
-    }
-    .mini-move-value { font-variant-numeric: tabular-nums; }
-    .mini-move-value.negative { color: var(--danger); }
-    .mini-move-value.positive { color: var(--success); }
-
-    .vix-scale {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-      font-size: 10px;
-    }
-
+    .vix-scale { display:flex; gap:6px; margin-top: 8px; font-size: 10px; }
     .vix-segment {
       flex: 1;
       border-radius: 999px;
@@ -645,111 +735,11 @@
       text-align: center;
       border: 1px solid rgba(148, 163, 184, 0.4);
     }
-    .vix-segment span { display: block; font-size: 10px; color: var(--text-muted); }
+    .vix-segment span { display:block; font-size:10px; color: var(--text-muted); }
     .vix-low { color: var(--success); border-color: var(--success); }
     .vix-normal { color: var(--accent); border-color: var(--accent); }
     .vix-high { color: var(--danger); border-color: var(--danger); }
 
-    /* ===== (3) Weekly 4-card section ===== */
-    .weekly-wrap {
-      margin-top: 18px;
-    }
-
-    .weekly-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 980px) {
-      .weekly-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 540px) {
-      .weekly-grid { grid-template-columns: 1fr; }
-    }
-
-    .week-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
-      padding: 14px 14px 12px;
-      text-decoration: none;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: transform 0.18s ease, border-color 0.18s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .week-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(244,193,93,0.35);
-    }
-
-    .week-card::before {
-      content: "";
-      position: absolute;
-      inset: -25%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    .week-top {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-    }
-
-    .week-day {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-    }
-
-    .week-tag {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.35);
-      color: var(--text-muted);
-      background: rgba(2,6,23,0.35);
-      white-space: nowrap;
-    }
-
-    .week-title {
-      position: relative;
-      z-index: 1;
-      font-weight: 650;
-      line-height: 1.25;
-      font-size: 13px;
-      color: #e5e7eb;
-    }
-
-    .week-cta {
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Article grid (unchanged) */
     .article-grid {
       display: grid;
       grid-template-columns: 1.1fr 1.1fr;
@@ -771,140 +761,27 @@
     }
     .article-card:hover { transform: translateY(-2px); border-color: rgba(244,193,93,0.35); }
 
-    .article-card::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background: radial-gradient(circle at top right, rgba(75, 85, 99, 0.18), transparent 50%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
+    .article-label-row { display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:6px; position:relative; z-index:1; }
+    .article-tag { font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color: var(--text-muted); }
+    .article-date { font-size:10px; color: var(--text-muted); }
 
-    .article-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .article-tag {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-    }
-
-    .article-date { font-size: 10px; color: var(--text-muted); }
-
-    .article-title {
-      position: relative;
-      z-index: 1;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 5px;
-    }
-
-    .article-title a { color: #e5e7eb; text-decoration: none; }
+    .article-title { position:relative; z-index:1; font-size:14px; font-weight:500; margin-bottom:5px; }
+    .article-title a { color:#e5e7eb; text-decoration:none; }
     .article-title a:hover { text-decoration: underline; }
 
-    .article-summary {
-      position: relative;
-      z-index: 1;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
+    .article-summary { position:relative; z-index:1; font-size:12px; color: var(--text-muted); margin-bottom:6px; }
+    .article-meta { position:relative; z-index:1; font-size:11px; color: var(--text-muted); display:flex; justify-content:space-between; gap:8px; }
 
-    .article-meta {
-      position: relative;
-      z-index: 1;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    /* SIDEBAR */
+    /* Sidebar (unchanged) */
     .sidebar-block + .sidebar-block { margin-top: 18px; }
+    .sidebar-header { font-size:12px; text-transform:uppercase; letter-spacing:0.18em; color: var(--text-muted); margin-bottom:8px; }
+    .sidebar-card { border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); background: rgba(15, 23, 42, 0.98); padding: 12px 12px 10px; font-size: 12px; }
 
-    .sidebar-header {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .sidebar-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.98);
-      padding: 12px 12px 10px;
-      font-size: 12px;
-    }
-
-    .byline-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .byline-list li span {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .day-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 12px;
-    }
-
-    .day-list strong {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-    }
-
-    .day-list span { color: var(--accent); }
-
-    .subtle-note { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
-
-    .pill-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--text-muted);
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.55);
-      padding: 5px 9px;
-      margin-top: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    footer {
-      margin-top: 24px;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: center;
-      opacity: 0.85;
-    }
-
+    footer { margin-top: 28px; font-size: 11px; color: var(--text-muted); text-align: center; opacity: 0.9; }
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* === PREMIUM SUBSCRIBE MODAL === */
+    /* === PREMIUM SUBSCRIBE MODAL (unchanged) === */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -994,7 +871,6 @@
       color: #000;
       font-weight: 600;
     }
-
     .modal-primary-btn:hover { background: #f7d680; }
 
     .modal-secondary-btn {
@@ -1002,7 +878,6 @@
       background: transparent;
       color: #9ca3af;
     }
-
     .modal-secondary-btn:hover { border-color: #f4c15d; color: #f4c15d; }
   </style>
 </head>
@@ -1054,20 +929,20 @@
       </div>
     </header>
 
-    <!-- (7) Quick jump cues (less wordy + interactive) -->
+    <!-- Quick jump cues -->
     <section class="jump-row reveal" aria-label="Quick navigation">
-      <div class="jump-left">
+      <div>
         <div class="jump-kicker">Start here</div>
         <div class="jump-title">Signal over noise — <span>fast</span>.</div>
       </div>
       <div class="jump-actions">
-        <a class="jump-btn" href="#monday">Today’s Setup ↓</a>
-        <a class="jump-btn" href="#weekly-cards">This Week ↓</a>
+        <a class="jump-btn" href="#how">How it works ↓</a>
+        <a class="jump-btn" href="#watch">Watchlist ↓</a>
         <a class="jump-btn primary" href="#subscribe">Subscribe</a>
       </div>
     </section>
 
-    <!-- (1) Sticky Market Snapshot (collapses on scroll) -->
+    <!-- Sticky Market Snapshot -->
     <section class="snapshot-bar reveal" id="snapshot-bar" aria-label="Market snapshot">
       <div class="snapshot-inner">
         <div class="snapshot-title">Market Snapshot</div>
@@ -1117,7 +992,7 @@
       </div>
     </section>
 
-    <!-- NAV FOR DIFFERENT NOTES -->
+    <!-- NAV -->
     <nav class="day-nav reveal" aria-label="FinTrend weekday notes navigation">
       <a href="articles/2025-12-15-monday.html" class="tag-monday">Monday Outlook</a>
       <a href="articles/2025-12-03-wednesday.html">Wed Momentum</a>
@@ -1126,71 +1001,87 @@
       <a href="archive.html">Archive / Calendar</a>
     </nav>
 
-    <!-- (3) This Week in 4 Cards -->
-    <section class="panel weekly-wrap reveal" id="weekly-cards" aria-label="This week in four notes">
+    <!-- NEW SECTION 1: How it works -->
+    <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
         <div>
-          <div class="panel-title">This Week</div>
-          <div class="panel-subtitle">Four notes. One rhythm. Click any card.</div>
+          <div class="panel-title">How to use this</div>
+          <div class="panel-subtitle">Minimal words. Max utility.</div>
         </div>
-        <div class="time-indicator">4x Weekly</div>
+        <div class="time-indicator">30 seconds</div>
       </div>
 
-      <div class="weekly-grid">
-        <a class="week-card reveal" href="articles/2025-12-15-monday.html">
-          <div class="week-top">
-            <div class="week-day">Monday</div>
-            <div class="week-tag" style="border-color: rgba(74,222,128,0.55); color: var(--success);">Outlook</div>
+      <div class="tiles-grid">
+        <div class="tile reveal">
+          <div class="tile-top">
+            <div class="tile-num">Step 01</div>
+            <div class="tile-pill">Scan</div>
           </div>
-          <div class="week-title">Key drivers, catalysts, and what matters into the week.</div>
-          <div class="week-cta">Open note <span>↗</span></div>
-        </a>
+          <div class="tile-title">Check drivers &amp; volatility</div>
+          <div class="tile-line">Rates, VIX, positioning—fast context.</div>
+        </div>
 
-        <a class="week-card reveal" href="articles/2025-12-03-wednesday.html">
-          <div class="week-top">
-            <div class="week-day">Wednesday</div>
-            <div class="week-tag">Momentum</div>
+        <div class="tile reveal">
+          <div class="tile-top">
+            <div class="tile-num">Step 02</div>
+            <div class="tile-pill">Decide</div>
           </div>
-          <div class="week-title">How the tape is trading: leadership, breadth, positioning.</div>
-          <div class="week-cta">Open note <span>↗</span></div>
-        </a>
+          <div class="tile-title">Pick the note you need</div>
+          <div class="tile-line">Outlook · Momentum · Recap · Macro.</div>
+        </div>
 
-        <a class="week-card reveal" href="articles/2025-12-12-friday.html">
-          <div class="week-top">
-            <div class="week-day">Friday</div>
-            <div class="week-tag" style="border-color: rgba(249,115,115,0.55); color: var(--danger);">Recap</div>
+        <div class="tile reveal">
+          <div class="tile-top">
+            <div class="tile-num">Step 03</div>
+            <div class="tile-pill">Execute</div>
           </div>
-          <div class="week-title">What changed, what didn’t, and why it mattered.</div>
-          <div class="week-cta">Open note <span>↗</span></div>
-        </a>
-
-        <a class="week-card reveal" href="articles/2025-12-14-sunday.html">
-          <div class="week-top">
-            <div class="week-day">Sunday</div>
-            <div class="week-tag">Macro</div>
-          </div>
-          <div class="week-title">Themes, positioning, and setup into the open.</div>
-          <div class="week-cta">Open note <span>↗</span></div>
-        </a>
+          <div class="tile-title">Use it as a trading brief</div>
+          <div class="tile-line">Links + takeaways, no fluff.</div>
+        </div>
       </div>
     </section>
 
+    <!-- NEW SECTION 2: Watchlist (interactive buttons) -->
+    <section class="panel reveal" id="watch" aria-label="Watchlist">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Live watchlist</div>
+          <div class="panel-subtitle">Tap a market → chart loads.</div>
+        </div>
+        <div class="time-indicator">Interactive</div>
+      </div>
+
+      <div class="watchlist-row">
+        <button class="watch-btn active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
+        <button class="watch-btn" data-symbol="NASDAQ:NDX">NDX</button>
+        <button class="watch-btn" data-symbol="CBOE:VIX">VIX</button>
+        <button class="watch-btn" data-symbol="TVC:US10Y">US10Y</button>
+        <button class="watch-btn" data-symbol="OANDA:XAUUSD">GOLD</button>
+      </div>
+
+      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;">
+        <!-- widget injects here -->
+      </div>
+
+      <p style="position:relative;z-index:1;font-size:11px;color:var(--text-muted);margin-top:10px;">
+        Tip: This is only for the homepage—your article pages stay clean.
+      </p>
+    </section>
+
+    <!-- Main content -->
     <main class="layout">
-      <!-- LEFT: MAIN CONTENT -->
       <section>
         <section class="panel reveal" id="monday">
           <div class="panel-header">
             <div>
               <div class="panel-title">Monday Market Outlook</div>
-              <div class="panel-subtitle">
-                Key themes heading into the new trading week.
-              </div>
+              <div class="panel-subtitle">Key themes heading into the new trading week.</div>
             </div>
             <div class="time-indicator">Published Mondays</div>
           </div>
 
           <div class="hero-article">
-            <div class="hero-copy">
+            <div>
               <div class="hero-tag-row">
                 <div class="pill-tag monday">This Week</div>
                 <div class="pill-tag">Macro</div>
@@ -1206,19 +1097,16 @@
               </h2>
 
               <div class="hero-meta">
-                Written by <strong>FinTrend News</strong> · FinTrend News ·
-                <span>Monday Outlook · December 15, 2025</span>
+                Written by <strong>FinTrend News</strong> · <span>Monday Outlook · December 15, 2025</span>
               </div>
 
               <p class="hero-lede">
-                The week opens with markets still leaning risk-on, but with far less room for complacency.
-                Rates remain the primary lever — and December liquidity can amplify even modest surprises.
+                Rates remain the lever — and thin liquidity can amplify surprises.
               </p>
 
               <div class="hero-links">
                 <a href="articles/2025-12-15-monday.html" class="hero-btn">
-                  Read Full Outlook
-                  <span>↗</span>
+                  Read Full Outlook <span>↗</span>
                 </a>
                 <a href="articles/2025-12-12-friday.html" class="hero-btn secondary">
                   See Friday’s Recap
@@ -1239,7 +1127,6 @@
                 </div>
 
                 <div style="margin-top:10px;">
-                  <div class="mini-move-label">VIX Live</div>
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
 {
@@ -1269,18 +1156,10 @@
                 <div class="article-date">Fri · Dec 12</div>
               </div>
               <h3 class="article-title">
-                <a href="articles/2025-12-12-friday.html">
-                  Rates Stayed the Driver as Leadership Narrowed Into the Close
-                </a>
+                <a href="articles/2025-12-12-friday.html">Rates Stayed the Driver as Leadership Narrowed Into the Close</a>
               </h3>
-              <p class="article-summary">
-                A steady tape on the surface, but a fragile setup underneath: yields continued to set the tone,
-                equity strength was selective, and the “priced for perfection” dynamic stayed intact into year-end.
-              </p>
-              <div class="article-meta">
-                <span>By FinTrend News</span>
-                <span>Recap · 4 min read</span>
-              </div>
+              <p class="article-summary">Yields set the tone, leadership narrowed, and year-end fragility stayed.</p>
+              <div class="article-meta"><span>By FinTrend News</span><span>Recap · 4 min read</span></div>
             </article>
 
             <article class="article-card reveal">
@@ -1289,18 +1168,10 @@
                 <div class="article-date">Sun · Dec 14</div>
               </div>
               <h3 class="article-title">
-                <a href="articles/2025-12-14-sunday.html">
-                  Soft-Landing Pricing Meets Crowded Positioning in Thin December Liquidity
-                </a>
+                <a href="articles/2025-12-14-sunday.html">Soft-Landing Pricing Meets Crowded Positioning in Thin December Liquidity</a>
               </h3>
-              <p class="article-summary">
-                The macro frame is still supportive, but positioning is doing more of the heavy lifting. Low vol can flip
-                quickly in December, and breadth remains the key durability signal.
-              </p>
-              <div class="article-meta">
-                <span>By FinTrend News</span>
-                <span>Macro · 4 min read</span>
-              </div>
+              <p class="article-summary">Supportive macro, crowded positioning—breadth is the durability signal.</p>
+              <div class="article-meta"><span>By FinTrend News</span><span>Macro · 4 min read</span></div>
             </article>
           </div>
         </section>
@@ -1311,50 +1182,52 @@
         <div class="sidebar-block reveal">
           <div class="sidebar-header">About FinTrend News</div>
           <div class="sidebar-card">
-            FinTrend News is a four-times-a-week market newsletter covering macro,
-            equities, and key catalysts — a Monday outlook, Wednesday momentum check,
-            Friday recap, and Sunday macro note.
-            <div class="pill-label">
-              <span>Focus:</span>
-              Macro · Earnings · Positioning · Cross-Asset
-            </div>
+            Four-times-a-week market notes — outlook, momentum, recap, macro.
+            <div class="pill-label"><span>Focus:</span> Macro · Earnings · Positioning · Cross-Asset</div>
           </div>
         </div>
 
         <div class="sidebar-block reveal">
           <div class="sidebar-header">Editors & Contributors</div>
           <div class="sidebar-card">
-            <ul class="byline-list">
-              <li>
-                <strong>James Minnehan</strong>
-                <span>Macro & Cross-Asset — rates, FX, commodities, macro data releases.</span>
-              </li>
-              <li>
-                <strong>William Lang</strong>
-                <span>Equity Strategy — earnings, sector moves, single-name highlights.</span>
-              </li>
+            <ul class="byline-list" style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+              <li><strong>James Minnehan</strong><span style="display:block;font-size:11px;color:var(--text-muted);">Macro & Cross-Asset — rates, FX, commodities, data.</span></li>
+              <li><strong>William Lang</strong><span style="display:block;font-size:11px;color:var(--text-muted);">Equity Strategy — earnings, sectors, single-names.</span></li>
             </ul>
-          </div>
-        </div>
-
-        <div class="sidebar-block reveal">
-          <div class="sidebar-header">Publishing Rhythm</div>
-          <div class="sidebar-card">
-            <ul class="day-list">
-              <li><strong>Monday</strong><br />Weekly Outlook · <span>Macro drivers &amp; key catalysts.</span></li>
-              <li><strong>Wednesday</strong><br />Momentum Check · <span>How the tape is trading so far.</span></li>
-              <li><strong>Friday</strong><br />Market Recap · <span>Winners, losers, surprises.</span></li>
-              <li><strong>Sunday</strong><br />Macro Note · <span>Positioning &amp; themes into the new week.</span></li>
-            </ul>
-            <p class="subtle-note">
-              Add special editions over time: FOMC reaction notes, earnings playbooks, year-ahead outlooks.
-            </p>
           </div>
         </div>
       </aside>
     </main>
 
-    <!-- SUBSCRIBE PANEL (TARGET FOR #subscribe) -->
+    <!-- NEW SECTION 3: FAQ (adds scroll, stays unwordy) -->
+    <section class="panel reveal" id="faq" aria-label="FAQ">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Quick answers</div>
+          <div class="panel-subtitle">Click to expand. Keep it clean.</div>
+        </div>
+        <div class="time-indicator">FAQ</div>
+      </div>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary>What do I get each week? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Monday outlook, Wednesday momentum check, Friday recap, Sunday macro note.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is this financial advice? <span class="chev">▾</span></summary>
+          <div class="faq-ans">No—informational only. Use it as market context, not a recommendation.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How long does each note take to read? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Usually a few minutes—headline → key takeaways → important links.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE PANEL (kept) -->
     <section id="subscribe" class="panel reveal" style="margin-top: 22px;">
       <div class="panel-header">
         <div>
@@ -1371,7 +1244,6 @@
           No spam, no hype — just concise, sell-side-style market briefings.
         </p>
 
-        <!-- Mailchimp-powered subscribe form -->
         <form
           action="https://github.us1.list-manage.com/subscribe/post?u=f93d4125631bb82d0915cc5d5&amp;id=0ad7096e52&amp;f_id=00addae4f0"
           method="post"
@@ -1386,7 +1258,6 @@
             required
             style="flex:1;min-width:180px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
           />
-          <!-- Honeypot field to reduce bot signups -->
           <div style="position:absolute;left:-5000px;" aria-hidden="true">
             <input type="text" name="b_f93d4125631bb82d0915cc5d5_0ad7096e52" tabindex="-1" value="">
           </div>
@@ -1438,11 +1309,9 @@
       </ul>
 
       <div class="modal-btn-row">
-        <!-- Replace this with your Stripe/checkout link -->
         <a href="https://your-payment-link.com" target="_blank" rel="noopener" class="modal-primary-btn">
           Go Premium
         </a>
-
         <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">
           Keep Free Version
         </a>
@@ -1463,29 +1332,23 @@
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
     }
-
     function closeModal() {
       if (!modal) return;
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
     }
-
     if (openBtn)  openBtn.addEventListener('click', openModal);
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
     if (modal) {
       modal.addEventListener('click', function (e) {
         if (e.target === modal) closeModal();
       });
     }
-
     if (freeBtn) {
-      freeBtn.addEventListener('click', function () {
-        closeModal();
-      });
+      freeBtn.addEventListener('click', function () { closeModal(); });
     }
 
-    // ===== Smooth scroll for jump buttons =====
+    // ===== Smooth scroll for anchors =====
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -1519,6 +1382,42 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ===== Watchlist (interactive): inject TradingView mini chart =====
+    const watchWrap = document.getElementById('watch-widget');
+    const buttons = document.querySelectorAll('.watch-btn');
+
+    function loadMiniChart(symbol){
+      if (!watchWrap) return;
+      watchWrap.innerHTML = "";
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+      s.async = true;
+      s.innerHTML = JSON.stringify({
+        symbol: symbol,
+        width: "100%",
+        height: 220,
+        locale: "en",
+        dateRange: "3M",
+        colorTheme: "dark",
+        isTransparent: true,
+        autosize: true,
+        largeChartUrl: ""
+      });
+      watchWrap.appendChild(s);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        loadMiniChart(btn.dataset.symbol);
+      });
+    });
+
+    // default
+    loadMiniChart("FOREXCOM:SPXUSD");
   </script>
 </body>
 </html>
