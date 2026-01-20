@@ -230,4 +230,35 @@
         if (saved) {
           var el = document.querySelector('input[name="vote"][value="'+saved+'"]');
           if (el) el.checked = true;
-          document.getElementById("savedMsg").textCon
+          document.getElementById("savedMsg").textContent = "Saved: " + saved + " (stored locally in your browser).";
+        }
+        document.getElementById("saveVote").addEventListener("click", function(){
+          var pick = document.querySelector('input[name="vote"]:checked');
+          var msg = document.getElementById("savedMsg");
+          if (!pick) { msg.textContent = "Select A, B, or C first."; return; }
+          localStorage.setItem(key, pick.value);
+          msg.textContent = "Saved: " + pick.value + " (stored locally in your browser).";
+        });
+      })();
+    </script>
+
+    <div class="sources">
+      <h2>Sources (links)</h2>
+      <ul>
+        <li><a href="https://www.ig.com/en/news-and-trade-ideas/weekly-market-navigator--5-jan-2026-260105" target="_blank" rel="noopener">IG — Weekly Market Navigator (Jan 4, 2026)</a></li>
+        <li><a href="https://tradingeconomics.com/calendar?article=29332&g=top&importance=2&source=headline&startdate=2026-01-02" target="_blank" rel="noopener">Trading Economics — Week Ahead (Jan 5, 2026)</a></li>
+        <li><a href="https://www.investing.com/analysis/january-opens-with-clear-signals-as-liquidity-and-seasonality-align-200672793" target="_blank" rel="noopener">Investing.com — January liquidity & seasonality commentary (Jan 6, 2026)</a></li>
+        <li><a href="https://us.etrade.com/knowledge/library/perspectives/market-happenings/monthly-perspectives-january-2026" target="_blank" rel="noopener">E*TRADE — Monthly Perspectives (Jan 2026)</a></li>
+        <li><a href="https://oneascent.com/monthly-update-january-2026/" target="_blank" rel="noopener">OneAscent — Monthly Update (Jan 5, 2026)</a></li>
+        <li><a href="https://www.schwab.com/learn/story/us-stock-market-outlook" target="_blank" rel="noopener">Charles Schwab — 2026 outlook (Dec 9, 2025)</a></li>
+        <li><a href="https://www.jpmorgan.com/insights/global-research/outlook/market-outlook" target="_blank" rel="noopener">J.P. Morgan — 2026 Market Outlook (Dec 9, 2025)</a></li>
+        <li><a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noopener">CME — FedWatch Tool</a></li>
+        <li><a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener">Federal Reserve — 2026 FOMC Calendar</a></li>
+        <li><a href="https://www.bls.gov/schedule/news_release/current_year.asp" target="_blank" rel="noopener">BLS — Schedule of Selected Releases (2026)</a></li>
+      </ul>
+    </div>
+
+    <a href="../index.html" class="back">← Back to Homepage</a>
+  </div>
+</body>
+</html>
