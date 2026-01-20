@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monday Market Outlook · December 22, 2025</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    body { background: #0a0f1c; color: #f5f7fa; font-family: Inter, sans-serif; line-height: 1.7; margin: 0; padding: 24px; }
+    .container { max-width: 820px; margin: auto; background: rgba(255,255,255,0.03); padding: 32px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.08); }
+    h1 { font-family: "Playfair Display", serif; font-size: 32px; margin-bottom: 10px; line-height: 1.2; }
+    h2 { margin-top: 32px; font-family: "Playfair Display", serif; font-size: 22px; color: #f4c15d; }
+    p, li { margin-bottom: 16px; font-size: 16px; color: #d5d7db; }
+    .meta { font-size: 12px; color: #9ea3ab; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.14em; }
+    .meta strong { color: #f4c15d; font-weight: 600; }
+    a { color: #f4c15d; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a.back { display: inline-block; margin-top: 28px; padding: 10px 16px; border-radius: 999px; border: 1px solid #f4c15d; color: #f4c15d; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; }
+    a.back:hover { background: rgba(244,193,93,0.12); text-decoration: none; }
+
+    .callout {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(244,193,93,0.35);
+      background: rgba(244,193,93,0.08);
+    }
+    .callout p { margin: 0 0 10px 0; color: #e7e2d6; }
+    .pulse label { display: block; margin: 10px 0; cursor: pointer; }
+    .pulse small { color: #b7bcc4; display: block; margin-top: 8px; }
+    .btn {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #f4c15d;
+      background: transparent;
+      color: #f4c15d;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+    .btn:hover { background: rgba(244,193,93,0.12); }
+    .sources { margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.10); font-size: 13px; color: #aeb3bb; }
+    .sources h2 { font-size: 18px; margin-top: 14px; }
+    .sources li { margin-bottom: 10px; color: #aeb3bb; font-size: 13px; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Monday Market Outlook — December 22, 2025</h1>
+    <div class="meta">By <strong>James Minnehan</strong> · FinTrend News · Monday Outlook</div>
+
+    <p>This week is a classic year-end setup: a holiday-shortened tape, falling participation, and a market that can drift higher on seasonality — until one rates move or one headline reminds everyone that liquidity is a risk factor, not a footnote.</p>
+
+    <h2>1. The Week’s Primary Catalyst: Liquidity, Not Data</h2>
+    <p>In late December, “what matters” shifts from fundamentals to mechanics. Depth gets thinner, spreads widen, and price impact rises. That means modest flows can create big moves, and intraday reversals can look more dramatic than they truly are.</p>
+
+    <h2>2. Santa Seasonality Is a Tailwind — But Positioning Matters</h2>
+    <p>Seasonality is supportive into late December and early January, but the trade works best when investors aren’t already heavily committed. If exposure is already elevated, you often get a grind rather than a melt-up — and any risk-off impulse tends to hit crowded leadership first.</p>
+
+    <h2>3. Rates Still Decide the Winners</h2>
+    <p>The market remains highly sensitive to the path of inflation and the implied path of cuts. If yields stay stable or drift lower, the “duration complex” stays favored. If yields rise, the market often rotates defensively — and in thin liquidity, that rotation can look abrupt.</p>
+
+    <h2>4. Practical Strategy for a Thin Tape</h2>
+    <p>Think in scenarios, not predictions: (a) stable yields → slow upside drift, (b) yield pop → quick de-risking in crowded names, (c) surprise macro headline → outsized move, then mean reversion. The edge is sizing, patience, and letting the market show its hand.</p>
+
+    <div class="callout">
+      <p><strong>Reader Pulse (Interactive):</strong> What’s your base-case for the week?</p>
+      <div class="pulse" id="pulse">
+        <label><input type="radio" name="vote" value="A" /> A) Slow drift higher (seasonality wins)</label>
+        <label><input type="radio" name="vote" value="B" /> B) Chop / range (thin liquidity whipsaws)</label>
+        <label><input type="radio" name="vote" value="C" /> C) Risk-off pocket (rates/headline shock)</label>
+        <button class="btn" id="saveVote" type="button">Save</button>
+        <small id="savedMsg"></small>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        var key = "fintrend_pulse_2025_12_22";
+        var saved = localStorage.getItem(key);
+        if (saved) {
+          var el = document.querySelector('input[name="vote"][value="'+saved+'"]');
+          if (el) el.checked = true;
+          var msg = document.getElementById("savedMsg");
+          msg.textContent = "Saved: " + saved + " (stored locally in your browser).";
+        }
+        document.getElementById("saveVote").addEventListener("click", function(){
+          var pick = document.querySelector('input[name="vote"]:checked');
+          var msg = document.getElementById("savedMsg");
+          if (!pick) { msg.textContent = "Select A, B, or C first."; return; }
+          localStorage.setItem(key, pick.value);
+          msg.textContent = "Saved: " + pick.value + " (stored locally in your browser).";
+        });
+      })();
+    </script>
+
+    <div class="sources">
+      <h2>Sources & Notes (paraphrased)</h2>
+      <ul>
+        <li>Gotrade Daily — what traders are watching this holiday week. <a href="https://heygotrade.com/en/news/gotrade-daily-what-traders-are-watching-this-holiday-week" target="_blank" rel="noopener">Source</a></li>
+        <li>Reuters — seasonality / Santa window context and timing. <a href="https://www.reuters.com/business/wall-st-week-ahead-santa-rally-investors-hope-year-end-gains-cap-strong-2025-2025-12-19/" target="_blank" rel="noopener">Source</a></li>
+        <li>ThinkCapital — December outlook risks (Fed, liquidity, seasonality). <a href="https://www.thinkcapital.com/december-2025-market-outlook/" target="_blank" rel="noopener">Source</a></li>
+        <li>ACY — low-liquidity effects and year-end “mechanical” price action. <a href="https://acy.com/en/market-news/market-analysis/year-end-market-outlook-2025-low-liquidity-holiday-trading-j-o-2025-12-26-143851/" target="_blank" rel="noopener">Source</a></li>
+        <li>Federal Reserve — Dec 10, 2025 FOMC statement. <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm" target="_blank" rel="noopener">Source</a></li>
+        <li>Federal Reserve — Dec 2025 minutes page. <a href="https://www.federalreserve.gov/monetarypolicy/fomcminutes20251210.htm" target="_blank" rel="noopener">Source</a></li>
+        <li>MNI — minutes preview and “hawkish cut” framing. <a href="https://media.marketnews.com/Fed_Minutes_Preview_Dec2025_bf656ac185.pdf" target="_blank" rel="noopener">Source</a></li>
+        <li>MNI — inflation insight (softening inflation narrative and implications). <a href="https://media.marketnews.com/US_Inflation_Insight_Jan2026_e48f62c22e.pdf" target="_blank" rel="noopener">Source</a></li>
+        <li>BLS — release schedule (macro cadence). <a href="https://www.bls.gov/schedule/" target="_blank" rel="noopener">Source</a></li>
+        <li>FRED — release calendar hub (macro cadence). <a href="https://fred.stlouisfed.org/releases/calendar" target="_blank" rel="noopener">Source</a></li>
+      </ul>
+      <p>FinTrend analysis: scenario framework built from year-end liquidity + rates sensitivity themes cited above.</p>
+    </div>
+
+    <a href="../index.html" class="back">← Back to Homepage</a>
+  </div>
+</body>
+</html>
