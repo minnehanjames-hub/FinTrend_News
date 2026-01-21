@@ -44,6 +44,9 @@
     gtag('config', 'G-KSK5YVPJBR');
   </script>
 
+  <!-- Supabase JS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     :root {
       --bg: #050816;
@@ -400,7 +403,7 @@
       color: var(--text-main);
     }
 
-    /* ===== PANELS (your style) ===== */
+    /* ===== PANELS ===== */
     .panel {
       background: rgba(15, 23, 42, 0.90);
       border-radius: var(--radius-xl);
@@ -690,7 +693,7 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* === PREMIUM SUBSCRIBE MODAL (kept) === */
+    /* === MODALS (shared) === */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -699,6 +702,7 @@
       align-items: center;
       justify-content: center;
       z-index: 99999;
+      padding: 14px;
     }
     .modal-backdrop.active { display: flex; }
 
@@ -707,7 +711,7 @@
       border-radius: 24px;
       border: 1px solid rgba(148, 163, 184, 0.35);
       box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
       padding: 22px 22px 18px;
       position: relative;
@@ -778,7 +782,7 @@
       border: none;
       background: #f4c15d;
       color: #000;
-      font-weight: 600;
+      font-weight: 700;
     }
     .modal-primary-btn:hover { background: #f7d680; }
 
@@ -795,7 +799,6 @@
     ========================================================== */
     html, body { color: var(--text-main); }
 
-    /* hard override for any random black text */
     body, p, span, li, label, small, strong, em, i, b,
     h1, h2, h3, h4, h5, h6,
     a, a:visited,
@@ -807,7 +810,7 @@
     /* preserve muted areas explicitly */
     .brand-subtitle, .hero-kicker, .panel-title, .panel-subtitle,
     .snap-label, .snap-chip, .latest-tag, .latest-date,
-    .latest-desc, .faq-ans, footer {
+    .latest-desc, .faq-ans, footer, .header-link {
       color: var(--text-muted) !important;
     }
 
@@ -854,8 +857,12 @@
         </div>
 
         <div class="header-right">
-          <a href="signin.html" class="header-link">Sign In</a>
+          <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
+          <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
+          <span class="header-link" id="user-chip" style="display:none;"></span>
+
           <a href="#" class="subscribe-btn" id="open-premium-modal">Subscribe</a>
+
           <div class="social-icons">
             <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" class="social-icon" title="FinTrend News Instagram">IG</a>
             <a href="https://linkedin.com" target="_blank" class="social-icon" title="FinTrend News LinkedIn">in</a>
@@ -881,10 +888,11 @@
               <a class="btn primary" href="#subscribe">Get Free Email</a>
               <a class="btn" href="archive.html">Open Archive</a>
               <a class="btn" href="#watch">Live Watchlist</a>
+              <a class="btn" href="#premium">Premium Tools</a>
             </div>
 
             <div class="hero-note">
-              Tip: Scroll for how it works, watchlist charts, and quick answers.
+              Tip: Scroll for how it works, watchlist charts, premium tools, and quick answers.
             </div>
           </div>
 
@@ -1055,7 +1063,7 @@
       </p>
     </section>
 
-    <!-- Replace old Mon-Sun buttons with a better “Latest / Archive” area -->
+    <!-- What’s new -->
     <section class="panel reveal" id="latest" aria-label="Latest">
       <div class="panel-header">
         <div>
@@ -1094,6 +1102,40 @@
             <a class="mini-link" href="#watch">Watchlist ↗</a>
             <a class="mini-link secondary" href="#how">How it works</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium tools (gated) -->
+    <section class="panel reveal" id="premium" aria-label="Premium tools">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Premium tools</div>
+          <div class="panel-subtitle">Trade setups + portfolio tracking (members only).</div>
+        </div>
+        <div class="time-indicator">Members</div>
+      </div>
+
+      <div class="latest-grid" style="grid-template-columns:1fr;">
+        <div class="latest-card reveal">
+          <div class="latest-top">
+            <div class="latest-tag">FinTrend Portfolio</div>
+            <div class="latest-date">Premium</div>
+          </div>
+
+          <div class="latest-title">Open the member dashboard</div>
+          <div class="latest-desc">
+            Access trade setups, portfolio entries, and performance tracking once your subscription is active.
+          </div>
+
+          <div class="latest-actions">
+            <a class="mini-link" href="#" id="open-premium-dashboard">Open Premium Dashboard ↗</a>
+            <a class="mini-link secondary" href="#" id="manage-membership">Manage Membership</a>
+          </div>
+
+          <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">
+            Sign in to check access.
+          </p>
         </div>
       </div>
     </section>
@@ -1188,6 +1230,50 @@
     </footer>
   </div>
 
+  <!-- ===== AUTH MODAL (SUPABASE) ===== -->
+  <div id="auth-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+      <button class="modal-close" id="close-auth-modal" aria-label="Close">×</button>
+
+      <div class="modal-kicker">FinTrend Account</div>
+      <h2 class="modal-title" id="auth-modal-title">Sign in</h2>
+
+      <p class="modal-subtitle" id="auth-subtitle">
+        Sign in to access premium tools and saved watchlists.
+      </p>
+
+      <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <input
+          id="auth-email"
+          type="email"
+          placeholder="Email"
+          required
+          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
+        />
+        <input
+          id="auth-password"
+          type="password"
+          placeholder="Password"
+          required
+          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
+        />
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+          <button type="submit" class="modal-primary-btn" id="auth-submit-btn">Sign in</button>
+          <button type="button" class="modal-secondary-btn" id="auth-toggle-btn">Create account</button>
+        </div>
+
+        <div id="auth-msg" style="margin-top:8px;font-size:12px;color:#e5e7eb;"></div>
+      </form>
+
+      <div style="margin-top:12px;border-top:1px solid rgba(148,163,184,0.25);padding-top:12px;">
+        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">
+          Forgot password
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== PREMIUM SUBSCRIBE MODAL ===== -->
   <div id="premium-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="premium-modal-title">
@@ -1219,59 +1305,9 @@
   </div>
 
   <script>
-    // ===== Premium modal logic =====
-    const openBtn  = document.getElementById('open-premium-modal');
-    const modal    = document.getElementById('premium-modal');
-    const closeBtn = document.getElementById('close-premium-modal');
-    const freeBtn  = document.getElementById('go-free-subscribe');
-
-    function openModal(e) {
-      if (!modal) return;
-      e.preventDefault();
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-    }
-    function closeModal() {
-      if (!modal) return;
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-    }
-    if (openBtn)  openBtn.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (modal) {
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) closeModal();
-      });
-    }
-    if (freeBtn) {
-      freeBtn.addEventListener('click', function () { closeModal(); });
-    }
-
-    // ===== Smooth scroll for anchors =====
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === "#") return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // ===== Scroll reveal =====
-    const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
-
-    // ===== Watchlist (interactive): inject TradingView mini chart =====
+    // =====================================================
+    // TradingView Watchlist (interactive)
+    // =====================================================
     const watchWrap = document.getElementById('watch-widget');
     const buttons = document.querySelectorAll('.watch-btn');
 
@@ -1304,8 +1340,303 @@
       });
     });
 
-    // default
     loadMiniChart("FOREXCOM:SPXUSD");
+
+    // =====================================================
+    // Premium modal logic
+    // =====================================================
+    const openPremiumBtn  = document.getElementById('open-premium-modal');
+    const premiumModal    = document.getElementById('premium-modal');
+    const closePremiumBtn = document.getElementById('close-premium-modal');
+    const freeBtn  = document.getElementById('go-free-subscribe');
+
+    function openPremiumModal(e) {
+      if (!premiumModal) return;
+      e.preventDefault();
+      premiumModal.classList.add('active');
+      premiumModal.setAttribute('aria-hidden', 'false');
+    }
+    function closePremiumModal() {
+      if (!premiumModal) return;
+      premiumModal.classList.remove('active');
+      premiumModal.setAttribute('aria-hidden', 'true');
+    }
+    if (openPremiumBtn)  openPremiumBtn.addEventListener('click', openPremiumModal);
+    if (closePremiumBtn) closePremiumBtn.addEventListener('click', closePremiumModal);
+    if (premiumModal) {
+      premiumModal.addEventListener('click', function (e) {
+        if (e.target === premiumModal) closePremiumModal();
+      });
+    }
+    if (freeBtn) {
+      freeBtn.addEventListener('click', function () { closePremiumModal(); });
+    }
+
+    // =====================================================
+    // Smooth scroll
+    // =====================================================
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === "#") return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // =====================================================
+    // Scroll reveal
+    // =====================================================
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // =====================================================
+    // ✅ SUPABASE AUTH + PREMIUM GATING
+    // =====================================================
+
+    // Your Supabase project
+    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Payment link placeholder (replace later with your Stripe checkout link)
+    const PAYMENT_LINK = "https://your-payment-link.com";
+
+    // Auth modal elements
+    const authModal = document.getElementById("auth-modal");
+    const openAuthBtn = document.getElementById("open-auth-modal");
+    const closeAuthBtn = document.getElementById("close-auth-modal");
+
+    const authForm = document.getElementById("auth-form");
+    const authEmail = document.getElementById("auth-email");
+    const authPassword = document.getElementById("auth-password");
+    const authMsg = document.getElementById("auth-msg");
+
+    const authTitle = document.getElementById("auth-modal-title");
+    const authSubtitle = document.getElementById("auth-subtitle");
+    const authSubmitBtn = document.getElementById("auth-submit-btn");
+    const authToggleBtn = document.getElementById("auth-toggle-btn");
+    const authResetBtn = document.getElementById("auth-reset-btn");
+
+    // Header user UI
+    const signoutLink = document.getElementById("signout-link");
+    const userChip = document.getElementById("user-chip");
+
+    // Premium UI hooks
+    const openPremiumDashboard = document.getElementById("open-premium-dashboard");
+    const manageMembership = document.getElementById("manage-membership");
+    const premiumStatus = document.getElementById("premium-status");
+
+    let mode = "signin"; // "signin" | "signup"
+
+    function openAuthModal(e){
+      if (e) e.preventDefault();
+      if (!authModal) return;
+      authModal.classList.add("active");
+      authModal.setAttribute("aria-hidden", "false");
+      authMsg.textContent = "";
+    }
+    function closeAuthModal(){
+      if (!authModal) return;
+      authModal.classList.remove("active");
+      authModal.setAttribute("aria-hidden", "true");
+      authMsg.textContent = "";
+    }
+
+    if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
+    if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
+    if (authModal) {
+      authModal.addEventListener("click", (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+    }
+
+    function setAuthMode(nextMode){
+      mode = nextMode;
+      if (mode === "signin") {
+        authTitle.textContent = "Sign in";
+        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
+        authSubmitBtn.textContent = "Sign in";
+        authToggleBtn.textContent = "Create account";
+      } else {
+        authTitle.textContent = "Create account";
+        authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+        authSubmitBtn.textContent = "Sign up";
+        authToggleBtn.textContent = "I already have an account";
+      }
+      authMsg.textContent = "";
+    }
+
+    if (authToggleBtn) {
+      authToggleBtn.addEventListener("click", () => {
+        setAuthMode(mode === "signin" ? "signup" : "signin");
+      });
+    }
+
+    if (authResetBtn) {
+      authResetBtn.addEventListener("click", async () => {
+        const email = (authEmail.value || "").trim();
+        if (!email) {
+          authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
+          return;
+        }
+        authMsg.textContent = "Sending reset email...";
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin
+        });
+        authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
+      });
+    }
+
+    if (authForm) {
+      authForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        authMsg.textContent = "Working...";
+
+        const email = (authEmail.value || "").trim();
+        const password = authPassword.value || "";
+
+        try {
+          if (mode === "signin") {
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            authMsg.textContent = "Signed in ✅";
+            closeAuthModal();
+            await refreshUI();
+          } else {
+            const { error } = await supabase.auth.signUp({ email, password });
+            if (error) throw error;
+            authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
+            await refreshUI();
+          }
+        } catch (err) {
+          authMsg.textContent = "Error: " + (err?.message || "Unknown error");
+        }
+      });
+    }
+
+    if (signoutLink) {
+      signoutLink.addEventListener("click", async (e) => {
+        e.preventDefault();
+        await supabase.auth.signOut();
+        await refreshUI();
+      });
+    }
+
+    // ---- Membership table: public.profiles
+    async function ensureProfile(user){
+      if (!user) return null;
+
+      const { data: existing, error: fetchErr } = await supabase
+        .from("profiles")
+        .select("id,email,is_premium")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      // If profiles table doesn't exist yet, fail gracefully
+      if (fetchErr && String(fetchErr.message || "").toLowerCase().includes("does not exist")) {
+        return null;
+      }
+      if (fetchErr) return null;
+      if (existing) return existing;
+
+      const { data: created, error: insertErr } = await supabase
+        .from("profiles")
+        .insert([{ id: user.id, email: user.email, is_premium: false }])
+        .select("id,email,is_premium")
+        .single();
+
+      if (insertErr) return null;
+      return created;
+    }
+
+    async function getProfile(user){
+      if (!user) return null;
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("id,email,is_premium")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (error) return null;
+      return data || null;
+    }
+
+    async function refreshUI(){
+      const { data } = await supabase.auth.getUser();
+      const user = data?.user || null;
+
+      if (!user) {
+        if (openAuthBtn) openAuthBtn.style.display = "";
+        if (signoutLink) signoutLink.style.display = "none";
+        if (userChip) userChip.style.display = "none";
+        if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
+        return;
+      }
+
+      if (openAuthBtn) openAuthBtn.style.display = "none";
+      if (signoutLink) signoutLink.style.display = "";
+      if (userChip) {
+        userChip.style.display = "";
+        userChip.textContent = "Signed in: " + (user.email || "user");
+      }
+
+      await ensureProfile(user);
+      const profile = await getProfile(user);
+
+      if (profile && profile.is_premium) {
+        if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
+      } else if (profile) {
+        if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
+      } else {
+        if (premiumStatus) premiumStatus.textContent = "Premium status: set up profiles table in Supabase.";
+      }
+    }
+
+    if (openPremiumDashboard) {
+      openPremiumDashboard.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const { data } = await supabase.auth.getUser();
+        const user = data?.user || null;
+
+        if (!user) {
+          openAuthModal();
+          return;
+        }
+
+        const profile = await getProfile(user);
+
+        if (profile && profile.is_premium) {
+          window.location.href = "premium.html";
+        } else {
+          window.open(PAYMENT_LINK, "_blank");
+        }
+      });
+    }
+
+    if (manageMembership) {
+      manageMembership.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.open(PAYMENT_LINK, "_blank");
+      });
+    }
+
+    supabase.auth.onAuthStateChange(async () => {
+      await refreshUI();
+    });
+
+    setAuthMode("signin");
+    refreshUI();
   </script>
 </body>
 </html>
