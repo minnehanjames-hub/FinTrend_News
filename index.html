@@ -10,7 +10,7 @@
   <meta name="description" content="FinTrend News is a four-times-a-week market newsletter covering macro, momentum, key catalysts, and the most important market movements." />
   <link rel="canonical" href="https://fintrend.news/" />
 
-  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="FinTrend News | Market Newsletter" />
   <meta property="og:description" content="Four-times-a-week market notes: Monday outlook, Wednesday momentum, Friday recap, and Sunday macro." />
   <meta property="og:type" content="website" />
@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheet -->
+  <!-- Optional external stylesheet (ok to keep) -->
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Google tag (gtag.js) -->
@@ -63,7 +63,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ✅ FIX: restore text color + fonts, keep background, brighten readability */
     body {
       color: var(--text-main);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -79,27 +78,24 @@
       background-attachment: fixed;
     }
 
-    /* subtle overlay to keep text readable + brighten */
+    /* subtle overlay so text always stays readable */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(2,6,23,0.25),
-        rgba(2,6,23,0.40) 40%,
-        rgba(2,6,23,0.55)
+        rgba(2,6,23,0.18),
+        rgba(2,6,23,0.35) 40%,
+        rgba(2,6,23,0.60)
       );
       pointer-events:none;
       z-index: -1;
     }
 
-    /* Make sure external styles.css can't turn things black */
-    body, p, h1, h2, h3, h4, h5, h6, a, li, span, div { color: inherit; }
-
     .page {
       max-width: var(--max-width);
-      margin: 18px auto 56px;
+      margin: 16px auto 56px;
       padding: 0 16px 36px;
       position: relative;
     }
@@ -114,7 +110,7 @@
       border: 1px solid rgba(148, 163, 184, 0.25);
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       backdrop-filter: blur(6px);
     }
 
@@ -205,246 +201,206 @@
       .header-left .logo-img { height: 46px; }
     }
 
-    /* ===== Tooltips ===== */
-    .tip {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: help;
-      border-bottom: 1px dotted rgba(148,163,184,0.45);
+    /* ===== HERO (FIRST SCREEN) ===== */
+    .hero {
+      min-height: calc(100vh - 140px);
+      display: grid;
+      place-items: center;
+      padding: 26px 0 14px;
     }
-    .tip .q {
-      width: 16px; height: 16px; border-radius: 999px;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 11px; color: #000; background: var(--accent);
-      font-weight: 700; line-height: 1;
-    }
-    .tip::after {
-      content: attr(data-tip);
-      position: absolute;
-      left: 0;
-      bottom: calc(100% + 10px);
-      min-width: 220px;
-      max-width: 320px;
-      padding: 10px 10px 9px;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow: 0 18px 45px rgba(15,23,42,0.75);
-      color: var(--text-main);
-      font-size: 12px;
-      line-height: 1.35;
-      opacity: 0;
-      transform: translateY(6px);
-      pointer-events: none;
-      transition: 0.18s ease;
-      z-index: 10000;
-      white-space: normal;
-    }
-    .tip:hover::after, .tip:focus::after, .tip:focus-within::after { opacity: 1; transform: translateY(0); }
 
-    /* ===== Jump row ===== */
-    .jump-row {
-      margin-top: 12px;
-      padding: 16px 18px;
+    .hero-card {
+      width: 100%;
       border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.25);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       background: rgba(15, 23, 42, 0.72);
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.55);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      backdrop-filter: blur(6px);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.75);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at top left, rgba(244,193,93,0.10), transparent 55%);
+      pointer-events:none;
     }
 
-    .jump-kicker {
+    .hero-inner{
+      position: relative;
+      z-index: 1;
+      padding: 22px 22px 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 920px){
+      .hero-inner{ grid-template-columns: 1fr; }
+    }
+
+    .hero-kicker{
       font-size: 11px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      margin-bottom: 8px;
     }
 
-    .jump-title {
+    .hero-title{
       font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 22px;
-      line-height: 1.1;
+      font-size: 40px;
+      line-height: 1.08;
+      margin-bottom: 10px;
     }
-
-    .jump-title span {
+    .hero-title span{
       background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .jump-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .hero-sub{
+      color: #e5e7eb;
+      font-size: 15px;
+      max-width: 680px;
+      margin-bottom: 14px;
     }
 
-    .jump-btn {
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn{
       font-size: 12px;
-      padding: 9px 14px;
+      padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.45);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(2,6,23,0.40);
       color: var(--text-main);
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       transition: 0.18s ease;
-      display: inline-flex;
-      align-items: center;
+      display:inline-flex;
+      align-items:center;
       gap: 8px;
+      cursor: pointer;
     }
-    .jump-btn:hover { transform: translateY(-1px); border-color: rgba(244,193,93,0.45); }
-    .jump-btn.primary {
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(244,193,93,0.35); }
+
+    .btn.primary{
       background: var(--accent);
       color: #000;
-      font-weight: 800;
       border-color: var(--accent);
+      font-weight: 800;
     }
-    .jump-btn.primary:hover { background: #f7d680; }
+    .btn.primary:hover{ background:#f7d680; }
 
-    /* ===== Sticky Snapshot ===== */
-    .snapshot-bar {
-      position: sticky;
-      top: 106px;
-      z-index: 9998;
-      margin-top: 10px;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.22);
-      background: rgba(15, 23, 42, 0.74);
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.55);
-      overflow: hidden;
-      backdrop-filter: blur(6px);
-      transition: 0.2s ease;
+    .hero-right{
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.24);
+      background: rgba(2,6,23,0.35);
+      padding: 14px 14px 12px;
     }
 
-    .snapshot-inner {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 14px;
-      transition: 0.2s ease;
-    }
-
-    .snapshot-title {
+    .hero-right-title{
       font-size: 11px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      white-space: nowrap;
+      margin-bottom: 10px;
     }
 
-    .snapshot-pills {
-      display: flex;
+    .snapshot-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
     }
 
-    .snap-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.3);
-      background: rgba(2,6,23,0.55);
-      font-size: 12px;
-      color: var(--text-main);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .snap-pill strong {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-weight: 600;
-    }
-
-    .snapshot-right {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-
-    .snap-link {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-decoration: none;
-      border: 1px solid rgba(148,163,184,0.25);
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(2,6,23,0.5);
+    .snap{
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.22);
+      background: rgba(15,23,42,0.65);
+      padding: 10px 10px 9px;
       transition: 0.18s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
-    .snap-link:hover { color: var(--text-main); border-color: rgba(244,193,93,0.35); transform: translateY(-1px); }
-
-    .snapshot-bar.compact .snapshot-inner { padding: 8px 12px; }
-    .snapshot-bar.compact .snap-pill { padding: 6px 9px; font-size: 11px; }
-
-    @media (max-width: 830px) {
-      .snapshot-bar { top: 92px; }
-      .snapshot-inner { grid-template-columns: 1fr; justify-items: flex-start; }
-      .snapshot-pills, .snapshot-right { justify-content: flex-start; }
-    }
-
-    /* === NAV === */
-    .day-nav {
-      margin-top: 14px;
-      padding: 6px 4px 0;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .day-nav a {
-      font-size: 12px;
-      text-decoration: none;
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.86);
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      backdrop-filter: blur(4px);
-    }
-
-    .day-nav a:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--text-main);
+    .snap:hover{
       transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+      background: rgba(15,23,42,0.78);
     }
 
-    .day-nav a.tag-monday { border-color: var(--success); color: var(--success); }
-    .day-nav a.tag-friday { border-color: var(--danger); color: var(--danger); }
-
-    /* === MAIN LAYOUT === */
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(260px, 1.4fr);
-      gap: 24px;
-      margin-top: 18px;
+    .snap-top{
+      display:flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
     }
-    @media (max-width: 830px) { .layout { grid-template-columns: 1fr; } }
+    .snap-label{
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .snap-chip{
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(2,6,23,0.35);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
 
-    /* PANELS */
+    .snap-body{
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.35;
+    }
+
+    .hero-note{
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Scroll cue */
+    .scroll-cue{
+      display:flex;
+      justify-content:center;
+      margin-top: 14px;
+      opacity: 0.9;
+    }
+    .scroll-link{
+      text-decoration:none;
+      color: var(--text-muted);
+      border: 1px solid rgba(148,163,184,0.24);
+      background: rgba(2,6,23,0.35);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: 0.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .scroll-link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+      color: var(--text-main);
+    }
+
+    /* ===== PANELS (your style) ===== */
     .panel {
       background: rgba(15, 23, 42, 0.90);
       border-radius: var(--radius-xl);
@@ -453,7 +409,7 @@
       padding: 20px 20px 18px;
       position: relative;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-top: 18px;
       backdrop-filter: blur(6px);
     }
 
@@ -498,7 +454,7 @@
     }
     .reveal.in-view { opacity: 1; transform: translateY(0); }
 
-    /* ===== NEW: “How to use” tiles (adds scroll, not wordy) ===== */
+    /* Tiles */
     .tiles-grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
@@ -571,7 +527,7 @@
       font-size: 12px;
     }
 
-    /* ===== NEW: Watchlist section (interactive) ===== */
+    /* Watchlist */
     .watchlist-row{
       display:flex;
       gap: 10px;
@@ -603,7 +559,91 @@
       color: var(--accent);
     }
 
-    /* ===== FAQ accordion ===== */
+    /* Latest grid */
+    .latest-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+    @media (max-width: 900px){ .latest-grid{ grid-template-columns: 1fr; } }
+
+    .latest-card{
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.26);
+      background: rgba(2,6,23,0.34);
+      padding: 14px 14px 12px;
+      transition: 0.18s ease;
+      overflow:hidden;
+      position:relative;
+    }
+    .latest-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(244,193,93,0.35);
+      background: rgba(2,6,23,0.42);
+    }
+    .latest-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:baseline;
+      margin-bottom: 8px;
+    }
+    .latest-tag{
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .latest-date{
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .latest-title{
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+    .latest-desc{
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .latest-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .mini-link{
+      font-size: 12px;
+      text-decoration:none;
+      color: var(--accent);
+      border: 1px solid rgba(244,193,93,0.45);
+      background: rgba(244,193,93,0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: 0.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .mini-link:hover{
+      transform: translateY(-1px);
+      background: rgba(244,193,93,0.14);
+    }
+    .mini-link.secondary{
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.30);
+      background: rgba(2,6,23,0.30);
+    }
+
+    /* FAQ */
     .faq{
       position:relative; z-index:1;
       display:flex; flex-direction:column; gap: 10px;
@@ -640,148 +680,17 @@
     }
     details[open] .chev{ transform: rotate(180deg); color: var(--accent); }
 
-    /* HERO ARTICLE (keep yours) */
-    .hero-article {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-      position: relative;
-      z-index: 1;
-    }
-    @media (max-width: 780px) { .hero-article { grid-template-columns: 1fr; } }
-
-    .hero-tag-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
-
-    .pill-tag {
+    footer {
+      margin-top: 28px;
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      border-radius: 999px;
-      padding: 4px 10px;
-      border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-    }
-    .pill-tag.monday { border-color: var(--success); color: var(--success); }
-
-    .hero-headline {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 26px;
-      line-height: 1.15;
-      margin-bottom: 8px;
-    }
-    .hero-headline span {
-      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .hero-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
-    .hero-meta strong { color: var(--accent); font-weight: 500; }
-    .hero-lede { font-size: 14px; color: #e5e7eb; margin-bottom: 14px; }
-    .hero-links { display:flex; flex-wrap:wrap; gap:10px; }
-
-    .hero-btn {
-      font-size: 12px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--accent);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.18s ease;
-    }
-    .hero-btn:hover { background: var(--accent-soft); transform: translateY(-1px); }
-    .hero-btn.secondary { border-color: var(--border-subtle); color: var(--text-muted); }
-
-    .hero-highlight-box {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.9));
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      padding: 12px 12px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .hero-highlight-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-    .hero-highlight-number {
-      font-size: 18px;
-      font-weight: 650;
-      letter-spacing: 0.04em;
-    }
-    .hero-highlight-number span {
-      font-size: 11px;
-      font-weight: 400;
-      margin-left: 6px;
-      color: var(--success);
-    }
-
-    .vix-scale { display:flex; gap:6px; margin-top: 8px; font-size: 10px; }
-    .vix-segment {
-      flex: 1;
-      border-radius: 999px;
-      padding: 4px 6px;
       text-align: center;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      opacity: 0.9;
     }
-    .vix-segment span { display:block; font-size:10px; color: var(--text-muted); }
-    .vix-low { color: var(--success); border-color: var(--success); }
-    .vix-normal { color: var(--accent); border-color: var(--accent); }
-    .vix-high { color: var(--danger); border-color: var(--danger); }
-
-    .article-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1.1fr;
-      gap: 14px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 1;
-    }
-    @media (max-width: 780px) { .article-grid { grid-template-columns: 1fr; } }
-
-    .article-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
-      padding: 10px 12px 12px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.18s ease, border-color 0.18s ease;
-    }
-    .article-card:hover { transform: translateY(-2px); border-color: rgba(244,193,93,0.35); }
-
-    .article-label-row { display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:6px; position:relative; z-index:1; }
-    .article-tag { font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color: var(--text-muted); }
-    .article-date { font-size:10px; color: var(--text-muted); }
-
-    .article-title { position:relative; z-index:1; font-size:14px; font-weight:500; margin-bottom:5px; }
-    .article-title a { color:#e5e7eb; text-decoration:none; }
-    .article-title a:hover { text-decoration: underline; }
-
-    .article-summary { position:relative; z-index:1; font-size:12px; color: var(--text-muted); margin-bottom:6px; }
-    .article-meta { position:relative; z-index:1; font-size:11px; color: var(--text-muted); display:flex; justify-content:space-between; gap:8px; }
-
-    /* Sidebar (unchanged) */
-    .sidebar-block + .sidebar-block { margin-top: 18px; }
-    .sidebar-header { font-size:12px; text-transform:uppercase; letter-spacing:0.18em; color: var(--text-muted); margin-bottom:8px; }
-    .sidebar-card { border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); background: rgba(15, 23, 42, 0.98); padding: 12px 12px 10px; font-size: 12px; }
-
-    footer { margin-top: 28px; font-size: 11px; color: var(--text-muted); text-align: center; opacity: 0.9; }
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* === PREMIUM SUBSCRIBE MODAL (unchanged) === */
+    /* === PREMIUM SUBSCRIBE MODAL (kept) === */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -879,6 +788,32 @@
       color: #9ca3af;
     }
     .modal-secondary-btn:hover { border-color: #f4c15d; color: #f4c15d; }
+
+    /* =========================================================
+       ✅ CRITICAL FIX: STOP ANY BLACK TEXT FROM styles.css
+       Put at the very bottom so it always wins.
+    ========================================================== */
+    html, body { color: var(--text-main); }
+
+    /* hard override for any random black text */
+    body, p, span, li, label, small, strong, em, i, b,
+    h1, h2, h3, h4, h5, h6,
+    a, a:visited,
+    button, input, textarea, select,
+    summary, details, div, section, article, header, footer, nav {
+      color: inherit !important;
+    }
+
+    /* preserve muted areas explicitly */
+    .brand-subtitle, .hero-kicker, .panel-title, .panel-subtitle,
+    .snap-label, .snap-chip, .latest-tag, .latest-date,
+    .latest-desc, .faq-ans, footer {
+      color: var(--text-muted) !important;
+    }
+
+    /* make sure links still read as links */
+    a { color: #e5e7eb !important; }
+    a:hover { color: var(--accent) !important; }
   </style>
 </head>
 
@@ -929,79 +864,131 @@
       </div>
     </header>
 
-    <!-- Quick jump cues -->
-    <section class="jump-row reveal" aria-label="Quick navigation">
-      <div>
-        <div class="jump-kicker">Start here</div>
-        <div class="jump-title">Signal over noise — <span>fast</span>.</div>
-      </div>
-      <div class="jump-actions">
-        <a class="jump-btn" href="#how">How it works ↓</a>
-        <a class="jump-btn" href="#watch">Watchlist ↓</a>
-        <a class="jump-btn primary" href="#subscribe">Subscribe</a>
+    <!-- ===== HERO (First thing you see) ===== -->
+    <section class="hero">
+      <div class="hero-card reveal in-view">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-kicker">Market Newsletter</div>
+            <h2 class="hero-title">
+              Your <span>sell-side style</span> market brief — without the noise.
+            </h2>
+            <p class="hero-sub">
+              Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#subscribe">Get Free Email</a>
+              <a class="btn" href="archive.html">Open Archive</a>
+              <a class="btn" href="#watch">Live Watchlist</a>
+            </div>
+
+            <div class="hero-note">
+              Tip: Scroll for how it works, watchlist charts, and quick answers.
+            </div>
+          </div>
+
+          <aside class="hero-right">
+            <div class="hero-right-title">Today at a glance</div>
+
+            <div class="snapshot-grid">
+              <div class="snap">
+                <div class="snap-top">
+                  <div class="snap-label">S&P 500</div>
+                  <div class="snap-chip">Benchmark</div>
+                </div>
+                <div class="snap-body">
+                  <div class="tradingview-widget-container">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "FOREXCOM:SPXUSD",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+                    </script>
+                  </div>
+                </div>
+              </div>
+
+              <div class="snap">
+                <div class="snap-top">
+                  <div class="snap-label">Nasdaq 100</div>
+                  <div class="snap-chip">Growth</div>
+                </div>
+                <div class="snap-body">
+                  <div class="tradingview-widget-container">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "NASDAQ:NDX",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+                    </script>
+                  </div>
+                </div>
+              </div>
+
+              <div class="snap">
+                <div class="snap-top">
+                  <div class="snap-label">US 10Y</div>
+                  <div class="snap-chip">Rates</div>
+                </div>
+                <div class="snap-body">
+                  <div class="tradingview-widget-container">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "TVC:US10Y",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+                    </script>
+                  </div>
+                </div>
+              </div>
+
+              <div class="snap">
+                <div class="snap-top">
+                  <div class="snap-label">VIX</div>
+                  <div class="snap-chip">Volatility</div>
+                </div>
+                <div class="snap-body">
+                  <div class="tradingview-widget-container">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "CBOE:VIX",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-note">
+              These are live quotes (TradingView). You can swap symbols anytime.
+            </div>
+          </aside>
+        </div>
+
+        <div class="scroll-cue">
+          <a class="scroll-link" href="#below">Explore ↓ <span style="opacity:.9;">Scroll</span></a>
+        </div>
       </div>
     </section>
 
-    <!-- Sticky Market Snapshot -->
-    <section class="snapshot-bar reveal" id="snapshot-bar" aria-label="Market snapshot">
-      <div class="snapshot-inner">
-        <div class="snapshot-title">Market Snapshot</div>
+    <!-- BELOW FOLD -->
+    <div id="below"></div>
 
-        <div class="snapshot-pills">
-          <span class="snap-pill">
-            <strong>
-              <span class="tip" data-tip="The S&amp;P 500 is a broad index of large U.S. stocks used as a market benchmark.">
-                SPX <span class="q">?</span>
-              </span>
-            </strong>
-            <span>Benchmark</span>
-          </span>
-
-          <span class="snap-pill">
-            <strong>
-              <span class="tip" data-tip="The 10-year Treasury yield is a key interest-rate benchmark that often drives equity valuations.">
-                10Y <span class="q">?</span>
-              </span>
-            </strong>
-            <span>Rates</span>
-          </span>
-
-          <span class="snap-pill">
-            <strong>
-              <span class="tip" data-tip="VIX measures expected 30-day volatility from S&amp;P 500 options. Higher = more fear.">
-                VIX <span class="q">?</span>
-              </span>
-            </strong>
-            <span>Volatility</span>
-          </span>
-
-          <span class="snap-pill">
-            <strong>
-              <span class="tip" data-tip="Gold often acts as an inflation hedge / risk-off asset depending on the macro backdrop.">
-                XAU <span class="q">?</span>
-              </span>
-            </strong>
-            <span>Gold</span>
-          </span>
-        </div>
-
-        <div class="snapshot-right">
-          <a class="snap-link" href="archive.html">Archive</a>
-          <a class="snap-link" href="#subscribe">Free Email</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- NAV -->
-    <nav class="day-nav reveal" aria-label="FinTrend weekday notes navigation">
-      <a href="articles/2025-12-15-monday.html" class="tag-monday">Monday Outlook</a>
-      <a href="articles/2025-12-03-wednesday.html">Wed Momentum</a>
-      <a href="articles/2025-12-12-friday.html" class="tag-friday">Friday Recap</a>
-      <a href="articles/2025-12-14-sunday.html">Sunday Macro Note</a>
-      <a href="archive.html">Archive / Calendar</a>
-    </nav>
-
-    <!-- NEW SECTION 1: How it works -->
+    <!-- How it works -->
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
         <div>
@@ -1017,8 +1004,8 @@
             <div class="tile-num">Step 01</div>
             <div class="tile-pill">Scan</div>
           </div>
-          <div class="tile-title">Check drivers &amp; volatility</div>
-          <div class="tile-line">Rates, VIX, positioning—fast context.</div>
+          <div class="tile-title">Check drivers & volatility</div>
+          <div class="tile-line">Rates, VIX, breadth—fast context.</div>
         </div>
 
         <div class="tile reveal">
@@ -1026,8 +1013,8 @@
             <div class="tile-num">Step 02</div>
             <div class="tile-pill">Decide</div>
           </div>
-          <div class="tile-title">Pick the note you need</div>
-          <div class="tile-line">Outlook · Momentum · Recap · Macro.</div>
+          <div class="tile-title">Pick what you need</div>
+          <div class="tile-line">Macro framing, catalysts, and positioning.</div>
         </div>
 
         <div class="tile reveal">
@@ -1035,13 +1022,13 @@
             <div class="tile-num">Step 03</div>
             <div class="tile-pill">Execute</div>
           </div>
-          <div class="tile-title">Use it as a trading brief</div>
-          <div class="tile-line">Links + takeaways, no fluff.</div>
+          <div class="tile-title">Use it like a trading brief</div>
+          <div class="tile-line">Headlines → takeaways → link outs.</div>
         </div>
       </div>
     </section>
 
-    <!-- NEW SECTION 2: Watchlist (interactive buttons) -->
+    <!-- Watchlist -->
     <section class="panel reveal" id="watch" aria-label="Watchlist">
       <div class="panel-header">
         <div>
@@ -1064,142 +1051,54 @@
       </div>
 
       <p style="position:relative;z-index:1;font-size:11px;color:var(--text-muted);margin-top:10px;">
-        Tip: This is only for the homepage—your article pages stay clean.
+        This is your “quick look” section—articles stay clean.
       </p>
     </section>
 
-    <!-- Main content -->
-    <main class="layout">
-      <section>
-        <section class="panel reveal" id="monday">
-          <div class="panel-header">
-            <div>
-              <div class="panel-title">Monday Market Outlook</div>
-              <div class="panel-subtitle">Key themes heading into the new trading week.</div>
-            </div>
-            <div class="time-indicator">Published Mondays</div>
+    <!-- Replace old Mon-Sun buttons with a better “Latest / Archive” area -->
+    <section class="panel reveal" id="latest" aria-label="Latest">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">What’s new</div>
+          <div class="panel-subtitle">Use the archive as your source of truth.</div>
+        </div>
+        <div class="time-indicator">Updated weekly</div>
+      </div>
+
+      <div class="latest-grid">
+        <div class="latest-card reveal">
+          <div class="latest-top">
+            <div class="latest-tag">Latest issue</div>
+            <div class="latest-date">Pick a date</div>
           </div>
-
-          <div class="hero-article">
-            <div>
-              <div class="hero-tag-row">
-                <div class="pill-tag monday">This Week</div>
-                <div class="pill-tag">Macro</div>
-                <div class="pill-tag">
-                  <span class="tip" data-tip="Rates matter because they change discount rates, equity valuations, and liquidity conditions.">
-                    Rates <span class="q">?</span>
-                  </span>
-                </div>
-              </div>
-
-              <h2 class="hero-headline">
-                <span>Rates Sensitivity</span> and Thin December Liquidity Into a Pivotal Week
-              </h2>
-
-              <div class="hero-meta">
-                Written by <strong>FinTrend News</strong> · <span>Monday Outlook · December 15, 2025</span>
-              </div>
-
-              <p class="hero-lede">
-                Rates remain the lever — and thin liquidity can amplify surprises.
-              </p>
-
-              <div class="hero-links">
-                <a href="articles/2025-12-15-monday.html" class="hero-btn">
-                  Read Full Outlook <span>↗</span>
-                </a>
-                <a href="articles/2025-12-12-friday.html" class="hero-btn secondary">
-                  See Friday’s Recap
-                </a>
-              </div>
-            </div>
-
-            <aside class="hero-highlight-box">
-              <div>
-                <div class="hero-highlight-title">
-                  <span class="tip" data-tip="VIX = expected 30-day volatility implied by S&amp;P 500 options. Higher = fear/protection demand.">
-                    VIX · Fear Index <span class="q">?</span>
-                  </span>
-                </div>
-
-                <div class="hero-highlight-number">
-                  VIX (CBOE) <span>Live quote</span>
-                </div>
-
-                <div style="margin-top:10px;">
-                  <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "CBOE:VIX",
-  "width": "100%",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-                    </script>
-                  </div>
-                </div>
-
-                <div class="vix-scale">
-                  <div class="vix-segment vix-low">Calm<span>&lt; 15</span></div>
-                  <div class="vix-segment vix-normal">Typical<span>15–25</span></div>
-                  <div class="vix-segment vix-high">High Fear<span>&gt; 25</span></div>
-                </div>
-              </div>
-            </aside>
+          <div class="latest-title">Open the calendar to see the newest published note</div>
+          <div class="latest-desc">
+            Instead of hardcoding links that go stale, the Archive stays accurate as you publish.
           </div>
-
-          <div class="article-grid" id="monday-article">
-            <article class="article-card reveal">
-              <div class="article-label-row">
-                <div class="article-tag">Friday Recap · Cross-Asset</div>
-                <div class="article-date">Fri · Dec 12</div>
-              </div>
-              <h3 class="article-title">
-                <a href="articles/2025-12-12-friday.html">Rates Stayed the Driver as Leadership Narrowed Into the Close</a>
-              </h3>
-              <p class="article-summary">Yields set the tone, leadership narrowed, and year-end fragility stayed.</p>
-              <div class="article-meta"><span>By FinTrend News</span><span>Recap · 4 min read</span></div>
-            </article>
-
-            <article class="article-card reveal">
-              <div class="article-label-row">
-                <div class="article-tag">Sunday Macro · Positioning</div>
-                <div class="article-date">Sun · Dec 14</div>
-              </div>
-              <h3 class="article-title">
-                <a href="articles/2025-12-14-sunday.html">Soft-Landing Pricing Meets Crowded Positioning in Thin December Liquidity</a>
-              </h3>
-              <p class="article-summary">Supportive macro, crowded positioning—breadth is the durability signal.</p>
-              <div class="article-meta"><span>By FinTrend News</span><span>Macro · 4 min read</span></div>
-            </article>
-          </div>
-        </section>
-      </section>
-
-      <!-- RIGHT: SIDEBAR -->
-      <aside>
-        <div class="sidebar-block reveal">
-          <div class="sidebar-header">About FinTrend News</div>
-          <div class="sidebar-card">
-            Four-times-a-week market notes — outlook, momentum, recap, macro.
-            <div class="pill-label"><span>Focus:</span> Macro · Earnings · Positioning · Cross-Asset</div>
+          <div class="latest-actions">
+            <a class="mini-link" href="archive.html">Open Archive ↗</a>
+            <a class="mini-link secondary" href="#subscribe">Get emails</a>
           </div>
         </div>
 
-        <div class="sidebar-block reveal">
-          <div class="sidebar-header">Editors & Contributors</div>
-          <div class="sidebar-card">
-            <ul class="byline-list" style="list-style:none;display:flex;flex-direction:column;gap:8px;">
-              <li><strong>James Minnehan</strong><span style="display:block;font-size:11px;color:var(--text-muted);">Macro & Cross-Asset — rates, FX, commodities, data.</span></li>
-              <li><strong>William Lang</strong><span style="display:block;font-size:11px;color:var(--text-muted);">Equity Strategy — earnings, sectors, single-names.</span></li>
-            </ul>
+        <div class="latest-card reveal">
+          <div class="latest-top">
+            <div class="latest-tag">New here?</div>
+            <div class="latest-date">Start fast</div>
+          </div>
+          <div class="latest-title">A 30-second routine for market context</div>
+          <div class="latest-desc">
+            Scan quotes → check watchlist chart → open the note you need from the calendar.
+          </div>
+          <div class="latest-actions">
+            <a class="mini-link" href="#watch">Watchlist ↗</a>
+            <a class="mini-link secondary" href="#how">How it works</a>
           </div>
         </div>
-      </aside>
-    </main>
+      </div>
+    </section>
 
-    <!-- NEW SECTION 3: FAQ (adds scroll, stays unwordy) -->
+    <!-- FAQ -->
     <section class="panel reveal" id="faq" aria-label="FAQ">
       <div class="panel-header">
         <div>
@@ -1212,31 +1111,31 @@
       <div class="faq">
         <details class="faq-item">
           <summary>What do I get each week? <span class="chev">▾</span></summary>
-          <div class="faq-ans">Monday outlook, Wednesday momentum check, Friday recap, Sunday macro note.</div>
+          <div class="faq-ans">Four notes per week: outlook, momentum, recap, macro.</div>
         </details>
 
         <details class="faq-item">
           <summary>Is this financial advice? <span class="chev">▾</span></summary>
-          <div class="faq-ans">No—informational only. Use it as market context, not a recommendation.</div>
+          <div class="faq-ans">No—informational only. Use it as context, not a recommendation.</div>
         </details>
 
         <details class="faq-item">
-          <summary>How long does each note take to read? <span class="chev">▾</span></summary>
-          <div class="faq-ans">Usually a few minutes—headline → key takeaways → important links.</div>
+          <summary>How do I find the newest note? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Open the Archive calendar and click the most recent date.</div>
         </details>
       </div>
     </section>
 
-    <!-- SUBSCRIBE PANEL (kept) -->
-    <section id="subscribe" class="panel reveal" style="margin-top: 22px;">
+    <!-- Subscribe -->
+    <section id="subscribe" class="panel reveal" style="margin-top: 18px;">
       <div class="panel-header">
         <div>
           <div class="panel-title">Subscribe to FinTrend News</div>
           <div class="panel-subtitle">
-            Get the Monday outlook, Wednesday momentum check, Friday recap, and Sunday macro note straight to your inbox.
+            Get notes straight to your inbox when new issues are published.
           </div>
         </div>
-        <div class="time-indicator">4x Weekly · Free</div>
+        <div class="time-indicator">Free</div>
       </div>
 
       <div style="position:relative;z-index:1;">
@@ -1256,21 +1155,21 @@
             name="EMAIL"
             placeholder="your@email.com"
             required
-            style="flex:1;min-width:180px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
+            style="flex:1;min-width:180px;padding:10px 12px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
           />
           <div style="position:absolute;left:-5000px;" aria-hidden="true">
             <input type="text" name="b_f93d4125631bb82d0915cc5d5_0ad7096e52" tabindex="-1" value="">
           </div>
           <button
             type="submit"
-            style="padding:8px 16px;border-radius:999px;border:none;background:var(--accent);color:#000;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;"
+            style="padding:10px 16px;border-radius:999px;border:none;background:var(--accent);color:#000;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;"
           >
             Subscribe
           </button>
         </form>
 
         <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-          Powered by Mailchimp — you’ll receive FinTrend News in your inbox when new notes are published.
+          Powered by Mailchimp — you’ll receive FinTrend News when new notes are published.
         </p>
       </div>
     </section>
@@ -1320,7 +1219,7 @@
   </div>
 
   <script>
-    // ===== Premium modal logic (kept) =====
+    // ===== Premium modal logic =====
     const openBtn  = document.getElementById('open-premium-modal');
     const modal    = document.getElementById('premium-modal');
     const closeBtn = document.getElementById('close-premium-modal');
@@ -1372,17 +1271,6 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // ===== Snapshot bar collapses on scroll =====
-    const snap = document.getElementById('snapshot-bar');
-    function onScroll() {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      if (!snap) return;
-      if (y > 140) snap.classList.add('compact');
-      else snap.classList.remove('compact');
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
     // ===== Watchlist (interactive): inject TradingView mini chart =====
     const watchWrap = document.getElementById('watch-widget');
     const buttons = document.querySelectorAll('.watch-btn');
@@ -1397,7 +1285,7 @@
       s.innerHTML = JSON.stringify({
         symbol: symbol,
         width: "100%",
-        height: 220,
+        height: 240,
         locale: "en",
         dateRange: "3M",
         colorTheme: "dark",
