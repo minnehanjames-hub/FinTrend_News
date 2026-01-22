@@ -30,12 +30,12 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Optional external stylesheet -->
+  <!-- Optional external stylesheet (ok to keep) -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Google tag -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,572 +47,795 @@
   <!-- Supabase JS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- Enable scroll-reveal only when JS is on (prevents "cut off" / invisible content if JS fails) -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
   <style>
-    :root{
-      --bg:#050816;
-      --bg-elevated:#0b1020;
-      --accent:#f4c15d;
-      --accent-soft:rgba(244,193,93,.12);
-      --text-main:#f9fafb;
-      --text-muted:#9ca3af;
-      --border-subtle:rgba(148,163,184,.35);
-      --radius-lg:18px;
-      --radius-xl:24px;
-      --shadow-soft:0 18px 45px rgba(15,23,42,.8);
-      --max-width:1150px;
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244, 193, 93, 0.12);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 1150px;
     }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      color:var(--text-main);
-      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      line-height:1.6;
-      min-height:100vh;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+
       background-image:
-        radial-gradient(circle at top, rgba(17,24,39,.78) 0, rgba(2,6,23,.82) 45%, rgba(0,0,0,.92) 100%),
+        radial-gradient(circle at top, rgba(17, 24, 39, 0.78) 0, rgba(2, 6, 23, 0.82) 45%, rgba(0, 0, 0, 0.92) 100%),
         url("assets/img/bg-candles.png");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      background-attachment:fixed;
-      overflow-x:hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
+
     body::before{
       content:"";
-      position:fixed;
-      inset:0;
-      background:linear-gradient(
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
         to bottom,
-        rgba(2,6,23,.18),
-        rgba(2,6,23,.35) 40%,
-        rgba(2,6,23,.60)
+        rgba(2,6,23,0.18),
+        rgba(2,6,23,0.35) 40%,
+        rgba(2,6,23,0.60)
       );
       pointer-events:none;
-      z-index:-1;
+      z-index: -1;
     }
 
-    .page{
-      max-width:var(--max-width);
-      margin:16px auto 56px;
-      padding:0 16px 36px;
-      position:relative;
+    .page {
+      max-width: var(--max-width);
+      margin: 16px auto 56px;
+      padding: 0 16px 36px;
+      position: relative;
     }
 
-    /* Header */
-    .top-header{
-      position:sticky;
-      top:0;
-      z-index:9999;
-      border-radius:var(--radius-xl);
-      background:linear-gradient(135deg, rgba(15,23,42,.96), rgba(15,23,42,.82));
-      border:1px solid rgba(148,163,184,.25);
-      box-shadow:0 8px 24px rgba(15,23,42,.6);
-      overflow:hidden;
-      margin-bottom:14px;
-      backdrop-filter:blur(6px);
+    /* === TOP HEADER WITH EMBEDDED TICKER === */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.82));
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      margin-bottom: 14px;
+      backdrop-filter: blur(6px);
     }
-    .ticker-row{
-      padding:4px 18px;
-      background:radial-gradient(circle at top, #020617 0, #000 65%);
-      border-bottom:1px solid rgba(148,163,184,.35);
-    }
-    .ticker-row .tradingview-widget-container{height:28px;}
-    .header-main{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      align-items:center;
-      padding:18px 22px 20px;
-      gap:14px;
-    }
-    .header-left .logo-img{height:56px;width:auto;display:block;}
-    .header-center{text-align:center;}
-    .brand-title{
-      font-family:"Playfair Display","Times New Roman",serif;
-      font-size:32px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--accent);
-      line-height:1.05;
-    }
-    .brand-subtitle{
-      margin-top:6px;
-      font-size:12px;
-      color:var(--text-muted);
-      letter-spacing:.14em;
-      text-transform:uppercase;
-    }
-    .header-right{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      justify-self:end;
-      flex-wrap:wrap;
-    }
-    .header-link{
-      font-size:12px;
-      color:var(--text-muted);
-      text-decoration:none;
-      transition:.2s ease;
-    }
-    .header-link:hover{color:var(--text-main);}
 
-    .subscribe-btn{
-      padding:7px 16px;
-      border-radius:999px;
-      background:var(--accent);
-      color:#000;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-decoration:none;
-      text-transform:uppercase;
-      transition:.2s ease;
-      box-shadow:0 10px 30px rgba(244,193,93,.15);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      white-space:nowrap;
+    .ticker-row {
+      padding: 4px 18px;
+      background: radial-gradient(circle at top, #020617 0, #000 65%);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
     }
-    .subscribe-btn:hover{background:#f7d680;transform:translateY(-1px);}
+    .ticker-row .tradingview-widget-container { height: 28px; }
 
-    .social-icons{display:flex;gap:10px;}
-    .social-icon{
-      font-size:14px;
-      color:var(--text-muted);
-      text-decoration:none;
-      transition:.2s ease;
+    .header-main {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 18px 22px 20px;
+      gap: 14px;
     }
-    .social-icon:hover{color:var(--accent);}
 
-    @media (max-width:830px){
-      .header-main{
-        grid-template-columns:1fr;
-        row-gap:10px;
-        justify-items:flex-start;
-        padding:14px 18px 18px;
+    .header-left .logo-img { height: 56px; width: auto; display: block; }
+    .header-center { text-align: center; }
+
+    .brand-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 32px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      line-height: 1.05;
+    }
+
+    .brand-subtitle {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-self: end;
+      flex-wrap: wrap;
+    }
+
+    .header-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: 0.2s ease;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .header-link:hover { color: var(--text-main); }
+
+    .subscribe-btn {
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #000;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+      box-shadow: 0 10px 30px rgba(244,193,93,0.15);
+    }
+    .subscribe-btn:hover { background: #f7d680; transform: translateY(-1px); }
+
+    .social-icons { display: flex; gap: 10px; }
+    .social-icon {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+    .social-icon:hover { color: var(--accent); }
+
+    @media (max-width: 830px) {
+      .header-main {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+        justify-items: flex-start;
+        padding: 14px 18px 18px;
       }
-      .header-center{text-align:left;}
-      .brand-title{font-size:26px;}
-      .header-left .logo-img{height:46px;}
+      .header-center { text-align: left; }
+      .brand-title { font-size: 26px; }
+      .header-left .logo-img { height: 46px; }
     }
 
-    /* HERO: make it shorter so you see "actual stuff" sooner */
-    .hero{
-      min-height:72vh;               /* was ~100vh */
-      display:grid;
-      place-items:center;
-      padding:18px 0 10px;
+    /* ===== HERO (FIRST SCREEN) ===== */
+    .hero {
+      min-height: 72vh; /* prevents “everything is only hero” / feels cut off */
+      display: grid;
+      place-items: center;
+      padding: 20px 0 10px;
     }
-    .hero-card{
-      width:100%;
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(148,163,184,.22);
-      background:rgba(15,23,42,.72);
-      box-shadow:0 18px 45px rgba(15,23,42,.75);
-      overflow:hidden;
-      backdrop-filter:blur(8px);
-      position:relative;
+
+    .hero-card {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(15, 23, 42, 0.72);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.75);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      position: relative;
     }
     .hero-card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(circle at top left, rgba(244,193,93,.10), transparent 55%);
+      background: radial-gradient(circle at top left, rgba(244,193,93,0.10), transparent 55%);
       pointer-events:none;
     }
+
     .hero-inner{
-      position:relative;
-      z-index:1;
-      padding:22px 22px 18px;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
-      align-items:start;
+      position: relative;
+      z-index: 1;
+      padding: 22px 22px 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      align-items: start;
     }
-    @media (max-width:920px){
-      .hero-inner{grid-template-columns:1fr;}
+
+    @media (max-width: 920px){
+      .hero-inner{ grid-template-columns: 1fr; }
     }
+
     .hero-kicker{
-      font-size:11px;
-      color:var(--text-muted);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      margin-bottom:8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
     }
+
     .hero-title{
-      font-family:"Playfair Display","Times New Roman",serif;
-      font-size:40px;
-      line-height:1.08;
-      margin-bottom:10px;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 40px;
+      line-height: 1.08;
+      margin-bottom: 10px;
     }
     .hero-title span{
-      background:linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
-      -webkit-background-clip:text;
-      color:transparent;
+      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip: text;
+      color: transparent;
     }
+
     .hero-sub{
-      color:#e5e7eb;
-      font-size:15px;
-      max-width:680px;
-      margin-bottom:14px;
+      color: #e5e7eb;
+      font-size: 15px;
+      max-width: 680px;
+      margin-bottom: 14px;
     }
+
     .hero-actions{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:6px;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
     }
+
     .btn{
-      font-size:12px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.45);
-      background:rgba(2,6,23,.40);
-      color:var(--text-main);
-      text-decoration:none;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      transition:.18s ease;
+      font-size: 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(2,6,23,0.40);
+      color: var(--text-main);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      transition: 0.18s ease;
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      cursor:pointer;
-      white-space:nowrap;
+      gap: 8px;
+      cursor: pointer;
     }
-    .btn:hover{transform:translateY(-1px);border-color:rgba(244,193,93,.35);}
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(244,193,93,0.35); }
+
     .btn.primary{
-      background:var(--accent);
-      color:#000;
-      border-color:var(--accent);
-      font-weight:900;
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 900;
     }
-    .btn.primary:hover{background:#f7d680;}
+    .btn.primary:hover{ background:#f7d680; }
 
     .hero-right{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,.24);
-      background:rgba(2,6,23,.35);
-      padding:14px 14px 12px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.24);
+      background: rgba(2,6,23,0.35);
+      padding: 14px 14px 12px;
     }
+
     .hero-right-title{
-      font-size:11px;
-      color:var(--text-muted);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      margin-bottom:10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
     }
+
     .snapshot-grid{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:10px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
     }
+
     .snap{
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,.22);
-      background:rgba(15,23,42,.65);
-      padding:10px 10px 9px;
-      transition:.18s ease;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.22);
+      background: rgba(15,23,42,0.65);
+      padding: 10px 10px 9px;
+      transition: 0.18s ease;
     }
-    .snap:hover{transform:translateY(-1px);border-color:rgba(244,193,93,.35);background:rgba(15,23,42,.78);}
+    .snap:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+      background: rgba(15,23,42,0.78);
+    }
+
     .snap-top{
       display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      gap:8px;
-      margin-bottom:6px;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
     }
     .snap-label{
-      font-size:10px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--text-muted);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
     .snap-chip{
-      font-size:10px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.28);
-      background:rgba(2,6,23,.35);
-      color:var(--text-muted);
-      white-space:nowrap;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(2,6,23,0.35);
+      color: var(--text-muted);
+      white-space: nowrap;
     }
-    .snap-body{font-size:12px;color:#e5e7eb;line-height:1.35;}
-    .hero-note{margin-top:10px;font-size:11px;color:var(--text-muted);}
+
+    .snap-body{
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.35;
+    }
+
+    .hero-note{
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
 
     .scroll-cue{
       display:flex;
       justify-content:center;
-      margin:12px 0 14px;
-      opacity:.95;
-      position:relative;
-      z-index:1;
+      margin-top: 14px;
+      opacity: 0.92;
     }
     .scroll-link{
       text-decoration:none;
-      color:var(--text-muted);
-      border:1px solid rgba(148,163,184,.24);
-      background:rgba(2,6,23,.35);
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      transition:.18s ease;
+      color: var(--text-muted);
+      border: 1px solid rgba(148,163,184,0.24);
+      background: rgba(2,6,23,0.35);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: 0.18s ease;
       display:inline-flex;
       align-items:center;
-      gap:10px;
+      gap: 10px;
     }
-    .scroll-link:hover{transform:translateY(-1px);border-color:rgba(244,193,93,.35);color:var(--text-main);}
-
-    /* Panels */
-    .panel{
-      background:rgba(15,23,42,.90);
-      border-radius:var(--radius-xl);
-      border:1px solid var(--border-subtle);
-      box-shadow:var(--shadow-soft);
-      padding:20px 20px 18px;
-      position:relative;
-      overflow:hidden;
-      margin-top:18px;
-      backdrop-filter:blur(6px);
-    }
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at top left, rgba(250,204,21,.07), transparent 55%);
-      pointer-events:none;
-    }
-    .panel-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      gap:12px;
-      margin-bottom:16px;
-      position:relative;
-      z-index:1;
-    }
-    .panel-title{
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      color:var(--text-muted);
-    }
-    .panel-subtitle{font-size:11px;color:var(--text-muted);}
-    .time-indicator{
-      font-size:11px;
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .scroll-link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+      color: var(--text-main);
     }
 
-    /* Reveal: still nice, but don't hide everything if JS fails */
-    .reveal{opacity:1;transform:none;}
-    .js .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform;}
-    .js .reveal.in-view{opacity:1;transform:translateY(0);}
+    /* ===== PANELS ===== */
+    .panel {
+      background: rgba(15, 23, 42, 0.90);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 18px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+      backdrop-filter: blur(6px);
+    }
 
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.07), transparent 55%);
+      pointer-events: none;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+    .panel-subtitle { font-size: 11px; color: var(--text-muted); }
+    .time-indicator {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* Scroll reveal:
+       - If JS is OFF: content is visible (no cut-off).
+       - If JS is ON: we animate. */
+    .reveal { opacity: 1; transform: none; }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      will-change: opacity, transform;
+    }
+    .js .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Tiles */
     .tiles-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:12px;
-      position:relative;
-      z-index:1;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
     }
-    @media (max-width:900px){.tiles-grid{grid-template-columns:1fr;}}
+    @media (max-width: 900px){ .tiles-grid{ grid-template-columns: 1fr; } }
+
     .tile{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,.28);
-      background:rgba(2,6,23,.38);
-      padding:16px 16px 14px;
-      box-shadow:0 14px 35px rgba(15,23,42,.45);
-      transition:transform .18s ease, border-color .18s ease;
-      overflow:hidden;
-      position:relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(2,6,23,0.38);
+      padding: 16px 16px 14px;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.45);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      overflow: hidden;
+      position: relative;
     }
-    .tile:hover{transform:translateY(-2px);border-color:rgba(244,193,93,.35);}
+    .tile:hover{
+      transform: translateY(-2px);
+      border-color: rgba(244,193,93,0.35);
+    }
     .tile::before{
       content:"";
       position:absolute;
       inset:-30%;
-      background:radial-gradient(circle at top right, rgba(244,193,93,.10), transparent 55%);
+      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
       pointer-events:none;
-      opacity:.85;
+      opacity: 0.85;
     }
     .tile-top{
-      position:relative;z-index:1;
-      display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:10px;
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 10px;
     }
-    .tile-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
+    .tile-num{
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
     .tile-pill{
-      font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-      padding:4px 8px;border-radius:999px;
-      border:1px solid rgba(148,163,184,.35);
-      background:rgba(2,6,23,.35);
-      color:var(--text-muted);
-      white-space:nowrap;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(2,6,23,0.35);
+      color: var(--text-muted);
+      white-space: nowrap;
     }
-    .tile-title{position:relative;z-index:1;font-weight:700;color:#e5e7eb;line-height:1.25;margin-bottom:8px;}
-    .tile-line{position:relative;z-index:1;color:var(--text-muted);font-size:12px;}
+    .tile-title{
+      position:relative;
+      z-index:1;
+      font-weight: 700;
+      color: #e5e7eb;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .tile-line{
+      position:relative;
+      z-index:1;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
 
+    /* Watchlist */
     .watchlist-row{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:relative;z-index:1;margin-bottom:12px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      position:relative;
+      z-index:1;
+      margin-bottom: 12px;
     }
     .watch-btn{
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.30);
-      background:rgba(2,6,23,.40);
-      color:var(--text-main);
-      padding:8px 12px;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      cursor:pointer;
-      transition:.18s ease;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.30);
+      background: rgba(2,6,23,0.40);
+      color: var(--text-main);
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.18s ease;
     }
-    .watch-btn:hover{transform:translateY(-1px);border-color:rgba(244,193,93,.35);}
+    .watch-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+    }
     .watch-btn.active{
-      background:rgba(244,193,93,.14);
-      border-color:rgba(244,193,93,.55);
-      color:var(--accent);
+      background: rgba(244,193,93,0.14);
+      border-color: rgba(244,193,93,0.55);
+      color: var(--accent);
     }
 
+    /* Latest grid */
     .latest-grid{
-      position:relative;z-index:1;
+      position:relative;
+      z-index:1;
       display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:12px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
     }
-    @media (max-width:900px){.latest-grid{grid-template-columns:1fr;}}
+    @media (max-width: 900px){ .latest-grid{ grid-template-columns: 1fr; } }
+
     .latest-card{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,.26);
-      background:rgba(2,6,23,.34);
-      padding:14px 14px 12px;
-      transition:.18s ease;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.26);
+      background: rgba(2,6,23,0.34);
+      padding: 14px 14px 12px;
+      transition: 0.18s ease;
       overflow:hidden;
       position:relative;
     }
-    .latest-card:hover{transform:translateY(-2px);border-color:rgba(244,193,93,.35);background:rgba(2,6,23,.42);}
-    .latest-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px;}
-    .latest-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
-    .latest-date{font-size:10px;color:var(--text-muted);}
-    .latest-title{font-size:15px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#e5e7eb;}
-    .latest-desc{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.5;}
-    .latest-actions{display:flex;gap:10px;flex-wrap:wrap;}
-    .mini-link{
-      font-size:12px;text-decoration:none;color:var(--accent);
-      border:1px solid rgba(244,193,93,.45);
-      background:rgba(244,193,93,.08);
-      padding:8px 12px;border-radius:999px;
-      letter-spacing:.12em;text-transform:uppercase;
-      transition:.18s ease;
-      display:inline-flex;align-items:center;gap:8px;
+    .latest-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(244,193,93,0.35);
+      background: rgba(2,6,23,0.42);
     }
-    .mini-link:hover{transform:translateY(-1px);background:rgba(244,193,93,.14);}
+    .latest-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:baseline;
+      margin-bottom: 8px;
+    }
+    .latest-tag{
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .latest-date{
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .latest-title{
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+    .latest-desc{
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .latest-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .mini-link{
+      font-size: 12px;
+      text-decoration:none;
+      color: var(--accent);
+      border: 1px solid rgba(244,193,93,0.45);
+      background: rgba(244,193,93,0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: 0.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .mini-link:hover{
+      transform: translateY(-1px);
+      background: rgba(244,193,93,0.14);
+    }
     .mini-link.secondary{
-      color:#e5e7eb;
-      border-color:rgba(148,163,184,.30);
-      background:rgba(2,6,23,.30);
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.30);
+      background: rgba(2,6,23,0.30);
     }
 
-    .faq{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;}
+    /* FAQ */
+    .faq{
+      position:relative; z-index:1;
+      display:flex; flex-direction:column; gap: 10px;
+    }
     details.faq-item{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,.26);
-      background:rgba(2,6,23,.34);
-      padding:12px 14px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148,163,184,0.26);
+      background: rgba(2,6,23,0.34);
+      padding: 12px 14px;
       overflow:hidden;
     }
     details.faq-item summary{
       cursor:pointer;
       list-style:none;
       display:flex;
-      justify-content:space-between;
+      justify-content: space-between;
       align-items:center;
-      gap:12px;
-      font-weight:700;
-      color:#e5e7eb;
-      font-size:13px;
+      gap: 12px;
+      font-weight: 700;
+      color: #e5e7eb;
+      font-size: 13px;
     }
-    details.faq-item summary::-webkit-details-marker{display:none;}
-    .faq-ans{margin-top:10px;color:var(--text-muted);font-size:12px;line-height:1.5;}
-    .chev{color:var(--text-muted);transition:.18s ease;font-size:16px;}
-    details[open] .chev{transform:rotate(180deg);color:var(--accent);}
+    details.faq-item summary::-webkit-details-marker{ display:none; }
+    .faq-ans{
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .chev{
+      color: var(--text-muted);
+      transition: 0.18s ease;
+      font-size: 16px;
+    }
+    details[open] .chev{ transform: rotate(180deg); color: var(--accent); }
 
-    footer{
-      margin-top:28px;
-      font-size:11px;
-      color:var(--text-muted);
-      text-align:center;
-      opacity:.9;
+    footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.9;
     }
-    footer a{color:var(--accent);text-decoration:none;}
-    footer a:hover{text-decoration:underline;}
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* Modals */
-    .modal-backdrop{
-      position:fixed;inset:0;background:rgba(0,0,0,.6);
-      display:none;align-items:center;justify-content:center;
-      z-index:99999;padding:14px;
+    /* === MODALS (shared) === */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 14px;
     }
-    .modal-backdrop.active{display:flex;}
-    .modal-window{
-      background:rgba(15,23,42,.97);
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,.35);
-      box-shadow:0 18px 45px rgba(15,23,42,.8);
-      max-width:440px;width:100%;
-      padding:22px 22px 18px;
-      position:relative;
-    }
-    .modal-close{
-      position:absolute;top:10px;right:12px;
-      border:none;background:transparent;color:#9ca3af;
-      font-size:20px;cursor:pointer;
-    }
-    .modal-kicker{
-      font-size:11px;text-transform:uppercase;letter-spacing:.18em;
-      color:#9ca3af;margin-bottom:4px;
-    }
-    .modal-title{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:6px;color:#f9fafb;}
-    .modal-subtitle{font-size:13px;color:#d1d5db;margin-bottom:12px;}
-    .modal-list{font-size:12px;color:#e5e7eb;margin:0 0 12px 16px;}
-    .modal-list li{margin-bottom:6px;}
-    .modal-btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
-    .modal-primary-btn,.modal-secondary-btn{
-      border-radius:999px;font-size:12px;padding:9px 16px;
-      text-transform:uppercase;letter-spacing:.12em;
-      cursor:pointer;text-decoration:none;
-      display:inline-flex;align-items:center;justify-content:center;
-      transition:.2s ease;
-    }
-    .modal-primary-btn{border:none;background:#f4c15d;color:#000;font-weight:800;}
-    .modal-primary-btn:hover{background:#f7d680;}
-    .modal-secondary-btn{border:1px solid rgba(148,163,184,.5);background:transparent;color:#9ca3af;}
-    .modal-secondary-btn:hover{border-color:#f4c15d;color:#f4c15d;}
+    .modal-backdrop.active { display: flex; }
 
-    /* Force readable text */
+    .modal-window {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
+      max-width: 440px;
+      width: 100%;
+      padding: 22px 22px 18px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      margin-bottom: 6px;
+      color: #f9fafb;
+    }
+
+    .modal-subtitle {
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 12px;
+    }
+
+    .modal-list {
+      font-size: 12px;
+      color: #e5e7eb;
+      margin: 0 0 12px 16px;
+    }
+    .modal-list li { margin-bottom: 6px; }
+
+    .modal-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .modal-primary-btn,
+    .modal-secondary-btn {
+      border-radius: 999px;
+      font-size: 12px;
+      padding: 9px 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s ease;
+    }
+
+    .modal-primary-btn {
+      border: none;
+      background: #f4c15d;
+      color: #000;
+      font-weight: 800;
+    }
+    .modal-primary-btn:hover { background: #f7d680; }
+
+    .modal-secondary-btn {
+      border: 1px solid rgba(148,163,184,0.5);
+      background: transparent;
+      color: #9ca3af;
+    }
+    .modal-secondary-btn:hover { border-color: #f4c15d; color: #f4c15d; }
+
+    /* =========================================================
+       ✅ COLOR SAFETY: keep all text readable (avoid black)
+    ========================================================== */
     html, body { color: var(--text-main); }
-    body, p, span, li, label, small, strong, em, i, b,
-    h1, h2, h3, h4, h5, h6,
-    a, a:visited,
-    button, input, textarea, select,
-    summary, details, div, section, article, header, footer, nav {
-      color: inherit !important;
-    }
+
+    /* default link color */
+    a { color: #e5e7eb; }
+    a:hover { color: var(--accent); }
+
+    /* keep muted areas muted */
     .brand-subtitle, .hero-kicker, .panel-title, .panel-subtitle,
     .snap-label, .snap-chip, .latest-tag, .latest-date,
     .latest-desc, .faq-ans, footer, .header-link {
       color: var(--text-muted) !important;
     }
-    a { color: #e5e7eb !important; }
-    a:hover { color: var(--accent) !important; }
+
+    /* make sure buttons/CTAs keep their intended colors */
+    .subscribe-btn { color: #000 !important; }
+    .btn.primary { color: #000 !important; }
+    .mini-link { color: var(--accent) !important; }
+    .mini-link.secondary { color: #e5e7eb !important; }
+
+    /* For any rogue black text from styles.css */
+    body, p, span, li, label, small, strong, em, i, b,
+    h1, h2, h3, h4, h5, h6,
+    button, input, textarea, select,
+    summary, details, div, section, article, header, footer, nav {
+      color: inherit;
+    }
   </style>
 </head>
 
 <body>
   <div class="page">
+    <!-- HEADER WITH TICKER INSIDE -->
     <header class="top-header">
       <div class="ticker-row">
         <div class="tradingview-widget-container">
@@ -647,31 +870,37 @@
         </div>
 
         <div class="header-right">
+          <!-- Auth -->
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
           <span class="header-link" id="user-chip" style="display:none;"></span>
 
-          <!-- FIX: Subscribe now scrolls to the free email form -->
-          <a class="subscribe-btn" href="#subscribe">Subscribe</a>
+          <!-- Subscribe scrolls to free email section -->
+          <a href="#subscribe" class="subscribe-btn" id="subscribe-btn">Subscribe</a>
 
-          <!-- Premium is separate (modal) -->
-          <a href="#" class="header-link" id="open-premium-modal-btn">Premium</a>
+          <!-- Premium opens premium modal -->
+          <a href="#" class="header-link" id="open-premium-modal">Premium</a>
 
           <div class="social-icons">
-            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" class="social-icon" title="FinTrend News Instagram">IG</a>
-            <a href="https://linkedin.com" target="_blank" class="social-icon" title="FinTrend News LinkedIn">in</a>
+            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="FinTrend News Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" title="FinTrend News LinkedIn">in</a>
           </div>
         </div>
       </div>
     </header>
 
+    <!-- ===== HERO ===== -->
     <section class="hero">
       <div class="hero-card reveal in-view">
         <div class="hero-inner">
           <div>
             <div class="hero-kicker">Market Newsletter</div>
-            <h2 class="hero-title">Your <span>sell-side style</span> market brief — without the noise.</h2>
-            <p class="hero-sub">Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.</p>
+            <h2 class="hero-title">
+              Your <span>sell-side style</span> market brief — without the noise.
+            </h2>
+            <p class="hero-sub">
+              Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.
+            </p>
 
             <div class="hero-actions">
               <a class="btn primary" href="#subscribe">Get Free Email</a>
@@ -680,7 +909,9 @@
               <a class="btn" href="#premium">Premium Tools</a>
             </div>
 
-            <div class="hero-note">Tip: Scroll for watchlist charts, premium tools, and quick answers.</div>
+            <div class="hero-note">
+              Tip: Scroll for how it works, watchlist charts, premium tools, and quick answers.
+            </div>
           </div>
 
           <aside class="hero-right">
@@ -688,60 +919,102 @@
 
             <div class="snapshot-grid">
               <div class="snap">
-                <div class="snap-top"><div class="snap-label">S&P 500</div><div class="snap-chip">Benchmark</div></div>
+                <div class="snap-top">
+                  <div class="snap-label">S&P 500</div>
+                  <div class="snap-chip">Benchmark</div>
+                </div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{ "symbol": "FOREXCOM:SPXUSD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+{
+  "symbol": "FOREXCOM:SPXUSD",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
                     </script>
                   </div>
                 </div>
               </div>
 
               <div class="snap">
-                <div class="snap-top"><div class="snap-label">Nasdaq 100</div><div class="snap-chip">Growth</div></div>
+                <div class="snap-top">
+                  <div class="snap-label">Nasdaq 100</div>
+                  <div class="snap-chip">Growth</div>
+                </div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{ "symbol": "NASDAQ:NDX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+{
+  "symbol": "NASDAQ:NDX",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
                     </script>
                   </div>
                 </div>
               </div>
 
               <div class="snap">
-                <div class="snap-top"><div class="snap-label">US 10Y</div><div class="snap-chip">Rates</div></div>
+                <div class="snap-top">
+                  <div class="snap-label">US 10Y</div>
+                  <div class="snap-chip">Rates</div>
+                </div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{ "symbol": "TVC:US10Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+{
+  "symbol": "TVC:US10Y",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
                     </script>
                   </div>
                 </div>
               </div>
 
               <div class="snap">
-                <div class="snap-top"><div class="snap-label">VIX</div><div class="snap-chip">Volatility</div></div>
+                <div class="snap-top">
+                  <div class="snap-label">VIX</div>
+                  <div class="snap-chip">Volatility</div>
+                </div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{ "symbol": "CBOE:VIX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+{
+  "symbol": "CBOE:VIX",
+  "width": "100%",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
                     </script>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="hero-note">These are live quotes (TradingView).</div>
+            <div class="hero-note">
+              These are live quotes (TradingView). You can swap symbols anytime.
+            </div>
           </aside>
         </div>
 
         <div class="scroll-cue">
-          <a class="scroll-link" href="#how">Explore ↓ <span style="opacity:.9;">Scroll</span></a>
+          <a class="scroll-link" href="#below">Explore ↓ <span style="opacity:.9;">Scroll</span></a>
         </div>
       </div>
     </section>
 
+    <!-- BELOW FOLD -->
+    <div id="below"></div>
+
+    <!-- How it works -->
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
         <div>
@@ -753,25 +1026,35 @@
 
       <div class="tiles-grid">
         <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 01</div><div class="tile-pill">Scan</div></div>
+          <div class="tile-top">
+            <div class="tile-num">Step 01</div>
+            <div class="tile-pill">Scan</div>
+          </div>
           <div class="tile-title">Check drivers & volatility</div>
           <div class="tile-line">Rates, VIX, breadth—fast context.</div>
         </div>
 
         <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 02</div><div class="tile-pill">Decide</div></div>
+          <div class="tile-top">
+            <div class="tile-num">Step 02</div>
+            <div class="tile-pill">Decide</div>
+          </div>
           <div class="tile-title">Pick what you need</div>
           <div class="tile-line">Macro framing, catalysts, and positioning.</div>
         </div>
 
         <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 03</div><div class="tile-pill">Execute</div></div>
+          <div class="tile-top">
+            <div class="tile-num">Step 03</div>
+            <div class="tile-pill">Execute</div>
+          </div>
           <div class="tile-title">Use it like a trading brief</div>
           <div class="tile-line">Headlines → takeaways → link outs.</div>
         </div>
       </div>
     </section>
 
+    <!-- Watchlist -->
     <section class="panel reveal" id="watch" aria-label="Watchlist">
       <div class="panel-header">
         <div>
@@ -789,13 +1072,16 @@
         <button class="watch-btn" data-symbol="OANDA:XAUUSD">GOLD</button>
       </div>
 
-      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;"></div>
+      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;">
+        <!-- widget injects here -->
+      </div>
 
       <p style="position:relative;z-index:1;font-size:11px;color:var(--text-muted);margin-top:10px;">
         This is your “quick look” section—articles stay clean.
       </p>
     </section>
 
+    <!-- What’s new -->
     <section class="panel reveal" id="latest" aria-label="Latest">
       <div class="panel-header">
         <div>
@@ -807,9 +1093,14 @@
 
       <div class="latest-grid">
         <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">Latest issue</div><div class="latest-date">Pick a date</div></div>
+          <div class="latest-top">
+            <div class="latest-tag">Latest issue</div>
+            <div class="latest-date">Pick a date</div>
+          </div>
           <div class="latest-title">Open the calendar to see the newest published note</div>
-          <div class="latest-desc">Instead of hardcoding links that go stale, the Archive stays accurate as you publish.</div>
+          <div class="latest-desc">
+            Instead of hardcoding links that go stale, the Archive stays accurate as you publish.
+          </div>
           <div class="latest-actions">
             <a class="mini-link" href="archive.html">Open Archive ↗</a>
             <a class="mini-link secondary" href="#subscribe">Get emails</a>
@@ -817,9 +1108,14 @@
         </div>
 
         <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">New here?</div><div class="latest-date">Start fast</div></div>
+          <div class="latest-top">
+            <div class="latest-tag">New here?</div>
+            <div class="latest-date">Start fast</div>
+          </div>
           <div class="latest-title">A 30-second routine for market context</div>
-          <div class="latest-desc">Scan quotes → check watchlist chart → open the note you need from the calendar.</div>
+          <div class="latest-desc">
+            Scan quotes → check watchlist chart → open the note you need from the calendar.
+          </div>
           <div class="latest-actions">
             <a class="mini-link" href="#watch">Watchlist ↗</a>
             <a class="mini-link secondary" href="#how">How it works</a>
@@ -828,6 +1124,7 @@
       </div>
     </section>
 
+    <!-- Premium tools (gated) -->
     <section class="panel reveal" id="premium" aria-label="Premium tools">
       <div class="panel-header">
         <div>
@@ -839,9 +1136,15 @@
 
       <div class="latest-grid" style="grid-template-columns:1fr;">
         <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">FinTrend Portfolio</div><div class="latest-date">Premium</div></div>
+          <div class="latest-top">
+            <div class="latest-tag">FinTrend Portfolio</div>
+            <div class="latest-date">Premium</div>
+          </div>
+
           <div class="latest-title">Open the member dashboard</div>
-          <div class="latest-desc">Access trade setups, portfolio entries, and performance tracking once your subscription is active.</div>
+          <div class="latest-desc">
+            Access trade setups, portfolio entries, and performance tracking once your subscription is active.
+          </div>
 
           <div class="latest-actions">
             <a class="mini-link" href="#" id="open-premium-dashboard">Open Premium Dashboard ↗</a>
@@ -855,11 +1158,42 @@
       </div>
     </section>
 
-    <section id="subscribe" class="panel reveal" style="margin-top:18px;">
+    <!-- FAQ -->
+    <section class="panel reveal" id="faq" aria-label="FAQ">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Quick answers</div>
+          <div class="panel-subtitle">Click to expand. Keep it clean.</div>
+        </div>
+        <div class="time-indicator">FAQ</div>
+      </div>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary>What do I get each week? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Four notes per week: outlook, momentum, recap, macro.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is this financial advice? <span class="chev">▾</span></summary>
+          <div class="faq-ans">No—informational only. Use it as context, not a recommendation.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I find the newest note? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Open the Archive calendar and click the most recent date.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section id="subscribe" class="panel reveal" style="margin-top: 18px;">
       <div class="panel-header">
         <div>
           <div class="panel-title">Subscribe to FinTrend News</div>
-          <div class="panel-subtitle">Get notes straight to your inbox when new issues are published.</div>
+          <div class="panel-subtitle">
+            Get notes straight to your inbox when new issues are published.
+          </div>
         </div>
         <div class="time-indicator">Free</div>
       </div>
@@ -902,45 +1236,73 @@
 
     <footer class="reveal">
       <p style="max-width:740px;margin:0 auto 6px;">
-        <strong>Disclaimer:</strong> This content is for informational and educational purposes only, not financial advice.
+        <strong>Disclaimer:</strong>
+        This content is for informational and educational purposes only, not financial
+        advice. I am not a licensed financial advisor. Nothing in this
+        newsletter should be interpreted as a recommendation to buy or sell any
+        financial asset.
       </p>
-      <p>© 2025 FinTrend News · <a href="archive.html">Archive / Calendar</a></p>
+      <p>
+        © 2025 FinTrend News · <a href="archive.html">Archive / Calendar</a>
+      </p>
     </footer>
   </div>
 
-  <!-- AUTH MODAL -->
+  <!-- ===== AUTH MODAL (SUPABASE) ===== -->
   <div id="auth-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
       <button class="modal-close" id="close-auth-modal" aria-label="Close">×</button>
+
       <div class="modal-kicker">FinTrend Account</div>
       <h2 class="modal-title" id="auth-modal-title">Sign in</h2>
-      <p class="modal-subtitle" id="auth-subtitle">Sign in to access premium tools.</p>
+
+      <p class="modal-subtitle" id="auth-subtitle">
+        Sign in to access premium tools and saved watchlists.
+      </p>
 
       <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
-        <input id="auth-email" type="email" placeholder="Email" required
-          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;" />
-        <input id="auth-password" type="password" placeholder="Password" required
-          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;" />
+        <input
+          id="auth-email"
+          type="email"
+          placeholder="Email"
+          required
+          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
+        />
+        <input
+          id="auth-password"
+          type="password"
+          placeholder="Password"
+          required
+          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
+        />
+
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
           <button type="submit" class="modal-primary-btn" id="auth-submit-btn">Sign in</button>
           <button type="button" class="modal-secondary-btn" id="auth-toggle-btn">Create account</button>
         </div>
+
         <div id="auth-msg" style="margin-top:8px;font-size:12px;color:#e5e7eb;"></div>
       </form>
 
       <div style="margin-top:12px;border-top:1px solid rgba(148,163,184,0.25);padding-top:12px;">
-        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">Forgot password</button>
+        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">
+          Forgot password
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- PREMIUM MODAL -->
+  <!-- ===== PREMIUM SUBSCRIBE MODAL ===== -->
   <div id="premium-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="premium-modal-title">
       <button class="modal-close" id="close-premium-modal" aria-label="Close">×</button>
+
       <div class="modal-kicker">FinTrend Premium</div>
       <h2 class="modal-title" id="premium-modal-title">Upgrade to the Premium Feed</h2>
-      <p class="modal-subtitle">Unlock trade-ready insights updated throughout the week.</p>
+
+      <p class="modal-subtitle">
+        Keep the free newsletter — or unlock trade-ready insights updated throughout the week.
+      </p>
 
       <ul class="modal-list">
         <li>Daily levels, zones, and volatility markers.</li>
@@ -950,31 +1312,23 @@
       </ul>
 
       <div class="modal-btn-row">
-        <a href="https://your-payment-link.com" target="_blank" rel="noopener" class="modal-primary-btn">Go Premium</a>
-        <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">Keep Free Version</a>
+        <a href="#" class="modal-primary-btn" id="go-premium-checkout">
+          Go Premium
+        </a>
+        <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">
+          Keep Free Version
+        </a>
       </div>
     </div>
   </div>
 
   <script>
-    // Mark that JS loaded (so reveal animations work, but content still shows if JS fails)
-    document.documentElement.classList.add('js');
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === "#") return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // TradingView watchlist
+    // =====================================================
+    // TradingView Watchlist (interactive)
+    // =====================================================
     const watchWrap = document.getElementById('watch-widget');
     const buttons = document.querySelectorAll('.watch-btn');
+
     function loadMiniChart(symbol){
       if (!watchWrap) return;
       watchWrap.innerHTML = "";
@@ -995,6 +1349,7 @@
       });
       watchWrap.appendChild(s);
     }
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.classList.remove('active'));
@@ -1002,9 +1357,26 @@
         loadMiniChart(btn.dataset.symbol);
       });
     });
+
     loadMiniChart("FOREXCOM:SPXUSD");
 
-    // Reveal
+    // =====================================================
+    // Smooth scroll (anchors only)
+    // =====================================================
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === "#") return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // =====================================================
+    // Scroll reveal (only if JS enabled)
+    // =====================================================
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1016,8 +1388,10 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Premium modal
-    const openPremiumBtn  = document.getElementById('open-premium-modal-btn');
+    // =====================================================
+    // Premium modal logic
+    // =====================================================
+    const openPremiumBtn  = document.getElementById('open-premium-modal');
     const premiumModal    = document.getElementById('premium-modal');
     const closePremiumBtn = document.getElementById('close-premium-modal');
     const freeBtn  = document.getElementById('go-free-subscribe');
@@ -1035,69 +1409,92 @@
     }
     if (openPremiumBtn)  openPremiumBtn.addEventListener('click', openPremiumModal);
     if (closePremiumBtn) closePremiumBtn.addEventListener('click', closePremiumModal);
-    if (premiumModal) premiumModal.addEventListener('click', (e) => { if (e.target === premiumModal) closePremiumModal(); });
-    if (freeBtn) freeBtn.addEventListener('click', () => closePremiumModal());
+    if (premiumModal) {
+      premiumModal.addEventListener('click', function (e) {
+        if (e.target === premiumModal) closePremiumModal();
+      });
+    }
+    if (freeBtn) {
+      freeBtn.addEventListener('click', function () { closePremiumModal(); });
+    }
 
-    // ======================
-    // SUPABASE AUTH + GATING
-    // ======================
+    // =====================================================
+    // ✅ SUPABASE AUTH + PREMIUM GATING
+    // =====================================================
+
+    // NOTE: Keep ONLY the anon key in the browser. Do NOT paste any "service_role" key into HTML.
     const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const supabase = window.supabase?.createClient
-      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-      : null;
+    // Replace with your Stripe Payment Link or Checkout URL
+    const PAYMENT_LINK = "https://your-payment-link.com";
+
+    // Premium modal CTA
+    const goPremiumCheckout = document.getElementById("go-premium-checkout");
+    if (goPremiumCheckout) {
+      goPremiumCheckout.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.open(PAYMENT_LINK, "_blank", "noopener");
+      });
+    }
 
     // Auth modal elements
     const authModal = document.getElementById("auth-modal");
     const openAuthBtn = document.getElementById("open-auth-modal");
     const closeAuthBtn = document.getElementById("close-auth-modal");
+
     const authForm = document.getElementById("auth-form");
     const authEmail = document.getElementById("auth-email");
     const authPassword = document.getElementById("auth-password");
     const authMsg = document.getElementById("auth-msg");
+
     const authTitle = document.getElementById("auth-modal-title");
     const authSubtitle = document.getElementById("auth-subtitle");
     const authSubmitBtn = document.getElementById("auth-submit-btn");
     const authToggleBtn = document.getElementById("auth-toggle-btn");
     const authResetBtn = document.getElementById("auth-reset-btn");
 
-    // Header UI
+    // Header user UI
     const signoutLink = document.getElementById("signout-link");
     const userChip = document.getElementById("user-chip");
 
-    // Premium UI
+    // Premium UI hooks
     const openPremiumDashboard = document.getElementById("open-premium-dashboard");
     const manageMembership = document.getElementById("manage-membership");
     const premiumStatus = document.getElementById("premium-status");
 
-    const PAYMENT_LINK = "https://your-payment-link.com"; // replace later
-    let mode = "signin";
+    let mode = "signin"; // "signin" | "signup"
 
     function openAuthModal(e){
       if (e) e.preventDefault();
       if (!authModal) return;
       authModal.classList.add("active");
-      authModal.setAttribute("aria-hidden","false");
+      authModal.setAttribute("aria-hidden", "false");
       if (authMsg) authMsg.textContent = "";
     }
     function closeAuthModal(){
       if (!authModal) return;
       authModal.classList.remove("active");
-      authModal.setAttribute("aria-hidden","true");
+      authModal.setAttribute("aria-hidden", "true");
       if (authMsg) authMsg.textContent = "";
     }
 
     if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
     if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
-    if (authModal) authModal.addEventListener("click", (e) => { if (e.target === authModal) closeAuthModal(); });
+    if (authModal) {
+      authModal.addEventListener("click", (e) => {
+        if (e.target === authModal) closeAuthModal();
+      });
+    }
 
     function setAuthMode(nextMode){
       mode = nextMode;
       if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
+
       if (mode === "signin") {
         authTitle.textContent = "Sign in";
-        authSubtitle.textContent = "Sign in to access premium tools.";
+        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
         authSubmitBtn.textContent = "Sign in";
         authToggleBtn.textContent = "Create account";
       } else {
@@ -1109,43 +1506,50 @@
       if (authMsg) authMsg.textContent = "";
     }
 
-    if (authToggleBtn) authToggleBtn.addEventListener("click", () => setAuthMode(mode === "signin" ? "signup" : "signin"));
+    if (authToggleBtn) {
+      authToggleBtn.addEventListener("click", () => {
+        setAuthMode(mode === "signin" ? "signup" : "signin");
+      });
+    }
 
     if (authResetBtn) {
       authResetBtn.addEventListener("click", async () => {
-        if (!supabase) return (authMsg.textContent = "Supabase failed to load.");
-        const email = (authEmail.value || "").trim();
-        if (!email) return (authMsg.textContent = "Enter your email above first.");
-        authMsg.textContent = "Sending reset email...";
-        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
-        authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
+        const email = (authEmail?.value || "").trim();
+        if (!email) {
+          if (authMsg) authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
+          return;
+        }
+        if (authMsg) authMsg.textContent = "Sending reset email...";
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin
+        });
+        if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
       });
     }
 
     if (authForm) {
       authForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if (!supabase) return (authMsg.textContent = "Supabase failed to load.");
-        authMsg.textContent = "Working...";
+        if (authMsg) authMsg.textContent = "Working...";
 
-        const email = (authEmail.value || "").trim();
-        const password = authPassword.value || "";
+        const email = (authEmail?.value || "").trim();
+        const password = authPassword?.value || "";
 
         try {
           if (mode === "signin") {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             if (error) throw error;
-            authMsg.textContent = "Signed in ✅";
+            if (authMsg) authMsg.textContent = "Signed in ✅";
             closeAuthModal();
             await refreshUI();
           } else {
             const { error } = await supabase.auth.signUp({ email, password });
             if (error) throw error;
-            authMsg.textContent = "Account created ✅";
+            if (authMsg) authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
             await refreshUI();
           }
         } catch (err) {
-          authMsg.textContent = "Error: " + (err?.message || "Unknown error");
+          if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
         }
       });
     }
@@ -1153,14 +1557,36 @@
     if (signoutLink) {
       signoutLink.addEventListener("click", async (e) => {
         e.preventDefault();
-        if (!supabase) return;
         await supabase.auth.signOut();
         await refreshUI();
       });
     }
 
+    // ---- Membership table: public.profiles
+    async function ensureProfile(user){
+      if (!user) return null;
+
+      const { data: existing, error: fetchErr } = await supabase
+        .from("profiles")
+        .select("id,email,is_premium")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (fetchErr) return null;
+      if (existing) return existing;
+
+      const { data: created, error: insertErr } = await supabase
+        .from("profiles")
+        .insert([{ id: user.id, email: user.email, is_premium: false }])
+        .select("id,email,is_premium")
+        .single();
+
+      if (insertErr) return null;
+      return created;
+    }
+
     async function getProfile(user){
-      if (!supabase || !user) return null;
+      if (!user) return null;
       const { data, error } = await supabase
         .from("profiles")
         .select("id,email,is_premium")
@@ -1171,11 +1597,6 @@
     }
 
     async function refreshUI(){
-      if (!supabase) {
-        if (premiumStatus) premiumStatus.textContent = "Supabase not loaded (check console).";
-        return;
-      }
-
       const { data } = await supabase.auth.getUser();
       const user = data?.user || null;
 
@@ -1189,32 +1610,56 @@
 
       if (openAuthBtn) openAuthBtn.style.display = "none";
       if (signoutLink) signoutLink.style.display = "";
-      if (userChip) { userChip.style.display = ""; userChip.textContent = "Signed in: " + (user.email || "user"); }
+      if (userChip) {
+        userChip.style.display = "";
+        userChip.textContent = "Signed in: " + (user.email || "user");
+      }
 
+      await ensureProfile(user);
       const profile = await getProfile(user);
-      if (profile && profile.is_premium) premiumStatus.textContent = "Premium: active ✅";
-      else if (profile) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
-      else premiumStatus.textContent = "Premium status: profiles table/policies not working yet.";
+
+      if (profile && profile.is_premium) {
+        if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
+      } else if (profile) {
+        if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
+      } else {
+        if (premiumStatus) premiumStatus.textContent = "Premium status: profiles table not available / blocked by policies.";
+      }
     }
 
     if (openPremiumDashboard) {
       openPremiumDashboard.addEventListener("click", async (e) => {
         e.preventDefault();
-        if (!supabase) return;
 
         const { data } = await supabase.auth.getUser();
         const user = data?.user || null;
-        if (!user) return openAuthModal();
+
+        if (!user) {
+          openAuthModal();
+          return;
+        }
 
         const profile = await getProfile(user);
-        if (profile && profile.is_premium) window.location.href = "premium.html";
-        else window.open(PAYMENT_LINK, "_blank");
+
+        if (profile && profile.is_premium) {
+          window.location.href = "premium.html";
+        } else {
+          window.open(PAYMENT_LINK, "_blank", "noopener");
+        }
       });
     }
 
-    if (manageMembership) manageMembership.addEventListener("click", (e) => { e.preventDefault(); window.open(PAYMENT_LINK, "_blank"); });
+    if (manageMembership) {
+      manageMembership.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.open(PAYMENT_LINK, "_blank", "noopener");
+      });
+    }
 
-    if (supabase) supabase.auth.onAuthStateChange(() => refreshUI());
+    supabase.auth.onAuthStateChange(async () => {
+      await refreshUI();
+    });
+
     setAuthMode("signin");
     refreshUI();
   </script>
