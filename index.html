@@ -1,822 +1,438 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FinTrend News</title>
-  <meta name="description" content="Four-times-a-week market newsletter: macro, momentum, recap, and catalysts." />
-
-  <link rel="icon" href="assets/img/favicon.png" />
+  <meta name="description" content="Sell-side style market briefings. 4× weekly. Fast, clean, no noise." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KSK5YVPJBR');
-  </script>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script>document.documentElement.classList.add('js');</script>
-
   <style>
-    :root {
-      --bg: #050816;
-      --bg-elevated: #0b1020;
-      --accent: #f4c15d;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.35);
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
-      --max-width: 1150px;
+    :root{
+      --bg:#050816;
+      --bg2:#0b1020;
+      --card:rgba(15,23,42,.78);
+      --card2:rgba(2,6,23,.38);
+      --border:rgba(148,163,184,.28);
+      --text:#f9fafb;
+      --muted:#9ca3af;
+      --accent:#f4c15d;
+      --accent2:rgba(244,193,93,.12);
+      --radius:18px;
+      --radius2:24px;
+      --shadow:0 18px 45px rgba(15,23,42,.75);
+      --max:1150px;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      color: var(--text-main);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      line-height:1.6;
+      min-height:100vh;
       background-image:
-        radial-gradient(circle at top, rgba(17, 24, 39, 0.78) 0, rgba(2, 6, 23, 0.82) 45%, rgba(0, 0, 0, 0.92) 100%),
+        radial-gradient(circle at top, rgba(17,24,39,.78) 0, rgba(2,6,23,.82) 45%, rgba(0,0,0,.92) 100%),
         url("assets/img/bg-candles.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
     }
-
     body::before{
       content:"";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(2,6,23,0.18),
-        rgba(2,6,23,0.35) 40%,
-        rgba(2,6,23,0.60)
-      );
+      position:fixed; inset:0;
+      background:linear-gradient(to bottom, rgba(2,6,23,.18), rgba(2,6,23,.35) 40%, rgba(2,6,23,.60));
       pointer-events:none;
-      z-index: -1;
+      z-index:-1;
     }
+    a{color:#e5e7eb;text-decoration:none}
+    a:hover{color:var(--accent)}
+    .page{max-width:var(--max); margin:16px auto 56px; padding:0 16px 36px}
 
-    .page {
-      max-width: var(--max-width);
-      margin: 16px auto 56px;
-      padding: 0 16px 36px;
-      position: relative;
-    }
-
-    .top-header {
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.82));
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
-      overflow: hidden;
-      margin-bottom: 14px;
-      backdrop-filter: blur(6px);
-    }
-
-    .ticker-row {
-      padding: 4px 18px;
-      background: radial-gradient(circle at top, #020617 0, #000 65%);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-    }
-    .ticker-row .tradingview-widget-container { height: 28px; }
-
-    .header-main {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      padding: 18px 22px 20px;
-      gap: 14px;
-    }
-
-    .header-left .logo-img { height: 56px; width: auto; display: block; }
-    .header-center { text-align: center; }
-
-    .brand-title {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 32px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      line-height: 1.05;
-    }
-
-    .brand-subtitle {
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      justify-self: end;
-      flex-wrap: wrap;
-    }
-
-    .header-link {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: 0.2s ease;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .header-link:hover { color: var(--text-main); }
-
-    .subscribe-btn {
-      padding: 7px 16px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #000;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: 0.2s ease;
-      box-shadow: 0 10px 30px rgba(244,193,93,0.15);
-    }
-    .subscribe-btn:hover { background: #f7d680; transform: translateY(-1px); }
-
-    .social-icons { display: flex; gap: 10px; }
-    .social-icon {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-    .social-icon:hover { color: var(--accent); }
-
-    @media (max-width: 830px) {
-      .header-main {
-        grid-template-columns: 1fr;
-        row-gap: 10px;
-        justify-items: flex-start;
-        padding: 14px 18px 18px;
-      }
-      .header-center { text-align: left; }
-      .brand-title { font-size: 26px; }
-      .header-left .logo-img { height: 46px; }
-    }
-
-    .hero {
-      min-height: 72vh;
-      display: grid;
-      place-items: center;
-      padding: 20px 0 10px;
-    }
-
-    .hero-card {
-      width: 100%;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      background: rgba(15, 23, 42, 0.72);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.75);
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-      position: relative;
-    }
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at top left, rgba(244,193,93,0.10), transparent 55%);
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position: relative;
-      z-index: 1;
-      padding: 22px 22px 18px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    @media (max-width: 920px){
-      .hero-inner{ grid-template-columns: 1fr; }
-    }
-
-    .hero-kicker{
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 8px;
-    }
-
-    .hero-title{
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 40px;
-      line-height: 1.08;
-      margin-bottom: 10px;
-    }
-    .hero-title span{
-      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-sub{
-      color: #e5e7eb;
-      font-size: 15px;
-      max-width: 680px;
-      margin-bottom: 14px;
-    }
-
-    .hero-stack{
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-      margin-top: 6px;
-      margin-bottom: 10px;
-    }
-
-    .hero-block{
-      border-radius: 18px;
-      border: 1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.30);
-      padding: 12px 12px 10px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-block::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 60%);
-      pointer-events:none;
-      opacity: 0.9;
-    }
-
-    .hero-block-title{
-      position: relative;
-      z-index: 1;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-    }
-
-    .hero-bullets{
-      position: relative;
-      z-index: 1;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .hero-bullet{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-    }
-    .dot{
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      margin-top: 4px;
-      background: rgba(244,193,93,0.95);
-      box-shadow: 0 0 0 5px rgba(244,193,93,0.12);
-      flex: 0 0 auto;
-    }
-    .hero-bullet-head{
-      font-size: 13px;
-      font-weight: 700;
-      color: #e5e7eb;
-      line-height: 1.25;
-      margin-bottom: 2px;
-    }
-    .hero-bullet-sub{
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    .hero-mini-grid{
-      position: relative;
-      z-index: 1;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 10px;
-    }
-    @media (max-width: 520px){
-      .hero-mini-grid{ grid-template-columns: 1fr; }
-    }
-
-    .hero-mini-card{
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.22);
-      background: rgba(15,23,42,0.55);
-      padding: 10px 10px 9px;
-      transition: 0.18s ease;
-    }
-    .hero-mini-card:hover{
-      transform: translateY(-1px);
-      border-color: rgba(244,193,93,0.35);
-      background: rgba(15,23,42,0.70);
-    }
-    .hero-mini-top{
-      display:flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-      margin-bottom: 6px;
-    }
-    .hero-mini-tag{
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .hero-mini-chip{
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.28);
-      background: rgba(2,6,23,0.35);
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .hero-mini-body{
-      font-size: 12px;
-      color: #e5e7eb;
-      line-height: 1.45;
-    }
-
-    .hero-strip{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .hero-strip-item{
-      flex: 1 1 120px;
-      min-width: 120px;
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.20);
-      background: rgba(2,6,23,0.26);
-      padding: 10px 10px 9px;
-      text-align: center;
-    }
-    .hero-strip-num{
-      font-family: "Playfair Display", serif;
-      font-size: 18px;
-      color: #fef3c7;
-      letter-spacing: 0.06em;
-      line-height: 1.1;
-      margin-bottom: 2px;
-    }
-    .hero-strip-text{
-      font-size: 10px;
-      color: var(--text-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .btn{
-      font-size: 12px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.45);
-      background: rgba(2,6,23,0.40);
-      color: var(--text-main);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      transition: 0.18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(244,193,93,0.35); }
-
-    .btn.primary{
-      background: var(--accent);
-      color: #000;
-      border-color: var(--accent);
-      font-weight: 900;
-    }
-    .btn.primary:hover{ background:#f7d680; }
-
-    .hero-right{
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.24);
-      background: rgba(2,6,23,0.35);
-      padding: 14px 14px 12px;
-    }
-
-    .hero-right-title{
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-    }
-
-    .snapshot-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 10px;
-    }
-
-    .snap{
-      border-radius: 16px;
-      border: 1px solid rgba(148,163,184,0.22);
-      background: rgba(15,23,42,0.65);
-      padding: 10px 10px 9px;
-      transition: 0.18s ease;
-    }
-    .snap:hover{
-      transform: translateY(-1px);
-      border-color: rgba(244,193,93,0.35);
-      background: rgba(15,23,42,0.78);
-    }
-
-    .snap-top{
-      display:flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-    .snap-label{
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .snap-chip{
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.28);
-      background: rgba(2,6,23,0.35);
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .snap-body{
-      font-size: 12px;
-      color: #e5e7eb;
-      line-height: 1.35;
-    }
-
-    .hero-note{
-      margin-top: 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .scroll-cue{
-      display:flex;
-      justify-content:center;
-      margin-top: 14px;
-      opacity: 0.92;
-    }
-    .scroll-link{
-      text-decoration:none;
-      color: var(--text-muted);
-      border: 1px solid rgba(148,163,184,0.24);
-      background: rgba(2,6,23,0.35);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: 0.18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-    }
-    .scroll-link:hover{
-      transform: translateY(-1px);
-      border-color: rgba(244,193,93,0.35);
-      color: var(--text-main);
-    }
-
-    .panel {
-      background: rgba(15, 23, 42, 0.90);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 20px 20px 18px;
-      position: relative;
-      overflow: hidden;
-      margin-top: 18px;
-      backdrop-filter: blur(6px);
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.07), transparent 55%);
-      pointer-events: none;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-    }
-    .panel-subtitle { font-size: 11px; color: var(--text-muted); }
-    .time-indicator {
-      font-size: 11px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .reveal { opacity: 1; transform: none; }
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      will-change: opacity, transform;
-    }
-    .js .reveal.in-view { opacity: 1; transform: translateY(0); }
-
-    .tiles-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-    @media (max-width: 900px){ .tiles-grid{ grid-template-columns: 1fr; } }
-
-    .tile{
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.28);
-      background: rgba(2,6,23,0.38);
-      padding: 16px 16px 14px;
-      box-shadow: 0 14px 35px rgba(15,23,42,0.45);
-      transition: transform 0.18s ease, border-color 0.18s ease;
-      overflow: hidden;
-      position: relative;
-    }
-    .tile:hover{
-      transform: translateY(-2px);
-      border-color: rgba(244,193,93,0.35);
-    }
-    .tile::before{
-      content:"";
-      position:absolute;
-      inset:-30%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
-      pointer-events:none;
-      opacity: 0.85;
-    }
-    .tile-top{
-      position:relative;
-      z-index:1;
-      display:flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-      margin-bottom: 10px;
-    }
-    .tile-num{
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .tile-pill{
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.35);
-      background: rgba(2,6,23,0.35);
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .tile-title{
-      position:relative;
-      z-index:1;
-      font-weight: 700;
-      color: #e5e7eb;
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-    .tile-line{
-      position:relative;
-      z-index:1;
-      color: var(--text-muted);
-      font-size: 12px;
-    }
-
-    .watchlist-row{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      position:relative;
-      z-index:1;
-      margin-bottom: 12px;
-    }
-    .watch-btn{
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.30);
-      background: rgba(2,6,23,0.40);
-      color: var(--text-main);
-      padding: 8px 12px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-    .watch-btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(244,193,93,0.35);
-    }
-    .watch-btn.active{
-      background: rgba(244,193,93,0.14);
-      border-color: rgba(244,193,93,0.55);
-      color: var(--accent);
-    }
-
-    .latest-grid{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
-    }
-    @media (max-width: 900px){ .latest-grid{ grid-template-columns: 1fr; } }
-
-    .latest-card{
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.26);
-      background: rgba(2,6,23,0.34);
-      padding: 14px 14px 12px;
-      transition: 0.18s ease;
+    .top-header{
+      position:sticky; top:0; z-index:9999;
+      border-radius:var(--radius2);
+      background:linear-gradient(135deg, rgba(15,23,42,.96), rgba(15,23,42,.82));
+      border:1px solid rgba(148,163,184,.25);
+      box-shadow:0 8px 24px rgba(15,23,42,.6);
       overflow:hidden;
-      position:relative;
+      margin-bottom:14px;
+      backdrop-filter:blur(6px);
     }
-    .latest-card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(244,193,93,0.35);
-      background: rgba(2,6,23,0.42);
+    .ticker-row{
+      padding:4px 18px;
+      background:radial-gradient(circle at top, #020617 0, #000 65%);
+      border-bottom:1px solid rgba(148,163,184,.35);
     }
-    .latest-top{
+    .ticker-row .tradingview-widget-container{height:28px}
+
+    .header-main{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      padding:18px 22px 20px;
+      gap:14px;
+    }
+    .logo-img{height:56px;width:auto;display:block}
+    .header-center{text-align:center}
+    .brand-title{
+      font-family:"Playfair Display",serif;
+      font-size:32px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--accent);
+      line-height:1.05;
+    }
+    .brand-subtitle{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .header-right{
       display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:baseline;
-      margin-bottom: 8px;
-    }
-    .latest-tag{
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .latest-date{
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-    .latest-title{
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 8px;
-      color: #e5e7eb;
-    }
-    .latest-desc{
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .latest-actions{
-      display:flex;
-      gap: 10px;
+      align-items:center;
+      gap:14px;
+      justify-self:end;
       flex-wrap:wrap;
     }
-    .mini-link{
-      font-size: 12px;
-      text-decoration:none;
-      color: var(--accent);
-      border: 1px solid rgba(244,193,93,0.45);
-      background: rgba(244,193,93,0.08);
-      padding: 8px 12px;
-      border-radius: 999px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: 0.18s ease;
+    .header-link{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .header-link:hover{color:var(--text)}
+    .subscribe-btn{
+      padding:7px 16px;
+      border-radius:999px;
+      background:var(--accent);
+      color:#000;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      box-shadow:0 10px 30px rgba(244,193,93,.15);
+    }
+    .subscribe-btn:hover{background:#f7d680; transform:translateY(-1px)}
+    .social-icons{display:flex; gap:10px}
+    .social-icon{font-size:14px; color:var(--muted)}
+    .social-icon:hover{color:var(--accent)}
+    @media (max-width:830px){
+      .header-main{grid-template-columns:1fr; row-gap:10px; justify-items:flex-start; padding:14px 18px 18px}
+      .header-center{text-align:left}
+      .brand-title{font-size:26px}
+      .logo-img{height:46px}
+    }
+
+    .card{
+      border-radius:var(--radius2);
+      border:1px solid rgba(148,163,184,.22);
+      background:var(--card);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter:blur(8px);
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(circle at top left, rgba(244,193,93,.10), transparent 55%);
+      pointer-events:none;
+    }
+
+    .hero{min-height:72vh; display:grid; place-items:center; padding:20px 0 10px}
+    .hero-inner{
+      position:relative; z-index:1;
+      padding:22px 22px 18px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+    @media (max-width:920px){ .hero-inner{grid-template-columns:1fr} }
+    .kicker{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      margin-bottom:8px;
+    }
+    .hero-title{
+      font-family:"Playfair Display",serif;
+      font-size:40px;
+      line-height:1.08;
+      margin-bottom:10px;
+    }
+    .hero-title span{
+      background:linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-sub{color:#e5e7eb; font-size:15px; max-width:680px; margin-bottom:14px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .btn{
+      font-size:12px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.45);
+      background:rgba(2,6,23,.40);
+      color:var(--text);
+      text-transform:uppercase;
+      letter-spacing:.14em;
       display:inline-flex;
       align-items:center;
-      gap: 8px;
-    }
-    .mini-link:hover{
-      transform: translateY(-1px);
-      background: rgba(244,193,93,0.14);
-    }
-    .mini-link.secondary{
-      color: #e5e7eb;
-      border-color: rgba(148,163,184,0.30);
-      background: rgba(2,6,23,0.30);
-    }
-
-    .faq{
-      position:relative; z-index:1;
-      display:flex; flex-direction:column; gap: 10px;
-    }
-    details.faq-item{
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148,163,184,0.26);
-      background: rgba(2,6,23,0.34);
-      padding: 12px 14px;
-      overflow:hidden;
-    }
-    details.faq-item summary{
+      gap:8px;
       cursor:pointer;
-      list-style:none;
-      display:flex;
-      justify-content: space-between;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:rgba(244,193,93,.35)}
+    .btn.primary{background:var(--accent); color:#000; border-color:var(--accent); font-weight:900}
+    .btn.primary:hover{background:#f7d680}
+
+    .aside{
+      border-radius:var(--radius);
+      border:1px solid rgba(148,163,184,.24);
+      background:rgba(2,6,23,.35);
+      padding:14px 14px 12px;
+      position:relative;
+      z-index:1;
+    }
+    .aside-title{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      margin-bottom:10px;
+    }
+    .grid2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+    .tile{
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(15,23,42,.65);
+      padding:10px 10px 9px;
+      transition:.18s ease;
+    }
+    .tile:hover{transform:translateY(-1px); border-color:rgba(244,193,93,.35); background:rgba(15,23,42,.78)}
+    .tile-top{display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:6px}
+    .label{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+    .chip{
+      font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+      padding:3px 8px; border-radius:999px;
+      border:1px solid rgba(148,163,184,.28);
+      background:rgba(2,6,23,.35);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .note{margin-top:10px; font-size:11px; color:var(--muted)}
+    .scroll-cue{display:flex; justify-content:center; margin-top:14px; opacity:.95; position:relative; z-index:1}
+    .scroll-link{
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,.24);
+      background:rgba(2,6,23,.35);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      display:inline-flex;
       align-items:center;
-      gap: 12px;
-      font-weight: 700;
-      color: #e5e7eb;
-      font-size: 13px;
+      gap:10px;
+      transition:.18s ease;
     }
-    details.faq-item summary::-webkit-details-marker{ display:none; }
-    .faq-ans{
-      margin-top: 10px;
-      color: var(--text-muted);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-    .chev{
-      color: var(--text-muted);
-      transition: 0.18s ease;
-      font-size: 16px;
-    }
-    details[open] .chev{ transform: rotate(180deg); color: var(--accent); }
+    .scroll-link:hover{transform:translateY(-1px); border-color:rgba(244,193,93,.35); color:var(--text)}
 
-    footer {
-      margin-top: 28px;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: center;
-      opacity: 0.9;
+    .panel{
+      background:rgba(15,23,42,.90);
+      border-radius:var(--radius2);
+      border:1px solid rgba(148,163,184,.28);
+      box-shadow:var(--shadow);
+      padding:20px 20px 18px;
+      position:relative;
+      overflow:hidden;
+      margin-top:18px;
+      backdrop-filter:blur(6px);
     }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .panel::before{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(circle at top left, rgba(250,204,21,.07), transparent 55%);
+      pointer-events:none;
+    }
+    .panel > *{position:relative; z-index:1}
+    .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:16px}
+    .ptitle{font-size:13px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted)}
+    .psub{font-size:11px; color:var(--muted)}
+    .ptime{font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.14em}
 
-    a { color: #e5e7eb; }
-    a:hover { color: var(--accent); }
+    .watch-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px}
+    .watch-btn{
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.30);
+      background:rgba(2,6,23,.40);
+      color:var(--text);
+      padding:8px 12px;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .watch-btn:hover{transform:translateY(-1px); border-color:rgba(244,193,93,.35)}
+    .watch-btn.active{background:rgba(244,193,93,.14); border-color:rgba(244,193,93,.55); color:var(--accent)}
+
+    .subscribe-wrap{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      align-items:center;
+    }
+    @media (max-width:900px){ .subscribe-wrap{grid-template-columns:1fr} }
+    .subscribe-card{
+      border-radius:var(--radius2);
+      border:1px solid rgba(244,193,93,.28);
+      background:linear-gradient(135deg, rgba(244,193,93,.10), rgba(2,6,23,.35));
+      box-shadow:0 18px 50px rgba(244,193,93,.08);
+      padding:18px 18px 16px;
+    }
+    .subscribe-title{
+      font-family:"Playfair Display",serif;
+      font-size:26px;
+      line-height:1.1;
+      margin-bottom:6px;
+    }
+    .subscribe-sub{color:#e5e7eb; font-size:13px; margin-bottom:12px}
+    .bullets{display:grid; gap:8px; margin-top:10px}
+    .b{display:flex; gap:10px; align-items:flex-start}
+    .dot{width:9px; height:9px; border-radius:999px; margin-top:5px; background:rgba(244,193,93,.95); box-shadow:0 0 0 5px rgba(244,193,93,.12); flex:0 0 auto}
+    .btxt{color:var(--muted); font-size:12px; line-height:1.45}
+
+    .form{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-start;
+      padding:16px;
+      border-radius:20px;
+      border:1px solid rgba(148,163,184,.28);
+      background:rgba(2,6,23,.32);
+    }
+    .input{
+      flex:1 1 220px;
+      min-width:220px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.45);
+      background:#020617;
+      color:#f9fafb;
+      font-size:12px;
+      outline:none;
+    }
+    .input:focus{border-color:rgba(244,193,93,.55); box-shadow:0 0 0 4px rgba(244,193,93,.10)}
+    .submit{
+      padding:12px 16px;
+      border-radius:999px;
+      border:none;
+      background:var(--accent);
+      color:#000;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .submit:hover{background:#f7d680; transform:translateY(-1px)}
+    .fineprint{margin-top:10px; font-size:11px; color:var(--muted)}
+
+    footer{
+      margin-top:28px;
+      font-size:11px;
+      color:var(--muted);
+      text-align:center;
+      opacity:.95;
+    }
+    footer a{color:var(--accent)}
+    footer a:hover{text-decoration:underline}
+
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.6);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:99999;
+      padding:14px;
+    }
+    .modal-backdrop.active{display:flex}
+    .modal-window{
+      background:rgba(15,23,42,.97);
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 18px 45px rgba(15,23,42,.8);
+      max-width:440px;
+      width:100%;
+      padding:22px 22px 18px;
+      position:relative;
+    }
+    .modal-close{
+      position:absolute; top:10px; right:12px;
+      border:none; background:transparent;
+      color:#9ca3af; font-size:20px; cursor:pointer;
+    }
+    .modal-kicker{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:#9ca3af;
+      margin-bottom:4px;
+    }
+    .modal-title{
+      font-family:"Playfair Display",serif;
+      font-size:22px;
+      margin-bottom:6px;
+      color:#f9fafb;
+    }
+    .modal-subtitle{font-size:13px; color:#d1d5db; margin-bottom:12px}
+    .modal-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .mbtn-primary,.mbtn-secondary{
+      border-radius:999px;
+      font-size:12px;
+      padding:10px 16px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:.18s ease;
+    }
+    .mbtn-primary{border:none; background:var(--accent); color:#000; font-weight:900}
+    .mbtn-primary:hover{background:#f7d680; transform:translateY(-1px)}
+    .mbtn-secondary{border:1px solid rgba(148,163,184,.5); background:transparent; color:#9ca3af}
+    .mbtn-secondary:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-1px)}
+    .field{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.4);
+      background:#020617;
+      color:#f9fafb;
+      font-size:12px;
+      outline:none;
+    }
+    .field:focus{border-color:rgba(244,193,93,.55); box-shadow:0 0 0 4px rgba(244,193,93,.10)}
   </style>
 </head>
 
@@ -825,7 +441,7 @@
     <header class="top-header">
       <div class="ticker-row">
         <div class="tradingview-widget-container">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+          <script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
 {
   "symbols": [
     { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
@@ -833,7 +449,7 @@
     { "proName": "DJI", "title": "Dow 30" },
     { "proName": "RUSSELL:RTY", "title": "Russell 2000" },
     { "proName": "OANDA:EURUSD", "title": "EURUSD" },
-    { "proName": "BITSTAMP:BTCUSD", "title": "BTC" },
+    { "proName": "COINBASE:BTCUSD", "title": "BTC" },
     { "proName": "OANDA:WTICOUSD", "title": "WTI Crude" },
     { "proName": "OANDA:XAUUSD", "title": "Gold" }
   ],
@@ -847,8 +463,8 @@
       </div>
 
       <div class="header-main">
-        <div class="header-left">
-          <img src="assets/img/FTN-logo.png" alt="FinTrend News logo" class="logo-img">
+        <div>
+          <img src="assets/img/FTN-logo.png" alt="FinTrend News" class="logo-img" />
         </div>
 
         <div class="header-center">
@@ -861,399 +477,218 @@
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
           <span class="header-link" id="user-chip" style="display:none;"></span>
 
-          <a href="#subscribe" class="subscribe-btn" id="subscribe-btn">Subscribe</a>
+          <a href="#subscribe" class="subscribe-btn">Subscribe</a>
           <a href="#" class="header-link" id="open-premium-modal">Premium</a>
 
           <div class="social-icons">
-            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="Instagram">IG</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">in</a>
+            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon">in</a>
           </div>
         </div>
       </div>
     </header>
 
     <section class="hero">
-      <div class="hero-card reveal in-view">
+      <div class="card">
         <div class="hero-inner">
           <div>
-            <div class="hero-kicker">Market Newsletter</div>
+            <div class="kicker">Market Newsletter</div>
             <h2 class="hero-title">Your <span>sell-side style</span> market brief — without the noise.</h2>
-            <p class="hero-sub">Macro drivers, positioning, catalysts — clean and fast.</p>
+            <p class="hero-sub">Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.</p>
 
-            <div class="hero-stack">
-              <div class="hero-block">
-                <div class="hero-block-title">What you get</div>
-                <div class="hero-bullets">
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Macro that matters</div>
-                      <div class="hero-bullet-sub">USD, commodities, and risk-on / risk-off drivers.</div>
-                    </div>
-                  </div>
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Momentum & positioning</div>
-                      <div class="hero-bullet-sub">What’s working, what’s fading, and where flows are crowding.</div>
-                    </div>
-                  </div>
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Catalyst calendar thinking</div>
-                      <div class="hero-bullet-sub">CPI/FOMC/earnings context with clean takeaways.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="hero-block">
-                <div class="hero-block-title">Weekly format</div>
-                <div class="hero-mini-grid">
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Monday</span><span class="hero-mini-chip">Outlook</span></div>
-                    <div class="hero-mini-body">Theme, levels, and what could move markets this week.</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Wednesday</span><span class="hero-mini-chip">Momentum</span></div>
-                    <div class="hero-mini-body">What’s trending, sector leadership, and rotation signals.</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Friday</span><span class="hero-mini-chip">Recap</span></div>
-                    <div class="hero-mini-body">What mattered, winners/losers, and why.</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Sunday</span><span class="hero-mini-chip">Macro</span></div>
-                    <div class="hero-mini-body">Deeper framework and setups for next week.</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="hero-strip">
-                <div class="hero-strip-item"><div class="hero-strip-num">4×</div><div class="hero-strip-text">issues weekly</div></div>
-                <div class="hero-strip-item"><div class="hero-strip-num">2–4</div><div class="hero-strip-text">minute read</div></div>
-                <div class="hero-strip-item"><div class="hero-strip-num">0</div><div class="hero-strip-text">hype, no spam</div></div>
-              </div>
-            </div>
-
-            <div class="hero-actions">
+            <div class="actions">
               <a class="btn primary" href="#subscribe">Get Free Email</a>
               <a class="btn" href="archive.html">Open Archive</a>
               <a class="btn" href="#watch">Live Watchlist</a>
               <a class="btn" href="#premium">Premium Tools</a>
             </div>
 
-            <div class="hero-note">Scroll for watchlist charts, premium tools, and FAQ.</div>
+            <div class="note">Scroll for live charts, premium tools, and the subscribe card.</div>
           </div>
 
-          <aside class="hero-right">
-            <div class="hero-right-title">Today at a glance</div>
+          <aside class="aside">
+            <div class="aside-title">Today at a glance</div>
 
-            <div class="snapshot-grid">
-              <div class="snap">
-                <div class="snap-top"><div class="snap-label">S&P 500</div><div class="snap-chip">Benchmark</div></div>
-                <div class="snap-body">
-                  <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "FOREXCOM:SPXUSD",
-  "width": "100%",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-                    </script>
-                  </div>
+            <div class="grid2">
+              <div class="tile">
+                <div class="tile-top">
+                  <div class="label">S&P 500</div><div class="chip">Benchmark</div>
+                </div>
+                <div class="tradingview-widget-container">
+                  <script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{ "symbol": "FOREXCOM:SPXUSD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                  </script>
                 </div>
               </div>
 
-              <div class="snap">
-                <div class="snap-top"><div class="snap-label">Nasdaq 100</div><div class="snap-chip">Growth</div></div>
-                <div class="snap-body">
-                  <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "NASDAQ:NDX",
-  "width": "100%",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-                    </script>
-                  </div>
+              <div class="tile">
+                <div class="tile-top">
+                  <div class="label">Nasdaq 100</div><div class="chip">Growth</div>
+                </div>
+                <div class="tradingview-widget-container">
+                  <script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{ "symbol": "NASDAQ:NDX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                  </script>
                 </div>
               </div>
 
-              <div class="snap">
-                <div class="snap-top"><div class="snap-label">EURUSD</div><div class="snap-chip">FX</div></div>
-                <div class="snap-body">
-                  <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "OANDA:EURUSD",
-  "width": "100%",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-                    </script>
-                  </div>
+              <div class="tile">
+                <div class="tile-top">
+                  <div class="label">EURUSD</div><div class="chip">FX</div>
+                </div>
+                <div class="tradingview-widget-container">
+                  <script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{ "symbol": "OANDA:EURUSD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                  </script>
                 </div>
               </div>
 
-              <div class="snap">
-                <div class="snap-top"><div class="snap-label">BTC</div><div class="snap-chip">Crypto</div></div>
-                <div class="snap-body">
-                  <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "BITSTAMP:BTCUSD",
-  "width": "100%",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-                    </script>
-                  </div>
+              <div class="tile">
+                <div class="tile-top">
+                  <div class="label">BTC</div><div class="chip">Crypto</div>
+                </div>
+                <div class="tradingview-widget-container">
+                  <script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{ "symbol": "COINBASE:BTCUSD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                  </script>
                 </div>
               </div>
             </div>
 
-            <div class="hero-note">Live quotes via TradingView.</div>
+            <div class="note">Live quotes via TradingView.</div>
           </aside>
         </div>
 
         <div class="scroll-cue">
-          <a class="scroll-link" href="#below">Explore ↓ <span style="opacity:.9;">Scroll</span></a>
+          <a class="scroll-link" href="#below">Explore ↓ <span style="opacity:.9">Scroll</span></a>
         </div>
       </div>
     </section>
 
     <div id="below"></div>
 
-    <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
-      <div class="panel-header">
+    <section class="panel" id="watch" aria-label="Watchlist">
+      <div class="panel-head">
         <div>
-          <div class="panel-title">How to use this</div>
-          <div class="panel-subtitle">Quick scan → deeper read.</div>
+          <div class="ptitle">Live watchlist</div>
+          <div class="psub">Tap a market → chart loads.</div>
         </div>
-        <div class="time-indicator">30 seconds</div>
+        <div class="ptime">Interactive</div>
       </div>
 
-      <div class="tiles-grid">
-        <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 01</div><div class="tile-pill">Scan</div></div>
-          <div class="tile-title">Check drivers & volatility</div>
-          <div class="tile-line">Index levels, FX, crypto, risk context.</div>
-        </div>
-
-        <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 02</div><div class="tile-pill">Decide</div></div>
-          <div class="tile-title">Pick what you need</div>
-          <div class="tile-line">Macro framing, catalysts, positioning.</div>
-        </div>
-
-        <div class="tile reveal">
-          <div class="tile-top"><div class="tile-num">Step 03</div><div class="tile-pill">Execute</div></div>
-          <div class="tile-title">Use it like a brief</div>
-          <div class="tile-line">Headlines → takeaways → link outs.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel reveal" id="watch" aria-label="Watchlist">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title">Live watchlist</div>
-          <div class="panel-subtitle">Tap a market → chart loads.</div>
-        </div>
-        <div class="time-indicator">Interactive</div>
-      </div>
-
-      <div class="watchlist-row">
+      <div class="watch-row">
         <button class="watch-btn active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
         <button class="watch-btn" data-symbol="NASDAQ:NDX">NDX</button>
         <button class="watch-btn" data-symbol="OANDA:EURUSD">EURUSD</button>
-        <button class="watch-btn" data-symbol="BITSTAMP:BTCUSD">BTC</button>
+        <button class="watch-btn" data-symbol="COINBASE:BTCUSD">BTC</button>
         <button class="watch-btn" data-symbol="OANDA:XAUUSD">GOLD</button>
       </div>
 
-      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;"></div>
-
-      <p style="position:relative;z-index:1;font-size:11px;color:var(--text-muted);margin-top:10px;">
-        If TradingView is blocked by an adblocker, charts may not load.
-      </p>
+      <div class="tradingview-widget-container" id="watch-widget"></div>
+      <div class="note">If TradingView is blocked on a network, charts may not load.</div>
     </section>
 
-    <section class="panel reveal" id="latest" aria-label="Latest">
-      <div class="panel-header">
+    <section class="panel" id="premium" aria-label="Premium tools">
+      <div class="panel-head">
         <div>
-          <div class="panel-title">What’s new</div>
-          <div class="panel-subtitle">Archive stays accurate as you publish.</div>
+          <div class="ptitle">Premium tools</div>
+          <div class="psub">Members only (gated).</div>
         </div>
-        <div class="time-indicator">Updated</div>
+        <div class="ptime">Members</div>
       </div>
 
-      <div class="latest-grid">
-        <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">Latest issue</div><div class="latest-date">Pick a date</div></div>
-          <div class="latest-title">Open the calendar for the newest note</div>
-          <div class="latest-desc">Use Archive as your source of truth.</div>
-          <div class="latest-actions">
-            <a class="mini-link" href="archive.html">Open Archive ↗</a>
-            <a class="mini-link secondary" href="#subscribe">Get emails</a>
+      <div class="subscribe-card">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline">
+          <div>
+            <div class="label" style="margin-bottom:6px">FinTrend Portfolio</div>
+            <div style="font-size:16px; font-weight:800; color:#e5e7eb">Open the member dashboard</div>
           </div>
+          <div class="chip">Premium</div>
         </div>
 
-        <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">New here?</div><div class="latest-date">Start fast</div></div>
-          <div class="latest-title">A 30-second routine</div>
-          <div class="latest-desc">Scan quotes → check a chart → open the note from the calendar.</div>
-          <div class="latest-actions">
-            <a class="mini-link" href="#watch">Watchlist ↗</a>
-            <a class="mini-link secondary" href="#how">How it works</a>
-          </div>
+        <div class="note" style="margin-top:10px">
+          This button will send premium users to <strong>premium.html</strong>. Non-premium users get the checkout link.
         </div>
+
+        <div class="modal-row" style="margin-top:12px">
+          <a class="mbtn-primary" href="#" id="open-premium-dashboard">Open Premium Dashboard</a>
+          <a class="mbtn-secondary" href="#" id="manage-membership">Manage Membership</a>
+        </div>
+
+        <div class="fineprint" id="premium-status">Sign in to check access.</div>
       </div>
     </section>
 
-    <section class="panel reveal" id="premium" aria-label="Premium tools">
-      <div class="panel-header">
+    <section class="panel" id="subscribe" aria-label="Subscribe">
+      <div class="panel-head">
         <div>
-          <div class="panel-title">Premium tools</div>
-          <div class="panel-subtitle">Members only.</div>
+          <div class="ptitle">Subscribe</div>
+          <div class="psub">Make this the cleanest part of the page.</div>
         </div>
-        <div class="time-indicator">Members</div>
+        <div class="ptime">Free</div>
       </div>
 
-      <div class="latest-grid" style="grid-template-columns:1fr;">
-        <div class="latest-card reveal">
-          <div class="latest-top"><div class="latest-tag">FinTrend Portfolio</div><div class="latest-date">Premium</div></div>
-          <div class="latest-title">Open the member dashboard</div>
-          <div class="latest-desc">Trade setups, portfolio entries, and tracking.</div>
+      <div class="subscribe-wrap">
+        <div class="subscribe-card">
+          <div class="subscribe-title">Get FinTrend News</div>
+          <div class="subscribe-sub">Sell-side style market notes. 4× per week. Free. No spam.</div>
 
-          <div class="latest-actions">
-            <a class="mini-link" href="#" id="open-premium-dashboard">Open Premium Dashboard ↗</a>
-            <a class="mini-link secondary" href="#" id="manage-membership">Manage Membership</a>
+          <div class="bullets">
+            <div class="b"><div class="dot"></div><div class="btxt">Macro drivers + positioning, in plain English.</div></div>
+            <div class="b"><div class="dot"></div><div class="btxt">Fast read: 2–4 minutes. Save the time.</div></div>
+            <div class="b"><div class="dot"></div><div class="btxt">Archive calendar stays up-to-date as you publish.</div></div>
           </div>
-
-          <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">Sign in to check access.</p>
         </div>
-      </div>
-    </section>
 
-    <section class="panel reveal" id="faq" aria-label="FAQ">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title">Quick answers</div>
-          <div class="panel-subtitle">Click to expand.</div>
-        </div>
-        <div class="time-indicator">FAQ</div>
-      </div>
-
-      <div class="faq">
-        <details class="faq-item">
-          <summary>What do I get each week? <span class="chev">▾</span></summary>
-          <div class="faq-ans">Four notes per week: outlook, momentum, recap, macro.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>Is this financial advice? <span class="chev">▾</span></summary>
-          <div class="faq-ans">No—informational only. Not a recommendation.</div>
-        </details>
-
-        <details class="faq-item">
-          <summary>How do I find the newest note? <span class="chev">▾</span></summary>
-          <div class="faq-ans">Open the Archive calendar and click the most recent date.</div>
-        </details>
-      </div>
-    </section>
-
-    <section id="subscribe" class="panel reveal" style="margin-top: 18px;">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title">Subscribe</div>
-          <div class="panel-subtitle">Get new issues in your inbox.</div>
-        </div>
-        <div class="time-indicator">Free</div>
-      </div>
-
-      <div style="position:relative;z-index:1;">
-        <form
-          action="https://github.us1.list-manage.com/subscribe/post?u=f93d4125631bb82d0915cc5d5&amp;id=0ad7096e52&amp;f_id=00addae4f0"
-          method="post"
-          target="_blank"
-          novalidate
-          style="display:flex;flex-wrap:wrap;gap:8px;max-width:420px;"
-        >
-          <input
-            type="email"
-            name="EMAIL"
-            placeholder="your@email.com"
-            required
-            style="flex:1;min-width:180px;padding:10px 12px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);background:#020617;color:#f9fafb;font-size:12px;"
-          />
-          <div style="position:absolute;left:-5000px;" aria-hidden="true">
-            <input type="text" name="b_f93d4125631bb82d0915cc5d5_0ad7096e52" tabindex="-1" value="">
-          </div>
-          <button
-            type="submit"
-            style="padding:10px 16px;border-radius:999px;border:none;background:var(--accent);color:#000;font-size:12px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;"
+        <div class="form">
+          <form
+            action="https://github.us1.list-manage.com/subscribe/post?u=f93d4125631bb82d0915cc5d5&amp;id=0ad7096e52&amp;f_id=00addae4f0"
+            method="post"
+            target="_blank"
+            novalidate
+            style="display:flex; gap:10px; flex-wrap:wrap; width:100%; align-items:center"
           >
-            Subscribe
-          </button>
-        </form>
+            <input class="input" type="email" name="EMAIL" placeholder="you@email.com" required />
 
-        <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-          Powered by Mailchimp.
-        </p>
+            <div style="position:absolute; left:-5000px" aria-hidden="true">
+              <input type="text" name="b_f93d4125631bb82d0915cc5d5_0ad7096e52" tabindex="-1" value="" />
+            </div>
+
+            <button class="submit" type="submit">Get the Brief</button>
+          </form>
+
+          <div class="fineprint">Opens Mailchimp in a new tab so your landing page never “goes blank”.</div>
+        </div>
       </div>
     </section>
 
-    <footer class="reveal">
-      <p style="max-width:740px;margin:0 auto 6px;">
-        <strong>Disclaimer:</strong> Informational/educational only. Not financial advice.
+    <footer>
+      <p style="max-width:760px; margin:0 auto 8px;">
+        <strong>Disclaimer:</strong> Informational / educational only. Not financial advice.
       </p>
-      <p>© 2025 FinTrend News · <a href="archive.html">Archive</a></p>
+      <p>© 2026 FinTrend News · <a href="archive.html">Archive / Calendar</a></p>
     </footer>
   </div>
 
   <div id="auth-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
       <button class="modal-close" id="close-auth-modal" aria-label="Close">×</button>
-
-      <div class="modal-kicker">Account</div>
+      <div class="modal-kicker">FinTrend Account</div>
       <h2 class="modal-title" id="auth-modal-title">Sign in</h2>
-
       <p class="modal-subtitle" id="auth-subtitle">Sign in to access premium tools.</p>
 
       <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
-        <input
-          id="auth-email"
-          type="email"
-          placeholder="Email"
-          required
-          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
-        />
-        <input
-          id="auth-password"
-          type="password"
-          placeholder="Password"
-          required
-          style="padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:#f9fafb;font-size:12px;"
-        />
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
-          <button type="submit" class="modal-primary-btn" id="auth-submit-btn">Sign in</button>
-          <button type="button" class="modal-secondary-btn" id="auth-toggle-btn">Create account</button>
+        <input id="auth-email" class="field" type="email" placeholder="Email" required />
+        <input id="auth-password" class="field" type="password" placeholder="Password" required />
+        <div class="modal-row">
+          <button type="submit" class="mbtn-primary" id="auth-submit-btn">Sign in</button>
+          <button type="button" class="mbtn-secondary" id="auth-toggle-btn">Create account</button>
         </div>
-
-        <div id="auth-msg" style="margin-top:8px;font-size:12px;color:#e5e7eb;"></div>
+        <div id="auth-msg" style="margin-top:6px;font-size:12px;color:#e5e7eb;"></div>
       </form>
 
-      <div style="margin-top:12px;border-top:1px solid rgba(148,163,184,0.25);padding-top:12px;">
-        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">Forgot password</button>
+      <div style="margin-top:12px;border-top:1px solid rgba(148,163,184,.25);padding-top:12px;">
+        <button type="button" class="mbtn-secondary" id="auth-reset-btn" style="width:100%;">Forgot password</button>
       </div>
     </div>
   </div>
@@ -1261,335 +696,270 @@
   <div id="premium-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="premium-modal-title">
       <button class="modal-close" id="close-premium-modal" aria-label="Close">×</button>
-
-      <div class="modal-kicker">Premium</div>
+      <div class="modal-kicker">FinTrend Premium</div>
       <h2 class="modal-title" id="premium-modal-title">Upgrade</h2>
-      <p class="modal-subtitle">Unlock the premium feed.</p>
-
-      <div class="modal-btn-row">
-        <a href="#" class="modal-primary-btn" id="go-premium-checkout">Go Premium</a>
-        <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">Keep Free</a>
+      <p class="modal-subtitle">Unlock member tools and trade-ready notes.</p>
+      <div class="modal-row">
+        <a href="#" class="mbtn-primary" id="go-premium-checkout">Go Premium</a>
+        <a href="#subscribe" class="mbtn-secondary" id="go-free-subscribe">Keep Free</a>
       </div>
+      <div class="fineprint" style="margin-top:10px">If you haven’t set your payment link yet, this will show a message (no blank pages).</div>
     </div>
   </div>
 
   <script>
-    const watchWrap = document.getElementById('watch-widget');
-    const buttons = document.querySelectorAll('.watch-btn');
-
-    function loadMiniChart(symbol){
-      if (!watchWrap) return;
-      watchWrap.innerHTML = "";
-      const s = document.createElement("script");
-      s.type = "text/javascript";
-      s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
-      s.async = true;
-      s.innerHTML = JSON.stringify({
-        symbol,
-        width: "100%",
-        height: 240,
-        locale: "en",
-        dateRange: "3M",
-        colorTheme: "dark",
-        isTransparent: true,
-        autosize: true,
-        largeChartUrl: ""
-      });
-      watchWrap.appendChild(s);
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        loadMiniChart(btn.dataset.symbol);
-      });
-    });
-
-    loadMiniChart("FOREXCOM:SPXUSD");
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === "#") return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    const revealEls = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
-          }
+    document.addEventListener("DOMContentLoaded", () => {
+      // Smooth anchor scroll (never breaks if section missing)
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href");
+          if (!id || id === "#") return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
         });
-      }, { threshold: 0.12 });
-      revealEls.forEach(el => io.observe(el));
-    } else {
-      revealEls.forEach(el => el.classList.add('in-view'));
-    }
-
-    const openPremiumBtn  = document.getElementById('open-premium-modal');
-    const premiumModal    = document.getElementById('premium-modal');
-    const closePremiumBtn = document.getElementById('close-premium-modal');
-    const freeBtn  = document.getElementById('go-free-subscribe');
-
-    function openPremiumModal(e) {
-      if (!premiumModal) return;
-      e.preventDefault();
-      premiumModal.classList.add('active');
-      premiumModal.setAttribute('aria-hidden', 'false');
-    }
-    function closePremiumModal() {
-      if (!premiumModal) return;
-      premiumModal.classList.remove('active');
-      premiumModal.setAttribute('aria-hidden', 'true');
-    }
-    if (openPremiumBtn)  openPremiumBtn.addEventListener('click', openPremiumModal);
-    if (closePremiumBtn) closePremiumBtn.addEventListener('click', closePremiumModal);
-    if (premiumModal) {
-      premiumModal.addEventListener('click', function (e) {
-        if (e.target === premiumModal) closePremiumModal();
       });
-    }
-    if (freeBtn) freeBtn.addEventListener('click', closePremiumModal);
 
-    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const PAYMENT_LINK = "https://your-payment-link.com";
-
-    const goPremiumCheckout = document.getElementById("go-premium-checkout");
-    if (goPremiumCheckout) {
-      goPremiumCheckout.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.open(PAYMENT_LINK, "_blank", "noopener");
+      // TradingView watch chart
+      const watchWrap = document.getElementById("watch-widget");
+      const buttons = document.querySelectorAll(".watch-btn");
+      const loadMiniChart = (symbol) => {
+        if (!watchWrap) return;
+        watchWrap.innerHTML = "";
+        const s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        s.async = true;
+        s.innerHTML = JSON.stringify({
+          symbol,
+          width: "100%",
+          height: 260,
+          locale: "en",
+          dateRange: "3M",
+          colorTheme: "dark",
+          isTransparent: true,
+          autosize: true
+        });
+        watchWrap.appendChild(s);
+      };
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          loadMiniChart(btn.dataset.symbol);
+        });
       });
-    }
+      loadMiniChart("FOREXCOM:SPXUSD");
 
-    const authModal = document.getElementById("auth-modal");
-    const openAuthBtn = document.getElementById("open-auth-modal");
-    const closeAuthBtn = document.getElementById("close-auth-modal");
+      // Premium modal
+      const premiumModal = document.getElementById("premium-modal");
+      const openPremiumBtn = document.getElementById("open-premium-modal");
+      const closePremiumBtn = document.getElementById("close-premium-modal");
+      const freeBtn = document.getElementById("go-free-subscribe");
 
-    const authForm = document.getElementById("auth-form");
-    const authEmail = document.getElementById("auth-email");
-    const authPassword = document.getElementById("auth-password");
-    const authMsg = document.getElementById("auth-msg");
+      const openPremiumModal = (e) => {
+        if (e) e.preventDefault();
+        if (!premiumModal) return;
+        premiumModal.classList.add("active");
+        premiumModal.setAttribute("aria-hidden", "false");
+      };
+      const closePremiumModal = () => {
+        if (!premiumModal) return;
+        premiumModal.classList.remove("active");
+        premiumModal.setAttribute("aria-hidden", "true");
+      };
+      if (openPremiumBtn) openPremiumBtn.addEventListener("click", openPremiumModal);
+      if (closePremiumBtn) closePremiumBtn.addEventListener("click", closePremiumModal);
+      if (freeBtn) freeBtn.addEventListener("click", () => closePremiumModal());
+      if (premiumModal) premiumModal.addEventListener("click", (e) => { if (e.target === premiumModal) closePremiumModal(); });
 
-    const authTitle = document.getElementById("auth-modal-title");
-    const authSubtitle = document.getElementById("auth-subtitle");
-    const authSubmitBtn = document.getElementById("auth-submit-btn");
-    const authToggleBtn = document.getElementById("auth-toggle-btn");
-    const authResetBtn = document.getElementById("auth-reset-btn");
-
-    const signoutLink = document.getElementById("signout-link");
-    const userChip = document.getElementById("user-chip");
-
-    const openPremiumDashboard = document.getElementById("open-premium-dashboard");
-    const manageMembership = document.getElementById("manage-membership");
-    const premiumStatus = document.getElementById("premium-status");
-
-    let mode = "signin";
-
-    function openAuthModal(e){
-      if (e) e.preventDefault();
-      if (!authModal) return;
-      authModal.classList.add("active");
-      authModal.setAttribute("aria-hidden", "false");
-      if (authMsg) authMsg.textContent = "";
-    }
-    function closeAuthModal(){
-      if (!authModal) return;
-      authModal.classList.remove("active");
-      authModal.setAttribute("aria-hidden", "true");
-      if (authMsg) authMsg.textContent = "";
-    }
-
-    if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
-    if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
-    if (authModal) {
-      authModal.addEventListener("click", (e) => {
-        if (e.target === authModal) closeAuthModal();
-      });
-    }
-
-    function setAuthMode(nextMode){
-      mode = nextMode;
-      if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
-
-      if (mode === "signin") {
-        authTitle.textContent = "Sign in";
-        authSubtitle.textContent = "Sign in to access premium tools.";
-        authSubmitBtn.textContent = "Sign in";
-        authToggleBtn.textContent = "Create account";
-      } else {
-        authTitle.textContent = "Create account";
-        authSubtitle.textContent = "Create an account (then subscribe for premium).";
-        authSubmitBtn.textContent = "Sign up";
-        authToggleBtn.textContent = "I already have an account";
-      }
-      if (authMsg) authMsg.textContent = "";
-    }
-
-    if (authToggleBtn) {
-      authToggleBtn.addEventListener("click", () => {
-        setAuthMode(mode === "signin" ? "signup" : "signin");
-      });
-    }
-
-    if (authResetBtn) {
-      authResetBtn.addEventListener("click", async () => {
-        const email = (authEmail?.value || "").trim();
-        if (!email) {
-          if (authMsg) authMsg.textContent = "Enter your email first.";
+      // Payment link: prevent blank pages if you haven’t set it yet
+      const PAYMENT_LINK = "https://your-payment-link.com";
+      const safeOpenPayment = () => {
+        if (!PAYMENT_LINK || PAYMENT_LINK.includes("your-payment-link.com")) {
+          alert("Add your real Stripe payment link in PAYMENT_LINK inside index.html.");
           return;
         }
-        if (authMsg) authMsg.textContent = "Sending reset email...";
-        const { error } = await supabase.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.origin
-        });
-        if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check inbox.";
-      });
-    }
+        window.open(PAYMENT_LINK, "_blank", "noopener");
+      };
+      const goPremiumCheckout = document.getElementById("go-premium-checkout");
+      if (goPremiumCheckout) goPremiumCheckout.addEventListener("click", (e) => { e.preventDefault(); safeOpenPayment(); });
 
-    if (authForm) {
-      authForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        if (authMsg) authMsg.textContent = "Working...";
+      // Auth modal + Supabase (guarded so the whole page never breaks)
+      const authModal = document.getElementById("auth-modal");
+      const openAuthBtn = document.getElementById("open-auth-modal");
+      const closeAuthBtn = document.getElementById("close-auth-modal");
 
-        const email = (authEmail?.value || "").trim();
-        const password = authPassword?.value || "";
+      const authForm = document.getElementById("auth-form");
+      const authEmail = document.getElementById("auth-email");
+      const authPassword = document.getElementById("auth-password");
+      const authMsg = document.getElementById("auth-msg");
+      const authTitle = document.getElementById("auth-modal-title");
+      const authSubtitle = document.getElementById("auth-subtitle");
+      const authSubmitBtn = document.getElementById("auth-submit-btn");
+      const authToggleBtn = document.getElementById("auth-toggle-btn");
+      const authResetBtn = document.getElementById("auth-reset-btn");
 
-        try {
-          if (mode === "signin") {
-            const { error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) throw error;
-            closeAuthModal();
-            await refreshUI();
-          } else {
-            const { error } = await supabase.auth.signUp({ email, password });
-            if (error) throw error;
-            if (authMsg) authMsg.textContent = "Account created ✅ Check email if confirmations are enabled.";
-            await refreshUI();
-          }
-        } catch (err) {
-          if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
-        }
-      });
-    }
+      const signoutLink = document.getElementById("signout-link");
+      const userChip = document.getElementById("user-chip");
 
-    if (signoutLink) {
-      signoutLink.addEventListener("click", async (e) => {
-        e.preventDefault();
-        await supabase.auth.signOut();
-        await refreshUI();
-      });
-    }
+      const openPremiumDashboard = document.getElementById("open-premium-dashboard");
+      const manageMembership = document.getElementById("manage-membership");
+      const premiumStatus = document.getElementById("premium-status");
 
-    async function ensureProfile(user){
-      if (!user) return null;
-      const { data: existing, error: fetchErr } = await supabase
-        .from("profiles")
-        .select("id,email,is_premium")
-        .eq("id", user.id)
-        .maybeSingle();
+      const openAuthModal = (e) => {
+        if (e) e.preventDefault();
+        if (!authModal) return;
+        authModal.classList.add("active");
+        authModal.setAttribute("aria-hidden", "false");
+        if (authMsg) authMsg.textContent = "";
+      };
+      const closeAuthModal = () => {
+        if (!authModal) return;
+        authModal.classList.remove("active");
+        authModal.setAttribute("aria-hidden", "true");
+        if (authMsg) authMsg.textContent = "";
+      };
 
-      if (fetchErr) return null;
-      if (existing) return existing;
+      if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
+      if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
+      if (authModal) authModal.addEventListener("click", (e) => { if (e.target === authModal) closeAuthModal(); });
 
-      const { data: created, error: insertErr } = await supabase
-        .from("profiles")
-        .insert([{ id: user.id, email: user.email, is_premium: false }])
-        .select("id,email,is_premium")
-        .single();
-
-      if (insertErr) return null;
-      return created;
-    }
-
-    async function getProfile(user){
-      if (!user) return null;
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("id,email,is_premium")
-        .eq("id", user.id)
-        .maybeSingle();
-      if (error) return null;
-      return data || null;
-    }
-
-    async function refreshUI(){
-      const { data } = await supabase.auth.getUser();
-      const user = data?.user || null;
-
-      if (!user) {
-        if (openAuthBtn) openAuthBtn.style.display = "";
-        if (signoutLink) signoutLink.style.display = "none";
-        if (userChip) userChip.style.display = "none";
-        if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
+      // If Supabase fails to load, disable auth features without breaking the page
+      if (!window.supabase || !window.supabase.createClient) {
+        if (openAuthBtn) openAuthBtn.style.display = "none";
+        if (premiumStatus) premiumStatus.textContent = "Auth disabled: Supabase library did not load.";
         return;
       }
 
-      if (openAuthBtn) openAuthBtn.style.display = "none";
-      if (signoutLink) signoutLink.style.display = "";
-      if (userChip) {
-        userChip.style.display = "";
-        userChip.textContent = "Signed in: " + (user.email || "user");
+      const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      let mode = "signin";
+      const setAuthMode = (m) => {
+        mode = m;
+        if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
+        if (mode === "signin") {
+          authTitle.textContent = "Sign in";
+          authSubtitle.textContent = "Sign in to access premium tools.";
+          authSubmitBtn.textContent = "Sign in";
+          authToggleBtn.textContent = "Create account";
+        } else {
+          authTitle.textContent = "Create account";
+          authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+          authSubmitBtn.textContent = "Sign up";
+          authToggleBtn.textContent = "I already have an account";
+        }
+        if (authMsg) authMsg.textContent = "";
+      };
+
+      if (authToggleBtn) authToggleBtn.addEventListener("click", () => setAuthMode(mode === "signin" ? "signup" : "signin"));
+
+      if (authResetBtn) {
+        authResetBtn.addEventListener("click", async () => {
+          const email = (authEmail?.value || "").trim();
+          if (!email) { if (authMsg) authMsg.textContent = "Enter your email above first."; return; }
+          if (authMsg) authMsg.textContent = "Sending reset email...";
+          const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+          if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
+        });
       }
 
-      await ensureProfile(user);
-      const profile = await getProfile(user);
-
-      if (profile && profile.is_premium) {
-        if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
-      } else if (profile) {
-        if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
-      } else {
-        if (premiumStatus) premiumStatus.textContent = "Premium status unavailable (profiles table blocked/missing).";
+      if (authForm) {
+        authForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          if (authMsg) authMsg.textContent = "Working...";
+          const email = (authEmail?.value || "").trim();
+          const password = authPassword?.value || "";
+          try {
+            if (mode === "signin") {
+              const { error } = await supabase.auth.signInWithPassword({ email, password });
+              if (error) throw error;
+              if (authMsg) authMsg.textContent = "Signed in ✅";
+              closeAuthModal();
+              await refreshUI();
+            } else {
+              const { error } = await supabase.auth.signUp({ email, password });
+              if (error) throw error;
+              if (authMsg) authMsg.textContent = "Account created ✅ (check email if confirmations are on)";
+              await refreshUI();
+            }
+          } catch (err) {
+            if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
+          }
+        });
       }
-    }
 
-    if (openPremiumDashboard) {
-      openPremiumDashboard.addEventListener("click", async (e) => {
-        e.preventDefault();
+      if (signoutLink) {
+        signoutLink.addEventListener("click", async (e) => {
+          e.preventDefault();
+          await supabase.auth.signOut();
+          await refreshUI();
+        });
+      }
 
+      const ensureProfile = async (user) => {
+        if (!user) return null;
+        const { data: existing } = await supabase.from("profiles").select("id,email,is_premium").eq("id", user.id).maybeSingle();
+        if (existing) return existing;
+        const { data: created } = await supabase
+          .from("profiles")
+          .insert([{ id: user.id, email: user.email, is_premium: false }])
+          .select("id,email,is_premium")
+          .single();
+        return created || null;
+      };
+
+      const getProfile = async (user) => {
+        if (!user) return null;
+        const { data } = await supabase.from("profiles").select("id,email,is_premium").eq("id", user.id).maybeSingle();
+        return data || null;
+      };
+
+      const refreshUI = async () => {
         const { data } = await supabase.auth.getUser();
         const user = data?.user || null;
 
         if (!user) {
-          openAuthModal();
+          if (openAuthBtn) openAuthBtn.style.display = "";
+          if (signoutLink) signoutLink.style.display = "none";
+          if (userChip) userChip.style.display = "none";
+          if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
           return;
         }
 
+        if (openAuthBtn) openAuthBtn.style.display = "none";
+        if (signoutLink) signoutLink.style.display = "";
+        if (userChip) { userChip.style.display = ""; userChip.textContent = "Signed in: " + (user.email || "user"); }
+
+        await ensureProfile(user);
         const profile = await getProfile(user);
 
-        if (profile && profile.is_premium) {
-          window.location.href = "premium.html";
-        } else {
-          window.open(PAYMENT_LINK, "_blank", "noopener");
-        }
-      });
-    }
+        if (profile && profile.is_premium) premiumStatus.textContent = "Premium: active ✅";
+        else if (profile) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
+        else premiumStatus.textContent = "Premium status unavailable (profiles table blocked or missing).";
+      };
 
-    if (manageMembership) {
-      manageMembership.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.open(PAYMENT_LINK, "_blank", "noopener");
-      });
-    }
+      if (openPremiumDashboard) {
+        openPremiumDashboard.addEventListener("click", async (e) => {
+          e.preventDefault();
+          const { data } = await supabase.auth.getUser();
+          const user = data?.user || null;
+          if (!user) { openAuthModal(); return; }
+          const profile = await getProfile(user);
+          if (profile && profile.is_premium) window.location.href = "premium.html";
+          else safeOpenPayment();
+        });
+      }
 
-    supabase.auth.onAuthStateChange(async () => {
-      await refreshUI();
+      if (manageMembership) manageMembership.addEventListener("click", (e) => { e.preventDefault(); safeOpenPayment(); });
+
+      supabase.auth.onAuthStateChange(() => refreshUI());
+      setAuthMode("signin");
+      refreshUI();
     });
-
-    setAuthMode("signin");
-    refreshUI();
   </script>
 </body>
 </html>
