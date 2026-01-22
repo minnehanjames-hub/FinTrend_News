@@ -5,8 +5,9 @@
   <title>Archive Calendar · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Ensures all relative links work cleanly on GitHub Pages project sites -->
-  <base href="./">
+  <!-- FIX: If this archive page lives inside a folder (common: /archive/),
+       this base makes links resolve to the site root correctly. -->
+  <base href="../">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -840,7 +841,7 @@
           <div class="day-meta">MLK Day closure: repricing risk when cash reopens; headlines + earnings.</div>
         </div>
 
-        <!-- FIXED: Added has-note + improved meta -->
+        <!-- FIXED: has-note so it behaves like other published entries -->
         <div class="day-cell has-note">
           <div>
             <div class="day-label">Wednesday</div>
