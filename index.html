@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -417,23 +418,6 @@
     }
     .snap-body{font-size:12px;color:#e5e7eb;line-height:1.35}
 
-    .scroll-cue{display:flex;justify-content:center;margin-top:14px;opacity:0.92}
-    .scroll-link{
-      text-decoration:none;color:var(--text-muted);
-      border:1px solid rgba(148,163,184,0.24);
-      background:rgba(2,6,23,0.35);
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:12px;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      transition:0.18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-    }
-    .scroll-link:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35);color:var(--text-main)}
-
     /* Panels */
     .panel{
       background:rgba(15, 23, 42, 0.90);
@@ -605,6 +589,7 @@
       display:grid;
       grid-template-rows:auto 1fr auto;
       gap:12px;
+      touch-action:pan-y;
     }
     .wheel-right::before{
       content:"";
@@ -665,6 +650,8 @@
       box-shadow:0 16px 40px rgba(0,0,0,0.35);
       overflow:hidden;
       flex:0 0 auto;
+      transition:transform 0.25s ease;
+      will-change:transform;
     }
     .wheel-dial::after{
       content:"";
@@ -702,6 +689,7 @@
       flex-direction:column;
       justify-content:space-between;
       gap:10px;
+      user-select:none;
     }
     .wheel-card::before{
       content:"";
@@ -869,6 +857,14 @@
       box-shadow:0 18px 55px rgba(0,0,0,0.35);
       border-color:rgba(244,193,93,0.35);
     }
+
+    .watch-fallback{
+      margin-top:10px;
+      font-size:11px;
+      color:var(--text-muted);
+      display:none;
+    }
+    .watch-fallback a{color:var(--accent);text-decoration:underline}
 
     /* Content grids */
     .two-col{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -1325,14 +1321,8 @@
             <div class="hero-note">Live quotes (TradingView). Swap symbols anytime.</div>
           </aside>
         </div>
-
-        <div class="scroll-cue">
-          <a class="scroll-link" href="#below">Explore ↓ <span style="opacity:.9;">Scroll</span></a>
-        </div>
       </div>
     </section>
-
-    <div id="below"></div>
 
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
@@ -1385,7 +1375,7 @@
           </div>
         </div>
 
-        <div class="wheel-right">
+        <div class="wheel-right" id="wheel-swipe">
           <div class="wheel-topbar">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
               <div class="wheel-dial" id="wheel-dial" aria-hidden="true"></div>
@@ -1435,9 +1425,9 @@
         <div class="tradingview-widget-container" id="watch-widget">
           <!-- widget injects here -->
         </div>
-        <p style="font-size:11px;color:var(--text-muted);margin-top:10px;">
-          Sticky-inside-card behavior makes this feel like a tool (not a section).
-        </p>
+        <div class="watch-fallback" id="watch-fallback">
+          Chart didn’t load. <a id="watch-open-tv" href="#" rel="noopener">Open this symbol on TradingView ↗</a>
+        </div>
       </div>
 
       <div style="position:relative;z-index:1;margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;">
@@ -1706,671 +1696,728 @@
   </div>
 
   <script>
-    // -----------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------
-    function safeSmoothScrollTo(hash){
-      const el = document.querySelector(hash);
-      if (!el) return;
-      el.scrollIntoView({ behavior:'smooth', block:'start' });
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',(e)=>{
-        const id = a.getAttribute('href');
-        if (!id || id === "#") return;
-        const el = document.querySelector(id);
+    (function(){
+      "use strict";
+
+      // -----------------------------------------------------
+      // Helpers
+      // -----------------------------------------------------
+      function safeSmoothScrollTo(hash){
+        const el = document.querySelector(hash);
         if (!el) return;
-        e.preventDefault();
-        safeSmoothScrollTo(id);
-      });
-    });
-
-    // -----------------------------------------------------
-    // What you get: Wheel (Free -> Premium)
-    // -----------------------------------------------------
-    const wheelData = [
-      {
-        tier: "Free",
-        title: "Macro Drivers",
-        desc: "The quick framing: what’s pushing risk-on / risk-off and which macro inputs matter right now.",
-        bullets: ["Rates / USD / oil / credit tone", "“So what” summary, not headlines", "One clean narrative thread"]
-      },
-      {
-        tier: "Free",
-        title: "Momentum & Flows",
-        desc: "What’s working, what’s fading, and where the crowd is leaning — in plain English.",
-        bullets: ["Leadership & rotation signals", "Crowding + momentum read", "Focus on what moves price"]
-      },
-      {
-        tier: "Free",
-        title: "Catalysts With Context",
-        desc: "CPI/FOMC/earnings — the setup, what matters, and what would actually change the regime.",
-        bullets: ["Pre-event framing", "Post-event takeaways", "Simple scenario map"]
-      },
-      {
-        tier: "Free",
-        title: "Archive-First Notes",
-        desc: "Everything stays organized. You publish, the archive stays accurate — no homepage updates required.",
-        bullets: ["Calendar archive workflow", "Fast scanning by date", "Permanent reference library"]
-      },
-      {
-        tier: "Premium",
-        title: "Levels & Zones",
-        desc: "Trade-ready structure: key levels, zones, and what would invalidate the read.",
-        bullets: ["Support / resistance map", "Volatility-aware zones", "Clean invalidation framework"]
-      },
-      {
-        tier: "Premium",
-        title: "Risk Regime Dashboard",
-        desc: "A tighter workflow: regime label, what confirms it, and what flips it.",
-        bullets: ["Risk-on / Neutral / Risk-off", "What to watch next", "Tactical + strategic alignment"]
-      },
-      {
-        tier: "Premium",
-        title: "Catalyst Add-Ons",
-        desc: "Short premium add-ons around key events — when it matters, not every day.",
-        bullets: ["Pre/post catalyst mini-notes", "Scenario updates", "Clean actionability"]
-      },
-      {
-        tier: "Premium",
-        title: "Member Tools",
-        desc: "Premium dashboard access (gated) for saved workflows and member-only modules.",
-        bullets: ["Member dashboard access", "Saved views / modules", "Future add-ons without redesign"]
-      }
-    ];
-
-    const wheelCard = document.getElementById("wheel-card");
-    const wheelDots = document.getElementById("wheel-dots");
-    const wheelPrev = document.getElementById("wheel-prev");
-    const wheelNext = document.getElementById("wheel-next");
-    const wheelDial = document.getElementById("wheel-dial");
-    const wheelLabel = document.getElementById("wheel-label");
-    const wheelSubscribeCTA = document.getElementById("wheel-subscribe-cta");
-
-    let wheelIdx = 0;
-
-    function renderWheelDots(){
-      if (!wheelDots) return;
-      wheelDots.innerHTML = "";
-      wheelData.forEach((item, i)=>{
-        const d = document.createElement("button");
-        d.type = "button";
-        d.className = "wheel-dot";
-        d.setAttribute("aria-label", (item.tier === "Premium" ? "Premium" : "Free") + " • " + item.title);
-        d.addEventListener("click", ()=>setWheel(i));
-        wheelDots.appendChild(d);
-      });
-    }
-
-    function setWheel(i){
-      wheelIdx = (i + wheelData.length) % wheelData.length;
-      const item = wheelData[wheelIdx];
-      if (!wheelCard) return;
-
-      const isPro = item.tier === "Premium";
-      wheelCard.className = "wheel-card" + (isPro ? " pro" : "");
-      if (wheelLabel){
-        wheelLabel.textContent = (isPro ? "Premium" : "Free") + " • " + item.title;
+        el.scrollIntoView({ behavior:'smooth', block:'start' });
       }
 
-      const stepText = (wheelIdx + 1) + " / " + wheelData.length;
-      wheelCard.innerHTML = `
-        <div>
-          <div class="wheel-card-top">
-            <div class="wheel-tag"><span class="kdot"></span><span>${isPro ? "Premium" : "Free"}</span></div>
-            <div class="wheel-step">${stepText}</div>
-          </div>
-          <div class="wheel-title">${item.title}</div>
-          <div class="wheel-desc">${item.desc}</div>
-          <ul class="wheel-bullets">
-            ${item.bullets.map(b=>`<li>${b}</li>`).join("")}
-          </ul>
-        </div>
-        <div class="wheel-footer" style="margin-top:6px;">
-          <div style="font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;">
-            ${isPro ? "Unlock with Premium" : "Included in Free"}
-          </div>
-          <div class="wheel-cta">
-            ${isPro ? `<a class="mini-link" href="#" id="wheel-open-premium">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
-            <a class="mini-link secondary" href="archive.html">Open archive</a>
-          </div>
-        </div>
-      `;
+      // Prevent "#"-jumps and smooth-scroll real anchors
+      document.addEventListener("click",(e)=>{
+        const a = e.target.closest("a");
+        if (!a) return;
+        const href = a.getAttribute("href");
+        if (!href) return;
 
-      // update dots
-      if (wheelDots){
-        Array.from(wheelDots.children).forEach((node, idx)=>{
-          node.classList.toggle("active", idx === wheelIdx);
-          node.classList.toggle("pro", idx === wheelIdx && wheelData[wheelIdx].tier === "Premium");
+        if (href === "#") {
+          e.preventDefault();
+          return;
+        }
+        if (href.startsWith("#")) {
+          const el = document.querySelector(href);
+          if (!el) return;
+          e.preventDefault();
+          safeSmoothScrollTo(href);
+        }
+      });
+
+      // -----------------------------------------------------
+      // Modals (generic)
+      // -----------------------------------------------------
+      function openModal(modal){
+        if (!modal) return;
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden","false");
+      }
+      function closeModal(modal){
+        if (!modal) return;
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden","true");
+      }
+      function closeAnyOpenModal(){
+        document.querySelectorAll(".modal-backdrop.active").forEach(m=>closeModal(m));
+      }
+
+      // ESC closes any modal
+      window.addEventListener("keydown",(e)=>{
+        if (e.key === "Escape") closeAnyOpenModal();
+      });
+
+      // Backdrop click closes modal
+      document.querySelectorAll(".modal-backdrop").forEach((backdrop)=>{
+        backdrop.addEventListener("click",(e)=>{
+          if (e.target === backdrop) closeModal(backdrop);
+        });
+      });
+
+      // -----------------------------------------------------
+      // Subscribe modal
+      // -----------------------------------------------------
+      const subscribeModal = document.getElementById("subscribe-modal");
+      const closeSub = document.getElementById("close-subscribe-modal");
+      const closeSub2 = document.getElementById("subscribe-secondary-close");
+
+      function openSubscribeModal(e){
+        if (e) e.preventDefault();
+        openModal(subscribeModal);
+      }
+      function closeSubscribeModal(){
+        closeModal(subscribeModal);
+      }
+
+      [
+        "open-subscribe-modal",
+        "open-subscribe-modal-2",
+        "open-subscribe-modal-3",
+        "open-subscribe-modal-4",
+        "open-subscribe-modal-5",
+        "open-subscribe-modal-6"
+      ].map(id=>document.getElementById(id)).filter(Boolean)
+        .forEach(el=>el.addEventListener("click", openSubscribeModal));
+
+      if (closeSub) closeSub.addEventListener("click", closeSubscribeModal);
+      if (closeSub2) closeSub2.addEventListener("click", closeSubscribeModal);
+
+      // -----------------------------------------------------
+      // Premium modal
+      // -----------------------------------------------------
+      const premiumModal    = document.getElementById("premium-modal");
+      const closePremiumBtn = document.getElementById("close-premium-modal");
+      const freeBtn         = document.getElementById("go-free-subscribe");
+
+      function openPremiumModal(e){
+        if (e) e.preventDefault();
+        openModal(premiumModal);
+      }
+      function closePremiumModal(){
+        closeModal(premiumModal);
+      }
+
+      const openPremiumBtn  = document.getElementById("open-premium-modal");
+      const openPremiumBtn2 = document.getElementById("open-premium-modal-2");
+      if (openPremiumBtn)  openPremiumBtn.addEventListener("click", openPremiumModal);
+      if (openPremiumBtn2) openPremiumBtn2.addEventListener("click", openPremiumModal);
+      if (closePremiumBtn) closePremiumBtn.addEventListener("click", closePremiumModal);
+
+      if (freeBtn){
+        freeBtn.addEventListener("click",(e)=>{
+          e.preventDefault();
+          closePremiumModal();
+          openSubscribeModal();
         });
       }
 
-      // dial "spin" (tiny micro-wow)
-      if (wheelDial){
-        const angle = (360 / wheelData.length) * wheelIdx;
-        wheelDial.style.setProperty("--wheel-angle", angle + "deg");
-        wheelDial.style.transform = "rotate(" + (angle * -1) + "deg)";
-      }
-
-      // hook CTA buttons inside card
-      const openSubInline = document.getElementById("wheel-open-subscribe");
-      if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(); });
-
-      const openProInline = document.getElementById("wheel-open-premium");
-      if (openProInline) openProInline.addEventListener("click", (e)=>{ e.preventDefault(); openPremiumModal(e); });
-    }
-
-    if (wheelPrev) wheelPrev.addEventListener("click", ()=>setWheel(wheelIdx - 1));
-    if (wheelNext) wheelNext.addEventListener("click", ()=>setWheel(wheelIdx + 1));
-    if (wheelSubscribeCTA) wheelSubscribeCTA.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(); });
-
-    renderWheelDots();
-    setWheel(0);
-
-    // -----------------------------------------------------
-    // TradingView Watchlist (interactive) — FIXED
-    // -----------------------------------------------------
-    const watchWrap = document.getElementById("watch-widget");
-    const buttons = document.querySelectorAll(".watch-btn");
-
-    function loadMiniChart(symbol) {
-      if (!watchWrap) return;
-
-      watchWrap.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
-
-      const s = document.createElement("script");
-      s.type = "text/javascript";
-      s.async = true;
-      s.src =
-        "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?cb=" +
-        Date.now();
-
-      s.text = JSON.stringify({
-        symbol: symbol,
-        width: "100%",
-        height: 280,
-        locale: "en",
-        dateRange: "3M",
-        colorTheme: "dark",
-        isTransparent: true,
-        autosize: true,
-        largeChartUrl: ""
-      });
-
-      watchWrap.appendChild(s);
-    }
-
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        buttons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
-      });
-    });
-
-    loadMiniChart("FOREXCOM:SPXUSD");
-
-    // -----------------------------------------------------
-    // Floating module behavior (adds "lift" styling)
-    // -----------------------------------------------------
-    const watchPanel = document.getElementById('watch');
-    const watchFloat = document.getElementById('watch-float');
-    const watchIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if (!watchFloat) return;
-        if (entry.isIntersecting) watchFloat.classList.add('floating');
-        else watchFloat.classList.remove('floating');
-      });
-    }, { threshold: 0.12 }) : null;
-    if (watchIO && watchPanel) watchIO.observe(watchPanel);
-
-    // -----------------------------------------------------
-    // Scroll reveal (UNBREAKABLE)
-    // -----------------------------------------------------
-    (function initScrollReveal(){
-      if (!('IntersectionObserver' in window)) return;
-      const els = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if (entry.isIntersecting){
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
+      // Replace with real Stripe payment link (leave empty to avoid blank page)
+      const PAYMENT_LINK = "";
+      const goPremiumCheckout = document.getElementById("go-premium-checkout");
+      if (goPremiumCheckout){
+        goPremiumCheckout.addEventListener("click",(e)=>{
+          e.preventDefault();
+          if (!PAYMENT_LINK){
+            alert("Premium checkout isn’t live yet. Coming soon.");
+            return;
           }
+          window.open(PAYMENT_LINK, "_blank", "noopener");
         });
-      }, { threshold: 0.12 });
-
-      document.documentElement.classList.add('sr');
-      els.forEach(el=>io.observe(el));
-    })();
-
-    // -----------------------------------------------------
-    // Subscribe modal
-    // -----------------------------------------------------
-    const subscribeModal = document.getElementById("subscribe-modal");
-    const openSub = [
-      "open-subscribe-modal",
-      "open-subscribe-modal-2",
-      "open-subscribe-modal-3",
-      "open-subscribe-modal-4",
-      "open-subscribe-modal-5",
-      "open-subscribe-modal-6"
-    ].map(id=>document.getElementById(id)).filter(Boolean);
-
-    const closeSub = document.getElementById("close-subscribe-modal");
-    const closeSub2 = document.getElementById("subscribe-secondary-close");
-
-    function openSubscribeModal(e){
-      if (e) e.preventDefault();
-      if (!subscribeModal) return;
-      subscribeModal.classList.add("active");
-      subscribeModal.setAttribute("aria-hidden","false");
-    }
-    function closeSubscribeModal(){
-      if (!subscribeModal) return;
-      subscribeModal.classList.remove("active");
-      subscribeModal.setAttribute("aria-hidden","true");
-    }
-
-    openSub.forEach(el=>el.addEventListener("click", openSubscribeModal));
-    if (closeSub) closeSub.addEventListener("click", closeSubscribeModal);
-    if (closeSub2) closeSub2.addEventListener("click", closeSubscribeModal);
-    if (subscribeModal){
-      subscribeModal.addEventListener("click",(e)=>{
-        if (e.target === subscribeModal) closeSubscribeModal();
-      });
-    }
-
-    // -----------------------------------------------------
-    // Premium modal
-    // -----------------------------------------------------
-    const openPremiumBtn  = document.getElementById('open-premium-modal');
-    const openPremiumBtn2 = document.getElementById('open-premium-modal-2');
-    const premiumModal    = document.getElementById('premium-modal');
-    const closePremiumBtn = document.getElementById('close-premium-modal');
-    const freeBtn         = document.getElementById('go-free-subscribe');
-
-    function openPremiumModal(e){
-      if (!premiumModal) return;
-      if (e) e.preventDefault();
-      premiumModal.classList.add('active');
-      premiumModal.setAttribute('aria-hidden','false');
-    }
-    function closePremiumModal(){
-      if (!premiumModal) return;
-      premiumModal.classList.remove('active');
-      premiumModal.setAttribute('aria-hidden','true');
-    }
-
-    if (openPremiumBtn) openPremiumBtn.addEventListener('click', openPremiumModal);
-    if (openPremiumBtn2) openPremiumBtn2.addEventListener('click', openPremiumModal);
-    if (closePremiumBtn) closePremiumBtn.addEventListener('click', closePremiumModal);
-    if (premiumModal){
-      premiumModal.addEventListener('click',(e)=>{
-        if (e.target === premiumModal) closePremiumModal();
-      });
-    }
-    if (freeBtn){
-      freeBtn.addEventListener('click',(e)=>{
-        e.preventDefault();
-        closePremiumModal();
-        openSubscribeModal();
-      });
-    }
-
-    // Replace with real Stripe payment link (leave empty to avoid blank page)
-    const PAYMENT_LINK = "";
-    const goPremiumCheckout = document.getElementById("go-premium-checkout");
-    if (goPremiumCheckout){
-      goPremiumCheckout.addEventListener("click",(e)=>{
-        e.preventDefault();
-        if (!PAYMENT_LINK){
-          alert("Premium checkout isn’t live yet. Coming soon.");
-          return;
-        }
-        window.open(PAYMENT_LINK, "_blank", "noopener");
-      });
-    }
-
-    // -----------------------------------------------------
-    // Count-up numbers + micro flash (one-time)
-    // -----------------------------------------------------
-    function animateCount(el, to, duration=650){
-      const start = 0;
-      const t0 = performance.now();
-      function tick(now){
-        const p = Math.min(1, (now - t0) / duration);
-        const v = Math.round(start + (to - start) * p);
-        el.textContent = String(v);
-        if (p < 1) requestAnimationFrame(tick);
       }
-      requestAnimationFrame(tick);
-    }
 
-    let counted = false;
-    const heroCard = document.getElementById('hero-card');
-    const strip = document.getElementById('hero-strip');
+      // -----------------------------------------------------
+      // Auth modal
+      // -----------------------------------------------------
+      const authModal = document.getElementById("auth-modal");
+      const openAuthBtn = document.getElementById("open-auth-modal");
+      const closeAuthBtn = document.getElementById("close-auth-modal");
 
-    const countIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if (!entry.isIntersecting) return;
-        if (counted) return;
-        counted = true;
-
-        document.getElementById('count-card-1')?.classList.add('pulse');
-        document.getElementById('count-card-2')?.classList.add('pulse');
-        document.getElementById('count-card-3')?.classList.add('pulse');
-
-        document.querySelectorAll('[data-flash]').forEach((n,i)=>{
-          setTimeout(()=>n.classList.add('flash'), 60 + i*90);
-        });
-
-        strip?.querySelectorAll('[data-count]').forEach(n=>{
-          animateCount(n, Number(n.dataset.count || "0"), 700);
-        });
-        strip?.querySelectorAll('.hero-strip-num span[data-count]').forEach(n=>{
-          animateCount(n, Number(n.dataset.count || "0"), 700);
-        });
-
-        countIO.unobserve(entry.target);
-      });
-    }, { threshold: 0.18 }) : null;
-
-    if (countIO && heroCard) countIO.observe(heroCard);
-
-    // -----------------------------------------------------
-    // Sticky Left Rail: section highlight + progress + fade in after hero
-    // -----------------------------------------------------
-    const rail = document.getElementById('rail');
-    const railLinks = Array.from(document.querySelectorAll('.rail-link'));
-    const railProgress = document.getElementById('rail-progress');
-    const railRegime = document.getElementById('rail-regime');
-
-    const sections = [
-      { id:'how', el:document.getElementById('how') },
-      { id:'what', el:document.getElementById('what') },
-      { id:'watch', el:document.getElementById('watch') },
-      { id:'about', el:document.getElementById('about') },
-      { id:'premium', el:document.getElementById('premium') },
-      { id:'faq', el:document.getElementById('faq') },
-      { id:'subscribe', el:document.getElementById('subscribe') }
-    ].filter(s=>s.el);
-
-    function setActiveRail(id){
-      railLinks.forEach(a=>{
-        a.classList.toggle('active', a.dataset.rail === id);
-      });
-    }
-
-    const sectionIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        if (id) setActiveRail(id);
-      });
-    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 }) : null;
-
-    if (sectionIO){
-      sections.forEach(s=>sectionIO.observe(s.el));
-    }
-
-    function updateRailProgress(){
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const p = max > 0 ? (window.scrollY / max) : 0;
-      if (railProgress) railProgress.style.height = Math.max(0, Math.min(100, p*100)) + "%";
-    }
-
-    function updateRailVisibility(){
-      if (!rail || !heroCard) return;
-      const r = heroCard.getBoundingClientRect();
-      const show = r.bottom < 160;
-      rail.classList.toggle('visible', show);
-    }
-
-    window.addEventListener('scroll', ()=>{
-      updateRailProgress();
-      updateRailVisibility();
-    }, { passive:true });
-    window.addEventListener('resize', ()=>{
-      updateRailProgress();
-      updateRailVisibility();
-    });
-
-    updateRailProgress();
-    updateRailVisibility();
-
-    if (railRegime){
-      railRegime.textContent = "Neutral";
-    }
-
-    // -----------------------------------------------------
-    // Supabase Auth + Premium gating
-    // -----------------------------------------------------
-    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const authModal = document.getElementById("auth-modal");
-    const openAuthBtn = document.getElementById("open-auth-modal");
-    const closeAuthBtn = document.getElementById("close-auth-modal");
-
-    const authForm = document.getElementById("auth-form");
-    const authEmail = document.getElementById("auth-email");
-    const authPassword = document.getElementById("auth-password");
-    const authMsg = document.getElementById("auth-msg");
-
-    const authTitle = document.getElementById("auth-modal-title");
-    const authSubtitle = document.getElementById("auth-subtitle");
-    const authSubmitBtn = document.getElementById("auth-submit-btn");
-    const authToggleBtn = document.getElementById("auth-toggle-btn");
-    const authResetBtn = document.getElementById("auth-reset-btn");
-
-    const signoutLink = document.getElementById("signout-link");
-    const userChip = document.getElementById("user-chip");
-
-    const openPremiumDashboard = document.getElementById("open-premium-dashboard");
-    const manageMembership = document.getElementById("manage-membership");
-    const premiumStatus = document.getElementById("premium-status");
-
-    let mode = "signin";
-
-    function openAuthModal(e){
-      if (e) e.preventDefault();
-      if (!authModal) return;
-      authModal.classList.add("active");
-      authModal.setAttribute("aria-hidden","false");
-      if (authMsg) authMsg.textContent = "";
-    }
-    function closeAuthModal(){
-      if (!authModal) return;
-      authModal.classList.remove("active");
-      authModal.setAttribute("aria-hidden","true");
-      if (authMsg) authMsg.textContent = "";
-    }
-
-    if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
-    if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
-    if (authModal){
-      authModal.addEventListener("click",(e)=>{
-        if (e.target === authModal) closeAuthModal();
-      });
-    }
-
-    function setAuthMode(nextMode){
-      mode = nextMode;
-      if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
-      if (mode === "signin"){
-        authTitle.textContent = "Sign in";
-        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
-        authSubmitBtn.textContent = "Sign in";
-        authToggleBtn.textContent = "Create account";
-      } else {
-        authTitle.textContent = "Create account";
-        authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
-        authSubmitBtn.textContent = "Sign up";
-        authToggleBtn.textContent = "I already have an account";
+      function openAuthModal(e){
+        if (e) e.preventDefault();
+        openModal(authModal);
+        const authMsg = document.getElementById("auth-msg");
+        if (authMsg) authMsg.textContent = "";
       }
-      if (authMsg) authMsg.textContent = "";
-    }
+      function closeAuthModal(){
+        closeModal(authModal);
+        const authMsg = document.getElementById("auth-msg");
+        if (authMsg) authMsg.textContent = "";
+      }
 
-    if (authToggleBtn){
-      authToggleBtn.addEventListener("click",()=>{
-        setAuthMode(mode === "signin" ? "signup" : "signin");
-      });
-    }
+      if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
+      if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
 
-    if (authResetBtn){
-      authResetBtn.addEventListener("click", async ()=>{
-        const email = (authEmail?.value || "").trim();
-        if (!email){
-          if (authMsg) authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
-          return;
-        }
-        if (authMsg) authMsg.textContent = "Sending reset email...";
-        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
-        if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
-      });
-    }
+      // -----------------------------------------------------
+      // What you get: Wheel (Free -> Premium) — hardened + swipe
+      // -----------------------------------------------------
+      const wheelData = [
+        { tier:"Free", title:"Macro Drivers", desc:"The quick framing: what’s pushing risk-on / risk-off and which macro inputs matter right now.", bullets:["Rates / USD / oil / credit tone","“So what” summary, not headlines","One clean narrative thread"] },
+        { tier:"Free", title:"Momentum & Flows", desc:"What’s working, what’s fading, and where the crowd is leaning — in plain English.", bullets:["Leadership & rotation signals","Crowding + momentum read","Focus on what moves price"] },
+        { tier:"Free", title:"Catalysts With Context", desc:"CPI/FOMC/earnings — the setup, what matters, and what would actually change the regime.", bullets:["Pre-event framing","Post-event takeaways","Simple scenario map"] },
+        { tier:"Free", title:"Archive-First Notes", desc:"Everything stays organized. You publish, the archive stays accurate — no homepage updates required.", bullets:["Calendar archive workflow","Fast scanning by date","Permanent reference library"] },
+        { tier:"Premium", title:"Levels & Zones", desc:"Trade-ready structure: key levels, zones, and what would invalidate the read.", bullets:["Support / resistance map","Volatility-aware zones","Clean invalidation framework"] },
+        { tier:"Premium", title:"Risk Regime Dashboard", desc:"A tighter workflow: regime label, what confirms it, and what flips it.", bullets:["Risk-on / Neutral / Risk-off","What to watch next","Tactical + strategic alignment"] },
+        { tier:"Premium", title:"Catalyst Add-Ons", desc:"Short premium add-ons around key events — when it matters, not every day.", bullets:["Pre/post catalyst mini-notes","Scenario updates","Clean actionability"] },
+        { tier:"Premium", title:"Member Tools", desc:"Premium dashboard access (gated) for saved workflows and member-only modules.", bullets:["Member dashboard access","Saved views / modules","Future add-ons without redesign"] }
+      ];
 
-    if (authForm){
-      authForm.addEventListener("submit", async (e)=>{
-        e.preventDefault();
-        if (authMsg) authMsg.textContent = "Working...";
-        const email = (authEmail?.value || "").trim();
-        const password = authPassword?.value || "";
+      const wheelCard = document.getElementById("wheel-card");
+      const wheelDots = document.getElementById("wheel-dots");
+      const wheelPrev = document.getElementById("wheel-prev");
+      const wheelNext = document.getElementById("wheel-next");
+      const wheelDial = document.getElementById("wheel-dial");
+      const wheelLabel = document.getElementById("wheel-label");
+      const wheelSubscribeCTA = document.getElementById("wheel-subscribe-cta");
+      const wheelSwipe = document.getElementById("wheel-swipe");
 
+      let wheelIdx = 0;
+
+      function renderWheelDots(){
+        if (!wheelDots) return;
+        wheelDots.innerHTML = "";
+        wheelData.forEach((item, i)=>{
+          const d = document.createElement("button");
+          d.type = "button";
+          d.className = "wheel-dot";
+          d.setAttribute("aria-label", (item.tier === "Premium" ? "Premium" : "Free") + " • " + item.title);
+          d.addEventListener("click", ()=>setWheel(i));
+          wheelDots.appendChild(d);
+        });
+      }
+
+      function setWheel(i){
         try{
-          if (mode === "signin"){
-            const { error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) throw error;
-            if (authMsg) authMsg.textContent = "Signed in ✅";
-            closeAuthModal();
-            await refreshUI();
-          } else {
-            const { error } = await supabase.auth.signUp({ email, password });
-            if (error) throw error;
-            if (authMsg) authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
-            await refreshUI();
+          wheelIdx = (i + wheelData.length) % wheelData.length;
+          const item = wheelData[wheelIdx];
+          if (!wheelCard) return;
+
+          const isPro = item.tier === "Premium";
+          wheelCard.className = "wheel-card" + (isPro ? " pro" : "");
+          if (wheelLabel) wheelLabel.textContent = (isPro ? "Premium" : "Free") + " • " + item.title;
+
+          const stepText = (wheelIdx + 1) + " / " + wheelData.length;
+          wheelCard.innerHTML = `
+            <div>
+              <div class="wheel-card-top">
+                <div class="wheel-tag"><span class="kdot"></span><span>${isPro ? "Premium" : "Free"}</span></div>
+                <div class="wheel-step">${stepText}</div>
+              </div>
+              <div class="wheel-title">${item.title}</div>
+              <div class="wheel-desc">${item.desc}</div>
+              <ul class="wheel-bullets">
+                ${item.bullets.map(b=>`<li>${b}</li>`).join("")}
+              </ul>
+            </div>
+            <div class="wheel-footer" style="margin-top:6px;">
+              <div style="font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;">
+                ${isPro ? "Unlock with Premium" : "Included in Free"}
+              </div>
+              <div class="wheel-cta">
+                ${isPro ? `<a class="mini-link" href="#" id="wheel-open-premium">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
+                <a class="mini-link secondary" href="archive.html">Open archive</a>
+              </div>
+            </div>
+          `;
+
+          if (wheelDots){
+            Array.from(wheelDots.children).forEach((node, idx)=>{
+              node.classList.toggle("active", idx === wheelIdx);
+              node.classList.toggle("pro", idx === wheelIdx && wheelData[wheelIdx].tier === "Premium");
+            });
           }
-        } catch(err){
-          if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
-        }
-      });
-    }
 
-    if (signoutLink){
-      signoutLink.addEventListener("click", async (e)=>{
-        e.preventDefault();
-        await supabase.auth.signOut();
-        await refreshUI();
-      });
-    }
+          if (wheelDial){
+            const angle = (360 / wheelData.length) * wheelIdx;
+            wheelDial.style.setProperty("--wheel-angle", angle + "deg");
+            wheelDial.style.transform = "rotate(" + (angle * -1) + "deg)";
+          }
 
-    async function ensureProfile(user){
-      if (!user) return null;
-      const { data: existing, error: fetchErr } = await supabase
-        .from("profiles")
-        .select("id,email,is_premium")
-        .eq("id", user.id)
-        .maybeSingle();
+          const openSubInline = document.getElementById("wheel-open-subscribe");
+          if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
 
-      if (fetchErr) return null;
-      if (existing) return existing;
+          const openProInline = document.getElementById("wheel-open-premium");
+          if (openProInline) openProInline.addEventListener("click", (e)=>{ e.preventDefault(); openPremiumModal(e); });
 
-      const { data: created, error: insertErr } = await supabase
-        .from("profiles")
-        .insert([{ id:user.id, email:user.email, is_premium:false }])
-        .select("id,email,is_premium")
-        .single();
-
-      if (insertErr) return null;
-      return created;
-    }
-
-    async function getProfile(user){
-      if (!user) return null;
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("id,email,is_premium")
-        .eq("id", user.id)
-        .maybeSingle();
-      if (error) return null;
-      return data || null;
-    }
-
-    async function refreshUI(){
-      const { data } = await supabase.auth.getUser();
-      const user = data?.user || null;
-
-      if (!user){
-        if (openAuthBtn) openAuthBtn.style.display = "";
-        if (signoutLink) signoutLink.style.display = "none";
-        if (userChip) userChip.style.display = "none";
-        if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
-        return;
+        } catch(_) {}
       }
 
-      if (openAuthBtn) openAuthBtn.style.display = "none";
-      if (signoutLink) signoutLink.style.display = "";
-      if (userChip){
-        userChip.style.display = "";
-        userChip.textContent = "Signed in: " + (user.email || "user");
+      if (wheelPrev) wheelPrev.addEventListener("click", ()=>setWheel(wheelIdx - 1));
+      if (wheelNext) wheelNext.addEventListener("click", ()=>setWheel(wheelIdx + 1));
+      if (wheelSubscribeCTA) wheelSubscribeCTA.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
+
+      // Swipe support (mobile)
+      (function initWheelSwipe(){
+        if (!wheelSwipe) return;
+        let startX = 0, startY = 0, tracking = false;
+
+        wheelSwipe.addEventListener("pointerdown",(e)=>{
+          tracking = true;
+          startX = e.clientX;
+          startY = e.clientY;
+        });
+
+        wheelSwipe.addEventListener("pointerup",(e)=>{
+          if (!tracking) return;
+          tracking = false;
+          const dx = e.clientX - startX;
+          const dy = e.clientY - startY;
+          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+          if (dx < 0) setWheel(wheelIdx + 1);
+          else setWheel(wheelIdx - 1);
+        });
+
+        wheelSwipe.addEventListener("pointercancel",()=>{ tracking = false; });
+      })();
+
+      renderWheelDots();
+      setWheel(0);
+
+      // -----------------------------------------------------
+      // TradingView Watchlist (interactive) — FIXED + fallback
+      // -----------------------------------------------------
+      const watchWrap = document.getElementById("watch-widget");
+      const watchFallback = document.getElementById("watch-fallback");
+      const watchOpenTV = document.getElementById("watch-open-tv");
+      const buttons = document.querySelectorAll(".watch-btn");
+      let currentSymbol = "FOREXCOM:SPXUSD";
+      let fallbackTimer = null;
+
+      function showFallback(symbol){
+        if (!watchFallback || !watchOpenTV) return;
+        const tvUrl = "https://www.tradingview.com/chart/?symbol=" + encodeURIComponent(symbol);
+        watchOpenTV.setAttribute("href", tvUrl);
+        watchOpenTV.setAttribute("target", "_blank");
+        watchFallback.style.display = "block";
       }
 
-      await ensureProfile(user);
-      const profile = await getProfile(user);
-
-      if (profile && profile.is_premium){
-        if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
-      } else if (profile){
-        if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
-      } else {
-        if (premiumStatus) premiumStatus.textContent = "Premium status: profiles table not available / blocked by policies.";
+      function hideFallback(){
+        if (!watchFallback) return;
+        watchFallback.style.display = "none";
       }
-    }
 
-    if (openPremiumDashboard){
-      openPremiumDashboard.addEventListener("click", async (e)=>{
-        e.preventDefault();
-        const { data } = await supabase.auth.getUser();
-        const user = data?.user || null;
+      function loadMiniChart(symbol) {
+        try{
+          currentSymbol = symbol || "FOREXCOM:SPXUSD";
+          if (!watchWrap) return;
 
-        if (!user){
-          openAuthModal();
-          return;
+          hideFallback();
+          if (fallbackTimer) clearTimeout(fallbackTimer);
+          fallbackTimer = setTimeout(()=>showFallback(currentSymbol), 2500);
+
+          // Full reset so TradingView never "half-renders"
+          watchWrap.innerHTML = "";
+
+          const widgetDiv = document.createElement("div");
+          widgetDiv.className = "tradingview-widget-container__widget";
+          watchWrap.appendChild(widgetDiv);
+
+          const s = document.createElement("script");
+          s.type = "text/javascript";
+          s.async = true;
+          s.src =
+            "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?cb=" +
+            Date.now();
+
+          s.text = JSON.stringify({
+            symbol: currentSymbol,
+            width: "100%",
+            height: 280,
+            locale: "en",
+            dateRange: "3M",
+            colorTheme: "dark",
+            isTransparent: true,
+            autosize: true
+          });
+
+          s.onload = function(){
+            if (fallbackTimer) clearTimeout(fallbackTimer);
+            fallbackTimer = null;
+            // If it actually renders, the widget iframe/html will exist inside container soon.
+            // Give it a short beat; if still empty, fallback stays visible.
+            setTimeout(()=>{
+              const hasContent = watchWrap.querySelector("iframe, canvas, svg, .tv-widget-chart, .tradingview-widget-container__widget *");
+              if (hasContent) hideFallback();
+              else showFallback(currentSymbol);
+            }, 800);
+          };
+
+          watchWrap.appendChild(s);
+        } catch(_){
+          showFallback(symbol);
         }
+      }
 
-        const profile = await getProfile(user);
-        if (profile && profile.is_premium){
-          window.location.href = "premium.html";
-        } else {
-          openPremiumModal(e);
-        }
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
+        });
       });
-    }
 
-    if (manageMembership){
-      manageMembership.addEventListener("click", (e)=>{
-        e.preventDefault();
-        if (!PAYMENT_LINK){
-          openPremiumModal(e);
-          return;
+      loadMiniChart(currentSymbol);
+
+      // -----------------------------------------------------
+      // Floating module behavior (adds "lift" styling)
+      // -----------------------------------------------------
+      const watchPanel = document.getElementById('watch');
+      const watchFloat = document.getElementById('watch-float');
+      const watchIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if (!watchFloat) return;
+          if (entry.isIntersecting) watchFloat.classList.add('floating');
+          else watchFloat.classList.remove('floating');
+        });
+      }, { threshold: 0.12 }) : null;
+      if (watchIO && watchPanel) watchIO.observe(watchPanel);
+
+      // -----------------------------------------------------
+      // Scroll reveal (UNBREAKABLE)
+      // -----------------------------------------------------
+      (function initScrollReveal(){
+        if (!('IntersectionObserver' in window)) return;
+        const els = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if (entry.isIntersecting){
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.documentElement.classList.add('sr');
+        els.forEach(el=>io.observe(el));
+      })();
+
+      // -----------------------------------------------------
+      // Count-up numbers + micro flash (one-time)
+      // -----------------------------------------------------
+      function animateCount(el, to, duration=650){
+        const start = 0;
+        const t0 = performance.now();
+        function tick(now){
+          const p = Math.min(1, (now - t0) / duration);
+          const v = Math.round(start + (to - start) * p);
+          el.textContent = String(v);
+          if (p < 1) requestAnimationFrame(tick);
         }
-        window.open(PAYMENT_LINK, "_blank", "noopener");
+        requestAnimationFrame(tick);
+      }
+
+      let counted = false;
+      const heroCard = document.getElementById('hero-card');
+      const strip = document.getElementById('hero-strip');
+
+      const countIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if (!entry.isIntersecting) return;
+          if (counted) return;
+          counted = true;
+
+          document.getElementById('count-card-1')?.classList.add('pulse');
+          document.getElementById('count-card-2')?.classList.add('pulse');
+          document.getElementById('count-card-3')?.classList.add('pulse');
+
+          document.querySelectorAll('[data-flash]').forEach((n,i)=>{
+            setTimeout(()=>n.classList.add('flash'), 60 + i*90);
+          });
+
+          strip?.querySelectorAll('[data-count]').forEach(n=>{
+            animateCount(n, Number(n.dataset.count || "0"), 700);
+          });
+          strip?.querySelectorAll('.hero-strip-num span[data-count]').forEach(n=>{
+            animateCount(n, Number(n.dataset.count || "0"), 700);
+          });
+
+          countIO.unobserve(entry.target);
+        });
+      }, { threshold: 0.18 }) : null;
+
+      if (countIO && heroCard) countIO.observe(heroCard);
+
+      // -----------------------------------------------------
+      // Sticky Left Rail: section highlight + progress + fade in after hero
+      // -----------------------------------------------------
+      const rail = document.getElementById('rail');
+      const railLinks = Array.from(document.querySelectorAll('.rail-link'));
+      const railProgress = document.getElementById('rail-progress');
+      const railRegime = document.getElementById('rail-regime');
+
+      const sections = [
+        { id:'how', el:document.getElementById('how') },
+        { id:'what', el:document.getElementById('what') },
+        { id:'watch', el:document.getElementById('watch') },
+        { id:'about', el:document.getElementById('about') },
+        { id:'premium', el:document.getElementById('premium') },
+        { id:'faq', el:document.getElementById('faq') },
+        { id:'subscribe', el:document.getElementById('subscribe') }
+      ].filter(s=>s.el);
+
+      function setActiveRail(id){
+        railLinks.forEach(a=>{
+          a.classList.toggle('active', a.dataset.rail === id);
+        });
+      }
+
+      const sectionIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          if (id) setActiveRail(id);
+        });
+      }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 }) : null;
+
+      if (sectionIO){
+        sections.forEach(s=>sectionIO.observe(s.el));
+      }
+
+      function updateRailProgress(){
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const p = max > 0 ? (window.scrollY / max) : 0;
+        if (railProgress) railProgress.style.height = Math.max(0, Math.min(100, p*100)) + "%";
+      }
+
+      function updateRailVisibility(){
+        if (!rail || !heroCard) return;
+        const r = heroCard.getBoundingClientRect();
+        const show = r.bottom < 160;
+        rail.classList.toggle('visible', show);
+      }
+
+      window.addEventListener('scroll', ()=>{
+        updateRailProgress();
+        updateRailVisibility();
+      }, { passive:true });
+      window.addEventListener('resize', ()=>{
+        updateRailProgress();
+        updateRailVisibility();
       });
-    }
 
-    supabase.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
-    setAuthMode("signin");
-    refreshUI();
+      updateRailProgress();
+      updateRailVisibility();
 
-    // -----------------------------------------------------
-    // Keyboard support for wheel
-    // -----------------------------------------------------
-    window.addEventListener("keydown",(e)=>{
-      if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
-      if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
-    }, { passive:true });
+      if (railRegime){
+        railRegime.textContent = "Neutral";
+      }
+
+      // -----------------------------------------------------
+      // Supabase Auth + Premium gating (guarded so it can’t break page)
+      // -----------------------------------------------------
+      (async function initSupabase(){
+        try{
+          if (!window.supabase || !window.supabase.createClient) return;
+
+          const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+          const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+          const authForm = document.getElementById("auth-form");
+          const authEmail = document.getElementById("auth-email");
+          const authPassword = document.getElementById("auth-password");
+          const authMsg = document.getElementById("auth-msg");
+
+          const authTitle = document.getElementById("auth-modal-title");
+          const authSubtitle = document.getElementById("auth-subtitle");
+          const authSubmitBtn = document.getElementById("auth-submit-btn");
+          const authToggleBtn = document.getElementById("auth-toggle-btn");
+          const authResetBtn = document.getElementById("auth-reset-btn");
+
+          const signoutLink = document.getElementById("signout-link");
+          const userChip = document.getElementById("user-chip");
+          const openAuthBtn = document.getElementById("open-auth-modal");
+
+          const openPremiumDashboard = document.getElementById("open-premium-dashboard");
+          const manageMembership = document.getElementById("manage-membership");
+          const premiumStatus = document.getElementById("premium-status");
+
+          let mode = "signin";
+
+          function setAuthMode(nextMode){
+            mode = nextMode;
+            if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
+            if (mode === "signin"){
+              authTitle.textContent = "Sign in";
+              authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
+              authSubmitBtn.textContent = "Sign in";
+              authToggleBtn.textContent = "Create account";
+            } else {
+              authTitle.textContent = "Create account";
+              authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+              authSubmitBtn.textContent = "Sign up";
+              authToggleBtn.textContent = "I already have an account";
+            }
+            if (authMsg) authMsg.textContent = "";
+          }
+
+          if (authToggleBtn){
+            authToggleBtn.addEventListener("click",()=>{
+              setAuthMode(mode === "signin" ? "signup" : "signin");
+            });
+          }
+
+          if (authResetBtn){
+            authResetBtn.addEventListener("click", async ()=>{
+              const email = (authEmail?.value || "").trim();
+              if (!email){
+                if (authMsg) authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
+                return;
+              }
+              if (authMsg) authMsg.textContent = "Sending reset email...";
+              const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+              if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
+            });
+          }
+
+          if (authForm){
+            authForm.addEventListener("submit", async (e)=>{
+              e.preventDefault();
+              if (authMsg) authMsg.textContent = "Working...";
+              const email = (authEmail?.value || "").trim();
+              const password = authPassword?.value || "";
+
+              try{
+                if (mode === "signin"){
+                  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                  if (error) throw error;
+                  if (authMsg) authMsg.textContent = "Signed in ✅";
+                  closeAuthModal();
+                  await refreshUI();
+                } else {
+                  const { error } = await supabaseClient.auth.signUp({ email, password });
+                  if (error) throw error;
+                  if (authMsg) authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
+                  await refreshUI();
+                }
+              } catch(err){
+                if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
+              }
+            });
+          }
+
+          if (signoutLink){
+            signoutLink.addEventListener("click", async (e)=>{
+              e.preventDefault();
+              await supabaseClient.auth.signOut();
+              await refreshUI();
+            });
+          }
+
+          async function ensureProfile(user){
+            if (!user) return null;
+            const { data: existing, error: fetchErr } = await supabaseClient
+              .from("profiles")
+              .select("id,email,is_premium")
+              .eq("id", user.id)
+              .maybeSingle();
+
+            if (fetchErr) return null;
+            if (existing) return existing;
+
+            const { data: created, error: insertErr } = await supabaseClient
+              .from("profiles")
+              .insert([{ id:user.id, email:user.email, is_premium:false }])
+              .select("id,email,is_premium")
+              .single();
+
+            if (insertErr) return null;
+            return created;
+          }
+
+          async function getProfile(user){
+            if (!user) return null;
+            const { data, error } = await supabaseClient
+              .from("profiles")
+              .select("id,email,is_premium")
+              .eq("id", user.id)
+              .maybeSingle();
+            if (error) return null;
+            return data || null;
+          }
+
+          async function refreshUI(){
+            const { data } = await supabaseClient.auth.getUser();
+            const user = data?.user || null;
+
+            if (!user){
+              if (openAuthBtn) openAuthBtn.style.display = "";
+              if (signoutLink) signoutLink.style.display = "none";
+              if (userChip) userChip.style.display = "none";
+              if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
+              return;
+            }
+
+            if (openAuthBtn) openAuthBtn.style.display = "none";
+            if (signoutLink) signoutLink.style.display = "";
+            if (userChip){
+              userChip.style.display = "";
+              userChip.textContent = "Signed in: " + (user.email || "user");
+            }
+
+            await ensureProfile(user);
+            const profile = await getProfile(user);
+
+            if (profile && profile.is_premium){
+              if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
+            } else if (profile){
+              if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
+            } else {
+              if (premiumStatus) premiumStatus.textContent = "Premium status unavailable (profiles table blocked).";
+            }
+          }
+
+          if (openPremiumDashboard){
+            openPremiumDashboard.addEventListener("click", async (e)=>{
+              e.preventDefault();
+              const { data } = await supabaseClient.auth.getUser();
+              const user = data?.user || null;
+
+              if (!user){
+                openAuthModal(e);
+                return;
+              }
+
+              const profile = await getProfile(user);
+              if (profile && profile.is_premium){
+                window.location.href = "premium.html";
+              } else {
+                openPremiumModal(e);
+              }
+            });
+          }
+
+          if (manageMembership){
+            manageMembership.addEventListener("click", (e)=>{
+              e.preventDefault();
+              if (!PAYMENT_LINK){
+                openPremiumModal(e);
+                return;
+              }
+              window.open(PAYMENT_LINK, "_blank", "noopener");
+            });
+          }
+
+          supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
+          setAuthMode("signin");
+          refreshUI();
+
+        } catch(_) {
+          // Do nothing — page still works even if auth fails
+        }
+      })();
+
+      // -----------------------------------------------------
+      // Keyboard support for wheel
+      // -----------------------------------------------------
+      window.addEventListener("keydown",(e)=>{
+        if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
+        if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
+      });
+
+    })();
   </script>
 </body>
 </html>
