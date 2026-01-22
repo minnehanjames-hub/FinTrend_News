@@ -504,6 +504,323 @@
     .tile-title{position:relative;z-index:1;font-weight:700;color:#e5e7eb;line-height:1.25;margin-bottom:8px}
     .tile-line{position:relative;z-index:1;color:var(--text-muted);font-size:12px}
 
+    /* What you get: Wheel */
+    .wheel-wrap{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width:980px){
+      .wheel-wrap{grid-template-columns:1fr}
+    }
+    .wheel-left{
+      border-radius:var(--radius-lg);
+      border:1px solid rgba(148,163,184,0.26);
+      background:rgba(2,6,23,0.34);
+      padding:16px 16px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .wheel-left::before{
+      content:"";
+      position:absolute;
+      inset:-35%;
+      background:radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 58%);
+      pointer-events:none;
+      opacity:0.85;
+    }
+    .wheel-kicker{
+      position:relative;
+      z-index:1;
+      font-size:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      margin-bottom:10px;
+    }
+    .wheel-headline{
+      position:relative;
+      z-index:1;
+      font-family:"Playfair Display",serif;
+      font-size:24px;
+      line-height:1.15;
+      margin-bottom:8px;
+      color:#f9fafb;
+    }
+    .wheel-subcopy{
+      position:relative;
+      z-index:1;
+      color:#d1d5db;
+      font-size:13px;
+      line-height:1.55;
+      margin-bottom:12px;
+      max-width:44ch;
+    }
+    .wheel-legend{
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .legend-pill{
+      font-size:10px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.28);
+      background:rgba(2,6,23,0.30);
+      color:var(--text-muted);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .legend-dot{
+      width:8px;height:8px;border-radius:999px;
+      background:rgba(148,163,184,0.35);
+      box-shadow:0 0 0 4px rgba(148,163,184,0.08);
+    }
+    .legend-pill.free .legend-dot{
+      background:rgba(244,193,93,0.85);
+      box-shadow:0 0 0 4px rgba(244,193,93,0.10);
+    }
+    .legend-pill.pro .legend-dot{
+      background:rgba(147,197,253,0.90);
+      box-shadow:0 0 0 4px rgba(147,197,253,0.10);
+    }
+
+    .wheel-right{
+      border-radius:var(--radius-lg);
+      border:1px solid rgba(148,163,184,0.26);
+      background:rgba(2,6,23,0.34);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:12px;
+    }
+    .wheel-right::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:radial-gradient(circle at top left, rgba(244,193,93,0.10), transparent 60%);
+      pointer-events:none;
+      opacity:0.75;
+    }
+    .wheel-topbar{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .wheel-controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .wheel-btn{
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.30);
+      background:rgba(2,6,23,0.40);
+      color:var(--text-main);
+      padding:8px 12px;
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:0.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .wheel-btn:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35)}
+    .wheel-btn:active{transform:translateY(0)}
+
+    .wheel-dial{
+      position:relative;
+      z-index:1;
+      width:62px;height:62px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.26);
+      background:
+        radial-gradient(circle at center, rgba(2,6,23,0.75) 0%, rgba(2,6,23,0.35) 60%, rgba(2,6,23,0.15) 100%),
+        conic-gradient(
+          from var(--wheel-angle, 0deg),
+          rgba(244,193,93,0.82) 0 18deg,
+          rgba(148,163,184,0.10) 18deg 45deg,
+          rgba(147,197,253,0.86) 45deg 63deg,
+          rgba(148,163,184,0.10) 63deg 360deg
+        );
+      box-shadow:0 16px 40px rgba(0,0,0,0.35);
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .wheel-dial::after{
+      content:"";
+      position:absolute;
+      inset:10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.20);
+      background:rgba(2,6,23,0.55);
+      box-shadow: inset 0 0 0 1px rgba(244,193,93,0.06);
+    }
+    .wheel-dial::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:10px;height:10px;
+      transform:translate(-50%,-50%);
+      border-radius:999px;
+      background:rgba(244,193,93,0.92);
+      box-shadow:0 0 0 5px rgba(244,193,93,0.10);
+      z-index:2;
+      opacity:0.55;
+    }
+
+    .wheel-card{
+      position:relative;
+      z-index:1;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.22);
+      background:rgba(15,23,42,0.60);
+      padding:16px 16px 14px;
+      overflow:hidden;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .wheel-card::before{
+      content:"";
+      position:absolute;
+      inset:-45%;
+      background:radial-gradient(circle at top right, rgba(244,193,93,0.14), transparent 55%);
+      pointer-events:none;
+      opacity:0.70;
+    }
+    .wheel-card.pro::before{
+      background:radial-gradient(circle at top right, rgba(147,197,253,0.16), transparent 55%);
+      opacity:0.70;
+    }
+    .wheel-card-top{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:6px;
+    }
+    .wheel-tag{
+      font-size:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .wheel-tag .kdot{
+      width:8px;height:8px;border-radius:999px;
+      background:rgba(244,193,93,0.90);
+      box-shadow:0 0 0 4px rgba(244,193,93,0.10);
+    }
+    .wheel-card.pro .wheel-tag .kdot{
+      background:rgba(147,197,253,0.90);
+      box-shadow:0 0 0 4px rgba(147,197,253,0.10);
+    }
+    .wheel-step{
+      font-size:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.28);
+      background:rgba(2,6,23,0.35);
+      color:var(--text-muted);
+      white-space:nowrap;
+    }
+    .wheel-title{
+      position:relative;
+      z-index:1;
+      font-size:18px;
+      font-weight:800;
+      line-height:1.15;
+      color:#e5e7eb;
+      margin-bottom:8px;
+    }
+    .wheel-desc{
+      position:relative;
+      z-index:1;
+      font-size:13px;
+      color:#d1d5db;
+      line-height:1.6;
+      max-width:68ch;
+    }
+    .wheel-bullets{
+      position:relative;
+      z-index:1;
+      margin-top:10px;
+      padding-left:16px;
+      color:#e5e7eb;
+      font-size:12px;
+    }
+    .wheel-bullets li{margin:0 0 6px}
+    .wheel-footer{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .wheel-dots{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .wheel-dot{
+      width:8px;height:8px;border-radius:999px;
+      border:1px solid rgba(148,163,184,0.35);
+      background:rgba(2,6,23,0.40);
+      cursor:pointer;
+      transition:0.18s ease;
+    }
+    .wheel-dot:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.40)}
+    .wheel-dot.active{
+      background:rgba(244,193,93,0.85);
+      border-color:rgba(244,193,93,0.65);
+      box-shadow:0 0 0 4px rgba(244,193,93,0.10);
+    }
+    .wheel-dot.active.pro{
+      background:rgba(147,197,253,0.90);
+      border-color:rgba(147,197,253,0.70);
+      box-shadow:0 0 0 4px rgba(147,197,253,0.10);
+    }
+    .wheel-cta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
     /* Watchlist */
     .watchlist-row{
       display:flex;gap:10px;flex-wrap:wrap;align-items:center;
@@ -773,7 +1090,8 @@
     .brand-subtitle,.hero-kicker,.panel-title,.panel-subtitle,
     .snap-label,.snap-chip,.card-tag,.card-date,.card-desc,
     .faq-ans,footer,.header-link,.hero-block-title,.hero-bullet-sub,
-    .hero-mini-tag,.hero-mini-chip,.hero-strip-text,.hero-under-title{
+    .hero-mini-tag,.hero-mini-chip,.hero-strip-text,.hero-under-title,
+    .wheel-kicker,.wheel-step,.wheel-tag,.wheel-subcopy{
       color:var(--text-muted) !important;
     }
     body,p,span,li,label,small,strong,em,i,b,h1,h2,h3,h4,h5,h6,button,input,textarea,select,summary,details,div,section,article,header,footer,nav{color:inherit}
@@ -787,11 +1105,12 @@
       <div class="rail-title">Navigate</div>
       <div class="rail-links">
         <a class="rail-link" href="#how" data-rail="how"><span>How</span><span class="rail-dot"></span></a>
+        <a class="rail-link" href="#what" data-rail="what"><span>Get</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#watch" data-rail="watch"><span>Watch</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#about" data-rail="about"><span>About</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#premium" data-rail="premium"><span>Pro</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#faq" data-rail="faq"><span>FAQ</span><span class="rail-dot"></span></a>
-        <a class="rail-link" href="#subscribe" data-rail="subscribe"><span>Get</span><span class="rail-dot"></span></a>
+        <a class="rail-link" href="#subscribe" data-rail="subscribe"><span>Sub</span><span class="rail-dot"></span></a>
       </div>
     </div>
 
@@ -866,7 +1185,7 @@
 
             <div class="hero-stack">
               <div class="hero-block">
-                <div class="hero-block-title">What you get</div>
+                <div class="hero-block-title">What you get (overview)</div>
                 <div class="hero-bullets">
                   <div class="hero-bullet">
                     <div class="dot"></div>
@@ -920,7 +1239,7 @@
                   <div class="hero-strip-text">issues weekly</div>
                 </div>
                 <div class="hero-strip-item" id="count-card-2">
-                  <div class="hero-strip-num"><span data-count="2">2</span>–<span data-count="4">5</span></div>
+                  <div class="hero-strip-num"><span data-count="2">2</span>–<span data-count="5">5</span></div>
                   <div class="hero-strip-text">minute read</div>
                 </div>
                 <div class="hero-strip-item" id="count-card-3">
@@ -933,7 +1252,7 @@
             <div class="hero-actions">
               <a class="btn primary" href="#" id="open-subscribe-modal-2">Get Free Email</a>
               <a class="btn" href="archive.html">Open Archive</a>
-              <a class="btn" href="#watch">Live Watchlist</a>
+              <a class="btn" href="#what">What You Get</a>
               <a class="btn" href="#premium">Premium Tools</a>
             </div>
 
@@ -946,13 +1265,13 @@
                 <div class="hero-under-title">Quick links</div>
                 <div class="hero-under-links">
                   <a class="mini-link secondary" href="archive.html">Latest notes</a>
-                  <a class="mini-link secondary" href="#watch">Charts</a>
+                  <a class="mini-link secondary" href="#watch">Watchlist</a>
                   <a class="mini-link secondary" href="#" id="open-subscribe-modal-3">Free email</a>
                 </div>
               </div>
             </div>
 
-            <div class="hero-note">Tip: scroll — the page becomes guided and tool-like (rail + floating chart + micro motion).</div>
+            <div class="hero-note">Tip: scroll — the page becomes guided and tool-like (rail + floating module + micro motion).</div>
           </div>
 
           <aside class="hero-right">
@@ -1043,6 +1362,58 @@
       </div>
     </section>
 
+    <section class="panel reveal" id="what" aria-label="What you get wheel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">What you get</div>
+          <div class="panel-subtitle">Click sideways — free first, then premium.</div>
+        </div>
+        <div class="time-indicator">Wheel</div>
+      </div>
+
+      <div class="wheel-wrap">
+        <div class="wheel-left">
+          <div class="wheel-kicker">Product, not a blog</div>
+          <div class="wheel-headline">A guided “wheel” of value — free → premium.</div>
+          <div class="wheel-subcopy">
+            Tap left/right (or the dots). Each slice is a module: what it is, how you use it, and why it matters.
+            Starts with free features, then shifts into premium tools.
+          </div>
+          <div class="wheel-legend">
+            <div class="legend-pill free"><span class="legend-dot"></span><span>Free</span></div>
+            <div class="legend-pill pro"><span class="legend-dot"></span><span>Premium</span></div>
+          </div>
+        </div>
+
+        <div class="wheel-right">
+          <div class="wheel-topbar">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <div class="wheel-dial" id="wheel-dial" aria-hidden="true"></div>
+              <div>
+                <div class="wheel-kicker" style="margin:0 0 4px;">Current slice</div>
+                <div id="wheel-label" style="font-size:12px;color:#e5e7eb;letter-spacing:0.14em;text-transform:uppercase;">Free • Macro Drivers</div>
+              </div>
+            </div>
+
+            <div class="wheel-controls">
+              <button class="wheel-btn" id="wheel-prev" type="button">← Prev</button>
+              <button class="wheel-btn" id="wheel-next" type="button">Next →</button>
+            </div>
+          </div>
+
+          <div class="wheel-card" id="wheel-card" aria-live="polite"></div>
+
+          <div class="wheel-footer">
+            <div class="wheel-dots" id="wheel-dots" aria-label="Wheel dots"></div>
+            <div class="wheel-cta">
+              <a class="mini-link secondary" href="archive.html">Open archive</a>
+              <a class="mini-link" href="#" id="wheel-subscribe-cta">Get free email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="panel reveal" id="watch" aria-label="Watchlist">
       <div class="panel-header">
         <div>
@@ -1091,7 +1462,7 @@
     <section class="panel reveal" id="about" aria-label="About">
       <div class="panel-header">
         <div>
-          <div class="panel-title">About</div>
+          <div class="panel-title">About FinTrend</div>
           <div class="panel-subtitle">Why this exists + how it’s built.</div>
         </div>
         <div class="time-indicator">Context</div>
@@ -1102,12 +1473,12 @@
           <div class="card-top"><div class="card-tag">The idea</div><div class="card-date">No fluff</div></div>
           <div class="card-title">A briefing you can actually use</div>
           <div class="card-desc">
-            I built FinTrend to feel like a clean sell-side note: drivers first, signal second, narrative last.
+            FinTrend is built to read like a clean sell-side note: drivers first, signal second, narrative last.
             The goal is speed + clarity — so you can decide what matters in minutes.
           </div>
           <div class="card-actions">
             <a class="mini-link secondary" href="archive.html">See the archive</a>
-            <a class="mini-link secondary" href="#watch">Use the watchlist</a>
+            <a class="mini-link secondary" href="#what">What you get</a>
           </div>
         </div>
 
@@ -1134,7 +1505,7 @@
         <div class="tile reveal">
           <div class="tile-top"><div class="tile-num">02</div><div class="tile-pill">Motion</div></div>
           <div class="tile-title">Small signals of quality</div>
-          <div class="tile-line">Counts + floating chart + guided rail.</div>
+          <div class="tile-line">Counts + floating module + guided rail.</div>
         </div>
         <div class="tile reveal">
           <div class="tile-top"><div class="tile-num">03</div><div class="tile-pill">Design</div></div>
@@ -1353,51 +1724,191 @@
         safeSmoothScrollTo(id);
       });
     });
-// -----------------------------------------------------
-// TradingView Watchlist (interactive) — FIXED
-// -----------------------------------------------------
-const watchWrap = document.getElementById("watch-widget");
-const buttons = document.querySelectorAll(".watch-btn");
 
-function loadMiniChart(symbol) {
-  if (!watchWrap) return;
+    // -----------------------------------------------------
+    // What you get: Wheel (Free -> Premium)
+    // -----------------------------------------------------
+    const wheelData = [
+      {
+        tier: "Free",
+        title: "Macro Drivers",
+        desc: "The quick framing: what’s pushing risk-on / risk-off and which macro inputs matter right now.",
+        bullets: ["Rates / USD / oil / credit tone", "“So what” summary, not headlines", "One clean narrative thread"]
+      },
+      {
+        tier: "Free",
+        title: "Momentum & Flows",
+        desc: "What’s working, what’s fading, and where the crowd is leaning — in plain English.",
+        bullets: ["Leadership & rotation signals", "Crowding + momentum read", "Focus on what moves price"]
+      },
+      {
+        tier: "Free",
+        title: "Catalysts With Context",
+        desc: "CPI/FOMC/earnings — the setup, what matters, and what would actually change the regime.",
+        bullets: ["Pre-event framing", "Post-event takeaways", "Simple scenario map"]
+      },
+      {
+        tier: "Free",
+        title: "Archive-First Notes",
+        desc: "Everything stays organized. You publish, the archive stays accurate — no homepage updates required.",
+        bullets: ["Calendar archive workflow", "Fast scanning by date", "Permanent reference library"]
+      },
+      {
+        tier: "Premium",
+        title: "Levels & Zones",
+        desc: "Trade-ready structure: key levels, zones, and what would invalidate the read.",
+        bullets: ["Support / resistance map", "Volatility-aware zones", "Clean invalidation framework"]
+      },
+      {
+        tier: "Premium",
+        title: "Risk Regime Dashboard",
+        desc: "A tighter workflow: regime label, what confirms it, and what flips it.",
+        bullets: ["Risk-on / Neutral / Risk-off", "What to watch next", "Tactical + strategic alignment"]
+      },
+      {
+        tier: "Premium",
+        title: "Catalyst Add-Ons",
+        desc: "Short premium add-ons around key events — when it matters, not every day.",
+        bullets: ["Pre/post catalyst mini-notes", "Scenario updates", "Clean actionability"]
+      },
+      {
+        tier: "Premium",
+        title: "Member Tools",
+        desc: "Premium dashboard access (gated) for saved workflows and member-only modules.",
+        bullets: ["Member dashboard access", "Saved views / modules", "Future add-ons without redesign"]
+      }
+    ];
 
-  // Rebuild container each time
-  watchWrap.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
+    const wheelCard = document.getElementById("wheel-card");
+    const wheelDots = document.getElementById("wheel-dots");
+    const wheelPrev = document.getElementById("wheel-prev");
+    const wheelNext = document.getElementById("wheel-next");
+    const wheelDial = document.getElementById("wheel-dial");
+    const wheelLabel = document.getElementById("wheel-label");
+    const wheelSubscribeCTA = document.getElementById("wheel-subscribe-cta");
 
-  // Force the widget script to re-run every click (cache-bust)
-  const s = document.createElement("script");
-  s.type = "text/javascript";
-  s.async = true;
-  s.src =
-    "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?cb=" +
-    Date.now();
+    let wheelIdx = 0;
 
-  // TradingView reads JSON from the script tag body
-  s.text = JSON.stringify({
-    symbol: symbol,
-    width: "100%",
-    height: 280,
-    locale: "en",
-    dateRange: "3M",
-    colorTheme: "dark",
-    isTransparent: true,
-    autosize: true,
-    largeChartUrl: ""
-  });
+    function renderWheelDots(){
+      if (!wheelDots) return;
+      wheelDots.innerHTML = "";
+      wheelData.forEach((item, i)=>{
+        const d = document.createElement("button");
+        d.type = "button";
+        d.className = "wheel-dot";
+        d.setAttribute("aria-label", (item.tier === "Premium" ? "Premium" : "Free") + " • " + item.title);
+        d.addEventListener("click", ()=>setWheel(i));
+        wheelDots.appendChild(d);
+      });
+    }
 
-  watchWrap.appendChild(s);
-}
+    function setWheel(i){
+      wheelIdx = (i + wheelData.length) % wheelData.length;
+      const item = wheelData[wheelIdx];
+      if (!wheelCard) return;
 
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
-  });
-});
+      const isPro = item.tier === "Premium";
+      wheelCard.className = "wheel-card" + (isPro ? " pro" : "");
+      if (wheelLabel){
+        wheelLabel.textContent = (isPro ? "Premium" : "Free") + " • " + item.title;
+      }
 
-loadMiniChart("FOREXCOM:SPXUSD");
+      const stepText = (wheelIdx + 1) + " / " + wheelData.length;
+      wheelCard.innerHTML = `
+        <div>
+          <div class="wheel-card-top">
+            <div class="wheel-tag"><span class="kdot"></span><span>${isPro ? "Premium" : "Free"}</span></div>
+            <div class="wheel-step">${stepText}</div>
+          </div>
+          <div class="wheel-title">${item.title}</div>
+          <div class="wheel-desc">${item.desc}</div>
+          <ul class="wheel-bullets">
+            ${item.bullets.map(b=>`<li>${b}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="wheel-footer" style="margin-top:6px;">
+          <div style="font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;">
+            ${isPro ? "Unlock with Premium" : "Included in Free"}
+          </div>
+          <div class="wheel-cta">
+            ${isPro ? `<a class="mini-link" href="#" id="wheel-open-premium">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
+            <a class="mini-link secondary" href="archive.html">Open archive</a>
+          </div>
+        </div>
+      `;
+
+      // update dots
+      if (wheelDots){
+        Array.from(wheelDots.children).forEach((node, idx)=>{
+          node.classList.toggle("active", idx === wheelIdx);
+          node.classList.toggle("pro", idx === wheelIdx && wheelData[wheelIdx].tier === "Premium");
+        });
+      }
+
+      // dial "spin" (tiny micro-wow)
+      if (wheelDial){
+        const angle = (360 / wheelData.length) * wheelIdx;
+        wheelDial.style.setProperty("--wheel-angle", angle + "deg");
+        wheelDial.style.transform = "rotate(" + (angle * -1) + "deg)";
+      }
+
+      // hook CTA buttons inside card
+      const openSubInline = document.getElementById("wheel-open-subscribe");
+      if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(); });
+
+      const openProInline = document.getElementById("wheel-open-premium");
+      if (openProInline) openProInline.addEventListener("click", (e)=>{ e.preventDefault(); openPremiumModal(e); });
+    }
+
+    if (wheelPrev) wheelPrev.addEventListener("click", ()=>setWheel(wheelIdx - 1));
+    if (wheelNext) wheelNext.addEventListener("click", ()=>setWheel(wheelIdx + 1));
+    if (wheelSubscribeCTA) wheelSubscribeCTA.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(); });
+
+    renderWheelDots();
+    setWheel(0);
+
+    // -----------------------------------------------------
+    // TradingView Watchlist (interactive) — FIXED
+    // -----------------------------------------------------
+    const watchWrap = document.getElementById("watch-widget");
+    const buttons = document.querySelectorAll(".watch-btn");
+
+    function loadMiniChart(symbol) {
+      if (!watchWrap) return;
+
+      watchWrap.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
+
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?cb=" +
+        Date.now();
+
+      s.text = JSON.stringify({
+        symbol: symbol,
+        width: "100%",
+        height: 280,
+        locale: "en",
+        dateRange: "3M",
+        colorTheme: "dark",
+        isTransparent: true,
+        autosize: true,
+        largeChartUrl: ""
+      });
+
+      watchWrap.appendChild(s);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
+      });
+    });
+
+    loadMiniChart("FOREXCOM:SPXUSD");
 
     // -----------------------------------------------------
     // Floating module behavior (adds "lift" styling)
@@ -1417,7 +1928,7 @@ loadMiniChart("FOREXCOM:SPXUSD");
     // Scroll reveal (UNBREAKABLE)
     // -----------------------------------------------------
     (function initScrollReveal(){
-      if (!('IntersectionObserver' in window)) return; // no hiding if unsupported
+      if (!('IntersectionObserver' in window)) return;
       const els = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
@@ -1428,7 +1939,7 @@ loadMiniChart("FOREXCOM:SPXUSD");
         });
       }, { threshold: 0.12 });
 
-      document.documentElement.classList.add('sr'); // only now do we allow reveal hiding
+      document.documentElement.classList.add('sr');
       els.forEach(el=>io.observe(el));
     })();
 
@@ -1545,17 +2056,14 @@ loadMiniChart("FOREXCOM:SPXUSD");
         if (counted) return;
         counted = true;
 
-        // pulse
         document.getElementById('count-card-1')?.classList.add('pulse');
         document.getElementById('count-card-2')?.classList.add('pulse');
         document.getElementById('count-card-3')?.classList.add('pulse');
 
-        // snapshot flash
         document.querySelectorAll('[data-flash]').forEach((n,i)=>{
           setTimeout(()=>n.classList.add('flash'), 60 + i*90);
         });
 
-        // numbers
         strip?.querySelectorAll('[data-count]').forEach(n=>{
           animateCount(n, Number(n.dataset.count || "0"), 700);
         });
@@ -1579,6 +2087,7 @@ loadMiniChart("FOREXCOM:SPXUSD");
 
     const sections = [
       { id:'how', el:document.getElementById('how') },
+      { id:'what', el:document.getElementById('what') },
       { id:'watch', el:document.getElementById('watch') },
       { id:'about', el:document.getElementById('about') },
       { id:'premium', el:document.getElementById('premium') },
@@ -1630,7 +2139,6 @@ loadMiniChart("FOREXCOM:SPXUSD");
     updateRailProgress();
     updateRailVisibility();
 
-    // Optional: simple manual regime label (easy to wire later)
     if (railRegime){
       railRegime.textContent = "Neutral";
     }
@@ -1836,7 +2344,7 @@ loadMiniChart("FOREXCOM:SPXUSD");
         if (profile && profile.is_premium){
           window.location.href = "premium.html";
         } else {
-          openPremiumModal();
+          openPremiumModal(e);
         }
       });
     }
@@ -1845,7 +2353,7 @@ loadMiniChart("FOREXCOM:SPXUSD");
       manageMembership.addEventListener("click", (e)=>{
         e.preventDefault();
         if (!PAYMENT_LINK){
-          openPremiumModal();
+          openPremiumModal(e);
           return;
         }
         window.open(PAYMENT_LINK, "_blank", "noopener");
@@ -1855,6 +2363,14 @@ loadMiniChart("FOREXCOM:SPXUSD");
     supabase.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
     setAuthMode("signin");
     refreshUI();
+
+    // -----------------------------------------------------
+    // Keyboard support for wheel
+    // -----------------------------------------------------
+    window.addEventListener("keydown",(e)=>{
+      if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
+      if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
+    }, { passive:true });
   </script>
 </body>
 </html>
