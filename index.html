@@ -277,6 +277,159 @@
       margin-bottom: 14px;
     }
 
+    /* ===== HERO MULTI-PART CONTENT ===== */
+    .hero-stack{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    .hero-block{
+      border-radius: 18px;
+      border: 1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.30);
+      padding: 12px 12px 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-block::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 60%);
+      pointer-events:none;
+      opacity: 0.9;
+    }
+
+    .hero-block-title{
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+    }
+
+    .hero-bullets{
+      position: relative;
+      z-index: 1;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .hero-bullet{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+    .dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-top: 4px;
+      background: rgba(244,193,93,0.95);
+      box-shadow: 0 0 0 5px rgba(244,193,93,0.12);
+      flex: 0 0 auto;
+    }
+    .hero-bullet-head{
+      font-size: 13px;
+      font-weight: 700;
+      color: #e5e7eb;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+    .hero-bullet-sub{
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .hero-mini-grid{
+      position: relative;
+      z-index: 1;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .hero-mini-grid{ grid-template-columns: 1fr; }
+    }
+
+    .hero-mini-card{
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.22);
+      background: rgba(15,23,42,0.55);
+      padding: 10px 10px 9px;
+      transition: 0.18s ease;
+    }
+    .hero-mini-card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,193,93,0.35);
+      background: rgba(15,23,42,0.70);
+    }
+    .hero-mini-top{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .hero-mini-tag{
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-mini-chip{
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(2,6,23,0.35);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .hero-mini-body{
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.45;
+    }
+
+    .hero-strip{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .hero-strip-item{
+      flex: 1 1 120px;
+      min-width: 120px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.20);
+      background: rgba(2,6,23,0.26);
+      padding: 10px 10px 9px;
+      text-align: center;
+    }
+    .hero-strip-num{
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      color: #fef3c7;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+    .hero-strip-text{
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
     .hero-actions{
       display:flex;
       gap: 10px;
@@ -813,7 +966,8 @@
     /* keep muted areas muted */
     .brand-subtitle, .hero-kicker, .panel-title, .panel-subtitle,
     .snap-label, .snap-chip, .latest-tag, .latest-date,
-    .latest-desc, .faq-ans, footer, .header-link {
+    .latest-desc, .faq-ans, footer, .header-link,
+    .hero-block-title, .hero-bullet-sub, .hero-mini-tag, .hero-mini-chip, .hero-strip-text {
       color: var(--text-muted) !important;
     }
 
@@ -901,6 +1055,90 @@
             <p class="hero-sub">
               Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.
             </p>
+
+            <!-- MULTI-PART HERO CONTENT -->
+            <div class="hero-stack">
+              <div class="hero-block">
+                <div class="hero-block-title">What you get</div>
+                <div class="hero-bullets">
+                  <div class="hero-bullet">
+                    <div class="dot"></div>
+                    <div>
+                      <div class="hero-bullet-head">Macro that matters</div>
+                      <div class="hero-bullet-sub">Rates, USD, commodities, and the drivers behind risk-on / risk-off.</div>
+                    </div>
+                  </div>
+
+                  <div class="hero-bullet">
+                    <div class="dot"></div>
+                    <div>
+                      <div class="hero-bullet-head">Momentum & positioning</div>
+                      <div class="hero-bullet-sub">What’s working, what’s fading, and where flows are crowding.</div>
+                    </div>
+                  </div>
+
+                  <div class="hero-bullet">
+                    <div class="dot"></div>
+                    <div>
+                      <div class="hero-bullet-head">Catalyst calendar thinking</div>
+                      <div class="hero-bullet-sub">CPI/FOMC/earnings context with clean takeaways and link-outs.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-block">
+                <div class="hero-block-title">Weekly format</div>
+                <div class="hero-mini-grid">
+                  <div class="hero-mini-card">
+                    <div class="hero-mini-top">
+                      <span class="hero-mini-tag">Monday</span>
+                      <span class="hero-mini-chip">Outlook</span>
+                    </div>
+                    <div class="hero-mini-body">Theme, levels, and what could move markets this week.</div>
+                  </div>
+
+                  <div class="hero-mini-card">
+                    <div class="hero-mini-top">
+                      <span class="hero-mini-tag">Wednesday</span>
+                      <span class="hero-mini-chip">Momentum</span>
+                    </div>
+                    <div class="hero-mini-body">What’s trending, sector leadership, and rotation signals.</div>
+                  </div>
+
+                  <div class="hero-mini-card">
+                    <div class="hero-mini-top">
+                      <span class="hero-mini-tag">Friday</span>
+                      <span class="hero-mini-chip">Recap</span>
+                    </div>
+                    <div class="hero-mini-body">What actually mattered, winners/losers, and why.</div>
+                  </div>
+
+                  <div class="hero-mini-card">
+                    <div class="hero-mini-top">
+                      <span class="hero-mini-tag">Sunday</span>
+                      <span class="hero-mini-chip">Macro</span>
+                    </div>
+                    <div class="hero-mini-body">Deeper macro framework and setups for the next week.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-strip">
+                <div class="hero-strip-item">
+                  <div class="hero-strip-num">4×</div>
+                  <div class="hero-strip-text">issues weekly</div>
+                </div>
+                <div class="hero-strip-item">
+                  <div class="hero-strip-num">2–4</div>
+                  <div class="hero-strip-text">minute read</div>
+                </div>
+                <div class="hero-strip-item">
+                  <div class="hero-strip-num">0</div>
+                  <div class="hero-strip-text">hype, no spam</div>
+                </div>
+              </div>
+            </div>
 
             <div class="hero-actions">
               <a class="btn primary" href="#subscribe">Get Free Email</a>
