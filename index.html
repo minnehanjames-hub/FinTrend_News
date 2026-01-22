@@ -2,40 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Primary SEO -->
-  <title>FinTrend News | Market Newsletter</title>
-  <meta name="description" content="FinTrend News is a four-times-a-week market newsletter covering macro, momentum, key catalysts, and the most important market movements." />
-  <link rel="canonical" href="https://fintrend.news/" />
+  <title>FinTrend News</title>
+  <meta name="description" content="Four-times-a-week market newsletter: macro, momentum, recap, and catalysts." />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="FinTrend News | Market Newsletter" />
-  <meta property="og:description" content="Four-times-a-week market notes: Monday outlook, Wednesday momentum, Friday recap, and Sunday macro." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://fintrend.news/" />
-  <meta property="og:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FinTrend News | Market Newsletter" />
-  <meta name="twitter:description" content="Your concise, sell-side style market briefing. Four issues weekly." />
-  <meta name="twitter:image" content="https://fintrend.news/assets/img/FTN-logo.png" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="icon" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Optional external stylesheet (ok to keep) -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -44,25 +24,18 @@
     gtag('config', 'G-KSK5YVPJBR');
   </script>
 
-  <!-- Supabase JS (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Enable scroll-reveal only when JS is on (prevents "cut off" / invisible content if JS fails) -->
-  <script>
-    document.documentElement.classList.add('js');
-  </script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <style>
     :root {
       --bg: #050816;
       --bg-elevated: #0b1020;
       --accent: #f4c15d;
-      --accent-soft: rgba(244, 193, 93, 0.12);
       --text-main: #f9fafb;
       --text-muted: #9ca3af;
       --border-subtle: rgba(148, 163, 184, 0.35);
-      --danger: #f97373;
-      --success: #4ade80;
       --radius-lg: 18px;
       --radius-xl: 24px;
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
@@ -76,7 +49,6 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
       min-height: 100vh;
-
       background-image:
         radial-gradient(circle at top, rgba(17, 24, 39, 0.78) 0, rgba(2, 6, 23, 0.82) 45%, rgba(0, 0, 0, 0.92) 100%),
         url("assets/img/bg-candles.png");
@@ -107,7 +79,6 @@
       position: relative;
     }
 
-    /* === TOP HEADER WITH EMBEDDED TICKER === */
     .top-header {
       position: sticky;
       top: 0;
@@ -210,9 +181,8 @@
       .header-left .logo-img { height: 46px; }
     }
 
-    /* ===== HERO (FIRST SCREEN) ===== */
     .hero {
-      min-height: 72vh; /* prevents “everything is only hero” / feels cut off */
+      min-height: 72vh;
       display: grid;
       place-items: center;
       padding: 20px 0 10px;
@@ -277,7 +247,6 @@
       margin-bottom: 14px;
     }
 
-    /* ===== HERO MULTI-PART CONTENT ===== */
     .hero-stack{
       display:flex;
       flex-direction:column;
@@ -561,7 +530,6 @@
       color: var(--text-main);
     }
 
-    /* ===== PANELS ===== */
     .panel {
       background: rgba(15, 23, 42, 0.90);
       border-radius: var(--radius-xl);
@@ -606,9 +574,6 @@
       letter-spacing: 0.14em;
     }
 
-    /* Scroll reveal:
-       - If JS is OFF: content is visible (no cut-off).
-       - If JS is ON: we animate. */
     .reveal { opacity: 1; transform: none; }
     .js .reveal {
       opacity: 0;
@@ -618,7 +583,6 @@
     }
     .js .reveal.in-view { opacity: 1; transform: translateY(0); }
 
-    /* Tiles */
     .tiles-grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
@@ -691,7 +655,6 @@
       font-size: 12px;
     }
 
-    /* Watchlist */
     .watchlist-row{
       display:flex;
       gap: 10px;
@@ -723,7 +686,6 @@
       color: var(--accent);
     }
 
-    /* Latest grid */
     .latest-grid{
       position:relative;
       z-index:1;
@@ -807,7 +769,6 @@
       background: rgba(2,6,23,0.30);
     }
 
-    /* FAQ */
     .faq{
       position:relative; z-index:1;
       display:flex; flex-direction:column; gap: 10px;
@@ -854,142 +815,13 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* === MODALS (shared) === */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      padding: 14px;
-    }
-    .modal-backdrop.active { display: flex; }
-
-    .modal-window {
-      background: rgba(15, 23, 42, 0.97);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
-      max-width: 440px;
-      width: 100%;
-      padding: 22px 22px 18px;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      border: none;
-      background: transparent;
-      color: #9ca3af;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .modal-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
-      margin-bottom: 4px;
-    }
-
-    .modal-title {
-      font-family: "Playfair Display", serif;
-      font-size: 22px;
-      margin-bottom: 6px;
-      color: #f9fafb;
-    }
-
-    .modal-subtitle {
-      font-size: 13px;
-      color: #d1d5db;
-      margin-bottom: 12px;
-    }
-
-    .modal-list {
-      font-size: 12px;
-      color: #e5e7eb;
-      margin: 0 0 12px 16px;
-    }
-    .modal-list li { margin-bottom: 6px; }
-
-    .modal-btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .modal-primary-btn,
-    .modal-secondary-btn {
-      border-radius: 999px;
-      font-size: 12px;
-      padding: 9px 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.2s ease;
-    }
-
-    .modal-primary-btn {
-      border: none;
-      background: #f4c15d;
-      color: #000;
-      font-weight: 800;
-    }
-    .modal-primary-btn:hover { background: #f7d680; }
-
-    .modal-secondary-btn {
-      border: 1px solid rgba(148,163,184,0.5);
-      background: transparent;
-      color: #9ca3af;
-    }
-    .modal-secondary-btn:hover { border-color: #f4c15d; color: #f4c15d; }
-
-    /* =========================================================
-       ✅ COLOR SAFETY: keep all text readable (avoid black)
-    ========================================================== */
-    html, body { color: var(--text-main); }
-
-    /* default link color */
     a { color: #e5e7eb; }
     a:hover { color: var(--accent); }
-
-    /* keep muted areas muted */
-    .brand-subtitle, .hero-kicker, .panel-title, .panel-subtitle,
-    .snap-label, .snap-chip, .latest-tag, .latest-date,
-    .latest-desc, .faq-ans, footer, .header-link,
-    .hero-block-title, .hero-bullet-sub, .hero-mini-tag, .hero-mini-chip, .hero-strip-text {
-      color: var(--text-muted) !important;
-    }
-
-    /* make sure buttons/CTAs keep their intended colors */
-    .subscribe-btn { color: #000 !important; }
-    .btn.primary { color: #000 !important; }
-    .mini-link { color: var(--accent) !important; }
-    .mini-link.secondary { color: #e5e7eb !important; }
-
-    /* For any rogue black text from styles.css */
-    body, p, span, li, label, small, strong, em, i, b,
-    h1, h2, h3, h4, h5, h6,
-    button, input, textarea, select,
-    summary, details, div, section, article, header, footer, nav {
-      color: inherit;
-    }
   </style>
 </head>
 
 <body>
   <div class="page">
-    <!-- HEADER WITH TICKER INSIDE -->
     <header class="top-header">
       <div class="ticker-row">
         <div class="tradingview-widget-container">
@@ -1000,7 +832,8 @@
     { "proName": "NASDAQ:NDX", "title": "Nasdaq 100" },
     { "proName": "DJI", "title": "Dow 30" },
     { "proName": "RUSSELL:RTY", "title": "Russell 2000" },
-    { "proName": "TVC:US10Y", "title": "US 10Y" },
+    { "proName": "OANDA:EURUSD", "title": "EURUSD" },
+    { "proName": "BITSTAMP:BTCUSD", "title": "BTC" },
     { "proName": "OANDA:WTICOUSD", "title": "WTI Crude" },
     { "proName": "OANDA:XAUUSD", "title": "Gold" }
   ],
@@ -1024,39 +857,29 @@
         </div>
 
         <div class="header-right">
-          <!-- Auth -->
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
           <span class="header-link" id="user-chip" style="display:none;"></span>
 
-          <!-- Subscribe scrolls to free email section -->
           <a href="#subscribe" class="subscribe-btn" id="subscribe-btn">Subscribe</a>
-
-          <!-- Premium opens premium modal -->
           <a href="#" class="header-link" id="open-premium-modal">Premium</a>
 
           <div class="social-icons">
-            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="FinTrend News Instagram">IG</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" title="FinTrend News LinkedIn">in</a>
+            <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="Instagram">IG</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">in</a>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- ===== HERO ===== -->
     <section class="hero">
       <div class="hero-card reveal in-view">
         <div class="hero-inner">
           <div>
             <div class="hero-kicker">Market Newsletter</div>
-            <h2 class="hero-title">
-              Your <span>sell-side style</span> market brief — without the noise.
-            </h2>
-            <p class="hero-sub">
-              Macro drivers, positioning, catalysts — clean and fast. Built for a quick scan, then a deeper read when you want it.
-            </p>
+            <h2 class="hero-title">Your <span>sell-side style</span> market brief — without the noise.</h2>
+            <p class="hero-sub">Macro drivers, positioning, catalysts — clean and fast.</p>
 
-            <!-- MULTI-PART HERO CONTENT -->
             <div class="hero-stack">
               <div class="hero-block">
                 <div class="hero-block-title">What you get</div>
@@ -1065,10 +888,9 @@
                     <div class="dot"></div>
                     <div>
                       <div class="hero-bullet-head">Macro that matters</div>
-                      <div class="hero-bullet-sub">Rates, USD, commodities, and the drivers behind risk-on / risk-off.</div>
+                      <div class="hero-bullet-sub">USD, commodities, and risk-on / risk-off drivers.</div>
                     </div>
                   </div>
-
                   <div class="hero-bullet">
                     <div class="dot"></div>
                     <div>
@@ -1076,12 +898,11 @@
                       <div class="hero-bullet-sub">What’s working, what’s fading, and where flows are crowding.</div>
                     </div>
                   </div>
-
                   <div class="hero-bullet">
                     <div class="dot"></div>
                     <div>
                       <div class="hero-bullet-head">Catalyst calendar thinking</div>
-                      <div class="hero-bullet-sub">CPI/FOMC/earnings context with clean takeaways and link-outs.</div>
+                      <div class="hero-bullet-sub">CPI/FOMC/earnings context with clean takeaways.</div>
                     </div>
                   </div>
                 </div>
@@ -1091,52 +912,28 @@
                 <div class="hero-block-title">Weekly format</div>
                 <div class="hero-mini-grid">
                   <div class="hero-mini-card">
-                    <div class="hero-mini-top">
-                      <span class="hero-mini-tag">Monday</span>
-                      <span class="hero-mini-chip">Outlook</span>
-                    </div>
+                    <div class="hero-mini-top"><span class="hero-mini-tag">Monday</span><span class="hero-mini-chip">Outlook</span></div>
                     <div class="hero-mini-body">Theme, levels, and what could move markets this week.</div>
                   </div>
-
                   <div class="hero-mini-card">
-                    <div class="hero-mini-top">
-                      <span class="hero-mini-tag">Wednesday</span>
-                      <span class="hero-mini-chip">Momentum</span>
-                    </div>
+                    <div class="hero-mini-top"><span class="hero-mini-tag">Wednesday</span><span class="hero-mini-chip">Momentum</span></div>
                     <div class="hero-mini-body">What’s trending, sector leadership, and rotation signals.</div>
                   </div>
-
                   <div class="hero-mini-card">
-                    <div class="hero-mini-top">
-                      <span class="hero-mini-tag">Friday</span>
-                      <span class="hero-mini-chip">Recap</span>
-                    </div>
-                    <div class="hero-mini-body">What actually mattered, winners/losers, and why.</div>
+                    <div class="hero-mini-top"><span class="hero-mini-tag">Friday</span><span class="hero-mini-chip">Recap</span></div>
+                    <div class="hero-mini-body">What mattered, winners/losers, and why.</div>
                   </div>
-
                   <div class="hero-mini-card">
-                    <div class="hero-mini-top">
-                      <span class="hero-mini-tag">Sunday</span>
-                      <span class="hero-mini-chip">Macro</span>
-                    </div>
-                    <div class="hero-mini-body">Deeper macro framework and setups for the next week.</div>
+                    <div class="hero-mini-top"><span class="hero-mini-tag">Sunday</span><span class="hero-mini-chip">Macro</span></div>
+                    <div class="hero-mini-body">Deeper framework and setups for next week.</div>
                   </div>
                 </div>
               </div>
 
               <div class="hero-strip">
-                <div class="hero-strip-item">
-                  <div class="hero-strip-num">4×</div>
-                  <div class="hero-strip-text">issues weekly</div>
-                </div>
-                <div class="hero-strip-item">
-                  <div class="hero-strip-num">2–4</div>
-                  <div class="hero-strip-text">minute read</div>
-                </div>
-                <div class="hero-strip-item">
-                  <div class="hero-strip-num">0</div>
-                  <div class="hero-strip-text">hype, no spam</div>
-                </div>
+                <div class="hero-strip-item"><div class="hero-strip-num">4×</div><div class="hero-strip-text">issues weekly</div></div>
+                <div class="hero-strip-item"><div class="hero-strip-num">2–4</div><div class="hero-strip-text">minute read</div></div>
+                <div class="hero-strip-item"><div class="hero-strip-num">0</div><div class="hero-strip-text">hype, no spam</div></div>
               </div>
             </div>
 
@@ -1147,9 +944,7 @@
               <a class="btn" href="#premium">Premium Tools</a>
             </div>
 
-            <div class="hero-note">
-              Tip: Scroll for how it works, watchlist charts, premium tools, and quick answers.
-            </div>
+            <div class="hero-note">Scroll for watchlist charts, premium tools, and FAQ.</div>
           </div>
 
           <aside class="hero-right">
@@ -1157,10 +952,7 @@
 
             <div class="snapshot-grid">
               <div class="snap">
-                <div class="snap-top">
-                  <div class="snap-label">S&P 500</div>
-                  <div class="snap-chip">Benchmark</div>
-                </div>
+                <div class="snap-top"><div class="snap-label">S&P 500</div><div class="snap-chip">Benchmark</div></div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
@@ -1177,10 +969,7 @@
               </div>
 
               <div class="snap">
-                <div class="snap-top">
-                  <div class="snap-label">Nasdaq 100</div>
-                  <div class="snap-chip">Growth</div>
-                </div>
+                <div class="snap-top"><div class="snap-label">Nasdaq 100</div><div class="snap-chip">Growth</div></div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
@@ -1197,15 +986,12 @@
               </div>
 
               <div class="snap">
-                <div class="snap-top">
-                  <div class="snap-label">US 10Y</div>
-                  <div class="snap-chip">Rates</div>
-                </div>
+                <div class="snap-top"><div class="snap-label">EURUSD</div><div class="snap-chip">FX</div></div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
 {
-  "symbol": "TVC:US10Y",
+  "symbol": "OANDA:EURUSD",
   "width": "100%",
   "colorTheme": "dark",
   "isTransparent": true,
@@ -1217,15 +1003,12 @@
               </div>
 
               <div class="snap">
-                <div class="snap-top">
-                  <div class="snap-label">VIX</div>
-                  <div class="snap-chip">Volatility</div>
-                </div>
+                <div class="snap-top"><div class="snap-label">BTC</div><div class="snap-chip">Crypto</div></div>
                 <div class="snap-body">
                   <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
 {
-  "symbol": "CBOE:VIX",
+  "symbol": "BITSTAMP:BTCUSD",
   "width": "100%",
   "colorTheme": "dark",
   "isTransparent": true,
@@ -1237,9 +1020,7 @@
               </div>
             </div>
 
-            <div class="hero-note">
-              These are live quotes (TradingView). You can swap symbols anytime.
-            </div>
+            <div class="hero-note">Live quotes via TradingView.</div>
           </aside>
         </div>
 
@@ -1249,50 +1030,38 @@
       </div>
     </section>
 
-    <!-- BELOW FOLD -->
     <div id="below"></div>
 
-    <!-- How it works -->
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
         <div>
           <div class="panel-title">How to use this</div>
-          <div class="panel-subtitle">Minimal words. Max utility.</div>
+          <div class="panel-subtitle">Quick scan → deeper read.</div>
         </div>
         <div class="time-indicator">30 seconds</div>
       </div>
 
       <div class="tiles-grid">
         <div class="tile reveal">
-          <div class="tile-top">
-            <div class="tile-num">Step 01</div>
-            <div class="tile-pill">Scan</div>
-          </div>
+          <div class="tile-top"><div class="tile-num">Step 01</div><div class="tile-pill">Scan</div></div>
           <div class="tile-title">Check drivers & volatility</div>
-          <div class="tile-line">Rates, VIX, breadth—fast context.</div>
+          <div class="tile-line">Index levels, FX, crypto, risk context.</div>
         </div>
 
         <div class="tile reveal">
-          <div class="tile-top">
-            <div class="tile-num">Step 02</div>
-            <div class="tile-pill">Decide</div>
-          </div>
+          <div class="tile-top"><div class="tile-num">Step 02</div><div class="tile-pill">Decide</div></div>
           <div class="tile-title">Pick what you need</div>
-          <div class="tile-line">Macro framing, catalysts, and positioning.</div>
+          <div class="tile-line">Macro framing, catalysts, positioning.</div>
         </div>
 
         <div class="tile reveal">
-          <div class="tile-top">
-            <div class="tile-num">Step 03</div>
-            <div class="tile-pill">Execute</div>
-          </div>
-          <div class="tile-title">Use it like a trading brief</div>
+          <div class="tile-top"><div class="tile-num">Step 03</div><div class="tile-pill">Execute</div></div>
+          <div class="tile-title">Use it like a brief</div>
           <div class="tile-line">Headlines → takeaways → link outs.</div>
         </div>
       </div>
     </section>
 
-    <!-- Watchlist -->
     <section class="panel reveal" id="watch" aria-label="Watchlist">
       <div class="panel-header">
         <div>
@@ -1305,40 +1074,32 @@
       <div class="watchlist-row">
         <button class="watch-btn active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
         <button class="watch-btn" data-symbol="NASDAQ:NDX">NDX</button>
-        <button class="watch-btn" data-symbol="CBOE:VIX">VIX</button>
-        <button class="watch-btn" data-symbol="TVC:US10Y">US10Y</button>
+        <button class="watch-btn" data-symbol="OANDA:EURUSD">EURUSD</button>
+        <button class="watch-btn" data-symbol="BITSTAMP:BTCUSD">BTC</button>
         <button class="watch-btn" data-symbol="OANDA:XAUUSD">GOLD</button>
       </div>
 
-      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;">
-        <!-- widget injects here -->
-      </div>
+      <div class="tradingview-widget-container" id="watch-widget" style="position:relative;z-index:1;"></div>
 
       <p style="position:relative;z-index:1;font-size:11px;color:var(--text-muted);margin-top:10px;">
-        This is your “quick look” section—articles stay clean.
+        If TradingView is blocked by an adblocker, charts may not load.
       </p>
     </section>
 
-    <!-- What’s new -->
     <section class="panel reveal" id="latest" aria-label="Latest">
       <div class="panel-header">
         <div>
           <div class="panel-title">What’s new</div>
-          <div class="panel-subtitle">Use the archive as your source of truth.</div>
+          <div class="panel-subtitle">Archive stays accurate as you publish.</div>
         </div>
-        <div class="time-indicator">Updated weekly</div>
+        <div class="time-indicator">Updated</div>
       </div>
 
       <div class="latest-grid">
         <div class="latest-card reveal">
-          <div class="latest-top">
-            <div class="latest-tag">Latest issue</div>
-            <div class="latest-date">Pick a date</div>
-          </div>
-          <div class="latest-title">Open the calendar to see the newest published note</div>
-          <div class="latest-desc">
-            Instead of hardcoding links that go stale, the Archive stays accurate as you publish.
-          </div>
+          <div class="latest-top"><div class="latest-tag">Latest issue</div><div class="latest-date">Pick a date</div></div>
+          <div class="latest-title">Open the calendar for the newest note</div>
+          <div class="latest-desc">Use Archive as your source of truth.</div>
           <div class="latest-actions">
             <a class="mini-link" href="archive.html">Open Archive ↗</a>
             <a class="mini-link secondary" href="#subscribe">Get emails</a>
@@ -1346,14 +1107,9 @@
         </div>
 
         <div class="latest-card reveal">
-          <div class="latest-top">
-            <div class="latest-tag">New here?</div>
-            <div class="latest-date">Start fast</div>
-          </div>
-          <div class="latest-title">A 30-second routine for market context</div>
-          <div class="latest-desc">
-            Scan quotes → check watchlist chart → open the note you need from the calendar.
-          </div>
+          <div class="latest-top"><div class="latest-tag">New here?</div><div class="latest-date">Start fast</div></div>
+          <div class="latest-title">A 30-second routine</div>
+          <div class="latest-desc">Scan quotes → check a chart → open the note from the calendar.</div>
           <div class="latest-actions">
             <a class="mini-link" href="#watch">Watchlist ↗</a>
             <a class="mini-link secondary" href="#how">How it works</a>
@@ -1362,46 +1118,36 @@
       </div>
     </section>
 
-    <!-- Premium tools (gated) -->
     <section class="panel reveal" id="premium" aria-label="Premium tools">
       <div class="panel-header">
         <div>
           <div class="panel-title">Premium tools</div>
-          <div class="panel-subtitle">Trade setups + portfolio tracking (members only).</div>
+          <div class="panel-subtitle">Members only.</div>
         </div>
         <div class="time-indicator">Members</div>
       </div>
 
       <div class="latest-grid" style="grid-template-columns:1fr;">
         <div class="latest-card reveal">
-          <div class="latest-top">
-            <div class="latest-tag">FinTrend Portfolio</div>
-            <div class="latest-date">Premium</div>
-          </div>
-
+          <div class="latest-top"><div class="latest-tag">FinTrend Portfolio</div><div class="latest-date">Premium</div></div>
           <div class="latest-title">Open the member dashboard</div>
-          <div class="latest-desc">
-            Access trade setups, portfolio entries, and performance tracking once your subscription is active.
-          </div>
+          <div class="latest-desc">Trade setups, portfolio entries, and tracking.</div>
 
           <div class="latest-actions">
             <a class="mini-link" href="#" id="open-premium-dashboard">Open Premium Dashboard ↗</a>
             <a class="mini-link secondary" href="#" id="manage-membership">Manage Membership</a>
           </div>
 
-          <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">
-            Sign in to check access.
-          </p>
+          <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">Sign in to check access.</p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="panel reveal" id="faq" aria-label="FAQ">
       <div class="panel-header">
         <div>
           <div class="panel-title">Quick answers</div>
-          <div class="panel-subtitle">Click to expand. Keep it clean.</div>
+          <div class="panel-subtitle">Click to expand.</div>
         </div>
         <div class="time-indicator">FAQ</div>
       </div>
@@ -1414,7 +1160,7 @@
 
         <details class="faq-item">
           <summary>Is this financial advice? <span class="chev">▾</span></summary>
-          <div class="faq-ans">No—informational only. Use it as context, not a recommendation.</div>
+          <div class="faq-ans">No—informational only. Not a recommendation.</div>
         </details>
 
         <details class="faq-item">
@@ -1424,23 +1170,16 @@
       </div>
     </section>
 
-    <!-- Subscribe -->
     <section id="subscribe" class="panel reveal" style="margin-top: 18px;">
       <div class="panel-header">
         <div>
-          <div class="panel-title">Subscribe to FinTrend News</div>
-          <div class="panel-subtitle">
-            Get notes straight to your inbox when new issues are published.
-          </div>
+          <div class="panel-title">Subscribe</div>
+          <div class="panel-subtitle">Get new issues in your inbox.</div>
         </div>
         <div class="time-indicator">Free</div>
       </div>
 
       <div style="position:relative;z-index:1;">
-        <p style="font-size:13px;color:#e5e7eb;margin-bottom:10px;">
-          No spam, no hype — just concise, sell-side-style market briefings.
-        </p>
-
         <form
           action="https://github.us1.list-manage.com/subscribe/post?u=f93d4125631bb82d0915cc5d5&amp;id=0ad7096e52&amp;f_id=00addae4f0"
           method="post"
@@ -1467,36 +1206,27 @@
         </form>
 
         <p style="font-size:11px;color:#9ca3af;margin-top:6px;">
-          Powered by Mailchimp — you’ll receive FinTrend News when new notes are published.
+          Powered by Mailchimp.
         </p>
       </div>
     </section>
 
     <footer class="reveal">
       <p style="max-width:740px;margin:0 auto 6px;">
-        <strong>Disclaimer:</strong>
-        This content is for informational and educational purposes only, not financial
-        advice. I am not a licensed financial advisor. Nothing in this
-        newsletter should be interpreted as a recommendation to buy or sell any
-        financial asset.
+        <strong>Disclaimer:</strong> Informational/educational only. Not financial advice.
       </p>
-      <p>
-        © 2025 FinTrend News · <a href="archive.html">Archive / Calendar</a>
-      </p>
+      <p>© 2025 FinTrend News · <a href="archive.html">Archive</a></p>
     </footer>
   </div>
 
-  <!-- ===== AUTH MODAL (SUPABASE) ===== -->
   <div id="auth-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
       <button class="modal-close" id="close-auth-modal" aria-label="Close">×</button>
 
-      <div class="modal-kicker">FinTrend Account</div>
+      <div class="modal-kicker">Account</div>
       <h2 class="modal-title" id="auth-modal-title">Sign in</h2>
 
-      <p class="modal-subtitle" id="auth-subtitle">
-        Sign in to access premium tools and saved watchlists.
-      </p>
+      <p class="modal-subtitle" id="auth-subtitle">Sign in to access premium tools.</p>
 
       <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
         <input
@@ -1523,47 +1253,27 @@
       </form>
 
       <div style="margin-top:12px;border-top:1px solid rgba(148,163,184,0.25);padding-top:12px;">
-        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">
-          Forgot password
-        </button>
+        <button type="button" class="modal-secondary-btn" id="auth-reset-btn" style="width:100%;">Forgot password</button>
       </div>
     </div>
   </div>
 
-  <!-- ===== PREMIUM SUBSCRIBE MODAL ===== -->
   <div id="premium-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="premium-modal-title">
       <button class="modal-close" id="close-premium-modal" aria-label="Close">×</button>
 
-      <div class="modal-kicker">FinTrend Premium</div>
-      <h2 class="modal-title" id="premium-modal-title">Upgrade to the Premium Feed</h2>
-
-      <p class="modal-subtitle">
-        Keep the free newsletter — or unlock trade-ready insights updated throughout the week.
-      </p>
-
-      <ul class="modal-list">
-        <li>Daily levels, zones, and volatility markers.</li>
-        <li>Positioning detail + macro trade structuring.</li>
-        <li>FOMC + CPI quick-reaction mini notes.</li>
-        <li>Premium Sunday + mid-week add-ons.</li>
-      </ul>
+      <div class="modal-kicker">Premium</div>
+      <h2 class="modal-title" id="premium-modal-title">Upgrade</h2>
+      <p class="modal-subtitle">Unlock the premium feed.</p>
 
       <div class="modal-btn-row">
-        <a href="#" class="modal-primary-btn" id="go-premium-checkout">
-          Go Premium
-        </a>
-        <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">
-          Keep Free Version
-        </a>
+        <a href="#" class="modal-primary-btn" id="go-premium-checkout">Go Premium</a>
+        <a href="#subscribe" class="modal-secondary-btn" id="go-free-subscribe">Keep Free</a>
       </div>
     </div>
   </div>
 
   <script>
-    // =====================================================
-    // TradingView Watchlist (interactive)
-    // =====================================================
     const watchWrap = document.getElementById('watch-widget');
     const buttons = document.querySelectorAll('.watch-btn');
 
@@ -1575,7 +1285,7 @@
       s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
       s.async = true;
       s.innerHTML = JSON.stringify({
-        symbol: symbol,
+        symbol,
         width: "100%",
         height: 240,
         locale: "en",
@@ -1598,9 +1308,6 @@
 
     loadMiniChart("FOREXCOM:SPXUSD");
 
-    // =====================================================
-    // Smooth scroll (anchors only)
-    // =====================================================
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -1612,23 +1319,21 @@
       });
     });
 
-    // =====================================================
-    // Scroll reveal (only if JS enabled)
-    // =====================================================
     const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('in-view'));
+    }
 
-    // =====================================================
-    // Premium modal logic
-    // =====================================================
     const openPremiumBtn  = document.getElementById('open-premium-modal');
     const premiumModal    = document.getElementById('premium-modal');
     const closePremiumBtn = document.getElementById('close-premium-modal');
@@ -1652,23 +1357,14 @@
         if (e.target === premiumModal) closePremiumModal();
       });
     }
-    if (freeBtn) {
-      freeBtn.addEventListener('click', function () { closePremiumModal(); });
-    }
+    if (freeBtn) freeBtn.addEventListener('click', closePremiumModal);
 
-    // =====================================================
-    // ✅ SUPABASE AUTH + PREMIUM GATING
-    // =====================================================
-
-    // NOTE: Keep ONLY the anon key in the browser. Do NOT paste any "service_role" key into HTML.
     const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Replace with your Stripe Payment Link or Checkout URL
     const PAYMENT_LINK = "https://your-payment-link.com";
 
-    // Premium modal CTA
     const goPremiumCheckout = document.getElementById("go-premium-checkout");
     if (goPremiumCheckout) {
       goPremiumCheckout.addEventListener("click", (e) => {
@@ -1677,7 +1373,6 @@
       });
     }
 
-    // Auth modal elements
     const authModal = document.getElementById("auth-modal");
     const openAuthBtn = document.getElementById("open-auth-modal");
     const closeAuthBtn = document.getElementById("close-auth-modal");
@@ -1693,16 +1388,14 @@
     const authToggleBtn = document.getElementById("auth-toggle-btn");
     const authResetBtn = document.getElementById("auth-reset-btn");
 
-    // Header user UI
     const signoutLink = document.getElementById("signout-link");
     const userChip = document.getElementById("user-chip");
 
-    // Premium UI hooks
     const openPremiumDashboard = document.getElementById("open-premium-dashboard");
     const manageMembership = document.getElementById("manage-membership");
     const premiumStatus = document.getElementById("premium-status");
 
-    let mode = "signin"; // "signin" | "signup"
+    let mode = "signin";
 
     function openAuthModal(e){
       if (e) e.preventDefault();
@@ -1732,12 +1425,12 @@
 
       if (mode === "signin") {
         authTitle.textContent = "Sign in";
-        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
+        authSubtitle.textContent = "Sign in to access premium tools.";
         authSubmitBtn.textContent = "Sign in";
         authToggleBtn.textContent = "Create account";
       } else {
         authTitle.textContent = "Create account";
-        authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+        authSubtitle.textContent = "Create an account (then subscribe for premium).";
         authSubmitBtn.textContent = "Sign up";
         authToggleBtn.textContent = "I already have an account";
       }
@@ -1754,14 +1447,14 @@
       authResetBtn.addEventListener("click", async () => {
         const email = (authEmail?.value || "").trim();
         if (!email) {
-          if (authMsg) authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
+          if (authMsg) authMsg.textContent = "Enter your email first.";
           return;
         }
         if (authMsg) authMsg.textContent = "Sending reset email...";
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: window.location.origin
         });
-        if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
+        if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check inbox.";
       });
     }
 
@@ -1777,13 +1470,12 @@
           if (mode === "signin") {
             const { error } = await supabase.auth.signInWithPassword({ email, password });
             if (error) throw error;
-            if (authMsg) authMsg.textContent = "Signed in ✅";
             closeAuthModal();
             await refreshUI();
           } else {
             const { error } = await supabase.auth.signUp({ email, password });
             if (error) throw error;
-            if (authMsg) authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
+            if (authMsg) authMsg.textContent = "Account created ✅ Check email if confirmations are enabled.";
             await refreshUI();
           }
         } catch (err) {
@@ -1800,10 +1492,8 @@
       });
     }
 
-    // ---- Membership table: public.profiles
     async function ensureProfile(user){
       if (!user) return null;
-
       const { data: existing, error: fetchErr } = await supabase
         .from("profiles")
         .select("id,email,is_premium")
@@ -1861,7 +1551,7 @@
       } else if (profile) {
         if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
       } else {
-        if (premiumStatus) premiumStatus.textContent = "Premium status: profiles table not available / blocked by policies.";
+        if (premiumStatus) premiumStatus.textContent = "Premium status unavailable (profiles table blocked/missing).";
       }
     }
 
