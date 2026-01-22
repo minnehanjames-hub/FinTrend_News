@@ -1353,43 +1353,51 @@
         safeSmoothScrollTo(id);
       });
     });
+// -----------------------------------------------------
+// TradingView Watchlist (interactive) — FIXED
+// -----------------------------------------------------
+const watchWrap = document.getElementById("watch-widget");
+const buttons = document.querySelectorAll(".watch-btn");
 
-    // -----------------------------------------------------
-    // TradingView Watchlist (interactive)
-    // -----------------------------------------------------
-    const watchWrap = document.getElementById('watch-widget');
-    const buttons = document.querySelectorAll('.watch-btn');
+function loadMiniChart(symbol) {
+  if (!watchWrap) return;
 
-    function loadMiniChart(symbol){
-      if (!watchWrap) return;
-      watchWrap.innerHTML = "";
-      const s = document.createElement("script");
-      s.type = "text/javascript";
-      s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
-      s.async = true;
-      s.innerHTML = JSON.stringify({
-        symbol,
-        width: "100%",
-        height: 280,
-        locale: "en",
-        dateRange: "3M",
-        colorTheme: "dark",
-        isTransparent: true,
-        autosize: true,
-        largeChartUrl: ""
-      });
-      watchWrap.appendChild(s);
-    }
+  // Rebuild container each time
+  watchWrap.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
 
-    buttons.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        buttons.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
-      });
-    });
+  // Force the widget script to re-run every click (cache-bust)
+  const s = document.createElement("script");
+  s.type = "text/javascript";
+  s.async = true;
+  s.src =
+    "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?cb=" +
+    Date.now();
 
-    loadMiniChart("FOREXCOM:SPXUSD");
+  // TradingView reads JSON from the script tag body
+  s.text = JSON.stringify({
+    symbol: symbol,
+    width: "100%",
+    height: 280,
+    locale: "en",
+    dateRange: "3M",
+    colorTheme: "dark",
+    isTransparent: true,
+    autosize: true,
+    largeChartUrl: ""
+  });
+
+  watchWrap.appendChild(s);
+}
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    buttons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    loadMiniChart(btn.dataset.symbol || "FOREXCOM:SPXUSD");
+  });
+});
+
+loadMiniChart("FOREXCOM:SPXUSD");
 
     // -----------------------------------------------------
     // Floating module behavior (adds "lift" styling)
