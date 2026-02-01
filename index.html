@@ -1850,16 +1850,95 @@ if (goPremiumCheckout){
       // -----------------------------------------------------
       // What you get: Wheel (Free -> Premium) — hardened + swipe
       // -----------------------------------------------------
-      const wheelData = [
-        { tier:"Free", title:"Macro Drivers", desc:"The quick framing: what’s pushing risk-on / risk-off and which macro inputs matter right now.", bullets:["Rates / USD / oil / credit tone","“So what” summary, not headlines","One clean narrative thread"] },
-        { tier:"Free", title:"Momentum & Flows", desc:"What’s working, what’s fading, and where the crowd is leaning — in plain English.", bullets:["Leadership & rotation signals","Crowding + momentum read","Focus on what moves price"] },
-        { tier:"Free", title:"Catalysts With Context", desc:"CPI/FOMC/earnings — the setup, what matters, and what would actually change the regime.", bullets:["Pre-event framing","Post-event takeaways","Simple scenario map"] },
-        { tier:"Free", title:"Archive-First Notes", desc:"Everything stays organized. You publish, the archive stays accurate — no homepage updates required.", bullets:["Calendar archive workflow","Fast scanning by date","Permanent reference library"] },
-        { tier:"Premium", title:"Levels & Zones", desc:"Trade-ready structure: key levels, zones, and what would invalidate the read.", bullets:["Support / resistance map","Volatility-aware zones","Clean invalidation framework"] },
-        { tier:"Premium", title:"Risk Regime Dashboard", desc:"A tighter workflow: regime label, what confirms it, and what flips it.", bullets:["Risk-on / Neutral / Risk-off","What to watch next","Tactical + strategic alignment"] },
-        { tier:"Premium", title:"Catalyst Add-Ons", desc:"Short premium add-ons around key events — when it matters, not every day.", bullets:["Pre/post catalyst mini-notes","Scenario updates","Clean actionability"] },
-        { tier:"Premium", title:"Member Tools", desc:"Premium dashboard access (gated) for saved workflows and member-only modules.", bullets:["Member dashboard access","Saved views / modules","Future add-ons without redesign"] }
-      ];
+    const wheelData = [
+  // -------------------------
+  // FREE (what you already deliver)
+  // -------------------------
+  {
+    tier:"Free",
+    title:"Macro Drivers (Fast Read)",
+    desc:"A short, trade-desk style summary of what’s moving risk right now — rates, USD, oil, credit, and the main narrative tying them together.",
+    bullets:[
+      "One dominant driver + 1–2 supporting drivers (not a headline dump)",
+      "Simple implication: what it usually means for equities/FX/crypto",
+      "Key dates this week: CPI/FOMC/jobs/earnings clusters"
+    ]
+  },
+  {
+    tier:"Free",
+    title:"Momentum & Rotation",
+    desc:"A clean view of what leadership looks like right now — which areas are being bought, which are being sold, and what that says about positioning.",
+    bullets:[
+      "Sector/asset leadership: what’s actually outperforming",
+      "Rotation signal: growth vs value, cyclicals vs defensives",
+      "Crowding risk: where moves look stretched"
+    ]
+  },
+  {
+    tier:"Free",
+    title:"Catalysts With Context",
+    desc:"Pre-event framing + post-event takeaways for the releases that matter — focusing on what would change markets, not what sounds dramatic.",
+    bullets:[
+      "What’s priced vs what would surprise",
+      "2–3 scenarios max (base / upside / downside)",
+      "“If X happens, watch Y” level logic"
+    ]
+  },
+  {
+    tier:"Free",
+    title:"Archive-First Notes",
+    desc:"Everything is organized and easy to skim later. Your notes become a searchable library instead of disappearing in a feed.",
+    bullets:[
+      "Calendar archive workflow",
+      "Scan by date in seconds",
+      "Builds a track record over time"
+    ]
+  },
+
+  // -------------------------
+  // PREMIUM (what people pay for)
+  // -------------------------
+  {
+    tier:"Premium",
+    title:"Weekly Trade Plan (Levels + Triggers)",
+    desc:"A real plan you can execute: key levels, what confirms a move, what invalidates it, and what you do if it breaks.",
+    bullets:[
+      "Support/resistance levels that matter + what price action to watch",
+      "Trigger → target → invalidation (so you’re not guessing mid-move)",
+      "Positioning note: where risk/reward is best this week"
+    ]
+  },
+  {
+    tier:"Premium",
+    title:"Setups Board (2–5 Clean Trades)",
+    desc:"A small list of actionable setups (not 30 ideas). Each has a thesis, entry logic, invalidation, and time horizon.",
+    bullets:[
+      "2–5 setups per week (quality over quantity)",
+      "Each setup includes: why it works + what would kill it",
+      "Time horizon + “what would make me add / reduce”"
+    ]
+  },
+  {
+    tier:"Premium",
+    title:"Portfolio Models (Cautious / Balanced / Aggressive)",
+    desc:"Three example allocations with simple rules for how to adjust when the regime shifts — built for people who want structure.",
+    bullets:[
+      "3 model allocations with rationale (not just tickers)",
+      "When to rebalance + what signals trigger a change",
+      "Risk controls: max position sizing + when to de-risk"
+    ]
+  },
+  {
+    tier:"Premium",
+    title:"Premium Dashboard (Members Page)",
+    desc:"Your member page with the tools/modules you’re building (like the optimizer and templates). This is where premium content actually lives.",
+    bullets:[
+      "Access to premium.html (members-only dashboard)",
+      "Templates vault + checklists + tools you add over time",
+      "Quant module (optimizer / Monte Carlo) when you want deeper work"
+    ]
+  }
+];
 
       const wheelCard = document.getElementById("wheel-card");
       const wheelDots = document.getElementById("wheel-dots");
