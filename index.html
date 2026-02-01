@@ -1814,18 +1814,16 @@
       }
 
       // Replace with real Stripe payment link (leave empty to avoid blank page)
-      const PAYMENT_LINK = "";
-      const goPremiumCheckout = document.getElementById("go-premium-checkout");
-      if (goPremiumCheckout){
-        goPremiumCheckout.addEventListener("click",(e)=>{
-          e.preventDefault();
-          if (!PAYMENT_LINK){
-            alert("Premium checkout isn’t live yet. Coming soon.");
-            return;
-          }
-          window.open(PAYMENT_LINK, "_blank", "noopener");
-        });
-      }
+     // Stripe payment link (LIVE)
+const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
+
+const goPremiumCheckout = document.getElementById("go-premium-checkout");
+if (goPremiumCheckout){
+  goPremiumCheckout.addEventListener("click",(e)=>{
+    e.preventDefault();
+    window.open(PAYMENT_LINK, "_blank", "noopener");
+  });
+}
 
       // -----------------------------------------------------
       // Auth modal
