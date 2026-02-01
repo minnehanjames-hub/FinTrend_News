@@ -2202,7 +2202,6 @@ if (goPremiumCheckout){
         railRegime.textContent = "Neutral";
       }
 
-    <script>
 /* -----------------------------------------------------
    Supabase Auth + Premium gating — FIXED + visible errors
 ----------------------------------------------------- */
@@ -2462,12 +2461,13 @@ if (openPremiumDashboard){
       return;
     }
 
-    const profile = await getProfile(user);
-    if (profile && profile.is_premium){
-      window.location.href = "premium.html";
-    } else {
-      openPremiumModal(e);
-    }
+   const prof = await ensureProfileSafe(user);
+if (prof?.data?.is_premium){
+  window.location.href = "premium.html";
+} else {
+  openPremiumModal(e);
+}
+
   });
 }
 
@@ -2499,7 +2499,6 @@ if (openPremiumDashboard){
     // Don’t break the page.
   }
 })();
-</script>
 
 
       // -----------------------------------------------------
