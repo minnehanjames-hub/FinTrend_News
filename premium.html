@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinTrend Premium</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { background:#050816; color:#f9fafb; font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; }
+    .wrap { max-width: 980px; margin: 28px auto; padding: 0 16px; }
+    .card { border:1px solid rgba(148,163,184,0.28); background: rgba(15,23,42,0.7); border-radius:18px; padding:18px; }
+    .muted { color:#9ca3af; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:999px; border:1px solid rgba(148,163,184,0.45); background:rgba(2,6,23,0.40); color:#f9fafb; cursor:pointer; text-transform:uppercase; letter-spacing:.14em; font-size:12px; text-decoration:none; }
+    .btn.primary { background:#f4c15d; color:#000; border-color:#f4c15d; font-weight:900; }
+    .btn:hover { transform: translateY(-1px); }
+    .grid { display:grid; grid-template-columns: 1fr; gap:12px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 style="letter-spacing:.12em; text-transform:uppercase;">FinTrend Premium</h1>
+    <p class="muted">Members-only dashboard.</p>
+
+    <div id="state" class="card" style="margin-top:14px;">
+      Checking access…
+    </div>
+
+    <div id="content" class="grid" style="display:none;">
+      <!-- Premium content loads here AFTER verification -->
+    </div>
+  </div>
+
+  <script>
+    (async function(){
+      const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
+
+      const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+      const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const stateEl = document.getElementById("state");
+      const contentEl = document.getElementById("content");
+
+      async function getProfile(userId){
+        const { data, error } = await supabaseClient
+          .from("profiles")
+          .select("id,email,is_premium")
+          .eq("id", userId)
+          .maybeSingle();
+        if (error) return null;
+        return data || null;
+      }
+
+      // 1) Must be signed in
+      const { data: u } = await supabaseClient.auth.getUser();
+      const user = u?.user || null;
+
+      if (!user){
+        stateEl.innerHTML = `
+          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Access required</div>
+          <h2 style="margin-top:6px;">Sign in to continue</h2>
+          <p class="muted">You need an account to verify premium access.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <a class="btn primary" href="index.html">Go to Sign In</a>
+            <a class="btn" href="index.html#premium">Back</a>
+          </div>
+        `;
+        return;
+      }
+
+      // 2) Check premium flag
+      const profile = await getProfile(user.id);
+
+      if (!profile){
+        stateEl.innerHTML = `
+          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Profile missing</div>
+          <h2 style="margin-top:6px;">We can’t verify your membership</h2>
+          <p class="muted">The profiles table didn’t return your row.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <a class="btn" href="index.html">Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      if (!profile.is_premium){
+        stateEl.innerHTML = `
+          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Premium locked</div>
+          <h2 style="margin-top:6px;">Upgrade to Premium ($2.50/mo)</h2>
+          <p class="muted">Your account: <strong>${profile.email || "signed-in user"}</strong></p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Go Premium</a>
+            <a class="btn" href="index.html#premium">Back</a>
+          </div>
+          <p class="muted" style="margin-top:10px; font-size:12px;">
+            After subscribing, your account must be marked premium (automatic if you set up webhooks — see below).
+          </p>
+        `;
+        return;
+      }
+
+      // 3) Premium unlocked — load premium content (example: hardcoded placeholders)
+      stateEl.innerHTML = `
+        <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Access granted</div>
+        <h2 style="margin-top:6px;">Premium active ✅</h2>
+        <p class="muted">Welcome, ${profile.email || "member"}.</p>
+      `;
+
+      contentEl.style.display = "grid";
+      contentEl.innerHTML = `
+        <div class="card">
+          <div class="muted" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;">Premium Module</div>
+          <h3 style="margin-top:6px;">Levels & Zones</h3>
+          <p class="muted">Load your real premium content from Supabase (recommended) rather than hardcoding it here.</p>
+        </div>
+
+        <div class="card">
+          <div class="muted" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;">Premium Module</div>
+          <h3 style="margin-top:6px;">Risk Regime Dashboard</h3>
+          <p class="muted">Same idea: fetch premium-only rows via RLS policies.</p>
+        </div>
+      `;
+    })();
+  </script>
+</body>
+</html>
