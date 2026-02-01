@@ -6,28 +6,227 @@
   <title>FinTrend Premium</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
-    body { background:#050816; color:#f9fafb; font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; }
-    .wrap { max-width: 980px; margin: 28px auto; padding: 0 16px; }
-    .card { border:1px solid rgba(148,163,184,0.28); background: rgba(15,23,42,0.7); border-radius:18px; padding:18px; }
-    .muted { color:#9ca3af; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:999px; border:1px solid rgba(148,163,184,0.45); background:rgba(2,6,23,0.40); color:#f9fafb; cursor:pointer; text-transform:uppercase; letter-spacing:.14em; font-size:12px; text-decoration:none; }
-    .btn.primary { background:#f4c15d; color:#000; border-color:#f4c15d; font-weight:900; }
-    .btn:hover { transform: translateY(-1px); }
-    .grid { display:grid; grid-template-columns: 1fr; gap:12px; margin-top: 12px; }
+    :root{
+      --bg:#050816;
+      --panel: rgba(15,23,42,0.72);
+      --border: rgba(148,163,184,0.28);
+      --border2: rgba(148,163,184,0.45);
+      --text:#f9fafb;
+      --muted:#9ca3af;
+      --brand:#f4c15d;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+
+    body { background:var(--bg); color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; }
+    .wrap { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+
+    .topbar{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    .brandTitle{ letter-spacing:.12em; text-transform:uppercase; margin:0; }
+    .subhead{ margin:6px 0 0; color:var(--muted); }
+
+    .card {
+      border:1px solid var(--border);
+      background: var(--panel);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .muted { color:var(--muted); }
+
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border2);
+      background:rgba(2,6,23,0.40);
+      color:var(--text);
+      cursor:pointer;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:12px;
+      text-decoration:none;
+      transition: transform .12s ease, opacity .12s ease;
+      user-select:none;
+    }
+    .btn.primary { background:var(--brand); color:#000; border-color:var(--brand); font-weight:900; }
+    .btn:hover { transform: translateY(-1px); opacity:.95; }
+    .btn:active { transform: translateY(0px); opacity:.9; }
+
+    .pill {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border2);
+      background: rgba(2,6,23,0.35);
+      font-size:12px;
+      color: var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .layout {
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap:12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+
+    .sectionTitle{
+      margin:0;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .h2{
+      margin:8px 0 0;
+      font-size:20px;
+      line-height:1.2;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(148,163,184,0.18);
+      margin: 14px 0;
+    }
+
+    .checkgrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.22);
+    }
+    .check input{
+      margin-top:3px;
+      width:18px; height:18px;
+      accent-color: var(--brand);
+      cursor:pointer;
+    }
+    .check strong{ display:block; }
+    .check small{ display:block; margin-top:3px; color: var(--muted); line-height:1.35; }
+
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.25);
+      background: rgba(2,6,23,0.25);
+      color: var(--text);
+      font-size:12px;
+    }
+    .chip span{ color: var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:11px; }
+
+    .modules {
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+
+    .moduleHeader{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .moduleMeta{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .badge{
+      display:inline-flex; align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.25);
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      background: rgba(2,6,23,0.25);
+    }
+    .moduleTitle{ margin:6px 0 0; font-size:18px; }
+    .moduleDesc{ margin:8px 0 0; color: var(--muted); line-height:1.6; }
+
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px){
+      .twoCols{ grid-template-columns: 1fr; }
+    }
+
+    .field{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .field label{
+      font-size:12px; color: var(--muted);
+      letter-spacing:.12em; text-transform:uppercase;
+    }
+    textarea, input[type="text"], input[type="number"], select{
+      background: rgba(2,6,23,0.35);
+      border:1px solid rgba(148,163,184,0.22);
+      color: var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+      outline:none;
+      width:100%;
+      box-sizing:border-box;
+      font-family: inherit;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+
+    pre{
+      background: rgba(2,6,23,0.35);
+      border:1px solid rgba(148,163,184,0.18);
+      padding:12px;
+      border-radius:14px;
+      overflow:auto;
+      color: #e5e7eb;
+      line-height:1.45;
+      margin: 10px 0 0;
+    }
+    .note{
+      font-size:12px;
+      color: var(--muted);
+      margin-top: 10px;
+      line-height:1.5;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1 style="letter-spacing:.12em; text-transform:uppercase;">FinTrend Premium</h1>
-    <p class="muted">Members-only dashboard.</p>
+    <div class="topbar">
+      <div>
+        <h1 class="brandTitle">FinTrend Premium</h1>
+        <p class="subhead">Members-only dashboard.</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <span class="pill" id="memberPill">Checking…</span>
+        <a class="btn" href="index.html#premium">Back</a>
+      </div>
+    </div>
 
-    <div id="state" class="card" style="margin-top:14px;">
+    <div id="state" class="card">
       Checking access…
     </div>
 
-    <div id="content" class="grid" style="display:none;">
-      <!-- Premium content loads here AFTER verification -->
+    <div id="content" style="display:none;">
+      <!-- Premium layout loads here AFTER verification -->
     </div>
   </div>
 
@@ -41,6 +240,7 @@
 
       const stateEl = document.getElementById("state");
       const contentEl = document.getElementById("content");
+      const memberPill = document.getElementById("memberPill");
 
       async function getProfile(userId){
         const { data, error } = await supabaseClient
@@ -57,9 +257,10 @@
       const user = u?.user || null;
 
       if (!user){
+        memberPill.textContent = "Signed out";
         stateEl.innerHTML = `
-          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Access required</div>
-          <h2 style="margin-top:6px;">Sign in to continue</h2>
+          <div class="sectionTitle">Access required</div>
+          <h2 class="h2">Sign in to continue</h2>
           <p class="muted">You need an account to verify premium access.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
             <a class="btn primary" href="index.html">Go to Sign In</a>
@@ -73,9 +274,10 @@
       const profile = await getProfile(user.id);
 
       if (!profile){
+        memberPill.textContent = "Unknown";
         stateEl.innerHTML = `
-          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Profile missing</div>
-          <h2 style="margin-top:6px;">We can’t verify your membership</h2>
+          <div class="sectionTitle">Profile missing</div>
+          <h2 class="h2">We can’t verify your membership</h2>
           <p class="muted">The profiles table didn’t return your row.</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
             <a class="btn" href="index.html">Home</a>
@@ -85,42 +287,600 @@
       }
 
       if (!profile.is_premium){
+        memberPill.textContent = "Free";
         stateEl.innerHTML = `
-          <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Premium locked</div>
-          <h2 style="margin-top:6px;">Upgrade to Premium ($2.50/mo)</h2>
+          <div class="sectionTitle">Premium locked</div>
+          <h2 class="h2">Upgrade to Premium ($2.50/mo)</h2>
           <p class="muted">Your account: <strong>${profile.email || "signed-in user"}</strong></p>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
             <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Go Premium</a>
             <a class="btn" href="index.html#premium">Back</a>
           </div>
-          <p class="muted" style="margin-top:10px; font-size:12px;">
+          <p class="note">
             After subscribing, your account must be marked premium (automatic if you set up webhooks later).
           </p>
         `;
         return;
       }
 
-      // 3) Premium unlocked — load premium content
+      // ✅ Premium unlocked
+      memberPill.textContent = "Premium";
       stateEl.innerHTML = `
-        <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;" class="muted">Access granted</div>
-        <h2 style="margin-top:6px;">Premium active ✅</h2>
+        <div class="sectionTitle">Access granted</div>
+        <h2 class="h2">Premium active ✅</h2>
         <p class="muted">Welcome, ${profile.email || "member"}.</p>
       `;
 
-      contentEl.style.display = "grid";
-      contentEl.innerHTML = `
-        <div class="card">
-          <div class="muted" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;">Premium Module</div>
-          <h3 style="margin-top:6px;">Levels & Zones</h3>
-          <p class="muted">Load your real premium content from Supabase (recommended) rather than hardcoding it here.</p>
-        </div>
+      // ---------------------------
+      // Premium Landing / Dashboard
+      // ---------------------------
+      const STORAGE_KEY = "fintrend_premium_modules_v1";
 
-        <div class="card">
-          <div class="muted" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase;">Premium Module</div>
-          <h3 style="margin-top:6px;">Risk Regime Dashboard</h3>
-          <p class="muted">Same idea: fetch premium-only rows via RLS policies.</p>
-        </div>
-      `;
+      const MODULES = [
+        {
+          id: "playbook",
+          category: "Research",
+          badge: "Sunday Playbook",
+          title: "Weekly Deep-Dive Playbook",
+          desc: "One theme each week (sector, strategy, or case study) with charts, clear takeaways, and a “what to do next” checklist.",
+          render: () => `
+            <div class="chips">
+              <div class="chip"><span>Includes</span> thesis → drivers → risks → triggers</div>
+              <div class="chip"><span>Format</span> 8–12 min read</div>
+              <div class="chip"><span>Output</span> action checklist</div>
+            </div>
+            <div class="divider"></div>
+            <p class="muted">
+              Tip: store each deep-dive as rows in a <strong>premium_articles</strong> table and fetch the latest here.
+              You can also tag by “sector/strategy” and build a filter later.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn primary" data-toast="Open latest deep-dive (hook to Supabase)">Open latest</button>
+              <button class="btn" data-toast="Browse archive (hook to Supabase)">Browse archive</button>
+            </div>
+          `
+        },
+        {
+          id: "templates",
+          category: "Tools",
+          badge: "Templates Vault",
+          title: "Simple Templates (Download + Checklists)",
+          desc: "Portfolio tracking sheet, DCA planner, earnings tracker checklist, rebalancing checklist — clean + beginner-friendly.",
+          render: () => `
+            <div class="twoCols">
+              <div class="card" style="padding:14px;">
+                <div class="sectionTitle">Downloads</div>
+                <p class="muted" style="margin-top:8px;">Wire these to real files later (S3 / Supabase Storage).</p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                  <a class="btn primary" href="#" onclick="return false;" data-toast="Connect to /premium/templates/portfolio.xlsx">Portfolio Tracker</a>
+                  <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/dca.xlsx">DCA Planner</a>
+                  <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/earnings.pdf">Earnings Checklist</a>
+                  <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/rebalance.pdf">Rebalancing Checklist</a>
+                </div>
+              </div>
+              <div class="card" style="padding:14px;">
+                <div class="sectionTitle">How to use</div>
+                <ul class="muted" style="margin:10px 0 0; line-height:1.7;">
+                  <li>Portfolio tracker: performance + contributions + simple attribution.</li>
+                  <li>DCA planner: schedule + target allocation + “what to buy next”.</li>
+                  <li>Earnings checklist: avoids impulsive trades; forces thesis review.</li>
+                  <li>Rebalancing checklist: rules-based, not emotional.</li>
+                </ul>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ideas",
+          category: "Ideas",
+          badge: "Thesis Notes",
+          title: "Curated Stock/ETF Ideas",
+          desc: "A small list of ideas with clear theses, risk notes, catalysts, and time horizons — like a mini StockInvestor feed.",
+          render: () => `
+            <div class="divider"></div>
+            <div class="card" style="padding:14px;">
+              <div class="sectionTitle">Example idea format</div>
+              <pre>
+Ticker: (example) XYZ
+Horizon: 6–18 months
+Thesis: 3 bullets, each tied to a measurable driver
+Catalysts: earnings, product cycle, macro triggers
+Risks: 3 risks + what would falsify the thesis
+Sizing note: position sizing guidelines (not advice)
+              </pre>
+              <p class="note">
+                Recommended architecture: store picks in a <strong>premium_ideas</strong> table with fields like
+                <em>ticker, thesis, horizon, risk_notes, catalysts, created_at</em>. Then render cards here.
+              </p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <button class="btn primary" data-toast="Load latest ideas (hook to Supabase)">Load latest ideas</button>
+                <button class="btn" data-toast="Filter by sector (hook to UI later)">Filter by sector</button>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "models",
+          category: "Portfolios",
+          badge: "Model Portfolios",
+          title: "Cautious / Balanced / Aggressive Models",
+          desc: "3 model portfolios + periodic rebalance updates with rationale and risk regime notes.",
+          render: () => `
+            <div class="twoCols">
+              <div class="card" style="padding:14px;">
+                <div class="sectionTitle">Models</div>
+                <ul class="muted" style="margin:10px 0 0; line-height:1.7;">
+                  <li><strong>Cautious:</strong> lower volatility, higher quality tilt</li>
+                  <li><strong>Balanced:</strong> core equity + diversifiers</li>
+                  <li><strong>Aggressive:</strong> growth tilt + tactical sleeve</li>
+                </ul>
+              </div>
+              <div class="card" style="padding:14px;">
+                <div class="sectionTitle">Rebalance notes</div>
+                <p class="muted" style="margin-top:10px;">
+                  Each rebalance should answer: what changed → why now → what’s the risk → what would reverse it.
+                </p>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn primary" data-toast="Open latest rebalance (hook to Supabase)">Open latest rebalance</button>
+              <button class="btn" data-toast="View allocations (hook to Supabase)">View allocations</button>
+            </div>
+          `
+        },
+        {
+          id: "roundup",
+          category: "News",
+          badge: "Niche Roundups",
+          title: "Deal + Niche News Roundups",
+          desc: "Choose a niche (VC/PE/M&A, SaaS finance, etc.) — weekly digest with what matters and why.",
+          render: () => `
+            <div class="chips">
+              <div class="chip"><span>VC/PE/M&A</span> deal logic + comps</div>
+              <div class="chip"><span>SaaS Finance</span> burn/margin benchmarks</div>
+              <div class="chip"><span>Macro</span> key rates + regime notes</div>
+            </div>
+            <div class="divider"></div>
+            <p class="muted">
+              Make this “premium-feeling” by adding: 1) 5 bullets max, 2) why it matters, 3) what it could mean for positioning.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn primary" data-toast="Open this week’s roundup (hook to Supabase)">Open this week</button>
+              <button class="btn" data-toast="Switch niche (add dropdown later)">Switch niche</button>
+            </div>
+          `
+        },
+
+        // ✅ Very complex math module
+        {
+          id: "quantlab",
+          category: "Quant",
+          badge: "Quant Lab",
+          title: "Mean-Variance Optimizer + Monte Carlo CVaR (Complex)",
+          desc: "Paste expected returns + covariance matrix → get optimized weights (Σ⁻¹μ), then simulate portfolio returns and compute 95% VaR / CVaR.",
+          render: () => `
+            <div class="divider"></div>
+
+            <div class="twoCols">
+              <div class="field">
+                <label>Expected Returns (μ) — 3 assets</label>
+                <input id="muInput" type="text" value="0.10, 0.07, 0.04" />
+                <div class="note">Annualized expected returns. Example: 0.10 = 10%.</div>
+              </div>
+
+              <div class="field">
+                <label>Risk Aversion (λ)</label>
+                <input id="lambdaInput" type="number" value="4" step="0.5" />
+                <div class="note">Higher λ → more conservative allocation.</div>
+              </div>
+            </div>
+
+            <div class="field" style="margin-top:10px;">
+              <label>Covariance Matrix (Σ) — 3×3</label>
+              <textarea id="covInput">0.0400, 0.0060, 0.0020
+0.0060, 0.0225, 0.0015
+0.0020, 0.0015, 0.0100</textarea>
+              <div class="note">Annualized covariance. Must be symmetric + positive semidefinite-ish for simulation.</div>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn primary" id="runQuantBtn">Run Optimizer</button>
+              <button class="btn" id="resetQuantBtn">Reset Example</button>
+            </div>
+
+            <pre id="quantOut">Output will appear here…</pre>
+
+            <p class="note">
+              What this is doing:
+              (1) computes unconstrained mean-variance weights ≈ (1/λ) Σ⁻¹ μ,
+              (2) projects weights to a long-only simplex (weights ≥ 0, sum = 1),
+              (3) runs Monte Carlo simulations with Cholesky(Σ),
+              (4) computes 95% VaR and 95% CVaR (expected loss in worst 5%).
+            </p>
+          `
+        }
+      ];
+
+      // defaults
+      const DEFAULT_SELECTION = ["playbook","templates","ideas","models","roundup","quantlab"];
+
+      function loadSelection(){
+        try{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return DEFAULT_SELECTION.slice();
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return DEFAULT_SELECTION.slice();
+          // keep only known ids
+          return parsed.filter(id => MODULES.some(m => m.id === id));
+        }catch(e){
+          return DEFAULT_SELECTION.slice();
+        }
+      }
+      function saveSelection(sel){
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sel));
+      }
+
+      function groupByCategory(mods){
+        const map = {};
+        for (const m of mods){
+          if (!map[m.category]) map[m.category] = [];
+          map[m.category].push(m);
+        }
+        return map;
+      }
+
+      function renderDashboard(selectedIds){
+        const selected = MODULES.filter(m => selectedIds.includes(m.id));
+
+        return `
+          <div class="layout">
+            <!-- Left: Builder -->
+            <div class="card">
+              <div class="sectionTitle">Build your dashboard</div>
+              <h2 class="h2">Choose what you want to see</h2>
+              <p class="muted" style="margin-top:8px;">
+                Select modules below. Your layout saves automatically.
+              </p>
+
+              <div class="divider"></div>
+
+              <div id="selector"></div>
+
+              <div class="divider"></div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" id="selectAllBtn">Select all</button>
+                <button class="btn" id="selectNoneBtn">Select none</button>
+                <button class="btn" id="resetDefaultBtn">Reset default</button>
+              </div>
+
+              <p class="note">
+                Pro move later: let users set a “home module” and pin it to the top.
+              </p>
+            </div>
+
+            <!-- Right: Modules -->
+            <div class="modules" id="modulesCol">
+              ${selected.length ? selected.map(m => `
+                <div class="card" id="module-${m.id}">
+                  <div class="moduleHeader">
+                    <div>
+                      <div class="moduleMeta">
+                        <span class="badge">${m.badge}</span>
+                        <span class="badge">${m.category}</span>
+                      </div>
+                      <h3 class="moduleTitle">${m.title}</h3>
+                      <p class="moduleDesc">${m.desc}</p>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                      <button class="btn" data-scrolltop>Top</button>
+                    </div>
+                  </div>
+                  <div style="margin-top:10px;">
+                    ${m.render()}
+                  </div>
+                </div>
+              `).join("") : `
+                <div class="card">
+                  <div class="sectionTitle">Nothing selected</div>
+                  <h3 class="moduleTitle">Pick a module on the left</h3>
+                  <p class="moduleDesc">Your premium dashboard will appear here.</p>
+                </div>
+              `}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderSelector(selectedIds){
+        const grouped = groupByCategory(MODULES);
+        const cats = Object.keys(grouped);
+
+        return `
+          <div class="checkgrid">
+            ${cats.map(cat => `
+              <div class="card" style="padding:14px; box-shadow:none;">
+                <div class="sectionTitle">${cat}</div>
+                <div style="margin-top:10px; display:grid; gap:10px;">
+                  ${grouped[cat].map(m => `
+                    <label class="check">
+                      <input type="checkbox" data-module="${m.id}" ${selectedIds.includes(m.id) ? "checked" : ""} />
+                      <div>
+                        <strong>${m.badge}</strong>
+                        <small>${m.title}</small>
+                      </div>
+                    </label>
+                  `).join("")}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      // Render initial
+      let selectedIds = loadSelection();
+
+      contentEl.style.display = "block";
+      contentEl.innerHTML = renderDashboard(selectedIds);
+
+      // Put selector HTML in place
+      const selectorHost = document.getElementById("selector");
+      selectorHost.innerHTML = renderSelector(selectedIds);
+
+      function rerender(){
+        // Rebuild full dashboard
+        contentEl.innerHTML = renderDashboard(selectedIds);
+        // Restore selector
+        const selectorHost2 = document.getElementById("selector");
+        selectorHost2.innerHTML = renderSelector(selectedIds);
+        // Rewire events
+        wireSelectorEvents();
+        wireCommonEvents();
+        wireQuantLabIfPresent();
+      }
+
+      function wireSelectorEvents(){
+        // checkbox toggles
+        contentEl.querySelectorAll('input[type="checkbox"][data-module]').forEach(cb => {
+          cb.addEventListener("change", () => {
+            const id = cb.getAttribute("data-module");
+            if (cb.checked){
+              if (!selectedIds.includes(id)) selectedIds.push(id);
+            } else {
+              selectedIds = selectedIds.filter(x => x !== id);
+            }
+            saveSelection(selectedIds);
+            rerender();
+          });
+        });
+
+        // buttons
+        const allBtn = document.getElementById("selectAllBtn");
+        const noneBtn = document.getElementById("selectNoneBtn");
+        const resetBtn = document.getElementById("resetDefaultBtn");
+
+        if (allBtn) allBtn.onclick = () => { selectedIds = MODULES.map(m => m.id); saveSelection(selectedIds); rerender(); };
+        if (noneBtn) noneBtn.onclick = () => { selectedIds = []; saveSelection(selectedIds); rerender(); };
+        if (resetBtn) resetBtn.onclick = () => { selectedIds = DEFAULT_SELECTION.slice(); saveSelection(selectedIds); rerender(); };
+      }
+
+      function wireCommonEvents(){
+        // scroll top buttons
+        contentEl.querySelectorAll("[data-scrolltop]").forEach(btn => {
+          btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+        });
+
+        // lightweight toast
+        contentEl.querySelectorAll("[data-toast]").forEach(el => {
+          el.addEventListener("click", () => {
+            const msg = el.getAttribute("data-toast");
+            alert(msg);
+          });
+        });
+      }
+
+      // --------------------------
+      // Quant Lab (complex math)
+      // --------------------------
+      function parseVector(str){
+        const arr = str.split(",").map(s => Number(s.trim())).filter(n => Number.isFinite(n));
+        if (arr.length !== 3) throw new Error("Expected 3 numbers for μ.");
+        return arr;
+      }
+      function parseMatrix3(text){
+        // supports lines or commas
+        const rows = text.trim().split("\n").map(line =>
+          line.split(",").map(s => Number(s.trim())).filter(n => Number.isFinite(n))
+        ).filter(r => r.length);
+        if (rows.length !== 3 || rows.some(r => r.length !== 3)) throw new Error("Expected a 3×3 covariance matrix.");
+        return rows;
+      }
+
+      function det3(A){
+        return (
+          A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) -
+          A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) +
+          A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0])
+        );
+      }
+      function inv3(A){
+        const d = det3(A);
+        if (!Number.isFinite(d) || Math.abs(d) < 1e-12) throw new Error("Covariance matrix is singular/near-singular.");
+        const inv = [
+          [
+            (A[1][1]*A[2][2]-A[1][2]*A[2][1])/d,
+            (A[0][2]*A[2][1]-A[0][1]*A[2][2])/d,
+            (A[0][1]*A[1][2]-A[0][2]*A[1][1])/d
+          ],
+          [
+            (A[1][2]*A[2][0]-A[1][0]*A[2][2])/d,
+            (A[0][0]*A[2][2]-A[0][2]*A[2][0])/d,
+            (A[0][2]*A[1][0]-A[0][0]*A[1][2])/d
+          ],
+          [
+            (A[1][0]*A[2][1]-A[1][1]*A[2][0])/d,
+            (A[0][1]*A[2][0]-A[0][0]*A[2][1])/d,
+            (A[0][0]*A[1][1]-A[0][1]*A[1][0])/d
+          ]
+        ];
+        return inv;
+      }
+      function matVec(A, v){
+        return [
+          A[0][0]*v[0] + A[0][1]*v[1] + A[0][2]*v[2],
+          A[1][0]*v[0] + A[1][1]*v[1] + A[1][2]*v[2],
+          A[2][0]*v[0] + A[2][1]*v[1] + A[2][2]*v[2]
+        ];
+      }
+      function dot(a,b){ return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+
+      // Project to long-only simplex (w>=0, sum=1)
+      // Simple method: clip negatives, renormalize; repeat (works well for small 3D)
+      function projectSimplex(w){
+        let x = w.slice();
+        for (let k=0;k<6;k++){
+          x = x.map(v => Math.max(0, v));
+          const s = x.reduce((a,b)=>a+b,0);
+          if (s > 1e-12) x = x.map(v => v/s);
+          else x = [1/3,1/3,1/3];
+        }
+        return x;
+      }
+
+      // Cholesky decomposition for 3x3 symmetric matrix
+      function chol3(S){
+        // returns lower-triangular L such that L*L^T = S
+        const L = [[0,0,0],[0,0,0],[0,0,0]];
+        // L00
+        if (S[0][0] <= 0) throw new Error("Covariance not PSD (S00 <= 0).");
+        L[0][0] = Math.sqrt(S[0][0]);
+
+        // L10, L11
+        L[1][0] = S[1][0] / L[0][0];
+        const a11 = S[1][1] - L[1][0]*L[1][0];
+        if (a11 <= 0) throw new Error("Covariance not PSD (S11).");
+        L[1][1] = Math.sqrt(a11);
+
+        // L20, L21, L22
+        L[2][0] = S[2][0] / L[0][0];
+        L[2][1] = (S[2][1] - L[2][0]*L[1][0]) / L[1][1];
+        const a22 = S[2][2] - L[2][0]*L[2][0] - L[2][1]*L[2][1];
+        if (a22 <= 0) throw new Error("Covariance not PSD (S22).");
+        L[2][2] = Math.sqrt(a22);
+
+        return L;
+      }
+
+      function randn(){
+        // Box–Muller
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2.0*Math.log(u)) * Math.cos(2.0*Math.PI*v);
+      }
+
+      function simulatePortfolio(mu, Sigma, w, n=20000){
+        const L = chol3(Sigma);
+        const port = [];
+        for (let i=0;i<n;i++){
+          // z ~ N(0, I)
+          const z = [randn(), randn(), randn()];
+          // r = mu + L z
+          const r = [
+            mu[0] + (L[0][0]*z[0]),
+            mu[1] + (L[1][0]*z[0] + L[1][1]*z[1]),
+            mu[2] + (L[2][0]*z[0] + L[2][1]*z[1] + L[2][2]*z[2])
+          ];
+          const pr = w[0]*r[0] + w[1]*r[1] + w[2]*r[2];
+          port.push(pr);
+        }
+        port.sort((a,b)=>a-b);
+        const alpha = 0.05; // worst 5%
+        const idx = Math.floor(alpha * port.length);
+        const var95 = port[idx]; // 5th percentile return
+        const tail = port.slice(0, idx+1);
+        const cvar95 = tail.reduce((a,b)=>a+b,0) / tail.length;
+        const mean = port.reduce((a,b)=>a+b,0) / port.length;
+        const std = Math.sqrt(port.reduce((a,b)=>a+(b-mean)*(b-mean),0) / port.length);
+        return { mean, std, var95, cvar95 };
+      }
+
+      function fmtPct(x){ return (x*100).toFixed(2) + "%"; }
+
+      function wireQuantLabIfPresent(){
+        const btn = document.getElementById("runQuantBtn");
+        const reset = document.getElementById("resetQuantBtn");
+        if (!btn) return;
+
+        const muInput = document.getElementById("muInput");
+        const covInput = document.getElementById("covInput");
+        const lambdaInput = document.getElementById("lambdaInput");
+        const out = document.getElementById("quantOut");
+
+        reset.onclick = () => {
+          muInput.value = "0.10, 0.07, 0.04";
+          lambdaInput.value = 4;
+          covInput.value =
+`0.0400, 0.0060, 0.0020
+0.0060, 0.0225, 0.0015
+0.0020, 0.0015, 0.0100`;
+          out.textContent = "Output will appear here…";
+        };
+
+        btn.onclick = () => {
+          try{
+            const mu = parseVector(muInput.value);
+            const Sigma = parseMatrix3(covInput.value);
+            const lambda = Number(lambdaInput.value);
+            if (!Number.isFinite(lambda) || lambda <= 0) throw new Error("λ must be a positive number.");
+
+            // Mean-variance: w* = (1/λ) Σ^{-1} μ
+            const SigmaInv = inv3(Sigma);
+            const raw = matVec(SigmaInv, mu).map(v => v / lambda);
+
+            // Long-only + sum-to-1
+            const w = projectSimplex(raw);
+
+            // implied portfolio stats (analytic approximations)
+            const portMu = dot(w, mu);
+            const sigW = matVec(Sigma, w);
+            const portVar = dot(w, sigW);
+            const portVol = Math.sqrt(Math.max(0, portVar));
+
+            // Monte Carlo VaR/CVaR
+            const mc = simulatePortfolio(mu, Sigma, w, 20000);
+
+            out.textContent =
+`Optimized weights (long-only, sum=1):
+  w1 = ${(w[0]).toFixed(4)}
+  w2 = ${(w[1]).toFixed(4)}
+  w3 = ${(w[2]).toFixed(4)}
+
+Analytic (from μ, Σ):
+  Expected return ≈ ${fmtPct(portMu)}
+  Volatility ≈ ${fmtPct(portVol)}
+
+Monte Carlo (20,000 sims):
+  Mean return ≈ ${fmtPct(mc.mean)}
+  Std dev ≈ ${fmtPct(mc.std)}
+  95% VaR (5th pct return) ≈ ${fmtPct(mc.var95)}
+  95% CVaR (avg worst 5%) ≈ ${fmtPct(mc.cvar95)}
+
+Interpretation:
+  - VaR tells you the cutoff for a "bad year" (worst 5%).
+  - CVaR tells you how bad those bad years are *on average*.`;
+          }catch(err){
+            out.textContent = "Error: " + (err?.message || String(err));
+          }
+        };
+      }
+
+      // initial wire
+      wireSelectorEvents();
+      wireCommonEvents();
+      wireQuantLabIfPresent();
+
     })();
   </script>
 </body>
