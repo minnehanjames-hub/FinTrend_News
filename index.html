@@ -2202,210 +2202,305 @@ if (goPremiumCheckout){
         railRegime.textContent = "Neutral";
       }
 
-      // -----------------------------------------------------
-      // Supabase Auth + Premium gating (guarded so it can’t break page)
-      // -----------------------------------------------------
-      (async function initSupabase(){
-        try{
-          if (!window.supabase || !window.supabase.createClient) return;
+    <script>
+/* -----------------------------------------------------
+   Supabase Auth + Premium gating — FIXED + visible errors
+----------------------------------------------------- */
+(async function initSupabase(){
+  try{
+    if (!window.supabase || !window.supabase.createClient) {
+      console.warn("[auth] Supabase library missing (cdn load failed).");
+      return;
+    }
 
-          const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-          const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // ⚠️ If you test via file://, auth persistence will be unreliable.
+    if (location.protocol === "file:") {
+      console.warn("[auth] You are running via file://. Use a real host (Vercel/Netlify/GitHub Pages) for reliable auth sessions.");
+    }
 
-          const authForm = document.getElementById("auth-form");
-          const authEmail = document.getElementById("auth-email");
-          const authPassword = document.getElementById("auth-password");
-          const authMsg = document.getElementById("auth-msg");
+    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
 
-          const authTitle = document.getElementById("auth-modal-title");
-          const authSubtitle = document.getElementById("auth-subtitle");
-          const authSubmitBtn = document.getElementById("auth-submit-btn");
-          const authToggleBtn = document.getElementById("auth-toggle-btn");
-          const authResetBtn = document.getElementById("auth-reset-btn");
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        storage: window.localStorage
+      }
+    });
 
-          const signoutLink = document.getElementById("signout-link");
-          const userChip = document.getElementById("user-chip");
-          const openAuthBtn = document.getElementById("open-auth-modal");
+    // UI refs
+    const authForm = document.getElementById("auth-form");
+    const authEmail = document.getElementById("auth-email");
+    const authPassword = document.getElementById("auth-password");
+    const authMsg = document.getElementById("auth-msg");
 
-          const openPremiumDashboard = document.getElementById("open-premium-dashboard");
-          const manageMembership = document.getElementById("manage-membership");
-          const premiumStatus = document.getElementById("premium-status");
+    const authTitle = document.getElementById("auth-modal-title");
+    const authSubtitle = document.getElementById("auth-subtitle");
+    const authSubmitBtn = document.getElementById("auth-submit-btn");
+    const authToggleBtn = document.getElementById("auth-toggle-btn");
+    const authResetBtn = document.getElementById("auth-reset-btn");
 
-          let mode = "signin";
+    const signoutLink = document.getElementById("signout-link");
+    const userChip = document.getElementById("user-chip");
+    const openAuthBtn = document.getElementById("open-auth-modal");
 
-          function setAuthMode(nextMode){
-            mode = nextMode;
-            if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
-            if (mode === "signin"){
-              authTitle.textContent = "Sign in";
-              authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
-              authSubmitBtn.textContent = "Sign in";
-              authToggleBtn.textContent = "Create account";
-            } else {
-              authTitle.textContent = "Create account";
-              authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
-              authSubmitBtn.textContent = "Sign up";
-              authToggleBtn.textContent = "I already have an account";
-            }
-            if (authMsg) authMsg.textContent = "";
-          }
+    const openPremiumDashboard = document.getElementById("open-premium-dashboard");
+    const manageMembership = document.getElementById("manage-membership");
+    const premiumStatus = document.getElementById("premium-status");
 
-          if (authToggleBtn){
-            authToggleBtn.addEventListener("click",()=>{
-              setAuthMode(mode === "signin" ? "signup" : "signin");
-            });
-          }
+    // NOTE: PAYMENT_LINK is already defined earlier in your script (same scope).
+    // If you ever move it, keep it global to this whole IIFE.
+    // const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
 
-          if (authResetBtn){
-            authResetBtn.addEventListener("click", async ()=>{
-              const email = (authEmail?.value || "").trim();
-              if (!email){
-                if (authMsg) authMsg.textContent = "Enter your email above, then click 'Forgot password'.";
-                return;
-              }
-              if (authMsg) authMsg.textContent = "Sending reset email...";
-              const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
-              if (authMsg) authMsg.textContent = error ? ("Reset failed: " + error.message) : "Reset email sent. Check your inbox.";
-            });
-          }
+    let mode = "signin";
 
-          if (authForm){
-            authForm.addEventListener("submit", async (e)=>{
-              e.preventDefault();
-              if (authMsg) authMsg.textContent = "Working...";
-              const email = (authEmail?.value || "").trim();
-              const password = authPassword?.value || "";
+    function setMsg(text, isError=false){
+      if (!authMsg) return;
+      authMsg.textContent = text;
+      authMsg.style.color = isError ? "#fca5a5" : "#e5e7eb";
+    }
 
-              try{
-                if (mode === "signin"){
-                  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-                  if (error) throw error;
-                  if (authMsg) authMsg.textContent = "Signed in ✅";
-                  closeAuthModal();
-                  await refreshUI();
-                } else {
-                  const { error } = await supabaseClient.auth.signUp({ email, password });
-                  if (error) throw error;
-                  if (authMsg) authMsg.textContent = "Account created ✅ Check your email to confirm (if enabled).";
-                  await refreshUI();
-                }
-              } catch(err){
-                if (authMsg) authMsg.textContent = "Error: " + (err?.message || "Unknown error");
-              }
-            });
-          }
+    function setPremiumStatus(text){
+      if (premiumStatus) premiumStatus.textContent = text;
+    }
 
-          if (signoutLink){
-            signoutLink.addEventListener("click", async (e)=>{
-              e.preventDefault();
-              await supabaseClient.auth.signOut();
-              await refreshUI();
-            });
-          }
+    function setAuthMode(nextMode){
+      mode = nextMode;
+      if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
 
-          async function ensureProfile(user){
-            if (!user) return null;
-            const { data: existing, error: fetchErr } = await supabaseClient
-              .from("profiles")
-              .select("id,email,is_premium")
-              .eq("id", user.id)
-              .maybeSingle();
+      if (mode === "signin"){
+        authTitle.textContent = "Sign in";
+        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
+        authSubmitBtn.textContent = "Sign in";
+        authToggleBtn.textContent = "Create account";
+      } else {
+        authTitle.textContent = "Create account";
+        authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+        authSubmitBtn.textContent = "Sign up";
+        authToggleBtn.textContent = "I already have an account";
+      }
+      setMsg("");
+    }
 
-            if (fetchErr) return null;
-            if (existing) return existing;
+    async function getUserSafe(){
+      const res = await supabaseClient.auth.getUser();
+      if (res.error) {
+        console.warn("[auth] getUser error:", res.error);
+        return null;
+      }
+      return res.data?.user || null;
+    }
 
-            const { data: created, error: insertErr } = await supabaseClient
-              .from("profiles")
-              .insert([{ id:user.id, email:user.email, is_premium:false }])
-              .select("id,email,is_premium")
-              .single();
+    async function getProfileSafe(user){
+      if (!user) return { data: null, error: null };
 
-            if (insertErr) return null;
-            return created;
-          }
+      const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("id,email,is_premium")
+        .eq("id", user.id)
+        .maybeSingle();
 
-          async function getProfile(user){
-            if (!user) return null;
-            const { data, error } = await supabaseClient
-              .from("profiles")
-              .select("id,email,is_premium")
-              .eq("id", user.id)
-              .maybeSingle();
-            if (error) return null;
-            return data || null;
-          }
+      if (error) {
+        console.warn("[profiles] SELECT error:", error);
+        return { data: null, error };
+      }
+      return { data: data || null, error: null };
+    }
 
-          async function refreshUI(){
-            const { data } = await supabaseClient.auth.getUser();
-            const user = data?.user || null;
+    async function createProfileSafe(user){
+      if (!user) return { data: null, error: null };
 
-            if (!user){
-              if (openAuthBtn) openAuthBtn.style.display = "";
-              if (signoutLink) signoutLink.style.display = "none";
-              if (userChip) userChip.style.display = "none";
-              if (premiumStatus) premiumStatus.textContent = "Sign in to check access.";
-              return;
-            }
+      const { data, error } = await supabaseClient
+        .from("profiles")
+        .insert([{ id: user.id, email: user.email, is_premium: false }])
+        .select("id,email,is_premium")
+        .single();
 
-            if (openAuthBtn) openAuthBtn.style.display = "none";
-            if (signoutLink) signoutLink.style.display = "";
-            if (userChip){
-              userChip.style.display = "";
-              userChip.textContent = "Signed in: " + (user.email || "user");
-            }
+      if (error) {
+        console.warn("[profiles] INSERT error:", error);
+        return { data: null, error };
+      }
+      return { data, error: null };
+    }
 
-            await ensureProfile(user);
-            const profile = await getProfile(user);
+    async function ensureProfileSafe(user){
+      const existing = await getProfileSafe(user);
+      if (existing.data) return existing;
 
-            if (profile && profile.is_premium){
-              if (premiumStatus) premiumStatus.textContent = "Premium: active ✅";
-            } else if (profile){
-              if (premiumStatus) premiumStatus.textContent = "Premium: not active (subscribe to unlock)";
-            } else {
-              if (premiumStatus) premiumStatus.textContent = "Premium status unavailable (profiles table blocked).";
-            }
-          }
+      // If SELECT failed due to RLS, don’t try INSERT — it’ll fail too.
+      if (existing.error) return existing;
 
-          if (openPremiumDashboard){
-            openPremiumDashboard.addEventListener("click", async (e)=>{
-              e.preventDefault();
-              const { data } = await supabaseClient.auth.getUser();
-              const user = data?.user || null;
+      // If missing row, try creating it (requires INSERT policy)
+      return await createProfileSafe(user);
+    }
 
-              if (!user){
-                openAuthModal(e);
-                return;
-              }
+    async function refreshUI(){
+      const user = await getUserSafe();
 
-              const profile = await getProfile(user);
-              if (profile && profile.is_premium){
-                window.location.href = "premium.html";
-              } else {
-                openPremiumModal(e);
-              }
-            });
-          }
+      if (!user){
+        if (openAuthBtn) openAuthBtn.style.display = "";
+        if (signoutLink) signoutLink.style.display = "none";
+        if (userChip) userChip.style.display = "none";
+        setPremiumStatus("Sign in to check access.");
+        return;
+      }
 
-          if (manageMembership){
-            manageMembership.addEventListener("click", (e)=>{
-              e.preventDefault();
-              if (!PAYMENT_LINK){
-                openPremiumModal(e);
-                return;
-              }
-              window.open(PAYMENT_LINK, "_blank", "noopener");
-            });
-          }
+      if (openAuthBtn) openAuthBtn.style.display = "none";
+      if (signoutLink) signoutLink.style.display = "";
+      if (userChip){
+        userChip.style.display = "";
+        userChip.textContent = "Signed in: " + (user.email || "user");
+      }
 
-          supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
-          setAuthMode("signin");
-          refreshUI();
+      // Try to ensure profile exists and detect RLS clearly
+      const prof = await ensureProfileSafe(user);
 
-        } catch(_) {
-          // Do nothing — page still works even if auth fails
+      if (prof.error){
+        // Most common: RLS blocks select/insert
+        setPremiumStatus("Premium status unavailable (profiles blocked by RLS). Open Console for details.");
+        return;
+      }
+
+      if (!prof.data){
+        setPremiumStatus("Premium status unavailable (no profile row).");
+        return;
+      }
+
+      setPremiumStatus(prof.data.is_premium ? "Premium: active ✅" : "Premium: not active (subscribe to unlock)");
+    }
+
+    // Toggle mode
+    if (authToggleBtn){
+      authToggleBtn.addEventListener("click",()=>{
+        setAuthMode(mode === "signin" ? "signup" : "signin");
+      });
+    }
+
+    // Password reset
+    if (authResetBtn){
+      authResetBtn.addEventListener("click", async ()=>{
+        const email = (authEmail?.value || "").trim();
+        if (!email){
+          setMsg("Enter your email above, then click 'Forgot password'.", true);
+          return;
         }
-      })();
+
+        setMsg("Sending reset email...");
+        // Better redirect target for static sites:
+        const redirectTo = window.location.origin + window.location.pathname;
+
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
+        if (error) setMsg("Reset failed: " + error.message, true);
+        else setMsg("Reset email sent. Check your inbox.");
+      });
+    }
+
+    // Sign in / sign up submit
+    if (authForm){
+      authForm.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+
+        const email = (authEmail?.value || "").trim();
+        const password = authPassword?.value || "";
+
+        if (!email || !password){
+          setMsg("Enter email + password.", true);
+          return;
+        }
+
+        setMsg("Working...");
+
+        try{
+          if (mode === "signin"){
+            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            setMsg("Signed in ✅");
+            // closeAuthModal exists in your outer script scope — if it ever changes, remove this line
+            try { closeAuthModal(); } catch(_) {}
+            await refreshUI();
+          } else {
+            const { error } = await supabaseClient.auth.signUp({ email, password });
+            if (error) throw error;
+            setMsg("Account created ✅ If email confirmation is on, confirm via inbox.");
+            await refreshUI();
+          }
+        } catch(err){
+          setMsg("Error: " + (err?.message || "Unknown error"), true);
+        }
+      });
+    }
+
+    // Sign out
+    if (signoutLink){
+      signoutLink.addEventListener("click", async (e)=>{
+        e.preventDefault();
+        await supabaseClient.auth.signOut();
+        await refreshUI();
+      });
+    }
+
+    // Premium dashboard gate
+   const DEV_ALLOWLIST = ["minnehanjames@gmail.com"]; // ← YOUR EMAIL
+
+if (openPremiumDashboard){
+  openPremiumDashboard.addEventListener("click", async (e)=>{
+    e.preventDefault();
+
+    const { data } = await supabaseClient.auth.getUser();
+    const user = data?.user || null;
+
+    if (!user){
+      openAuthModal(e);
+      return;
+    }
+
+    // ✅ DEV BYPASS
+    if (DEV_ALLOWLIST.includes(user.email)){
+      window.location.href = "premium.html";
+      return;
+    }
+
+    const profile = await getProfile(user);
+    if (profile && profile.is_premium){
+      window.location.href = "premium.html";
+    } else {
+      openPremiumModal(e);
+    }
+  });
+}
+
+
+    // “Manage” currently just opens Stripe payment link
+    if (manageMembership){
+      manageMembership.addEventListener("click", (e)=>{
+        e.preventDefault();
+        if (typeof PAYMENT_LINK !== "string" || !PAYMENT_LINK){
+          try { openPremiumModal(e); } catch(_) {}
+          return;
+        }
+        window.open(PAYMENT_LINK, "_blank", "noopener");
+      });
+    }
+
+    // Listen for auth changes
+    supabaseClient.auth.onAuthStateChange(async (event) => {
+      console.log("[auth] state change:", event);
+      await refreshUI();
+    });
+
+    // Init
+    setAuthMode("signin");
+    await refreshUI();
+
+  } catch (err){
+    console.warn("[auth] init crash:", err);
+    // Don’t break the page.
+  }
+})();
+</script>
+
 
       // -----------------------------------------------------
       // Keyboard support for wheel
