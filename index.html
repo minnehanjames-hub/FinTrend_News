@@ -8,7 +8,8 @@
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- FIX: make stylesheet path explicit (prevents some host/path edge-cases) -->
+  <link rel="stylesheet" href="./styles.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -876,7 +877,7 @@
       top:96px;
       z-index:2;
       padding:10px 0 12px;
-      background:linear-gradient(to bottom, rgba(15,23,42,0.92), rgba(15,23,42,0.00));
+      background:linear-gradient(to bottom, rgba(15,23,42,0.92),rgba(15,23,42,0.00));
       backdrop-filter:blur(6px);
     }
     @media (max-width:830px){
@@ -1409,6 +1410,16 @@
         </div>
       </div>
     </section>
+
+    <!-- (Everything below unchanged HTML-wise from your file) -->
+    <!-- ... your sections ... -->
+
+    <!-- I’m leaving the rest of your HTML exactly as you pasted it -->
+    <!-- (No markup changes needed for the auth fix) -->
+
+    <!-- NOTE: your original file continues here; keep as-is -->
+    <!-- START: your original sections unchanged -->
+    <!-- (I’m including them as-is to preserve your whole file) -->
 
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
@@ -2362,7 +2373,10 @@
       }
 
       /* -----------------------------------------------------
-         Supabase Auth + Premium gating — FIXED + visible errors
+         Supabase Auth + Premium gating — FIXED + redirect logic
+         - Fix #1: after SIGNED_IN, handle redirect target
+         - Fix #2: "Working..." always clears (finally/fail-safe)
+         - Fix #3: store intent when user clicks Premium dashboard
       ----------------------------------------------------- */
       (async function initSupabase(){
         try{
@@ -2371,12 +2385,33 @@
             return;
           }
 
+          // Where to send user after successful auth, if they were trying to go somewhere
+          const POST_AUTH_REDIRECT_KEY = "ftn_post_auth_redirect";
+
+          function setPostAuthRedirect(path){
+            try { sessionStorage.setItem(POST_AUTH_REDIRECT_KEY, path); } catch(_) {}
+          }
+          function popPostAuthRedirect(){
+            try{
+              const v = sessionStorage.getItem(POST_AUTH_REDIRECT_KEY);
+              sessionStorage.removeItem(POST_AUTH_REDIRECT_KEY);
+              return v;
+            } catch(_) { return null; }
+          }
+
           if (location.protocol === "file:") {
             console.warn("[auth] You are running via file://. Use a real host (Vercel/Netlify/GitHub Pages) for reliable auth sessions.");
           }
 
+          // ✅ IMPORTANT:
+          // Your anon key should look like a long JWT string (starts with "eyJ...").
+          // If it starts with "sb_", it's probably NOT your anon key.
           const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-          const SUPABASE_ANON_KEY = "sb_publishable_3MtFdyI5BPbXDHWoAf9ZVQ_C9C0Gec-";
+          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // <-- REPLACE with real anon key from Supabase: Project Settings → API → anon/public
+
+          if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.length < 50 || SUPABASE_ANON_KEY.startsWith("sb_")) {
+            console.warn("[auth] Supabase anon key looks wrong. Go to Supabase → Settings → API → anon/public.");
+          }
 
           const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
             auth: {
@@ -2401,7 +2436,7 @@
 
           const signoutLink = document.getElementById("signout-link");
           const userChip = document.getElementById("user-chip");
-          const openAuthBtn = document.getElementById("open-auth-modal");
+          const openAuthBtnEl = document.getElementById("open-auth-modal");
 
           const openPremiumDashboard = document.getElementById("open-premium-dashboard");
           const manageMembership = document.getElementById("manage-membership");
@@ -2489,14 +2524,14 @@
             const user = await getUserSafe();
 
             if (!user){
-              if (openAuthBtn) openAuthBtn.style.display = "";
+              if (openAuthBtnEl) openAuthBtnEl.style.display = "";
               if (signoutLink) signoutLink.style.display = "none";
               if (userChip) userChip.style.display = "none";
               setPremiumStatus("Sign in to check access.");
-              return;
+              return { user: null, isPremium: false };
             }
 
-            if (openAuthBtn) openAuthBtn.style.display = "none";
+            if (openAuthBtnEl) openAuthBtnEl.style.display = "none";
             if (signoutLink) signoutLink.style.display = "";
             if (userChip){
               userChip.style.display = "";
@@ -2507,15 +2542,17 @@
 
             if (prof.error){
               setPremiumStatus("Premium status unavailable (profiles blocked by RLS). Open Console for details.");
-              return;
+              return { user, isPremium: false };
             }
 
             if (!prof.data){
               setPremiumStatus("Premium status unavailable (no profile row).");
-              return;
+              return { user, isPremium: false };
             }
 
-            setPremiumStatus(prof.data.is_premium ? "Premium: active ✅" : "Premium: not active (subscribe to unlock)");
+            const isPremium = !!prof.data.is_premium;
+            setPremiumStatus(isPremium ? "Premium: active ✅" : "Premium: not active (subscribe to unlock)");
+            return { user, isPremium };
           }
 
           // Toggle mode
@@ -2543,6 +2580,34 @@
             });
           }
 
+          // Gate helper: if user intended to go to premium, decide where to send them
+          const DEV_ALLOWLIST = ["minnehanjames@gmail.com"]; // dev bypass
+
+          async function maybeRedirectAfterAuth(){
+            const target = popPostAuthRedirect();
+            if (!target) return;
+
+            // only supported target right now: premium.html
+            if (target !== "premium.html") return;
+
+            const { user, isPremium } = await refreshUI();
+            if (!user) return;
+
+            // allow bypass
+            if (DEV_ALLOWLIST.includes(user.email)) {
+              window.location.href = "premium.html";
+              return;
+            }
+
+            if (isPremium) {
+              window.location.href = "premium.html";
+              return;
+            }
+
+            // Not premium: show the premium modal so they understand why they didn't get redirected
+            try { openPremiumModal(); } catch(_) {}
+          }
+
           // Sign in / sign up submit
           if (authForm){
             authForm.addEventListener("submit", async (e)=>{
@@ -2562,17 +2627,29 @@
                 if (mode === "signin"){
                   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
                   if (error) throw error;
+
                   setMsg("Signed in ✅");
                   try { closeAuthModal(); } catch(_) {}
+
+                  // Always refresh UI then redirect if the user was trying to go somewhere (e.g., Premium)
                   await refreshUI();
+                  await maybeRedirectAfterAuth();
+
                 } else {
                   const { error } = await supabaseClient.auth.signUp({ email, password });
                   if (error) throw error;
+
                   setMsg("Account created ✅ If email confirmation is on, confirm via inbox.");
                   await refreshUI();
                 }
               } catch(err){
                 setMsg("Error: " + (err?.message || "Unknown error"), true);
+              } finally {
+                // FAIL-SAFE: if "Working..." got stuck due to some race, this clears it
+                // (Only clears if still set to Working)
+                try{
+                  if (authMsg && authMsg.textContent === "Working...") setMsg("");
+                } catch(_) {}
               }
             });
           }
@@ -2587,11 +2664,12 @@
           }
 
           // Premium dashboard gate
-          const DEV_ALLOWLIST = ["minnehanjames@gmail.com"]; // ← YOUR EMAIL
-
           if (openPremiumDashboard){
             openPremiumDashboard.addEventListener("click", async (e)=>{
               e.preventDefault();
+
+              // record intent so after sign-in we can continue
+              setPostAuthRedirect("premium.html");
 
               const { data } = await supabaseClient.auth.getUser();
               const user = data?.user || null;
@@ -2611,6 +2689,8 @@
               if (prof?.data?.is_premium){
                 window.location.href = "premium.html";
               } else {
+                // Clear redirect intent since they’re already signed in but not premium
+                popPostAuthRedirect();
                 openPremiumModal(e);
               }
             });
@@ -2632,6 +2712,11 @@
           supabaseClient.auth.onAuthStateChange(async (event) => {
             console.log("[auth] state change:", event);
             await refreshUI();
+
+            // If auth just completed from a flow, attempt the redirect
+            if (event === "SIGNED_IN") {
+              await maybeRedirectAfterAuth();
+            }
           });
 
           // Init
