@@ -8,7 +8,6 @@
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
-  <!-- FIX: make stylesheet path explicit (prevents some host/path edge-cases) -->
   <link rel="stylesheet" href="./styles.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -157,6 +156,37 @@
       .logo-img{height:46px}
     }
 
+    /* Highly-visible Archive bubble (fixed near top) */
+    .archive-bubble{
+      position:fixed;
+      top:94px;
+      right:18px;
+      z-index:100000;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(244,193,93,0.55);
+      background:rgba(2,6,23,0.55);
+      backdrop-filter:blur(6px);
+      box-shadow:0 18px 50px rgba(0,0,0,0.35);
+      color:var(--text-main);
+      font-size:12px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      transition:transform .12s ease, opacity .12s ease, background .12s ease;
+    }
+    .archive-bubble:hover{transform:translateY(-1px);background:rgba(2,6,23,0.72)}
+    .archive-bubble .dot{
+      width:9px;height:9px;border-radius:999px;
+      background:rgba(244,193,93,0.95);
+      box-shadow:0 0 0 5px rgba(244,193,93,0.12);
+    }
+    @media (max-width:830px){
+      .archive-bubble{top:116px;right:14px}
+    }
+
     /* Hero */
     .hero{
       min-height:78vh;
@@ -186,7 +216,6 @@
       z-index:1;
       padding:22px 22px 18px;
       display:grid;
-      /* wider right rail so quotes feel “next to” the text */
       grid-template-columns: 1.35fr 0.65fr;
       gap:16px;
       align-items:start;
@@ -383,7 +412,7 @@
       background:rgba(2,6,23,0.30);
     }
 
-    /* Right column: stack quotes + premium block so there is NO dead blank space */
+    /* Right column */
     .hero-right-stack{
       display:flex;
       flex-direction:column;
@@ -506,7 +535,7 @@
     .panel-subtitle{font-size:11px;color:var(--text-muted)}
     .time-indicator{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em}
 
-    /* Scroll reveal (UNBREAKABLE): only activate after JS confirms */
+    /* Scroll reveal */
     .reveal{opacity:1;transform:none}
     .sr .reveal{
       opacity:0;
@@ -549,7 +578,7 @@
     .tile-title{position:relative;z-index:1;font-weight:700;color:#e5e7eb;line-height:1.25;margin-bottom:8px}
     .tile-line{position:relative;z-index:1;color:var(--text-muted);font-size:12px}
 
-    /* What you get: Wheel */
+    /* Wheel */
     .wheel-wrap{
       position:relative;
       z-index:1;
@@ -1143,7 +1172,7 @@
       transition:height 0.08s linear;
     }
 
-    /* Safety overrides for rogue black text */
+    /* Safety overrides */
     .brand-subtitle,.hero-kicker,.panel-title,.panel-subtitle,
     .snap-label,.snap-chip,.card-tag,.card-date,.card-desc,
     .faq-ans,footer,.header-link,.hero-block-title,.hero-bullet-sub,
@@ -1156,6 +1185,11 @@
 </head>
 
 <body>
+  <!-- Visible Archive Bubble -->
+  <a class="archive-bubble" href="archive.html" aria-label="Open Archive">
+    <span class="dot"></span> Archive
+  </a>
+
   <!-- Sticky Left Rail (desktop) -->
   <aside class="rail" id="rail" aria-label="Page navigation rail">
     <div class="rail-card">
@@ -1222,7 +1256,9 @@
           <span class="header-link" id="user-chip" style="display:none;"></span>
 
           <a href="#" class="subscribe-btn" id="open-subscribe-modal">Subscribe</a>
-          <a href="#" class="header-link" id="open-premium-modal">Premium</a>
+
+          <!-- Premium header link now goes straight to premium.html gate -->
+          <a href="premium.html" class="header-link" id="open-premium-modal">Premium</a>
 
           <div class="social-icons">
             <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="FinTrend News Instagram">IG</a>
@@ -1336,7 +1372,6 @@
             <div class="hero-note">Not investment advice — this is a decision aid: context, levels, and scenarios.</div>
           </div>
 
-          <!-- RIGHT COLUMN: quotes + premium block to eliminate empty space -->
           <div class="hero-right-stack">
             <aside class="hero-right">
               <div class="hero-right-title">Today at a glance</div>
@@ -1401,7 +1436,7 @@
                 <li><strong>Quant lab:</strong> the optimizer/Monte Carlo module when you want deeper analysis.</li>
               </ul>
               <div class="cta">
-                <a class="mini-link" href="#" id="open-premium-modal-2">View premium</a>
+                <a class="mini-link" href="premium.html">View premium</a>
                 <a class="mini-link secondary" href="#" id="open-auth-modal-2">Sign in</a>
               </div>
             </div>
@@ -1410,16 +1445,6 @@
         </div>
       </div>
     </section>
-
-    <!-- (Everything below unchanged HTML-wise from your file) -->
-    <!-- ... your sections ... -->
-
-    <!-- I’m leaving the rest of your HTML exactly as you pasted it -->
-    <!-- (No markup changes needed for the auth fix) -->
-
-    <!-- NOTE: your original file continues here; keep as-is -->
-    <!-- START: your original sections unchanged -->
-    <!-- (I’m including them as-is to preserve your whole file) -->
 
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
@@ -1519,9 +1544,7 @@
       </div>
 
       <div class="watch-float" id="watch-float">
-        <div class="tradingview-widget-container" id="watch-widget">
-          <!-- widget injects here -->
-        </div>
+        <div class="tradingview-widget-container" id="watch-widget"></div>
         <div class="watch-fallback" id="watch-fallback">
           Chart didn’t load. <a id="watch-open-tv" href="#" rel="noopener">Open this symbol on TradingView ↗</a>
         </div>
@@ -1633,7 +1656,7 @@
             templates, model allocations, curated idea cards, and the quant sandbox.
           </div>
           <div class="card-actions">
-            <a class="mini-link" href="#" id="open-premium-modal-2">View premium</a>
+            <a class="mini-link" href="premium.html">View premium</a>
             <a class="mini-link secondary" href="#" id="open-subscribe-modal-5">Stay on free email</a>
           </div>
         </div>
@@ -1807,7 +1830,6 @@
         el.scrollIntoView({ behavior:'smooth', block:'start' });
       }
 
-      // Prevent "#"-jumps and smooth-scroll real anchors
       document.addEventListener("click",(e)=>{
         const a = e.target.closest("a");
         if (!a) return;
@@ -1843,12 +1865,10 @@
         document.querySelectorAll(".modal-backdrop.active").forEach(m=>closeModal(m));
       }
 
-      // ESC closes any modal
       window.addEventListener("keydown",(e)=>{
         if (e.key === "Escape") closeAnyOpenModal();
       });
 
-      // Backdrop click closes modal
       document.querySelectorAll(".modal-backdrop").forEach((backdrop)=>{
         backdrop.addEventListener("click",(e)=>{
           if (e.target === backdrop) closeModal(backdrop);
@@ -1884,7 +1904,7 @@
       if (closeSub2) closeSub2.addEventListener("click", closeSubscribeModal);
 
       // -----------------------------------------------------
-      // Premium modal
+      // Premium modal (marketing only)
       // -----------------------------------------------------
       const premiumModal    = document.getElementById("premium-modal");
       const closePremiumBtn = document.getElementById("close-premium-modal");
@@ -1897,11 +1917,6 @@
       function closePremiumModal(){
         closeModal(premiumModal);
       }
-
-      const openPremiumBtn  = document.getElementById("open-premium-modal");
-      const openPremiumBtn2 = document.getElementById("open-premium-modal-2");
-      if (openPremiumBtn)  openPremiumBtn.addEventListener("click", openPremiumModal);
-      if (openPremiumBtn2) openPremiumBtn2.addEventListener("click", openPremiumModal);
       if (closePremiumBtn) closePremiumBtn.addEventListener("click", closePremiumModal);
 
       if (freeBtn){
@@ -1914,7 +1929,6 @@
 
       // Stripe payment link (LIVE)
       const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
-
       const goPremiumCheckout = document.getElementById("go-premium-checkout");
       if (goPremiumCheckout){
         goPremiumCheckout.addEventListener("click",(e)=>{
@@ -1948,89 +1962,17 @@
       if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
 
       // -----------------------------------------------------
-      // What you get: Wheel (Free -> Premium) — hardened + swipe
+      // What you get: Wheel
       // -----------------------------------------------------
       const wheelData = [
-        {
-          tier:"Free",
-          title:"Macro Drivers (Fast Read)",
-          desc:"A short read on what is actually driving risk today: rates, USD, oil, credit, and the main narrative tying them together.",
-          bullets:[
-            "One primary driver + one supporting driver (not a news dump)",
-            "Plain-English implication for equities / FX / crypto",
-            "Key dates this week: CPI, FOMC, jobs, earnings clusters"
-          ]
-        },
-        {
-          tier:"Free",
-          title:"Momentum & Rotation",
-          desc:"Who is leading, who is lagging, and what that says about positioning and regime (growth vs value, cyclicals vs defensives).",
-          bullets:[
-            "Leadership snapshot (what’s outperforming)",
-            "Rotation read (what’s being sold to fund what)",
-            "Crowding/stretch note (where risk/reward worsens)"
-          ]
-        },
-        {
-          tier:"Free",
-          title:"Catalysts With Context",
-          desc:"Pre-event framing and post-event takeaways focused on what would change price — not what sounds dramatic.",
-          bullets:[
-            "What’s priced in vs what would surprise",
-            "2–3 scenarios max (base / upside / downside)",
-            "“If X happens, watch Y” logic"
-          ]
-        },
-        {
-          tier:"Free",
-          title:"Archive-First Notes",
-          desc:"Everything stays organized in the calendar archive so your notes don’t disappear in a feed.",
-          bullets:[
-            "Calendar archive workflow",
-            "Scan by date in seconds",
-            "Builds a track record over time"
-          ]
-        },
-        {
-          tier:"Premium",
-          title:"Weekly Trade Plan (Levels + Triggers)",
-          desc:"A plan you can execute: key levels, what confirms, what invalidates, and what you do if it breaks.",
-          bullets:[
-            "Support/resistance that actually matters + what price action to watch",
-            "Trigger → target → invalidation (so you’re not guessing mid-move)",
-            "Where risk/reward is best this week (not “most exciting”)"
-          ]
-        },
-        {
-          tier:"Premium",
-          title:"Setups Board (2–5 Clean Trades)",
-          desc:"A short list of setups with thesis, entry logic, invalidation, and horizon — quality over quantity.",
-          bullets:[
-            "2–5 setups per week",
-            "Each includes: why it works + what would kill it",
-            "Horizon + what would make you add/reduce"
-          ]
-        },
-        {
-          tier:"Premium",
-          title:"Portfolio Models (Cautious / Balanced / Aggressive)",
-          desc:"Three example allocations with simple rules for when to rebalance and what signals justify change.",
-          bullets:[
-            "3 model allocations with rationale",
-            "Rebalance triggers (regime shifts, volatility, breadth)",
-            "Basic risk controls (position sizing + de-risk rules)"
-          ]
-        },
-        {
-          tier:"Premium",
-          title:"Premium Dashboard (Members Page)",
-          desc:"premium.html: the members-only dashboard with modules and tools you build out over time.",
-          bullets:[
-            "Access to premium.html (members-only)",
-            "Templates vault + checklists + tools you upload",
-            "Quant module (optimizer / Monte Carlo) for deeper analysis"
-          ]
-        }
+        { tier:"Free", title:"Macro Drivers (Fast Read)", desc:"A short read on what is actually driving risk today: rates, USD, oil, credit, and the main narrative tying them together.", bullets:["One primary driver + one supporting driver (not a news dump)","Plain-English implication for equities / FX / crypto","Key dates this week: CPI, FOMC, jobs, earnings clusters"] },
+        { tier:"Free", title:"Momentum & Rotation", desc:"Who is leading, who is lagging, and what that says about positioning and regime (growth vs value, cyclicals vs defensives).", bullets:["Leadership snapshot (what’s outperforming)","Rotation read (what’s being sold to fund what)","Crowding/stretch note (where risk/reward worsens)"] },
+        { tier:"Free", title:"Catalysts With Context", desc:"Pre-event framing and post-event takeaways focused on what would change price — not what sounds dramatic.", bullets:["What’s priced in vs what would surprise","2–3 scenarios max (base / upside / downside)","“If X happens, watch Y” logic"] },
+        { tier:"Free", title:"Archive-First Notes", desc:"Everything stays organized in the calendar archive so your notes don’t disappear in a feed.", bullets:["Calendar archive workflow","Scan by date in seconds","Builds a track record over time"] },
+        { tier:"Premium", title:"Weekly Trade Plan (Levels + Triggers)", desc:"A plan you can execute: key levels, what confirms, what invalidates, and what you do if it breaks.", bullets:["Support/resistance that actually matters + what price action to watch","Trigger → target → invalidation (so you’re not guessing mid-move)","Where risk/reward is best this week (not “most exciting”)"] },
+        { tier:"Premium", title:"Setups Board (2–5 Clean Trades)", desc:"A short list of setups with thesis, entry logic, invalidation, and horizon — quality over quantity.", bullets:["2–5 setups per week","Each includes: why it works + what would kill it","Horizon + what would make you add/reduce"] },
+        { tier:"Premium", title:"Portfolio Models (Cautious / Balanced / Aggressive)", desc:"Three example allocations with simple rules for when to rebalance and what signals justify change.", bullets:["3 model allocations with rationale","Rebalance triggers (regime shifts, volatility, breadth)","Basic risk controls (position sizing + de-risk rules)"] },
+        { tier:"Premium", title:"Premium Dashboard (Members Page)", desc:"premium.html: the members-only dashboard with modules and tools you build out over time.", bullets:["Access to premium.html (members-only)","Templates vault + checklists + tools you upload","Quant module (optimizer / Monte Carlo) for deeper analysis"] }
       ];
 
       const wheelCard = document.getElementById("wheel-card");
@@ -2058,66 +2000,59 @@
       }
 
       function setWheel(i){
-        try{
-          wheelIdx = (i + wheelData.length) % wheelData.length;
-          const item = wheelData[wheelIdx];
-          if (!wheelCard) return;
+        wheelIdx = (i + wheelData.length) % wheelData.length;
+        const item = wheelData[wheelIdx];
+        if (!wheelCard) return;
 
-          const isPro = item.tier === "Premium";
-          wheelCard.className = "wheel-card" + (isPro ? " pro" : "");
-          if (wheelLabel) wheelLabel.textContent = (isPro ? "Premium" : "Free") + " • " + item.title;
+        const isPro = item.tier === "Premium";
+        wheelCard.className = "wheel-card" + (isPro ? " pro" : "");
+        if (wheelLabel) wheelLabel.textContent = (isPro ? "Premium" : "Free") + " • " + item.title;
 
-          const stepText = (wheelIdx + 1) + " / " + wheelData.length;
-          wheelCard.innerHTML = `
-            <div>
-              <div class="wheel-card-top">
-                <div class="wheel-tag"><span class="kdot"></span><span>${isPro ? "Premium" : "Free"}</span></div>
-                <div class="wheel-step">${stepText}</div>
-              </div>
-              <div class="wheel-title">${item.title}</div>
-              <div class="wheel-desc">${item.desc}</div>
-              <ul class="wheel-bullets">
-                ${item.bullets.map(b=>`<li>${b}</li>`).join("")}
-              </ul>
+        const stepText = (wheelIdx + 1) + " / " + wheelData.length;
+        wheelCard.innerHTML = `
+          <div>
+            <div class="wheel-card-top">
+              <div class="wheel-tag"><span class="kdot"></span><span>${isPro ? "Premium" : "Free"}</span></div>
+              <div class="wheel-step">${stepText}</div>
             </div>
-            <div class="wheel-footer" style="margin-top:6px;">
-              <div style="font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;">
-                ${isPro ? "Included with Premium subscription" : "Included with Free email"}
-              </div>
-              <div class="wheel-cta">
-                ${isPro ? `<a class="mini-link" href="#" id="wheel-open-premium">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
-                <a class="mini-link secondary" href="archive.html">Open archive</a>
-              </div>
+            <div class="wheel-title">${item.title}</div>
+            <div class="wheel-desc">${item.desc}</div>
+            <ul class="wheel-bullets">
+              ${item.bullets.map(b=>`<li>${b}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="wheel-footer" style="margin-top:6px;">
+            <div style="font-size:11px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;">
+              ${isPro ? "Included with Premium subscription" : "Included with Free email"}
             </div>
-          `;
+            <div class="wheel-cta">
+              ${isPro ? `<a class="mini-link" href="premium.html">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
+              <a class="mini-link secondary" href="archive.html">Open archive</a>
+            </div>
+          </div>
+        `;
 
-          if (wheelDots){
-            Array.from(wheelDots.children).forEach((node, idx)=>{
-              node.classList.toggle("active", idx === wheelIdx);
-              node.classList.toggle("pro", idx === wheelIdx && wheelData[wheelIdx].tier === "Premium");
-            });
-          }
+        if (wheelDots){
+          Array.from(wheelDots.children).forEach((node, idx)=>{
+            node.classList.toggle("active", idx === wheelIdx);
+            node.classList.toggle("pro", idx === wheelIdx && wheelData[wheelIdx].tier === "Premium");
+          });
+        }
 
-          if (wheelDial){
-            const angle = (360 / wheelData.length) * wheelIdx;
-            wheelDial.style.setProperty("--wheel-angle", angle + "deg");
-            wheelDial.style.transform = "rotate(" + (angle * -1) + "deg)";
-          }
+        if (wheelDial){
+          const angle = (360 / wheelData.length) * wheelIdx;
+          wheelDial.style.setProperty("--wheel-angle", angle + "deg");
+          wheelDial.style.transform = "rotate(" + (angle * -1) + "deg)";
+        }
 
-          const openSubInline = document.getElementById("wheel-open-subscribe");
-          if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
-
-          const openProInline = document.getElementById("wheel-open-premium");
-          if (openProInline) openProInline.addEventListener("click", (e)=>{ e.preventDefault(); openPremiumModal(e); });
-
-        } catch(_) {}
+        const openSubInline = document.getElementById("wheel-open-subscribe");
+        if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
       }
 
       if (wheelPrev) wheelPrev.addEventListener("click", ()=>setWheel(wheelIdx - 1));
       if (wheelNext) wheelNext.addEventListener("click", ()=>setWheel(wheelIdx + 1));
       if (wheelSubscribeCTA) wheelSubscribeCTA.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
 
-      // Swipe support (mobile)
       (function initWheelSwipe(){
         if (!wheelSwipe) return;
         let startX = 0, startY = 0, tracking = false;
@@ -2145,7 +2080,7 @@
       setWheel(0);
 
       // -----------------------------------------------------
-      // TradingView Watchlist (interactive) — FIXED + fallback
+      // TradingView Watchlist (interactive)
       // -----------------------------------------------------
       const watchWrap = document.getElementById("watch-widget");
       const watchFallback = document.getElementById("watch-fallback");
@@ -2176,7 +2111,6 @@
           if (fallbackTimer) clearTimeout(fallbackTimer);
           fallbackTimer = setTimeout(()=>showFallback(currentSymbol), 2500);
 
-          // Full reset so TradingView never "half-renders"
           watchWrap.innerHTML = "";
 
           const widgetDiv = document.createElement("div");
@@ -2228,7 +2162,7 @@
       loadMiniChart(currentSymbol);
 
       // -----------------------------------------------------
-      // Floating module behavior (adds "lift" styling)
+      // Floating module behavior
       // -----------------------------------------------------
       const watchPanel = document.getElementById('watch');
       const watchFloat = document.getElementById('watch-float');
@@ -2242,7 +2176,7 @@
       if (watchIO && watchPanel) watchIO.observe(watchPanel);
 
       // -----------------------------------------------------
-      // Scroll reveal (UNBREAKABLE)
+      // Scroll reveal
       // -----------------------------------------------------
       (function initScrollReveal(){
         if (!('IntersectionObserver' in window)) return;
@@ -2372,12 +2306,9 @@
         railRegime.textContent = "Neutral";
       }
 
-      /* -----------------------------------------------------
-         Supabase Auth + Premium gating — FIXED + redirect logic
-         - Fix #1: after SIGNED_IN, handle redirect target
-         - Fix #2: "Working..." always clears (finally/fail-safe)
-         - Fix #3: store intent when user clicks Premium dashboard
-      ----------------------------------------------------- */
+      // -----------------------------------------------------
+      // Supabase Auth + Premium gating — FIXED (no hanging "Working...")
+      // -----------------------------------------------------
       (async function initSupabase(){
         try{
           if (!window.supabase || !window.supabase.createClient) {
@@ -2385,32 +2316,11 @@
             return;
           }
 
-          // Where to send user after successful auth, if they were trying to go somewhere
-          const POST_AUTH_REDIRECT_KEY = "ftn_post_auth_redirect";
-
-          function setPostAuthRedirect(path){
-            try { sessionStorage.setItem(POST_AUTH_REDIRECT_KEY, path); } catch(_) {}
-          }
-          function popPostAuthRedirect(){
-            try{
-              const v = sessionStorage.getItem(POST_AUTH_REDIRECT_KEY);
-              sessionStorage.removeItem(POST_AUTH_REDIRECT_KEY);
-              return v;
-            } catch(_) { return null; }
-          }
-
-          if (location.protocol === "file:") {
-            console.warn("[auth] You are running via file://. Use a real host (Vercel/Netlify/GitHub Pages) for reliable auth sessions.");
-          }
-
-          // ✅ IMPORTANT:
-          // Your anon key should look like a long JWT string (starts with "eyJ...").
-          // If it starts with "sb_", it's probably NOT your anon key.
           const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // <-- REPLACE with real anon key from Supabase: Project Settings → API → anon/public
+          const SUPABASE_ANON_KEY = "REPLACE_WITH_YOUR_SUPABASE_ANON_PUBLIC_KEY";
 
-          if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.length < 50 || SUPABASE_ANON_KEY.startsWith("sb_")) {
-            console.warn("[auth] Supabase anon key looks wrong. Go to Supabase → Settings → API → anon/public.");
+          if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.length < 60 || SUPABASE_ANON_KEY.startsWith("sb_")) {
+            console.warn("[auth] Your SUPABASE_ANON_KEY looks wrong. Supabase → Project Settings → API → anon/public.");
           }
 
           const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -2483,7 +2393,6 @@
 
           async function getProfileSafe(user){
             if (!user) return { data: null, error: null };
-
             const { data, error } = await supabaseClient
               .from("profiles")
               .select("id,email,is_premium")
@@ -2499,7 +2408,6 @@
 
           async function createProfileSafe(user){
             if (!user) return { data: null, error: null };
-
             const { data, error } = await supabaseClient
               .from("profiles")
               .insert([{ id: user.id, email: user.email, is_premium: false }])
@@ -2580,34 +2488,6 @@
             });
           }
 
-          // Gate helper: if user intended to go to premium, decide where to send them
-          const DEV_ALLOWLIST = ["minnehanjames@gmail.com"]; // dev bypass
-
-          async function maybeRedirectAfterAuth(){
-            const target = popPostAuthRedirect();
-            if (!target) return;
-
-            // only supported target right now: premium.html
-            if (target !== "premium.html") return;
-
-            const { user, isPremium } = await refreshUI();
-            if (!user) return;
-
-            // allow bypass
-            if (DEV_ALLOWLIST.includes(user.email)) {
-              window.location.href = "premium.html";
-              return;
-            }
-
-            if (isPremium) {
-              window.location.href = "premium.html";
-              return;
-            }
-
-            // Not premium: show the premium modal so they understand why they didn't get redirected
-            try { openPremiumModal(); } catch(_) {}
-          }
-
           // Sign in / sign up submit
           if (authForm){
             authForm.addEventListener("submit", async (e)=>{
@@ -2628,28 +2508,25 @@
                   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
                   if (error) throw error;
 
-                  setMsg("Signed in ✅");
-                  try { closeAuthModal(); } catch(_) {}
-
-                  // Always refresh UI then redirect if the user was trying to go somewhere (e.g., Premium)
-                  await refreshUI();
-                  await maybeRedirectAfterAuth();
-
+                  setMsg("Signed in ✅ Redirecting...");
+                  window.location.href = "premium.html";
+                  return;
                 } else {
                   const { error } = await supabaseClient.auth.signUp({ email, password });
                   if (error) throw error;
 
-                  setMsg("Account created ✅ If email confirmation is on, confirm via inbox.");
-                  await refreshUI();
+                  setMsg("Account created ✅ Now sign in.");
+                  setAuthMode("signin");
                 }
               } catch(err){
                 setMsg("Error: " + (err?.message || "Unknown error"), true);
               } finally {
-                // FAIL-SAFE: if "Working..." got stuck due to some race, this clears it
-                // (Only clears if still set to Working)
-                try{
-                  if (authMsg && authMsg.textContent === "Working...") setMsg("");
-                } catch(_) {}
+                // clears stuck message if needed
+                setTimeout(()=>{
+                  try{
+                    if (authMsg && authMsg.textContent === "Working...") setMsg("");
+                  } catch(_) {}
+                }, 1200);
               }
             });
           }
@@ -2663,25 +2540,14 @@
             });
           }
 
-          // Premium dashboard gate
+          // Premium dashboard gate (button in section)
           if (openPremiumDashboard){
             openPremiumDashboard.addEventListener("click", async (e)=>{
               e.preventDefault();
 
-              // record intent so after sign-in we can continue
-              setPostAuthRedirect("premium.html");
-
-              const { data } = await supabaseClient.auth.getUser();
-              const user = data?.user || null;
-
+              const { user } = await refreshUI();
               if (!user){
                 openAuthModal(e);
-                return;
-              }
-
-              // DEV BYPASS
-              if (DEV_ALLOWLIST.includes(user.email)){
-                window.location.href = "premium.html";
                 return;
               }
 
@@ -2689,37 +2555,23 @@
               if (prof?.data?.is_premium){
                 window.location.href = "premium.html";
               } else {
-                // Clear redirect intent since they’re already signed in but not premium
-                popPostAuthRedirect();
                 openPremiumModal(e);
               }
             });
           }
 
-          // “Manage” currently just opens Stripe payment link
           if (manageMembership){
             manageMembership.addEventListener("click", (e)=>{
               e.preventDefault();
-              if (typeof PAYMENT_LINK !== "string" || !PAYMENT_LINK){
-                try { openPremiumModal(e); } catch(_) {}
-                return;
-              }
               window.open(PAYMENT_LINK, "_blank", "noopener");
             });
           }
 
-          // Listen for auth changes
-          supabaseClient.auth.onAuthStateChange(async (event) => {
-            console.log("[auth] state change:", event);
+          // Listen for auth changes (keeps header correct)
+          supabaseClient.auth.onAuthStateChange(async () => {
             await refreshUI();
-
-            // If auth just completed from a flow, attempt the redirect
-            if (event === "SIGNED_IN") {
-              await maybeRedirectAfterAuth();
-            }
           });
 
-          // Init
           setAuthMode("signin");
           await refreshUI();
 
@@ -2728,9 +2580,7 @@
         }
       })();
 
-      // -----------------------------------------------------
       // Keyboard support for wheel
-      // -----------------------------------------------------
       window.addEventListener("keydown",(e)=>{
         if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
         if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
