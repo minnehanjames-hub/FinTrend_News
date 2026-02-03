@@ -2316,8 +2316,8 @@
             return;
           }
 
-          const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-          const SUPABASE_ANON_KEY = "REPLACE_WITH_YOUR_SUPABASE_ANON_PUBLIC_KEY";
+          const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co".trim();
+          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI".trim();
 
           if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.length < 60 || SUPABASE_ANON_KEY.startsWith("sb_")) {
             console.warn("[auth] Your SUPABASE_ANON_KEY looks wrong. Supabase → Project Settings → API → anon/public.");
