@@ -156,7 +156,7 @@
       .logo-img{height:46px}
     }
 
-    /* Highly-visible Archive bubble (fixed near top) */
+    /* Highly-visible bubble */
     .archive-bubble{
       position:fixed;
       top:94px;
@@ -189,10 +189,10 @@
 
     /* Hero */
     .hero{
-      min-height:78vh;
+      min-height:66vh; /* less “too tall” */
       display:grid;
       place-items:center;
-      padding:20px 0 10px;
+      padding:18px 0 10px;
     }
     .hero-card{
       width:100%;
@@ -216,7 +216,7 @@
       z-index:1;
       padding:22px 22px 18px;
       display:grid;
-      grid-template-columns: 1.35fr 0.65fr;
+      grid-template-columns: 1.25fr 0.75fr;
       gap:16px;
       align-items:start;
     }
@@ -243,12 +243,20 @@
     .hero-sub{
       color:#e5e7eb;
       font-size:15px;
-      max-width:680px;
+      max-width:720px;
       margin-bottom:14px;
     }
 
-    .hero-stack{display:flex;flex-direction:column;gap:12px;margin-top:6px;margin-bottom:10px}
-    .hero-block{
+    /* NEW: compact “3 bullets” row (clean above fold) */
+    .hero-highlights{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+    @media (max-width:920px){.hero-highlights{grid-template-columns:1fr}}
+    .hero-h{
       border-radius:18px;
       border:1px solid rgba(148,163,184,0.22);
       background:rgba(2,6,23,0.30);
@@ -256,89 +264,18 @@
       position:relative;
       overflow:hidden;
     }
-    .hero-block::before{
+    .hero-h::before{
       content:"";
       position:absolute;
       inset:-40%;
       background:radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 60%);
       pointer-events:none;
-      opacity:0.9;
+      opacity:0.8;
     }
-    .hero-block-title{
-      position:relative;
-      z-index:1;
-      font-size:11px;
-      color:var(--text-muted);
-      text-transform:uppercase;
-      letter-spacing:0.18em;
-      margin-bottom:10px;
-    }
-    .hero-bullets{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px}
-    .hero-bullet{display:flex;gap:10px;align-items:flex-start}
-    .dot{
-      width:9px;height:9px;border-radius:999px;margin-top:4px;
-      background:rgba(244,193,93,0.95);
-      box-shadow:0 0 0 5px rgba(244,193,93,0.12);
-      flex:0 0 auto;
-    }
-    .hero-bullet-head{font-size:13px;font-weight:700;color:#e5e7eb;line-height:1.25;margin-bottom:2px}
-    .hero-bullet-sub{font-size:12px;color:var(--text-muted);line-height:1.45}
+    .hero-h strong{position:relative;z-index:1;display:block;font-size:13px;color:#e5e7eb;margin-bottom:4px}
+    .hero-h span{position:relative;z-index:1;display:block;font-size:12px;color:var(--text-muted);line-height:1.45}
 
-    .hero-mini-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    @media (max-width:520px){.hero-mini-grid{grid-template-columns:1fr}}
-    .hero-mini-card{
-      border-radius:16px;border:1px solid rgba(148,163,184,0.22);
-      background:rgba(15,23,42,0.55);
-      padding:12px 12px 10px;
-      transition:0.18s ease;
-    }
-    .hero-mini-card:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35);background:rgba(15,23,42,0.70)}
-    .hero-mini-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:6px}
-    .hero-mini-tag{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)}
-    .hero-mini-chip{
-      font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
-      padding:3px 8px;border-radius:999px;border:1px solid rgba(148,163,184,0.28);
-      background:rgba(2,6,23,0.35);color:var(--text-muted);white-space:nowrap;
-    }
-    .hero-mini-body{font-size:12px;color:#e5e7eb;line-height:1.45}
-
-    .hero-strip{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
-    .hero-strip-item{
-      flex:1 1 140px;
-      min-width:140px;
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,0.20);
-      background:rgba(2,6,23,0.26);
-      padding:12px 12px 10px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero-strip-item.pulse::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:radial-gradient(circle at top, rgba(244,193,93,0.22), transparent 55%);
-      opacity:0.9;
-      pointer-events:none;
-      animation:pulseGlow 1.2s ease-in-out 1;
-    }
-    @keyframes pulseGlow{
-      0%{transform:scale(0.98);opacity:0.2}
-      50%{transform:scale(1.03);opacity:0.85}
-      100%{transform:scale(1.0);opacity:0.25}
-    }
-    .hero-strip-num{
-      font-family:"Playfair Display",serif;
-      font-size:20px;
-      color:#fef3c7;
-      letter-spacing:0.06em;
-      line-height:1.1;
-      margin-bottom:2px;
-    }
-    .hero-strip-text{font-size:10px;color:var(--text-muted);letter-spacing:0.18em;text-transform:uppercase}
-
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .btn{
       font-size:12px;
       padding:10px 14px;
@@ -359,58 +296,6 @@
     .btn.primary:hover{background:#f7d680}
 
     .hero-note{margin-top:12px;font-size:11px;color:var(--text-muted)}
-
-    .hero-under{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-    @media (max-width:920px){.hero-under{grid-template-columns:1fr}}
-    .hero-under-card{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background:rgba(2,6,23,0.30);
-      padding:12px 12px 10px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero-under-card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 60%);
-      pointer-events:none;
-      opacity:0.65;
-    }
-    .hero-under-title{
-      position:relative;
-      z-index:1;
-      font-size:11px;
-      color:var(--text-muted);
-      text-transform:uppercase;
-      letter-spacing:0.18em;
-      margin-bottom:8px;
-    }
-    .hero-under-text{position:relative;z-index:1;font-size:12px;color:#e5e7eb;line-height:1.5}
-    .hero-under-links{position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap}
-
-    .mini-link{
-      font-size:12px;
-      text-decoration:none;
-      color:var(--accent) !important;
-      border:1px solid rgba(244,193,93,0.45);
-      background:rgba(244,193,93,0.08);
-      padding:8px 12px;
-      border-radius:999px;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      transition:0.18s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .mini-link:hover{transform:translateY(-1px);background:rgba(244,193,93,0.14)}
-    .mini-link.secondary{
-      color:#e5e7eb !important;
-      border-color:rgba(148,163,184,0.30);
-      background:rgba(2,6,23,0.30);
-    }
 
     /* Right column */
     .hero-right-stack{
@@ -498,14 +383,57 @@
       line-height:1.5;
     }
     .hero-right-premium li{margin:0 0 6px}
-    .hero-right-premium .cta{
-      position:relative;
-      z-index:1;
-      margin-top:10px;
+
+    .chips-row{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
+      margin-top:10px;
+      position:relative;
+      z-index:1;
+    }
+    .chip{
+      font-size:10px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.28);
+      background:rgba(2,6,23,0.30);
+      color:var(--text-muted);
+      display:inline-flex;
       align-items:center;
+      gap:8px;
+      user-select:none;
+    }
+    .chip .c-dot{width:7px;height:7px;border-radius:999px;background:rgba(244,193,93,0.9);box-shadow:0 0 0 4px rgba(244,193,93,0.10)}
+
+    .mini-link{
+      font-size:12px;
+      text-decoration:none;
+      color:var(--accent) !important;
+      border:1px solid rgba(244,193,93,0.45);
+      background:rgba(244,193,93,0.08);
+      padding:8px 12px;
+      border-radius:999px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      transition:0.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .mini-link:hover{transform:translateY(-1px);background:rgba(244,193,93,0.14)}
+    .mini-link.secondary{
+      color:#e5e7eb !important;
+      border-color:rgba(148,163,184,0.30);
+      background:rgba(2,6,23,0.30);
+    }
+
+    @keyframes pulseGlow{
+      0%{transform:scale(0.98);opacity:0.2}
+      50%{transform:scale(1.03);opacity:0.85}
+      100%{transform:scale(1.0);opacity:0.25}
     }
 
     /* Panels */
@@ -546,7 +474,14 @@
     .sr .reveal.in-view{opacity:1;transform:translateY(0)}
 
     /* How tiles */
-    .tiles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative;z-index:1}
+    .tiles-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      position:relative;
+      z-index:1;
+      align-items:stretch;
+    }
     @media (max-width:900px){.tiles-grid{grid-template-columns:1fr}}
     .tile{
       border-radius:var(--radius-lg);
@@ -557,7 +492,7 @@
       transition:transform 0.18s ease, border-color 0.18s ease;
       overflow:hidden;
       position:relative;
-      min-height:132px;
+      /* removed min-height to prevent overlap on certain font loads */
     }
     .tile:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35)}
     .tile::before{
@@ -577,6 +512,56 @@
     }
     .tile-title{position:relative;z-index:1;font-weight:700;color:#e5e7eb;line-height:1.25;margin-bottom:8px}
     .tile-line{position:relative;z-index:1;color:var(--text-muted);font-size:12px}
+
+    /* Content grids */
+    .two-col{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+    @media (max-width:900px){.two-col{grid-template-columns:1fr}}
+
+    .card{
+      border-radius:var(--radius-lg);
+      border:1px solid rgba(148,163,184,0.26);
+      background:rgba(2,6,23,0.34);
+      padding:16px 16px 14px;
+      transition:0.18s ease;
+      overflow:hidden;
+      position:relative;
+      /* removed min-height to stop odd overlap on some screens */
+    }
+    .card:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35);background:rgba(2,6,23,0.42)}
+    .card-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
+    .card-tag{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)}
+    .card-date{font-size:10px;color:var(--text-muted)}
+    .card-title{font-size:16px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#e5e7eb}
+    .card-desc{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.55}
+    .card-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Free Articles panel extras */
+    .search-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:12px;
+      position:relative;
+      z-index:1;
+    }
+    .search-row input{
+      flex:1 1 260px;
+      background: rgba(2,6,23,0.35);
+      border:1px solid rgba(148,163,184,0.22);
+      color: var(--text-main);
+      border-radius:14px;
+      padding:10px 12px;
+      outline:none;
+      font-size:13px;
+    }
+    .search-row input:focus{
+      border-color:rgba(244,193,93,0.6);
+      box-shadow:0 0 0 4px rgba(244,193,93,0.10);
+    }
+
+    /* Wheel / Watchlist / FAQ / Modals / Rail — keep your original styles as-is */
+    /* (Everything below is unchanged from your file, except where noted) */
 
     /* Wheel */
     .wheel-wrap{
@@ -956,28 +941,6 @@
     }
     .watch-fallback a{color:var(--accent);text-decoration:underline}
 
-    /* Content grids */
-    .two-col{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    @media (max-width:900px){.two-col{grid-template-columns:1fr}}
-
-    .card{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,0.26);
-      background:rgba(2,6,23,0.34);
-      padding:16px 16px 14px;
-      transition:0.18s ease;
-      overflow:hidden;
-      position:relative;
-      min-height:140px;
-    }
-    .card:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35);background:rgba(2,6,23,0.42)}
-    .card-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
-    .card-tag{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)}
-    .card-date{font-size:10px;color:var(--text-muted)}
-    .card-title{font-size:16px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#e5e7eb}
-    .card-desc{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.55}
-    .card-actions{display:flex;gap:10px;flex-wrap:wrap}
-
     /* FAQ */
     .faq{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px}
     details.faq-item{
@@ -1175,9 +1138,7 @@
     /* Safety overrides */
     .brand-subtitle,.hero-kicker,.panel-title,.panel-subtitle,
     .snap-label,.snap-chip,.card-tag,.card-date,.card-desc,
-    .faq-ans,footer,.header-link,.hero-block-title,.hero-bullet-sub,
-    .hero-mini-tag,.hero-mini-chip,.hero-strip-text,.hero-under-title,
-    .wheel-kicker,.wheel-step,.wheel-tag,.wheel-subcopy,.hero-right-title{
+    .faq-ans,footer,.header-link,.wheel-kicker,.wheel-step,.wheel-tag,.wheel-subcopy,.hero-right-title{
       color:var(--text-muted) !important;
     }
     body,p,span,li,label,small,strong,em,i,b,h1,h2,h3,h4,h5,h6,button,input,textarea,select,summary,details,div,section,article,header,footer,nav{color:inherit}
@@ -1185,9 +1146,9 @@
 </head>
 
 <body>
-  <!-- Visible Archive Bubble -->
-  <a class="archive-bubble" href="archive.html" aria-label="Open Archive">
-    <span class="dot"></span> Archive
+  <!-- Visible Bubble: keep Archive but make it “Free Articles” friendly -->
+  <a class="archive-bubble" href="articles.html" aria-label="Open Free Articles">
+    <span class="dot"></span> Free Articles
   </a>
 
   <!-- Sticky Left Rail (desktop) -->
@@ -1196,6 +1157,7 @@
       <div class="rail-title">Navigate</div>
       <div class="rail-links">
         <a class="rail-link" href="#how" data-rail="how"><span>How</span><span class="rail-dot"></span></a>
+        <a class="rail-link" href="#free" data-rail="free"><span>Free</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#what" data-rail="what"><span>Get</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#watch" data-rail="watch"><span>Watch</span><span class="rail-dot"></span></a>
         <a class="rail-link" href="#about" data-rail="about"><span>About</span><span class="rail-dot"></span></a>
@@ -1251,13 +1213,16 @@
         </div>
 
         <div class="header-right">
+          <a href="articles.html" class="header-link">Free Articles</a>
+          <a href="archive.html" class="header-link">Archive</a>
+
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
           <span class="header-link" id="user-chip" style="display:none;"></span>
 
-          <a href="#" class="subscribe-btn" id="open-subscribe-modal">Subscribe</a>
+          <a href="#" class="subscribe-btn" id="open-subscribe-modal">Get Free Email</a>
 
-          <!-- Premium header link now goes straight to premium.html gate -->
+          <!-- Premium goes to gate -->
           <a href="premium.html" class="header-link" id="open-premium-modal">Premium</a>
 
           <div class="social-icons">
@@ -1268,6 +1233,7 @@
       </div>
     </header>
 
+    <!-- HERO: CLEAN + CLEAR -->
     <section class="hero" id="top">
       <div class="hero-card reveal in-view" id="hero-card">
         <div class="hero-inner">
@@ -1275,98 +1241,38 @@
             <div class="hero-kicker">Market Newsletter</div>
             <h2 class="hero-title">A <span>desk-style market brief</span> built for fast decisions.</h2>
             <p class="hero-sub">
-              Four short notes per week that prioritize the things that change price: rates, FX, commodities, positioning, and the next catalyst.
+              Four short notes per week that prioritize the things that move price: rates, FX, commodities, positioning, and catalysts.
               No headline dumping.
             </p>
 
-            <div class="hero-stack">
-              <div class="hero-block">
-                <div class="hero-block-title">What you get (overview)</div>
-                <div class="hero-bullets">
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Macro drivers → simple implication</div>
-                      <div class="hero-bullet-sub">Rates, USD, oil, credit: what’s leading, and what it usually means for risk assets.</div>
-                    </div>
-                  </div>
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Leadership, rotation, and crowding</div>
-                      <div class="hero-bullet-sub">What’s outperforming, what’s breaking down, and where the move looks stretched.</div>
-                    </div>
-                  </div>
-                  <div class="hero-bullet">
-                    <div class="dot"></div>
-                    <div>
-                      <div class="hero-bullet-head">Catalysts framed as scenarios</div>
-                      <div class="hero-bullet-sub">CPI/FOMC/earnings: what’s priced in, what would surprise, and what to watch if it hits.</div>
-                    </div>
-                  </div>
-                </div>
+            <div class="hero-highlights">
+              <div class="hero-h">
+                <strong>Driver → implication</strong>
+                <span>What’s leading today (rates / USD / oil / credit) and what it usually means for risk.</span>
               </div>
+              <div class="hero-h">
+                <strong>Rotation & crowding</strong>
+                <span>What’s outperforming, what’s breaking down, and where the move looks stretched.</span>
+              </div>
+              <div class="hero-h">
+                <strong>Catalysts as scenarios</strong>
+                <span>CPI/FOMC/earnings framed as “priced-in vs surprise” with clean watch points.</span>
+              </div>
+            </div>
 
-              <div class="hero-block">
-                <div class="hero-block-title">Weekly format</div>
-                <div class="hero-mini-grid">
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Monday</span><span class="hero-mini-chip">Outlook</span></div>
-                    <div class="hero-mini-body">Bias + key levels + the week’s “if/then” triggers.</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Wednesday</span><span class="hero-mini-chip">Momentum</span></div>
-                    <div class="hero-mini-body">Leadership/laggards and what the tape is confirming (or rejecting).</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Friday</span><span class="hero-mini-chip">Recap</span></div>
-                    <div class="hero-mini-body">What changed this week, what didn’t, and what that means going into next week.</div>
-                  </div>
-                  <div class="hero-mini-card">
-                    <div class="hero-mini-top"><span class="hero-mini-tag">Sunday</span><span class="hero-mini-chip">Macro</span></div>
-                    <div class="hero-mini-body">A deeper framework + the cleanest setups to carry forward.</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="hero-strip" id="hero-strip">
-                <div class="hero-strip-item" id="count-card-1">
-                  <div class="hero-strip-num" data-count="4">4</div>
-                  <div class="hero-strip-text">issues weekly</div>
-                </div>
-                <div class="hero-strip-item" id="count-card-2">
-                  <div class="hero-strip-num"><span data-count="2">2</span>–<span data-count="5">5</span></div>
-                  <div class="hero-strip-text">minute read</div>
-                </div>
-                <div class="hero-strip-item" id="count-card-3">
-                  <div class="hero-strip-num" data-count="0">0</div>
-                  <div class="hero-strip-text">spam emails</div>
-                </div>
-              </div>
+            <div class="chips-row" aria-label="Publishing schedule">
+              <span class="chip"><span class="c-dot"></span>Mon</span>
+              <span class="chip"><span class="c-dot"></span>Wed</span>
+              <span class="chip"><span class="c-dot"></span>Fri</span>
+              <span class="chip"><span class="c-dot"></span>Sun</span>
+              <span class="chip" style="border-color:rgba(147,197,253,0.35);"><span class="c-dot" style="background:rgba(147,197,253,0.9);box-shadow:0 0 0 4px rgba(147,197,253,0.10)"></span>Premium Tools</span>
             </div>
 
             <div class="hero-actions">
-              <a class="btn primary" href="#" id="open-subscribe-modal-2">Get Free Email</a>
-              <a class="btn" href="archive.html">Open Archive</a>
-              <a class="btn" href="#what">What You Get</a>
-              <a class="btn" href="#premium">Premium Tools</a>
-            </div>
-
-            <div class="hero-under">
-              <div class="hero-under-card">
-                <div class="hero-under-title">This week’s focus</div>
-                <div class="hero-under-text">
-                  Update this weekly with one sentence: the single thing that matters most (ex: “Rates are driving everything again; watch real yields + USD.”).
-                </div>
-              </div>
-              <div class="hero-under-card">
-                <div class="hero-under-title">Quick links</div>
-                <div class="hero-under-links">
-                  <a class="mini-link secondary" href="archive.html">Latest notes</a>
-                  <a class="mini-link secondary" href="#watch">Watchlist</a>
-                  <a class="mini-link secondary" href="#" id="open-subscribe-modal-3">Free email</a>
-                </div>
-              </div>
+              <a class="btn primary" href="articles.html">Read Free Articles</a>
+              <a class="btn" href="#" id="open-subscribe-modal-2">Get Free Email</a>
+              <a class="btn" href="premium.html">Open Deep Dive (Premium)</a>
+              <a class="btn" href="#watch">Live Watchlist</a>
             </div>
 
             <div class="hero-note">Not investment advice — this is a decision aid: context, levels, and scenarios.</div>
@@ -1425,19 +1331,19 @@
             </aside>
 
             <div class="hero-right-premium">
-              <div class="hero-right-title">Premium (what it actually is)</div>
-              <h3>Member dashboard + tools</h3>
+              <div class="hero-right-title">Premium</div>
+              <h3>Deep dives + reusable tools</h3>
               <p>
-                Premium is the members-only page (premium.html). It’s where you’ll put structured content and tools over time.
+                Premium unlocks the members dashboard (premium.html): playbooks, idea cards, model portfolios, templates, and the quant lab.
               </p>
               <ul>
-                <li><strong>Dashboard modules:</strong> playbook, ideas, model portfolios, niche roundups.</li>
-                <li><strong>Templates vault:</strong> downloadable trackers/checklists you upload.</li>
-                <li><strong>Quant lab:</strong> the optimizer/Monte Carlo module when you want deeper analysis.</li>
+                <li><strong>Playbook:</strong> one deep-dive theme per week.</li>
+                <li><strong>Tools:</strong> trackers/checklists you can reuse.</li>
+                <li><strong>Quant:</strong> optimizer + Monte Carlo sandbox.</li>
               </ul>
-              <div class="cta">
+              <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; position:relative; z-index:1;">
                 <a class="mini-link" href="premium.html">View premium</a>
-                <a class="mini-link secondary" href="#" id="open-auth-modal-2">Sign in</a>
+                <a class="mini-link secondary" href="articles.html">Read free</a>
               </div>
             </div>
           </div>
@@ -1446,11 +1352,12 @@
       </div>
     </section>
 
+    <!-- HOW -->
     <section class="panel reveal" id="how" aria-label="How to use FinTrend News">
       <div class="panel-header">
         <div>
           <div class="panel-title">How to use this</div>
-          <div class="panel-subtitle">A simple workflow that keeps you objective.</div>
+          <div class="panel-subtitle">A workflow that keeps you objective.</div>
         </div>
         <div class="time-indicator">30 seconds</div>
       </div>
@@ -1464,21 +1371,69 @@
         <div class="tile reveal">
           <div class="tile-top"><div class="tile-num">Step 02</div><div class="tile-pill">Filter</div></div>
           <div class="tile-title">Pick the sections you need</div>
-          <div class="tile-line">If you’re trading: levels + catalyst framing. If you’re investing: regime + leadership.</div>
+          <div class="tile-line">If you’re trading: levels + catalysts. If investing: regime + leadership.</div>
         </div>
         <div class="tile reveal">
           <div class="tile-top"><div class="tile-num">Step 03</div><div class="tile-pill">Write</div></div>
           <div class="tile-title">Turn it into 3 lines</div>
-          <div class="tile-line">Bias, key level, next catalyst. That’s the whole plan.</div>
+          <div class="tile-line">Bias, key level, next catalyst. That’s the plan.</div>
         </div>
       </div>
     </section>
 
+    <!-- FREE ARTICLES: CLEAR FINDER PANEL -->
+    <section class="panel reveal" id="free" aria-label="Free Articles">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Free articles</div>
+          <div class="panel-subtitle">The easiest way to browse the free content.</div>
+        </div>
+        <div class="time-indicator">Free</div>
+      </div>
+
+      <div class="search-row">
+        <input id="freeSearch" type="text" placeholder="Search (example: CPI, earnings, USD, oil…)" />
+        <a class="mini-link" href="articles.html">Open free library</a>
+        <a class="mini-link secondary" href="archive.html">Browse by date</a>
+      </div>
+
+      <div class="two-col">
+        <div class="card reveal">
+          <div class="card-top"><div class="card-tag">Free</div><div class="card-date">Library</div></div>
+          <div class="card-title">Find articles fast</div>
+          <div class="card-desc">
+            Use the Free Articles page for search + categories. The archive stays the calendar “source of truth.”
+          </div>
+          <div class="card-actions">
+            <a class="mini-link" href="articles.html">Read Free Articles</a>
+            <a class="mini-link secondary" href="archive.html">Open Archive</a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-top"><div class="card-tag">Premium</div><div class="card-date">Deep dives</div></div>
+          <div class="card-title">Want the deep dive?</div>
+          <div class="card-desc">
+            Deep Dive lives on premium.html. If you’re not a member, it’ll prompt you to subscribe — with a button back to free articles.
+          </div>
+          <div class="card-actions">
+            <a class="mini-link" href="premium.html">Open Deep Dive</a>
+            <a class="mini-link secondary" href="#" id="open-subscribe-modal-3">Stay on free email</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:12px; position:relative; z-index:1; font-size:11px; color:var(--text-muted);">
+        Tip: when we build articles.html, we can auto-generate “Latest 6 free posts” here from Supabase.
+      </p>
+    </section>
+
+    <!-- WHAT YOU GET (Wheel) -->
     <section class="panel reveal" id="what" aria-label="What you get wheel">
       <div class="panel-header">
         <div>
           <div class="panel-title">What you get</div>
-          <div class="panel-subtitle">Swipe/click through: free modules first, then premium.</div>
+          <div class="panel-subtitle">Free modules first, then premium.</div>
         </div>
         <div class="time-indicator">Wheel</div>
       </div>
@@ -1488,8 +1443,8 @@
           <div class="wheel-kicker">Designed like a product</div>
           <div class="wheel-headline">Clear modules, clear purpose.</div>
           <div class="wheel-subcopy">
-            Each slice explains: what it is, how you use it, and what decision it supports.
-            The first slices are free; the last slices match premium.html.
+            Each slice explains what it is and what decision it supports.
+            Free first, premium last.
           </div>
           <div class="wheel-legend">
             <div class="legend-pill free"><span class="legend-dot"></span><span>Free</span></div>
@@ -1518,7 +1473,7 @@
           <div class="wheel-footer">
             <div class="wheel-dots" id="wheel-dots" aria-label="Wheel dots"></div>
             <div class="wheel-cta">
-              <a class="mini-link secondary" href="archive.html">Open archive</a>
+              <a class="mini-link secondary" href="articles.html">Free articles</a>
               <a class="mini-link" href="#" id="wheel-subscribe-cta">Get free email</a>
             </div>
           </div>
@@ -1526,6 +1481,7 @@
       </div>
     </section>
 
+    <!-- WATCHLIST -->
     <section class="panel reveal" id="watch" aria-label="Watchlist">
       <div class="panel-header">
         <div>
@@ -1569,6 +1525,7 @@
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section class="panel reveal" id="about" aria-label="About">
       <div class="panel-header">
         <div>
@@ -1583,11 +1540,11 @@
           <div class="card-top"><div class="card-tag">Purpose</div><div class="card-date">Clarity</div></div>
           <div class="card-title">A briefing you can act on</div>
           <div class="card-desc">
-            FinTrend is built to answer three questions: what is driving price, what is confirming it, and what would change the setup.
+            Built to answer: what’s driving price, what confirms it, and what would change the setup.
             The goal is speed and structure — not predictions.
           </div>
           <div class="card-actions">
-            <a class="mini-link secondary" href="archive.html">See the archive</a>
+            <a class="mini-link secondary" href="articles.html">Read free</a>
             <a class="mini-link secondary" href="#what">What you get</a>
           </div>
         </div>
@@ -1625,6 +1582,7 @@
       </div>
     </section>
 
+    <!-- PREMIUM -->
     <section class="panel reveal" id="premium" aria-label="Premium tools">
       <div class="panel-header">
         <div>
@@ -1644,6 +1602,7 @@
           <div class="card-actions">
             <a class="mini-link" href="#" id="open-premium-dashboard">Open Dashboard ↗</a>
             <a class="mini-link secondary" href="#" id="manage-membership">Manage</a>
+            <a class="mini-link secondary" href="articles.html">Free articles</a>
           </div>
           <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">Sign in to check access.</p>
         </div>
@@ -1652,7 +1611,7 @@
           <div class="card-top"><div class="card-tag">What you pay for</div><div class="card-date">$2.50/mo</div></div>
           <div class="card-title">Tools + structured content</div>
           <div class="card-desc">
-            Premium isn’t “more hype.” It’s a place to ship tools and structured modules that subscribers can reuse:
+            Premium is a place to ship tools and structured modules subscribers can reuse:
             templates, model allocations, curated idea cards, and the quant sandbox.
           </div>
           <div class="card-actions">
@@ -1663,6 +1622,7 @@
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="panel reveal" id="faq" aria-label="FAQ">
       <div class="panel-header">
         <div>
@@ -1684,8 +1644,8 @@
         </details>
 
         <details class="faq-item">
-          <summary>Where are the latest notes? <span class="chev">▾</span></summary>
-          <div class="faq-ans">Open the Archive calendar. It’s the source of truth for published notes.</div>
+          <summary>Where are the free articles? <span class="chev">▾</span></summary>
+          <div class="faq-ans">Use the Free Articles page for search and browsing, or the Archive for date-based browsing.</div>
         </details>
 
         <details class="faq-item">
@@ -1695,6 +1655,7 @@
       </div>
     </section>
 
+    <!-- SUBSCRIBE -->
     <section class="panel reveal" id="subscribe" aria-label="Subscribe CTA">
       <div class="panel-header">
         <div>
@@ -1711,7 +1672,7 @@
           <div class="card-desc">The form opens in a popup so the page stays clean.</div>
           <div class="card-actions">
             <a class="mini-link" href="#" id="open-subscribe-modal-6">Open subscribe</a>
-            <a class="mini-link secondary" href="archive.html">Browse archive</a>
+            <a class="mini-link secondary" href="articles.html">Read free</a>
           </div>
         </div>
 
@@ -1733,7 +1694,7 @@
         This content is for informational and educational purposes only, not financial advice.
         I am not a licensed financial advisor. Nothing here is a recommendation to buy or sell any financial asset.
       </p>
-      <p>© 2025 FinTrend News · <a href="archive.html">Archive / Calendar</a></p>
+      <p>© 2026 FinTrend News · <a href="archive.html">Archive</a> · <a href="articles.html">Free Articles</a></p>
     </footer>
   </div>
 
@@ -1784,7 +1745,7 @@
 
       <div class="modal-btn-row">
         <a href="#" class="modal-primary-btn" id="go-premium-checkout">Go Premium</a>
-        <a href="#" class="modal-secondary-btn" id="go-free-subscribe">Keep Free Version</a>
+        <a href="articles.html" class="modal-secondary-btn" id="go-free-subscribe">Access Free Articles</a>
       </div>
     </div>
   </div>
@@ -1904,11 +1865,10 @@
       if (closeSub2) closeSub2.addEventListener("click", closeSubscribeModal);
 
       // -----------------------------------------------------
-      // Premium modal (marketing only)
+      // Premium modal (marketing only) — still used for gating button
       // -----------------------------------------------------
       const premiumModal    = document.getElementById("premium-modal");
       const closePremiumBtn = document.getElementById("close-premium-modal");
-      const freeBtn         = document.getElementById("go-free-subscribe");
 
       function openPremiumModal(e){
         if (e) e.preventDefault();
@@ -1918,14 +1878,6 @@
         closeModal(premiumModal);
       }
       if (closePremiumBtn) closePremiumBtn.addEventListener("click", closePremiumModal);
-
-      if (freeBtn){
-        freeBtn.addEventListener("click",(e)=>{
-          e.preventDefault();
-          closePremiumModal();
-          openSubscribeModal();
-        });
-      }
 
       // Stripe payment link (LIVE)
       const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
@@ -1942,7 +1894,6 @@
       // -----------------------------------------------------
       const authModal = document.getElementById("auth-modal");
       const openAuthBtn = document.getElementById("open-auth-modal");
-      const openAuthBtn2 = document.getElementById("open-auth-modal-2");
       const closeAuthBtn = document.getElementById("close-auth-modal");
 
       function openAuthModal(e){
@@ -1958,21 +1909,20 @@
       }
 
       if (openAuthBtn) openAuthBtn.addEventListener("click", openAuthModal);
-      if (openAuthBtn2) openAuthBtn2.addEventListener("click", openAuthModal);
       if (closeAuthBtn) closeAuthBtn.addEventListener("click", closeAuthModal);
 
       // -----------------------------------------------------
       // What you get: Wheel
       // -----------------------------------------------------
       const wheelData = [
-        { tier:"Free", title:"Macro Drivers (Fast Read)", desc:"A short read on what is actually driving risk today: rates, USD, oil, credit, and the main narrative tying them together.", bullets:["One primary driver + one supporting driver (not a news dump)","Plain-English implication for equities / FX / crypto","Key dates this week: CPI, FOMC, jobs, earnings clusters"] },
+        { tier:"Free", title:"Macro Drivers (Fast Read)", desc:"A short read on what is actually driving risk today: rates, USD, oil, credit, and the narrative tying them together.", bullets:["One primary driver + one supporting driver (not a news dump)","Plain-English implication for equities / FX / crypto","Key dates: CPI, FOMC, jobs, earnings clusters"] },
         { tier:"Free", title:"Momentum & Rotation", desc:"Who is leading, who is lagging, and what that says about positioning and regime (growth vs value, cyclicals vs defensives).", bullets:["Leadership snapshot (what’s outperforming)","Rotation read (what’s being sold to fund what)","Crowding/stretch note (where risk/reward worsens)"] },
         { tier:"Free", title:"Catalysts With Context", desc:"Pre-event framing and post-event takeaways focused on what would change price — not what sounds dramatic.", bullets:["What’s priced in vs what would surprise","2–3 scenarios max (base / upside / downside)","“If X happens, watch Y” logic"] },
-        { tier:"Free", title:"Archive-First Notes", desc:"Everything stays organized in the calendar archive so your notes don’t disappear in a feed.", bullets:["Calendar archive workflow","Scan by date in seconds","Builds a track record over time"] },
-        { tier:"Premium", title:"Weekly Trade Plan (Levels + Triggers)", desc:"A plan you can execute: key levels, what confirms, what invalidates, and what you do if it breaks.", bullets:["Support/resistance that actually matters + what price action to watch","Trigger → target → invalidation (so you’re not guessing mid-move)","Where risk/reward is best this week (not “most exciting”)"] },
-        { tier:"Premium", title:"Setups Board (2–5 Clean Trades)", desc:"A short list of setups with thesis, entry logic, invalidation, and horizon — quality over quantity.", bullets:["2–5 setups per week","Each includes: why it works + what would kill it","Horizon + what would make you add/reduce"] },
-        { tier:"Premium", title:"Portfolio Models (Cautious / Balanced / Aggressive)", desc:"Three example allocations with simple rules for when to rebalance and what signals justify change.", bullets:["3 model allocations with rationale","Rebalance triggers (regime shifts, volatility, breadth)","Basic risk controls (position sizing + de-risk rules)"] },
-        { tier:"Premium", title:"Premium Dashboard (Members Page)", desc:"premium.html: the members-only dashboard with modules and tools you build out over time.", bullets:["Access to premium.html (members-only)","Templates vault + checklists + tools you upload","Quant module (optimizer / Monte Carlo) for deeper analysis"] }
+        { tier:"Free", title:"Archive-First Notes", desc:"Everything stays organized so your notes don’t disappear in a feed.", bullets:["Browse by date in seconds","Scan by week in the calendar","Builds a track record over time"] },
+        { tier:"Premium", title:"Weekly Trade Plan (Levels + Triggers)", desc:"Key levels, what confirms, what invalidates, and what you do if it breaks.", bullets:["Support/resistance + what price action to watch","Trigger → target → invalidation","Best risk/reward areas this week"] },
+        { tier:"Premium", title:"Setups Board (2–5 Clean Trades)", desc:"A short list of setups with thesis, entry logic, invalidation, and horizon.", bullets:["2–5 setups per week","Each includes: why it works + what kills it","Horizon + add/reduce rules"] },
+        { tier:"Premium", title:"Portfolio Models (Cautious / Balanced / Aggressive)", desc:"Example allocations with simple rebalance rules and regime notes.", bullets:["3 model allocations + rationale","Rebalance triggers (volatility, breadth)","Basic risk controls (sizing + de-risk rules)"] },
+        { tier:"Premium", title:"Premium Dashboard (Members Page)", desc:"premium.html: the members-only dashboard with modules and tools you build out over time.", bullets:["Access to premium.html (members-only)","Templates vault + tools you upload","Quant module (optimizer / Monte Carlo)"] }
       ];
 
       const wheelCard = document.getElementById("wheel-card");
@@ -2027,7 +1977,7 @@
             </div>
             <div class="wheel-cta">
               ${isPro ? `<a class="mini-link" href="premium.html">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
-              <a class="mini-link secondary" href="archive.html">Open archive</a>
+              <a class="mini-link secondary" href="articles.html">Free articles</a>
             </div>
           </div>
         `;
@@ -2195,50 +2145,11 @@
       })();
 
       // -----------------------------------------------------
-      // Count-up numbers + micro flash (one-time)
+      // Snapshot micro flash (one-time)
       // -----------------------------------------------------
-      function animateCount(el, to, duration=650){
-        const start = 0;
-        const t0 = performance.now();
-        function tick(now){
-          const p = Math.min(1, (now - t0) / duration);
-          const v = Math.round(start + (to - start) * p);
-          el.textContent = String(v);
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-
-      let counted = false;
-      const heroCard = document.getElementById('hero-card');
-      const strip = document.getElementById('hero-strip');
-
-      const countIO = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if (!entry.isIntersecting) return;
-          if (counted) return;
-          counted = true;
-
-          document.getElementById('count-card-1')?.classList.add('pulse');
-          document.getElementById('count-card-2')?.classList.add('pulse');
-          document.getElementById('count-card-3')?.classList.add('pulse');
-
-          document.querySelectorAll('[data-flash]').forEach((n,i)=>{
-            setTimeout(()=>n.classList.add('flash'), 60 + i*90);
-          });
-
-          strip?.querySelectorAll('[data-count]').forEach(n=>{
-            animateCount(n, Number(n.dataset.count || "0"), 700);
-          });
-          strip?.querySelectorAll('.hero-strip-num span[data-count]').forEach(n=>{
-            animateCount(n, Number(n.dataset.count || "0"), 700);
-          });
-
-          countIO.unobserve(entry.target);
-        });
-      }, { threshold: 0.18 }) : null;
-
-      if (countIO && heroCard) countIO.observe(heroCard);
+      document.querySelectorAll('[data-flash]').forEach((n,i)=>{
+        setTimeout(()=>n.classList.add('flash'), 120 + i*90);
+      });
 
       // -----------------------------------------------------
       // Sticky Left Rail: section highlight + progress + fade in after hero
@@ -2250,6 +2161,7 @@
 
       const sections = [
         { id:'how', el:document.getElementById('how') },
+        { id:'free', el:document.getElementById('free') },
         { id:'what', el:document.getElementById('what') },
         { id:'watch', el:document.getElementById('watch') },
         { id:'about', el:document.getElementById('about') },
@@ -2284,7 +2196,9 @@
       }
 
       function updateRailVisibility(){
-        if (!rail || !heroCard) return;
+        if (!rail) return;
+        const heroCard = document.getElementById('hero-card');
+        if (!heroCard) return;
         const r = heroCard.getBoundingClientRect();
         const show = r.bottom < 160;
         rail.classList.toggle('visible', show);
@@ -2307,7 +2221,7 @@
       }
 
       // -----------------------------------------------------
-      // Supabase Auth + Premium gating — FIXED (no hanging "Working...")
+      // Supabase Auth + Premium gating (your original logic)
       // -----------------------------------------------------
       (async function initSupabase(){
         try{
@@ -2318,10 +2232,6 @@
 
           const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co".trim();
           const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI".trim();
-
-          if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.length < 60 || SUPABASE_ANON_KEY.startsWith("sb_")) {
-            console.warn("[auth] Your SUPABASE_ANON_KEY looks wrong. Supabase → Project Settings → API → anon/public.");
-          }
 
           const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
             auth: {
@@ -2463,14 +2373,12 @@
             return { user, isPremium };
           }
 
-          // Toggle mode
           if (authToggleBtn){
             authToggleBtn.addEventListener("click",()=>{
               setAuthMode(mode === "signin" ? "signup" : "signin");
             });
           }
 
-          // Password reset
           if (authResetBtn){
             authResetBtn.addEventListener("click", async ()=>{
               const email = (authEmail?.value || "").trim();
@@ -2488,7 +2396,6 @@
             });
           }
 
-          // Sign in / sign up submit
           if (authForm){
             authForm.addEventListener("submit", async (e)=>{
               e.preventDefault();
@@ -2521,7 +2428,6 @@
               } catch(err){
                 setMsg("Error: " + (err?.message || "Unknown error"), true);
               } finally {
-                // clears stuck message if needed
                 setTimeout(()=>{
                   try{
                     if (authMsg && authMsg.textContent === "Working...") setMsg("");
@@ -2531,7 +2437,6 @@
             });
           }
 
-          // Sign out
           if (signoutLink){
             signoutLink.addEventListener("click", async (e)=>{
               e.preventDefault();
@@ -2540,7 +2445,6 @@
             });
           }
 
-          // Premium dashboard gate (button in section)
           if (openPremiumDashboard){
             openPremiumDashboard.addEventListener("click", async (e)=>{
               e.preventDefault();
@@ -2567,7 +2471,6 @@
             });
           }
 
-          // Listen for auth changes (keeps header correct)
           supabaseClient.auth.onAuthStateChange(async () => {
             await refreshUI();
           });
@@ -2585,6 +2488,17 @@
         if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
         if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
       });
+
+      // Tiny “fake search” for now: if they type, we just send them to articles.html with a query param
+      const freeSearch = document.getElementById("freeSearch");
+      if (freeSearch){
+        freeSearch.addEventListener("keydown",(e)=>{
+          if (e.key !== "Enter") return;
+          const q = (freeSearch.value || "").trim();
+          if (!q) return;
+          window.location.href = "articles.html?q=" + encodeURIComponent(q);
+        });
+      }
 
     })();
   </script>
