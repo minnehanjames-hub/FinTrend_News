@@ -1213,7 +1213,7 @@
         </div>
 
         <div class="header-right">
-          <a href="articles.html" class="header-link">Free Articles</a>
+          <a href="archive.html" class="header-link">Free Articles</a>
           <a href="archive.html" class="header-link">Archive</a>
 
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
@@ -1269,7 +1269,7 @@
             </div>
 
             <div class="hero-actions">
-              <a class="btn primary" href="articles.html">Read Free Articles</a>
+              <a class="btn primary" href="archive.html">Read Free Articles</a>
               <a class="btn" href="#" id="open-subscribe-modal-2">Get Free Email</a>
               <a class="btn" href="premium.html">Open Deep Dive (Premium)</a>
               <a class="btn" href="#watch">Live Watchlist</a>
@@ -1343,7 +1343,7 @@
               </ul>
               <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; position:relative; z-index:1;">
                 <a class="mini-link" href="premium.html">View premium</a>
-                <a class="mini-link secondary" href="articles.html">Read free</a>
+                <a class="mini-link secondary" href="archive.html">Read free</a>
               </div>
             </div>
           </div>
@@ -1393,7 +1393,7 @@
 
       <div class="search-row">
         <input id="freeSearch" type="text" placeholder="Search (example: CPI, earnings, USD, oil…)" />
-        <a class="mini-link" href="articles.html">Open free library</a>
+        <a class="mini-link" href="archive.html">Open free library</a>
         <a class="mini-link secondary" href="archive.html">Browse by date</a>
       </div>
 
@@ -1405,7 +1405,7 @@
             Use the Free Articles page for search + categories. The archive stays the calendar “source of truth.”
           </div>
           <div class="card-actions">
-            <a class="mini-link" href="articles.html">Read Free Articles</a>
+            <a class="mini-link" href="archive.html">Read Free Articles</a>
             <a class="mini-link secondary" href="archive.html">Open Archive</a>
           </div>
         </div>
@@ -1424,7 +1424,7 @@
       </div>
 
       <p style="margin-top:12px; position:relative; z-index:1; font-size:11px; color:var(--text-muted);">
-        Tip: when we build articles.html, we can auto-generate “Latest 6 free posts” here from Supabase.
+        Tip: when we build archive.html, we can auto-generate “Latest 6 free posts” here from Supabase.
       </p>
     </section>
 
@@ -1473,7 +1473,7 @@
           <div class="wheel-footer">
             <div class="wheel-dots" id="wheel-dots" aria-label="Wheel dots"></div>
             <div class="wheel-cta">
-              <a class="mini-link secondary" href="articles.html">Free articles</a>
+              <a class="mini-link secondary" href="archive.html">Free articles</a>
               <a class="mini-link" href="#" id="wheel-subscribe-cta">Get free email</a>
             </div>
           </div>
@@ -1544,7 +1544,7 @@
             The goal is speed and structure — not predictions.
           </div>
           <div class="card-actions">
-            <a class="mini-link secondary" href="articles.html">Read free</a>
+            <a class="mini-link secondary" href="archive.html">Read free</a>
             <a class="mini-link secondary" href="#what">What you get</a>
           </div>
         </div>
@@ -1602,7 +1602,7 @@
           <div class="card-actions">
             <a class="mini-link" href="#" id="open-premium-dashboard">Open Dashboard ↗</a>
             <a class="mini-link secondary" href="#" id="manage-membership">Manage</a>
-            <a class="mini-link secondary" href="articles.html">Free articles</a>
+            <a class="mini-link secondary" href="archive.html">Free articles</a>
           </div>
           <p id="premium-status" style="margin-top:10px;font-size:11px;color:var(--text-muted);">Sign in to check access.</p>
         </div>
@@ -1672,7 +1672,7 @@
           <div class="card-desc">The form opens in a popup so the page stays clean.</div>
           <div class="card-actions">
             <a class="mini-link" href="#" id="open-subscribe-modal-6">Open subscribe</a>
-            <a class="mini-link secondary" href="articles.html">Read free</a>
+            <a class="mini-link secondary" href="archive.html">Read free</a>
           </div>
         </div>
 
@@ -1694,7 +1694,7 @@
         This content is for informational and educational purposes only, not financial advice.
         I am not a licensed financial advisor. Nothing here is a recommendation to buy or sell any financial asset.
       </p>
-      <p>© 2026 FinTrend News · <a href="archive.html">Archive</a> · <a href="articles.html">Free Articles</a></p>
+      <p>© 2026 FinTrend News · <a href="archive.html">Archive</a> · <a href="archive.html">Free Articles</a></p>
     </footer>
   </div>
 
@@ -1745,7 +1745,7 @@
 
       <div class="modal-btn-row">
         <a href="#" class="modal-primary-btn" id="go-premium-checkout">Go Premium</a>
-        <a href="articles.html" class="modal-secondary-btn" id="go-free-subscribe">Access Free Articles</a>
+        <a href="archive.html" class="modal-secondary-btn" id="go-free-subscribe">Access Free Articles</a>
       </div>
     </div>
   </div>
@@ -1977,7 +1977,7 @@
             </div>
             <div class="wheel-cta">
               ${isPro ? `<a class="mini-link" href="premium.html">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
-              <a class="mini-link secondary" href="articles.html">Free articles</a>
+              <a class="mini-link secondary" href="archive.html">Free articles</a>
             </div>
           </div>
         `;
@@ -2489,14 +2489,14 @@
         if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
       });
 
-      // Tiny “fake search” for now: if they type, we just send them to articles.html with a query param
+      // Tiny “fake search” for now: if they type, we just send them to archive.html with a query param
       const freeSearch = document.getElementById("freeSearch");
       if (freeSearch){
         freeSearch.addEventListener("keydown",(e)=>{
           if (e.key !== "Enter") return;
           const q = (freeSearch.value || "").trim();
           if (!q) return;
-          window.location.href = "articles.html?q=" + encodeURIComponent(q);
+          window.location.href = "archive.html?q=" + encodeURIComponent(q);
         });
       }
 
