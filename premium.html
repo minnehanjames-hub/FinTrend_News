@@ -211,6 +211,66 @@
       margin-top: 10px;
       line-height:1.5;
     }
+
+    /* ===== FinTrend Article Styling (DB-rendered HTML) ===== */
+    .ft-article { line-height: 1.75; }
+    .ft-header { margin-bottom: 18px; }
+    .ft-kicker { color: var(--muted); margin: 0 0 6px; }
+    .ft-title { font-size: 28px; margin: 0 0 8px; }
+    .ft-subtitle { color: #cbd5e1; margin: 0; max-width: 70ch; }
+
+    .ft-callout {
+      border: 1px solid rgba(148,163,184,.25);
+      background: rgba(15,23,42,.6);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 16px 0;
+    }
+
+    .ft-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+    @media (max-width: 900px){
+      .ft-grid { grid-template-columns: 1fr; }
+    }
+
+    .ft-card {
+      border: 1px solid rgba(148,163,184,.2);
+      background: rgba(2,6,23,.45);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .ft-muted { color: var(--muted); }
+    .ft-divider-note { color:#cbd5e1; margin-top: 12px; }
+    .ft-article h2 { margin-top: 22px; }
+    .ft-article h3 { margin-top: 16px; color: #e5e7eb; }
+    .ft-article ul, .ft-article ol { padding-left: 18px; }
+    .ft-article li { margin: 6px 0; }
+
+    /* Archive UI */
+    .archiveRow{
+      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
+      padding:12px; border-radius:14px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.22);
+      cursor:pointer;
+    }
+    .archiveRow:hover{ border-color: rgba(244,193,93,.45); }
+    .archiveMeta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .miniChip{
+      display:inline-flex; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.25);
+      color: var(--muted);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+    .searchRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
   </style>
 </head>
 
@@ -390,25 +450,49 @@
 
         const MODULES = [
           {
-            id: "playbook",
-            page: "premium-playbook.html",
+            id: "deepdive",
+            page: "#",
             category: "Research",
-            badge: "Sunday Playbook",
-            title: "Weekly Deep-Dive Playbook",
-            desc: "One theme each week (sector, strategy, or case study) with charts, clear takeaways, and a “what to do next” checklist.",
+            badge: "Deep Dives",
+            title: "Weekly Deep Dives + Archive",
+            desc: "Open the latest deep dive instantly, or browse the archive by sector and keywords — all loaded securely from Supabase.",
             render: () => `
               <div class="chips">
-                <div class="chip"><span>Includes</span> thesis → drivers → risks → triggers</div>
-                <div class="chip"><span>Format</span> 8–12 min read</div>
-                <div class="chip"><span>Output</span> action checklist</div>
+                <div class="chip"><span>Loads from</span> Supabase (RLS protected)</div>
+                <div class="chip"><span>Includes</span> archive + filters</div>
+                <div class="chip"><span>No refresh</span> instant load</div>
               </div>
+
               <div class="divider"></div>
-              <p class="muted">
-                Tip: store each deep-dive as rows in a <strong>premium_articles</strong> table and fetch the latest here.
-              </p>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                <button class="btn primary" data-toast="Open latest deep-dive (hook to Supabase)">Open latest</button>
-                <button class="btn" data-toast="Browse archive (hook to Supabase)">Browse archive</button>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" data-deepdive="latest">Open latest deep dive</button>
+                <button class="btn" data-deepdive="archive">Browse archive</button>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="twoCols">
+                <div class="card" style="padding:14px; box-shadow:none;">
+                  <div class="sectionTitle">Archive</div>
+                  <div class="searchRow">
+                    <input id="ddSearch" type="text" placeholder="Search titles…" />
+                    <select id="ddSector">
+                      <option value="">All sectors</option>
+                    </select>
+                    <button class="btn" data-deepdive="refresh">Refresh</button>
+                  </div>
+                  <div class="note">Tip: Add <strong>sector</strong> and <strong>tags</strong> columns to make this even better.</div>
+                  <div class="divider"></div>
+                  <div id="ddList" class="checkgrid" style="gap:10px;"></div>
+                </div>
+
+                <div class="card" style="padding:14px; box-shadow:none;">
+                  <div class="sectionTitle">Viewer</div>
+                  <div id="ddViewer" style="margin-top:10px;">
+                    <p class="muted">Click “Open latest” or select a post from the archive.</p>
+                  </div>
+                </div>
               </div>
             `
           },
@@ -576,7 +660,7 @@ Sizing note: guidelines (not advice)
           }
         ];
 
-        const DEFAULT_SELECTION = ["playbook","templates","ideas","models","roundup","quantlab"];
+        const DEFAULT_SELECTION = ["deepdive","templates","ideas","models","roundup","quantlab"];
 
         function loadSelection(){
           try{
@@ -624,7 +708,7 @@ Sizing note: guidelines (not advice)
 
                 <p class="note">
                   Optional: you can also open modules as separate pages:
-                  <span class="muted">premium-playbook.html, premium-templates.html, ...</span>
+                  <span class="muted">premium-templates.html, premium-ideas.html, ...</span>
                 </p>
               </div>
 
@@ -696,6 +780,7 @@ Sizing note: guidelines (not advice)
           document.getElementById("selector").innerHTML = renderSelector(selectedIds);
           wireSelectorEvents();
           wireCommonEvents();
+          wireDeepDiveEvents();
           wireQuantLabIfPresent();
         }
 
@@ -732,6 +817,218 @@ Sizing note: guidelines (not advice)
               alert(el.getAttribute("data-toast"));
             });
           });
+        }
+
+        // ===== Deep Dive + Archive (Supabase-powered) =====
+        let ddCache = []; // {id,title,created_at,sector,tags}
+
+        function fmtDate(ts){
+          try { return new Date(ts).toLocaleString(); } catch { return ""; }
+        }
+
+        function escapeHtml(str){
+          return String(str ?? "")
+            .replaceAll("&","&amp;")
+            .replaceAll("<","&lt;")
+            .replaceAll(">","&gt;")
+            .replaceAll('"',"&quot;")
+            .replaceAll("'","&#039;");
+        }
+
+        async function fetchDeepDiveLatest(){
+          const { data, error } = await supabaseClient
+            .from("premium_articles")
+            .select("id,title,content,created_at,sector,tags")
+            .eq("type","deep_dive")
+            .order("created_at", { ascending:false })
+            .limit(1);
+
+          if (error) throw error;
+          if (!data || !data.length) return null;
+          return data[0];
+        }
+
+        async function fetchDeepDiveArchive(limit=150){
+          const { data, error } = await supabaseClient
+            .from("premium_articles")
+            .select("id,title,created_at,sector,tags")
+            .eq("type","deep_dive")
+            .order("created_at", { ascending:false })
+            .limit(limit);
+
+          if (error) throw error;
+          return data || [];
+        }
+
+        async function fetchDeepDiveById(id){
+          const { data, error } = await supabaseClient
+            .from("premium_articles")
+            .select("id,title,content,created_at,sector,tags")
+            .eq("id", id)
+            .single();
+
+          if (error) throw error;
+          return data;
+        }
+
+        function renderViewer(article){
+          const viewer = document.getElementById("ddViewer");
+          if (!viewer) return;
+
+          if (!article){
+            viewer.innerHTML = `<p class="muted">No deep dive found yet.</p>`;
+            return;
+          }
+
+          const sector = article.sector ? `<span class="miniChip">${escapeHtml(article.sector)}</span>` : "";
+          const tags = Array.isArray(article.tags)
+            ? article.tags.slice(0,6).map(t => `<span class="miniChip">${escapeHtml(t)}</span>`).join("")
+            : "";
+
+          viewer.innerHTML = `
+            <div class="moduleMeta" style="margin-bottom:10px;">
+              ${sector}
+              ${tags}
+              <span class="miniChip">${escapeHtml(fmtDate(article.created_at))}</span>
+            </div>
+
+            <h2 style="margin:0 0 10px;">${escapeHtml(article.title)}</h2>
+
+            <div class="divider"></div>
+
+            <div class="article-body">
+              ${article.content}
+            </div>
+          `;
+        }
+
+        function buildSectorOptions(items){
+          const set = new Set();
+          for (const it of items){
+            if (it.sector && String(it.sector).trim()) set.add(String(it.sector).trim());
+          }
+          return Array.from(set).sort((a,b)=>a.localeCompare(b));
+        }
+
+        function renderArchiveList(){
+          const list = document.getElementById("ddList");
+          const sectorSel = document.getElementById("ddSector");
+          const searchEl = document.getElementById("ddSearch");
+          if (!list) return;
+
+          const sector = sectorSel ? sectorSel.value : "";
+          const q = (searchEl ? searchEl.value : "").trim().toLowerCase();
+
+          const filtered = ddCache.filter(row => {
+            const okSector = !sector || (row.sector === sector);
+            const okSearch = !q || String(row.title).toLowerCase().includes(q);
+            return okSector && okSearch;
+          });
+
+          if (!filtered.length){
+            list.innerHTML = `<p class="muted">No matches. Try clearing filters.</p>`;
+            return;
+          }
+
+          list.innerHTML = filtered.map(r => {
+            const sectorChip = r.sector ? `<span class="miniChip">${escapeHtml(r.sector)}</span>` : "";
+            const tags = Array.isArray(r.tags)
+              ? r.tags.slice(0,3).map(t => `<span class="miniChip">${escapeHtml(t)}</span>`).join("")
+              : "";
+
+            return `
+              <div class="archiveRow" data-dd-id="${escapeHtml(r.id)}">
+                <div>
+                  <div style="font-weight:900;">${escapeHtml(r.title)}</div>
+                  <div class="archiveMeta">
+                    ${sectorChip}
+                    ${tags}
+                  </div>
+                </div>
+                <div class="muted" style="font-size:12px; white-space:nowrap;">
+                  ${escapeHtml(fmtDate(r.created_at))}
+                </div>
+              </div>
+            `;
+          }).join("");
+
+          list.querySelectorAll("[data-dd-id]").forEach(el => {
+            el.addEventListener("click", async () => {
+              const id = el.getAttribute("data-dd-id");
+              try{
+                const a = await fetchDeepDiveById(id);
+                renderViewer(a);
+              }catch(err){
+                alert("Could not load that deep dive: " + (err?.message || String(err)));
+              }
+            });
+          });
+        }
+
+        async function refreshArchiveUI(){
+          const sectorSel = document.getElementById("ddSector");
+          const searchEl = document.getElementById("ddSearch");
+          const list = document.getElementById("ddList");
+
+          if (!sectorSel || !searchEl || !list) return;
+
+          ddCache = await fetchDeepDiveArchive(150);
+
+          const options = buildSectorOptions(ddCache);
+          const current = sectorSel.value;
+
+          sectorSel.innerHTML = `<option value="">All sectors</option>` +
+            options.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
+
+          if (options.includes(current)) sectorSel.value = current;
+
+          renderArchiveList();
+
+          searchEl.oninput = () => renderArchiveList();
+          sectorSel.onchange = () => renderArchiveList();
+        }
+
+        function wireDeepDiveEvents(){
+          const latestBtn = contentEl.querySelector('[data-deepdive="latest"]');
+          const archiveBtn = contentEl.querySelector('[data-deepdive="archive"]');
+          const refreshBtn = contentEl.querySelector('[data-deepdive="refresh"]');
+
+          if (latestBtn){
+            latestBtn.addEventListener("click", async () => {
+              const viewer = document.getElementById("ddViewer");
+              if (viewer) viewer.innerHTML = `<p class="muted">Loading latest…</p>`;
+              try{
+                const a = await fetchDeepDiveLatest();
+                renderViewer(a);
+              }catch(err){
+                alert("Could not load latest deep dive: " + (err?.message || String(err)));
+              }
+            });
+          }
+
+          if (archiveBtn){
+            archiveBtn.addEventListener("click", async () => {
+              const list = document.getElementById("ddList");
+              if (list) list.innerHTML = `<p class="muted">Loading archive…</p>`;
+              try{
+                await refreshArchiveUI();
+              }catch(err){
+                alert("Could not load archive: " + (err?.message || String(err)));
+              }
+            });
+          }
+
+          if (refreshBtn){
+            refreshBtn.addEventListener("click", async () => {
+              const list = document.getElementById("ddList");
+              if (list) list.innerHTML = `<p class="muted">Refreshing…</p>`;
+              try{
+                await refreshArchiveUI();
+              }catch(err){
+                alert("Could not refresh: " + (err?.message || String(err)));
+              }
+            });
+          }
         }
 
         // Quant math utilities (3 assets)
@@ -899,6 +1196,7 @@ Monte Carlo:
 
         wireSelectorEvents();
         wireCommonEvents();
+        wireDeepDiveEvents();
         wireQuantLabIfPresent();
 
       } catch (e) {
