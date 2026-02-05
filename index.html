@@ -1240,7 +1240,7 @@
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
 
-          <!-- NEW: always-visible “status chip” when signed in -->
+          <!-- always-visible “status chip” when signed in -->
           <span class="header-link user-chip" id="user-chip" style="display:none;">
             <span class="uc-dot" aria-hidden="true"></span>
             <span id="user-chip-text">Signed in</span>
@@ -1297,7 +1297,6 @@
             <div class="hero-actions">
               <a class="btn primary" href="archive.html">Read Free Articles</a>
               <a class="btn" href="#" id="open-subscribe-modal-2">Get Free Email</a>
-              <!-- NEW: premium CTA uses gating -->
               <a class="btn" href="#" id="hero-premium-cta">Open Deep Dive (Premium)</a>
               <a class="btn" href="#watch">Live Watchlist</a>
             </div>
@@ -1369,7 +1368,6 @@
                 <li><strong>Quant:</strong> optimizer + Monte Carlo sandbox.</li>
               </ul>
               <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; position:relative; z-index:1;">
-                <!-- NEW: premium view uses gating -->
                 <a class="mini-link" href="#" id="premium-card-cta">View premium</a>
                 <a class="mini-link secondary" href="archive.html">Read free</a>
               </div>
@@ -1643,7 +1641,6 @@
             templates, model allocations, curated idea cards, and the quant sandbox.
           </div>
           <div class="card-actions">
-            <!-- NEW: this also goes through gating -->
             <a class="mini-link" href="#" id="premium-panel-cta">View premium</a>
             <a class="mini-link secondary" href="#" id="open-subscribe-modal-5">Stay on free email</a>
           </div>
@@ -2256,258 +2253,410 @@
       }
 
       // -----------------------------------------------------
-      // Supabase Auth + Premium gating (REPLACED)
-      // Goals:
-      // 1) users always see if they're signed in
-      // 2) friendlier errors (no “crashed” language)
-      // 3) premium links/buttons route through one gate function
-      // 4) NO auto-redirect to premium.html on sign-in
+      // Supabase Auth + Premium gating (FIXED + COMPLETED)
       // -----------------------------------------------------
-     (async function initSupabase(){
-  try{
-    if (!window.supabase || !window.supabase.createClient) {
-      console.warn("[auth] Supabase library missing (cdn load failed).");
-      return;
-    }
+      (async function initSupabase(){
+        try{
+          if (!window.supabase || !window.supabase.createClient) {
+            console.warn("[auth] Supabase library missing (cdn load failed).");
+            return;
+          }
 
-    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co".trim();
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI".trim();
+          const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co".trim();
+          const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI".trim();
 
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true,
-        storage: window.localStorage
-      }
-    });
+          const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: {
+              persistSession: true,
+              autoRefreshToken: true,
+              detectSessionInUrl: true,
+              storage: window.localStorage
+            }
+          });
 
-    // Expose a tiny namespace so other handlers can call routing
-    window.__FTN__ = window.__FTN__ || {};
+          // Expose a tiny namespace so other handlers can call routing
+          window.__FTN__ = window.__FTN__ || {};
+          window.__FTN__.supabase = supabaseClient;
 
-    // ✅ FIX: grab the premium modal subtitle safely (was undefined before)
-    const premiumModalSubtitle = document.querySelector("#premium-modal .modal-subtitle");
+          // UI refs
+          const authForm = document.getElementById("auth-form");
+          const authEmail = document.getElementById("auth-email");
+          const authPassword = document.getElementById("auth-password");
+          const authMsg = document.getElementById("auth-msg");
 
-    // UI refs
-    const authForm = document.getElementById("auth-form");
-    const authEmail = document.getElementById("auth-email");
-    const authPassword = document.getElementById("auth-password");
-    const authMsg = document.getElementById("auth-msg");
+          const authTitle = document.getElementById("auth-modal-title");
+          const authSubtitle = document.getElementById("auth-subtitle");
+          const authSubmitBtn = document.getElementById("auth-submit-btn");
+          const authToggleBtn = document.getElementById("auth-toggle-btn");
+          const authResetBtn = document.getElementById("auth-reset-btn");
 
-    const authTitle = document.getElementById("auth-modal-title");
-    const authSubtitle = document.getElementById("auth-subtitle");
-    const authSubmitBtn = document.getElementById("auth-submit-btn");
-    const authToggleBtn = document.getElementById("auth-toggle-btn");
-    const authResetBtn = document.getElementById("auth-reset-btn");
+          const signoutLink = document.getElementById("signout-link");
+          const userChip = document.getElementById("user-chip");
+          const userChipText = document.getElementById("user-chip-text");
+          const openAuthBtnEl = document.getElementById("open-auth-modal");
 
-    const signoutLink = document.getElementById("signout-link");
-    const userChip = document.getElementById("user-chip");
-    const userChipText = document.getElementById("user-chip-text"); // ok if null
-    const openAuthBtnEl = document.getElementById("open-auth-modal");
+          const openPremiumDashboard = document.getElementById("open-premium-dashboard");
+          const manageMembership = document.getElementById("manage-membership");
+          const premiumStatus = document.getElementById("premium-status");
 
-    const openPremiumDashboard = document.getElementById("open-premium-dashboard");
-    const manageMembership = document.getElementById("manage-membership");
-    const premiumStatus = document.getElementById("premium-status");
+          // Premium nav/ctas that must gate
+          const navPremium = document.getElementById("nav-premium");
+          const heroPremiumCTA = document.getElementById("hero-premium-cta");
+          const premiumCardCTA = document.getElementById("premium-card-cta");
+          const freePanelPremiumCTA = document.getElementById("free-panel-premium-cta");
+          const premiumPanelCTA = document.getElementById("premium-panel-cta");
 
-    // Premium nav/ctas that must gate
-    const navPremium = document.getElementById("nav-premium"); // ✅ make sure your header Premium link has id="nav-premium"
-    const heroPremiumCTA = document.getElementById("hero-premium-cta");
-    const premiumCardCTA = document.getElementById("premium-card-cta");
-    const freePanelPremiumCTA = document.getElementById("free-panel-premium-cta");
-    const premiumPanelCTA = document.getElementById("premium-panel-cta");
+          let mode = "signin";
+          let lastPremiumCheck = { ts: 0, isPremium: false, userId: null };
 
-    let mode = "signin";
-    let lastPremiumCheck = { ts: 0, isPremium: false, userId: null };
+          function setMsg(text, isError=false){
+            if (!authMsg) return;
+            authMsg.textContent = text;
+            authMsg.style.color = isError ? "#fca5a5" : "#e5e7eb";
+          }
 
-    function setMsg(text, isError=false){
-      if (!authMsg) return;
-      authMsg.textContent = text;
-      authMsg.style.color = isError ? "#fca5a5" : "#e5e7eb";
-    }
+          function setPremiumStatus(text){
+            if (premiumStatus) premiumStatus.textContent = text;
+          }
 
-    function setPremiumStatus(text){
-      if (premiumStatus) premiumStatus.textContent = text;
-    }
+          function setAuthMode(nextMode){
+            mode = nextMode;
+            if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
 
-    function setAuthMode(nextMode){
-      mode = nextMode;
-      if (!authTitle || !authSubtitle || !authSubmitBtn || !authToggleBtn) return;
+            if (mode === "signin"){
+              authTitle.textContent = "Sign in";
+              authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
+              authSubmitBtn.textContent = "Sign in";
+              authToggleBtn.textContent = "Create account";
+            } else {
+              authTitle.textContent = "Create account";
+              authSubtitle.textContent = "Create an account so your premium subscription can unlock the dashboard.";
+              authSubmitBtn.textContent = "Sign up";
+              authToggleBtn.textContent = "I already have an account";
+            }
+            setMsg("");
+          }
 
-      if (mode === "signin"){
-        authTitle.textContent = "Sign in";
-        authSubtitle.textContent = "Sign in to access premium tools and saved watchlists.";
-        authSubmitBtn.textContent = "Sign in";
-        authToggleBtn.textContent = "Create account";
-      } else {
-        authTitle.textContent = "Create account";
-        authSubtitle.textContent = "Create an account so your premium subscription can unlock the dashboard.";
-        authSubmitBtn.textContent = "Sign up";
-        authToggleBtn.textContent = "I already have an account";
-      }
-      setMsg("");
-    }
+          // Friendly error mapping
+          function humanAuthError(err){
+            const msg = (err && err.message ? String(err.message) : "").toLowerCase();
 
-    // Friendly error mapping
-    function humanAuthError(err){
-      const msg = (err && err.message ? String(err.message) : "").toLowerCase();
+            if (msg.includes("invalid login") || msg.includes("invalid") || msg.includes("credentials")) {
+              return "That email or password doesn’t look right. Try again.";
+            }
+            if (msg.includes("email not confirmed")) {
+              return "Check your inbox and confirm your email, then sign in.";
+            }
+            if (msg.includes("rate limit") || msg.includes("too many")) {
+              return "Too many attempts. Wait a minute and try again.";
+            }
+            if (msg.includes("network") || msg.includes("fetch")) {
+              return "Network issue. Check your connection and try again.";
+            }
+            if (msg.includes("jwt") || msg.includes("token")) {
+              return "Session issue. Please refresh the page and try again.";
+            }
+            return "We couldn’t complete that. Please try again.";
+          }
 
-      if (msg.includes("invalid login") || msg.includes("invalid") || msg.includes("credentials")) {
-        return "That email or password doesn’t look right. Try again.";
-      }
-      if (msg.includes("email not confirmed")) {
-        return "Check your inbox and confirm your email, then sign in.";
-      }
-      if (msg.includes("rate limit") || msg.includes("too many")) {
-        return "Too many attempts. Wait a minute and try again.";
-      }
-      if (msg.includes("network") || msg.includes("fetch")) {
-        return "Network issue. Check your connection and try again.";
-      }
-      if (msg.includes("jwt") || msg.includes("token")) {
-        return "Session issue. Please refresh the page and try again.";
-      }
-      return "We couldn’t complete that. Please try again.";
-    }
+          function setSignedOutUI(){
+            if (openAuthBtnEl) openAuthBtnEl.style.display = "";
+            if (signoutLink) signoutLink.style.display = "none";
+            if (userChip) userChip.style.display = "none";
+            if (userChipText) userChipText.textContent = "";
+            if (userChip) userChip.classList.remove("premium");
+            setPremiumStatus("Sign in to check access.");
+          }
 
-    function setSignedOutUI(){
-      if (openAuthBtnEl) openAuthBtnEl.style.display = "";
-      if (signoutLink) signoutLink.style.display = "none";
-      if (userChip) userChip.style.display = "none";
-      if (userChipText) userChipText.textContent = "";
-      if (userChip) userChip.classList.remove("premium");
-      setPremiumStatus("Sign in to check access.");
-    }
+          function setSignedInUI(user, isPremium){
+            if (openAuthBtnEl) openAuthBtnEl.style.display = "none";
+            if (signoutLink) signoutLink.style.display = "";
+            if (userChip){
+              userChip.style.display = "";
+              userChip.classList.toggle("premium", !!isPremium);
+            }
 
-    function setSignedInUI(user, isPremium){
-      if (openAuthBtnEl) openAuthBtnEl.style.display = "none";
-      if (signoutLink) signoutLink.style.display = "";
-      if (userChip){
-        userChip.style.display = "";
-        userChip.classList.toggle("premium", !!isPremium);
-      }
-      // ✅ FIX: fallback if userChipText doesn't exist (your original HTML didn’t have it)
-      if (userChipText){
-        const email = user?.email ? String(user.email) : "Signed in";
-        userChipText.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
-      } else if (userChip){
-        const email = user?.email ? String(user.email) : "Signed in";
-        userChip.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
-      }
-    }
+            const email = user?.email ? String(user.email) : "Signed in";
 
-    async function getUserSafe(){
-      const res = await supabaseClient.auth.getUser();
-      if (res.error) return null;
-      return res.data?.user || null;
-    }
+            // If chip text span exists, use it; otherwise fall back to the chip itself.
+            if (userChipText){
+              userChipText.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
+            } else if (userChip){
+              userChip.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
+            }
+          }
 
-    async function getProfileSafe(user){
-      if (!user) return { data: null, error: null };
-      const { data, error } = await supabaseClient
-        .from("profiles")
-        .select("id,email,is_premium")
-        .eq("id", user.id)
-        .maybeSingle();
-      return { data: data || null, error: error || null };
-    }
+          async function getUserSafe(){
+            const res = await supabaseClient.auth.getUser();
+            if (res.error) return null;
+            return res.data?.user || null;
+          }
 
-    async function createProfileSafe(user){
-      if (!user) return { data: null, error: null };
-      const { data, error } = await supabaseClient
-        .from("profiles")
-        .insert([{ id: user.id, email: user.email, is_premium: false }])
-        .select("id,email,is_premium")
-        .single();
-      return { data: data || null, error: error || null };
-    }
+          async function getProfileSafe(user){
+            if (!user) return { data: null, error: null };
+            const { data, error } = await supabaseClient
+              .from("profiles")
+              .select("id,email,is_premium")
+              .eq("id", user.id)
+              .maybeSingle();
+            return { data: data || null, error: error || null };
+          }
 
-    async function ensureProfileSafe(user){
-      const existing = await getProfileSafe(user);
-      if (existing.data) return existing;
-      if (existing.error) return existing;
-      return await createProfileSafe(user);
-    }
+          async function createProfileSafe(user){
+            if (!user) return { data: null, error: null };
+            const { data, error } = await supabaseClient
+              .from("profiles")
+              .insert([{ id: user.id, email: user.email, is_premium: false }])
+              .select("id,email,is_premium")
+              .single();
+            return { data: data || null, error: error || null };
+          }
 
-    // Cache premium check for a short window to reduce calls
-    async function checkPremium(user){
-      if (!user) return { user: null, isPremium: false, status: "signed_out" };
+          async function ensureProfileSafe(user){
+            const existing = await getProfileSafe(user);
+            if (existing.data) return existing;
+            if (existing.error) return existing;
+            return await createProfileSafe(user);
+          }
 
-      const now = Date.now();
-      if (lastPremiumCheck.userId === user.id && (now - lastPremiumCheck.ts) < 5000){
-        return { user, isPremium: lastPremiumCheck.isPremium, status: "cached" };
-      }
+          // Cache premium check for a short window to reduce calls
+          async function checkPremium(user){
+            if (!user) return { user: null, isPremium: false, status: "signed_out" };
 
-      const prof = await ensureProfileSafe(user);
+            const now = Date.now();
+            if (lastPremiumCheck.userId === user.id && (now - lastPremiumCheck.ts) < 5000){
+              return { user, isPremium: lastPremiumCheck.isPremium, status: "cached" };
+            }
 
-      // If profiles table blocked, don't say "crashed"
-      if (prof.error){
-        lastPremiumCheck = { ts: now, isPremium: false, userId: user.id };
-        return { user, isPremium: false, status: "profile_blocked" };
-      }
+            const prof = await ensureProfileSafe(user);
 
-      const isPremium = !!prof.data?.is_premium;
-      lastPremiumCheck = { ts: now, isPremium, userId: user.id };
-      return { user, isPremium, status: "ok" };
-    }
-// ---- NEW: prevent overlapping refreshes (stops AbortError crashes)
-let __refreshRunning = false;
-let __refreshQueued = false;
+            // If profiles table blocked, don't say "crashed"
+            if (prof.error){
+              lastPremiumCheck = { ts: now, isPremium: false, userId: user.id };
+              return { user, isPremium: false, status: "profile_blocked" };
+            }
 
-function isAbortError(err){
-  return err && (err.name === "AbortError" || String(err.message || "").toLowerCase().includes("signal is aborted"));
-}
+            const isPremium = !!prof.data?.is_premium;
+            lastPremiumCheck = { ts: now, isPremium, userId: user.id };
+            return { user, isPremium, status: "ok" };
+          }
 
-   async function refreshUI(){
-  // If refresh is already running, queue one more run and exit
-  if (__refreshRunning) {
-    __refreshQueued = true;
-    return { user: null, isPremium: false };
-  }
+          // ---- prevent overlapping refreshes (stops AbortError crashes)
+          let __refreshRunning = false;
+          let __refreshQueued = false;
 
-  __refreshRunning = true;
+          function isAbortError(err){
+            return err && (err.name === "AbortError" || String(err.message || "").toLowerCase().includes("signal is aborted"));
+          }
 
-  try {
-    const user = await getUserSafe();
+          async function refreshUI(){
+            // If refresh is already running, queue one more run and exit
+            if (__refreshRunning) {
+              __refreshQueued = true;
+              return { user: null, isPremium: false };
+            }
 
-    if (!user){
-      setSignedOutUI();
-      return { user: null, isPremium: false };
-    }
+            __refreshRunning = true;
 
-    const res = await checkPremium(user);
+            try {
+              const user = await getUserSafe();
 
-    // Always show signed-in state
-    setSignedInUI(user, res.isPremium);
+              if (!user){
+                setSignedOutUI();
+                return { user: null, isPremium: false };
+              }
 
-    if (res.status === "profile_blocked"){
-      setPremiumStatus("Signed in. Premium status can’t be verified right now.");
-      return { user, isPremium: false };
-    }
+              const res = await checkPremium(user);
 
-    setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
-    return { user, isPremium: res.isPremium };
+              // Always show signed-in state
+              setSignedInUI(user, res.isPremium);
 
-  } catch (err) {
-    // ✅ IMPORTANT: AbortError is normal — ignore it
-    if (isAbortError(err)) {
-      console.warn("[auth] refresh aborted (normal)", err);
-      return { user: null, isPremium: false };
-    }
+              if (res.status === "profile_blocked"){
+                setPremiumStatus("Signed in. Premium status can’t be verified right now.");
+                return { user, isPremium: false };
+              }
 
-    console.warn("[auth] refreshUI error:", err);
-    return { user: null, isPremium: false };
+              setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
+              return { user, isPremium: res.isPremium };
 
-  } finally {
-    __refreshRunning = false;
+            } catch (err) {
+              // AbortError is normal — ignore it
+              if (isAbortError(err)) {
+                console.warn("[auth] refresh aborted (normal)");
+                return { user: null, isPremium: false };
+              }
 
-    // If another refresh request came in while running, do one more
-    if (__refreshQueued) {
-      __refreshQueued = false;
-      // run again, but don't block
-      setTimeout(() => refreshUI(), 0);
-    }
-  }
-}
+              console.warn("[auth] refreshUI error:", err);
+              return { user: null, isPremium: false };
+
+            } finally {
+              __refreshRunning = false;
+
+              // If another refresh request came in while running, do one more
+              if (__refreshQueued) {
+                __refreshQueued = false;
+                setTimeout(() => refreshUI(), 0);
+              }
+            }
+          }
+
+          // -----------------------------
+          // Premium routing (ONE function)
+          // -----------------------------
+          async function routePremium(e){
+            if (e) e.preventDefault();
+
+            // If subtitle exists, customize it a bit each time
+            const sub = document.getElementById("premium-modal-subtitle");
+            if (sub){
+              sub.textContent = "Premium unlocks the members dashboard (premium.html). Sign in + upgrade to access deep dives and tools.";
+            }
+
+            const user = await getUserSafe();
+            if (!user){
+              // Not signed in: show auth modal first
+              openAuthModal(e);
+              setMsg("Sign in first, then we’ll check premium access.", false);
+              return;
+            }
+
+            const res = await checkPremium(user);
+
+            // Signed in but profile/policy blocks read: show modal so they can still upgrade.
+            if (res.status === "profile_blocked"){
+              openPremiumModal(e);
+              return;
+            }
+
+            if (res.isPremium){
+              window.location.href = "premium.html";
+              return;
+            }
+
+            // Not premium: show upgrade modal
+            openPremiumModal(e);
+          }
+
+          window.__FTN__.routePremium = routePremium;
+
+          // -----------------------------
+          // Auth handlers
+          // -----------------------------
+          setAuthMode("signin");
+
+          if (authToggleBtn){
+            authToggleBtn.addEventListener("click",(e)=>{
+              e.preventDefault();
+              setAuthMode(mode === "signin" ? "signup" : "signin");
+            });
+          }
+
+          if (authForm){
+            authForm.addEventListener("submit", async (e)=>{
+              e.preventDefault();
+              setMsg("");
+
+              const email = (authEmail?.value || "").trim();
+              const password = (authPassword?.value || "");
+
+              if (!email || !password){
+                setMsg("Enter email + password.", true);
+                return;
+              }
+
+              try{
+                authSubmitBtn && (authSubmitBtn.disabled = true);
+
+                if (mode === "signin"){
+                  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                  if (error) { setMsg(humanAuthError(error), true); return; }
+
+                  setMsg("Signed in ✅", false);
+                  closeAuthModal();
+                  await refreshUI();
+                  return;
+                }
+
+                // signup
+                const { error } = await supabaseClient.auth.signUp({ email, password });
+                if (error) { setMsg(humanAuthError(error), true); return; }
+
+                setMsg("Account created. Check your email to confirm, then sign in.", false);
+                // keep modal open so they see the message
+              } catch (err){
+                setMsg(humanAuthError(err), true);
+              } finally {
+                authSubmitBtn && (authSubmitBtn.disabled = false);
+              }
+            });
+          }
+
+          if (authResetBtn){
+            authResetBtn.addEventListener("click", async (e)=>{
+              e.preventDefault();
+              setMsg("");
+
+              const email = (authEmail?.value || "").trim();
+              if (!email){
+                setMsg("Type your email above first, then click Forgot password.", true);
+                return;
+              }
+
+              try{
+                // Redirect back to site root if possible (won't work on file://)
+                const origin = window.location.origin;
+                const redirectTo = (origin && origin !== "null") ? (origin + "/") : undefined;
+
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, redirectTo ? { redirectTo } : undefined);
+                if (error) { setMsg(humanAuthError(error), true); return; }
+
+                setMsg("Password reset email sent. Check your inbox.", false);
+              } catch (err){
+                setMsg(humanAuthError(err), true);
+              }
+            });
+          }
+
+          if (signoutLink){
+            signoutLink.addEventListener("click", async (e)=>{
+              e.preventDefault();
+              try{
+                await supabaseClient.auth.signOut();
+              } catch(_){}
+              setSignedOutUI();
+              closeAnyOpenModal();
+            });
+          }
+
+          // -----------------------------
+          // Wire premium CTAs to routing
+          // -----------------------------
+          [navPremium, heroPremiumCTA, premiumCardCTA, freePanelPremiumCTA, premiumPanelCTA, openPremiumDashboard]
+            .filter(Boolean)
+            .forEach(el => el.addEventListener("click", routePremium));
+
+          if (manageMembership){
+            manageMembership.addEventListener("click",(e)=>{
+              e.preventDefault();
+              // For now: send to Stripe payment link (simple)
+              window.open(PAYMENT_LINK, "_blank", "noopener");
+            });
+          }
+
+          // Keep UI in sync with auth changes
+          supabaseClient.auth.onAuthStateChange(async (_event, _session)=>{
+            // This can fire multiple times quickly; refreshUI is protected against overlap.
+            await refreshUI();
+          });
+
+          // Initial UI sync
+          await refreshUI();
+
+        } catch(err){
+          console.warn("[auth] initSupabase error:", err);
+        }
+      })();
+
       // Keyboard support for wheel
       window.addEventListener("keydown",(e)=>{
         if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
