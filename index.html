@@ -2449,164 +2449,65 @@
       lastPremiumCheck = { ts: now, isPremium, userId: user.id };
       return { user, isPremium, status: "ok" };
     }
+// ---- NEW: prevent overlapping refreshes (stops AbortError crashes)
+let __refreshRunning = false;
+let __refreshQueued = false;
 
-    async function refreshUI(){
-      const user = await getUserSafe();
-      if (!user){
-        setSignedOutUI();
-        return { user: null, isPremium: false };
-      }
+function isAbortError(err){
+  return err && (err.name === "AbortError" || String(err.message || "").toLowerCase().includes("signal is aborted"));
+}
 
-      const res = await checkPremium(user);
-
-      // Show signed-in chip ALWAYS
-      setSignedInUI(user, res.isPremium);
-
-      if (res.status === "profile_blocked"){
-        setPremiumStatus("Signed in. Premium status can’t be verified right now.");
-        return { user, isPremium: false };
-      }
-
-      setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
-      return { user, isPremium: res.isPremium };
-    }
-
-    // ONE premium router function for everything
-    window.__FTN__.routePremium = async function(e){
-      if (e) e.preventDefault();
-
-      const user = await getUserSafe();
-      if (!user){
-        // requires your openAuthModal() to exist (it does in your page)
-        openAuthModal(e);
-        return;
-      }
-
-      const { isPremium, status } = await checkPremium(user);
-
-      if (isPremium){
-        window.location.href = "premium.html";
-        return;
-      }
-
-      // Signed in but not premium (or cannot verify) → show upgrade modal (with friendly copy)
-      if (premiumModalSubtitle){
-        if (status === "profile_blocked"){
-          premiumModalSubtitle.textContent =
-            "You’re signed in. To unlock premium, purchase a membership — then refresh. (If your access doesn’t update, DM/Email support.)";
-        } else {
-          premiumModalSubtitle.textContent =
-            "You’re signed in, but not a premium member yet. Upgrade to unlock premium.html and the tools/modules.";
-        }
-      }
-
-      // requires your openPremiumModal() to exist (it does in your page)
-      openPremiumModal(e);
-    };
-
-    // Bind all premium entry points to the router
-    [navPremium, heroPremiumCTA, premiumCardCTA, freePanelPremiumCTA, premiumPanelCTA].filter(Boolean)
-      .forEach(el => el.addEventListener("click", window.__FTN__.routePremium));
-
-    // Keep “Open Dashboard” button using same router
-    if (openPremiumDashboard){
-      openPremiumDashboard.addEventListener("click", window.__FTN__.routePremium);
-    }
-
-    if (manageMembership){
-      manageMembership.addEventListener("click", (e)=>{
-        e.preventDefault();
-        // requires PAYMENT_LINK const to exist in your page (it does)
-        window.open(PAYMENT_LINK, "_blank", "noopener");
-      });
-    }
-
-    if (authToggleBtn){
-      authToggleBtn.addEventListener("click",()=>{
-        setAuthMode(mode === "signin" ? "signup" : "signin");
-      });
-    }
-
-    if (authResetBtn){
-      authResetBtn.addEventListener("click", async ()=>{
-        const email = (authEmail?.value || "").trim();
-        if (!email){
-          setMsg("Type your email above, then click ‘Forgot password’.", true);
-          return;
-        }
-
-        setMsg("Sending reset email...");
-        const redirectTo = window.location.origin + window.location.pathname;
-
-        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
-        if (error) setMsg(humanAuthError(error), true);
-        else setMsg("Reset email sent. Check your inbox.");
-      });
-    }
-
-    if (authForm){
-      authForm.addEventListener("submit", async (e)=>{
-        e.preventDefault();
-
-        const email = (authEmail?.value || "").trim();
-        const password = authPassword?.value || "";
-
-        if (!email || !password){
-          setMsg("Enter your email and password.", true);
-          return;
-        }
-
-        setMsg("Working...");
-
-        try{
-          if (mode === "signin"){
-            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-            if (error) throw error;
-
-            setMsg("Signed in ✅");
-            // no auto-redirect
-            closeAuthModal();
-            await refreshUI();
-            return;
-          } else {
-            const { error } = await supabaseClient.auth.signUp({ email, password });
-            if (error) throw error;
-
-            setMsg("Account created ✅ Check your email if confirmation is required, then sign in.");
-            setAuthMode("signin");
-          }
-        } catch(err){
-          setMsg(humanAuthError(err), true);
-        } finally {
-          setTimeout(()=>{
-            try{
-              if (authMsg && authMsg.textContent === "Working...") setMsg("");
-            } catch(_) {}
-          }, 900);
-        }
-      });
-    }
-
-    if (signoutLink){
-      signoutLink.addEventListener("click", async (e)=>{
-        e.preventDefault();
-        await supabaseClient.auth.signOut();
-        await refreshUI();
-      });
-    }
-
-    supabaseClient.auth.onAuthStateChange(async () => {
-      await refreshUI();
-    });
-
-    setAuthMode("signin");
-    await refreshUI();
-
-  } catch (err){
-    console.warn("[auth] init crash:", err);
+   async function refreshUI(){
+  // If refresh is already running, queue one more run and exit
+  if (__refreshRunning) {
+    __refreshQueued = true;
+    return { user: null, isPremium: false };
   }
-})();
 
+  __refreshRunning = true;
+
+  try {
+    const user = await getUserSafe();
+
+    if (!user){
+      setSignedOutUI();
+      return { user: null, isPremium: false };
+    }
+
+    const res = await checkPremium(user);
+
+    // Always show signed-in state
+    setSignedInUI(user, res.isPremium);
+
+    if (res.status === "profile_blocked"){
+      setPremiumStatus("Signed in. Premium status can’t be verified right now.");
+      return { user, isPremium: false };
+    }
+
+    setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
+    return { user, isPremium: res.isPremium };
+
+  } catch (err) {
+    // ✅ IMPORTANT: AbortError is normal — ignore it
+    if (isAbortError(err)) {
+      console.warn("[auth] refresh aborted (normal)", err);
+      return { user: null, isPremium: false };
+    }
+
+    console.warn("[auth] refreshUI error:", err);
+    return { user: null, isPremium: false };
+
+  } finally {
+    __refreshRunning = false;
+
+    // If another refresh request came in while running, do one more
+    if (__refreshQueued) {
+      __refreshQueued = false;
+      // run again, but don't block
+      setTimeout(() => refreshUI(), 0);
+    }
+  }
+}
       // Keyboard support for wheel
       window.addEventListener("keydown",(e)=>{
         if (e.key === "ArrowLeft") setWheel(wheelIdx - 1);
