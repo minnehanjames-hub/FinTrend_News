@@ -189,7 +189,7 @@
 
     /* Hero */
     .hero{
-      min-height:66vh; /* less “too tall” */
+      min-height:66vh;
       display:grid;
       place-items:center;
       padding:18px 0 10px;
@@ -247,7 +247,6 @@
       margin-bottom:14px;
     }
 
-    /* NEW: compact “3 bullets” row (clean above fold) */
     .hero-highlights{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -297,7 +296,6 @@
 
     .hero-note{margin-top:12px;font-size:11px;color:var(--text-muted)}
 
-    /* Right column */
     .hero-right-stack{
       display:flex;
       flex-direction:column;
@@ -492,7 +490,6 @@
       transition:transform 0.18s ease, border-color 0.18s ease;
       overflow:hidden;
       position:relative;
-      /* removed min-height to prevent overlap on certain font loads */
     }
     .tile:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35)}
     .tile::before{
@@ -525,7 +522,6 @@
       transition:0.18s ease;
       overflow:hidden;
       position:relative;
-      /* removed min-height to stop odd overlap on some screens */
     }
     .card:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35);background:rgba(2,6,23,0.42)}
     .card-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
@@ -535,7 +531,6 @@
     .card-desc{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.55}
     .card-actions{display:flex;gap:10px;flex-wrap:wrap}
 
-    /* Free Articles panel extras */
     .search-row{
       display:flex;
       gap:10px;
@@ -1142,11 +1137,37 @@
       color:var(--text-muted) !important;
     }
     body,p,span,li,label,small,strong,em,i,b,h1,h2,h3,h4,h5,h6,button,input,textarea,select,summary,details,div,section,article,header,footer,nav{color:inherit}
+
+    /* NEW: subtle auth chip styling (uses your existing header-link class too) */
+    .user-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.28);
+      background:rgba(2,6,23,0.35);
+      color:var(--text-muted);
+      max-width:260px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .user-chip .uc-dot{
+      width:7px;height:7px;border-radius:999px;
+      background:rgba(148,163,184,0.45);
+      box-shadow:0 0 0 4px rgba(148,163,184,0.10);
+      flex:0 0 auto;
+    }
+    .user-chip.premium .uc-dot{
+      background:rgba(147,197,253,0.95);
+      box-shadow:0 0 0 4px rgba(147,197,253,0.12);
+    }
   </style>
 </head>
 
 <body>
-  <!-- Visible Bubble: keep Archive but make it “Free Articles” friendly -->
+  <!-- Visible Bubble -->
   <a class="archive-bubble" href="archive.html" aria-label="Open Free Articles">
     <span class="dot"></span> Free Articles
   </a>
@@ -1216,14 +1237,20 @@
           <a href="archive.html" class="header-link">Free Articles</a>
           <a href="archive.html" class="header-link">Archive</a>
 
+          <!-- Auth area -->
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
-          <span class="header-link" id="user-chip" style="display:none;"></span>
+
+          <!-- NEW: always-visible “status chip” when signed in -->
+          <span class="header-link user-chip" id="user-chip" style="display:none;">
+            <span class="uc-dot" aria-hidden="true"></span>
+            <span id="user-chip-text">Signed in</span>
+          </span>
 
           <a href="#" class="subscribe-btn" id="open-subscribe-modal">Get Free Email</a>
 
-          <!-- Premium goes to gate -->
-          <a href="premium.html" class="header-link" id="open-premium-modal">Premium</a>
+          <!-- Premium now uses gating (no direct link) -->
+          <a href="#" class="header-link" id="nav-premium">Premium</a>
 
           <div class="social-icons">
             <a href="https://www.instagram.com/fintrendnews?igsh=MXZkdXlhbW02bmUwMA==" target="_blank" rel="noopener" class="social-icon" title="FinTrend News Instagram">IG</a>
@@ -1233,7 +1260,7 @@
       </div>
     </header>
 
-    <!-- HERO: CLEAN + CLEAR -->
+    <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero-card reveal in-view" id="hero-card">
         <div class="hero-inner">
@@ -1271,7 +1298,8 @@
             <div class="hero-actions">
               <a class="btn primary" href="archive.html">Read Free Articles</a>
               <a class="btn" href="#" id="open-subscribe-modal-2">Get Free Email</a>
-              <a class="btn" href="premium.html">Open Deep Dive (Premium)</a>
+              <!-- NEW: premium CTA uses gating -->
+              <a class="btn" href="#" id="hero-premium-cta">Open Deep Dive (Premium)</a>
               <a class="btn" href="#watch">Live Watchlist</a>
             </div>
 
@@ -1342,7 +1370,8 @@
                 <li><strong>Quant:</strong> optimizer + Monte Carlo sandbox.</li>
               </ul>
               <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; position:relative; z-index:1;">
-                <a class="mini-link" href="premium.html">View premium</a>
+                <!-- NEW: premium view uses gating -->
+                <a class="mini-link" href="#" id="premium-card-cta">View premium</a>
                 <a class="mini-link secondary" href="archive.html">Read free</a>
               </div>
             </div>
@@ -1381,7 +1410,7 @@
       </div>
     </section>
 
-    <!-- FREE ARTICLES: CLEAR FINDER PANEL -->
+    <!-- FREE ARTICLES -->
     <section class="panel reveal" id="free" aria-label="Free Articles">
       <div class="panel-header">
         <div>
@@ -1417,7 +1446,7 @@
             Deep Dive lives on premium.html. If you’re not a member, it’ll prompt you to subscribe — with a button back to free articles.
           </div>
           <div class="card-actions">
-            <a class="mini-link" href="premium.html">Open Deep Dive</a>
+            <a class="mini-link" href="#" id="free-panel-premium-cta">Open Deep Dive</a>
             <a class="mini-link secondary" href="#" id="open-subscribe-modal-3">Stay on free email</a>
           </div>
         </div>
@@ -1615,7 +1644,8 @@
             templates, model allocations, curated idea cards, and the quant sandbox.
           </div>
           <div class="card-actions">
-            <a class="mini-link" href="premium.html">View premium</a>
+            <!-- NEW: this also goes through gating -->
+            <a class="mini-link" href="#" id="premium-panel-cta">View premium</a>
             <a class="mini-link secondary" href="#" id="open-subscribe-modal-5">Stay on free email</a>
           </div>
         </div>
@@ -1734,7 +1764,9 @@
 
       <div class="modal-kicker">FinTrend Premium</div>
       <h2 class="modal-title" id="premium-modal-title">Upgrade to Premium</h2>
-      <p class="modal-subtitle">Premium unlocks the members dashboard (premium.html) and the tools/modules you publish there.</p>
+      <p class="modal-subtitle" id="premium-modal-subtitle">
+        Premium unlocks the members dashboard (premium.html) and the tools/modules you publish there.
+      </p>
 
       <ul class="modal-list">
         <li><strong>Members dashboard</strong> (premium.html) with modular sections.</li>
@@ -1865,10 +1897,11 @@
       if (closeSub2) closeSub2.addEventListener("click", closeSubscribeModal);
 
       // -----------------------------------------------------
-      // Premium modal (marketing only) — still used for gating button
+      // Premium modal
       // -----------------------------------------------------
       const premiumModal    = document.getElementById("premium-modal");
       const closePremiumBtn = document.getElementById("close-premium-modal");
+      const premiumModalSubtitle = document.getElementById("premium-modal-subtitle");
 
       function openPremiumModal(e){
         if (e) e.preventDefault();
@@ -1976,7 +2009,7 @@
               ${isPro ? "Included with Premium subscription" : "Included with Free email"}
             </div>
             <div class="wheel-cta">
-              ${isPro ? `<a class="mini-link" href="premium.html">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
+              ${isPro ? `<a class="mini-link" href="#" id="wheel-open-premium">View premium</a>` : `<a class="mini-link" href="#" id="wheel-open-subscribe">Get free email</a>`}
               <a class="mini-link secondary" href="archive.html">Free articles</a>
             </div>
           </div>
@@ -1997,6 +2030,9 @@
 
         const openSubInline = document.getElementById("wheel-open-subscribe");
         if (openSubInline) openSubInline.addEventListener("click", (e)=>{ e.preventDefault(); openSubscribeModal(e); });
+
+        const openPremInline = document.getElementById("wheel-open-premium");
+        if (openPremInline) openPremInline.addEventListener("click", (e)=>{ e.preventDefault(); window.__FTN__?.routePremium?.(e); });
       }
 
       if (wheelPrev) wheelPrev.addEventListener("click", ()=>setWheel(wheelIdx - 1));
@@ -2221,7 +2257,12 @@
       }
 
       // -----------------------------------------------------
-      // Supabase Auth + Premium gating (your original logic)
+      // Supabase Auth + Premium gating (REPLACED)
+      // Goals:
+      // 1) users always see if they're signed in
+      // 2) friendlier errors (no “crashed” language)
+      // 3) premium links/buttons route through one gate function
+      // 4) NO auto-redirect to premium.html on sign-in
       // -----------------------------------------------------
       (async function initSupabase(){
         try{
@@ -2242,6 +2283,9 @@
             }
           });
 
+          // Expose a tiny namespace so other handlers can call routing
+          window.__FTN__ = window.__FTN__ || {};
+
           // UI refs
           const authForm = document.getElementById("auth-form");
           const authEmail = document.getElementById("auth-email");
@@ -2256,13 +2300,22 @@
 
           const signoutLink = document.getElementById("signout-link");
           const userChip = document.getElementById("user-chip");
+          const userChipText = document.getElementById("user-chip-text");
           const openAuthBtnEl = document.getElementById("open-auth-modal");
 
           const openPremiumDashboard = document.getElementById("open-premium-dashboard");
           const manageMembership = document.getElementById("manage-membership");
           const premiumStatus = document.getElementById("premium-status");
 
+          // Premium nav/ctas that must gate
+          const navPremium = document.getElementById("nav-premium");
+          const heroPremiumCTA = document.getElementById("hero-premium-cta");
+          const premiumCardCTA = document.getElementById("premium-card-cta");
+          const freePanelPremiumCTA = document.getElementById("free-panel-premium-cta");
+          const premiumPanelCTA = document.getElementById("premium-panel-cta");
+
           let mode = "signin";
+          let lastPremiumCheck = { ts: 0, isPremium: false, userId: null };
 
           function setMsg(text, isError=false){
             if (!authMsg) return;
@@ -2285,19 +2338,60 @@
               authToggleBtn.textContent = "Create account";
             } else {
               authTitle.textContent = "Create account";
-              authSubtitle.textContent = "Create an account to unlock premium tools after you subscribe.";
+              authSubtitle.textContent = "Create an account so your premium subscription can unlock the dashboard.";
               authSubmitBtn.textContent = "Sign up";
               authToggleBtn.textContent = "I already have an account";
             }
             setMsg("");
           }
 
+          // Friendly error mapping
+          function humanAuthError(err){
+            const msg = (err && err.message ? String(err.message) : "").toLowerCase();
+
+            if (msg.includes("invalid login") || msg.includes("invalid") || msg.includes("credentials")) {
+              return "That email or password doesn’t look right. Try again.";
+            }
+            if (msg.includes("email not confirmed")) {
+              return "Check your inbox and confirm your email, then sign in.";
+            }
+            if (msg.includes("rate limit") || msg.includes("too many")) {
+              return "Too many attempts. Wait a minute and try again.";
+            }
+            if (msg.includes("network") || msg.includes("fetch")) {
+              return "Network issue. Check your connection and try again.";
+            }
+            if (msg.includes("jwt") || msg.includes("token")) {
+              return "Session issue. Please refresh the page and try again.";
+            }
+            return "We couldn’t complete that. Please try again.";
+          }
+
+          function setSignedOutUI(){
+            if (openAuthBtnEl) openAuthBtnEl.style.display = "";
+            if (signoutLink) signoutLink.style.display = "none";
+            if (userChip) userChip.style.display = "none";
+            if (userChipText) userChipText.textContent = "";
+            if (userChip) userChip.classList.remove("premium");
+            setPremiumStatus("Sign in to check access.");
+          }
+
+          function setSignedInUI(user, isPremium){
+            if (openAuthBtnEl) openAuthBtnEl.style.display = "none";
+            if (signoutLink) signoutLink.style.display = "";
+            if (userChip){
+              userChip.style.display = "";
+              userChip.classList.toggle("premium", !!isPremium);
+            }
+            if (userChipText){
+              const email = user?.email ? String(user.email) : "Signed in";
+              userChipText.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
+            }
+          }
+
           async function getUserSafe(){
             const res = await supabaseClient.auth.getUser();
-            if (res.error) {
-              console.warn("[auth] getUser error:", res.error);
-              return null;
-            }
+            if (res.error) return null;
             return res.data?.user || null;
           }
 
@@ -2308,12 +2402,7 @@
               .select("id,email,is_premium")
               .eq("id", user.id)
               .maybeSingle();
-
-            if (error) {
-              console.warn("[profiles] SELECT error:", error);
-              return { data: null, error };
-            }
-            return { data: data || null, error: null };
+            return { data: data || null, error: error || null };
           }
 
           async function createProfileSafe(user){
@@ -2323,12 +2412,7 @@
               .insert([{ id: user.id, email: user.email, is_premium: false }])
               .select("id,email,is_premium")
               .single();
-
-            if (error) {
-              console.warn("[profiles] INSERT error:", error);
-              return { data: null, error };
-            }
-            return { data, error: null };
+            return { data: data || null, error: error || null };
           }
 
           async function ensureProfileSafe(user){
@@ -2338,39 +2422,93 @@
             return await createProfileSafe(user);
           }
 
-          async function refreshUI(){
-            const user = await getUserSafe();
+          // Cache premium check for a short window to reduce calls
+          async function checkPremium(user){
+            if (!user) return { user: null, isPremium: false, status: "signed_out" };
 
-            if (!user){
-              if (openAuthBtnEl) openAuthBtnEl.style.display = "";
-              if (signoutLink) signoutLink.style.display = "none";
-              if (userChip) userChip.style.display = "none";
-              setPremiumStatus("Sign in to check access.");
-              return { user: null, isPremium: false };
-            }
-
-            if (openAuthBtnEl) openAuthBtnEl.style.display = "none";
-            if (signoutLink) signoutLink.style.display = "";
-            if (userChip){
-              userChip.style.display = "";
-              userChip.textContent = "Signed in: " + (user.email || "user");
+            const now = Date.now();
+            if (lastPremiumCheck.userId === user.id && (now - lastPremiumCheck.ts) < 5000){
+              return { user, isPremium: lastPremiumCheck.isPremium, status: "cached" };
             }
 
             const prof = await ensureProfileSafe(user);
 
+            // If profiles table blocked, don't say "crashed"—just treat as not premium and instruct.
             if (prof.error){
-              setPremiumStatus("Premium status unavailable (profiles blocked by RLS). Open Console for details.");
+              lastPremiumCheck = { ts: now, isPremium: false, userId: user.id };
+              return { user, isPremium: false, status: "profile_blocked" };
+            }
+
+            const isPremium = !!prof.data?.is_premium;
+            lastPremiumCheck = { ts: now, isPremium, userId: user.id };
+            return { user, isPremium, status: "ok" };
+          }
+
+          async function refreshUI(){
+            const user = await getUserSafe();
+            if (!user){
+              setSignedOutUI();
+              return { user: null, isPremium: false };
+            }
+
+            const res = await checkPremium(user);
+
+            // Show signed-in chip ALWAYS
+            setSignedInUI(user, res.isPremium);
+
+            if (res.status === "profile_blocked"){
+              setPremiumStatus("Signed in. Premium status can’t be verified right now.");
               return { user, isPremium: false };
             }
 
-            if (!prof.data){
-              setPremiumStatus("Premium status unavailable (no profile row).");
-              return { user, isPremium: false };
+            setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
+            return { user, isPremium: res.isPremium };
+          }
+
+          // ONE premium router function for everything
+          window.__FTN__.routePremium = async function(e){
+            if (e) e.preventDefault();
+
+            const user = await getUserSafe();
+            if (!user){
+              openAuthModal(e);
+              return;
             }
 
-            const isPremium = !!prof.data.is_premium;
-            setPremiumStatus(isPremium ? "Premium: active ✅" : "Premium: not active (subscribe to unlock)");
-            return { user, isPremium };
+            const { isPremium, status } = await checkPremium(user);
+
+            if (isPremium){
+              window.location.href = "premium.html";
+              return;
+            }
+
+            // Signed in but not premium (or cannot verify) → show upgrade modal (with friendly copy)
+            if (premiumModalSubtitle){
+              if (status === "profile_blocked"){
+                premiumModalSubtitle.textContent =
+                  "You’re signed in. To unlock premium, purchase a membership — then refresh. (If your access doesn’t update, DM/Email support.)";
+              } else {
+                premiumModalSubtitle.textContent =
+                  "You’re signed in, but not a premium member yet. Upgrade to unlock premium.html and the tools/modules.";
+              }
+            }
+            openPremiumModal(e);
+          };
+
+          // Bind all premium entry points to the router
+          [navPremium, heroPremiumCTA, premiumCardCTA, freePanelPremiumCTA, premiumPanelCTA].filter(Boolean)
+            .forEach(el => el.addEventListener("click", window.__FTN__.routePremium));
+
+          // Keep “Open Dashboard” button using same router (so behavior matches everywhere)
+          if (openPremiumDashboard){
+            openPremiumDashboard.addEventListener("click", window.__FTN__.routePremium);
+          }
+
+          if (manageMembership){
+            manageMembership.addEventListener("click", (e)=>{
+              e.preventDefault();
+              window.open(PAYMENT_LINK, "_blank", "noopener");
+            });
           }
 
           if (authToggleBtn){
@@ -2383,7 +2521,7 @@
             authResetBtn.addEventListener("click", async ()=>{
               const email = (authEmail?.value || "").trim();
               if (!email){
-                setMsg("Enter your email above, then click 'Forgot password'.", true);
+                setMsg("Type your email above, then click ‘Forgot password’.", true);
                 return;
               }
 
@@ -2391,7 +2529,7 @@
               const redirectTo = window.location.origin + window.location.pathname;
 
               const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
-              if (error) setMsg("Reset failed: " + error.message, true);
+              if (error) setMsg(humanAuthError(error), true);
               else setMsg("Reset email sent. Check your inbox.");
             });
           }
@@ -2404,7 +2542,7 @@
               const password = authPassword?.value || "";
 
               if (!email || !password){
-                setMsg("Enter email + password.", true);
+                setMsg("Enter your email and password.", true);
                 return;
               }
 
@@ -2415,24 +2553,26 @@
                   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
                   if (error) throw error;
 
-                  setMsg("Signed in ✅ Redirecting...");
-                  window.location.href = "premium.html";
+                  setMsg("Signed in ✅");
+                  // IMPORTANT: no auto-redirect (keeps it smooth)
+                  closeAuthModal();
+                  await refreshUI();
                   return;
                 } else {
                   const { error } = await supabaseClient.auth.signUp({ email, password });
                   if (error) throw error;
 
-                  setMsg("Account created ✅ Now sign in.");
+                  setMsg("Account created ✅ Check your email if confirmation is required, then sign in.");
                   setAuthMode("signin");
                 }
               } catch(err){
-                setMsg("Error: " + (err?.message || "Unknown error"), true);
+                setMsg(humanAuthError(err), true);
               } finally {
                 setTimeout(()=>{
                   try{
                     if (authMsg && authMsg.textContent === "Working...") setMsg("");
                   } catch(_) {}
-                }, 1200);
+                }, 900);
               }
             });
           }
@@ -2442,32 +2582,6 @@
               e.preventDefault();
               await supabaseClient.auth.signOut();
               await refreshUI();
-            });
-          }
-
-          if (openPremiumDashboard){
-            openPremiumDashboard.addEventListener("click", async (e)=>{
-              e.preventDefault();
-
-              const { user } = await refreshUI();
-              if (!user){
-                openAuthModal(e);
-                return;
-              }
-
-              const prof = await ensureProfileSafe(user);
-              if (prof?.data?.is_premium){
-                window.location.href = "premium.html";
-              } else {
-                openPremiumModal(e);
-              }
-            });
-          }
-
-          if (manageMembership){
-            manageMembership.addEventListener("click", (e)=>{
-              e.preventDefault();
-              window.open(PAYMENT_LINK, "_blank", "noopener");
             });
           }
 
@@ -2489,7 +2603,7 @@
         if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
       });
 
-      // Tiny “fake search” for now: if they type, we just send them to archive.html with a query param
+      // “Fake search”: send them to archive.html with a query param
       const freeSearch = document.getElementById("freeSearch");
       if (freeSearch){
         freeSearch.addEventListener("keydown",(e)=>{
