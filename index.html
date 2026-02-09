@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinTrend News | Market Newsletter</title>
 
+  <meta name="description" content="FinTrend News — desk-style market briefs. Drivers, scenarios, levels. Free articles + premium tools." />
+
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="assets/img/favicon.png" />
 
@@ -13,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,6 +24,7 @@
     gtag('config', 'G-KSK5YVPJBR');
   </script>
 
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -553,9 +557,6 @@
       border-color:rgba(244,193,93,0.6);
       box-shadow:0 0 0 4px rgba(244,193,93,0.10);
     }
-
-    /* Wheel / Watchlist / FAQ / Modals / Rail — keep your original styles as-is */
-    /* (Everything below is unchanged from your file, except where noted) */
 
     /* Wheel */
     .wheel-wrap{
@@ -1137,7 +1138,7 @@
     }
     body,p,span,li,label,small,strong,em,i,b,h1,h2,h3,h4,h5,h6,button,input,textarea,select,summary,details,div,section,article,header,footer,nav{color:inherit}
 
-    /* NEW: subtle auth chip styling (uses your existing header-link class too) */
+    /* Auth chip */
     .user-chip{
       display:inline-flex;
       align-items:center;
@@ -1234,13 +1235,12 @@
 
         <div class="header-right">
           <a href="archive.html" class="header-link">Free Articles</a>
-          <a href="archive.html" class="header-link">Archive</a>
 
-          <!-- Auth area -->
+          <!-- Auth -->
           <a href="#" class="header-link" id="open-auth-modal">Sign In</a>
           <a href="#" class="header-link" id="signout-link" style="display:none;">Sign Out</a>
 
-          <!-- always-visible “status chip” when signed in -->
+          <!-- Status chip -->
           <span class="header-link user-chip" id="user-chip" style="display:none;">
             <span class="uc-dot" aria-hidden="true"></span>
             <span id="user-chip-text">Signed in</span>
@@ -1248,7 +1248,7 @@
 
           <a href="#" class="subscribe-btn" id="open-subscribe-modal">Get Free Email</a>
 
-          <!-- Premium now uses gating (no direct link) -->
+          <!-- Premium is gated -->
           <a href="#" class="header-link" id="nav-premium">Premium</a>
 
           <div class="social-icons">
@@ -1291,7 +1291,10 @@
               <span class="chip"><span class="c-dot"></span>Wed</span>
               <span class="chip"><span class="c-dot"></span>Fri</span>
               <span class="chip"><span class="c-dot"></span>Sun</span>
-              <span class="chip" style="border-color:rgba(147,197,253,0.35);"><span class="c-dot" style="background:rgba(147,197,253,0.9);box-shadow:0 0 0 4px rgba(147,197,253,0.10)"></span>Premium Tools</span>
+              <span class="chip" style="border-color:rgba(147,197,253,0.35);">
+                <span class="c-dot" style="background:rgba(147,197,253,0.9);box-shadow:0 0 0 4px rgba(147,197,253,0.10)"></span>
+                Premium Tools
+              </span>
             </div>
 
             <div class="hero-actions">
@@ -1897,7 +1900,6 @@
       // -----------------------------------------------------
       const premiumModal    = document.getElementById("premium-modal");
       const closePremiumBtn = document.getElementById("close-premium-modal");
-      const premiumModalSubtitle = document.getElementById("premium-modal-subtitle");
 
       function openPremiumModal(e){
         if (e) e.preventDefault();
@@ -2253,7 +2255,7 @@
       }
 
       // -----------------------------------------------------
-      // Supabase Auth + Premium gating (FIXED + COMPLETED)
+      // Supabase Auth + Premium gating
       // -----------------------------------------------------
       (async function initSupabase(){
         try{
@@ -2274,7 +2276,6 @@
             }
           });
 
-          // Expose a tiny namespace so other handlers can call routing
           window.__FTN__ = window.__FTN__ || {};
           window.__FTN__.supabase = supabaseClient;
 
@@ -2299,7 +2300,6 @@
           const manageMembership = document.getElementById("manage-membership");
           const premiumStatus = document.getElementById("premium-status");
 
-          // Premium nav/ctas that must gate
           const navPremium = document.getElementById("nav-premium");
           const heroPremiumCTA = document.getElementById("hero-premium-cta");
           const premiumCardCTA = document.getElementById("premium-card-cta");
@@ -2337,25 +2337,13 @@
             setMsg("");
           }
 
-          // Friendly error mapping
           function humanAuthError(err){
             const msg = (err && err.message ? String(err.message) : "").toLowerCase();
-
-            if (msg.includes("invalid login") || msg.includes("invalid") || msg.includes("credentials")) {
-              return "That email or password doesn’t look right. Try again.";
-            }
-            if (msg.includes("email not confirmed")) {
-              return "Check your inbox and confirm your email, then sign in.";
-            }
-            if (msg.includes("rate limit") || msg.includes("too many")) {
-              return "Too many attempts. Wait a minute and try again.";
-            }
-            if (msg.includes("network") || msg.includes("fetch")) {
-              return "Network issue. Check your connection and try again.";
-            }
-            if (msg.includes("jwt") || msg.includes("token")) {
-              return "Session issue. Please refresh the page and try again.";
-            }
+            if (msg.includes("invalid login") || msg.includes("invalid") || msg.includes("credentials")) return "That email or password doesn’t look right. Try again.";
+            if (msg.includes("email not confirmed")) return "Check your inbox and confirm your email, then sign in.";
+            if (msg.includes("rate limit") || msg.includes("too many")) return "Too many attempts. Wait a minute and try again.";
+            if (msg.includes("network") || msg.includes("fetch")) return "Network issue. Check your connection and try again.";
+            if (msg.includes("jwt") || msg.includes("token")) return "Session issue. Please refresh the page and try again.";
             return "We couldn’t complete that. Please try again.";
           }
 
@@ -2375,14 +2363,9 @@
               userChip.style.display = "";
               userChip.classList.toggle("premium", !!isPremium);
             }
-
             const email = user?.email ? String(user.email) : "Signed in";
-
-            // If chip text span exists, use it; otherwise fall back to the chip itself.
             if (userChipText){
               userChipText.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
-            } else if (userChip){
-              userChip.textContent = isPremium ? ("Premium • " + email) : ("Signed in • " + email);
             }
           }
 
@@ -2419,7 +2402,6 @@
             return await createProfileSafe(user);
           }
 
-          // Cache premium check for a short window to reduce calls
           async function checkPremium(user){
             if (!user) return { user: null, isPremium: false, status: "signed_out" };
 
@@ -2430,7 +2412,6 @@
 
             const prof = await ensureProfileSafe(user);
 
-            // If profiles table blocked, don't say "crashed"
             if (prof.error){
               lastPremiumCheck = { ts: now, isPremium: false, userId: user.id };
               return { user, isPremium: false, status: "profile_blocked" };
@@ -2441,7 +2422,7 @@
             return { user, isPremium, status: "ok" };
           }
 
-          // ---- prevent overlapping refreshes (stops AbortError crashes)
+          // prevent overlapping refreshes
           let __refreshRunning = false;
           let __refreshQueued = false;
 
@@ -2450,25 +2431,14 @@
           }
 
           async function refreshUI(){
-            // If refresh is already running, queue one more run and exit
-            if (__refreshRunning) {
-              __refreshQueued = true;
-              return { user: null, isPremium: false };
-            }
-
+            if (__refreshRunning) { __refreshQueued = true; return { user: null, isPremium: false }; }
             __refreshRunning = true;
 
-            try {
+            try{
               const user = await getUserSafe();
-
-              if (!user){
-                setSignedOutUI();
-                return { user: null, isPremium: false };
-              }
+              if (!user){ setSignedOutUI(); return { user: null, isPremium: false }; }
 
               const res = await checkPremium(user);
-
-              // Always show signed-in state
               setSignedInUI(user, res.isPremium);
 
               if (res.status === "profile_blocked"){
@@ -2479,34 +2449,23 @@
               setPremiumStatus(res.isPremium ? "Premium member ✅" : "Not premium — become a member to unlock the dashboard.");
               return { user, isPremium: res.isPremium };
 
-            } catch (err) {
-              // AbortError is normal — ignore it
-              if (isAbortError(err)) {
-                console.warn("[auth] refresh aborted (normal)");
-                return { user: null, isPremium: false };
-              }
-
+            } catch(err){
+              if (isAbortError(err)) return { user: null, isPremium: false };
               console.warn("[auth] refreshUI error:", err);
               return { user: null, isPremium: false };
 
             } finally {
               __refreshRunning = false;
-
-              // If another refresh request came in while running, do one more
-              if (__refreshQueued) {
+              if (__refreshQueued){
                 __refreshQueued = false;
                 setTimeout(() => refreshUI(), 0);
               }
             }
           }
 
-          // -----------------------------
-          // Premium routing (ONE function)
-          // -----------------------------
           async function routePremium(e){
             if (e) e.preventDefault();
 
-            // If subtitle exists, customize it a bit each time
             const sub = document.getElementById("premium-modal-subtitle");
             if (sub){
               sub.textContent = "Premium unlocks the members dashboard (premium.html). Sign in + upgrade to access deep dives and tools.";
@@ -2514,7 +2473,6 @@
 
             const user = await getUserSafe();
             if (!user){
-              // Not signed in: show auth modal first
               openAuthModal(e);
               setMsg("Sign in first, then we’ll check premium access.", false);
               return;
@@ -2522,7 +2480,6 @@
 
             const res = await checkPremium(user);
 
-            // Signed in but profile/policy blocks read: show modal so they can still upgrade.
             if (res.status === "profile_blocked"){
               openPremiumModal(e);
               return;
@@ -2533,15 +2490,12 @@
               return;
             }
 
-            // Not premium: show upgrade modal
             openPremiumModal(e);
           }
 
           window.__FTN__.routePremium = routePremium;
 
-          // -----------------------------
           // Auth handlers
-          // -----------------------------
           setAuthMode("signin");
 
           if (authToggleBtn){
@@ -2565,7 +2519,7 @@
               }
 
               try{
-                authSubmitBtn && (authSubmitBtn.disabled = true);
+                if (authSubmitBtn) authSubmitBtn.disabled = true;
 
                 if (mode === "signin"){
                   const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
@@ -2577,16 +2531,24 @@
                   return;
                 }
 
-                // signup
-                const { error } = await supabaseClient.auth.signUp({ email, password });
+                // signup (optional: email redirect if your project uses email confirmation)
+                const origin = window.location.origin;
+                const emailRedirectTo = (origin && origin !== "null") ? (origin + "/") : undefined;
+
+                const { error } = await supabaseClient.auth.signUp({
+                  email,
+                  password,
+                  options: emailRedirectTo ? { emailRedirectTo } : undefined
+                });
+
                 if (error) { setMsg(humanAuthError(error), true); return; }
 
                 setMsg("Account created. Check your email to confirm, then sign in.", false);
-                // keep modal open so they see the message
-              } catch (err){
+
+              } catch(err){
                 setMsg(humanAuthError(err), true);
               } finally {
-                authSubmitBtn && (authSubmitBtn.disabled = false);
+                if (authSubmitBtn) authSubmitBtn.disabled = false;
               }
             });
           }
@@ -2603,15 +2565,18 @@
               }
 
               try{
-                // Redirect back to site root if possible (won't work on file://)
                 const origin = window.location.origin;
                 const redirectTo = (origin && origin !== "null") ? (origin + "/") : undefined;
 
-                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, redirectTo ? { redirectTo } : undefined);
-                if (error) { setMsg(humanAuthError(error), true); return; }
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(
+                  email,
+                  redirectTo ? { redirectTo } : undefined
+                );
 
+                if (error) { setMsg(humanAuthError(error), true); return; }
                 setMsg("Password reset email sent. Check your inbox.", false);
-              } catch (err){
+
+              } catch(err){
                 setMsg(humanAuthError(err), true);
               }
             });
@@ -2620,17 +2585,13 @@
           if (signoutLink){
             signoutLink.addEventListener("click", async (e)=>{
               e.preventDefault();
-              try{
-                await supabaseClient.auth.signOut();
-              } catch(_){}
+              try{ await supabaseClient.auth.signOut(); } catch(_){}
               setSignedOutUI();
               closeAnyOpenModal();
             });
           }
 
-          // -----------------------------
-          // Wire premium CTAs to routing
-          // -----------------------------
+          // Wire premium CTAs
           [navPremium, heroPremiumCTA, premiumCardCTA, freePanelPremiumCTA, premiumPanelCTA, openPremiumDashboard]
             .filter(Boolean)
             .forEach(el => el.addEventListener("click", routePremium));
@@ -2638,18 +2599,15 @@
           if (manageMembership){
             manageMembership.addEventListener("click",(e)=>{
               e.preventDefault();
-              // For now: send to Stripe payment link (simple)
               window.open(PAYMENT_LINK, "_blank", "noopener");
             });
           }
 
-          // Keep UI in sync with auth changes
-          supabaseClient.auth.onAuthStateChange(async (_event, _session)=>{
-            // This can fire multiple times quickly; refreshUI is protected against overlap.
+          // Keep UI in sync
+          supabaseClient.auth.onAuthStateChange(async ()=>{
             await refreshUI();
           });
 
-          // Initial UI sync
           await refreshUI();
 
         } catch(err){
@@ -2663,7 +2621,7 @@
         if (e.key === "ArrowRight") setWheel(wheelIdx + 1);
       });
 
-      // “Fake search”: send them to archive.html with a query param
+      // “Search”: send to archive.html with query param
       const freeSearch = document.getElementById("freeSearch");
       if (freeSearch){
         freeSearch.addEventListener("keydown",(e)=>{
@@ -2678,4 +2636,3 @@
   </script>
 </body>
 </html>
-
