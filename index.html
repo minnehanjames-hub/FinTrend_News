@@ -239,7 +239,79 @@
       color:var(--muted);
     }
 
-    /* Rotating chart card (the "spin/motion" you wanted) */
+    /* Right column cards */
+    .rightStack{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    /* Premium spinning orb card */
+    .premiumSpin{
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.35);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      min-height:150px;
+    }
+    .premiumSpin::before{
+      content:"";
+      position:absolute;
+      inset:-55%;
+      background: radial-gradient(circle at 30% 20%, rgba(147,197,253,0.16), transparent 55%),
+                  radial-gradient(circle at 70% 60%, rgba(244,193,93,0.12), transparent 55%);
+      pointer-events:none;
+      opacity:.95;
+    }
+    .orb{
+      position:absolute;
+      right:-26px;
+      top:-26px;
+      width:180px;
+      height:180px;
+      border-radius:999px;
+      border:1px solid rgba(147,197,253,0.28);
+      background:
+        radial-gradient(circle at 35% 35%, rgba(147,197,253,0.35), rgba(2,6,23,0.0) 55%),
+        radial-gradient(circle at 70% 70%, rgba(244,193,93,0.18), rgba(2,6,23,0.0) 55%);
+      box-shadow:
+        inset 0 0 0 10px rgba(147,197,253,0.06),
+        0 18px 50px rgba(0,0,0,0.35);
+      animation: orbspin 12s linear infinite;
+      pointer-events:none;
+      opacity:.95;
+    }
+    .orb::after{
+      content:"";
+      position:absolute;
+      inset:18px;
+      border-radius:999px;
+      border:1px dashed rgba(244,193,93,0.28);
+      animation: orbspin 8s linear infinite reverse;
+      opacity:.9;
+    }
+    @keyframes orbspin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    .premiumInner{
+      position:relative;
+      z-index:1;
+    }
+    .premiumTitle{
+      font-family:"Playfair Display",serif;
+      font-size:22px;
+      line-height:1.15;
+      margin:6px 0 6px;
+    }
+    .premiumText{
+      font-size:13px;
+      color:#d1d5db;
+      max-width:52ch;
+      margin-bottom:10px;
+    }
+
+    /* Rotating chart card */
     .rotCard{
       border-radius:18px;
       border:1px solid rgba(148,163,184,0.22);
@@ -276,7 +348,7 @@
     }
     @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
 
-    /* Week interactive (Mon/Wed/Fri/Sun) */
+    /* Week interactive */
     .weekGrid{
       position:relative;z-index:1;
       display:grid;
@@ -540,26 +612,44 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Rotating chart (this is the “spinning / dynamic” section) -->
-        <div class="rotCard">
-          <div class="rotRing"></div>
-          <div class="rotTop">
-            <div class="rotTitle">Rotating market chart</div>
-            <div class="rotNow" id="rotNow">SPX</div>
+        <!-- Right: Premium spin + rotating chart -->
+        <div class="rightStack">
+          <div class="premiumSpin">
+            <div class="orb"></div>
+            <div class="premiumInner">
+              <div class="kicker">Premium</div>
+              <div class="premiumTitle">Premium Deep Dives</div>
+              <div class="premiumText">
+                Long-form sector reports: drivers, positioning, catalysts, and levels — built like a playbook.
+              </div>
+              <div class="row">
+                <button class="btn btnPrimary" id="goPremiumTop">View Premium</button>
+                <a class="btn btnGhost" href="#deepdive">What is a Deep Dive?</a>
+              </div>
+              <div class="reassure" id="premiumStatusTop">Sign in to check access.</div>
+            </div>
           </div>
 
-          <div class="chartBox">
-            <div id="rotChart"></div>
-          </div>
+          <div class="rotCard">
+            <div class="rotRing"></div>
+            <div class="rotTop">
+              <div class="rotTitle">Rotating market chart</div>
+              <div class="rotNow" id="rotNow">SPX</div>
+            </div>
 
-          <div class="reassure" style="margin-top:10px;">
-            Auto-rotates through: SPX → NDX → EURUSD → BTC → Gold.
+            <div class="chartBox">
+              <div id="rotChart"></div>
+            </div>
+
+            <div class="reassure" style="margin-top:10px;">
+              Auto-rotates through: SPX → NDX → EURUSD → BTC → Gold.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WEEK MAP (THIS replaces the old premium-nav-ish section you hated) -->
+    <!-- WEEK MAP -->
     <section class="panel" id="week">
       <div class="panelHead">
         <div>
@@ -595,7 +685,6 @@
         <div class="weekRight">
           <div class="weekCard" id="weekCard"></div>
 
-          <!-- charts “again” under this -->
           <div style="margin-top:14px;position:relative;z-index:1;">
             <div class="kicker">Charts</div>
             <div class="subk">Tap a market to load a chart (fast).</div>
@@ -619,7 +708,7 @@
       </div>
     </section>
 
-    <!-- Deep Dive explanation section (separate, clean) -->
+    <!-- Deep Dive explanation section -->
     <section class="panel" id="deepdive">
       <div class="panelHead">
         <div>
@@ -666,7 +755,7 @@
     </footer>
   </div>
 
-  <!-- AUTH MODAL (manual signup; no Mailchimp) -->
+  <!-- AUTH MODAL -->
   <div class="modalBackdrop" id="authModal" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modalClose" id="closeAuth">×</button>
@@ -688,7 +777,7 @@
     </div>
   </div>
 
-  <!-- PREMIUM MODAL (unchanged logic, just clean UI) -->
+  <!-- PREMIUM MODAL -->
   <div class="modalBackdrop" id="premiumModal" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modalClose" id="closePremium">×</button>
@@ -722,7 +811,16 @@
       function openModal(m){ m.classList.add("active"); m.setAttribute("aria-hidden","false"); }
       function closeModal(m){ m.classList.remove("active"); m.setAttribute("aria-hidden","true"); }
 
-      document.getElementById("open-auth").addEventListener("click",(e)=>{ e.preventDefault(); setMode("signup"); openModal(authModal); });
+      const openAuthBtn = document.getElementById("open-auth");
+      const closeAuthBtn = document.getElementById("closeAuth");
+
+      // ✅ FIX: Sign In opens SIGNIN mode, not signup
+      openAuthBtn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        setMode("signin");
+        openModal(authModal);
+      });
+
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
       authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
 
@@ -730,7 +828,7 @@
       document.getElementById("closePremium2").addEventListener("click",()=>closeModal(premiumModal));
       premiumModal.addEventListener("click",(e)=>{ if(e.target===premiumModal) closeModal(premiumModal); });
 
-      // CTAs -> open signup
+      // ✅ Create account CTAs open SIGNUP mode
       [ "cta-create","cta-create-2","cta-create-3" ].forEach(id=>{
         const el = document.getElementById(id);
         if(el) el.addEventListener("click",()=>{ setMode("signup"); openModal(authModal); });
@@ -828,7 +926,7 @@
         el.appendChild(s);
       }
 
-      // Rotating chart = "spins/motion"
+      // Rotating chart
       const rotList = [
         { label:"SPX", sym:"FOREXCOM:SPXUSD" },
         { label:"NDX", sym:"NASDAQ:NDX" },
@@ -848,7 +946,7 @@
       renderRot();
       setInterval(renderRot, 6500);
 
-      // Watch chart buttons under week map
+      // Watch chart buttons
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
 
@@ -867,7 +965,6 @@
       function loadWatch(symbol){
         hideFallback();
         loadMiniSymbolOverview("watchChart", symbol, 300);
-        // If embed blocked by browser/privacy, user still has a link:
         setTimeout(()=>showFallback(symbol), 2500);
       }
 
@@ -881,11 +978,10 @@
       });
 
       // -----------------------------
-      // Supabase Auth (manual email+password)
-      // + Premium check (unchanged logic)
+      // Supabase Auth + Premium check
       // -----------------------------
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"; // <- KEEP YOUR REAL KEY HERE
+      const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"; // <-- PASTE YOUR REAL ANON KEY
 
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
@@ -898,6 +994,7 @@
       const signout = document.getElementById("signout");
       const openAuth = document.getElementById("open-auth");
       const premiumStatus = document.getElementById("premiumStatus");
+      const premiumStatusTop = document.getElementById("premiumStatusTop");
 
       let mode = "signup";
       function setMode(m){
@@ -925,16 +1022,21 @@
         return "Something went wrong. Try again.";
       }
 
-      // Premium routing UI
+      // Premium modal
       const payLink = document.getElementById("payLink");
       payLink.addEventListener("click",(e)=>{ e.preventDefault(); window.open(PAYMENT_LINK,"_blank","noopener"); });
 
-      document.getElementById("goPremium").addEventListener("click",(e)=>{
-        e.preventDefault();
-        routePremium();
-      });
+      // Premium buttons (top + deepdive)
+      document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
+      document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
 
       async function routePremium(){
+        if(!supabaseClient){
+          setMode("signin");
+          openModal(authModal);
+          authMsg.textContent = "Sign in first.";
+          return;
+        }
         const userRes = await supabaseClient.auth.getUser();
         const user = userRes.data?.user;
         if(!user){
@@ -952,8 +1054,6 @@
       let supabaseClient = null;
 
       async function checkPremium(user){
-        // UNCHANGED LOGIC: read profiles.is_premium
-        // (assuming you already have this in place)
         try{
           const { data, error } = await supabaseClient
             .from("profiles")
@@ -961,15 +1061,17 @@
             .eq("id", user.id)
             .maybeSingle();
 
-          if(error || !data){
-            premiumStatus.textContent = "Signed in. Premium status can’t be verified right now.";
-            return false;
-          }
+          const msg = (data && data.is_premium)
+            ? "Premium member ✅"
+            : "Not premium — upgrade to unlock deep dives.";
 
-          premiumStatus.textContent = data.is_premium ? "Premium member ✅" : "Not premium — upgrade to unlock deep dives.";
-          return !!data.is_premium;
+          if(premiumStatus) premiumStatus.textContent = (error || !data) ? "Signed in. Premium status can’t be verified right now." : msg;
+          if(premiumStatusTop) premiumStatusTop.textContent = (error || !data) ? "Signed in. Premium status can’t be verified right now." : msg;
+
+          return !!(data && data.is_premium);
         } catch(e){
-          premiumStatus.textContent = "Signed in. Premium status can’t be verified right now.";
+          if(premiumStatus) premiumStatus.textContent = "Signed in. Premium status can’t be verified right now.";
+          if(premiumStatusTop) premiumStatusTop.textContent = "Signed in. Premium status can’t be verified right now.";
           return false;
         }
       }
@@ -979,7 +1081,8 @@
         chip.classList.remove("premium");
         openAuth.style.display = "";
         signout.style.display = "none";
-        premiumStatus.textContent = "Sign in to check access.";
+        if(premiumStatus) premiumStatus.textContent = "Sign in to check access.";
+        if(premiumStatusTop) premiumStatusTop.textContent = "Sign in to check access.";
       }
 
       function setSignedInUI(user, isPremium){
