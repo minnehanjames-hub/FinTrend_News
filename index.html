@@ -981,7 +981,7 @@
       // Supabase Auth + Premium check
       // -----------------------------
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"; // <-- PASTE YOUR REAL ANON KEY
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // <-- PASTE YOUR REAL ANON KEY
 
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
@@ -1107,7 +1107,7 @@
           return;
         }
 
-        if(SUPABASE_ANON_KEY.includes("PASTE_YOUR_SUPABASE_ANON_KEY_HERE")){
+        if(SUPABASE_ANON_KEY.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI")){
           console.warn("⚠️ You forgot to paste your Supabase anon key.");
         }
 
