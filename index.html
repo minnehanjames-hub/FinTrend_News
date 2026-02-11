@@ -1187,23 +1187,25 @@
       // ✅ After SIGN IN, redirect to account:
       //    Premium -> premium.html
       //    Not premium (or cannot verify) -> archive.html
-      async function redirectToAccount(){
-        try{
-          const { data } = await supabaseClient.auth.getUser();
-          const user = data?.user;
-          if(!user){
-            window.location.href = FREE_ACCOUNT_PAGE;
-            return;
-          }
-          let isPremium = false;
-          try{
-            isPremium = await checkPremium(user);
-          } catch(_){}
-          window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
-        } catch(e){
-          window.location.href = FREE_ACCOUNT_PAGE;
-        }
-      }
+     async function redirectToAccount(passedUser){
+  try{
+    const user = passedUser || (await supabaseClient.auth.getUser()).data?.user;
+
+    if(!user){
+      window.location.href = FREE_ACCOUNT_PAGE;
+      return;
+    }
+
+    let isPremium = false;
+    try{
+      isPremium = await checkPremium(user);
+    } catch(_){}
+
+    window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
+  } catch(e){
+    window.location.href = FREE_ACCOUNT_PAGE;
+  }
+}
 
       // Premium modal
       const payLink = document.getElementById("payLink");
@@ -1258,7 +1260,7 @@
 
           try{
             if(mode === "signin"){
-              const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
               if(error){ authMsg.textContent = humanErr(error); return; }
 
               authMsg.textContent = "Signed in ✅";
@@ -1266,7 +1268,7 @@
 
               // ✅ THIS IS THE FIX YOU WANT:
               // After sign-in, take them to their account (premium.html if premium, else archive.html).
-              await redirectToAccount();
+await redirectToAccount(data?.user);
               return;
             } else {
               const { error } = await supabaseClient.auth.signUp({ email, password });
