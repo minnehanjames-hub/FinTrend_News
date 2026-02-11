@@ -73,8 +73,8 @@
       border-bottom:1px solid rgba(148, 163, 184, 0.22);
       background: radial-gradient(circle at top, #020617 0, #000 65%);
       padding:6px 16px;
-      position:relative; /* ✅ FIX: ensure proper stacking */
-      z-index:0;         /* ✅ FIX: keep ticker behind header row clicks */
+      position:relative;
+      z-index:0;
     }
 
     .headerRow{
@@ -83,8 +83,8 @@
       gap:14px;
       align-items:center;
       padding:14px 18px;
-      position:relative; /* ✅ FIX: clickable header above ticker layer */
-      z-index:2;         /* ✅ FIX */
+      position:relative;
+      z-index:2;
     }
 
     .logo{height:50px;width:auto;display:block}
@@ -110,13 +110,14 @@
 
     .nav{
       display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end;align-items:center;
-      position:relative; /* ✅ FIX */
-      z-index:3;         /* ✅ FIX: keep links/buttons clickable */
+      position:relative;
+      z-index:3;
     }
 
     .navLink{
       font-size:12px;color:var(--muted);
       letter-spacing:.10em;text-transform:uppercase;
+      cursor:pointer;
     }
 
     .btn{
@@ -909,6 +910,7 @@
       // -----------------------------
       const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00"; // unchanged
       const PREMIUM_DASHBOARD = "premium.html";
+      const FREE_DASHBOARD = "archive.html"; // ✅ Where non-premium users go after sign-in
 
       // -----------------------------
       // Modal helpers
@@ -920,9 +922,8 @@
       function closeModal(m){ m.classList.remove("active"); m.setAttribute("aria-hidden","true"); }
 
       const openAuthBtn = document.getElementById("open-auth");
-      const closeAuthBtn = document.getElementById("closeAuth");
 
-      // ✅ FIX: Sign In opens SIGNIN mode, not signup
+      // ✅ Sign In opens SIGNIN mode
       openAuthBtn.addEventListener("click",(e)=>{
         e.preventDefault();
         setMode("signin");
@@ -1035,7 +1036,7 @@
       }
 
       // -----------------------------
-      // Market chart (manual buttons) - NDX removed
+      // Market chart (manual buttons) - NDX removed here
       // -----------------------------
       const rotNow = document.getElementById("rotNow");
 
@@ -1047,7 +1048,6 @@
       // default
       loadRot("FOREXCOM:SPXUSD", "SPX");
 
-      // bind buttons in the rotCard only (data-rot)
       document.querySelectorAll("[data-rot]").forEach(btn=>{
         btn.addEventListener("click",()=>{
           const parentRow = btn.closest(".chartRow");
@@ -1060,7 +1060,7 @@
       });
 
       // -----------------------------
-      // Watch chart buttons
+      // Watch chart buttons (week section)
       // -----------------------------
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
@@ -1100,7 +1100,7 @@
       // Supabase Auth + Premium check
       // -----------------------------
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // <-- PASTE YOUR REAL ANON KEY
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // unchanged
 
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
@@ -1148,26 +1148,6 @@
       // Premium buttons (top + deepdive)
       document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
       document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
-
-      async function routePremium(){
-        if(!supabaseClient){
-          setMode("signin");
-          openModal(authModal);
-          authMsg.textContent = "Sign in first.";
-          return;
-        }
-        const userRes = await supabaseClient.auth.getUser();
-        const user = userRes.data?.user;
-        if(!user){
-          setMode("signup");
-          openModal(authModal);
-          authMsg.textContent = "Create a free account first. You can upgrade anytime.";
-          return;
-        }
-        const isPremium = await checkPremium(user);
-        if(isPremium) window.location.href = PREMIUM_DASHBOARD;
-        else openModal(premiumModal);
-      }
 
       // Init Supabase
       let supabaseClient = null;
@@ -1220,14 +1200,49 @@
         setSignedInUI(user, isPremium);
       }
 
+      async function routePremium(){
+        if(!supabaseClient){
+          setMode("signin");
+          openModal(authModal);
+          authMsg.textContent = "Sign in first.";
+          return;
+        }
+        const userRes = await supabaseClient.auth.getUser();
+        const user = userRes.data?.user;
+        if(!user){
+          setMode("signup");
+          openModal(authModal);
+          authMsg.textContent = "Create a free account first. You can upgrade anytime.";
+          return;
+        }
+        const isPremium = await checkPremium(user);
+        if(isPremium) window.location.href = PREMIUM_DASHBOARD;
+        else openModal(premiumModal);
+      }
+
+      async function safeRedirectAfterSignin(){
+        // ✅ "break-proof": if premium check fails for any reason, still send user somewhere useful.
+        try{
+          const userRes = await supabaseClient.auth.getUser();
+          const user = userRes.data?.user;
+
+          if(!user){
+            // should not happen after successful sign-in, but just in case
+            window.location.href = FREE_DASHBOARD;
+            return;
+          }
+
+          const isPremium = await checkPremium(user);
+          window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_DASHBOARD;
+        } catch(e){
+          window.location.href = FREE_DASHBOARD;
+        }
+      }
+
       (async function initAuth(){
         if(!window.supabase || !window.supabase.createClient){
           console.warn("Supabase not loaded.");
           return;
-        }
-
-        if(SUPABASE_ANON_KEY.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI")){
-          console.warn("⚠️ You forgot to paste your Supabase anon key.");
         }
 
         supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -1250,9 +1265,13 @@
             if(mode === "signin"){
               const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
               if(error){ authMsg.textContent = humanErr(error); return; }
+
               authMsg.textContent = "Signed in ✅";
               closeModal(authModal);
-              await refreshUI();
+
+              // ✅ FIX: actually take them to their account page
+              await safeRedirectAfterSignin();
+              return;
             } else {
               const { error } = await supabaseClient.auth.signUp({ email, password });
               if(error){ authMsg.textContent = humanErr(error); return; }
