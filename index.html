@@ -706,7 +706,7 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + rotating chart -->
+        <!-- Right: Premium spin + market chart (manual buttons) -->
         <div class="rightStack">
           <div class="premiumSpin">
             <div class="orb"></div>
@@ -727,8 +727,16 @@
           <div class="rotCard">
             <div class="rotRing"></div>
             <div class="rotTop">
-              <div class="rotTitle">Rotating market chart</div>
+              <div class="rotTitle">Market chart</div>
               <div class="rotNow" id="rotNow">SPX</div>
+            </div>
+
+            <!-- ✅ Manual buttons, NDX removed -->
+            <div class="chartRow" style="margin-top:0;">
+              <button class="watchBtn active" data-rot="FOREXCOM:SPXUSD" data-label="SPX">SPX</button>
+              <button class="watchBtn" data-rot="OANDA:EURUSD" data-label="EURUSD">EURUSD</button>
+              <button class="watchBtn" data-rot="COINBASE:BTCUSD" data-label="BTC">BTC</button>
+              <button class="watchBtn" data-rot="OANDA:XAUUSD" data-label="Gold">Gold</button>
             </div>
 
             <div class="chartBox">
@@ -736,7 +744,7 @@
             </div>
 
             <div class="reassure" style="margin-top:10px;">
-              Auto-rotates through: SPX → NDX → EURUSD → BTC → Gold.
+              Tap a market to load the chart.
             </div>
           </div>
         </div>
@@ -1020,27 +1028,35 @@
         el.appendChild(s);
       }
 
-      // Rotating chart
-      const rotList = [
-        { label:"SPX", sym:"FOREXCOM:SPXUSD" },
-        { label:"NDX", sym:"NASDAQ:NDX" },
-        { label:"EURUSD", sym:"OANDA:EURUSD" },
-        { label:"BTC", sym:"COINBASE:BTCUSD" },
-        { label:"GOLD", sym:"OANDA:XAUUSD" }
-      ];
-      let rotIdx = 0;
+      // -----------------------------
+      // Market chart (manual buttons) - NDX removed
+      // -----------------------------
       const rotNow = document.getElementById("rotNow");
 
-      function renderRot(){
-        const item = rotList[rotIdx];
-        rotNow.textContent = item.label;
-        loadMiniSymbolOverview("rotChart", item.sym, 260);
-        rotIdx = (rotIdx + 1) % rotList.length;
+      function loadRot(symbol, label){
+        if(rotNow) rotNow.textContent = label || "";
+        loadMiniSymbolOverview("rotChart", symbol, 260);
       }
-      renderRot();
-      setInterval(renderRot, 6500);
 
+      // default
+      loadRot("FOREXCOM:SPXUSD", "SPX");
+
+      // bind buttons in the rotCard only (data-rot)
+      document.querySelectorAll("[data-rot]").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          // only toggle active within that rotCard button row
+          const parentRow = btn.closest(".chartRow");
+          if(parentRow){
+            parentRow.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
+          }
+          btn.classList.add("active");
+          loadRot(btn.getAttribute("data-rot"), btn.getAttribute("data-label"));
+        });
+      });
+
+      // -----------------------------
       // Watch chart buttons
+      // -----------------------------
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
 
@@ -1064,11 +1080,17 @@
 
       loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watchBtn").forEach(btn=>{
-        btn.addEventListener("click",()=>{
-          document.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
-          btn.classList.add("active");
-          loadWatch(btn.dataset.symbol);
-        });
+        // keep existing watch chart behavior ONLY for buttons that have data-symbol (week section)
+        if(btn.hasAttribute("data-symbol")){
+          btn.addEventListener("click",()=>{
+            document.querySelectorAll(".watchBtn").forEach(b=>{
+              // don’t remove active state from the rotCard’s buttons
+              if(b.hasAttribute("data-symbol")) b.classList.remove("active");
+            });
+            btn.classList.add("active");
+            loadWatch(btn.dataset.symbol);
+          });
+        }
       });
 
       // -----------------------------
