@@ -73,12 +73,7 @@
       border-bottom:1px solid rgba(148, 163, 184, 0.22);
       background: radial-gradient(circle at top, #020617 0, #000 65%);
       padding:6px 16px;
-      position:relative;
-      z-index:0;
     }
-    /* (Optional safety) If ticker ever blocks clicks, uncomment:
-       .ticker, .ticker * { pointer-events:none; }
-    */
 
     .headerRow{
       display:grid;
@@ -538,9 +533,7 @@
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
 
-    /* -----------------------------
-       SAMPLE BRIEFING (Evergreen)
-       ----------------------------- */
+    /* Example briefing card (fills the empty space under the hero buttons) */
     .sampleBrief{
       margin-top:14px;
       border:1px solid rgba(148,163,184,0.22);
@@ -679,7 +672,7 @@
             <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
           </div>
 
-          <!-- Example Briefing Format -->
+          <!-- Filled “empty space” with an evergreen sample (no daily updates needed) -->
           <div class="sampleBrief" aria-label="Example Briefing Format">
             <div class="sampleBriefInner">
               <div class="sampleBriefLabel">Example Briefing Format</div>
@@ -711,7 +704,7 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + manual market chart (NDX removed here) -->
+        <!-- Right: Premium spin + manual market chart (NOT rotating, NDX removed here) -->
         <div class="rightStack">
           <div class="premiumSpin">
             <div class="orb"></div>
@@ -869,7 +862,7 @@
       <div class="modalH" id="authTitle">Create Free Account</div>
       <div class="modalP" id="authSubtitle">Create an account to unlock account-gated reads. No credit card.</div>
 
-      <form id="authForm" novalidate>
+      <form id="authForm">
         <input class="in" id="email" type="email" placeholder="Email" required />
         <div style="height:10px"></div>
         <input class="in" id="password" type="password" placeholder="Password" required />
@@ -907,7 +900,7 @@
       // -----------------------------
       const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00"; // unchanged
       const PREMIUM_DASHBOARD = "premium.html";
-      const FREE_DASHBOARD = "archive.html"; // where free users go after sign-in
+      const FREE_ACCOUNT_PAGE = "archive.html"; // where non-premium users go after sign-in
 
       // -----------------------------
       // Modal helpers
@@ -918,16 +911,10 @@
       function openModal(m){ m.classList.add("active"); m.setAttribute("aria-hidden","false"); }
       function closeModal(m){ m.classList.remove("active"); m.setAttribute("aria-hidden","true"); }
 
-      document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
-      authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
-
-      document.getElementById("closePremium").addEventListener("click",()=>closeModal(premiumModal));
-      document.getElementById("closePremium2").addEventListener("click",()=>closeModal(premiumModal));
-      premiumModal.addEventListener("click",(e)=>{ if(e.target===premiumModal) closeModal(premiumModal); });
-
       // -----------------------------
-      // Auth UI elements
+      // Elements
       // -----------------------------
+      const openAuthBtn = document.getElementById("open-auth");
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
       const authSubmit = document.getElementById("authSubmit");
@@ -940,6 +927,14 @@
       const openAuth = document.getElementById("open-auth");
       const premiumStatus = document.getElementById("premiumStatus");
       const premiumStatusTop = document.getElementById("premiumStatusTop");
+
+      // Close buttons
+      document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
+      authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
+
+      document.getElementById("closePremium").addEventListener("click",()=>closeModal(premiumModal));
+      document.getElementById("closePremium2").addEventListener("click",()=>closeModal(premiumModal));
+      premiumModal.addEventListener("click",(e)=>{ if(e.target===premiumModal) closeModal(premiumModal); });
 
       // -----------------------------
       // Mode switching
@@ -962,14 +957,14 @@
       }
       toggleModeBtn.addEventListener("click",()=>setMode(mode==="signup"?"signin":"signup"));
 
-      // Header Sign In always opens signin mode
-      document.getElementById("open-auth").addEventListener("click",(e)=>{
+      // ✅ Sign In opens SIGNIN mode
+      openAuthBtn.addEventListener("click",(e)=>{
         e.preventDefault();
         setMode("signin");
         openModal(authModal);
       });
 
-      // Create account CTAs open signup mode
+      // ✅ Create account CTAs open SIGNUP mode
       [ "cta-create","cta-create-2","cta-create-3" ].forEach(id=>{
         const el = document.getElementById(id);
         if(el) el.addEventListener("click",()=>{ setMode("signup"); openModal(authModal); });
@@ -987,14 +982,46 @@
       // Week map interactive content
       // -----------------------------
       const weekData = {
-        mon: { title:"Monday • Outlook", meta:"Set the week’s bias", desc:"Start with the driver. End with one level that changes your mind.",
-          bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
-        wed: { title:"Wednesday • Momentum", meta:"Mid-week reality check", desc:"What’s working, what’s fading, and whether the move is healthy or crowded.",
-          bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
-        fri: { title:"Friday • Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.",
-          bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
-        sun: { title:"Sunday • Macro Setup", meta:"The map into next week", desc:"What’s priced in, what could surprise, and the one catalyst that matters most.",
-          bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
+        mon: {
+          title: "Monday • Outlook",
+          meta: "Set the week’s bias",
+          desc: "Start with the driver. End with one level that changes your mind.",
+          bullets: [
+            "Primary driver (rates / USD / credit / oil)",
+            "Base case + 1 alternative scenario",
+            "Key level + invalidation"
+          ]
+        },
+        wed: {
+          title: "Wednesday • Momentum",
+          meta: "Mid-week reality check",
+          desc: "What’s working, what’s fading, and whether the move is healthy or crowded.",
+          bullets: [
+            "Leadership + rotation snapshot",
+            "Crowding/stretch note (risk/reward)",
+            "What must happen next for the trend to continue"
+          ]
+        },
+        fri: {
+          title: "Friday • Recap",
+          meta: "What changed (for real)",
+          desc: "Did the driver change? Or just the story? You get the clean answer.",
+          bullets: [
+            "What changed: driver vs narrative vs positioning",
+            "Winners/losers (with why)",
+            "Levels that matter into next week"
+          ]
+        },
+        sun: {
+          title: "Sunday • Macro Setup",
+          meta: "The map into next week",
+          desc: "What’s priced in, what could surprise, and the one catalyst that matters most.",
+          bullets: [
+            "Priced-in vs surprise framing",
+            "2–3 scenarios max",
+            "Catalyst calendar + watch points"
+          ]
+        }
       };
 
       const weekCard = document.getElementById("weekCard");
@@ -1043,7 +1070,9 @@
         el.appendChild(s);
       }
 
-      // Market chart manual buttons
+      // -----------------------------
+      // Right card market chart (manual buttons, NOT rotating)
+      // -----------------------------
       const rotNow = document.getElementById("rotNow");
       function loadRot(symbol, label){
         if(rotNow) rotNow.textContent = label || "";
@@ -1062,7 +1091,9 @@
         });
       });
 
-      // Watch chart (week section)
+      // -----------------------------
+      // Watch chart buttons (week section)
+      // -----------------------------
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
 
@@ -1077,13 +1108,14 @@
         if(!watchFallback) return;
         watchFallback.style.display = "none";
       }
+
       function loadWatch(symbol){
         hideFallback();
         loadMiniSymbolOverview("watchChart", symbol, 300);
         setTimeout(()=>showFallback(symbol), 2500);
       }
-      loadWatch("FOREXCOM:SPXUSD");
 
+      loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watchBtn").forEach(btn=>{
         if(btn.hasAttribute("data-symbol")){
           btn.addEventListener("click",()=>{
@@ -1097,30 +1129,12 @@
       });
 
       // -----------------------------
-      // Supabase Auth + Premium check (BREAK-PROOF)
+      // Supabase Auth + Premium check
       // -----------------------------
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // unchanged
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // unchanged (same as your original message)
 
       let supabaseClient = null;
-      let authReady = false;
-
-      function setSignedOutUI(){
-        chip.style.display = "none";
-        chip.classList.remove("premium");
-        openAuth.style.display = "";
-        signout.style.display = "none";
-        if(premiumStatus) premiumStatus.textContent = "Sign in to check access.";
-        if(premiumStatusTop) premiumStatusTop.textContent = "Sign in to check access.";
-      }
-
-      function setSignedInUI(user, isPremium){
-        chip.style.display = "inline-flex";
-        chip.classList.toggle("premium", !!isPremium);
-        chipText.textContent = (isPremium ? "Premium • " : "Signed in • ") + (user.email || "account");
-        openAuth.style.display = "none";
-        signout.style.display = "";
-      }
 
       async function checkPremium(user){
         try{
@@ -1145,8 +1159,24 @@
         }
       }
 
+      function setSignedOutUI(){
+        chip.style.display = "none";
+        chip.classList.remove("premium");
+        openAuth.style.display = "";
+        signout.style.display = "none";
+        if(premiumStatus) premiumStatus.textContent = "Sign in to check access.";
+        if(premiumStatusTop) premiumStatusTop.textContent = "Sign in to check access.";
+      }
+
+      function setSignedInUI(user, isPremium){
+        chip.style.display = "inline-flex";
+        chip.classList.toggle("premium", !!isPremium);
+        chipText.textContent = (isPremium ? "Premium • " : "Signed in • ") + (user.email || "account");
+        openAuth.style.display = "none";
+        signout.style.display = "";
+      }
+
       async function refreshUI(){
-        if(!supabaseClient){ setSignedOutUI(); return; }
         const { data } = await supabaseClient.auth.getUser();
         const user = data?.user;
         if(!user){ setSignedOutUI(); return; }
@@ -1154,62 +1184,40 @@
         setSignedInUI(user, isPremium);
       }
 
-      async function safeRedirectAfterSignin(){
+      // ✅ After SIGN IN, redirect to account:
+      //    Premium -> premium.html
+      //    Not premium (or cannot verify) -> archive.html
+      async function redirectToAccount(){
         try{
-          const userRes = await supabaseClient.auth.getUser();
-          const user = userRes.data?.user;
+          const { data } = await supabaseClient.auth.getUser();
+          const user = data?.user;
           if(!user){
-            window.location.href = FREE_DASHBOARD;
+            window.location.href = FREE_ACCOUNT_PAGE;
             return;
           }
-          const isPremium = await checkPremium(user);
-          window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_DASHBOARD;
+          let isPremium = false;
+          try{
+            isPremium = await checkPremium(user);
+          } catch(_){}
+          window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
         } catch(e){
-          window.location.href = FREE_DASHBOARD;
+          window.location.href = FREE_ACCOUNT_PAGE;
         }
       }
 
-      async function initAuth(){
-        try{
-          if(!window.supabase || !window.supabase.createClient){
-            authReady = false;
-            return false;
-          }
-          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-            auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage: window.localStorage }
-          });
-
-          signout.addEventListener("click", async (e)=>{
-            e.preventDefault();
-            try{ await supabaseClient.auth.signOut(); } catch(_){}
-            setSignedOutUI();
-          });
-
-          supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
-
-          authReady = true;
-          await refreshUI();
-          return true;
-        } catch(e){
-          authReady = false;
-          return false;
-        }
-      }
-
-      // Premium modal and routing
+      // Premium modal
       const payLink = document.getElementById("payLink");
       payLink.addEventListener("click",(e)=>{ e.preventDefault(); window.open(PAYMENT_LINK,"_blank","noopener"); });
 
+      // Premium buttons (top + deepdive)
       document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
       document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); routePremium(); });
 
       async function routePremium(){
-        if(!supabaseClient || !authReady){
+        if(!supabaseClient){
           setMode("signin");
           openModal(authModal);
           authMsg.textContent = "Sign in first.";
-          // attempt init silently
-          await initAuth();
           return;
         }
         const userRes = await supabaseClient.auth.getUser();
@@ -1225,54 +1233,60 @@
         else openModal(premiumModal);
       }
 
-      // ✅ BREAK-PROOF: attach submit handler ALWAYS (even if Supabase isn't ready yet)
-      document.getElementById("authForm").addEventListener("submit", async (e)=>{
-        e.preventDefault();
-        authMsg.textContent = "";
-
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-        if(!email || !password){
-          authMsg.textContent = "Enter email + password.";
+      // Init Supabase
+      (async function initAuth(){
+        if(!window.supabase || !window.supabase.createClient){
+          console.warn("Supabase not loaded.");
           return;
         }
 
-        authSubmit.disabled = true;
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+          auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage: window.localStorage }
+        });
 
-        try{
-          // If supabase not ready, try init now
-          if(!supabaseClient || !authReady){
-            authMsg.textContent = "Loading sign-in…";
-            const ok = await initAuth();
-            if(!ok){
-              authMsg.textContent = "Auth service didn’t load. Disable adblock and refresh.";
+        // Auth form
+        document.getElementById("authForm").addEventListener("submit", async (e)=>{
+          e.preventDefault();
+          authMsg.textContent = "";
+
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+
+          if(!email || !password){ authMsg.textContent = "Enter email + password."; return; }
+
+          authSubmit.disabled = true;
+
+          try{
+            if(mode === "signin"){
+              const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+              if(error){ authMsg.textContent = humanErr(error); return; }
+
+              authMsg.textContent = "Signed in ✅";
+              closeModal(authModal);
+
+              // ✅ THIS IS THE FIX YOU WANT:
+              // After sign-in, take them to their account (premium.html if premium, else archive.html).
+              await redirectToAccount();
               return;
+            } else {
+              const { error } = await supabaseClient.auth.signUp({ email, password });
+              if(error){ authMsg.textContent = humanErr(error); return; }
+              authMsg.textContent = "Account created. Check email to confirm, then sign in.";
             }
+          } finally {
+            authSubmit.disabled = false;
           }
+        });
 
-          if(mode === "signin"){
-            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-            if(error){ authMsg.textContent = humanErr(error); return; }
+        signout.addEventListener("click", async (e)=>{
+          e.preventDefault();
+          try{ await supabaseClient.auth.signOut(); } catch(_){}
+          setSignedOutUI();
+        });
 
-            authMsg.textContent = "Signed in ✅";
-            closeModal(authModal);
-
-            // ✅ FIX: ALWAYS redirect after sign-in
-            await safeRedirectAfterSignin();
-            return;
-          } else {
-            const { error } = await supabaseClient.auth.signUp({ email, password });
-            if(error){ authMsg.textContent = humanErr(error); return; }
-            authMsg.textContent = "Account created. Check email to confirm, then sign in.";
-          }
-        } finally {
-          authSubmit.disabled = false;
-        }
-      });
-
-      // Init on load (best effort)
-      initAuth();
+        supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
+        await refreshUI();
+      })();
 
       // close modals with ESC
       window.addEventListener("keydown",(e)=>{
@@ -1282,46 +1296,7 @@
         }
       });
 
-      // Optional: surface unexpected JS errors into authMsg if modal open
-      window.addEventListener("error",(ev)=>{
-        try{
-          if(authModal.classList.contains("active")){
-            authMsg.textContent = "Page script error. Open console to see details.";
-          }
-        } catch(_){}
-      });
-
     })();
-    <script>
-  (function(){
-    const msgEl = document.getElementById("authMsg");
-    const form = document.getElementById("authForm");
-    const btn = document.getElementById("authSubmit");
-
-    function say(t){
-      if(msgEl) msgEl.textContent = "[DEBUG] " + t;
-    }
-
-    if(btn){
-      btn.addEventListener("click", () => say("Sign In button clicked"));
-    } else {
-      console.warn("authSubmit not found");
-    }
-
-    if(form){
-      form.addEventListener("submit", () => say("Form submit event fired"));
-    } else {
-      console.warn("authForm not found");
-    }
-
-    // capture ANY submit anywhere (even if the form listener above doesn't attach)
-    document.addEventListener("submit", (e) => {
-      if(e.target && e.target.id === "authForm") say("Document captured authForm submit");
-    }, true);
-
-    say("Debug ready");
-  })();
-</script>
   </script>
 </body>
 </html>
