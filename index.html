@@ -73,6 +73,8 @@
       border-bottom:1px solid rgba(148, 163, 184, 0.22);
       background: radial-gradient(circle at top, #020617 0, #000 65%);
       padding:6px 16px;
+      position:relative; /* ✅ FIX: ensure proper stacking */
+      z-index:0;         /* ✅ FIX: keep ticker behind header row clicks */
     }
 
     .headerRow{
@@ -81,6 +83,8 @@
       gap:14px;
       align-items:center;
       padding:14px 18px;
+      position:relative; /* ✅ FIX: clickable header above ticker layer */
+      z-index:2;         /* ✅ FIX */
     }
 
     .logo{height:50px;width:auto;display:block}
@@ -106,6 +110,8 @@
 
     .nav{
       display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end;align-items:center;
+      position:relative; /* ✅ FIX */
+      z-index:3;         /* ✅ FIX: keep links/buttons clickable */
     }
 
     .navLink{
@@ -311,7 +317,7 @@
       margin-bottom:10px;
     }
 
-    /* Rotating chart card */
+    /* Market chart card */
     .rotCard{
       border-radius:18px;
       border:1px solid rgba(148,163,184,0.22);
@@ -706,7 +712,7 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + market chart (manual buttons) -->
+        <!-- Right: Premium spin + market chart (manual buttons, NDX removed here) -->
         <div class="rightStack">
           <div class="premiumSpin">
             <div class="orb"></div>
@@ -1044,7 +1050,6 @@
       // bind buttons in the rotCard only (data-rot)
       document.querySelectorAll("[data-rot]").forEach(btn=>{
         btn.addEventListener("click",()=>{
-          // only toggle active within that rotCard button row
           const parentRow = btn.closest(".chartRow");
           if(parentRow){
             parentRow.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
@@ -1080,11 +1085,9 @@
 
       loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watchBtn").forEach(btn=>{
-        // keep existing watch chart behavior ONLY for buttons that have data-symbol (week section)
         if(btn.hasAttribute("data-symbol")){
           btn.addEventListener("click",()=>{
             document.querySelectorAll(".watchBtn").forEach(b=>{
-              // don’t remove active state from the rotCard’s buttons
               if(b.hasAttribute("data-symbol")) b.classList.remove("active");
             });
             btn.classList.add("active");
