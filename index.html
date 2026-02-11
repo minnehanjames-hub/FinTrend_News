@@ -531,6 +531,71 @@
     }
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
+
+    /* -----------------------------
+       SAMPLE BRIEFING (Evergreen)
+       Inserted under hero buttons
+       ----------------------------- */
+    .sampleBrief{
+      margin-top:14px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.35);
+      border-radius:18px;
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .sampleBrief::before{
+      content:"";
+      position:absolute;
+      inset:-45%;
+      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .sampleBriefInner{position:relative;z-index:1}
+    .sampleBriefLabel{
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .sampleBriefRow{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:10px;
+    }
+    .sampleBriefTag{
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+      min-width:92px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.25);
+      line-height:1.2;
+      margin-top:1px;
+      white-space:nowrap;
+    }
+    .sampleBriefText{
+      font-size:13px;
+      color:#e5e7eb;
+      line-height:1.45;
+    }
+    .sampleBriefFoot{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:8px;
+      opacity:.85;
+    }
+    @media (max-width:520px){
+      .sampleBriefRow{flex-direction:column;gap:6px}
+      .sampleBriefTag{min-width:auto;align-self:flex-start}
+    }
   </style>
 </head>
 
@@ -607,6 +672,35 @@
           <div class="heroActions">
             <button class="btn btnPrimary" id="cta-create-2">Create Free Account</button>
             <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
+          </div>
+
+          <!-- ✅ Inserted exactly under the two buttons -->
+          <div class="sampleBrief" aria-label="Example Briefing Format">
+            <div class="sampleBriefInner">
+              <div class="sampleBriefLabel">Example Briefing Format</div>
+
+              <div class="sampleBriefRow">
+                <div class="sampleBriefTag">Driver</div>
+                <div class="sampleBriefText">Inflation surprise shifts rate expectations.</div>
+              </div>
+
+              <div class="sampleBriefRow">
+                <div class="sampleBriefTag">Bias</div>
+                <div class="sampleBriefText">Short-term risk-off while yields stabilize.</div>
+              </div>
+
+              <div class="sampleBriefRow">
+                <div class="sampleBriefTag">Key Levels</div>
+                <div class="sampleBriefText">Support / resistance zones to monitor.</div>
+              </div>
+
+              <div class="sampleBriefRow" style="margin-bottom:0;">
+                <div class="sampleBriefTag">Catalyst</div>
+                <div class="sampleBriefText">Upcoming central bank commentary.</div>
+              </div>
+
+              <div class="sampleBriefFoot">*Illustrative example. Educational content only.</div>
+            </div>
           </div>
 
           <div class="reassure">No credit card • Email used for login</div>
