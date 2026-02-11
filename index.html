@@ -1292,6 +1292,36 @@
       });
 
     })();
+    <script>
+  (function(){
+    const msgEl = document.getElementById("authMsg");
+    const form = document.getElementById("authForm");
+    const btn = document.getElementById("authSubmit");
+
+    function say(t){
+      if(msgEl) msgEl.textContent = "[DEBUG] " + t;
+    }
+
+    if(btn){
+      btn.addEventListener("click", () => say("Sign In button clicked"));
+    } else {
+      console.warn("authSubmit not found");
+    }
+
+    if(form){
+      form.addEventListener("submit", () => say("Form submit event fired"));
+    } else {
+      console.warn("authForm not found");
+    }
+
+    // capture ANY submit anywhere (even if the form listener above doesn't attach)
+    document.addEventListener("submit", (e) => {
+      if(e.target && e.target.id === "authForm") say("Document captured authForm submit");
+    }, true);
+
+    say("Debug ready");
+  })();
+</script>
   </script>
 </body>
 </html>
