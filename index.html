@@ -1192,65 +1192,78 @@
         });
 
         // Auth form handler (guaranteed)
-        document.getElementById("authForm").addEventListener("submit", async (e)=>{
-          e.preventDefault();
-          authMsg.textContent = "";
+       document.getElementById("authForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  authMsg.textContent = "";
 
-          const email = document.getElementById("email").value.trim();
-          const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-          if(!email || !password){
-            authMsg.textContent = "Enter email + password.";
-            return;
-          }
+  if (!email || !password) {
+    authMsg.textContent = "Enter email + password.";
+    return;
+  }
 
-          authSubmit.disabled = true;
+  // HARD RESET button state every submit
+  authSubmit.disabled = true;
+  authSubmit.setAttribute("aria-busy", "true");
 
-          try{
-            if(mode === "signin"){
-              const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-              if(error){
-                authMsg.textContent = humanErr(error);
-                return;
-              }
+  try {
+    if (!supabaseClient) {
+      authMsg.textContent = "Auth not ready. Refresh the page and try again.";
+      return;
+    }
 
-              await refreshUI();
-              closeModal(authModal);
-              setTimeout(()=>redirectToAccount(), 0);
-              return;
-            } else {
-              const { error } = await supabaseClient.auth.signUp({ email, password });
-              if(error){
-                authMsg.textContent = humanErr(error);
-                return;
-              }
-              authMsg.textContent = "Account created. Check email to confirm, then sign in.";
-            }
-          } catch(err){
-            console.error(err);
-            authMsg.textContent = "Unexpected error. Try again.";
-          } finally {
-            authSubmit.disabled = false;
-          }
-        });
+    if (mode === "signin") {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-        signout.addEventListener("click", async (e)=>{
-          e.preventDefault();
-          try{ await supabaseClient.auth.signOut(); } catch(_){}
-          setSignedOutUI();
-        });
+      if (error) {
+        authMsg.textContent = humanErr(error) + " (" + (error.message || "sign-in error") + ")";
+        return;
+      }
 
-        supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
-        await refreshUI();
-      })();
+      // If sign-in succeeded, data.user should exist
+      if (!data || !data.user) {
+        authMsg.textContent = "Signed in, but no user returned. Refresh and try again.";
+        return;
+      }
 
-      // ESC closes modals
-      window.addEventListener("keydown",(e)=>{
-        if(e.key === "Escape"){
-          closeModal(authModal);
-          closeModal(premiumModal);
-        }
-      });
+      // Update UI immediately (chip/sign out)
+      await refreshUI();
+
+      authMsg.textContent = "Signed in ✅";
+      closeModal(authModal);
+
+      // Route based on premium
+      await redirectToAccount(data.user);
+      return;
+    }
+
+    // SIGN UP
+    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+    if (error) {
+      authMsg.textContent = humanErr(error) + " (" + (error.message || "sign-up error") + ")";
+      return;
+    }
+
+    // If email confirmations are ON, this is normal:
+    authMsg.textContent = "Account created. Check email to confirm, then sign in.";
+  } catch (err) {
+    console.error("AUTH THROW:", err);
+
+    const msg =
+      (err && err.message) ? err.message :
+      (typeof err === "string") ? err :
+      JSON.stringify(err);
+
+    authMsg.textContent = "Unexpected error: " + msg;
+  } finally {
+    // GUARANTEED re-enable no matter what
+    authSubmit.disabled = false;
+    authSubmit.removeAttribute("aria-busy");
+  }
+});
 
     })();
   </script>
