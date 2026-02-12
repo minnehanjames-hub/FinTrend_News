@@ -22,7 +22,7 @@
   </script>
 
   <!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <style>
     :root{
@@ -672,7 +672,6 @@
             <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
           </div>
 
-          <!-- Filled “empty space” with an evergreen sample (no daily updates needed) -->
           <div class="sampleBrief" aria-label="Example Briefing Format">
             <div class="sampleBriefInner">
               <div class="sampleBriefLabel">Example Briefing Format</div>
@@ -704,7 +703,6 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + manual market chart (NOT rotating, NDX removed here) -->
         <div class="rightStack">
           <div class="premiumSpin">
             <div class="orb"></div>
@@ -918,7 +916,6 @@
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
       const authSubmit = document.getElementById("authSubmit");
-      authSubmit.disabled = false;
       const toggleModeBtn = document.getElementById("toggleMode");
       const authMsg = document.getElementById("authMsg");
 
@@ -928,6 +925,9 @@
       const openAuth = document.getElementById("open-auth");
       const premiumStatus = document.getElementById("premiumStatus");
       const premiumStatusTop = document.getElementById("premiumStatusTop");
+
+      // Always start enabled (prevents "dead button" state)
+      if (authSubmit) authSubmit.disabled = false;
 
       // Close buttons
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
@@ -943,7 +943,9 @@
       let mode = "signup";
       function setMode(m){
         mode = m;
-        authMsg.textContent = "";
+        if(authMsg) authMsg.textContent = "";
+        if(authSubmit) authSubmit.disabled = false;
+
         if(mode === "signup"){
           authTitle.textContent = "Create Free Account";
           authSubtitle.textContent = "Create an account to unlock account-gated reads. No credit card.";
@@ -972,11 +974,12 @@
       });
 
       function humanErr(err){
-        const msg = (err && err.message ? String(err.message) : "").toLowerCase();
+        const raw = (err && err.message) ? String(err.message) : String(err || "");
+        const msg = raw.toLowerCase();
         if (msg.includes("invalid login") || msg.includes("credentials")) return "Wrong email or password.";
         if (msg.includes("email not confirmed")) return "Confirm your email, then sign in.";
         if (msg.includes("rate limit") || msg.includes("too many")) return "Too many attempts. Try again in a minute.";
-        return "Something went wrong. Try again.";
+        return raw || "Something went wrong. Try again.";
       }
 
       // -----------------------------
@@ -1133,12 +1136,14 @@
       // Supabase Auth + Premium check
       // -----------------------------
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI"; // unchanged (same as your original message)
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
 
       let supabaseClient = null;
 
       async function checkPremium(user){
         try{
+          if(!supabaseClient || !user) return false;
+
           const { data, error } = await supabaseClient
             .from("profiles")
             .select("is_premium,email")
@@ -1149,8 +1154,8 @@
             ? "Premium member ✅"
             : "Not premium — upgrade to unlock deep dives.";
 
-          if(premiumStatus) premiumStatus.textContent = (error || !data) ? "Signed in. Premium status can’t be verified right now." : msg;
-          if(premiumStatusTop) premiumStatusTop.textContent = (error || !data) ? "Signed in. Premium status can’t be verified right now." : msg;
+          if(premiumStatus) premiumStatus.textContent = (error) ? "Signed in. Premium status can’t be verified right now." : msg;
+          if(premiumStatusTop) premiumStatusTop.textContent = (error) ? "Signed in. Premium status can’t be verified right now." : msg;
 
           return !!(data && data.is_premium);
         } catch(e){
@@ -1177,36 +1182,36 @@
         signout.style.display = "";
       }
 
+      // ✅ Use getSession (reliable) instead of getUser (can fail even when session exists)
       async function refreshUI(){
-        const { data } = await supabaseClient.auth.getUser();
-        const user = data?.user;
+        if(!supabaseClient) { setSignedOutUI(); return; }
+
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        const user = session?.user;
+
         if(!user){ setSignedOutUI(); return; }
+
         const isPremium = await checkPremium(user);
         setSignedInUI(user, isPremium);
       }
 
-      // ✅ After SIGN IN, redirect to account:
-      //    Premium -> premium.html
-      //    Not premium (or cannot verify) -> archive.html
-     async function redirectToAccount(passedUser){
-  try{
-    const user = passedUser || (await supabaseClient.auth.getUser()).data?.user;
+      // ✅ Redirect based on session
+      async function redirectToAccount(){
+        try{
+          const { data: { session } } = await supabaseClient.auth.getSession();
+          const user = session?.user;
 
-    if(!user){
-      window.location.href = FREE_ACCOUNT_PAGE;
-      return;
-    }
+          if(!user){
+            window.location.href = FREE_ACCOUNT_PAGE;
+            return;
+          }
 
-    let isPremium = false;
-    try{
-      isPremium = await checkPremium(user);
-    } catch(_){}
-
-    window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
-  } catch(e){
-    window.location.href = FREE_ACCOUNT_PAGE;
-  }
-}
+          const isPremium = await checkPremium(user);
+          window.location.href = isPremium ? "premium.html" : "archive.html";
+        } catch(e){
+          window.location.href = FREE_ACCOUNT_PAGE;
+        }
+      }
 
       // Premium modal
       const payLink = document.getElementById("payLink");
@@ -1223,16 +1228,19 @@
           authMsg.textContent = "Sign in first.";
           return;
         }
-        const userRes = await supabaseClient.auth.getUser();
-        const user = userRes.data?.user;
+
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        const user = session?.user;
+
         if(!user){
           setMode("signup");
           openModal(authModal);
           authMsg.textContent = "Create a free account first. You can upgrade anytime.";
           return;
         }
+
         const isPremium = await checkPremium(user);
-        if(isPremium) window.location.href = PREMIUM_DASHBOARD;
+        if(isPremium) window.location.href = "premium.html";
         else openModal(premiumModal);
       }
 
@@ -1248,61 +1256,57 @@
         });
 
         // Auth form
-       document.getElementById("authForm").addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  authMsg.textContent = "";
+        document.getElementById("authForm").addEventListener("submit", async (e)=>{
+          e.preventDefault();
+          authMsg.textContent = "";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
 
-  if(!email || !password){
-    authMsg.textContent = "Enter email + password.";
-    return;
-  }
+          if(!email || !password){
+            authMsg.textContent = "Enter email + password.";
+            return;
+          }
 
-  authSubmit.disabled = true;
+          authSubmit.disabled = true;
 
-  try{
+          try{
+            if(mode === "signin"){
+              const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-    if(mode === "signin"){
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({ email, password });
+              if(error){
+                authMsg.textContent = humanErr(error);
+                authSubmit.disabled = false;
+                return;
+              }
 
-      if(error){
-        authMsg.textContent = humanErr(error);
-        authSubmit.disabled = false;
-        return;
-      }
+              // Update UI immediately, then redirect
+              await refreshUI();
 
-      authMsg.textContent = "Signed in ✅";
-      closeModal(authModal);
+              authMsg.textContent = "Signed in ✅";
+              closeModal(authModal);
 
-      setTimeout(() => redirectToAccount(), 0);
-      return;
-    }
+              setTimeout(() => redirectToAccount(), 0);
+              return;
+            }
 
-    // SIGN UP
-    const { error } =
-      await supabaseClient.auth.signUp({ email, password });
+            // SIGN UP
+            const { error } = await supabaseClient.auth.signUp({ email, password });
 
-    if(error){
-      authMsg.textContent = humanErr(error);
-      authSubmit.disabled = false;
-      return;
-    }
+            if(error){
+              authMsg.textContent = humanErr(error);
+              authSubmit.disabled = false;
+              return;
+            }
 
-    authMsg.textContent =
-      "Account created. Check email to confirm, then sign in.";
-
-  } catch(err){
-    console.error(err);
-    authMsg.textContent = "Unexpected error. Try again.";
-    authSubmit.disabled = false;
-    return;
-  }
-
-  authSubmit.disabled = false;
-});
+            authMsg.textContent = "Account created. Check email to confirm, then sign in.";
+          } catch(err){
+            console.error(err);
+            authMsg.textContent = "Unexpected error. Try again.";
+          } finally {
+            authSubmit.disabled = false;
+          }
+        });
 
         signout.addEventListener("click", async (e)=>{
           e.preventDefault();
@@ -1310,7 +1314,11 @@
           setSignedOutUI();
         });
 
-        supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
+        // ✅ Update UI on auth changes (uses session directly)
+        supabaseClient.auth.onAuthStateChange(async (_event, _session) => {
+          await refreshUI();
+        });
+
         await refreshUI();
       })();
 
