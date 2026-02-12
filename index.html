@@ -918,6 +918,7 @@
       const authTitle = document.getElementById("authTitle");
       const authSubtitle = document.getElementById("authSubtitle");
       const authSubmit = document.getElementById("authSubmit");
+      authSubmit.disabled = false;
       const toggleModeBtn = document.getElementById("toggleMode");
       const authMsg = document.getElementById("authMsg");
 
@@ -1247,38 +1248,61 @@
         });
 
         // Auth form
-        document.getElementById("authForm").addEventListener("submit", async (e)=>{
-          e.preventDefault();
-          authMsg.textContent = "";
+       document.getElementById("authForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  authMsg.textContent = "";
 
-          const email = document.getElementById("email").value.trim();
-          const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-          if(!email || !password){ authMsg.textContent = "Enter email + password."; return; }
+  if(!email || !password){
+    authMsg.textContent = "Enter email + password.";
+    return;
+  }
 
-          authSubmit.disabled = true;
+  authSubmit.disabled = true;
 
-          try{
-            if(mode === "signin"){
-const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-              if(error){ authMsg.textContent = humanErr(error); return; }
+  try{
 
-              authMsg.textContent = "Signed in ✅";
-              closeModal(authModal);
+    if(mode === "signin"){
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({ email, password });
 
-              // ✅ THIS IS THE FIX YOU WANT:
-              // After sign-in, take them to their account (premium.html if premium, else archive.html).
-await redirectToAccount(data?.user);
-              return;
-            } else {
-              const { error } = await supabaseClient.auth.signUp({ email, password });
-              if(error){ authMsg.textContent = humanErr(error); return; }
-              authMsg.textContent = "Account created. Check email to confirm, then sign in.";
-            }
-          } finally {
-            authSubmit.disabled = false;
-          }
-        });
+      if(error){
+        authMsg.textContent = humanErr(error);
+        authSubmit.disabled = false;
+        return;
+      }
+
+      authMsg.textContent = "Signed in ✅";
+      closeModal(authModal);
+
+      setTimeout(() => redirectToAccount(), 0);
+      return;
+    }
+
+    // SIGN UP
+    const { error } =
+      await supabaseClient.auth.signUp({ email, password });
+
+    if(error){
+      authMsg.textContent = humanErr(error);
+      authSubmit.disabled = false;
+      return;
+    }
+
+    authMsg.textContent =
+      "Account created. Check email to confirm, then sign in.";
+
+  } catch(err){
+    console.error(err);
+    authMsg.textContent = "Unexpected error. Try again.";
+    authSubmit.disabled = false;
+    return;
+  }
+
+  authSubmit.disabled = false;
+});
 
         signout.addEventListener("click", async (e)=>{
           e.preventDefault();
