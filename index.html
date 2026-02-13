@@ -891,7 +891,6 @@
     </div>
   </div>
 
-  <!-- ✅ FIXED SCRIPT (only changes are here) -->
   <script>
     (function(){
       "use strict";
@@ -1126,10 +1125,13 @@
         setSignedInUI(user, isPremium);
       }
 
-      async function redirectToAccount(){
+      async function redirectToAccount(passedUser){
         try{
-          const { data: { session } } = await supabaseClient.auth.getSession();
-          const user = session?.user;
+          let user = passedUser;
+          if(!user){
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            user = session?.user;
+          }
           if(!user){ window.location.href = FREE_ACCOUNT_PAGE; return; }
           const isPremium = await checkPremium(user);
           window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
@@ -1165,7 +1167,7 @@
         else openModal(premiumModal);
       }
 
-      // ✅ Wait for Supabase to fully expose createClient (fixes your “second thing is undefined”)
+      // Wait for Supabase to fully expose createClient
       async function waitForCreateClient(timeoutMs = 8000){
         const start = Date.now();
         while(Date.now() - start < timeoutMs){
@@ -1192,78 +1194,93 @@
         });
 
         // Auth form handler (guaranteed)
-       document.getElementById("authForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  authMsg.textContent = "";
+        document.getElementById("authForm").addEventListener("submit", async (e) => {
+          e.preventDefault();
+          authMsg.textContent = "";
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
 
-  if (!email || !password) {
-    authMsg.textContent = "Enter email + password.";
-    return;
-  }
+          if (!email || !password) {
+            authMsg.textContent = "Enter email + password.";
+            return;
+          }
 
-  // HARD RESET button state every submit
-  authSubmit.disabled = true;
-  authSubmit.setAttribute("aria-busy", "true");
+          authSubmit.disabled = true;
+          authSubmit.setAttribute("aria-busy", "true");
 
-  try {
-    if (!supabaseClient) {
-      authMsg.textContent = "Auth not ready. Refresh the page and try again.";
-      return;
-    }
+          try {
+            if (!supabaseClient) {
+              authMsg.textContent = "Auth not ready. Refresh the page and try again.";
+              return;
+            }
 
-    if (mode === "signin") {
-      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            if (mode === "signin") {
+              const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-      if (error) {
-        authMsg.textContent = humanErr(error) + " (" + (error.message || "sign-in error") + ")";
-        return;
-      }
+              if (error) {
+                authMsg.textContent = humanErr(error);
+                return;
+              }
 
-      // If sign-in succeeded, data.user should exist
-      if (!data || !data.user) {
-        authMsg.textContent = "Signed in, but no user returned. Refresh and try again.";
-        return;
-      }
+              if (!data || !data.user) {
+                authMsg.textContent = "Signed in, but no user returned. Refresh and try again.";
+                return;
+              }
 
-      // Update UI immediately (chip/sign out)
-      await refreshUI();
+              await refreshUI();
+              authMsg.textContent = "Signed in ✅";
+              closeModal(authModal);
 
-      authMsg.textContent = "Signed in ✅";
-      closeModal(authModal);
+              await redirectToAccount(data.user);
+              return;
+            }
 
-      // Route based on premium
-      await redirectToAccount(data.user);
-      return;
-    }
+            // SIGN UP
+            const { error } = await supabaseClient.auth.signUp({ email, password });
 
-    // SIGN UP
-    const { data, error } = await supabaseClient.auth.signUp({ email, password });
+            if (error) {
+              authMsg.textContent = humanErr(error);
+              return;
+            }
 
-    if (error) {
-      authMsg.textContent = humanErr(error) + " (" + (error.message || "sign-up error") + ")";
-      return;
-    }
+            authMsg.textContent = "Account created. Check email to confirm, then sign in.";
+          } catch (err) {
+            console.error("AUTH THROW:", err);
 
-    // If email confirmations are ON, this is normal:
-    authMsg.textContent = "Account created. Check email to confirm, then sign in.";
-  } catch (err) {
-    console.error("AUTH THROW:", err);
+            const msg =
+              (err && err.message) ? err.message :
+              (typeof err === "string") ? err :
+              JSON.stringify(err);
 
-    const msg =
-      (err && err.message) ? err.message :
-      (typeof err === "string") ? err :
-      JSON.stringify(err);
+            authMsg.textContent = "Unexpected error: " + msg;
+          } finally {
+            authSubmit.disabled = false;
+            authSubmit.removeAttribute("aria-busy");
+          }
+        });
 
-    authMsg.textContent = "Unexpected error: " + msg;
-  } finally {
-    // GUARANTEED re-enable no matter what
-    authSubmit.disabled = false;
-    authSubmit.removeAttribute("aria-busy");
-  }
-});
+        // Sign out handler
+        signout.addEventListener("click", async (e)=>{
+          e.preventDefault();
+          try{ await supabaseClient.auth.signOut(); } catch(_){}
+          setSignedOutUI();
+        });
+
+        // Keep UI in sync with auth state
+        supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
+
+        // Initial UI
+        await refreshUI();
+      })();
+
+      // close modals with ESC
+      window.addEventListener("keydown",(e)=>{
+        if(e.key === "Escape"){
+          closeModal(authModal);
+          closeModal(premiumModal);
+        }
+      });
 
     })();
   </script>
