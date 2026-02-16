@@ -127,6 +127,7 @@
     }
     .btnPrimary{background:var(--accent);color:#000;box-shadow: 0 12px 28px rgba(244,193,93,0.16);}
     .btnPrimary:hover{background:#f7d680;transform:translateY(-1px)}
+    .btnPrimary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
     .btnGhost{
       background: rgba(2,6,23,0.35);
       border:1px solid rgba(148, 163, 184, 0.30);
@@ -672,7 +673,7 @@
             <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
           </div>
 
-          <!-- Filled “empty space” with an evergreen sample (no daily updates needed) -->
+          <!-- Filled "empty space" with an evergreen sample (no daily updates needed) -->
           <div class="sampleBrief" aria-label="Example Briefing Format">
             <div class="sampleBriefInner">
               <div class="sampleBriefLabel">Example Briefing Format</div>
@@ -760,7 +761,7 @@
       <div class="weekGrid">
         <div class="weekLeft">
           <div class="kicker">Same framework • different job</div>
-          <h3>4 formats so you always know what you’re getting.</h3>
+          <h3>4 formats so you always know what you're getting.</h3>
           <p>
             Pick a day. The card updates instantly. This is designed to make the schedule feel real (and worth signing up for),
             without talking about premium or payments.
@@ -799,7 +800,7 @@
             <div class="chartBox">
               <div id="watchChart"></div>
               <div id="watchFallback" class="reassure" style="display:none;margin-top:10px;">
-                Chart didn’t load. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a>
+                Chart didn't load. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a>
               </div>
             </div>
           </div>
@@ -821,12 +822,12 @@
           <div class="cardTag">What it is</div>
           <div class="cardTitle">A Deep Dive = one topic, fully mapped.</div>
           <div class="cardText">
-            This is not “news.” It’s a focused report on a sector/theme/trend:
+            This is not "news." It's a focused report on a sector/theme/trend:
             <ul>
-              <li><strong>Driver:</strong> what’s actually moving it</li>
+              <li><strong>Driver:</strong> what's actually moving it</li>
               <li><strong>Winners/Losers:</strong> who benefits + who gets hurt</li>
               <li><strong>Catalysts:</strong> what events change the story</li>
-              <li><strong>Levels:</strong> the “if this breaks, we’re wrong” points</li>
+              <li><strong>Levels:</strong> the "if this breaks, we're wrong" points</li>
             </ul>
           </div>
         </div>
@@ -835,7 +836,7 @@
           <div class="cardTag">Premium (unchanged logic)</div>
           <div class="cardTitle">Premium Deep Dives</div>
           <div class="cardText">
-            If you’re premium, you go to the dashboard. If not, you’ll see the upgrade.
+            If you're premium, you go to the dashboard. If not, you'll see the upgrade.
             <div class="row" style="margin-top:12px;">
               <button class="btn btnPrimary" id="goPremium">View premium</button>
               <a class="btn btnGhost" href="archive.html">Stay on free</a>
@@ -970,10 +971,10 @@
 
       // Week map content
       const weekData = {
-        mon: { title:"Monday • Outlook", meta:"Set the week’s bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
-        wed: { title:"Wednesday • Momentum", meta:"Mid-week reality check", desc:"What’s working, what’s fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
+        mon: { title:"Monday • Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
+        wed: { title:"Wednesday • Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
         fri: { title:"Friday • Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.", bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
-        sun: { title:"Sunday • Macro Setup", meta:"The map into next week", desc:"What’s priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
+        sun: { title:"Sunday • Macro Setup", meta:"The map into next week", desc:"What's priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
       };
 
       const weekCard = document.getElementById("weekCard");
@@ -1105,13 +1106,13 @@
             ? "Premium member ✅"
             : "Not premium — upgrade to unlock deep dives.";
 
-          if(premiumStatus) premiumStatus.textContent = (error) ? "Signed in. Premium status can’t be verified right now." : msg;
-          if(premiumStatusTop) premiumStatusTop.textContent = (error) ? "Signed in. Premium status can’t be verified right now." : msg;
+          if(premiumStatus) premiumStatus.textContent = (error) ? "Signed in. Premium status can't be verified right now." : msg;
+          if(premiumStatusTop) premiumStatusTop.textContent = (error) ? "Signed in. Premium status can't be verified right now." : msg;
 
           return !!(data && data.is_premium);
         } catch(e){
-          if(premiumStatus) premiumStatus.textContent = "Signed in. Premium status can’t be verified right now.";
-          if(premiumStatusTop) premiumStatusTop.textContent = "Signed in. Premium status can’t be verified right now.";
+          if(premiumStatus) premiumStatus.textContent = "Signed in. Premium status can't be verified right now.";
+          if(premiumStatusTop) premiumStatusTop.textContent = "Signed in. Premium status can't be verified right now.";
           return false;
         }
       }
@@ -1167,111 +1168,127 @@
         else openModal(premiumModal);
       }
 
-      // Wait for Supabase to fully expose createClient
-      async function waitForCreateClient(timeoutMs = 8000){
-        const start = Date.now();
-        while(Date.now() - start < timeoutMs){
-          const cc =
-            (window.supabase && typeof window.supabase.createClient === "function" && window.supabase.createClient) ||
-            (typeof window.createClient === "function" && window.createClient);
+      // Initialize Supabase immediately (simplified approach)
+      (function initAuth(){
+        console.log("Initializing Supabase...");
+        
+        // Wait for Supabase library to load
+        const checkSupabase = setInterval(() => {
+          if (window.supabase && window.supabase.createClient) {
+            clearInterval(checkSupabase);
+            
+            console.log("Supabase library loaded, creating client...");
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+              auth: { 
+                persistSession: true, 
+                autoRefreshToken: true, 
+                detectSessionInUrl: true, 
+                storage: window.localStorage 
+              }
+            });
 
-          if(cc) return cc;
-          await new Promise(r => setTimeout(r, 50));
-        }
-        return null;
-      }
+            console.log("Supabase client created:", !!supabaseClient);
 
-      (async function initAuth(){
-        const createClientFn = await waitForCreateClient();
-        if(!createClientFn){
-          console.error("Supabase createClient is not available.");
-          if(authMsg) authMsg.textContent = "Auth failed to load. Please refresh (hard refresh) and try again.";
-          return;
-        }
+            // Auth form handler
+            const authForm = document.getElementById("authForm");
+            authForm.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              console.log("Form submitted, mode:", mode);
+              
+              authMsg.textContent = "";
 
-        supabaseClient = createClientFn(SUPABASE_URL, SUPABASE_ANON_KEY, {
-          auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage: window.localStorage }
-        });
+              const email = document.getElementById("email").value.trim();
+              const password = document.getElementById("password").value;
 
-        // Auth form handler (guaranteed)
-        document.getElementById("authForm").addEventListener("submit", async (e) => {
-          e.preventDefault();
-          authMsg.textContent = "";
+              console.log("Email:", email, "Password length:", password.length);
 
-          const email = document.getElementById("email").value.trim();
-          const password = document.getElementById("password").value;
-
-          if (!email || !password) {
-            authMsg.textContent = "Enter email + password.";
-            return;
-          }
-
-          authSubmit.disabled = true;
-          authSubmit.setAttribute("aria-busy", "true");
-
-          try {
-            if (!supabaseClient) {
-              authMsg.textContent = "Auth not ready. Refresh the page and try again.";
-              return;
-            }
-
-            if (mode === "signin") {
-              const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-
-              if (error) {
-                authMsg.textContent = humanErr(error);
+              if (!email || !password) {
+                authMsg.textContent = "Enter email + password.";
                 return;
               }
 
-              if (!data || !data.user) {
-                authMsg.textContent = "Signed in, but no user returned. Refresh and try again.";
-                return;
-              }
+              authSubmit.disabled = true;
+              authSubmit.textContent = mode === "signin" ? "Signing in..." : "Creating account...";
 
+              try {
+                if (!supabaseClient) {
+                  authMsg.textContent = "Auth not ready. Refresh the page and try again.";
+                  return;
+                }
+
+                if (mode === "signin") {
+                  console.log("Attempting sign in...");
+                  const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+                  console.log("Sign in response:", { data, error });
+
+                  if (error) {
+                    console.error("Sign in error:", error);
+                    authMsg.textContent = humanErr(error);
+                    return;
+                  }
+
+                  if (!data || !data.user) {
+                    authMsg.textContent = "Signed in, but no user returned. Refresh and try again.";
+                    return;
+                  }
+
+                  await refreshUI();
+                  authMsg.textContent = "Signed in ✅";
+                  setTimeout(() => closeModal(authModal), 500);
+                  await redirectToAccount(data.user);
+                  return;
+                }
+
+                // SIGN UP
+                console.log("Attempting sign up...");
+                const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+                console.log("Sign up response:", { data, error });
+
+                if (error) {
+                  console.error("Sign up error:", error);
+                  authMsg.textContent = humanErr(error);
+                  return;
+                }
+
+                authMsg.textContent = "Account created! Check your email to confirm, then sign in.";
+              } catch (err) {
+                console.error("AUTH THROW:", err);
+                authMsg.textContent = "Unexpected error: " + (err.message || String(err));
+              } finally {
+                authSubmit.disabled = false;
+                authSubmit.textContent = mode === "signin" ? "Sign in" : "Create Free Account";
+              }
+            });
+
+            // Sign out handler
+            signout.addEventListener("click", async (e)=>{
+              e.preventDefault();
+              console.log("Sign out clicked");
+              try{ await supabaseClient.auth.signOut(); } catch(e){ console.error("Sign out error:", e); }
+              setSignedOutUI();
+            });
+
+            // Keep UI in sync with auth state
+            supabaseClient.auth.onAuthStateChange(async (event, session)=>{
+              console.log("Auth state changed:", event, session);
               await refreshUI();
-              authMsg.textContent = "Signed in ✅";
-              closeModal(authModal);
+            });
 
-              await redirectToAccount(data.user);
-              return;
-            }
-
-            // SIGN UP
-            const { error } = await supabaseClient.auth.signUp({ email, password });
-
-            if (error) {
-              authMsg.textContent = humanErr(error);
-              return;
-            }
-
-            authMsg.textContent = "Account created. Check email to confirm, then sign in.";
-          } catch (err) {
-            console.error("AUTH THROW:", err);
-
-            const msg =
-              (err && err.message) ? err.message :
-              (typeof err === "string") ? err :
-              JSON.stringify(err);
-
-            authMsg.textContent = "Unexpected error: " + msg;
-          } finally {
-            authSubmit.disabled = false;
-            authSubmit.removeAttribute("aria-busy");
+            // Initial UI
+            refreshUI();
           }
-        });
+        }, 100);
 
-        // Sign out handler
-        signout.addEventListener("click", async (e)=>{
-          e.preventDefault();
-          try{ await supabaseClient.auth.signOut(); } catch(_){}
-          setSignedOutUI();
-        });
-
-        // Keep UI in sync with auth state
-        supabaseClient.auth.onAuthStateChange(async ()=>{ await refreshUI(); });
-
-        // Initial UI
-        await refreshUI();
+        // Timeout after 10 seconds
+        setTimeout(() => {
+          clearInterval(checkSupabase);
+          if (!supabaseClient) {
+            console.error("Supabase failed to load within 10 seconds");
+            if (authMsg) authMsg.textContent = "Auth failed to load. Please refresh and try again.";
+          }
+        }, 10000);
       })();
 
       // close modals with ESC
