@@ -1097,9 +1097,9 @@
       async function checkPremium(user){
         console.log("🔍 Checking premium status for user:", user.id);
         
-        // Add 5 second timeout for database check
+        // Use .single() with timeout instead of .maybeSingle()
         const timeoutPromise = new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Database check timeout')), 5000)
+          setTimeout(() => reject(new Error('Premium check timeout')), 3000)
         );
 
         try{
@@ -1107,22 +1107,29 @@
             .from("profiles")
             .select("is_premium,email")
             .eq("id", user.id)
-            .maybeSingle();
+            .single();
 
           const { data, error } = await Promise.race([dbPromise, timeoutPromise]);
 
           console.log("📊 Premium check result:", { data, error: error?.message });
 
-          const msg = (data && data.is_premium)
-            ? "Premium member ✅"
-            : "Not premium — upgrade to unlock deep dives.";
+          if (error) {
+            console.error("⚠️ Premium check error:", error.message);
+            const msg = "Signed in. Premium check unavailable.";
+            if(premiumStatus) premiumStatus.textContent = msg;
+            if(premiumStatusTop) premiumStatusTop.textContent = msg;
+            return false;
+          }
 
-          if(premiumStatus) premiumStatus.textContent = (error) ? "Signed in. Premium status can't be verified right now." : msg;
-          if(premiumStatusTop) premiumStatusTop.textContent = (error) ? "Signed in. Premium status can't be verified right now." : msg;
+          const isPremium = !!(data && data.is_premium);
+          const msg = isPremium ? "Premium member ✅" : "Not premium — upgrade to unlock deep dives.";
 
-          return !!(data && data.is_premium);
+          if(premiumStatus) premiumStatus.textContent = msg;
+          if(premiumStatusTop) premiumStatusTop.textContent = msg;
+
+          return isPremium;
         } catch(e){
-          console.error("❌ checkPremium error:", e);
+          console.error("❌ checkPremium failed:", e.message);
           const msg = "Signed in. Premium check unavailable.";
           if(premiumStatus) premiumStatus.textContent = msg;
           if(premiumStatusTop) premiumStatusTop.textContent = msg;
@@ -1150,24 +1157,14 @@
         }
       }
 
-      async function redirectToAccount(passedUser){
-        console.log("🚀 Redirecting to account...");
+      async function redirectToAccount(user){
+        console.log("🚀 Redirecting user:", user.email);
         try{
-          let user = passedUser;
-          if(!user){
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            user = session?.user;
-          }
-          if(!user){ 
-            console.log("⚠️ No user, going to free page");
-            window.location.href = FREE_ACCOUNT_PAGE; 
-            return; 
-          }
           const isPremium = await checkPremium(user);
-          console.log("🎯 Redirecting:", isPremium ? "Premium" : "Free");
+          console.log("🎯 Redirecting to:", isPremium ? "Premium" : "Free");
           window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
         } catch(e){
-          console.error("❌ redirectToAccount error:", e);
+          console.error("❌ Redirect error, defaulting to free:", e);
           window.location.href = FREE_ACCOUNT_PAGE;
         }
       }
@@ -1247,8 +1244,8 @@
                 authSubmit.disabled = false;
                 authSubmit.textContent = originalText;
                 authMsg.textContent = "Request timed out. Check your connection.";
-                console.error("❌ Request timeout");
-              }, 15000);
+                console.error("❌ Auth timeout");
+              }, 10000);
 
               try {
                 if (!supabaseClient) {
@@ -1283,12 +1280,12 @@
 
                   console.log("✅ Sign in successful, redirecting...");
                   authMsg.textContent = "✅ Signed in! Redirecting...";
+                  closeModal(authModal);
                   
-                  // Give UI a moment to update, then redirect
-                  setTimeout(async () => {
-                    closeModal(authModal);
-                    await redirectToAccount(data.user);
-                  }, 800);
+                  // Redirect immediately without waiting for UI update
+                  setTimeout(() => {
+                    redirectToAccount(data.user);
+                  }, 500);
                   return;
                 }
 
@@ -1335,7 +1332,10 @@
             // Auth state changes
             supabaseClient.auth.onAuthStateChange(async (event, session)=>{
               console.log("🔄 Auth state:", event, "hasSession:", !!session);
-              await refreshUI();
+              // Only refresh UI if not actively signing in (prevents slowdown during redirect)
+              if (event !== 'SIGNED_IN' || !authSubmit.disabled) {
+                await refreshUI();
+              }
             });
 
             // Initial UI
