@@ -22,7 +22,8 @@
     }
 
     body { background:var(--bg); color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; }
-    .wrap { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+    /* Wider container so the reader mode actually feels wide */
+    .wrap { max-width: 1400px; margin: 28px auto; padding: 0 16px; }
 
     .topbar{
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
@@ -271,76 +272,103 @@
       text-transform:uppercase;
     }
     .searchRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-    /* ===== Reader-mode: makes articles look premium and not “too vertical” ===== */
-.article-body{
-  max-width: 78ch;            /* limits line length so it’s readable */
-  margin: 0 auto;             /* center the content */
-  font-size: 16px;
-  line-height: 1.85;
-  color: #e5e7eb;
-}
 
-.article-body p{
-  margin: 0 0 14px;
-}
+    /* ===== Reader-mode (Option B) =====
+       When you open a deep dive, the viewer takes the whole width
+       and the archive column collapses (so it doesn’t feel like a tall narrow rectangle). */
+    .dd-shell{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:10px;
+      margin-top: 12px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .dd-shell{ grid-template-columns: 1fr; }
+    }
+    .dd-shell.reading{
+      grid-template-columns: 1fr;
+    }
+    .dd-shell.reading #ddArchiveCard{
+      display:none;
+    }
+    /* Prevent overflow issues when content is wide */
+    #ddViewerCard{ min-width:0; }
+    .ddViewerTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom: 10px;
+    }
 
-.article-body h2{
-  font-size: 22px;
-  margin: 22px 0 10px;
-  line-height: 1.25;
-}
+    /* Reader typography (wider than before) */
+    .article-body{
+      max-width: 92ch;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.85;
+      color: #e5e7eb;
+    }
+    .dd-shell.reading .article-body{
+      max-width: 105ch; /* wider when in reading mode */
+    }
 
-.article-body h3{
-  font-size: 18px;
-  margin: 16px 0 8px;
-  line-height: 1.25;
-  color: #f9fafb;
-}
+    .article-body p{ margin: 0 0 14px; }
 
-.article-body ul, .article-body ol{
-  margin: 8px 0 14px;
-  padding-left: 18px;
-}
+    .article-body h2{
+      font-size: 22px;
+      margin: 22px 0 10px;
+      line-height: 1.25;
+    }
 
-.article-body li{
-  margin: 8px 0;
-}
+    .article-body h3{
+      font-size: 18px;
+      margin: 16px 0 8px;
+      line-height: 1.25;
+      color: #f9fafb;
+    }
 
-.article-body blockquote{
-  margin: 16px 0;
-  padding: 12px 14px;
-  border-left: 3px solid rgba(244,193,93,.7);
-  background: rgba(2,6,23,0.35);
-  border-radius: 12px;
-}
+    .article-body ul, .article-body ol{
+      margin: 8px 0 14px;
+      padding-left: 18px;
+    }
 
-.article-body hr{
-  border: none;
-  height: 1px;
-  background: rgba(148,163,184,0.18);
-  margin: 18px 0;
-}
+    .article-body li{ margin: 8px 0; }
 
-/* Make tables/code look good if you ever use them */
-.article-body pre, .article-body code{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+    .article-body blockquote{
+      margin: 16px 0;
+      padding: 12px 14px;
+      border-left: 3px solid rgba(244,193,93,.7);
+      background: rgba(2,6,23,0.35);
+      border-radius: 12px;
+    }
 
-.article-body pre{
-  background: rgba(2,6,23,0.35);
-  border: 1px solid rgba(148,163,184,0.18);
-  padding: 12px;
-  border-radius: 14px;
-  overflow:auto;
-}
+    .article-body hr{
+      border: none;
+      height: 1px;
+      background: rgba(148,163,184,0.18);
+      margin: 18px 0;
+    }
 
-.article-body a{
-  color: var(--brand);
-  text-decoration: none;
-}
-.article-body a:hover{
-  text-decoration: underline;
-}
+    .article-body pre, .article-body code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .article-body pre{
+      background: rgba(2,6,23,0.35);
+      border: 1px solid rgba(148,163,184,0.18);
+      padding: 12px;
+      border-radius: 14px;
+      overflow:auto;
+    }
+
+    .article-body a{
+      color: var(--brand);
+      text-decoration: none;
+    }
+    .article-body a:hover{ text-decoration: underline; }
   </style>
 </head>
 
@@ -538,12 +566,14 @@
               <div style="display:flex; gap:10px; flex-wrap:wrap;">
                 <button class="btn primary" data-deepdive="latest">Open latest deep dive</button>
                 <button class="btn" data-deepdive="archive">Browse archive</button>
+                <button class="btn" data-deepdive="exit" style="display:none;">Exit reader</button>
               </div>
 
               <div class="divider"></div>
 
-              <div class="twoCols">
-                <div class="card" style="padding:14px; box-shadow:none;">
+              <!-- Option B container: collapses archive when reading -->
+              <div class="dd-shell" id="ddShell">
+                <div class="card" id="ddArchiveCard" style="padding:14px; box-shadow:none;">
                   <div class="sectionTitle">Archive</div>
                   <div class="searchRow">
                     <input id="ddSearch" type="text" placeholder="Search titles…" />
@@ -557,9 +587,15 @@
                   <div id="ddList" class="checkgrid" style="gap:10px;"></div>
                 </div>
 
-                <div class="card" style="padding:14px; box-shadow:none;">
-                  <div class="sectionTitle">Viewer</div>
-                  <div id="ddViewer" style="margin-top:10px;">
+                <div class="card" id="ddViewerCard" style="padding:14px; box-shadow:none;">
+                  <div class="ddViewerTop">
+                    <div class="sectionTitle">Viewer</div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                      <button class="btn" data-deepdive="backToArchive" style="display:none;">Back to archive</button>
+                    </div>
+                  </div>
+
+                  <div id="ddViewer">
                     <p class="muted">Click “Open latest” or select a post from the archive.</p>
                   </div>
                 </div>
@@ -606,7 +642,7 @@
             desc: "A small list of ideas with clear theses, risk notes, catalysts, and time horizons.",
             render: () => `
               <div class="divider"></div>
-              <div class="card" style="padding:14px;">
+              <div class="card" style="padding:14px; box-shadow:none;">
                 <div class="sectionTitle">Example idea format</div>
                 <pre>
 Ticker: (example) XYZ
@@ -941,6 +977,26 @@ Sizing note: guidelines (not advice)
           return data;
         }
 
+        function enterReaderMode(){
+          const shell = document.getElementById("ddShell");
+          if (shell) shell.classList.add("reading");
+
+          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
+          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
+          if (exitBtn) exitBtn.style.display = "";
+          if (backBtn) backBtn.style.display = "";
+        }
+
+        function exitReaderMode(){
+          const shell = document.getElementById("ddShell");
+          if (shell) shell.classList.remove("reading");
+
+          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
+          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
+          if (exitBtn) exitBtn.style.display = "none";
+          if (backBtn) backBtn.style.display = "none";
+        }
+
         function renderViewer(article){
           const viewer = document.getElementById("ddViewer");
           if (!viewer) return;
@@ -970,6 +1026,9 @@ Sizing note: guidelines (not advice)
               ${article.content}
             </div>
           `;
+
+          // Option B: when content loads, expand into reader mode (archive collapses)
+          enterReaderMode();
         }
 
         function buildSectorOptions(items){
@@ -1062,6 +1121,8 @@ Sizing note: guidelines (not advice)
           const latestBtn = contentEl.querySelector('[data-deepdive="latest"]');
           const archiveBtn = contentEl.querySelector('[data-deepdive="archive"]');
           const refreshBtn = contentEl.querySelector('[data-deepdive="refresh"]');
+          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
+          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
 
           if (latestBtn){
             latestBtn.addEventListener("click", async () => {
@@ -1078,6 +1139,9 @@ Sizing note: guidelines (not advice)
 
           if (archiveBtn){
             archiveBtn.addEventListener("click", async () => {
+              // When browsing archive, make sure archive column is visible
+              exitReaderMode();
+
               const list = document.getElementById("ddList");
               if (list) list.innerHTML = `<p class="muted">Loading archive…</p>`;
               try{
@@ -1090,6 +1154,9 @@ Sizing note: guidelines (not advice)
 
           if (refreshBtn){
             refreshBtn.addEventListener("click", async () => {
+              // Refresh archive implies archive visible
+              exitReaderMode();
+
               const list = document.getElementById("ddList");
               if (list) list.innerHTML = `<p class="muted">Refreshing…</p>`;
               try{
@@ -1097,6 +1164,25 @@ Sizing note: guidelines (not advice)
               }catch(err){
                 alert("Could not refresh: " + (err?.message || String(err)));
               }
+            });
+          }
+
+          if (exitBtn){
+            exitBtn.addEventListener("click", () => {
+              exitReaderMode();
+            });
+          }
+
+          if (backBtn){
+            backBtn.addEventListener("click", async () => {
+              exitReaderMode();
+              const list = document.getElementById("ddList");
+              if (list && (!ddCache || !ddCache.length)) {
+                list.innerHTML = `<p class="muted">Loading archive…</p>`;
+                try { await refreshArchiveUI(); } catch {}
+              }
+              const archiveCard = document.getElementById("ddArchiveCard");
+              if (archiveCard) archiveCard.scrollIntoView({ behavior: "smooth", block: "start" });
             });
           }
         }
