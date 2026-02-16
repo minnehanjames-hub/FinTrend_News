@@ -892,16 +892,13 @@
     </div>
   </div>
 
-   <script>
+  <script>
     (function(){
       "use strict";
 
       const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
       const PREMIUM_DASHBOARD = "premium.html";
       const FREE_ACCOUNT_PAGE = "archive.html";
-
-      // HARDCODED PREMIUM EMAIL - TEMPORARY FIX
-      const PREMIUM_EMAIL = "minnehanjames@gmail.com";
 
       const authModal = document.getElementById("authModal");
       const premiumModal = document.getElementById("premiumModal");
@@ -1085,9 +1082,28 @@
         signout.style.display = "";
       }
 
-      document.getElementById("payLink").addEventListener("click",(e)=>{ 
-        e.preventDefault(); 
-        window.open(PAYMENT_LINK,"_blank"); 
+      // ✅ NEW: read premium status from Supabase profiles table
+      async function fetchPremiumStatus(userId){
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("is_premium, premium_until")
+          .eq("id", userId)
+          .single();
+
+        if (error || !data) return false;
+
+        // optional expiry support (if you decide to use it later)
+        if (data.premium_until) {
+          const until = new Date(data.premium_until);
+          if (until < new Date()) return false;
+        }
+
+        return !!data.is_premium;
+      }
+
+      document.getElementById("payLink").addEventListener("click",(e)=>{
+        e.preventDefault();
+        window.open(PAYMENT_LINK,"_blank");
       });
 
       document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href = PREMIUM_DASHBOARD; });
@@ -1097,15 +1113,15 @@
       let attempts = 0;
       const check = setInterval(() => {
         attempts++;
-        
+
         if (window.supabase && window.supabase.createClient) {
           clearInterval(check);
-          
+
           supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
           document.getElementById("authForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-            
+
             authMsg.textContent = "";
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
@@ -1137,12 +1153,12 @@
                   return;
                 }
 
-                // CHECK IF PREMIUM BY EMAIL
-                const isPremium = (email.toLowerCase() === PREMIUM_EMAIL.toLowerCase());
-                
+                // ✅ NEW: check premium from profiles table
+                const isPremium = await fetchPremiumStatus(data.user.id);
+
                 setSignedInUI(email, isPremium);
                 closeModal(authModal);
-                
+
                 // REDIRECT
                 window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
                 return;
@@ -1174,16 +1190,17 @@
             setSignedOutUI();
           });
 
-          supabase.auth.getUser().then(({ data: { user } }) => {
+          // ✅ NEW: when page loads and user already signed in, read premium from profiles
+          supabase.auth.getUser().then(async ({ data: { user } }) => {
             if(user){
-              const isPremium = (user.email.toLowerCase() === PREMIUM_EMAIL.toLowerCase());
+              const isPremium = await fetchPremiumStatus(user.id);
               setSignedInUI(user.email, isPremium);
             } else {
               setSignedOutUI();
             }
           });
         }
-        
+
         if (attempts >= 100) clearInterval(check);
       }, 100);
 
