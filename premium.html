@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinTrend Premium</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -18,52 +22,77 @@
       --text:#f9fafb;
       --muted:#9ca3af;
       --brand:#f4c15d;
+      --brand2: rgba(244,193,93,0.12);
       --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
     }
 
-    body { background:var(--bg); color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; }
-    /* Wider container so the reader mode actually feels wide */
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--brand); }
+
     .wrap { max-width: 1400px; margin: 28px auto; padding: 0 16px; }
 
     .topbar{
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
       margin-bottom: 14px;
     }
-    .brandTitle{ letter-spacing:.12em; text-transform:uppercase; margin:0; }
-    .subhead{ margin:6px 0 0; color:var(--muted); }
+    .brandTitle{
+      font-family: "Playfair Display", serif;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin:0;
+      font-size: 26px;
+      color: var(--brand);
+    }
+    .subhead{ margin:6px 0 0; color:var(--muted); font-size: 13px; }
 
     .card {
       border:1px solid var(--border);
       background: var(--panel);
-      border-radius:18px;
+      border-radius: var(--radius);
       padding:18px;
       box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
     }
     .muted { color:var(--muted); }
 
     .btn {
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 14px;
+      padding:10px 16px;
       border-radius:999px;
       border:1px solid var(--border2);
       background:rgba(2,6,23,0.40);
       color:var(--text);
       cursor:pointer;
       text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:12px;
+      letter-spacing:.12em;
+      font-size:11px;
+      font-weight: 700;
       text-decoration:none;
-      transition: transform .12s ease, opacity .12s ease;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
       user-select:none;
       white-space:nowrap;
+      font-family: inherit;
     }
     .btn.primary { background:var(--brand); color:#000; border-color:var(--brand); font-weight:900; }
-    .btn:hover { transform: translateY(-1px); opacity:.95; }
-    .btn:active { transform: translateY(0px); opacity:.9; }
+    .btn.primary:hover { background:#f7d680; transform: translateY(-1px); }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(244,193,93,0.45); }
+    .btn:active { transform: translateY(0px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     .pill {
       display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
+      padding:7px 12px;
       border-radius:999px;
       border:1px solid var(--border2);
       background: rgba(2,6,23,0.35);
@@ -72,6 +101,7 @@
       letter-spacing:.08em;
       text-transform:uppercase;
     }
+    .pill.active { border-color: rgba(244,193,93,0.55); color: var(--brand); background: rgba(244,193,93,0.08); }
 
     .layout {
       display:grid;
@@ -79,20 +109,19 @@
       gap:12px;
       margin-top: 12px;
     }
-    @media (max-width: 980px){
-      .layout{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px){ .layout{ grid-template-columns: 1fr; } }
 
     .sectionTitle{
       margin:0;
-      letter-spacing:.12em;
+      letter-spacing:.14em;
       text-transform:uppercase;
-      font-size:12px;
+      font-size:11px;
       color: var(--muted);
     }
     .h2{
       margin:8px 0 0;
-      font-size:20px;
+      font-family: "Playfair Display", serif;
+      font-size:22px;
       line-height:1.2;
     }
 
@@ -116,27 +145,31 @@
       border-radius:14px;
       border:1px solid rgba(148,163,184,0.22);
       background: rgba(2,6,23,0.22);
+      cursor: pointer;
+      transition: border-color .15s;
     }
+    .check:hover { border-color: rgba(244,193,93,0.35); }
     .check input{
       margin-top:3px;
       width:18px; height:18px;
       accent-color: var(--brand);
       cursor:pointer;
+      flex-shrink: 0;
     }
-    .check strong{ display:block; }
-    .check small{ display:block; margin-top:3px; color: var(--muted); line-height:1.35; }
+    .check strong{ display:block; font-size: 13px; }
+    .check small{ display:block; margin-top:3px; color: var(--muted); line-height:1.35; font-size: 12px; }
 
     .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
     .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(148,163,184,0.25);
       background: rgba(2,6,23,0.25);
       color: var(--text);
       font-size:12px;
     }
-    .chip span{ color: var(--muted); letter-spacing:.12em; text-transform:uppercase; font-size:11px; }
+    .chip span{ color: var(--muted); letter-spacing:.10em; text-transform:uppercase; font-size:11px; }
 
     .modules {
       display:grid;
@@ -152,17 +185,17 @@
     }
     .badge{
       display:inline-flex; align-items:center;
-      padding:6px 10px;
+      padding:5px 10px;
       border-radius:999px;
       border:1px solid rgba(148,163,184,0.25);
       color: var(--muted);
-      font-size:12px;
+      font-size:11px;
       letter-spacing:.10em;
       text-transform:uppercase;
       background: rgba(2,6,23,0.25);
     }
-    .moduleTitle{ margin:6px 0 0; font-size:18px; }
-    .moduleDesc{ margin:8px 0 0; color: var(--muted); line-height:1.6; }
+    .moduleTitle{ margin:6px 0 0; font-size:18px; font-family: "Playfair Display", serif; }
+    .moduleDesc{ margin:8px 0 0; color: var(--muted); line-height:1.6; font-size: 13px; }
 
     .twoCols{
       display:grid;
@@ -170,19 +203,17 @@
       gap:10px;
       margin-top: 12px;
     }
-    @media (max-width: 980px){
-      .twoCols{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px){ .twoCols{ grid-template-columns: 1fr; } }
 
     .field{
       display:flex; flex-direction:column; gap:6px;
     }
     .field label{
-      font-size:12px; color: var(--muted);
+      font-size:11px; color: var(--muted);
       letter-spacing:.12em; text-transform:uppercase;
     }
     textarea, input[type="text"], input[type="number"], select{
-      background: rgba(2,6,23,0.35);
+      background: rgba(2,6,23,0.50);
       border:1px solid rgba(148,163,184,0.22);
       color: var(--text);
       border-radius:12px;
@@ -191,20 +222,26 @@
       width:100%;
       box-sizing:border-box;
       font-family: inherit;
+      font-size: 13px;
+      transition: border-color .15s;
+    }
+    textarea:focus, input:focus, select:focus {
+      border-color: rgba(244,193,93,0.45);
     }
     textarea{ min-height: 120px; resize: vertical; }
 
     pre{
-      background: rgba(2,6,23,0.35);
+      background: rgba(2,6,23,0.50);
       border:1px solid rgba(148,163,184,0.18);
-      padding:12px;
+      padding:14px;
       border-radius:14px;
       overflow:auto;
       color: #e5e7eb;
-      line-height:1.45;
+      line-height:1.6;
       margin: 10px 0 0;
       white-space: pre-wrap;
       word-break: break-word;
+      font-size: 13px;
     }
     .note{
       font-size:12px;
@@ -213,69 +250,29 @@
       line-height:1.5;
     }
 
-    /* ===== FinTrend Article Styling (DB-rendered HTML) ===== */
-    .ft-article { line-height: 1.75; }
-    .ft-header { margin-bottom: 18px; }
-    .ft-kicker { color: var(--muted); margin: 0 0 6px; }
-    .ft-title { font-size: 28px; margin: 0 0 8px; }
-    .ft-subtitle { color: #cbd5e1; margin: 0; max-width: 70ch; }
-
-    .ft-callout {
-      border: 1px solid rgba(148,163,184,.25);
-      background: rgba(15,23,42,.6);
-      border-radius: 14px;
-      padding: 14px;
-      margin: 16px 0;
-    }
-
-    .ft-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin: 12px 0;
-    }
-    @media (max-width: 900px){
-      .ft-grid { grid-template-columns: 1fr; }
-    }
-
-    .ft-card {
-      border: 1px solid rgba(148,163,184,.2);
-      background: rgba(2,6,23,.45);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .ft-muted { color: var(--muted); }
-    .ft-divider-note { color:#cbd5e1; margin-top: 12px; }
-    .ft-article h2 { margin-top: 22px; }
-    .ft-article h3 { margin-top: 16px; color: #e5e7eb; }
-    .ft-article ul, .ft-article ol { padding-left: 18px; }
-    .ft-article li { margin: 6px 0; }
-
-    /* Archive UI */
+    /* Archive / deep dive */
     .archiveRow{
       display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
       padding:12px; border-radius:14px;
       border:1px solid rgba(148,163,184,0.22);
       background: rgba(2,6,23,0.22);
       cursor:pointer;
+      transition: border-color .15s;
     }
     .archiveRow:hover{ border-color: rgba(244,193,93,.45); }
     .archiveMeta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
     .miniChip{
       display:inline-flex; align-items:center;
-      padding:6px 10px; border-radius:999px;
+      padding:4px 8px; border-radius:999px;
       border:1px solid rgba(148,163,184,0.22);
       background: rgba(2,6,23,0.25);
       color: var(--muted);
       font-size:11px;
-      letter-spacing:.10em;
+      letter-spacing:.08em;
       text-transform:uppercase;
     }
     .searchRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
 
-    /* ===== Reader-mode (Option B) =====
-       When you open a deep dive, the viewer takes the whole width
-       and the archive column collapses (so it doesn’t feel like a tall narrow rectangle). */
     .dd-shell{
       display:grid;
       grid-template-columns: 420px 1fr;
@@ -283,92 +280,362 @@
       margin-top: 12px;
       align-items:start;
     }
-    @media (max-width: 980px){
-      .dd-shell{ grid-template-columns: 1fr; }
-    }
-    .dd-shell.reading{
-      grid-template-columns: 1fr;
-    }
-    .dd-shell.reading #ddArchiveCard{
-      display:none;
-    }
-    /* Prevent overflow issues when content is wide */
+    @media (max-width: 980px){ .dd-shell{ grid-template-columns: 1fr; } }
+    .dd-shell.reading{ grid-template-columns: 1fr; }
+    .dd-shell.reading #ddArchiveCard{ display:none; }
     #ddViewerCard{ min-width:0; }
     .ddViewerTop{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;
       margin-bottom: 10px;
     }
 
-    /* Reader typography (wider than before) */
     .article-body{
       max-width: 92ch;
       margin: 0 auto;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.85;
       color: #e5e7eb;
     }
-    .dd-shell.reading .article-body{
-      max-width: 105ch; /* wider when in reading mode */
-    }
-
+    .dd-shell.reading .article-body{ max-width: 105ch; }
     .article-body p{ margin: 0 0 14px; }
-
-    .article-body h2{
-      font-size: 22px;
-      margin: 22px 0 10px;
-      line-height: 1.25;
-    }
-
-    .article-body h3{
-      font-size: 18px;
-      margin: 16px 0 8px;
-      line-height: 1.25;
-      color: #f9fafb;
-    }
-
-    .article-body ul, .article-body ol{
-      margin: 8px 0 14px;
-      padding-left: 18px;
-    }
-
+    .article-body h2{ font-size: 22px; margin: 22px 0 10px; line-height: 1.25; font-family: "Playfair Display", serif; }
+    .article-body h3{ font-size: 18px; margin: 16px 0 8px; line-height: 1.25; color: #f9fafb; }
+    .article-body ul, .article-body ol{ margin: 8px 0 14px; padding-left: 18px; }
     .article-body li{ margin: 8px 0; }
-
     .article-body blockquote{
-      margin: 16px 0;
-      padding: 12px 14px;
+      margin: 16px 0; padding: 12px 14px;
       border-left: 3px solid rgba(244,193,93,.7);
       background: rgba(2,6,23,0.35);
       border-radius: 12px;
     }
+    .article-body hr{ border: none; height: 1px; background: rgba(148,163,184,0.18); margin: 18px 0; }
+    .article-body a{ color: var(--brand); }
+    .article-body a:hover{ text-decoration: underline; }
 
-    .article-body hr{
-      border: none;
-      height: 1px;
-      background: rgba(148,163,184,0.18);
+    /* Ideas cards */
+    .ideaCard{
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.35);
+      border-radius:16px;
+      padding:16px;
+      transition: border-color .15s, transform .15s;
+    }
+    .ideaCard:hover{ border-color: rgba(244,193,93,0.35); transform: translateY(-2px); }
+    .ideaTicker{
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      color: var(--brand);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .ideaSector{
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .ideaRow{
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .ideaLabel{
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 72px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.2);
+      background: rgba(2,6,23,0.25);
+      line-height: 1.4;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ideaText{
+      font-size: 13px;
+      color: #e5e7eb;
+      line-height: 1.5;
+    }
+    .ideaGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    /* Roundup cards */
+    .roundupCard{
+      border:1px solid rgba(148,163,184,0.22);
+      background: rgba(2,6,23,0.35);
+      border-radius:16px;
+      padding:16px;
+      margin-bottom: 10px;
+      transition: border-color .15s;
+    }
+    .roundupCard:hover{ border-color: rgba(244,193,93,0.35); }
+    .roundupTitle{
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .roundupMeta{
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .roundupContent{
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    /* ===== QUANT LAB MODALS ===== */
+    .qlBackdrop{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .qlBackdrop.active{ display: flex; }
+
+    .qlModal{
+      width: 100%;
+      max-width: 680px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn .22s ease;
+    }
+    @keyframes modalIn{
+      from{ transform: translateY(16px) scale(0.97); opacity:0; }
+      to{ transform: translateY(0) scale(1); opacity:1; }
+    }
+
+    .qlModal.wide{ max-width: 900px; }
+
+    .qlClose{
+      position: absolute; top: 14px; right: 16px;
+      background: transparent; border: none;
+      color: var(--muted); font-size: 22px;
+      cursor: pointer; line-height: 1;
+      transition: color .15s;
+    }
+    .qlClose:hover{ color: var(--text); }
+
+    .qlKicker{
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--brand); margin-bottom: 8px;
+    }
+    .qlTitle{
+      font-family: "Playfair Display", serif;
+      font-size: 28px; line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .qlSubtitle{
+      font-size: 14px; color: #d1d5db;
+      line-height: 1.65; margin-bottom: 18px;
+      max-width: 58ch;
+    }
+
+    .qlInfoGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
       margin: 18px 0;
     }
+    @media (max-width: 600px){ .qlInfoGrid{ grid-template-columns: 1fr; } }
 
-    .article-body pre, .article-body code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-
-    .article-body pre{
-      background: rgba(2,6,23,0.35);
-      border: 1px solid rgba(148,163,184,0.18);
-      padding: 12px;
+    .qlInfoCard{
+      border: 1px solid rgba(148,163,184,0.2);
+      background: rgba(2,6,23,0.45);
       border-radius: 14px;
-      overflow:auto;
+      padding: 14px;
+    }
+    .qlInfoCard .qlInfoIcon{
+      font-size: 22px; margin-bottom: 8px;
+    }
+    .qlInfoCard .qlInfoLabel{
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .qlInfoCard .qlInfoText{
+      font-size: 12px; color: #e5e7eb; line-height: 1.5;
     }
 
-    .article-body a{
-      color: var(--brand);
-      text-decoration: none;
+    .qlWarning{
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 14px;
+      border: 1px solid rgba(244,193,93,0.3);
+      background: rgba(244,193,93,0.06);
+      border-radius: 12px;
+      margin: 14px 0;
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.5;
     }
-    .article-body a:hover{ text-decoration: underline; }
+    .qlWarning::before{ content: "⚠️"; flex-shrink: 0; }
+
+    .qlBtnRow{
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    /* Calc modal */
+    .qlSection{
+      margin-bottom: 18px;
+    }
+    .qlSectionTitle{
+      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--brand); margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(244,193,93,0.2);
+    }
+
+    .qlInputGrid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px){ .qlInputGrid{ grid-template-columns: 1fr; } }
+
+    .qlAssetRow{
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 600px){ .qlAssetRow{ grid-template-columns: 1fr 1fr; } }
+
+    .qlAssetLabel{
+      font-size: 12px; color: var(--brand); font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .qlColHeader{
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    @media (max-width: 600px){ .qlColHeader{ display:none; } }
+
+    .qlColHeaderLabel{
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .qlResults{
+      background: rgba(2,6,23,0.55);
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .qlResultsTitle{
+      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .qlResultGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .qlResultCell{
+      border: 1px solid rgba(148,163,184,0.18);
+      background: rgba(15,23,42,0.5);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .qlResultCellLabel{
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .qlResultCellValue{
+      font-size: 18px; font-weight: 700; color: var(--brand);
+      font-family: "Playfair Display", serif;
+    }
+    .qlResultCellSub{
+      font-size: 11px; color: var(--muted); margin-top: 2px;
+    }
+
+    .qlWeightBar{
+      display: flex;
+      gap: 4px;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 6px;
+    }
+    .qlWeightBarSeg{
+      height: 100%;
+      transition: width .4s ease;
+      border-radius: 999px;
+    }
+
+    .qlWeightLegend{
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .qlWeightLegendItem{
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: #d1d5db;
+    }
+    .qlWeightLegendDot{
+      width: 8px; height: 8px; border-radius: 999px;
+    }
+
+    .qlError{
+      color: #f87171;
+      font-size: 13px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(248,113,113,0.25);
+      background: rgba(248,113,113,0.06);
+      border-radius: 10px;
+      display: none;
+    }
+
+    .qlSpinner{
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(244,193,93,0.3);
+      border-top-color: var(--brand);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg); } }
+
+    /* Loading states */
+    .loadingPulse{
+      animation: pulse 1.5s ease infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ opacity:1; }
+      50%{ opacity:.4; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar{ width:6px; height:6px; }
+    ::-webkit-scrollbar-track{ background: rgba(2,6,23,0.3); }
+    ::-webkit-scrollbar-thumb{ background: rgba(148,163,184,0.3); border-radius:999px; }
+    ::-webkit-scrollbar-thumb:hover{ background: rgba(244,193,93,0.4); }
   </style>
 </head>
 
@@ -379,991 +646,1192 @@
         <h1 class="brandTitle">FinTrend Premium</h1>
         <p class="subhead">Members-only dashboard.</p>
       </div>
-
       <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
         <span class="pill" id="memberPill">Checking…</span>
-        <a class="btn" href="index.html#premium">Back</a>
+        <a class="btn" href="index.html">← Back</a>
       </div>
     </div>
 
-    <div id="state" class="card">Checking access…</div>
+    <div id="state" class="card">
+      <p class="muted loadingPulse">Verifying your access…</p>
+    </div>
     <div id="content" style="display:none;"></div>
   </div>
 
+  <!-- ===== QUANT LAB MODAL 1: Explainer ===== -->
+  <div class="qlBackdrop" id="qlExplainer">
+    <div class="qlModal">
+      <button class="qlClose" id="qlExplainerClose">×</button>
+      <div class="qlKicker">Premium Tool</div>
+      <h2 class="qlTitle">Quant Lab</h2>
+      <p class="qlSubtitle">
+        A professional-grade portfolio optimization engine built directly into your dashboard.
+        It combines two of the most widely used frameworks in quantitative finance.
+      </p>
+
+      <div class="qlInfoGrid">
+        <div class="qlInfoCard">
+          <div class="qlInfoIcon">⚖️</div>
+          <div class="qlInfoLabel">Mean-Variance Optimization</div>
+          <div class="qlInfoText">
+            Finds the portfolio weights that maximize expected return for a given level of risk —
+            the mathematical foundation of modern portfolio theory, developed by Harry Markowitz (Nobel Prize, 1990).
+          </div>
+        </div>
+        <div class="qlInfoCard">
+          <div class="qlInfoIcon">🎲</div>
+          <div class="qlInfoLabel">Monte Carlo Simulation</div>
+          <div class="qlInfoText">
+            Runs 20,000 simulated return scenarios using your inputs, then measures how bad
+            things get in the worst outcomes — giving you a realistic picture of tail risk.
+          </div>
+        </div>
+        <div class="qlInfoCard">
+          <div class="qlInfoIcon">📉</div>
+          <div class="qlInfoLabel">CVaR (Conditional Value at Risk)</div>
+          <div class="qlInfoText">
+            Goes beyond VaR to ask: "When things go wrong, how bad is the average loss?"
+            Used by institutional risk desks as a more conservative and complete risk measure.
+          </div>
+        </div>
+      </div>
+
+      <div class="qlWarning">
+        This tool is for educational and analytical purposes only. It is not financial advice.
+        All inputs are your own estimates — outputs are only as good as your assumptions.
+        Past covariance and return estimates do not guarantee future results.
+      </div>
+
+      <p style="font-size:13px; color:#d1d5db; line-height:1.65;">
+        <strong style="color:var(--text);">What you'll input:</strong> Expected annual returns for up to 5 assets,
+        their volatilities, and correlations between them. The optimizer finds the mathematically
+        optimal allocation, then stress-tests it with a Monte Carlo simulation to show you
+        95% VaR and CVaR — the same metrics used by hedge funds and institutional desks.
+      </p>
+
+      <div class="qlBtnRow">
+        <button class="btn primary" id="qlOpenCalc">Understood — Open Calculator</button>
+        <button class="btn" id="qlNevermind">Nevermind</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUANT LAB MODAL 2: Calculator ===== -->
+  <div class="qlBackdrop" id="qlCalc">
+    <div class="qlModal wide">
+      <button class="qlClose" id="qlCalcClose">×</button>
+      <div class="qlKicker">Quant Lab · Calculator</div>
+      <h2 class="qlTitle" style="font-size:22px; margin-bottom:16px;">Portfolio Optimizer</h2>
+
+      <!-- Assets -->
+      <div class="qlSection">
+        <div class="qlSectionTitle">Assets & Expected Returns</div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
+          Enter 2–5 assets. Use annualized expected returns (e.g. 0.10 = 10%). Volatility = annualized standard deviation.
+        </p>
+
+        <div class="qlColHeader">
+          <div class="qlColHeaderLabel">Asset</div>
+          <div class="qlColHeaderLabel">Ticker / Name</div>
+          <div class="qlColHeaderLabel">Exp. Return (μ)</div>
+          <div class="qlColHeaderLabel">Volatility (σ)</div>
+        </div>
+
+        <div id="assetRows">
+          <!-- Generated by JS -->
+        </div>
+
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn" id="addAssetBtn">+ Add Asset</button>
+          <button class="btn" id="removeAssetBtn">− Remove Asset</button>
+        </div>
+      </div>
+
+      <!-- Correlations -->
+      <div class="qlSection">
+        <div class="qlSectionTitle">Correlations Between Assets</div>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
+          Enter correlation coefficients between −1 and 1. (e.g. 0.3 = moderate positive correlation)
+        </p>
+        <div id="corrGrid" style="overflow-x:auto;"></div>
+      </div>
+
+      <!-- Settings -->
+      <div class="qlSection">
+        <div class="qlSectionTitle">Optimizer Settings</div>
+        <div class="qlInputGrid">
+          <div class="field">
+            <label>Risk Aversion (λ)</label>
+            <input type="number" id="lambdaInput" value="4" min="0.5" max="20" step="0.5" />
+            <div class="note">Higher = more conservative. Range: 1 (aggressive) to 10 (defensive). Typical: 3–5.</div>
+          </div>
+          <div class="field">
+            <label>Monte Carlo Simulations</label>
+            <input type="number" id="simCount" value="20000" min="1000" max="50000" step="1000" />
+            <div class="note">More simulations = more accurate tail risk estimates. 20,000 is a good balance.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+        <button class="btn primary" id="runOptBtn">
+          Run Optimization
+        </button>
+        <button class="btn" id="loadExampleBtn">Load Example Portfolio</button>
+        <button class="btn" id="resetCalcBtn">Reset</button>
+      </div>
+
+      <div class="qlError" id="qlError"></div>
+
+      <!-- Results -->
+      <div id="qlResults" style="display:none;">
+        <div class="qlResults">
+          <div class="qlResultsTitle">Optimization Results</div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">
+              Optimal Weights
+            </div>
+            <div class="qlWeightBar" id="weightBar"></div>
+            <div class="qlWeightLegend" id="weightLegend"></div>
+          </div>
+
+          <div class="qlResultGrid" id="resultCells"></div>
+
+          <div class="divider"></div>
+
+          <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">
+            Monte Carlo Distribution
+          </div>
+          <pre id="mcDetails" style="margin:0; font-size:12px;"></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
-    (async function(){
-      // Stripe link
-      const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
+  (async function(){
 
-      // Supabase
-      const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-      const SUPABASE_ANON_KEY = "sb_publishable_3MtFdyI5BPbXDHWoAf9ZVQ_C9C0Gec-";
+    const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
+    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
 
-      const stateEl = document.getElementById("state");
-      const contentEl = document.getElementById("content");
-      const memberPill = document.getElementById("memberPill");
+    const stateEl = document.getElementById("state");
+    const contentEl = document.getElementById("content");
+    const memberPill = document.getElementById("memberPill");
 
-      function withTimeout(promise, ms=8000){
-        return Promise.race([
-          promise,
-          new Promise((_, reject) => setTimeout(() => reject(new Error("Request timed out")), ms))
-        ]);
+    function withTimeout(promise, ms=8000){
+      return Promise.race([
+        promise,
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error("Timed out")),ms))
+      ]);
+    }
+
+    const watchdog = setTimeout(()=>{
+      memberPill.textContent = "Timed out";
+      stateEl.innerHTML = `
+        <div class="sectionTitle">Timed out</div>
+        <h2 class="h2">Page didn't finish loading</h2>
+        <p class="muted" style="margin-top:8px;">Try refreshing. If this keeps happening, check your connection.</p>
+        <div style="display:flex;gap:10px;margin-top:12px;">
+          <a class="btn primary" href="index.html">Back to Sign In</a>
+        </div>`;
+    }, 9000);
+
+    function showFatal(title, msg, detail){
+      clearTimeout(watchdog);
+      memberPill.textContent = "Error";
+      stateEl.innerHTML = `
+        <div class="sectionTitle">${title}</div>
+        <h2 class="h2">Something went wrong</h2>
+        <p class="muted" style="margin-top:8px;">${msg}</p>
+        ${detail ? `<pre style="margin-top:10px;">${detail}</pre>` : ""}
+        <div style="display:flex;gap:10px;margin-top:12px;">
+          <a class="btn" href="index.html">Back</a>
+        </div>`;
+    }
+
+    function escHtml(s){
+      return String(s??""
+      ).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+    }
+
+    function fmtDate(ts){
+      try{ return new Date(ts).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); }
+      catch{ return ""; }
+    }
+
+    try{
+      if(!window.supabase||!window.supabase.createClient){
+        throw new Error("Supabase library not loaded.");
       }
 
-      // Watchdog: never allow infinite "Checking..."
-      const watchdog = setTimeout(() => {
-        memberPill.textContent = "Stuck";
-        stateEl.innerHTML = `
-          <div class="sectionTitle">Timed out</div>
-          <h2 class="h2">This page didn’t finish loading</h2>
-          <p class="muted">If Supabase is down, this can happen. Try again later. If it persists, open DevTools → Console.</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-            <a class="btn" href="index.html">Back to Sign In</a>
-          </div>
-        `;
-      }, 9000);
+      const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage:window.localStorage }
+      });
 
-      function showFatal(title, message, details){
+      // Auth check
+      const { data:u, error:uErr } = await withTimeout(sb.auth.getUser(), 8000);
+      if(uErr) throw new Error("Auth failed: "+uErr.message);
+      const user = u?.user || null;
+
+      if(!user){
         clearTimeout(watchdog);
-        memberPill.textContent = "Error";
+        memberPill.textContent = "Signed out";
         stateEl.innerHTML = `
-          <div class="sectionTitle">${title}</div>
-          <h2 class="h2">Something broke while loading</h2>
-          <p class="muted">${message}</p>
-          ${details ? `<pre>${details}</pre>` : ""}
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-            <a class="btn" href="index.html">Back to Sign In</a>
-          </div>
-        `;
+          <div class="sectionTitle">Sign in required</div>
+          <h2 class="h2">You need to be signed in</h2>
+          <p class="muted" style="margin-top:8px;">Head back to sign in or create an account.</p>
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <a class="btn primary" href="index.html">Sign In</a>
+          </div>`;
+        return;
       }
 
-      try {
-        if (!window.supabase || !window.supabase.createClient) {
-          throw new Error("Supabase library not loaded. Check that cdn.jsdelivr.net is not blocked by an adblocker.");
-        }
+      // Profile check
+      const { data:profile, error:pErr } = await withTimeout(
+        sb.from("profiles").select("id,email,is_premium").eq("id",user.id).maybeSingle(), 8000
+      );
 
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-          auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true,
-            storage: window.localStorage
-          }
-        });
-
-        async function getProfile(userId){
-          const { data, error } = await withTimeout(
-            supabaseClient
-              .from("profiles")
-              .select("id,email,is_premium")
-              .eq("id", userId)
-              .maybeSingle(),
-            8000
-          );
-
-          if (error) return { __error: error };
-          return data || null;
-        }
-
-        // Must be signed in
-        const { data: u, error: userErr } = await withTimeout(supabaseClient.auth.getUser(), 8000);
-        if (userErr) throw new Error("auth.getUser() failed: " + userErr.message);
-
-        const user = u?.user || null;
-
-        if (!user){
-          clearTimeout(watchdog);
-          memberPill.textContent = "Signed out";
-          stateEl.innerHTML = `
-            <div class="sectionTitle">Access required</div>
-            <h2 class="h2">Sign in to continue</h2>
-            <p class="muted">You need an account to verify premium access.</p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-              <a class="btn primary" href="index.html">Go to Sign In</a>
-              <a class="btn" href="index.html#premium">Back</a>
-            </div>
-          `;
-          return;
-        }
-
-        // Check premium flag
-        const profile = await getProfile(user.id);
-
-        // RLS / DB error
-        if (profile && profile.__error) {
-          console.error("[premium] profiles error:", profile.__error);
-          showFatal(
-            "Database blocked (RLS)",
-            "Your profiles query failed. Most likely Row Level Security is blocking SELECT. You need a policy that allows a signed-in user to read their own profile row.",
-            profile.__error.message
-          );
-          return;
-        }
-
-        if (!profile){
-          clearTimeout(watchdog);
-          memberPill.textContent = "Unknown";
-          stateEl.innerHTML = `
-            <div class="sectionTitle">Profile missing</div>
-            <h2 class="h2">We can’t verify your membership</h2>
-            <p class="muted">The profiles table didn’t return your row. Create a row in profiles for this user id.</p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-              <a class="btn" href="index.html">Home</a>
-            </div>
-          `;
-          return;
-        }
-
-        if (!profile.is_premium){
-          clearTimeout(watchdog);
-          memberPill.textContent = "Free";
-          stateEl.innerHTML = `
-            <div class="sectionTitle">Premium locked</div>
-            <h2 class="h2">Upgrade to Premium</h2>
-            <p class="muted">Your account: <strong>${profile.email || "signed-in user"}</strong></p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-              <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Go Premium</a>
-              <a class="btn" href="index.html#premium">Back</a>
-            </div>
-            <p class="note">
-              After subscribing, you must mark your profile as premium (later you can automate via Stripe webhook).
-            </p>
-          `;
-          return;
-        }
-
-        // ✅ Premium unlocked
+      if(pErr){
+        showFatal("Database error", "Could not load your profile. RLS may be blocking access.", pErr.message);
+        return;
+      }
+      if(!profile){
         clearTimeout(watchdog);
-        memberPill.textContent = "Premium";
+        memberPill.textContent = "Unknown";
         stateEl.innerHTML = `
-          <div class="sectionTitle">Access granted</div>
-          <h2 class="h2">Premium active ✅</h2>
-          <p class="muted">Welcome, ${profile.email || "member"}.</p>
-        `;
+          <div class="sectionTitle">Profile missing</div>
+          <h2 class="h2">Can't verify your membership</h2>
+          <p class="muted" style="margin-top:8px;">Your profile row is missing. Contact support.</p>
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <a class="btn" href="index.html">Home</a>
+          </div>`;
+        return;
+      }
 
-        // ---------------------------
-        // Premium Dashboard
-        // ---------------------------
-        const STORAGE_KEY = "fintrend_premium_modules_v1";
+      if(!profile.is_premium){
+        clearTimeout(watchdog);
+        memberPill.textContent = "Free";
+        stateEl.innerHTML = `
+          <div class="sectionTitle">Premium required</div>
+          <h2 class="h2">Upgrade to unlock this dashboard</h2>
+          <p class="muted" style="margin-top:8px;">Signed in as <strong>${escHtml(profile.email||"")}</strong></p>
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Go Premium</a>
+            <a class="btn" href="index.html">Back</a>
+          </div>`;
+        return;
+      }
 
-        const MODULES = [
-          {
-            id: "deepdive",
-            page: "#",
-            category: "Research",
-            badge: "Deep Dives",
-            title: "Weekly Deep Dives + Archive",
-            desc: "Open the latest deep dive instantly, or browse the archive by sector and keywords — all loaded securely from Supabase.",
-            render: () => `
-              <div class="chips">
-                <div class="chip"><span>Loads from</span> Supabase (RLS protected)</div>
-                <div class="chip"><span>Includes</span> archive + filters</div>
-                <div class="chip"><span>No refresh</span> instant load</div>
-              </div>
+      // ✅ PREMIUM UNLOCKED
+      clearTimeout(watchdog);
+      memberPill.textContent = "Premium ✓";
+      memberPill.classList.add("active");
+      stateEl.innerHTML = `
+        <div class="sectionTitle">Access granted</div>
+        <h2 class="h2">Premium active ✅</h2>
+        <p class="muted" style="margin-top:6px;">Welcome back, ${escHtml(profile.email||"member")}.</p>`;
 
-              <div class="divider"></div>
+      // =============================================
+      // MODULE DEFINITIONS
+      // =============================================
+      const STORAGE_KEY = "fintrend_premium_modules_v2";
 
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button class="btn primary" data-deepdive="latest">Open latest deep dive</button>
-                <button class="btn" data-deepdive="archive">Browse archive</button>
-                <button class="btn" data-deepdive="exit" style="display:none;">Exit reader</button>
-              </div>
-
-              <div class="divider"></div>
-
-              <!-- Option B container: collapses archive when reading -->
-              <div class="dd-shell" id="ddShell">
-                <div class="card" id="ddArchiveCard" style="padding:14px; box-shadow:none;">
-                  <div class="sectionTitle">Archive</div>
-                  <div class="searchRow">
-                    <input id="ddSearch" type="text" placeholder="Search titles…" />
-                    <select id="ddSector">
-                      <option value="">All sectors</option>
-                    </select>
-                    <button class="btn" data-deepdive="refresh">Refresh</button>
-                  </div>
-                  <div class="note">Tip: Add <strong>sector</strong> and <strong>tags</strong> columns to make this even better.</div>
-                  <div class="divider"></div>
-                  <div id="ddList" class="checkgrid" style="gap:10px;"></div>
-                </div>
-
-                <div class="card" id="ddViewerCard" style="padding:14px; box-shadow:none;">
-                  <div class="ddViewerTop">
-                    <div class="sectionTitle">Viewer</div>
-                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                      <button class="btn" data-deepdive="backToArchive" style="display:none;">Back to archive</button>
-                    </div>
-                  </div>
-
-                  <div id="ddViewer">
-                    <p class="muted">Click “Open latest” or select a post from the archive.</p>
-                  </div>
-                </div>
-              </div>
-            `
-          },
-          {
-            id: "templates",
-            page: "premium-templates.html",
-            category: "Tools",
-            badge: "Templates Vault",
-            title: "Simple Templates (Download + Checklists)",
-            desc: "Portfolio tracking sheet, DCA planner, earnings tracker checklist, rebalancing checklist — clean + beginner-friendly.",
-            render: () => `
-              <div class="twoCols">
-                <div class="card" style="padding:14px;">
-                  <div class="sectionTitle">Downloads</div>
-                  <p class="muted" style="margin-top:8px;">Wire these to real files later (Supabase Storage).</p>
-                  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-                    <a class="btn primary" href="#" onclick="return false;" data-toast="Connect to /premium/templates/portfolio.xlsx">Portfolio Tracker</a>
-                    <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/dca.xlsx">DCA Planner</a>
-                    <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/earnings.pdf">Earnings Checklist</a>
-                    <a class="btn" href="#" onclick="return false;" data-toast="Connect to /premium/templates/rebalance.pdf">Rebalancing Checklist</a>
-                  </div>
-                </div>
-                <div class="card" style="padding:14px;">
-                  <div class="sectionTitle">How to use</div>
-                  <ul class="muted" style="margin:10px 0 0; line-height:1.7;">
-                    <li>Portfolio tracker: performance + contributions + simple attribution.</li>
-                    <li>DCA planner: schedule + target allocation + “what to buy next”.</li>
-                    <li>Earnings checklist: avoids impulsive trades; forces thesis review.</li>
-                    <li>Rebalancing checklist: rules-based, not emotional.</li>
-                  </ul>
-                </div>
-              </div>
-            `
-          },
-          {
-            id: "ideas",
-            page: "premium-ideas.html",
-            category: "Ideas",
-            badge: "Thesis Notes",
-            title: "Curated Stock/ETF Ideas",
-            desc: "A small list of ideas with clear theses, risk notes, catalysts, and time horizons.",
-            render: () => `
-              <div class="divider"></div>
-              <div class="card" style="padding:14px; box-shadow:none;">
-                <div class="sectionTitle">Example idea format</div>
-                <pre>
-Ticker: (example) XYZ
-Horizon: 6–18 months
-Thesis: 3 bullets tied to measurable drivers
-Catalysts: earnings, product cycle, macro triggers
-Risks: 3 risks + what would falsify the thesis
-Sizing note: guidelines (not advice)
-                </pre>
-                <p class="note">
-                  Architecture: store picks in <strong>premium_ideas</strong> with fields:
-                  <em>ticker, thesis, horizon, risk_notes, catalysts, created_at</em>.
-                </p>
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                  <button class="btn primary" data-toast="Load latest ideas (hook to Supabase)">Load latest ideas</button>
-                  <button class="btn" data-toast="Filter by sector (hook to UI later)">Filter by sector</button>
-                </div>
-              </div>
-            `
-          },
-          {
-            id: "models",
-            page: "premium-models.html",
-            category: "Portfolios",
-            badge: "Model Portfolios",
-            title: "Cautious / Balanced / Aggressive Models",
-            desc: "3 model portfolios + periodic rebalance updates with rationale and risk regime notes.",
-            render: () => `
-              <div class="twoCols">
-                <div class="card" style="padding:14px;">
-                  <div class="sectionTitle">Models</div>
-                  <ul class="muted" style="margin:10px 0 0; line-height:1.7;">
-                    <li><strong>Cautious:</strong> lower volatility, higher quality tilt</li>
-                    <li><strong>Balanced:</strong> core equity + diversifiers</li>
-                    <li><strong>Aggressive:</strong> growth tilt + tactical sleeve</li>
-                  </ul>
-                </div>
-                <div class="card" style="padding:14px;">
-                  <div class="sectionTitle">Rebalance notes</div>
-                  <p class="muted" style="margin-top:10px;">
-                    Each rebalance should answer: what changed → why now → risk → what would reverse it.
-                  </p>
-                </div>
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                <button class="btn primary" data-toast="Open latest rebalance (hook to Supabase)">Open latest rebalance</button>
-                <button class="btn" data-toast="View allocations (hook to Supabase)">View allocations</button>
-              </div>
-            `
-          },
-          {
-            id: "roundup",
-            page: "premium-roundup.html",
-            category: "News",
-            badge: "Niche Roundups",
-            title: "Deal + Niche News Roundups",
-            desc: "Choose a niche (VC/PE/M&A, SaaS finance, etc.) — weekly digest with what matters and why.",
-            render: () => `
-              <div class="chips">
-                <div class="chip"><span>VC/PE/M&A</span> deal logic + comps</div>
-                <div class="chip"><span>SaaS Finance</span> burn/margin benchmarks</div>
-                <div class="chip"><span>Macro</span> key rates + regime notes</div>
-              </div>
-              <div class="divider"></div>
-              <p class="muted">
-                Make it “premium-feeling” by keeping it tight: 5 bullets max, each with why it matters + implication.
-              </p>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                <button class="btn primary" data-toast="Open this week’s roundup (hook to Supabase)">Open this week</button>
-                <button class="btn" data-toast="Switch niche (dropdown later)">Switch niche</button>
-              </div>
-            `
-          },
-          {
-            id: "quantlab",
-            page: "premium-quantlab.html",
-            category: "Quant",
-            badge: "Quant Lab",
-            title: "Mean-Variance Optimizer + Monte Carlo CVaR",
-            desc: "Paste expected returns + covariance matrix → optimized weights, then simulate VaR/CVaR.",
-            render: () => `
-              <div class="divider"></div>
-
-              <div class="twoCols">
-                <div class="field">
-                  <label>Expected Returns (μ) — 3 assets</label>
-                  <input id="muInput" type="text" value="0.10, 0.07, 0.04" />
-                  <div class="note">Annualized expected returns. Example: 0.10 = 10%.</div>
-                </div>
-
-                <div class="field">
-                  <label>Risk Aversion (λ)</label>
-                  <input id="lambdaInput" type="number" value="4" step="0.5" />
-                  <div class="note">Higher λ → more conservative allocation.</div>
-                </div>
-              </div>
-
-              <div class="field" style="margin-top:10px;">
-                <label>Covariance Matrix (Σ) — 3×3</label>
-                <textarea id="covInput">0.0400, 0.0060, 0.0020
-0.0060, 0.0225, 0.0015
-0.0020, 0.0015, 0.0100</textarea>
-                <div class="note">Annualized covariance. Must be symmetric.</div>
-              </div>
-
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-                <button class="btn primary" id="runQuantBtn">Run Optimizer</button>
-                <button class="btn" id="resetQuantBtn">Reset Example</button>
-              </div>
-
-              <pre id="quantOut">Output will appear here…</pre>
-
-              <p class="note">
-                Steps:
-                (1) weights ≈ (1/λ) Σ⁻¹ μ,
-                (2) project to long-only (weights ≥ 0, sum=1),
-                (3) Monte Carlo simulation,
-                (4) 95% VaR and 95% CVaR.
-              </p>
-            `
-          }
-        ];
-
-        const DEFAULT_SELECTION = ["deepdive","templates","ideas","models","roundup","quantlab"];
-
-        function loadSelection(){
-          try{
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return DEFAULT_SELECTION.slice();
-            const parsed = JSON.parse(raw);
-            if (!Array.isArray(parsed)) return DEFAULT_SELECTION.slice();
-            return parsed.filter(id => MODULES.some(m => m.id === id));
-          }catch(e){
-            return DEFAULT_SELECTION.slice();
-          }
+      const MODULES = [
+        {
+          id:"deepdive", category:"Research", badge:"Deep Dives",
+          title:"Weekly Deep Dives + Archive",
+          desc:"Full-length sector reports with drivers, positioning, catalysts, and levels — loaded live from your database.",
+          render: renderDeepDives
+        },
+        {
+          id:"ideas", category:"Ideas", badge:"On My Radar",
+          title:"Curated Stock & ETF Ideas",
+          desc:"Weekly watchlist with thesis, catalysts, time horizon, and risk notes for each idea.",
+          render: renderIdeas
+        },
+        {
+          id:"roundup", category:"News", badge:"Niche Roundups",
+          title:"Deal + Niche News Roundups",
+          desc:"Weekly curated roundups — what happened, why it matters, and the implication.",
+          render: renderRoundups
+        },
+        {
+          id:"templates", category:"Tools", badge:"Templates Vault",
+          title:"Simple Templates (Download + Checklists)",
+          desc:"Portfolio tracker, DCA planner, earnings checklist, and rebalancing checklist.",
+          render: renderTemplates
+        },
+        {
+          id:"models", category:"Portfolios", badge:"Model Portfolios",
+          title:"Cautious / Balanced / Aggressive Models",
+          desc:"3 model portfolio frameworks with periodic rebalance rationale and risk regime notes.",
+          render: renderModels
+        },
+        {
+          id:"quantlab", category:"Quant", badge:"Quant Lab",
+          title:"Portfolio Optimizer + Monte Carlo CVaR",
+          desc:"Mean-variance optimization + 20,000-scenario Monte Carlo simulation with VaR and CVaR output.",
+          render: renderQuantLab
         }
-        function saveSelection(sel){
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(sel));
-        }
+      ];
 
-        function groupByCategory(mods){
-          const map = {};
-          for (const m of mods){
-            if (!map[m.category]) map[m.category] = [];
-            map[m.category].push(m);
-          }
-          return map;
-        }
+      const DEFAULT = MODULES.map(m=>m.id);
 
-        function renderDashboard(selectedIds){
-          const selected = MODULES.filter(m => selectedIds.includes(m.id));
+      function loadSel(){
+        try{
+          const r=localStorage.getItem(STORAGE_KEY);
+          if(!r) return DEFAULT.slice();
+          const p=JSON.parse(r);
+          if(!Array.isArray(p)) return DEFAULT.slice();
+          return p.filter(id=>MODULES.some(m=>m.id===id));
+        }catch{ return DEFAULT.slice(); }
+      }
+      function saveSel(s){ localStorage.setItem(STORAGE_KEY,JSON.stringify(s)); }
 
-          return `
-            <div class="layout">
-              <div class="card">
-                <div class="sectionTitle">Build your dashboard</div>
-                <h2 class="h2">Choose what you want to see</h2>
-                <p class="muted" style="margin-top:8px;">Select modules below. Your layout saves automatically.</p>
+      let selectedIds = loadSel();
 
-                <div class="divider"></div>
-                <div id="selector"></div>
-                <div class="divider"></div>
+      // =============================================
+      // RENDER FUNCTIONS
+      // =============================================
 
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                  <button class="btn primary" id="selectAllBtn">Select all</button>
-                  <button class="btn" id="selectNoneBtn">Select none</button>
-                  <button class="btn" id="resetDefaultBtn">Reset default</button>
-                </div>
-
-                <p class="note">
-                  Optional: you can also open modules as separate pages:
-                  <span class="muted">premium-templates.html, premium-ideas.html, ...</span>
-                </p>
+      function renderDeepDives(){
+        return `
+          <div class="chips">
+            <div class="chip"><span>Source</span> Supabase (RLS protected)</div>
+            <div class="chip"><span>Updated</span> When you publish</div>
+          </div>
+          <div class="divider"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn primary" data-deepdive="latest">Open Latest Deep Dive</button>
+            <button class="btn" data-deepdive="archive">Browse Archive</button>
+            <button class="btn" data-deepdive="exit" style="display:none;">Exit Reader</button>
+          </div>
+          <div class="divider"></div>
+          <div class="dd-shell" id="ddShell">
+            <div class="card" id="ddArchiveCard" style="padding:14px;box-shadow:none;">
+              <div class="sectionTitle">Archive</div>
+              <div class="searchRow">
+                <input id="ddSearch" type="text" placeholder="Search titles…" style="max-width:200px;" />
+                <select id="ddSector"><option value="">All sectors</option></select>
+                <button class="btn" data-deepdive="refresh">Refresh</button>
               </div>
+              <div class="divider"></div>
+              <div id="ddList" class="checkgrid" style="gap:10px;"></div>
+            </div>
+            <div class="card" id="ddViewerCard" style="padding:14px;box-shadow:none;">
+              <div class="ddViewerTop">
+                <div class="sectionTitle">Reader</div>
+                <button class="btn" data-deepdive="backToArchive" style="display:none;">← Back to Archive</button>
+              </div>
+              <div id="ddViewer"><p class="muted">Click "Open Latest" or choose from the archive.</p></div>
+            </div>
+          </div>`;
+      }
 
-              <div class="modules" id="modulesCol">
-                ${selected.length ? selected.map(m => `
-                  <div class="card" id="module-${m.id}">
-                    <div class="moduleHeader">
-                      <div>
-                        <div class="moduleMeta">
-                          <span class="badge">${m.badge}</span>
-                          <span class="badge">${m.category}</span>
-                        </div>
-                        <h3 class="moduleTitle">${m.title}</h3>
-                        <p class="moduleDesc">${m.desc}</p>
-                      </div>
-                      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a class="btn" href="${m.page}">Full page</a>
-                        <button class="btn" data-scrolltop>Top</button>
-                      </div>
-                    </div>
-                    <div style="margin-top:10px;">${m.render()}</div>
-                  </div>
-                `).join("") : `
-                  <div class="card">
-                    <div class="sectionTitle">Nothing selected</div>
-                    <h3 class="moduleTitle">Pick a module on the left</h3>
-                    <p class="moduleDesc">Your premium dashboard will appear here.</p>
-                  </div>
-                `}
+      function renderIdeas(){
+        return `
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+            <button class="btn primary" id="loadIdeasBtn">Load Ideas</button>
+            <select id="ideasSectorFilter" style="max-width:180px;">
+              <option value="">All Sectors</option>
+            </select>
+          </div>
+          <div id="ideasContainer">
+            <p class="muted">Click "Load Ideas" to fetch your latest watchlist.</p>
+          </div>`;
+      }
+
+      function renderRoundups(){
+        return `
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+            <button class="btn primary" id="loadRoundupsBtn">Load Roundups</button>
+            <select id="roundupNicheFilter" style="max-width:180px;">
+              <option value="">All Niches</option>
+            </select>
+          </div>
+          <div id="roundupsContainer">
+            <p class="muted">Click "Load Roundups" to fetch the latest.</p>
+          </div>`;
+      }
+
+      function renderTemplates(){
+        return `
+          <div class="twoCols">
+            <div class="card" style="padding:14px;">
+              <div class="sectionTitle">Downloads</div>
+              <p class="muted" style="margin-top:8px;font-size:12px;">Upload files to Supabase Storage and replace the # hrefs below.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+                <a class="btn primary" href="#">Portfolio Tracker</a>
+                <a class="btn" href="#">DCA Planner</a>
+                <a class="btn" href="#">Earnings Checklist</a>
+                <a class="btn" href="#">Rebalancing Checklist</a>
               </div>
             </div>
-          `;
-        }
+            <div class="card" style="padding:14px;">
+              <div class="sectionTitle">How to use</div>
+              <ul class="muted" style="margin:10px 0 0;line-height:1.8;font-size:13px;padding-left:16px;">
+                <li><strong style="color:var(--text);">Portfolio Tracker:</strong> performance + contributions + attribution</li>
+                <li><strong style="color:var(--text);">DCA Planner:</strong> schedule + target allocation + "what to buy next"</li>
+                <li><strong style="color:var(--text);">Earnings Checklist:</strong> forces thesis review before trading</li>
+                <li><strong style="color:var(--text);">Rebalancing Checklist:</strong> rules-based, removes emotion</li>
+              </ul>
+            </div>
+          </div>`;
+      }
 
-        function renderSelector(selectedIds){
-          const grouped = groupByCategory(MODULES);
-          const cats = Object.keys(grouped);
+      function renderModels(){
+        return `
+          <div class="twoCols">
+            <div class="card" style="padding:14px;">
+              <div class="sectionTitle">Framework Portfolios</div>
+              <ul class="muted" style="margin:10px 0 0;line-height:1.8;font-size:13px;padding-left:16px;">
+                <li><strong style="color:var(--text);">Cautious:</strong> lower volatility, quality tilt, capital preservation</li>
+                <li><strong style="color:var(--text);">Balanced:</strong> core equity + diversifiers, moderate growth</li>
+                <li><strong style="color:var(--text);">Aggressive:</strong> growth tilt + tactical sleeve, higher beta</li>
+              </ul>
+              <p class="note" style="margin-top:10px;">These are illustrative frameworks for educational purposes only. Not financial advice.</p>
+            </div>
+            <div class="card" style="padding:14px;">
+              <div class="sectionTitle">Rebalance Notes</div>
+              <p class="muted" style="margin-top:10px;font-size:13px;line-height:1.65;">
+                Each rebalance note answers: what changed → why now → risk → what would reverse it.
+                Connect to <strong>premium_model_portfolios</strong> table when ready.
+              </p>
+              <div style="margin-top:12px;">
+                <button class="btn primary" data-toast="Connect premium_model_portfolios table to load rebalance notes">View Latest Rebalance</button>
+              </div>
+            </div>
+          </div>`;
+      }
 
-          return `
-            <div class="checkgrid">
-              ${cats.map(cat => `
-                <div class="card" style="padding:14px; box-shadow:none;">
+      function renderQuantLab(){
+        return `
+          <div class="chips">
+            <div class="chip"><span>Method</span> Mean-Variance Optimization</div>
+            <div class="chip"><span>Risk</span> Monte Carlo CVaR</div>
+            <div class="chip"><span>Simulations</span> Up to 50,000</div>
+          </div>
+          <div class="divider"></div>
+          <p class="muted" style="font-size:13px;line-height:1.65;margin-bottom:12px;">
+            Professional portfolio optimization using the Markowitz framework + Monte Carlo simulation.
+            Find optimal weights, then stress-test them with 20,000+ return scenarios.
+          </p>
+          <button class="btn primary" id="openQuantLabBtn">Open Quant Lab</button>`;
+      }
+
+      // =============================================
+      // DASHBOARD RENDER
+      // =============================================
+
+      function groupByCat(mods){
+        const m={};
+        for(const mod of mods){ if(!m[mod.category]) m[mod.category]=[]; m[mod.category].push(mod); }
+        return m;
+      }
+
+      function buildDashboard(selIds){
+        const sel = MODULES.filter(m=>selIds.includes(m.id));
+        const grouped = groupByCat(MODULES);
+
+        return `<div class="layout">
+          <div class="card">
+            <div class="sectionTitle">Build your dashboard</div>
+            <h2 class="h2">Choose what to see</h2>
+            <p class="muted" style="margin-top:8px;font-size:13px;">Your layout saves automatically.</p>
+            <div class="divider"></div>
+            <div id="selector">
+              ${Object.keys(grouped).map(cat=>`
+                <div class="card" style="padding:14px;box-shadow:none;margin-bottom:10px;">
                   <div class="sectionTitle">${cat}</div>
-                  <div style="margin-top:10px; display:grid; gap:10px;">
-                    ${grouped[cat].map(m => `
+                  <div style="margin-top:10px;display:grid;gap:8px;">
+                    ${grouped[cat].map(m=>`
                       <label class="check">
-                        <input type="checkbox" data-module="${m.id}" ${selectedIds.includes(m.id) ? "checked" : ""} />
+                        <input type="checkbox" data-module="${m.id}" ${selIds.includes(m.id)?"checked":""} />
                         <div>
                           <strong>${m.badge}</strong>
                           <small>${m.title}</small>
                         </div>
-                      </label>
-                    `).join("")}
+                      </label>`).join("")}
                   </div>
-                </div>
-              `).join("")}
+                </div>`).join("")}
             </div>
-          `;
-        }
-
-        let selectedIds = loadSelection();
-
-        contentEl.style.display = "block";
-        contentEl.innerHTML = renderDashboard(selectedIds);
-        document.getElementById("selector").innerHTML = renderSelector(selectedIds);
-
-        function rerender(){
-          contentEl.innerHTML = renderDashboard(selectedIds);
-          document.getElementById("selector").innerHTML = renderSelector(selectedIds);
-          wireSelectorEvents();
-          wireCommonEvents();
-          wireDeepDiveEvents();
-          wireQuantLabIfPresent();
-        }
-
-        function wireSelectorEvents(){
-          contentEl.querySelectorAll('input[type="checkbox"][data-module]').forEach(cb => {
-            cb.addEventListener("change", () => {
-              const id = cb.getAttribute("data-module");
-              if (cb.checked){
-                if (!selectedIds.includes(id)) selectedIds.push(id);
-              } else {
-                selectedIds = selectedIds.filter(x => x !== id);
-              }
-              saveSelection(selectedIds);
-              rerender();
-            });
-          });
-
-          const allBtn = document.getElementById("selectAllBtn");
-          const noneBtn = document.getElementById("selectNoneBtn");
-          const resetBtn = document.getElementById("resetDefaultBtn");
-
-          if (allBtn) allBtn.onclick = () => { selectedIds = MODULES.map(m => m.id); saveSelection(selectedIds); rerender(); };
-          if (noneBtn) noneBtn.onclick = () => { selectedIds = []; saveSelection(selectedIds); rerender(); };
-          if (resetBtn) resetBtn.onclick = () => { selectedIds = DEFAULT_SELECTION.slice(); saveSelection(selectedIds); rerender(); };
-        }
-
-        function wireCommonEvents(){
-          contentEl.querySelectorAll("[data-scrolltop]").forEach(btn => {
-            btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-          });
-
-          contentEl.querySelectorAll("[data-toast]").forEach(el => {
-            el.addEventListener("click", () => {
-              alert(el.getAttribute("data-toast"));
-            });
-          });
-        }
-
-        // ===== Deep Dive + Archive (Supabase-powered) =====
-        let ddCache = []; // {id,title,created_at,sector,tags}
-
-        function fmtDate(ts){
-          try { return new Date(ts).toLocaleString(); } catch { return ""; }
-        }
-
-        function escapeHtml(str){
-          return String(str ?? "")
-            .replaceAll("&","&amp;")
-            .replaceAll("<","&lt;")
-            .replaceAll(">","&gt;")
-            .replaceAll('"',"&quot;")
-            .replaceAll("'","&#039;");
-        }
-
-        async function fetchDeepDiveLatest(){
-          const { data, error } = await supabaseClient
-            .from("premium_articles")
-            .select("id,title,content,created_at,sector,tags")
-            .eq("type","deep_dive")
-            .order("created_at", { ascending:false })
-            .limit(1);
-
-          if (error) throw error;
-          if (!data || !data.length) return null;
-          return data[0];
-        }
-
-        async function fetchDeepDiveArchive(limit=150){
-          const { data, error } = await supabaseClient
-            .from("premium_articles")
-            .select("id,title,created_at,sector,tags")
-            .eq("type","deep_dive")
-            .order("created_at", { ascending:false })
-            .limit(limit);
-
-          if (error) throw error;
-          return data || [];
-        }
-
-        async function fetchDeepDiveById(id){
-          const { data, error } = await supabaseClient
-            .from("premium_articles")
-            .select("id,title,content,created_at,sector,tags")
-            .eq("id", id)
-            .single();
-
-          if (error) throw error;
-          return data;
-        }
-
-        function enterReaderMode(){
-          const shell = document.getElementById("ddShell");
-          if (shell) shell.classList.add("reading");
-
-          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
-          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
-          if (exitBtn) exitBtn.style.display = "";
-          if (backBtn) backBtn.style.display = "";
-        }
-
-        function exitReaderMode(){
-          const shell = document.getElementById("ddShell");
-          if (shell) shell.classList.remove("reading");
-
-          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
-          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
-          if (exitBtn) exitBtn.style.display = "none";
-          if (backBtn) backBtn.style.display = "none";
-        }
-
-        function renderViewer(article){
-          const viewer = document.getElementById("ddViewer");
-          if (!viewer) return;
-
-          if (!article){
-            viewer.innerHTML = `<p class="muted">No deep dive found yet.</p>`;
-            return;
-          }
-
-          const sector = article.sector ? `<span class="miniChip">${escapeHtml(article.sector)}</span>` : "";
-          const tags = Array.isArray(article.tags)
-            ? article.tags.slice(0,6).map(t => `<span class="miniChip">${escapeHtml(t)}</span>`).join("")
-            : "";
-
-          viewer.innerHTML = `
-            <div class="moduleMeta" style="margin-bottom:10px;">
-              ${sector}
-              ${tags}
-              <span class="miniChip">${escapeHtml(fmtDate(article.created_at))}</span>
-            </div>
-
-            <h2 style="margin:0 0 10px;">${escapeHtml(article.title)}</h2>
-
             <div class="divider"></div>
-
-            <div class="article-body">
-              ${article.content}
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn primary" id="selAllBtn">Select All</button>
+              <button class="btn" id="selNoneBtn">Select None</button>
+              <button class="btn" id="selResetBtn">Reset</button>
             </div>
-          `;
+          </div>
 
-          // Option B: when content loads, expand into reader mode (archive collapses)
-          enterReaderMode();
-        }
-
-        function buildSectorOptions(items){
-          const set = new Set();
-          for (const it of items){
-            if (it.sector && String(it.sector).trim()) set.add(String(it.sector).trim());
-          }
-          return Array.from(set).sort((a,b)=>a.localeCompare(b));
-        }
-
-        function renderArchiveList(){
-          const list = document.getElementById("ddList");
-          const sectorSel = document.getElementById("ddSector");
-          const searchEl = document.getElementById("ddSearch");
-          if (!list) return;
-
-          const sector = sectorSel ? sectorSel.value : "";
-          const q = (searchEl ? searchEl.value : "").trim().toLowerCase();
-
-          const filtered = ddCache.filter(row => {
-            const okSector = !sector || (row.sector === sector);
-            const okSearch = !q || String(row.title).toLowerCase().includes(q);
-            return okSector && okSearch;
-          });
-
-          if (!filtered.length){
-            list.innerHTML = `<p class="muted">No matches. Try clearing filters.</p>`;
-            return;
-          }
-
-          list.innerHTML = filtered.map(r => {
-            const sectorChip = r.sector ? `<span class="miniChip">${escapeHtml(r.sector)}</span>` : "";
-            const tags = Array.isArray(r.tags)
-              ? r.tags.slice(0,3).map(t => `<span class="miniChip">${escapeHtml(t)}</span>`).join("")
-              : "";
-
-            return `
-              <div class="archiveRow" data-dd-id="${escapeHtml(r.id)}">
-                <div>
-                  <div style="font-weight:900;">${escapeHtml(r.title)}</div>
-                  <div class="archiveMeta">
-                    ${sectorChip}
-                    ${tags}
+          <div class="modules" id="modulesCol">
+            ${sel.length ? sel.map(m=>`
+              <div class="card" id="module-${m.id}">
+                <div class="moduleHeader">
+                  <div>
+                    <div class="moduleMeta">
+                      <span class="badge">${m.badge}</span>
+                      <span class="badge">${m.category}</span>
+                    </div>
+                    <h3 class="moduleTitle">${m.title}</h3>
+                    <p class="moduleDesc">${m.desc}</p>
                   </div>
+                  <button class="btn" data-scrolltop>↑ Top</button>
                 </div>
-                <div class="muted" style="font-size:12px; white-space:nowrap;">
-                  ${escapeHtml(fmtDate(r.created_at))}
-                </div>
-              </div>
-            `;
-          }).join("");
+                <div style="margin-top:12px;">${m.render()}</div>
+              </div>`).join("") : `
+              <div class="card">
+                <div class="sectionTitle">Nothing selected</div>
+                <h3 class="moduleTitle" style="margin-top:8px;">Select a module on the left</h3>
+              </div>`}
+          </div>
+        </div>`;
+      }
 
-          list.querySelectorAll("[data-dd-id]").forEach(el => {
-            el.addEventListener("click", async () => {
-              const id = el.getAttribute("data-dd-id");
-              try{
-                const a = await fetchDeepDiveById(id);
-                renderViewer(a);
-              }catch(err){
-                alert("Could not load that deep dive: " + (err?.message || String(err)));
-              }
-            });
-          });
-        }
+      function rerender(){
+        contentEl.innerHTML = buildDashboard(selectedIds);
+        wireAll();
+      }
 
-        async function refreshArchiveUI(){
-          const sectorSel = document.getElementById("ddSector");
-          const searchEl = document.getElementById("ddSearch");
-          const list = document.getElementById("ddList");
+      contentEl.style.display = "block";
+      contentEl.innerHTML = buildDashboard(selectedIds);
+      wireAll();
 
-          if (!sectorSel || !searchEl || !list) return;
+      // =============================================
+      // WIRE ALL EVENTS
+      // =============================================
 
-          ddCache = await fetchDeepDiveArchive(150);
-
-          const options = buildSectorOptions(ddCache);
-          const current = sectorSel.value;
-
-          sectorSel.innerHTML = `<option value="">All sectors</option>` +
-            options.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
-
-          if (options.includes(current)) sectorSel.value = current;
-
-          renderArchiveList();
-
-          searchEl.oninput = () => renderArchiveList();
-          sectorSel.onchange = () => renderArchiveList();
-        }
-
-        function wireDeepDiveEvents(){
-          const latestBtn = contentEl.querySelector('[data-deepdive="latest"]');
-          const archiveBtn = contentEl.querySelector('[data-deepdive="archive"]');
-          const refreshBtn = contentEl.querySelector('[data-deepdive="refresh"]');
-          const exitBtn = contentEl.querySelector('[data-deepdive="exit"]');
-          const backBtn = contentEl.querySelector('[data-deepdive="backToArchive"]');
-
-          if (latestBtn){
-            latestBtn.addEventListener("click", async () => {
-              const viewer = document.getElementById("ddViewer");
-              if (viewer) viewer.innerHTML = `<p class="muted">Loading latest…</p>`;
-              try{
-                const a = await fetchDeepDiveLatest();
-                renderViewer(a);
-              }catch(err){
-                alert("Could not load latest deep dive: " + (err?.message || String(err)));
-              }
-            });
-          }
-
-          if (archiveBtn){
-            archiveBtn.addEventListener("click", async () => {
-              // When browsing archive, make sure archive column is visible
-              exitReaderMode();
-
-              const list = document.getElementById("ddList");
-              if (list) list.innerHTML = `<p class="muted">Loading archive…</p>`;
-              try{
-                await refreshArchiveUI();
-              }catch(err){
-                alert("Could not load archive: " + (err?.message || String(err)));
-              }
-            });
-          }
-
-          if (refreshBtn){
-            refreshBtn.addEventListener("click", async () => {
-              // Refresh archive implies archive visible
-              exitReaderMode();
-
-              const list = document.getElementById("ddList");
-              if (list) list.innerHTML = `<p class="muted">Refreshing…</p>`;
-              try{
-                await refreshArchiveUI();
-              }catch(err){
-                alert("Could not refresh: " + (err?.message || String(err)));
-              }
-            });
-          }
-
-          if (exitBtn){
-            exitBtn.addEventListener("click", () => {
-              exitReaderMode();
-            });
-          }
-
-          if (backBtn){
-            backBtn.addEventListener("click", async () => {
-              exitReaderMode();
-              const list = document.getElementById("ddList");
-              if (list && (!ddCache || !ddCache.length)) {
-                list.innerHTML = `<p class="muted">Loading archive…</p>`;
-                try { await refreshArchiveUI(); } catch {}
-              }
-              const archiveCard = document.getElementById("ddArchiveCard");
-              if (archiveCard) archiveCard.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-          }
-        }
-
-        // Quant math utilities (3 assets)
-        function parseVector(str){
-          const arr = str.split(",").map(s => Number(s.trim())).filter(n => Number.isFinite(n));
-          if (arr.length !== 3) throw new Error("Expected 3 numbers for μ.");
-          return arr;
-        }
-        function parseMatrix3(text){
-          const rows = text.trim().split("\n").map(line =>
-            line.split(",").map(s => Number(s.trim())).filter(n => Number.isFinite(n))
-          ).filter(r => r.length);
-          if (rows.length !== 3 || rows.some(r => r.length !== 3)) throw new Error("Expected a 3×3 covariance matrix.");
-          return rows;
-        }
-        function det3(A){
-          return (
-            A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) -
-            A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) +
-            A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0])
-          );
-        }
-        function inv3(A){
-          const d = det3(A);
-          if (!Number.isFinite(d) || Math.abs(d) < 1e-12) throw new Error("Covariance matrix is singular/near-singular.");
-          return [
-            [
-              (A[1][1]*A[2][2]-A[1][2]*A[2][1])/d,
-              (A[0][2]*A[2][1]-A[0][1]*A[2][2])/d,
-              (A[0][1]*A[1][2]-A[0][2]*A[1][1])/d
-            ],
-            [
-              (A[1][2]*A[2][0]-A[1][0]*A[2][2])/d,
-              (A[0][0]*A[2][2]-A[0][2]*A[2][0])/d,
-              (A[0][2]*A[1][0]-A[0][0]*A[1][2])/d
-            ],
-            [
-              (A[1][0]*A[2][1]-A[1][1]*A[2][0])/d,
-              (A[0][1]*A[2][0]-A[0][0]*A[2][1])/d,
-              (A[0][0]*A[1][1]-A[0][1]*A[1][0])/d
-            ]
-          ];
-        }
-        function matVec(A, v){
-          return [
-            A[0][0]*v[0] + A[0][1]*v[1] + A[0][2]*v[2],
-            A[1][0]*v[0] + A[1][1]*v[1] + A[1][2]*v[2],
-            A[2][0]*v[0] + A[2][1]*v[1] + A[2][2]*v[2]
-          ];
-        }
-        function dot(a,b){ return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
-        function projectSimplex(w){
-          let x = w.slice();
-          for (let k=0;k<6;k++){
-            x = x.map(v => Math.max(0, v));
-            const s = x.reduce((a,b)=>a+b,0);
-            x = (s > 1e-12) ? x.map(v => v/s) : [1/3,1/3,1/3];
-          }
-          return x;
-        }
-
-        function randn(){
-          let u=0, v=0;
-          while(u===0) u = Math.random();
-          while(v===0) v = Math.random();
-          return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
-        }
-        function chol3(S){
-          const L = [[0,0,0],[0,0,0],[0,0,0]];
-          if (S[0][0] <= 0) throw new Error("Covariance not PSD (S00 <= 0).");
-          L[0][0] = Math.sqrt(S[0][0]);
-          L[1][0] = S[1][0] / L[0][0];
-          const a11 = S[1][1] - L[1][0]*L[1][0];
-          if (a11 <= 0) throw new Error("Covariance not PSD (S11).");
-          L[1][1] = Math.sqrt(a11);
-          L[2][0] = S[2][0] / L[0][0];
-          L[2][1] = (S[2][1] - L[2][0]*L[1][0]) / L[1][1];
-          const a22 = S[2][2] - L[2][0]*L[2][0] - L[2][1]*L[2][1];
-          if (a22 <= 0) throw new Error("Covariance not PSD (S22).");
-          L[2][2] = Math.sqrt(a22);
-          return L;
-        }
-        function simulatePortfolio(mu, Sigma, w, n=12000){
-          const L = chol3(Sigma);
-          const port = [];
-          for (let i=0;i<n;i++){
-            const z = [randn(), randn(), randn()];
-            const r = [
-              mu[0] + (L[0][0]*z[0]),
-              mu[1] + (L[1][0]*z[0] + L[1][1]*z[1]),
-              mu[2] + (L[2][0]*z[0] + L[2][1]*z[1] + L[2][2]*z[2])
-            ];
-            port.push(w[0]*r[0] + w[1]*r[1] + w[2]*r[2]);
-          }
-          port.sort((a,b)=>a-b);
-          const alpha = 0.05;
-          const idx = Math.floor(alpha * port.length);
-          const var95 = port[idx];
-          const tail = port.slice(0, idx+1);
-          const cvar95 = tail.reduce((a,b)=>a+b,0) / tail.length;
-          const mean = port.reduce((a,b)=>a+b,0) / port.length;
-          const std = Math.sqrt(port.reduce((a,b)=>a+(b-mean)*(b-mean),0) / port.length);
-          return { mean, std, var95, cvar95 };
-        }
-        function fmtPct(x){ return (x*100).toFixed(2) + "%"; }
-
-        function wireQuantLabIfPresent(){
-          const btn = document.getElementById("runQuantBtn");
-          const reset = document.getElementById("resetQuantBtn");
-          if (!btn) return;
-
-          const muInput = document.getElementById("muInput");
-          const covInput = document.getElementById("covInput");
-          const lambdaInput = document.getElementById("lambdaInput");
-          const out = document.getElementById("quantOut");
-
-          reset.onclick = () => {
-            muInput.value = "0.10, 0.07, 0.04";
-            lambdaInput.value = 4;
-            covInput.value =
-`0.0400, 0.0060, 0.0020
-0.0060, 0.0225, 0.0015
-0.0020, 0.0015, 0.0100`;
-            out.textContent = "Output will appear here…";
-          };
-
-          btn.onclick = () => {
-            try{
-              const mu = parseVector(muInput.value);
-              const Sigma = parseMatrix3(covInput.value);
-              const lambda = Number(lambdaInput.value);
-              if (!Number.isFinite(lambda) || lambda <= 0) throw new Error("λ must be a positive number.");
-
-              const SigmaInv = inv3(Sigma);
-              const raw = matVec(SigmaInv, mu).map(v => v / lambda);
-              const w = projectSimplex(raw);
-
-              const portMu = dot(w, mu);
-              const sigW = matVec(Sigma, w);
-              const portVar = dot(w, sigW);
-              const portVol = Math.sqrt(Math.max(0, portVar));
-
-              const mc = simulatePortfolio(mu, Sigma, w, 12000);
-
-              out.textContent =
-`Optimized weights (long-only, sum=1):
-  w1 = ${(w[0]).toFixed(4)}
-  w2 = ${(w[1]).toFixed(4)}
-  w3 = ${(w[2]).toFixed(4)}
-
-Analytic:
-  Expected return ≈ ${fmtPct(portMu)}
-  Volatility ≈ ${fmtPct(portVol)}
-
-Monte Carlo:
-  Mean return ≈ ${fmtPct(mc.mean)}
-  Std dev ≈ ${fmtPct(mc.std)}
-  95% VaR (5th pct return) ≈ ${fmtPct(mc.var95)}
-  95% CVaR (avg worst 5%) ≈ ${fmtPct(mc.cvar95)}`;
-            }catch(err){
-              out.textContent = "Error: " + (err?.message || String(err));
-            }
-          };
-        }
-
+      function wireAll(){
         wireSelectorEvents();
         wireCommonEvents();
         wireDeepDiveEvents();
-        wireQuantLabIfPresent();
-
-      } catch (e) {
-        console.error("[premium] fatal:", e);
-        showFatal(
-          "Fatal error",
-          "The page crashed before it could finish checking your account. If Supabase is down, try again later.",
-          e?.message || String(e)
-        );
+        wireIdeasEvents(sb);
+        wireRoundupsEvents(sb);
+        wireQuantLabBtn();
       }
-    })();
+
+      function wireSelectorEvents(){
+        contentEl.querySelectorAll('input[type="checkbox"][data-module]').forEach(cb=>{
+          cb.addEventListener("change",()=>{
+            const id=cb.getAttribute("data-module");
+            if(cb.checked){ if(!selectedIds.includes(id)) selectedIds.push(id); }
+            else { selectedIds=selectedIds.filter(x=>x!==id); }
+            saveSel(selectedIds);
+            rerender();
+          });
+        });
+        const sa=document.getElementById("selAllBtn");
+        const sn=document.getElementById("selNoneBtn");
+        const sr=document.getElementById("selResetBtn");
+        if(sa) sa.onclick=()=>{ selectedIds=MODULES.map(m=>m.id); saveSel(selectedIds); rerender(); };
+        if(sn) sn.onclick=()=>{ selectedIds=[]; saveSel(selectedIds); rerender(); };
+        if(sr) sr.onclick=()=>{ selectedIds=DEFAULT.slice(); saveSel(selectedIds); rerender(); };
+      }
+
+      function wireCommonEvents(){
+        contentEl.querySelectorAll("[data-scrolltop]").forEach(b=>{
+          b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+        });
+        contentEl.querySelectorAll("[data-toast]").forEach(el=>{
+          el.addEventListener("click",()=>alert(el.getAttribute("data-toast")));
+        });
+      }
+
+      // =============================================
+      // DEEP DIVES
+      // =============================================
+      let ddCache=[];
+
+      async function fetchLatestDD(){
+        const {data,error}=await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(1);
+        if(error) throw error;
+        return data&&data.length?data[0]:null;
+      }
+      async function fetchDDArchive(){
+        const {data,error}=await sb.from("premium_articles").select("id,title,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(200);
+        if(error) throw error;
+        return data||[];
+      }
+      async function fetchDDById(id){
+        const {data,error}=await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("id",id).single();
+        if(error) throw error;
+        return data;
+      }
+
+      function enterReader(){
+        const s=document.getElementById("ddShell"); if(s) s.classList.add("reading");
+        const e=contentEl.querySelector('[data-deepdive="exit"]'); if(e) e.style.display="";
+        const b=contentEl.querySelector('[data-deepdive="backToArchive"]'); if(b) b.style.display="";
+      }
+      function exitReader(){
+        const s=document.getElementById("ddShell"); if(s) s.classList.remove("reading");
+        const e=contentEl.querySelector('[data-deepdive="exit"]'); if(e) e.style.display="none";
+        const b=contentEl.querySelector('[data-deepdive="backToArchive"]'); if(b) b.style.display="none";
+      }
+
+      function renderDDViewer(article){
+        const v=document.getElementById("ddViewer"); if(!v) return;
+        if(!article){ v.innerHTML=`<p class="muted">No deep dives found yet.</p>`; return; }
+        const sector=article.sector?`<span class="miniChip">${escHtml(article.sector)}</span>`:"";
+        v.innerHTML=`
+          <div class="moduleMeta" style="margin-bottom:12px;">
+            ${sector}
+            <span class="miniChip">${escHtml(fmtDate(article.created_at))}</span>
+          </div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:14px;">${escHtml(article.title)}</h2>
+          <div class="divider"></div>
+          <div class="article-body">${article.content}</div>`;
+        enterReader();
+      }
+
+      function renderDDList(){
+        const list=document.getElementById("ddList");
+        const sec=document.getElementById("ddSector");
+        const srch=document.getElementById("ddSearch");
+        if(!list) return;
+        const sv=sec?sec.value:"";
+        const q=(srch?srch.value:"").trim().toLowerCase();
+        const filtered=ddCache.filter(r=>(!sv||(r.sector===sv))&&(!q||r.title.toLowerCase().includes(q)));
+        if(!filtered.length){ list.innerHTML=`<p class="muted">No matches.</p>`; return; }
+        list.innerHTML=filtered.map(r=>`
+          <div class="archiveRow" data-dd-id="${escHtml(r.id)}">
+            <div>
+              <div style="font-weight:700;font-size:14px;">${escHtml(r.title)}</div>
+              <div class="archiveMeta">
+                ${r.sector?`<span class="miniChip">${escHtml(r.sector)}</span>`:""}
+              </div>
+            </div>
+            <div class="muted" style="font-size:12px;white-space:nowrap;">${escHtml(fmtDate(r.created_at))}</div>
+          </div>`).join("");
+        list.querySelectorAll("[data-dd-id]").forEach(el=>{
+          el.addEventListener("click",async()=>{
+            const id=el.getAttribute("data-dd-id");
+            const v=document.getElementById("ddViewer");
+            if(v) v.innerHTML=`<p class="muted loadingPulse">Loading…</p>`;
+            try{ renderDDViewer(await fetchDDById(id)); }
+            catch(err){ alert("Could not load: "+(err?.message||String(err))); }
+          });
+        });
+      }
+
+      async function refreshArchive(){
+        ddCache=await fetchDDArchive();
+        const sec=document.getElementById("ddSector");
+        if(sec){
+          const sectors=[...new Set(ddCache.filter(r=>r.sector).map(r=>r.sector))].sort();
+          const cur=sec.value;
+          sec.innerHTML=`<option value="">All sectors</option>`+sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
+          if(sectors.includes(cur)) sec.value=cur;
+          sec.onchange=()=>renderDDList();
+        }
+        const srch=document.getElementById("ddSearch");
+        if(srch) srch.oninput=()=>renderDDList();
+        renderDDList();
+      }
+
+      function wireDeepDiveEvents(){
+        const latBtn=contentEl.querySelector('[data-deepdive="latest"]');
+        const arcBtn=contentEl.querySelector('[data-deepdive="archive"]');
+        const refBtn=contentEl.querySelector('[data-deepdive="refresh"]');
+        const exitBtn=contentEl.querySelector('[data-deepdive="exit"]');
+        const backBtn=contentEl.querySelector('[data-deepdive="backToArchive"]');
+
+        if(latBtn) latBtn.onclick=async()=>{
+          const v=document.getElementById("ddViewer");
+          if(v) v.innerHTML=`<p class="muted loadingPulse">Loading latest…</p>`;
+          try{ renderDDViewer(await fetchLatestDD()); }
+          catch(err){ alert("Error: "+(err?.message||String(err))); }
+        };
+        if(arcBtn) arcBtn.onclick=async()=>{
+          exitReader();
+          const l=document.getElementById("ddList");
+          if(l) l.innerHTML=`<p class="muted loadingPulse">Loading archive…</p>`;
+          try{ await refreshArchive(); }
+          catch(err){ alert("Error: "+(err?.message||String(err))); }
+        };
+        if(refBtn) refBtn.onclick=async()=>{
+          exitReader();
+          try{ await refreshArchive(); }
+          catch(err){ alert("Error: "+(err?.message||String(err))); }
+        };
+        if(exitBtn) exitBtn.onclick=()=>exitReader();
+        if(backBtn) backBtn.onclick=async()=>{
+          exitReader();
+          if(!ddCache.length){ try{ await refreshArchive(); }catch{} }
+        };
+      }
+
+      // =============================================
+      // IDEAS — wired to premium_ideas
+      // =============================================
+      function wireIdeasEvents(sbClient){
+        const loadBtn=document.getElementById("loadIdeasBtn");
+        const container=document.getElementById("ideasContainer");
+        const sectorFilter=document.getElementById("ideasSectorFilter");
+        if(!loadBtn||!container) return;
+
+        let ideasCache=[];
+
+        function renderIdeasCards(){
+          const sv=sectorFilter?sectorFilter.value:"";
+          const filtered=ideasCache.filter(i=>!sv||(i.sector===sv));
+          if(!filtered.length){
+            container.innerHTML=`<p class="muted">No ideas found. Add some in Supabase → premium_ideas.</p>`;
+            return;
+          }
+          container.innerHTML=`<div class="ideaGrid">${filtered.map(idea=>`
+            <div class="ideaCard">
+              <div class="ideaTicker">${escHtml(idea.ticker||"—")}</div>
+              <div class="ideaSector">${escHtml(idea.sector||"")} ${idea.horizon?`· ${escHtml(idea.horizon)}`:""}
+                <span class="miniChip" style="margin-left:6px;">${escHtml(fmtDate(idea.created_at))}</span>
+              </div>
+              ${idea.thesis?`<div class="ideaRow"><div class="ideaLabel">Thesis</div><div class="ideaText">${escHtml(idea.thesis)}</div></div>`:""}
+              ${idea.catalysts?`<div class="ideaRow"><div class="ideaLabel">Catalysts</div><div class="ideaText">${escHtml(idea.catalysts)}</div></div>`:""}
+              ${idea.risk_note?`<div class="ideaRow"><div class="ideaLabel">Risk</div><div class="ideaText">${escHtml(idea.risk_note)}</div></div>`:""}
+            </div>`).join("")}</div>`;
+        }
+
+        loadBtn.onclick=async()=>{
+          container.innerHTML=`<p class="muted loadingPulse">Loading ideas…</p>`;
+          loadBtn.disabled=true;
+          try{
+            const {data,error}=await sbClient
+              .from("premium_ideas")
+              .select("*")
+              .order("created_at",{ascending:false});
+            if(error) throw error;
+            ideasCache=data||[];
+
+            // Populate sector filter
+            if(sectorFilter){
+              const sectors=[...new Set(ideasCache.filter(i=>i.sector).map(i=>i.sector))].sort();
+              sectorFilter.innerHTML=`<option value="">All Sectors</option>`+sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
+              sectorFilter.onchange=()=>renderIdeasCards();
+            }
+            renderIdeasCards();
+          }catch(err){
+            container.innerHTML=`<p style="color:#f87171;">Failed to load ideas: ${escHtml(err?.message||String(err))}</p>`;
+          } finally {
+            loadBtn.disabled=false;
+          }
+        };
+      }
+
+      // =============================================
+      // ROUNDUPS — wired to premium_roundups
+      // =============================================
+      function wireRoundupsEvents(sbClient){
+        const loadBtn=document.getElementById("loadRoundupsBtn");
+        const container=document.getElementById("roundupsContainer");
+        const nicheFilter=document.getElementById("roundupNicheFilter");
+        if(!loadBtn||!container) return;
+
+        let roundupsCache=[];
+
+        function renderRoundupCards(){
+          const nv=nicheFilter?nicheFilter.value:"";
+          const filtered=roundupsCache.filter(r=>!nv||(r.niche===nv)||(r.sector===nv)||(r.category===nv));
+          if(!filtered.length){
+            container.innerHTML=`<p class="muted">No roundups found. Add some in Supabase → premium_roundups.</p>`;
+            return;
+          }
+          container.innerHTML=filtered.map(r=>`
+            <div class="roundupCard">
+              <div class="roundupTitle">${escHtml(r.title||"Untitled Roundup")}</div>
+              <div class="roundupMeta">
+                ${(r.niche||r.sector||r.category)?`<span class="miniChip">${escHtml(r.niche||r.sector||r.category)}</span>`:""}
+                <span class="miniChip">${escHtml(fmtDate(r.created_at))}</span>
+              </div>
+              <div class="roundupContent">${escHtml(r.content||r.body||r.summary||"No content available.")}</div>
+            </div>`).join("");
+        }
+
+        loadBtn.onclick=async()=>{
+          container.innerHTML=`<p class="muted loadingPulse">Loading roundups…</p>`;
+          loadBtn.disabled=true;
+          try{
+            const {data,error}=await sbClient
+              .from("premium_roundups")
+              .select("*")
+              .order("created_at",{ascending:false});
+            if(error) throw error;
+            roundupsCache=data||[];
+
+            // Populate niche filter — try niche, then sector, then category
+            if(nicheFilter){
+              const niches=[...new Set(roundupsCache.map(r=>r.niche||r.sector||r.category).filter(Boolean))].sort();
+              nicheFilter.innerHTML=`<option value="">All Niches</option>`+niches.map(n=>`<option value="${escHtml(n)}">${escHtml(n)}</option>`).join("");
+              nicheFilter.onchange=()=>renderRoundupCards();
+            }
+            renderRoundupCards();
+          }catch(err){
+            container.innerHTML=`<p style="color:#f87171;">Failed to load roundups: ${escHtml(err?.message||String(err))}</p>`;
+          } finally {
+            loadBtn.disabled=false;
+          }
+        };
+      }
+
+      // =============================================
+      // QUANT LAB — popup flow
+      // =============================================
+      function wireQuantLabBtn(){
+        const btn=document.getElementById("openQuantLabBtn");
+        if(btn) btn.onclick=()=>{
+          document.getElementById("qlExplainer").classList.add("active");
+        };
+      }
+
+      // Explainer modal events
+      document.getElementById("qlExplainerClose").onclick=()=>{
+        document.getElementById("qlExplainer").classList.remove("active");
+      };
+      document.getElementById("qlNevermind").onclick=()=>{
+        document.getElementById("qlExplainer").classList.remove("active");
+      };
+      document.getElementById("qlOpenCalc").onclick=()=>{
+        document.getElementById("qlExplainer").classList.remove("active");
+        document.getElementById("qlCalc").classList.add("active");
+        initCalc();
+      };
+
+      // Calc modal close
+      document.getElementById("qlCalcClose").onclick=()=>{
+        document.getElementById("qlCalc").classList.remove("active");
+      };
+
+      // Close on backdrop click
+      document.getElementById("qlExplainer").addEventListener("click",e=>{
+        if(e.target===document.getElementById("qlExplainer"))
+          document.getElementById("qlExplainer").classList.remove("active");
+      });
+      document.getElementById("qlCalc").addEventListener("click",e=>{
+        if(e.target===document.getElementById("qlCalc"))
+          document.getElementById("qlCalc").classList.remove("active");
+      });
+
+      // ESC to close
+      window.addEventListener("keydown",e=>{
+        if(e.key==="Escape"){
+          document.getElementById("qlExplainer").classList.remove("active");
+          document.getElementById("qlCalc").classList.remove("active");
+        }
+      });
+
+      // =============================================
+      // QUANT CALCULATOR
+      // =============================================
+      const ASSET_COLORS=["#f4c15d","#93c5fd","#6ee7b7","#f87171","#c084fc"];
+      let numAssets=3;
+      let calcInited=false;
+
+      function initCalc(){
+        if(calcInited) return;
+        calcInited=true;
+        renderAssetRows();
+        renderCorrGrid();
+
+        document.getElementById("addAssetBtn").onclick=()=>{
+          if(numAssets>=5) return;
+          numAssets++;
+          renderAssetRows();
+          renderCorrGrid();
+        };
+        document.getElementById("removeAssetBtn").onclick=()=>{
+          if(numAssets<=2) return;
+          numAssets--;
+          renderAssetRows();
+          renderCorrGrid();
+        };
+        document.getElementById("loadExampleBtn").onclick=loadExample;
+        document.getElementById("resetCalcBtn").onclick=resetCalc;
+        document.getElementById("runOptBtn").onclick=runOptimizer;
+      }
+
+      function renderAssetRows(){
+        const container=document.getElementById("assetRows");
+        const names=["Asset 1","Asset 2","Asset 3","Asset 4","Asset 5"];
+        let html="";
+        for(let i=0;i<numAssets;i++){
+          const existing=container?container.querySelector(`#assetName_${i}`)?.value:null;
+          const mu=container?container.querySelector(`#assetMu_${i}`)?.value:null;
+          const sig=container?container.querySelector(`#assetSig_${i}`)?.value:null;
+          html+=`<div class="qlAssetRow">
+            <div class="qlAssetLabel" style="color:${ASSET_COLORS[i]};">Asset ${i+1}</div>
+            <input type="text" id="assetName_${i}" placeholder="${names[i]}" value="${existing||""}" />
+            <input type="number" id="assetMu_${i}" placeholder="0.10" step="0.01" value="${mu||""}" />
+            <input type="number" id="assetSig_${i}" placeholder="0.20" step="0.01" value="${sig||""}" />
+          </div>`;
+        }
+        container.innerHTML=html;
+      }
+
+      function renderCorrGrid(){
+        const container=document.getElementById("corrGrid");
+        if(numAssets<2){ container.innerHTML=""; return; }
+        // Build upper triangle correlation inputs
+        let html=`<table style="border-collapse:separate;border-spacing:6px;">`;
+        // Header row
+        html+=`<tr><td></td>`;
+        for(let j=0;j<numAssets;j++){
+          html+=`<td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[j]};text-align:center;padding:4px;">A${j+1}</td>`;
+        }
+        html+=`</tr>`;
+        for(let i=0;i<numAssets;i++){
+          html+=`<tr><td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[i]};padding:4px;">A${i+1}</td>`;
+          for(let j=0;j<numAssets;j++){
+            if(i===j){
+              html+=`<td><input type="number" value="1" readonly style="width:70px;background:rgba(244,193,93,0.08);border-color:rgba(244,193,93,0.2);text-align:center;cursor:not-allowed;opacity:.6;" /></td>`;
+            } else if(j>i){
+              const existing=document.getElementById(`corr_${i}_${j}`)?.value;
+              html+=`<td><input type="number" id="corr_${i}_${j}" placeholder="0.30" step="0.05" min="-1" max="1" value="${existing||""}" style="width:70px;text-align:center;" /></td>`;
+            } else {
+              html+=`<td><input type="number" value="—" readonly style="width:70px;opacity:.3;cursor:not-allowed;" /></td>`;
+            }
+          }
+          html+=`</tr>`;
+        }
+        html+=`</table>`;
+        container.innerHTML=html;
+      }
+
+      function loadExample(){
+        numAssets=3;
+        renderAssetRows();
+        renderCorrGrid();
+        // Names
+        ["SPX","Bonds","Gold"].forEach((n,i)=>{ const el=document.getElementById(`assetName_${i}`); if(el) el.value=n; });
+        // Returns
+        [0.10,0.04,0.06].forEach((v,i)=>{ const el=document.getElementById(`assetMu_${i}`); if(el) el.value=v; });
+        // Vols
+        [0.18,0.06,0.14].forEach((v,i)=>{ const el=document.getElementById(`assetSig_${i}`); if(el) el.value=v; });
+        // Corrs
+        const corrs={corr_0_1:-0.2,corr_0_2:0.05,corr_1_2:0.1};
+        Object.entries(corrs).forEach(([id,v])=>{ const el=document.getElementById(id); if(el) el.value=v; });
+        document.getElementById("lambdaInput").value=4;
+        document.getElementById("simCount").value=20000;
+        hideError();
+        document.getElementById("qlResults").style.display="none";
+      }
+
+      function resetCalc(){
+        numAssets=3;
+        renderAssetRows();
+        renderCorrGrid();
+        document.getElementById("lambdaInput").value=4;
+        document.getElementById("simCount").value=20000;
+        hideError();
+        document.getElementById("qlResults").style.display="none";
+      }
+
+      function showError(msg){
+        const el=document.getElementById("qlError");
+        el.textContent=msg; el.style.display="block";
+      }
+      function hideError(){
+        const el=document.getElementById("qlError");
+        el.style.display="none"; el.textContent="";
+      }
+
+      function getInputs(){
+        const mu=[], sig=[], names=[];
+        for(let i=0;i<numAssets;i++){
+          const n=document.getElementById(`assetName_${i}`)?.value||`Asset ${i+1}`;
+          const m=parseFloat(document.getElementById(`assetMu_${i}`)?.value);
+          const s=parseFloat(document.getElementById(`assetSig_${i}`)?.value);
+          if(!Number.isFinite(m)||!Number.isFinite(s)) throw new Error(`Asset ${i+1}: enter valid return and volatility.`);
+          if(s<=0) throw new Error(`Asset ${i+1}: volatility must be > 0.`);
+          names.push(n); mu.push(m); sig.push(s);
+        }
+        // Build covariance matrix from correlations + vols
+        const Sigma=Array.from({length:numAssets},(_,i)=>Array.from({length:numAssets},(_,j)=>{
+          if(i===j) return sig[i]*sig[i];
+          const key1=`corr_${Math.min(i,j)}_${Math.max(i,j)}`;
+          const rho=parseFloat(document.getElementById(key1)?.value);
+          if(!Number.isFinite(rho)||rho<-1||rho>1) throw new Error(`Correlation A${Math.min(i,j)+1}/A${Math.max(i,j)+1}: enter a value between -1 and 1.`);
+          return rho*sig[i]*sig[j];
+        }));
+        const lambda=parseFloat(document.getElementById("lambdaInput")?.value);
+        const nSim=parseInt(document.getElementById("simCount")?.value)||20000;
+        if(!Number.isFinite(lambda)||lambda<=0) throw new Error("Risk aversion λ must be > 0.");
+        return {mu, sig, Sigma, names, lambda, nSim};
+      }
+
+      // Math utilities
+      function matVecN(A,v){
+        return A.map(row=>row.reduce((s,a,j)=>s+a*v[j],0));
+      }
+      function dotN(a,b){ return a.reduce((s,x,i)=>s+x*b[i],0); }
+
+      function invN(A){
+        const n=A.length;
+        const aug=A.map((r,i)=>[...r,...Array.from({length:n},(_,j)=>i===j?1:0)]);
+        for(let col=0;col<n;col++){
+          let pivot=-1,pv=0;
+          for(let row=col;row<n;row++) if(Math.abs(aug[row][col])>pv){pv=Math.abs(aug[row][col]);pivot=row;}
+          if(pv<1e-12) throw new Error("Matrix is singular — check correlations (no perfect collinearity).");
+          [aug[col],aug[pivot]]=[aug[pivot],aug[col]];
+          const sc=aug[col][col];
+          aug[col]=aug[col].map(x=>x/sc);
+          for(let row=0;row<n;row++){
+            if(row!==col){
+              const f=aug[row][col];
+              aug[row]=aug[row].map((x,k)=>x-f*aug[col][k]);
+            }
+          }
+        }
+        return aug.map(r=>r.slice(n));
+      }
+
+      function projectSimplexN(v){
+        let x=v.map(a=>Math.max(0,a));
+        for(let k=0;k<10;k++){
+          const s=x.reduce((a,b)=>a+b,0);
+          x=s>1e-12?x.map(a=>a/s):x.map(()=>1/x.length);
+        }
+        return x;
+      }
+
+      function cholN(S){
+        const n=S.length;
+        const L=Array.from({length:n},()=>new Array(n).fill(0));
+        for(let i=0;i<n;i++){
+          for(let j=0;j<=i;j++){
+            let s=S[i][j];
+            for(let k=0;k<j;k++) s-=L[i][k]*L[j][k];
+            if(i===j){
+              if(s<=0) throw new Error("Covariance matrix is not positive definite. Check your correlations — they may be inconsistent.");
+              L[i][j]=Math.sqrt(s);
+            } else { L[i][j]=s/L[j][j]; }
+          }
+        }
+        return L;
+      }
+
+      function randn(){
+        let u=0,v=0;
+        while(u===0) u=Math.random();
+        while(v===0) v=Math.random();
+        return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+      }
+
+      function runMonteCarlo(mu,L,w,nSim){
+        const n=mu.length;
+        const port=new Float64Array(nSim);
+        for(let s=0;s<nSim;s++){
+          let ret=0;
+          const z=Array.from({length:n},()=>randn());
+          for(let i=0;i<n;i++){
+            let ri=mu[i];
+            for(let k=0;k<=i;k++) ri+=L[i][k]*z[k];
+            ret+=w[i]*ri;
+          }
+          port[s]=ret;
+        }
+        port.sort((a,b)=>a-b);
+        const alpha=0.05;
+        const idx=Math.floor(alpha*nSim);
+        const var95=port[idx];
+        const tail=Array.from(port.slice(0,idx+1));
+        const cvar95=tail.reduce((a,b)=>a+b,0)/tail.length;
+        const mean=Array.from(port).reduce((a,b)=>a+b,0)/nSim;
+        const std=Math.sqrt(Array.from(port).reduce((a,b)=>a+(b-mean)*(b-mean),0)/nSim);
+        return {mean,std,var95,cvar95};
+      }
+
+      function fmtPct(x,dec=2){ return (x*100).toFixed(dec)+"%"; }
+      function fmtRatio(x){ return x.toFixed(2); }
+
+      function runOptimizer(){
+        hideError();
+        const btn=document.getElementById("runOptBtn");
+        btn.innerHTML=`<span class="qlSpinner"></span>Running…`;
+        btn.disabled=true;
+
+        setTimeout(()=>{
+          try{
+            const {mu,sig,Sigma,names,lambda,nSim}=getInputs();
+            const SigInv=invN(Sigma);
+            const raw=matVecN(SigInv,mu).map(v=>v/lambda);
+            const w=projectSimplexN(raw);
+
+            const portMu=dotN(w,mu);
+            const sigW=matVecN(Sigma,w);
+            const portVar=dotN(w,sigW);
+            const portVol=Math.sqrt(Math.max(0,portVar));
+            const sharpe=(portVol>1e-10)?portMu/portVol:0;
+
+            const L=cholN(Sigma);
+            const mc=runMonteCarlo(mu,L,w,nSim);
+
+            // Render results
+            const resEl=document.getElementById("qlResults");
+            resEl.style.display="block";
+
+            // Weight bar
+            const wb=document.getElementById("weightBar");
+            wb.innerHTML=w.map((wi,i)=>`<div class="qlWeightBarSeg" style="width:${(wi*100).toFixed(1)}%;background:${ASSET_COLORS[i]};"></div>`).join("");
+
+            // Weight legend
+            const wl=document.getElementById("weightLegend");
+            wl.innerHTML=w.map((wi,i)=>`
+              <div class="qlWeightLegendItem">
+                <div class="qlWeightLegendDot" style="background:${ASSET_COLORS[i]};"></div>
+                ${escHtml(names[i])}: <strong>${fmtPct(wi,1)}</strong>
+              </div>`).join("");
+
+            // Result cells
+            const cells=[
+              {label:"Expected Return",value:fmtPct(portMu),sub:"Annualized"},
+              {label:"Volatility",value:fmtPct(portVol),sub:"Annualized"},
+              {label:"Sharpe Ratio",value:fmtRatio(sharpe),sub:"Return / Vol"},
+              {label:"95% VaR",value:fmtPct(mc.var95),sub:"1-year horizon"},
+              {label:"95% CVaR",value:fmtPct(mc.cvar95),sub:"Avg worst 5%"},
+              {label:"MC Mean Return",value:fmtPct(mc.mean),sub:`${nSim.toLocaleString()} scenarios`},
+            ];
+            document.getElementById("resultCells").innerHTML=cells.map(c=>`
+              <div class="qlResultCell">
+                <div class="qlResultCellLabel">${c.label}</div>
+                <div class="qlResultCellValue">${c.value}</div>
+                <div class="qlResultCellSub">${c.sub}</div>
+              </div>`).join("");
+
+            // MC details
+            document.getElementById("mcDetails").textContent=
+`Optimal Weights:
+${w.map((wi,i)=>`  ${names[i].padEnd(14)} ${fmtPct(wi,2)}`).join("\n")}
+
+Analytic Portfolio:
+  Expected Return  ${fmtPct(portMu)}
+  Volatility       ${fmtPct(portVol)}
+  Sharpe Ratio     ${fmtRatio(sharpe)}
+
+Monte Carlo (${nSim.toLocaleString()} scenarios):
+  Mean Return      ${fmtPct(mc.mean)}
+  Std Dev          ${fmtPct(mc.std)}
+  95% VaR          ${fmtPct(mc.var95)}   ← worst 5th percentile return
+  95% CVaR         ${fmtPct(mc.cvar95)}   ← avg return in worst 5%
+
+Disclaimer: Educational only. Not financial advice.`;
+
+            resEl.scrollIntoView({behavior:"smooth",block:"nearest"});
+
+          }catch(err){
+            showError(err?.message||String(err));
+          }finally{
+            btn.innerHTML="Run Optimization";
+            btn.disabled=false;
+          }
+        },50);
+      }
+
+    } catch(e){
+      console.error("[premium] fatal:",e);
+      showFatal("Fatal error","The page crashed before finishing.",e?.message||String(e));
+    }
+  })();
   </script>
 </body>
 </html>
