@@ -953,9 +953,9 @@
           render: renderIdeas
         },
         {
-          id:"roundup", category:"News", badge:"Niche Roundups",
-          title:"Deal + Niche News Roundups",
-          desc:"Weekly curated roundups — what happened, why it matters, and the implication.",
+          id:"roundup", category:"News", badge:"Deal Tracker",
+          title:"Weekly M&A · LBO · IPO Breakdown",
+          desc:"3 deals every week — what happened, the strategic logic, what we think happens next, and the key risk.",
           render: renderRoundups
         },
         {
@@ -1046,14 +1046,14 @@
 
       function renderRoundups(){
         return `
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-            <button class="btn primary" id="loadRoundupsBtn">Load Roundups</button>
-            <select id="roundupNicheFilter" style="max-width:180px;">
-              <option value="">All Niches</option>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;">
+            <button class="btn primary" id="loadRoundupsBtn">Load Deal Tracker</button>
+            <select id="roundupWeekFilter" style="max-width:220px;">
+              <option value="">All Weeks</option>
             </select>
           </div>
           <div id="roundupsContainer">
-            <p class="muted">Click "Load Roundups" to fetch the latest.</p>
+            <p class="muted">Click "Load Deal Tracker" to fetch the latest deals.</p>
           </div>`;
       }
 
@@ -1420,36 +1420,80 @@
       }
 
       // =============================================
-      // ROUNDUPS — wired to premium_roundups
+      // DEAL TRACKER — wired to premium_roundups
       // =============================================
+      const DEAL_TYPE_COLORS = {
+        "LBO":  { bg:"rgba(244,193,93,0.12)",  border:"rgba(244,193,93,0.45)",  text:"#f4c15d" },
+        "M&A":  { bg:"rgba(147,197,253,0.12)", border:"rgba(147,197,253,0.45)", text:"#93c5fd" },
+        "IPO":  { bg:"rgba(110,231,183,0.12)", border:"rgba(110,231,183,0.45)", text:"#6ee7b7" },
+      };
+
+      function dealTypeBadge(type){
+        const t=(type||"").toUpperCase();
+        const c=DEAL_TYPE_COLORS[t]||{bg:"rgba(148,163,184,0.12)",border:"rgba(148,163,184,0.35)",text:"#9ca3af"};
+        return `<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid ${c.border};background:${c.bg};color:${c.text};font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">${escHtml(t||"DEAL")}</span>`;
+      }
+
+      function renderOneDeal(ticker, type, title, body, view, risk){
+        if(!title && !body) return "";
+        return `
+          <div style="border:1px solid rgba(148,163,184,0.2);background:rgba(2,6,23,0.35);border-radius:16px;padding:18px;margin-bottom:12px;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(244,193,93,0.3)'" onmouseout="this.style.borderColor='rgba(148,163,184,0.2)'">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                ${ticker ? `<div style="font-family:'Playfair Display',serif;font-size:26px;color:var(--brand);line-height:1;min-width:48px;">${escHtml(ticker)}</div>` : ""}
+                <div>
+                  ${dealTypeBadge(type)}
+                  <div style="font-size:16px;font-weight:700;margin-top:5px;color:var(--text);">${escHtml(title||"")}</div>
+                </div>
+              </div>
+            </div>
+            ${body ? `
+              <div style="font-size:13px;color:#d1d5db;line-height:1.65;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(148,163,184,0.12);">
+                ${escHtml(body)}
+              </div>` : ""}
+            ${view ? `
+              <div style="display:flex;gap:10px;margin-bottom:10px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);padding:3px 8px;border-radius:999px;border:1px solid rgba(244,193,93,0.3);background:rgba(244,193,93,0.06);flex-shrink:0;margin-top:2px;white-space:nowrap;">Our View</div>
+                <div style="font-size:13px;color:#e5e7eb;line-height:1.55;">${escHtml(view)}</div>
+              </div>` : ""}
+            ${risk ? `
+              <div style="display:flex;gap:10px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f87171;padding:3px 8px;border-radius:999px;border:1px solid rgba(248,113,113,0.3);background:rgba(248,113,113,0.06);flex-shrink:0;margin-top:2px;white-space:nowrap;">Key Risk</div>
+                <div style="font-size:13px;color:#fca5a5;line-height:1.55;">${escHtml(risk)}</div>
+              </div>` : ""}
+          </div>`;
+      }
+
       function wireRoundupsEvents(sbClient){
         const loadBtn=document.getElementById("loadRoundupsBtn");
         const container=document.getElementById("roundupsContainer");
-        const nicheFilter=document.getElementById("roundupNicheFilter");
+        const weekFilter=document.getElementById("roundupWeekFilter");
         if(!loadBtn||!container) return;
 
         let roundupsCache=[];
 
-        function renderRoundupCards(){
-          const nv=nicheFilter?nicheFilter.value:"";
-          const filtered=roundupsCache.filter(r=>!nv||(r.niche===nv)||(r.sector===nv)||(r.category===nv));
+        function renderDealTrackerCards(){
+          const wv=weekFilter?weekFilter.value:"";
+          const filtered=roundupsCache.filter(r=>!wv||(r.title===wv));
           if(!filtered.length){
-            container.innerHTML=`<p class="muted">No roundups found. Add some in Supabase → premium_roundups.</p>`;
+            container.innerHTML=`<p class="muted">No Deal Tracker entries found. Add some in Supabase → premium_roundups.</p>`;
             return;
           }
           container.innerHTML=filtered.map(r=>`
-            <div class="roundupCard">
-              <div class="roundupTitle">${escHtml(r.title||"Untitled Roundup")}</div>
-              <div class="roundupMeta">
-                ${(r.niche||r.sector||r.category)?`<span class="miniChip">${escHtml(r.niche||r.sector||r.category)}</span>`:""}
+            <div style="margin-bottom:20px;">
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+                <div style="font-family:'Playfair Display',serif;font-size:19px;color:var(--text);">${escHtml(r.title||"Deal Tracker")}</div>
                 <span class="miniChip">${escHtml(fmtDate(r.created_at))}</span>
+                ${r.period?`<span class="miniChip">${escHtml(r.period)}</span>`:""}
               </div>
-              <div class="roundupContent">${escHtml(r.content||r.body||r.summary||"No content available.")}</div>
-            </div>`).join("");
+              ${renderOneDeal(r.deal1_ticker,r.deal1_type,r.deal1_title,r.deal1_body,r.deal1_view,r.deal1_risk)}
+              ${renderOneDeal(r.deal2_ticker,r.deal2_type,r.deal2_title,r.deal2_body,r.deal2_view,r.deal2_risk)}
+              ${renderOneDeal(r.deal3_ticker,r.deal3_type,r.deal3_title,r.deal3_body,r.deal3_view,r.deal3_risk)}
+            </div>`).join('<div style="height:1px;background:rgba(148,163,184,0.15);margin:8px 0 20px;"></div>');
         }
 
         loadBtn.onclick=async()=>{
-          container.innerHTML=`<p class="muted loadingPulse">Loading roundups…</p>`;
+          container.innerHTML=`<p class="muted loadingPulse">Loading deals…</p>`;
           loadBtn.disabled=true;
           try{
             const {data,error}=await sbClient
@@ -1459,15 +1503,14 @@
             if(error) throw error;
             roundupsCache=data||[];
 
-            // Populate niche filter — try niche, then sector, then category
-            if(nicheFilter){
-              const niches=[...new Set(roundupsCache.map(r=>r.niche||r.sector||r.category).filter(Boolean))].sort();
-              nicheFilter.innerHTML=`<option value="">All Niches</option>`+niches.map(n=>`<option value="${escHtml(n)}">${escHtml(n)}</option>`).join("");
-              nicheFilter.onchange=()=>renderRoundupCards();
+            if(weekFilter){
+              const weeks=[...new Set(roundupsCache.map(r=>r.title).filter(Boolean))];
+              weekFilter.innerHTML=`<option value="">All Weeks</option>`+weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
+              weekFilter.onchange=()=>renderDealTrackerCards();
             }
-            renderRoundupCards();
+            renderDealTrackerCards();
           }catch(err){
-            container.innerHTML=`<p style="color:#f87171;">Failed to load roundups: ${escHtml(err?.message||String(err))}</p>`;
+            container.innerHTML=`<p style="color:#f87171;">Failed to load deals: ${escHtml(err?.message||String(err))}</p>`;
           } finally {
             loadBtn.disabled=false;
           }
