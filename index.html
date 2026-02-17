@@ -534,7 +534,7 @@
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
 
-    /* Example briefing card (fills the empty space under the hero buttons) */
+    /* Example briefing card */
     .sampleBrief{
       margin-top:14px;
       border:1px solid rgba(148,163,184,0.22);
@@ -601,7 +601,7 @@
 <body>
   <div class="wrap">
     <header>
-      <!-- TradingView ticker tape (motion) -->
+      <!-- TradingView ticker tape -->
       <div class="ticker">
         <div class="tradingview-widget-container">
           <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -634,11 +634,12 @@
         </div>
 
         <div class="nav">
-          <a class="navLink" href="archive.html">Read Free Articles</a>
+          <a class="navLink" href="archive.html">Archive</a>
           <a class="navLink" href="#week">Week Map</a>
           <a class="navLink" href="#deepdive">Deep Dives</a>
 
-          <a class="navLink" href="#" id="open-auth">Sign In</a>
+          <!-- FIX: sign-in/out visibility controlled entirely by JS -->
+          <a class="navLink" href="#" id="open-auth" style="display:none;">Sign In</a>
           <a class="navLink" href="#" id="signout" style="display:none;">Sign Out</a>
 
           <div class="chip" id="chip">
@@ -653,12 +654,7 @@
 
     <!-- HERO -->
     <section class="panel" id="top">
-      <div class="panelHead">
-        <div>
-          <div class="kicker">The homepage goal</div>
-          <div class="subk">Account creation first. Reading free stays secondary.</div>
-        </div>
-      </div>
+      <!-- FIX: removed dev note panelHead -->
 
       <div class="heroGrid">
         <!-- Left copy -->
@@ -668,12 +664,15 @@
             Clear drivers → implications → levels. No long story. Just what matters and what changes the view.
           </p>
 
+          <!-- FIX: single primary CTA, archive is secondary text link only -->
           <div class="heroActions">
             <button class="btn btnPrimary" id="cta-create-2">Create Free Account</button>
-            <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="archive.html" style="font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">or browse free articles →</a>
           </div>
 
-          <!-- Filled "empty space" with an evergreen sample (no daily updates needed) -->
+          <!-- Example briefing format — strongest selling point, make it prominent -->
           <div class="sampleBrief" aria-label="Example Briefing Format">
             <div class="sampleBriefInner">
               <div class="sampleBriefLabel">Example Briefing Format</div>
@@ -705,7 +704,7 @@
           <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + manual market chart (NOT rotating, NDX removed here) -->
+        <!-- Right: Premium spin + market chart -->
         <div class="rightStack">
           <div class="premiumSpin">
             <div class="orb"></div>
@@ -719,7 +718,7 @@
                 <button class="btn btnPrimary" id="goPremiumTop">View Premium</button>
                 <a class="btn btnGhost" href="#deepdive">What is a Deep Dive?</a>
               </div>
-              <div class="reassure" id="premiumStatusTop">Sign in to check access.</div>
+              <div class="reassure" id="premiumStatusTop" style="display:none;"></div>
             </div>
           </div>
 
@@ -740,10 +739,6 @@
             <div class="chartBox">
               <div id="rotChart"></div>
             </div>
-
-            <div class="reassure" style="margin-top:10px;">
-              Tap a market to load the chart.
-            </div>
           </div>
         </div>
       </div>
@@ -753,18 +748,17 @@
     <section class="panel" id="week">
       <div class="panelHead">
         <div>
-          <div class="kicker">Week map</div>
-          <div class="subk">Interactive: what you get on Monday / Wednesday / Friday / Sunday</div>
+          <div class="kicker">Week Map</div>
+          <div class="subk">Same framework. Different job. Every time.</div>
         </div>
       </div>
 
       <div class="weekGrid">
         <div class="weekLeft">
-          <div class="kicker">Same framework • different job</div>
-          <h3>4 formats so you always know what you're getting.</h3>
+          <!-- FIX: removed self-narrating copy, replaced with clean product copy -->
+          <h3>4 formats. One consistent framework.</h3>
           <p>
-            Pick a day. The card updates instantly. This is designed to make the schedule feel real (and worth signing up for),
-            without talking about premium or payments.
+            Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead. Pick a day to see what you get.
           </p>
 
           <div class="dayPills">
@@ -774,9 +768,12 @@
             <button class="pill" data-day="sun">Sun</button>
           </div>
 
+          <!-- FIX: single primary CTA here too -->
           <div class="heroActions" style="margin-top:14px;">
             <button class="btn btnPrimary" id="cta-create-3">Create Free Account</button>
-            <a class="btn btnGhost" href="archive.html">Read Free Articles</a>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="archive.html" style="font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">or browse free articles →</a>
           </div>
 
           <div class="reassure">No credit card • Email used for login</div>
@@ -786,8 +783,7 @@
           <div class="weekCard" id="weekCard"></div>
 
           <div style="margin-top:14px;position:relative;z-index:1;">
-            <div class="kicker">Charts</div>
-            <div class="subk">Tap a market to load a chart (fast).</div>
+            <div class="kicker">Live Charts</div>
 
             <div class="chartRow">
               <button class="watchBtn active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
@@ -799,8 +795,9 @@
 
             <div class="chartBox">
               <div id="watchChart"></div>
+              <!-- FIX: fallback only shows if chart truly fails — handled in JS with load detection -->
               <div id="watchFallback" class="reassure" style="display:none;margin-top:10px;">
-                Chart didn't load. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a>
+                Chart unavailable. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a>
               </div>
             </div>
           </div>
@@ -808,21 +805,21 @@
       </div>
     </section>
 
-    <!-- Deep Dive explanation section -->
+    <!-- Deep Dive section -->
     <section class="panel" id="deepdive">
       <div class="panelHead">
         <div>
           <div class="kicker">Deep Dives</div>
-          <div class="subk">A specific sector or trending theme — built like a playbook.</div>
+          <div class="subk">One sector. One theme. Fully mapped.</div>
         </div>
       </div>
 
       <div class="grid2">
         <div class="card">
           <div class="cardTag">What it is</div>
-          <div class="cardTitle">A Deep Dive = one topic, fully mapped.</div>
+          <div class="cardTitle">Not news. A playbook.</div>
           <div class="cardText">
-            This is not "news." It's a focused report on a sector/theme/trend:
+            Each Deep Dive takes one sector or trending theme and breaks it down completely:
             <ul>
               <li><strong>Driver:</strong> what's actually moving it</li>
               <li><strong>Winners/Losers:</strong> who benefits + who gets hurt</li>
@@ -832,16 +829,17 @@
           </div>
         </div>
 
+        <!-- FIX: removed internal "unchanged logic" tag and self-narrating copy -->
         <div class="card">
-          <div class="cardTag">Premium (unchanged logic)</div>
-          <div class="cardTitle">Premium Deep Dives</div>
+          <div class="cardTag">Premium</div>
+          <div class="cardTitle">Unlock Deep Dives</div>
           <div class="cardText">
-            If you're premium, you go to the dashboard. If not, you'll see the upgrade.
+            Premium members get access to every Deep Dive and the full members dashboard.
             <div class="row" style="margin-top:12px;">
-              <button class="btn btnPrimary" id="goPremium">View premium</button>
-              <a class="btn btnGhost" href="archive.html">Stay on free</a>
+              <button class="btn btnPrimary" id="goPremium">View Premium</button>
+              <a class="btn btnGhost" href="archive.html">Browse Free</a>
             </div>
-            <div class="reassure" id="premiumStatus" style="margin-top:10px;">Sign in to check access.</div>
+            <div class="reassure" id="premiumStatus" style="margin-top:10px;display:none;"></div>
           </div>
         </div>
       </div>
@@ -883,7 +881,7 @@
       <button class="modalClose" id="closePremium">×</button>
       <div class="modalK">FinTrend Premium</div>
       <div class="modalH">Upgrade to Premium</div>
-      <div class="modalP">Premium unlocks deep dives + the members dashboard (premium.html).</div>
+      <div class="modalP">Unlock Deep Dives and the full members dashboard.</div>
 
       <div class="row">
         <a class="btn btnPrimary" href="#" id="payLink">Go Premium</a>
@@ -916,6 +914,7 @@
       const chipText = document.getElementById("chipText");
       const signout = document.getElementById("signout");
       const openAuth = document.getElementById("open-auth");
+      const ctaCreate = document.getElementById("cta-create");
 
       // Close buttons
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
@@ -946,7 +945,7 @@
       }
       toggleModeBtn.addEventListener("click",()=>setMode(mode==="signup"?"signin":"signup"));
 
-      document.getElementById("open-auth").addEventListener("click",(e)=>{
+      openAuth.addEventListener("click",(e)=>{
         e.preventDefault();
         setMode("signin");
         openModal(authModal);
@@ -968,10 +967,10 @@
 
       // Week map
       const weekData = {
-        mon: { title:"Monday • Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
-        wed: { title:"Wednesday • Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
-        fri: { title:"Friday • Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.", bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
-        sun: { title:"Sunday • Macro Setup", meta:"The map into next week", desc:"What's priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
+        mon: { title:"Monday · Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
+        wed: { title:"Wednesday · Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
+        fri: { title:"Friday · Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.", bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
+        sun: { title:"Sunday · Macro Setup", meta:"The map into next week", desc:"What's priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
       };
 
       const weekCard = document.getElementById("weekCard");
@@ -1033,21 +1032,32 @@
         });
       });
 
+      // FIX: chart fallback — only show if TradingView iframe fails to load after a longer window
+      // Instead of always showing after 2.5s, we check if an iframe actually appeared
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
+      let watchFallbackTimer = null;
+
       function showFallback(symbol){
         if(!watchFallback) return;
         watchFallback.style.display = "block";
         if(watchOpenTV) watchOpenTV.href = "https://www.tradingview.com/chart/?symbol=" + encodeURIComponent(symbol);
       }
       function hideFallback(){
+        if(watchFallbackTimer) clearTimeout(watchFallbackTimer);
+        watchFallbackTimer = null;
         if(!watchFallback) return;
         watchFallback.style.display = "none";
       }
       function loadWatch(symbol){
         hideFallback();
         loadMiniSymbolOverview("watchChart", symbol, 300);
-        setTimeout(()=>showFallback(symbol), 2500);
+        // Only show fallback if no iframe appears after 5 seconds
+        watchFallbackTimer = setTimeout(()=>{
+          const el = document.getElementById("watchChart");
+          const hasIframe = el && el.querySelector("iframe");
+          if(!hasIframe) showFallback(symbol);
+        }, 5000);
       }
       loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watchBtn").forEach(btn=>{
@@ -1068,21 +1078,36 @@
 
       let supabase = null;
 
+      // FIX: proper signed-out state — show Sign In button, hide chip and sign out
       function setSignedOutUI(){
         chip.style.display = "none";
         openAuth.style.display = "";
         signout.style.display = "none";
+        if(ctaCreate) ctaCreate.style.display = "";
+
+        // Hide premium status text
+        const ps = document.getElementById("premiumStatus");
+        const psTop = document.getElementById("premiumStatusTop");
+        if(ps) ps.style.display = "none";
+        if(psTop) psTop.style.display = "none";
       }
 
+      // FIX: signed-in state — hide Sign In and Create Account button, show chip + sign out
       function setSignedInUI(email, isPremium){
         chip.style.display = "inline-flex";
         chip.classList.toggle("premium", !!isPremium);
-        chipText.textContent = (isPremium ? "Premium • " : "Signed in • ") + email;
+        chipText.textContent = (isPremium ? "Premium · " : "Free · ") + email;
         openAuth.style.display = "none";
         signout.style.display = "";
+        if(ctaCreate) ctaCreate.style.display = "none";
+
+        // Show premium status
+        const ps = document.getElementById("premiumStatus");
+        const psTop = document.getElementById("premiumStatusTop");
+        if(ps){ ps.style.display = ""; ps.textContent = isPremium ? "You have premium access." : "Free account active."; }
+        if(psTop){ psTop.style.display = ""; psTop.textContent = isPremium ? "You have premium access." : "Upgrade for full access."; }
       }
 
-      // ✅ NEW: read premium status from Supabase profiles table
       async function fetchPremiumStatus(userId){
         const { data, error } = await supabase
           .from("profiles")
@@ -1091,13 +1116,10 @@
           .single();
 
         if (error || !data) return false;
-
-        // optional expiry support (if you decide to use it later)
         if (data.premium_until) {
           const until = new Date(data.premium_until);
           if (until < new Date()) return false;
         }
-
         return !!data.is_premium;
       }
 
@@ -1109,7 +1131,7 @@
       document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href = PREMIUM_DASHBOARD; });
       document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href = PREMIUM_DASHBOARD; });
 
-      // Init
+      // Init — wait for Supabase to load
       let attempts = 0;
       const check = setInterval(() => {
         attempts++;
@@ -1123,10 +1145,10 @@
             e.preventDefault();
 
             authMsg.textContent = "";
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
+            const emailVal = document.getElementById("email").value.trim();
+            const passwordVal = document.getElementById("password").value;
 
-            if (!email || !password) {
+            if (!emailVal || !passwordVal) {
               authMsg.textContent = "Enter email + password.";
               return;
             }
@@ -1137,7 +1159,7 @@
 
             try {
               if (mode === "signin") {
-                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                const { data, error } = await supabase.auth.signInWithPassword({ email: emailVal, password: passwordVal });
 
                 if (error) {
                   authMsg.textContent = humanErr(error);
@@ -1153,19 +1175,15 @@
                   return;
                 }
 
-                // ✅ NEW: check premium from profiles table
                 const isPremium = await fetchPremiumStatus(data.user.id);
-
-                setSignedInUI(email, isPremium);
+                setSignedInUI(emailVal, isPremium);
                 closeModal(authModal);
-
-                // REDIRECT
                 window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
                 return;
               }
 
               // SIGN UP
-              const { error } = await supabase.auth.signUp({ email, password });
+              const { error } = await supabase.auth.signUp({ email: emailVal, password: passwordVal });
 
               if (error) {
                 authMsg.textContent = humanErr(error);
@@ -1174,7 +1192,7 @@
                 return;
               }
 
-              authMsg.textContent = "Account created! Check email to confirm, then sign in.";
+              authMsg.textContent = "Account created! Check your email to confirm, then sign in.";
               authSubmit.disabled = false;
               authSubmit.textContent = originalText;
             } catch (err) {
@@ -1190,7 +1208,7 @@
             setSignedOutUI();
           });
 
-          // ✅ NEW: when page loads and user already signed in, read premium from profiles
+          // On page load: check session
           supabase.auth.getUser().then(async ({ data: { user } }) => {
             if(user){
               const isPremium = await fetchPremiumStatus(user.id);
@@ -1199,9 +1217,16 @@
               setSignedOutUI();
             }
           });
+
+        } else if(attempts === 1) {
+          // Show sign-in button immediately while Supabase loads — better than blank
+          openAuth.style.display = "";
         }
 
-        if (attempts >= 100) clearInterval(check);
+        if (attempts >= 100) {
+          clearInterval(check);
+          setSignedOutUI();
+        }
       }, 100);
 
       window.addEventListener("keydown",(e)=>{
