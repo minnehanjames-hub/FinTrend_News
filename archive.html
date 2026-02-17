@@ -166,7 +166,7 @@
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
       padding: 18px 16px 20px;
-      overflow: hidden; /* important for the slider */
+      overflow: hidden;
     }
 
     /* MONTH SLIDER */
@@ -343,7 +343,7 @@
     <!-- Month Wheel Controls -->
     <div class="month-nav">
       <button class="month-nav-link" id="month-prev" type="button">← Prev</button>
-      <div class="month-label" id="month-label">November 2025</div>
+      <div class="month-label" id="month-label">February 2026</div>
       <button class="month-nav-link" id="month-next" type="button">Next →</button>
     </div>
     <div class="month-dots" id="month-dots" aria-label="Month dots"></div>
@@ -758,7 +758,7 @@
               </div>
             </div>
 
-            <!-- WEEK 8 (CROSSES INTO JAN, BUT THIS IS THE LAST WEEK OF DEC CALENDAR) -->
+            <!-- WEEK 8 -->
             <div class="calendar-row">
               <div class="week-label">Week of Dec 29</div>
 
@@ -1029,7 +1029,6 @@
                 <div class="empty-note">Earnings digestion week: rates as referee, leadership more selective.</div>
               </div>
 
-              <!-- ✅ FIXED + LINKED: Feb 1 Sunday -->
               <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
@@ -1142,7 +1141,6 @@
                 <div class="day-meta">Midweek tape &amp; sector rotation.</div>
               </div>
 
-              <!-- ✅ ADDED: FRIDAY FEB 13 (ARTICLE #1) -->
               <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
@@ -1155,7 +1153,6 @@
                 <div class="day-meta">CPI cools; front-end yields ease; equities rotate away from duration.</div>
               </div>
 
-              <!-- ✅ ADDED: SUNDAY FEB 15 (ARTICLE #2) -->
               <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
@@ -1166,6 +1163,59 @@
                   </a>
                 </div>
                 <div class="day-meta">Week recap: rate-cut repricing, defensive leadership, gold up, oil heavy.</div>
+              </div>
+            </div>
+
+            <!-- WEEK OF FEB 16 -->
+            <div class="calendar-row">
+              <div class="week-label">Week of Feb 16</div>
+
+              <div class="day-cell has-note">
+                <div>
+                  <div class="day-label">Monday</div>
+                  <div class="day-date">Feb 17</div>
+                  <span class="tag-pill tag-monday">Monday Outlook</span>
+                  <a href="articles/2026-02-17-monday.html" class="day-link">
+                    AI Anxiety Reloads Risk-Off — February 17
+                  </a>
+                </div>
+                <div class="day-meta">Tech selling resumes; Fed minutes tomorrow; Nvidia Feb 25 is the line.</div>
+              </div>
+
+              <div class="day-cell">
+                <div>
+                  <div class="day-label">Wednesday</div>
+                  <div class="day-date">Feb 18</div>
+                  <span class="tag-pill tag-wednesday">Momentum</span>
+                  <a href="articles/2026-02-18-wednesday.html" class="day-link">
+                    Wednesday Momentum Check — February 18
+                  </a>
+                </div>
+                <div class="empty-note">Not yet published.</div>
+              </div>
+
+              <div class="day-cell">
+                <div>
+                  <div class="day-label">Friday</div>
+                  <div class="day-date">Feb 20</div>
+                  <span class="tag-pill tag-friday">Friday Recap</span>
+                  <a href="articles/2026-02-20-friday.html" class="day-link">
+                    Friday Market Recap — February 20
+                  </a>
+                </div>
+                <div class="empty-note">Not yet published.</div>
+              </div>
+
+              <div class="day-cell">
+                <div>
+                  <div class="day-label">Sunday</div>
+                  <div class="day-date">Feb 22</div>
+                  <span class="tag-pill tag-sunday">Sunday Macro</span>
+                  <a href="articles/2026-02-22-sunday.html" class="day-link">
+                    Sunday Macro &amp; Positioning Note — February 22
+                  </a>
+                </div>
+                <div class="empty-note">Not yet published.</div>
               </div>
             </div>
 
@@ -1260,7 +1310,7 @@
       })();
 
       renderDots();
-      setMonth(0);
+      setMonth(3); // Open on February 2026 (index 3) by default
     })();
   </script>
 </body>
