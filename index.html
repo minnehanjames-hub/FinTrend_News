@@ -3,26 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FinTrend News · Weekly Market Briefings for Serious Investors</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Clear market briefings built for fast decisions. Drivers, implications, levels — published Monday, Wednesday, Friday & Sunday. No noise. Just what moves markets." />
-  <meta name="keywords" content="market briefing, macro newsletter, stock market analysis, weekly market brief, financial newsletter" />
-  <meta name="author" content="FinTrend News" />
-  <link rel="canonical" href="https://fintrend.news/" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://fintrend.news/" />
-  <meta property="og:title" content="FinTrend News · Market Briefings for Serious Investors" />
-  <meta property="og:description" content="Clear market briefings built for fast decisions. Drivers → implications → levels. Published 4x weekly. No noise." />
-  <meta property="og:image" content="https://fintrend.news/assets/img/og-image.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FinTrend News · Market Briefings for Serious Investors" />
-  <meta name="twitter:description" content="Clear market briefings built for fast decisions. Drivers → implications → levels. Published 4x weekly." />
-  <meta name="twitter:image" content="https://fintrend.news/assets/img/og-image.png" />
+  <title>FinTrend News</title>
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
@@ -76,650 +57,326 @@
 
     .wrap{max-width:var(--max);margin:16px auto 70px;padding:0 16px}
 
-    /* Sticky header */
+    /* ── HEADER ── */
     header{
       position:sticky;top:0;z-index:9999;
-      border:1px solid rgba(148, 163, 184, 0.20);
-      border-radius: var(--radius);
+      border:1px solid rgba(148,163,184,0.20);
+      border-radius:var(--radius);
       overflow:hidden;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.84));
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      background:linear-gradient(135deg,rgba(15,23,42,0.96),rgba(15,23,42,0.84));
+      backdrop-filter:blur(6px);
+      box-shadow:0 10px 24px rgba(0,0,0,0.35);
       margin-bottom:14px;
     }
 
     .ticker{
-      border-bottom:1px solid rgba(148, 163, 184, 0.22);
-      background: radial-gradient(circle at top, #020617 0, #000 65%);
+      border-bottom:1px solid rgba(148,163,184,0.22);
+      background:radial-gradient(circle at top,#020617 0,#000 65%);
       padding:6px 16px;
     }
 
-    .headerRow{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      gap:14px;
+    /* Centered brand block */
+    .headerBrand{
+      display:flex;
+      flex-direction:column;
       align-items:center;
-      padding:14px 18px;
+      padding:18px 22px 12px;
+      border-bottom:1px solid rgba(148,163,184,0.14);
     }
-
-    .logo{height:50px;width:auto;display:block}
-
-    .brand{text-align:center;}
+    .headerBrandTop{
+      display:flex;align-items:center;gap:20px;
+    }
+    .logo{height:66px;width:auto;display:block;}
     .brand h1{
       font-family:"Playfair Display",serif;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:30px;
-      line-height:1.05;
-      color:var(--accent);
+      letter-spacing:.18em;text-transform:uppercase;
+      font-size:38px;line-height:1.05;color:var(--accent);
     }
     .brand p{
-      margin-top:6px;
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.14em;
-      text-transform:uppercase;
+      margin-top:5px;font-size:12px;color:var(--muted);
+      letter-spacing:.14em;text-transform:uppercase;
     }
 
-    .nav{
-      display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end;align-items:center;
+    /* Nav row — centered below title */
+    .headerNav{
+      display:flex;align-items:center;justify-content:center;
+      gap:4px;flex-wrap:wrap;
+      padding:10px 22px 14px;
     }
-
     .navLink{
-      font-size:12px;color:var(--muted);
+      font-size:11px;color:var(--muted);
       letter-spacing:.10em;text-transform:uppercase;
-      cursor:pointer;
+      cursor:pointer;padding:6px 12px;
+      border-radius:999px;border:1px solid transparent;
+      transition:.15s ease;
     }
+    .navLink:hover{color:var(--accent);border-color:rgba(244,193,93,0.22);}
+    .navDivider{width:1px;height:14px;background:rgba(148,163,184,0.20);flex-shrink:0;}
 
     .btn{
-      border:0;
-      cursor:pointer;
-      border-radius:999px;
-      padding:9px 14px;
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-weight:900;
-      transition: .18s ease;
+      border:0;cursor:pointer;border-radius:999px;
+      padding:8px 16px;font-size:11px;
+      letter-spacing:.10em;text-transform:uppercase;font-weight:700;
+      transition:.18s ease;
     }
-    .btnPrimary{background:var(--accent);color:#000;box-shadow: 0 12px 28px rgba(244,193,93,0.16);}
-    .btnPrimary:hover{background:#f7d680;transform:translateY(-1px)}
+    .btnPrimary{background:var(--accent);color:#000;box-shadow:0 12px 28px rgba(244,193,93,0.16);}
+    .btnPrimary:hover{background:#f7d680;transform:translateY(-1px);}
     .btnPrimary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
     .btnGhost{
-      background: rgba(2,6,23,0.35);
-      border:1px solid rgba(148, 163, 184, 0.30);
-      color: var(--text);
-      font-weight:800;
+      background:rgba(2,6,23,0.35);border:1px solid rgba(148,163,184,0.30);
+      color:var(--text);font-weight:600;
     }
-    .btnGhost:hover{border-color:rgba(244,193,93,0.38);transform:translateY(-1px)}
+    .btnGhost:hover{border-color:rgba(244,193,93,0.38);transform:translateY(-1px);}
 
     .chip{
-      display:none;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.28);
-      background:rgba(2,6,23,0.35);
-      color:var(--muted);
-      max-width:280px;
-      overflow:hidden;
-      white-space:nowrap;
-      text-overflow:ellipsis;
-      font-size:12px;
+      display:none;align-items:center;gap:8px;padding:6px 10px;
+      border-radius:999px;border:1px solid rgba(148,163,184,0.28);
+      background:rgba(2,6,23,0.35);color:var(--muted);
+      max-width:220px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:11px;
     }
-    .chipDot{width:7px;height:7px;border-radius:999px;background:rgba(148,163,184,0.5);box-shadow:0 0 0 4px rgba(148,163,184,0.12)}
-    .chip.premium .chipDot{background:rgba(147,197,253,0.95);box-shadow:0 0 0 4px rgba(147,197,253,0.12)}
+    .chipDot{width:7px;height:7px;border-radius:999px;background:rgba(148,163,184,0.5);box-shadow:0 0 0 4px rgba(148,163,184,0.12);flex-shrink:0;}
+    .chip.premium .chipDot{background:rgba(147,197,253,0.95);box-shadow:0 0 0 4px rgba(147,197,253,0.12);}
 
-    @media (max-width:850px){
-      .headerRow{grid-template-columns:1fr;justify-items:start}
-      .brand{text-align:left}
-      .nav{justify-content:flex-start}
+    @media(max-width:700px){
+      .headerBrandTop{flex-direction:column;gap:8px;}
+      .brand h1{font-size:28px;text-align:center;}
+      .brand p{text-align:center;}
+      .logo{height:52px;}
     }
 
-    /* Panels */
+    /* ── PANELS ── */
     .panel{
-      background: var(--panel);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:18px;
-      margin-top:16px;
-      position:relative;
-      overflow:hidden;
-      backdrop-filter: blur(6px);
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:28px;margin-top:16px;
+      position:relative;overflow:hidden;backdrop-filter:blur(6px);
     }
     .panel::before{
-      content:"";
-      position:absolute;
-      inset:-35%;
-      background: radial-gradient(circle at top left, rgba(244,193,93,0.10), transparent 55%);
-      pointer-events:none;
-      opacity:.85;
+      content:"";position:absolute;inset:-35%;
+      background:radial-gradient(circle at top left,rgba(244,193,93,0.10),transparent 55%);
+      pointer-events:none;opacity:.85;
     }
-
     .panelHead{
       position:relative;z-index:1;
-      display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-      margin-bottom:12px;
+      display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px;
     }
-    .kicker{
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:12px;
-    }
-    .subk{
-      color:var(--muted);
-      font-size:12px;
-    }
+    .kicker{color:var(--muted);text-transform:uppercase;letter-spacing:.16em;font-size:11px;}
+    .subk{color:var(--muted);font-size:13px;margin-top:4px;}
 
-    /* AUTHOR BYLINE STRIP */
-    .authorStrip{
-      position:relative;z-index:1;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      padding:12px 16px;
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,0.18);
-      background: rgba(2,6,23,0.35);
-      margin-bottom:14px;
-      flex-wrap:wrap;
-    }
-    .authorAvatar{
-      width:38px;height:38px;border-radius:999px;
-      background: linear-gradient(135deg, rgba(244,193,93,0.35), rgba(147,197,253,0.25));
-      border:1px solid rgba(244,193,93,0.35);
-      display:flex;align-items:center;justify-content:center;
-      font-family:"Playfair Display",serif;
-      font-size:16px;
-      color:var(--accent);
-      flex-shrink:0;
-    }
-    .authorInfo{flex:1;min-width:0}
-    .authorName{font-size:13px;font-weight:700;color:#e5e7eb}
-    .authorBio{font-size:11px;color:var(--muted);margin-top:1px}
-    .authorStats{
-      display:flex;gap:16px;flex-wrap:wrap;
-    }
-    .authorStat{
-      text-align:center;
-    }
-    .authorStatNum{
-      font-size:15px;
-      font-weight:700;
-      color:var(--accent);
-      display:block;
-      line-height:1.1;
-    }
-    .authorStatLabel{
-      font-size:10px;
-      color:var(--muted);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-
-    /* HERO */
+    /* ── HERO ── */
     .heroGrid{
       position:relative;z-index:1;
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap:14px;
-      align-items:stretch;
+      display:grid;grid-template-columns:1.1fr 0.9fr;
+      gap:20px;align-items:start;
     }
-    @media (max-width:920px){
-      .heroGrid{grid-template-columns:1fr}
-    }
+    @media(max-width:920px){.heroGrid{grid-template-columns:1fr;}}
 
     .heroCopy h2{
       font-family:"Playfair Display",serif;
-      font-size:42px;
-      line-height:1.08;
-      margin-bottom:10px;
+      font-size:44px;line-height:1.08;margin-bottom:12px;
     }
     .heroCopy h2 span{
       background:linear-gradient(135deg,#fef3c7,#fbbf24,#fb923c);
-      -webkit-background-clip:text;
-      color:transparent;
+      -webkit-background-clip:text;color:transparent;
     }
-    .heroCopy p{
-      color:#e5e7eb;
-      font-size:15px;
-      max-width:62ch;
-      margin-bottom:12px;
-    }
+    .heroCopy p{color:#e5e7eb;font-size:15px;max-width:60ch;margin-bottom:16px;line-height:1.7;}
 
-    .heroActions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:10px;
-    }
+    .heroActions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+    .reassure{margin-top:10px;font-size:12px;color:var(--muted);}
 
-    .reassure{
-      margin-top:10px;
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    /* LIVE BRIEF PREVIEW */
-    .liveBriefBadge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(74,222,128,0.35);
-      background:rgba(74,222,128,0.08);
-      color:#4ade80;
-      font-size:10px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-    .liveDot{
-      width:6px;height:6px;border-radius:999px;
-      background:#4ade80;
-      box-shadow:0 0 0 3px rgba(74,222,128,0.2);
-      animation: pulse 2s ease infinite;
-    }
-    @keyframes pulse{
-      0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,0.2)}
-      50%{box-shadow:0 0 0 5px rgba(74,222,128,0.0)}
-    }
-
-    /* Right column cards */
-    .rightStack{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    /* Market chart card */
-    .rotCard{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      padding:12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .rotTop{
-      display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
-      margin-bottom:10px;
-    }
-    .rotTitle{
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-    .rotNow{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--accent);
-    }
-    .rotRing{
-      position:absolute;
-      top:-40px; right:-40px;
-      width:140px;height:140px;border-radius:999px;
-      border:1px solid rgba(244,193,93,0.28);
-      box-shadow: inset 0 0 0 10px rgba(244,193,93,0.06);
-      animation: spin 10s linear infinite;
-      pointer-events:none;
-      opacity:.8;
-    }
-    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-    /* CADENCE STRIP */
-    .cadenceStrip{
+    /* ── STATS ROW ── */
+    .statsRow{
       position:relative;z-index:1;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
+      display:flex;gap:0;flex-wrap:wrap;
+      margin-top:22px;
+      border:1px solid rgba(148,163,184,0.18);
+      border-radius:16px;overflow:hidden;
     }
-    .cadencePill{
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.22);
+    .statItem{
+      flex:1;min-width:110px;
+      padding:16px 14px;text-align:center;
+      border-right:1px solid rgba(148,163,184,0.18);
       background:rgba(2,6,23,0.30);
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--muted);
     }
-    .cadencePill span{color:var(--accent);font-weight:700;margin-right:4px;}
+    .statItem:last-child{border-right:0;}
+    .statNum{font-family:"Playfair Display",serif;font-size:28px;color:var(--accent);line-height:1;margin-bottom:4px;}
+    .statLabel{font-size:11px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;}
+    @media(max-width:600px){
+      .statItem{flex:1 1 45%;}
+      .statItem:nth-child(2){border-right:0;}
+      .statItem:nth-child(3){border-right:1px solid rgba(148,163,184,0.18);border-top:1px solid rgba(148,163,184,0.18);}
+      .statItem:nth-child(4){border-right:0;border-top:1px solid rgba(148,163,184,0.18);}
+    }
 
-    /* Week interactive */
+    /* ── RIGHT COLUMN ── */
+    .rightStack{display:flex;flex-direction:column;gap:14px;}
+
+    /* Sample brief */
+    .sampleBrief{
+      border:1px solid rgba(148,163,184,0.22);
+      background:rgba(2,6,23,0.45);border-radius:18px;overflow:hidden;
+    }
+    .sampleBriefHead{
+      padding:12px 16px;border-bottom:1px solid rgba(148,163,184,0.14);
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .sampleBriefLabel{font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;}
+    .sampleBriefDate{font-size:11px;color:rgba(148,163,184,0.40);font-style:italic;}
+    .sampleBriefRows{padding:4px 0;}
+    .sampleBriefRow{
+      display:flex;gap:14px;align-items:flex-start;
+      padding:10px 16px;border-bottom:1px solid rgba(148,163,184,0.07);transition:background .15s;
+    }
+    .sampleBriefRow:last-child{border-bottom:0;}
+    .sampleBriefRow:hover{background:rgba(244,193,93,0.04);}
+    .sampleBriefTag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);min-width:80px;padding-top:2px;font-weight:600;flex-shrink:0;}
+    .sampleBriefText{font-size:13px;color:#e5e7eb;line-height:1.5;}
+    .sampleBriefFoot{padding:9px 16px;font-size:10px;color:rgba(148,163,184,0.40);border-top:1px solid rgba(148,163,184,0.12);background:rgba(2,6,23,0.30);}
+
+    /* Market chart */
+    .rotCard{border-radius:18px;border:1px solid rgba(148,163,184,0.22);background:rgba(2,6,23,0.35);overflow:hidden;}
+    .rotCardHead{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(148,163,184,0.14);}
+    .rotTitle{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+    .rotNow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+    .chartBtns{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px 6px;}
+    .chartBtnSym{
+      border:1px solid rgba(148,163,184,0.28);background:rgba(2,6,23,0.30);
+      color:var(--muted);border-radius:999px;padding:5px 10px;
+      cursor:pointer;font-size:11px;letter-spacing:.10em;text-transform:uppercase;transition:.15s ease;
+    }
+    .chartBtnSym:hover{border-color:rgba(244,193,93,0.35);}
+    .chartBtnSym.active{border-color:rgba(244,193,93,0.55);background:rgba(244,193,93,0.10);color:var(--accent);}
+    .chartInner{padding:4px 8px 8px;}
+
+    /* ── COMPARISON ── */
+    .comparePanel{
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      margin-top:16px;position:relative;overflow:hidden;backdrop-filter:blur(6px);
+    }
+    .comparePanel::before{
+      content:"";position:absolute;inset:-35%;
+      background:radial-gradient(circle at top right,rgba(244,193,93,0.10),transparent 55%);
+      pointer-events:none;opacity:.85;
+    }
+    .compareHead{position:relative;z-index:1;padding:24px 28px 16px;border-bottom:1px solid rgba(148,163,184,0.14);}
+    .compareHead h2{font-family:"Playfair Display",serif;font-size:28px;margin-top:6px;}
+
+    .compareGrid{
+      position:relative;z-index:1;
+      display:grid;grid-template-columns:1fr 1fr;
+    }
+    @media(max-width:760px){.compareGrid{grid-template-columns:1fr;}}
+
+    .compareCol{padding:22px 28px;}
+    .compareCol+.compareCol{border-left:1px solid rgba(148,163,184,0.14);}
+    @media(max-width:760px){.compareCol+.compareCol{border-left:0;border-top:1px solid rgba(148,163,184,0.14);}}
+
+    .compareColHead{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+    .compareTier{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;}
+    .compareBadgeFree{font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(148,163,184,0.10);border:1px solid rgba(148,163,184,0.24);color:var(--muted);padding:3px 8px;border-radius:999px;}
+    .compareBadgePremium{font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(244,193,93,0.10);border:1px solid rgba(244,193,93,0.30);color:var(--accent);padding:3px 8px;border-radius:999px;}
+
+    .compareList{list-style:none;padding:0;margin:0;}
+    .compareList li{padding:8px 0;border-bottom:1px solid rgba(148,163,184,0.07);font-size:13px;color:#d1d5db;display:flex;align-items:flex-start;gap:8px;}
+    .compareList li:last-child{border-bottom:0;}
+    .compareList li::before{content:"✓";color:rgba(148,163,184,0.45);font-size:12px;flex-shrink:0;margin-top:1px;}
+    .compareList.premium li::before{content:"✦";color:var(--accent);font-size:10px;margin-top:2px;}
+
+    .compareCTARow{
+      position:relative;z-index:1;
+      display:grid;grid-template-columns:1fr 1fr;
+      border-top:1px solid rgba(148,163,184,0.14);
+    }
+    @media(max-width:760px){.compareCTARow{grid-template-columns:1fr;}}
+    .compareCTACol{padding:18px 28px;}
+    .compareCTACol+.compareCTACol{border-left:1px solid rgba(148,163,184,0.14);}
+    @media(max-width:760px){.compareCTACol+.compareCTACol{border-left:0;border-top:1px solid rgba(148,163,184,0.14);}}
+
+    /* ── WEEK MAP ── */
     .weekGrid{
       position:relative;z-index:1;
-      display:grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap:14px;
-      align-items:stretch;
+      display:grid;grid-template-columns:0.95fr 1.05fr;
+      gap:14px;align-items:stretch;
     }
-    @media (max-width:980px){.weekGrid{grid-template-columns:1fr}}
+    @media(max-width:980px){.weekGrid{grid-template-columns:1fr;}}
 
-    .weekLeft{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      padding:16px;
-    }
-    .weekLeft h3{
-      font-family:"Playfair Display",serif;
-      font-size:24px;
-      line-height:1.15;
-      margin:6px 0 8px;
-    }
-    .weekLeft p{color:#d1d5db;font-size:13px;max-width:60ch}
+    .weekLeft{border-radius:18px;border:1px solid rgba(148,163,184,0.22);background:rgba(2,6,23,0.35);padding:20px;}
+    .weekLeft h3{font-family:"Playfair Display",serif;font-size:24px;line-height:1.15;margin:6px 0 10px;}
+    .weekLeft p{color:#d1d5db;font-size:13px;max-width:60ch;line-height:1.7;}
 
-    .dayPills{
-      display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;
-    }
-    .pill{
-      border:1px solid rgba(148,163,184,0.28);
-      background: rgba(2,6,23,0.30);
-      color:var(--muted);
-      border-radius:999px;
-      padding:8px 12px;
-      cursor:pointer;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      transition:.18s ease;
-      user-select:none;
-    }
-    .pill:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35)}
-    .pill.active{
-      border-color: rgba(244,193,93,0.55);
-      background: rgba(244,193,93,0.10);
-      color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(244,193,93,0.08);
-    }
+    .dayPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+    .pill{border:1px solid rgba(148,163,184,0.28);background:rgba(2,6,23,0.30);color:var(--muted);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:.18s ease;user-select:none;}
+    .pill:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35);}
+    .pill.active{border-color:rgba(244,193,93,0.55);background:rgba(244,193,93,0.10);color:var(--accent);box-shadow:0 0 0 4px rgba(244,193,93,0.08);}
 
-    .weekRight{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      padding:16px;
-      overflow:hidden;
-      position:relative;
-    }
-    .weekRight::before{
-      content:"";
-      position:absolute;inset:-40%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.12), transparent 55%);
-      pointer-events:none;
-      opacity:.8;
-    }
-    .weekCard{
-      position:relative;z-index:1;
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,0.20);
-      background: rgba(15,23,42,0.62);
-      padding:14px;
-    }
-    .weekCardTop{
-      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;
-      margin-bottom:8px;
-    }
-    .weekLabel{
-      font-weight:900;color:#e5e7eb;font-size:18px;line-height:1.2;
-    }
-    .weekMeta{
-      font-size:11px;color:var(--muted);
-      letter-spacing:.14em;text-transform:uppercase;
-      border:1px solid rgba(148,163,184,0.26);
-      background: rgba(2,6,23,0.30);
-      padding:4px 8px;border-radius:999px;
-    }
-    .weekDesc{color:#d1d5db;font-size:13px;margin-bottom:10px}
-    .weekBullets{padding-left:16px;color:#e5e7eb;font-size:12px}
-    .weekBullets li{margin-bottom:6px}
+    .weekRight{border-radius:18px;border:1px solid rgba(148,163,184,0.22);background:rgba(2,6,23,0.35);padding:20px;overflow:hidden;position:relative;}
+    .weekRight::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at top right,rgba(244,193,93,0.12),transparent 55%);pointer-events:none;opacity:.8;}
 
-    /* Charts under week */
-    .chartRow{
-      position:relative;z-index:1;
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;
-    }
-    .watchBtn{
-      border:1px solid rgba(148,163,184,0.30);
-      background: rgba(2,6,23,0.35);
-      color: var(--text);
-      border-radius: 999px;
-      padding:8px 12px;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      cursor:pointer;
-      transition:.18s ease;
-    }
-    .watchBtn:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35)}
-    .watchBtn.active{border-color: rgba(244,193,93,0.55); background: rgba(244,193,93,0.10); color: var(--accent)}
+    .weekCard{position:relative;z-index:1;border-radius:14px;border:1px solid rgba(148,163,184,0.18);background:rgba(15,23,42,0.62);padding:16px;}
+    .weekCardTop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin-bottom:10px;}
+    .weekLabel{font-weight:700;color:#e5e7eb;font-size:18px;line-height:1.2;}
+    .weekMeta{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(148,163,184,0.26);background:rgba(2,6,23,0.30);padding:4px 8px;border-radius:999px;}
+    .weekDesc{color:#d1d5db;font-size:13px;margin-bottom:12px;line-height:1.65;}
+    .weekBullets{padding-left:18px;color:#e5e7eb;font-size:13px;}
+    .weekBullets li{margin-bottom:7px;}
 
-    .chartBox{
-      margin-top:10px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.25);
-      border-radius: 18px;
-      padding:10px;
-      overflow:hidden;
-    }
+    .chartRow{position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+    .watchBtn{border:1px solid rgba(148,163,184,0.30);background:rgba(2,6,23,0.35);color:var(--text);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.18s ease;}
+    .watchBtn:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.35);}
+    .watchBtn.active{border-color:rgba(244,193,93,0.55);background:rgba(244,193,93,0.10);color:var(--accent);}
+    .chartBox{margin-top:10px;border:1px solid rgba(148,163,184,0.18);background:rgba(2,6,23,0.25);border-radius:14px;padding:6px;overflow:hidden;}
 
-    /* =====================
-       PRICING / PREMIUM SECTION
-    ===================== */
-    .pricingGrid{
-      position:relative;z-index:1;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-    @media (max-width:860px){.pricingGrid{grid-template-columns:1fr}}
+    /* ── PREMIUM CARD ── */
+    .premiumCard{border-radius:18px;border:1px solid rgba(148,163,184,0.22);background:rgba(2,6,23,0.35);padding:22px;position:relative;overflow:hidden;}
+    .premiumCard::before{content:"";position:absolute;inset:-55%;background:radial-gradient(circle at 30% 20%,rgba(147,197,253,0.12),transparent 55%),radial-gradient(circle at 70% 60%,rgba(244,193,93,0.10),transparent 55%);pointer-events:none;}
+    .orb{position:absolute;right:-26px;top:-26px;width:160px;height:160px;border-radius:999px;border:1px solid rgba(147,197,253,0.22);background:radial-gradient(circle at 35% 35%,rgba(147,197,253,0.28),rgba(2,6,23,0) 55%),radial-gradient(circle at 70% 70%,rgba(244,193,93,0.14),rgba(2,6,23,0) 55%);box-shadow:inset 0 0 0 10px rgba(147,197,253,0.04),0 18px 50px rgba(0,0,0,0.35);animation:orbspin 12s linear infinite;pointer-events:none;}
+    .orb::after{content:"";position:absolute;inset:16px;border-radius:999px;border:1px dashed rgba(244,193,93,0.22);animation:orbspin 8s linear infinite reverse;}
+    @keyframes orbspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .premiumInner{position:relative;z-index:1;}
+    .premiumTitle{font-family:"Playfair Display",serif;font-size:22px;line-height:1.15;margin:6px 0 8px;}
+    .premiumText{font-size:13px;color:#d1d5db;max-width:52ch;margin-bottom:14px;line-height:1.65;}
 
-    .pricingCard{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      padding:22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .pricingCard.featured{
-      border-color:rgba(244,193,93,0.45);
-      background: rgba(15,23,42,0.60);
-    }
-    .pricingCard.featured::before{
-      content:"";
-      position:absolute;inset:-45%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.12), transparent 55%);
-      pointer-events:none;
-    }
-    .pricingCardInner{position:relative;z-index:1;}
-    .pricingTier{
-      font-size:11px;letter-spacing:.20em;text-transform:uppercase;
-      color:var(--muted);margin-bottom:6px;
-    }
-    .pricingTier.gold{color:var(--accent);}
-    .pricingTitle{
-      font-family:"Playfair Display",serif;
-      font-size:26px;margin-bottom:8px;
-    }
-    .pricingDesc{font-size:13px;color:#d1d5db;margin-bottom:16px;max-width:48ch;}
-    .pricingFeatures{list-style:none;padding:0;margin-bottom:20px;}
-    .pricingFeatures li{
-      font-size:13px;
-      color:#e5e7eb;
-      padding:7px 0;
-      border-bottom:1px solid rgba(148,163,184,0.10);
-      display:flex;
-      align-items:flex-start;
-      gap:8px;
-    }
-    .pricingFeatures li:last-child{border-bottom:0;}
-    .featIcon{
-      width:16px;height:16px;border-radius:999px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:10px;flex-shrink:0;margin-top:2px;
-    }
-    .featIcon.yes{background:rgba(74,222,128,0.15);color:#4ade80;border:1px solid rgba(74,222,128,0.25);}
-    .featIcon.no{background:rgba(148,163,184,0.08);color:rgba(148,163,184,0.4);border:1px solid rgba(148,163,184,0.15);}
+    .premiumSplit{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px;align-items:center;}
+    @media(max-width:860px){.premiumSplit{grid-template-columns:1fr;}}
 
-    /* Deep Dive explanation cards */
-    .deepDiveGrid{
-      position:relative;z-index:1;
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:10px;
-      margin-bottom:20px;
-    }
-    @media (max-width:980px){.deepDiveGrid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:560px){.deepDiveGrid{grid-template-columns:1fr}}
-
-    .ddCard{
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,0.18);
-      background:rgba(2,6,23,0.30);
-      padding:14px;
-      transition:.18s ease;
-    }
-    .ddCard:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.28);}
-    .ddCardIcon{
-      font-size:20px;margin-bottom:8px;
-    }
-    .ddCardTitle{font-size:13px;font-weight:700;color:#e5e7eb;margin-bottom:4px;}
-    .ddCardText{font-size:12px;color:var(--muted);line-height:1.5;}
-
-    /* Sample briefing */
-    .sampleBrief{
-      margin-top:14px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      border-radius:18px;
-      padding:14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .sampleBrief::before{
-      content:"";
-      position:absolute;
-      inset:-45%;
-      background: radial-gradient(circle at top right, rgba(244,193,93,0.10), transparent 55%);
-      pointer-events:none;
-      opacity:.9;
-    }
-    .sampleBriefInner{position:relative;z-index:1}
-    .sampleBriefLabel{
-      font-size:11px;
-      color:var(--muted);
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-    .sampleBriefRow{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      margin-bottom:10px;
-    }
-    .sampleBriefTag{
-      font-size:11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--muted);
-      min-width:92px;
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.25);
-      line-height:1.2;
-      margin-top:1px;
-      white-space:nowrap;
-    }
-    .sampleBriefText{
-      font-size:13px;
-      color:#e5e7eb;
-      line-height:1.45;
-    }
-    .sampleBriefFoot{
-      font-size:11px;
-      color:var(--muted);
-      margin-top:8px;
-      opacity:.85;
-    }
-    @media (max-width:520px){
-      .sampleBriefRow{flex-direction:column;gap:6px}
-      .sampleBriefTag{min-width:auto;align-self:flex-start}
-    }
-
-    footer{
-      margin-top:22px;
+    /* ── EMAIL SECTION (bottom) ── */
+    .emailPanel{
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:36px 28px;margin-top:16px;
+      position:relative;overflow:hidden;backdrop-filter:blur(6px);
       text-align:center;
-      color: var(--muted);
-      font-size:11px;
     }
+    .emailPanel::before{content:"";position:absolute;inset:-35%;background:radial-gradient(circle at bottom center,rgba(244,193,93,0.08),transparent 55%);pointer-events:none;}
+    .emailPanel h3{font-family:"Playfair Display",serif;font-size:26px;margin-bottom:8px;position:relative;z-index:1;}
+    .emailPanel p{font-size:13px;color:var(--muted);margin-bottom:18px;position:relative;z-index:1;}
+    .emailForm{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:440px;margin:0 auto;position:relative;z-index:1;}
+    .emailIn{flex:1;min-width:200px;padding:10px 16px;border-radius:999px;border:1px solid rgba(148,163,184,0.35);background:rgba(2,6,23,0.60);color:var(--text);font-size:13px;outline:none;transition:border-color .15s;}
+    .emailIn:focus{border-color:rgba(244,193,93,0.40);}
+    .emailNote{font-size:11px;color:var(--muted);margin-top:10px;position:relative;z-index:1;}
 
-    /* Modals */
-    .modalBackdrop{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,0.62);
-      z-index:100000;
-      padding:14px;
-    }
-    .modalBackdrop.active{display:flex}
-    .modal{
-      width:100%;
-      max-width:460px;
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,0.35);
-      background: rgba(15, 23, 42, 0.97);
-      box-shadow: var(--shadow);
-      padding:22px 22px 18px;
-      position:relative;
-    }
-    .modalClose{
-      position:absolute; top:10px; right:12px;
-      border:0;background:transparent;color:var(--muted);
-      font-size:22px;cursor:pointer;
-    }
-    .modalK{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
-    .modalH{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:6px}
-    .modalP{font-size:13px;color:#d1d5db;margin-bottom:12px}
-    .in{
-      width:100%;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(148,163,184,0.4);
-      background:#020617;
-      color:var(--text);
-      font-size:12px;
-    }
-    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
+    /* ── FOOTER ── */
+    footer{margin-top:22px;text-align:center;color:var(--muted);font-size:11px;}
 
-    /* Email-only quick capture */
-    .quickCapture{
-      display:flex;gap:8px;flex-wrap:wrap;
-      margin-top:14px;
-    }
-    .quickCapture .in{
-      flex:1;min-width:180px;
-    }
-    .quickCaptureNote{
-      font-size:11px;color:var(--muted);margin-top:6px;
-    }
+    /* ── MODALS ── */
+    .modalBackdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.62);z-index:100000;padding:14px;}
+    .modalBackdrop.active{display:flex;}
+    .modal{width:100%;max-width:460px;border-radius:24px;border:1px solid rgba(148,163,184,0.35);background:rgba(15,23,42,0.97);box-shadow:var(--shadow);padding:22px 22px 18px;position:relative;}
+    .modalClose{position:absolute;top:10px;right:12px;border:0;background:transparent;color:var(--muted);font-size:22px;cursor:pointer;}
+    .modalK{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;}
+    .modalH{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:6px;}
+    .modalP{font-size:13px;color:#d1d5db;margin-bottom:12px;}
+    .in{width:100%;padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.4);background:#020617;color:var(--text);font-size:12px;}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+    .msg{margin-top:10px;font-size:12px;color:#e5e7eb;}
   </style>
 </head>
 
 <body>
   <div class="wrap">
+
+    <!-- ── HEADER ── -->
     <header>
       <div class="ticker">
         <div class="tradingview-widget-container">
@@ -744,91 +401,78 @@
         </div>
       </div>
 
-      <div class="headerRow">
-        <img src="assets/img/FTN-logo.png" class="logo" alt="FinTrend News logo" />
-
-        <div class="brand">
-          <h1>FinTrend News</h1>
-          <p>Market briefing, not noise</p>
-        </div>
-
-        <div class="nav">
-          <a class="navLink" href="archive.html">Archive</a>
-          <a class="navLink" href="#week">Week Map</a>
-          <a class="navLink" href="#premium">Premium</a>
-
-          <!-- Sign In shown by default; hidden when signed in -->
-          <a class="navLink btn btnGhost" href="#" id="open-auth" style="padding:7px 12px;">Sign In</a>
-          <a class="navLink" href="#" id="signout" style="display:none;">Sign Out</a>
-
-          <div class="chip" id="chip">
-            <span class="chipDot"></span>
-            <span id="chipText">Signed in</span>
+      <!-- Centered brand + logo -->
+      <div class="headerBrand">
+        <div class="headerBrandTop">
+          <img src="assets/img/FTN-logo.png" class="logo" alt="FinTrend News logo" />
+          <div class="brand">
+            <h1>FinTrend News</h1>
+            <p>Market briefing, not noise</p>
           </div>
         </div>
+      </div>
+
+      <!-- All nav links centered underneath -->
+      <div class="headerNav">
+        <a class="navLink" href="archive.html">Archive</a>
+        <div class="navDivider"></div>
+        <a class="navLink" href="#week">Week Map</a>
+        <div class="navDivider"></div>
+        <a class="navLink" href="#premium">Premium</a>
+        <div class="navDivider"></div>
+        <a class="navLink" href="#" id="open-auth" style="display:none;">Sign In</a>
+        <a class="navLink" href="#" id="signout" style="display:none;">Sign Out</a>
+        <div class="chip" id="chip">
+          <span class="chipDot"></span>
+          <span id="chipText">Signed in</span>
+        </div>
+        <button class="btn btnPrimary" id="cta-create" style="padding:8px 18px;font-size:11px;">Create Free Account</button>
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- ── HERO ── -->
     <section class="panel" id="top">
-
-      <!-- Author strip -->
-      <div class="authorStrip">
-        <div class="authorAvatar">F</div>
-        <div class="authorInfo">
-          <div class="authorName">FinTrend Editorial</div>
-          <div class="authorBio">Macro markets covered since 2021 · Published every Mon, Wed, Fri & Sun · Not financial advice</div>
-        </div>
-        <div class="authorStats">
-          <div class="authorStat">
-            <span class="authorStatNum" id="statBriefings">180+</span>
-            <span class="authorStatLabel">Briefings</span>
-          </div>
-          <div class="authorStat">
-            <span class="authorStatNum">4×</span>
-            <span class="authorStatLabel">Weekly</span>
-          </div>
-          <div class="authorStat">
-            <span class="authorStatNum" id="statReaders">—</span>
-            <span class="authorStatLabel">Readers</span>
-          </div>
-        </div>
-      </div>
-
       <div class="heroGrid">
-        <!-- Left copy -->
+
         <div class="heroCopy">
-          <div class="liveBriefBadge">
-            <span class="liveDot"></span>
-            Latest brief available
-          </div>
-          <h2>The <span>market brief</span> serious retail investors actually read.</h2>
-          <p>
-            Clear drivers → implications → levels. No long story. Just what matters and what changes the view — published Monday, Wednesday, Friday & Sunday.
-          </p>
+          <div class="kicker" style="margin-bottom:8px;">Market Intelligence</div>
+          <h2>A <span>market brief</span> built for fast decisions.</h2>
+          <p>Clear drivers → implications → levels. No long story. Just what matters and what changes the view.</p>
 
-          <!-- Single primary CTA -->
           <div class="heroActions">
-            <button class="btn btnPrimary" id="cta-create-2">Create Free Account</button>
-            <a href="archive.html" class="btn btnGhost">Browse Free Articles</a>
+            <button class="btn btnPrimary" id="cta-create-2" style="padding:10px 22px;font-size:12px;">Create Free Account</button>
+            <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse Free Articles</a>
           </div>
-          <div class="reassure">No credit card &nbsp;·&nbsp; Email used for login &nbsp;·&nbsp; Cancel anytime</div>
+          <div class="reassure">No credit card required</div>
 
-          <!-- Quick email capture alternative -->
-          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(148,163,184,0.12);">
-            <div class="kicker" style="margin-bottom:8px;">Or just get the next brief by email →</div>
-            <div class="quickCapture">
-              <input class="in" type="email" id="quickEmail" placeholder="your@email.com" />
-              <button class="btn btnGhost" id="quickSubscribe" style="white-space:nowrap;">Subscribe Free</button>
+          <div class="statsRow">
+            <div class="statItem">
+              <div class="statNum">180+</div>
+              <div class="statLabel">Articles</div>
             </div>
-            <div class="quickCaptureNote" id="quickMsg">One email per brief. No spam. Unsubscribe anytime.</div>
+            <div class="statItem">
+              <div class="statNum">4×</div>
+              <div class="statLabel">Weekly formats</div>
+            </div>
+            <div class="statItem">
+              <div class="statNum">100%</div>
+              <div class="statLabel">Signal focused</div>
+            </div>
+            <div class="statItem">
+              <div class="statNum">Free</div>
+              <div class="statLabel">To start</div>
+            </div>
           </div>
+        </div>
 
-          <!-- Real sample briefing format -->
-          <div class="sampleBrief" aria-label="Example Briefing Format" style="margin-top:18px;">
-            <div class="sampleBriefInner">
+        <div class="rightStack">
+          <!-- Example briefing card -->
+          <div class="sampleBrief" aria-label="Example Briefing Format">
+            <div class="sampleBriefHead">
               <div class="sampleBriefLabel">Example Briefing Format</div>
-
+              <div class="sampleBriefDate">Illustrative only</div>
+            </div>
+            <div class="sampleBriefRows">
               <div class="sampleBriefRow">
                 <div class="sampleBriefTag">Driver</div>
                 <div class="sampleBriefText">Inflation surprise shifts rate expectations.</div>
@@ -841,66 +485,97 @@
                 <div class="sampleBriefTag">Key Levels</div>
                 <div class="sampleBriefText">Support / resistance zones to monitor.</div>
               </div>
-              <div class="sampleBriefRow" style="margin-bottom:0;">
+              <div class="sampleBriefRow">
                 <div class="sampleBriefTag">Catalyst</div>
                 <div class="sampleBriefText">Upcoming central bank commentary.</div>
               </div>
-              <div class="sampleBriefFoot">*Illustrative example. Educational content only.</div>
+            </div>
+            <div class="sampleBriefFoot">Educational content only · Not financial advice</div>
+          </div>
+
+          <!-- Live chart -->
+          <div class="rotCard">
+            <div class="rotCardHead">
+              <div class="rotTitle">Live Chart</div>
+              <div class="rotNow" id="rotNow">SPX</div>
+            </div>
+            <div class="chartBtns">
+              <button class="chartBtnSym active" data-rot="FOREXCOM:SPXUSD" data-label="SPX">SPX</button>
+              <button class="chartBtnSym" data-rot="OANDA:EURUSD" data-label="EURUSD">EURUSD</button>
+              <button class="chartBtnSym" data-rot="COINBASE:BTCUSD" data-label="BTC">BTC</button>
+              <button class="chartBtnSym" data-rot="OANDA:XAUUSD" data-label="Gold">Gold</button>
+            </div>
+            <div class="chartInner">
+              <div id="rotChart"></div>
             </div>
           </div>
         </div>
 
-        <!-- Right: market chart only (cleaner) -->
-        <div class="rightStack">
-          <div class="rotCard">
-            <div class="rotRing"></div>
-            <div class="rotTop">
-              <div class="rotTitle">Market chart</div>
-              <div class="rotNow" id="rotNow">SPX</div>
-            </div>
+      </div>
+    </section>
 
-            <div class="chartRow" style="margin-top:0;">
-              <button class="watchBtn active" data-rot="FOREXCOM:SPXUSD" data-label="SPX">SPX</button>
-              <button class="watchBtn" data-rot="OANDA:EURUSD" data-label="EURUSD">EURUSD</button>
-              <button class="watchBtn" data-rot="COINBASE:BTCUSD" data-label="BTC">BTC</button>
-              <button class="watchBtn" data-rot="OANDA:XAUUSD" data-label="Gold">Gold</button>
-            </div>
+    <!-- ── FREE vs PREMIUM COMPARISON ── -->
+    <section class="comparePanel" id="premium">
+      <div class="compareHead">
+        <div class="kicker">What you get</div>
+        <h2>Free vs Premium</h2>
+        <div class="subk">Start free. Upgrade when you're ready.</div>
+      </div>
 
-            <div class="chartBox">
-              <div id="rotChart"></div>
-            </div>
+      <div class="compareGrid">
+        <div class="compareCol">
+          <div class="compareColHead">
+            <div class="compareTier">Free Account</div>
+            <div class="compareBadgeFree">Free forever</div>
           </div>
-
-          <!-- Cadence strip on the right -->
-          <div style="border-radius:18px;border:1px solid rgba(148,163,184,0.18);background:rgba(2,6,23,0.30);padding:16px;">
-            <div class="kicker" style="margin-bottom:10px;">Published every week</div>
-            <div class="cadenceStrip" style="flex-direction:column;gap:6px;">
-              <div class="cadencePill"><span>Mon</span> Outlook — set the week's bias</div>
-              <div class="cadencePill"><span>Wed</span> Momentum — mid-week reality check</div>
-              <div class="cadencePill"><span>Fri</span> Recap — what actually changed</div>
-              <div class="cadencePill"><span>Sun</span> Macro Setup — map into next week</div>
-            </div>
-            <a href="archive.html" style="display:inline-block;margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">Browse the archive →</a>
+          <ul class="compareList">
+            <li>All public market briefings</li>
+            <li>Monday · Wednesday · Friday · Sunday formats</li>
+            <li>Live chart access</li>
+            <li>Article archive (180+ pieces)</li>
+            <li>Week Map framework</li>
+          </ul>
+        </div>
+        <div class="compareCol" style="background:rgba(244,193,93,0.03);">
+          <div class="compareColHead">
+            <div class="compareTier" style="color:var(--accent);">Premium</div>
+            <div class="compareBadgePremium">✦ Full access</div>
           </div>
+          <ul class="compareList premium">
+            <li>Everything in Free</li>
+            <li>Long-form sector reports</li>
+            <li>Drivers · Positioning · Catalysts · Levels</li>
+            <li>Full members dashboard</li>
+            <li>New reports as they publish</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="compareCTARow">
+        <div class="compareCTACol">
+          <button class="btn btnGhost" id="cta-create-3" style="padding:10px 22px;font-size:12px;">Create Free Account</button>
+          <div class="reassure" style="margin-top:8px;">No credit card required</div>
+        </div>
+        <div class="compareCTACol">
+          <button class="btn btnPrimary" id="goPremium" style="padding:10px 22px;font-size:12px;">View Premium</button>
+          <div class="reassure" id="premiumStatus" style="display:none;margin-top:8px;"></div>
         </div>
       </div>
     </section>
 
-    <!-- WEEK MAP -->
+    <!-- ── WEEK MAP ── -->
     <section class="panel" id="week">
       <div class="panelHead">
         <div>
           <div class="kicker">Week Map</div>
-          <div class="subk">Same framework. Different job. Every time.</div>
+          <div style="font-family:'Playfair Display',serif;font-size:28px;margin-top:6px;">4 formats. One consistent framework.</div>
+          <div class="subk" style="margin-top:4px;">Pick a day to see exactly what you get.</div>
         </div>
       </div>
 
       <div class="weekGrid">
         <div class="weekLeft">
-          <h3>4 formats. One consistent framework.</h3>
-          <p>
-            Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead. Pick a day to see what you get.
-          </p>
+          <p>Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead.</p>
 
           <div class="dayPills">
             <button class="pill active" data-day="mon">Mon</button>
@@ -909,15 +584,20 @@
             <button class="pill" data-day="sun">Sun</button>
           </div>
 
-          <div class="reassure" style="margin-top:14px;">Free to read &nbsp;·&nbsp; <a href="archive.html" style="color:var(--accent);">Browse all briefs →</a></div>
+          <div class="heroActions" style="margin-top:18px;">
+            <button class="btn btnPrimary" id="cta-create-4" style="padding:10px 20px;font-size:12px;">Create Free Account</button>
+          </div>
+          <div style="margin-top:10px;">
+            <a href="archive.html" style="font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">or browse free articles →</a>
+          </div>
+          <div class="reassure">No credit card required</div>
         </div>
 
         <div class="weekRight">
           <div class="weekCard" id="weekCard"></div>
 
-          <div style="margin-top:14px;position:relative;z-index:1;">
-            <div class="kicker">Live Charts</div>
-
+          <div style="margin-top:16px;position:relative;z-index:1;">
+            <div class="kicker" style="margin-bottom:10px;">Live Charts</div>
             <div class="chartRow">
               <button class="watchBtn active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
               <button class="watchBtn" data-symbol="NASDAQ:NDX">NDX</button>
@@ -925,7 +605,6 @@
               <button class="watchBtn" data-symbol="COINBASE:BTCUSD">BTC</button>
               <button class="watchBtn" data-symbol="OANDA:XAUUSD">Gold</button>
             </div>
-
             <div class="chartBox">
               <div id="watchChart"></div>
               <div id="watchFallback" class="reassure" style="display:none;margin-top:10px;">
@@ -937,105 +616,84 @@
       </div>
     </section>
 
-    <!-- PREMIUM & DEEP DIVES — everything in one section -->
-    <section class="panel" id="premium">
+    <!-- ── PREMIUM SECTION ── -->
+    <section class="panel">
       <div class="panelHead">
         <div>
-          <div class="kicker">Premium · Deep Dives</div>
-          <div class="subk">One sector. One theme. Fully mapped.</div>
+          <div class="kicker">Premium</div>
+          <div style="font-family:'Playfair Display',serif;font-size:28px;margin-top:6px;">Long-form reports. Built like a playbook.</div>
         </div>
       </div>
 
-      <!-- What is a Deep Dive — 4 pillars -->
-      <div class="deepDiveGrid">
-        <div class="ddCard">
-          <div class="ddCardIcon">📌</div>
-          <div class="ddCardTitle">Driver</div>
-          <div class="ddCardText">What is actually moving the sector — macro shift, policy change, or structural rotation.</div>
-        </div>
-        <div class="ddCard">
-          <div class="ddCardIcon">⚖️</div>
-          <div class="ddCardTitle">Winners &amp; Losers</div>
-          <div class="ddCardText">Who benefits from the move and who gets hurt — specific names and the reasoning behind each.</div>
-        </div>
-        <div class="ddCard">
-          <div class="ddCardIcon">⚡</div>
-          <div class="ddCardTitle">Catalysts</div>
-          <div class="ddCardText">The events, data releases, or surprises that could change the thesis — and what to watch for.</div>
-        </div>
-        <div class="ddCard">
-          <div class="ddCardIcon">🎯</div>
-          <div class="ddCardTitle">Key Levels</div>
-          <div class="ddCardText">The "if this breaks, the thesis is wrong" levels — clearly defined so you know when to adjust.</div>
-        </div>
-      </div>
-
-      <!-- Free vs Premium comparison -->
-      <div class="pricingGrid">
-        <!-- Free -->
-        <div class="pricingCard">
-          <div class="pricingCardInner">
-            <div class="pricingTier">Free</div>
-            <div class="pricingTitle">Free Account</div>
-            <div class="pricingDesc">Everything you need to follow along with macro markets week to week.</div>
-            <ul class="pricingFeatures">
-              <li><span class="featIcon yes">✓</span>Monday Outlook brief</li>
-              <li><span class="featIcon yes">✓</span>Wednesday Momentum brief</li>
-              <li><span class="featIcon yes">✓</span>Friday Recap brief</li>
-              <li><span class="featIcon yes">✓</span>Sunday Macro Setup brief</li>
-              <li><span class="featIcon yes">✓</span>Full article archive access</li>
-              <li><span class="featIcon yes">✓</span>Live market charts</li>
-              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Deep Dive sector reports</span></li>
-              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Full members dashboard</span></li>
-              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Positioning &amp; catalyst tracking</span></li>
+      <div class="premiumSplit">
+        <div class="premiumCard">
+          <div class="orb"></div>
+          <div class="premiumInner">
+            <div class="kicker" style="margin-bottom:8px;">What's inside each report</div>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="padding:9px 0;border-bottom:1px solid rgba(148,163,184,0.08);font-size:13px;color:#d1d5db;display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:var(--accent);font-size:11px;flex-shrink:0;padding-top:1px;">✦</span>
+                <span><strong style="color:#e5e7eb;">Driver</strong> — what's actually moving the sector</span>
+              </li>
+              <li style="padding:9px 0;border-bottom:1px solid rgba(148,163,184,0.08);font-size:13px;color:#d1d5db;display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:var(--accent);font-size:11px;flex-shrink:0;padding-top:1px;">✦</span>
+                <span><strong style="color:#e5e7eb;">Winners / Losers</strong> — who benefits and who gets hurt</span>
+              </li>
+              <li style="padding:9px 0;border-bottom:1px solid rgba(148,163,184,0.08);font-size:13px;color:#d1d5db;display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:var(--accent);font-size:11px;flex-shrink:0;padding-top:1px;">✦</span>
+                <span><strong style="color:#e5e7eb;">Catalysts</strong> — what events change the story</span>
+              </li>
+              <li style="padding:9px 0;font-size:13px;color:#d1d5db;display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:var(--accent);font-size:11px;flex-shrink:0;padding-top:1px;">✦</span>
+                <span><strong style="color:#e5e7eb;">Levels</strong> — the "if this breaks, we're wrong" points</span>
+              </li>
             </ul>
-            <button class="btn btnGhost" id="cta-create-free" style="width:100%;">Create Free Account</button>
           </div>
         </div>
 
-        <!-- Premium -->
-        <div class="pricingCard featured">
-          <div class="pricingCardInner">
-            <div class="pricingTier gold">Premium</div>
-            <div class="pricingTitle">Premium Access</div>
-            <div class="pricingDesc">For readers who want the full picture — deep sector analysis built like a playbook.</div>
-            <ul class="pricingFeatures">
-              <li><span class="featIcon yes">✓</span>Everything in Free</li>
-              <li><span class="featIcon yes">✓</span>Deep Dive sector reports</li>
-              <li><span class="featIcon yes">✓</span>Full members dashboard</li>
-              <li><span class="featIcon yes">✓</span>Positioning &amp; catalyst tracking</li>
-              <li><span class="featIcon yes">✓</span>Winners / Losers breakdown per report</li>
-              <li><span class="featIcon yes">✓</span>Key levels &amp; invalidation points</li>
-              <li><span class="featIcon yes">✓</span>Early access to new reports</li>
-            </ul>
-            <button class="btn btnPrimary" id="goPremium" style="width:100%;">View Premium →</button>
-            <div class="reassure" id="premiumStatus" style="display:none;margin-top:8px;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="kicker" style="margin-bottom:8px;">Upgrade</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;line-height:1.2;">Unlock the full playbook.</div>
+          <p style="font-size:13px;color:#d1d5db;margin-bottom:18px;line-height:1.7;">Premium members get access to every report and the full members dashboard.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btnPrimary" id="goPremiumTop" style="padding:10px 22px;font-size:12px;">View Premium</button>
+            <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse Free First</a>
           </div>
+          <div class="reassure" id="premiumStatusTop" style="display:none;margin-top:10px;"></div>
         </div>
       </div>
     </section>
 
+    <!-- ── EMAIL SIGNUP — bottom / last resort ── -->
+    <section class="emailPanel">
+      <h3>Get the briefing by email.</h3>
+      <p>One email per briefing. No noise. Unsubscribe any time.</p>
+      <form class="emailForm" onsubmit="handleEmailSub(event)">
+        <input class="emailIn" type="email" placeholder="Your email address" required />
+        <button class="btn btnPrimary" type="submit" style="padding:10px 20px;font-size:12px;white-space:nowrap;">Subscribe</button>
+      </form>
+      <div class="emailNote">No account needed · Unsubscribe anytime</div>
+    </section>
+
     <footer>
       <p style="max-width:760px;margin:0 auto 8px;">
-        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice. Always do your own research.
+        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice.
       </p>
       <p>© 2026 FinTrend News · <a href="archive.html">Archive</a></p>
     </footer>
   </div>
 
-  <!-- AUTH MODAL -->
+  <!-- ── AUTH MODAL ── -->
   <div class="modalBackdrop" id="authModal">
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modalClose" id="closeAuth">×</button>
       <div class="modalK">FinTrend Account</div>
       <div class="modalH" id="authTitle">Create Free Account</div>
       <div class="modalP" id="authSubtitle">Create an account to unlock account-gated reads. No credit card.</div>
-
       <form id="authForm">
         <input class="in" id="email" type="email" placeholder="Email" required />
         <div style="height:10px"></div>
         <input class="in" id="password" type="password" placeholder="Password" required />
-
         <div class="row">
           <button class="btn btnPrimary" type="submit" id="authSubmit">Create Free Account</button>
           <button class="btn btnGhost" type="button" id="toggleMode">Already have an account?</button>
@@ -1045,14 +703,13 @@
     </div>
   </div>
 
-  <!-- PREMIUM MODAL -->
+  <!-- ── PREMIUM MODAL ── -->
   <div class="modalBackdrop" id="premiumModal">
     <div class="modal" role="dialog" aria-modal="true">
       <button class="modalClose" id="closePremium">×</button>
       <div class="modalK">FinTrend Premium</div>
       <div class="modalH">Upgrade to Premium</div>
-      <div class="modalP">Unlock Deep Dives and the full members dashboard.</div>
-
+      <div class="modalP">Unlock sector reports and the full members dashboard.</div>
       <div class="row">
         <a class="btn btnPrimary" href="#" id="payLink">Go Premium</a>
         <button class="btn btnGhost" id="closePremium2" type="button">Not now</button>
@@ -1061,6 +718,12 @@
   </div>
 
   <script>
+    function handleEmailSub(e){
+      e.preventDefault();
+      const form = e.target;
+      form.innerHTML = '<p style="color:var(--accent);font-size:14px;padding:8px 0;">✓ You\'re on the list. Check your inbox.</p>';
+    }
+
     (function(){
       "use strict";
 
@@ -1079,26 +742,23 @@
       const authSubmit = document.getElementById("authSubmit");
       const toggleModeBtn = document.getElementById("toggleMode");
       const authMsg = document.getElementById("authMsg");
-
       const chip = document.getElementById("chip");
       const chipText = document.getElementById("chipText");
       const signout = document.getElementById("signout");
       const openAuth = document.getElementById("open-auth");
+      const ctaCreate = document.getElementById("cta-create");
 
-      // Close buttons
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
       authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
       document.getElementById("closePremium").addEventListener("click",()=>closeModal(premiumModal));
       document.getElementById("closePremium2").addEventListener("click",()=>closeModal(premiumModal));
       premiumModal.addEventListener("click",(e)=>{ if(e.target===premiumModal) closeModal(premiumModal); });
 
-      // Mode switching
       let mode = "signup";
       function setMode(m){
         mode = m;
         if(authMsg) authMsg.textContent = "";
         if(authSubmit) authSubmit.disabled = false;
-
         if(mode === "signup"){
           authTitle.textContent = "Create Free Account";
           authSubtitle.textContent = "Create an account to unlock account-gated reads. No credit card.";
@@ -1112,52 +772,27 @@
         }
       }
       toggleModeBtn.addEventListener("click",()=>setMode(mode==="signup"?"signin":"signup"));
+      openAuth.addEventListener("click",(e)=>{ e.preventDefault(); setMode("signin"); openModal(authModal); });
 
-      // Sign in nav link
-      openAuth.addEventListener("click",(e)=>{
-        e.preventDefault();
-        setMode("signin");
-        openModal(authModal);
-      });
-
-      // All create account CTAs
-      ["cta-create-2","cta-create-free"].forEach(id=>{
+      ["cta-create","cta-create-2","cta-create-3","cta-create-4"].forEach(id=>{
         const el = document.getElementById(id);
         if(el) el.addEventListener("click",()=>{ setMode("signup"); openModal(authModal); });
-      });
-
-      // Quick email capture
-      document.getElementById("quickSubscribe").addEventListener("click", async () => {
-        const emailVal = document.getElementById("quickEmail").value.trim();
-        const msgEl = document.getElementById("quickMsg");
-        if (!emailVal || !emailVal.includes("@")) {
-          msgEl.textContent = "Please enter a valid email.";
-          msgEl.style.color = "#f87171";
-          return;
-        }
-        // Pre-fill the auth modal email and open signup
-        document.getElementById("email").value = emailVal;
-        setMode("signup");
-        msgEl.textContent = "One more step — set a password to finish.";
-        msgEl.style.color = "var(--accent)";
-        openModal(authModal);
       });
 
       function humanErr(err){
         const raw = (err && err.message) ? String(err.message) : String(err || "");
         const msg = raw.toLowerCase();
-        if (msg.includes("invalid login") || msg.includes("credentials")) return "Wrong email or password.";
-        if (msg.includes("email not confirmed")) return "Confirm your email, then sign in.";
-        if (msg.includes("rate limit") || msg.includes("too many")) return "Too many attempts. Try again in a minute.";
+        if(msg.includes("invalid login")||msg.includes("credentials")) return "Wrong email or password.";
+        if(msg.includes("email not confirmed")) return "Confirm your email, then sign in.";
+        if(msg.includes("rate limit")||msg.includes("too many")) return "Too many attempts. Try again in a minute.";
         return raw || "Something went wrong. Try again.";
       }
 
-      // Week map data
       const weekData = {
-        mon: { title:"Monday · Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
-        wed: { title:"Wednesday · Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
-        fri: { title:"Friday · Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.", bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
-        sun: { title:"Sunday · Macro Setup", meta:"The map into next week", desc:"What's priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
+        mon:{ title:"Monday · Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
+        wed:{ title:"Wednesday · Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
+        fri:{ title:"Friday · Recap", meta:"What changed (for real)", desc:"Did the driver change? Or just the story? You get the clean answer.", bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"] },
+        sun:{ title:"Sunday · Macro Setup", meta:"The map into next week", desc:"What's priced in, what could surprise, and the one catalyst that matters most.", bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"] }
       };
 
       const weekCard = document.getElementById("weekCard");
@@ -1181,7 +816,6 @@
         });
       });
 
-      // TradingView
       function loadMiniSymbolOverview(targetId, symbol, height){
         const el = document.getElementById(targetId);
         if(!el) return;
@@ -1189,29 +823,19 @@
         const s = document.createElement("script");
         s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
         s.async = true;
-        s.text = JSON.stringify({
-          symbol,
-          width: "100%",
-          height: height || 280,
-          locale: "en",
-          dateRange: "3M",
-          colorTheme: "dark",
-          isTransparent: true,
-          autosize: true
-        });
+        s.text = JSON.stringify({ symbol, width:"100%", height:height||280, locale:"en", dateRange:"3M", colorTheme:"dark", isTransparent:true, autosize:true });
         el.appendChild(s);
       }
 
       const rotNow = document.getElementById("rotNow");
       function loadRot(symbol, label){
         if(rotNow) rotNow.textContent = label || "";
-        loadMiniSymbolOverview("rotChart", symbol, 260);
+        loadMiniSymbolOverview("rotChart", symbol, 250);
       }
-      loadRot("FOREXCOM:SPXUSD", "SPX");
+      loadRot("FOREXCOM:SPXUSD","SPX");
       document.querySelectorAll("[data-rot]").forEach(btn=>{
         btn.addEventListener("click",()=>{
-          const parentRow = btn.closest(".chartRow");
-          if(parentRow) parentRow.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
+          document.querySelectorAll(".chartBtnSym").forEach(b=>b.classList.remove("active"));
           btn.classList.add("active");
           loadRot(btn.getAttribute("data-rot"), btn.getAttribute("data-label"));
         });
@@ -1220,170 +844,103 @@
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
       let watchFallbackTimer = null;
-
-      function showFallback(symbol){
-        if(!watchFallback) return;
-        watchFallback.style.display = "block";
-        if(watchOpenTV) watchOpenTV.href = "https://www.tradingview.com/chart/?symbol=" + encodeURIComponent(symbol);
-      }
-      function hideFallback(){
-        if(watchFallbackTimer) clearTimeout(watchFallbackTimer);
-        watchFallbackTimer = null;
-        if(!watchFallback) return;
-        watchFallback.style.display = "none";
-      }
+      function showFallback(symbol){ if(!watchFallback) return; watchFallback.style.display="block"; if(watchOpenTV) watchOpenTV.href="https://www.tradingview.com/chart/?symbol="+encodeURIComponent(symbol); }
+      function hideFallback(){ if(watchFallbackTimer) clearTimeout(watchFallbackTimer); watchFallbackTimer=null; if(!watchFallback) return; watchFallback.style.display="none"; }
       function loadWatch(symbol){
         hideFallback();
         loadMiniSymbolOverview("watchChart", symbol, 300);
-        watchFallbackTimer = setTimeout(()=>{
-          const el = document.getElementById("watchChart");
-          const hasIframe = el && el.querySelector("iframe");
-          if(!hasIframe) showFallback(symbol);
-        }, 5000);
+        watchFallbackTimer = setTimeout(()=>{ const el=document.getElementById("watchChart"); const hasIframe=el&&el.querySelector("iframe"); if(!hasIframe) showFallback(symbol); }, 5000);
       }
       loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watchBtn").forEach(btn=>{
         if(btn.hasAttribute("data-symbol")){
           btn.addEventListener("click",()=>{
-            document.querySelectorAll(".watchBtn").forEach(b=>{
-              if(b.hasAttribute("data-symbol")) b.classList.remove("active");
-            });
+            document.querySelectorAll(".watchBtn").forEach(b=>{ if(b.hasAttribute("data-symbol")) b.classList.remove("active"); });
             btn.classList.add("active");
             loadWatch(btn.dataset.symbol);
           });
         }
       });
 
-      // Supabase
       const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-
       let supabase = null;
 
       function setSignedOutUI(){
-        chip.style.display = "none";
-        openAuth.style.display = "";
-        signout.style.display = "none";
-        const ps = document.getElementById("premiumStatus");
-        if(ps) ps.style.display = "none";
-        // Show free/premium cards normally
-        document.getElementById("cta-create-free").style.display = "";
+        chip.style.display="none"; openAuth.style.display=""; signout.style.display="none";
+        if(ctaCreate) ctaCreate.style.display="";
+        const ps=document.getElementById("premiumStatus"); const psTop=document.getElementById("premiumStatusTop");
+        if(ps) ps.style.display="none"; if(psTop) psTop.style.display="none";
       }
-
       function setSignedInUI(email, isPremium){
-        chip.style.display = "inline-flex";
-        chip.classList.toggle("premium", !!isPremium);
-        chipText.textContent = (isPremium ? "Premium · " : "Free · ") + email;
-        openAuth.style.display = "none";
-        signout.style.display = "";
-        // Hide the free CTA if already signed in
-        const freeCta = document.getElementById("cta-create-free");
-        if(freeCta) freeCta.style.display = "none";
-        // Hide the hero CTA too
-        const heroCta = document.getElementById("cta-create-2");
-        if(heroCta) heroCta.style.display = "none";
-
-        const ps = document.getElementById("premiumStatus");
-        if(ps){ ps.style.display = ""; ps.textContent = isPremium ? "✓ You have premium access." : "Free account active."; }
-
-        // Update reader stat if we have it
-        const statEl = document.getElementById("statReaders");
-        if(statEl) statEl.textContent = "Growing";
+        chip.style.display="inline-flex"; chip.classList.toggle("premium",!!isPremium);
+        chipText.textContent=(isPremium?"Premium · ":"Free · ")+email;
+        openAuth.style.display="none"; signout.style.display="";
+        if(ctaCreate) ctaCreate.style.display="none";
+        const ps=document.getElementById("premiumStatus"); const psTop=document.getElementById("premiumStatusTop");
+        if(ps){ ps.style.display=""; ps.textContent=isPremium?"You have premium access.":"Free account active."; }
+        if(psTop){ psTop.style.display=""; psTop.textContent=isPremium?"You have premium access.":"Upgrade for full access."; }
       }
-
       async function fetchPremiumStatus(userId){
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("is_premium, premium_until")
-          .eq("id", userId)
-          .single();
-        if (error || !data) return false;
-        if (data.premium_until){
-          const until = new Date(data.premium_until);
-          if (until < new Date()) return false;
-        }
+        const { data, error } = await supabase.from("profiles").select("is_premium, premium_until").eq("id", userId).single();
+        if(error||!data) return false;
+        if(data.premium_until){ const until=new Date(data.premium_until); if(until<new Date()) return false; }
         return !!data.is_premium;
       }
 
-      document.getElementById("payLink").addEventListener("click",(e)=>{
-        e.preventDefault();
-        window.open(PAYMENT_LINK,"_blank");
-      });
-
-      document.getElementById("goPremium").addEventListener("click",(e)=>{
-        e.preventDefault();
-        window.location.href = PREMIUM_DASHBOARD;
-      });
+      document.getElementById("payLink").addEventListener("click",(e)=>{ e.preventDefault(); window.open(PAYMENT_LINK,"_blank"); });
+      document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
+      document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
 
       let attempts = 0;
-      const check = setInterval(() => {
+      const check = setInterval(()=>{
         attempts++;
-
-        if (window.supabase && window.supabase.createClient) {
+        if(window.supabase && window.supabase.createClient){
           clearInterval(check);
-
           supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-          document.getElementById("authForm").addEventListener("submit", async (e) => {
+          document.getElementById("authForm").addEventListener("submit", async(e)=>{
             e.preventDefault();
             authMsg.textContent = "";
             const emailVal = document.getElementById("email").value.trim();
             const passwordVal = document.getElementById("password").value;
-            if (!emailVal || !passwordVal){ authMsg.textContent = "Enter email + password."; return; }
-
+            if(!emailVal||!passwordVal){ authMsg.textContent="Enter email + password."; return; }
             authSubmit.disabled = true;
             const originalText = authSubmit.textContent;
-            authSubmit.textContent = mode === "signin" ? "Signing in..." : "Creating...";
-
+            authSubmit.textContent = mode==="signin" ? "Signing in..." : "Creating...";
             try {
-              if (mode === "signin") {
-                const { data, error } = await supabase.auth.signInWithPassword({ email: emailVal, password: passwordVal });
-                if (error){ authMsg.textContent = humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
-                if (!data || !data.user){ authMsg.textContent = "Sign in failed."; authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
+              if(mode==="signin"){
+                const { data, error } = await supabase.auth.signInWithPassword({ email:emailVal, password:passwordVal });
+                if(error){ authMsg.textContent=humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
+                if(!data||!data.user){ authMsg.textContent="Sign in failed."; authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
                 const isPremium = await fetchPremiumStatus(data.user.id);
                 setSignedInUI(emailVal, isPremium);
                 closeModal(authModal);
                 window.location.href = isPremium ? PREMIUM_DASHBOARD : FREE_ACCOUNT_PAGE;
                 return;
               }
-
-              const { error } = await supabase.auth.signUp({ email: emailVal, password: passwordVal });
-              if (error){ authMsg.textContent = humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
+              const { error } = await supabase.auth.signUp({ email:emailVal, password:passwordVal });
+              if(error){ authMsg.textContent=humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
               authMsg.textContent = "Account created! Check your email to confirm, then sign in.";
-              authSubmit.disabled = false;
-              authSubmit.textContent = originalText;
-            } catch (err) {
-              authMsg.textContent = "Error: " + (err.message || String(err));
-              authSubmit.disabled = false;
-              authSubmit.textContent = originalText;
+              authSubmit.disabled=false; authSubmit.textContent=originalText;
+            } catch(err){
+              authMsg.textContent = "Error: "+(err.message||String(err));
+              authSubmit.disabled=false; authSubmit.textContent=originalText;
             }
           });
 
-          signout.addEventListener("click", async (e)=>{
-            e.preventDefault();
-            await supabase.auth.signOut();
-            setSignedOutUI();
+          signout.addEventListener("click", async(e)=>{ e.preventDefault(); await supabase.auth.signOut(); setSignedOutUI(); });
+
+          supabase.auth.getUser().then(async({ data:{ user } })=>{
+            if(user){ const isPremium=await fetchPremiumStatus(user.id); setSignedInUI(user.email,isPremium); }
+            else { setSignedOutUI(); }
           });
 
-          supabase.auth.getUser().then(async ({ data: { user } }) => {
-            if(user){
-              const isPremium = await fetchPremiumStatus(user.id);
-              setSignedInUI(user.email, isPremium);
-            } else {
-              setSignedOutUI();
-            }
-          });
-
-        } else if(attempts === 1){
-          openAuth.style.display = "";
-        }
-
-        if (attempts >= 100){ clearInterval(check); setSignedOutUI(); }
+        } else if(attempts===1){ openAuth.style.display=""; }
+        if(attempts>=100){ clearInterval(check); setSignedOutUI(); }
       }, 100);
 
-      window.addEventListener("keydown",(e)=>{
-        if(e.key === "Escape"){ closeModal(authModal); closeModal(premiumModal); }
-      });
+      window.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ closeModal(authModal); closeModal(premiumModal); } });
 
     })();
   </script>
