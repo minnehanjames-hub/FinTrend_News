@@ -426,7 +426,7 @@
           <span class="chipDot"></span>
           <span id="chipText">Signed in</span>
         </div>
-        <button class="btn btnPrimary" id="cta-create" style="padding:8px 18px;font-size:11px;">Create Free Account</button>
+        <a class="btn btnPrimary" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" style="padding:8px 18px;font-size:11px;">Buy Premium →</a>
       </div>
     </header>
 
@@ -557,7 +557,10 @@
           <div class="reassure" style="margin-top:8px;">No credit card required</div>
         </div>
         <div class="compareCTACol">
-          <button class="btn btnPrimary" id="goPremium" style="padding:10px 22px;font-size:12px;">View Premium</button>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <a class="btn btnPrimary" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" style="padding:10px 22px;font-size:12px;">Buy Premium →</a>
+            <button class="btn btnGhost" id="goPremium" style="padding:10px 18px;font-size:12px;">Learn More</button>
+          </div>
           <div class="reassure" id="premiumStatus" style="display:none;margin-top:8px;"></div>
         </div>
       </div>
@@ -656,8 +659,8 @@
           <div style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;line-height:1.2;">Unlock the full playbook.</div>
           <p style="font-size:13px;color:#d1d5db;margin-bottom:18px;line-height:1.7;">Premium members get access to every report and the full members dashboard.</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <button class="btn btnPrimary" id="goPremiumTop" style="padding:10px 22px;font-size:12px;">View Premium</button>
-            <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse Free First</a>
+            <a class="btn btnPrimary" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" style="padding:10px 22px;font-size:12px;">Buy Premium →</a>
+            <button class="btn btnGhost" id="goPremiumTop" style="padding:10px 18px;font-size:12px;">Learn More</button>
           </div>
           <div class="reassure" id="premiumStatusTop" style="display:none;margin-top:10px;"></div>
         </div>
@@ -677,10 +680,138 @@
 
     <footer>
       <p style="max-width:760px;margin:0 auto 8px;">
-        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice.
+        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice. Not a registered investment adviser.
       </p>
-      <p>© 2026 FinTrend News · <a href="archive.html">Archive</a></p>
+      <p style="margin-top:10px;">© 2026 FinTrend News · <a href="archive.html">Archive</a></p>
+      <p style="margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" id="openTos" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Terms of Service</a>
+        <a href="#" id="openRefund" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Refund Policy</a>
+        <a href="#" id="openPrivacy" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Privacy Policy</a>
+      </p>
     </footer>
+  </div>
+
+  <!-- ── TERMS OF SERVICE MODAL ── -->
+  <div class="modalBackdrop" id="tosModal">
+    <div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;">
+      <button class="modalClose" id="closeTos">×</button>
+      <div class="modalK">FinTrend News</div>
+      <div class="modalH">Terms of Service</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: February 2026</div>
+
+      <div style="font-size:13px;color:#d1d5db;line-height:1.75;">
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">1. Acceptance of Terms</strong><br>
+        By accessing or using FinTrend News ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">2. Not Financial Advice</strong><br>
+        All content published on FinTrend News — including briefings, articles, market commentary, sector reports, and any other materials — is provided for <strong style="color:#f4c15d;">informational and educational purposes only</strong>. Nothing on this site constitutes financial advice, investment advice, trading advice, or any recommendation to buy, sell, or hold any security, asset, or financial instrument. FinTrend News is not a registered investment adviser, broker-dealer, or financial planner. Always conduct your own research and consult a licensed financial professional before making any investment decisions. You assume full responsibility for any financial decisions you make.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">3. No Guarantee of Accuracy</strong><br>
+        While we strive to provide accurate and timely information, FinTrend News makes no representations or warranties of any kind regarding the completeness, accuracy, reliability, or timeliness of any content. Markets are inherently unpredictable. Past performance discussed in any content does not guarantee future results.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">4. User Accounts</strong><br>
+        You are responsible for maintaining the confidentiality of your account credentials. You agree to notify us immediately of any unauthorized use of your account. We reserve the right to terminate accounts that violate these terms.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">5. Premium Subscriptions</strong><br>
+        Premium access is provided on a subscription basis. By purchasing a subscription, you agree to our Refund Policy. We reserve the right to modify, suspend, or discontinue premium features at any time with reasonable notice.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">6. Intellectual Property</strong><br>
+        All content on FinTrend News — including text, analysis, formatting, and structure — is the property of FinTrend News. You may not reproduce, distribute, republish, or resell any content without prior written permission. Personal, non-commercial use for reference is permitted.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">7. Limitation of Liability</strong><br>
+        To the fullest extent permitted by law, FinTrend News and its operators shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of the Service or reliance on any content published herein. This includes any financial losses incurred as a result of actions taken based on content from this site.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">8. Third-Party Links & Data</strong><br>
+        The Service may contain links to or embed data from third-party services (including TradingView). We are not responsible for the content, accuracy, or practices of any third-party service.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">9. Changes to Terms</strong><br>
+        We reserve the right to update these Terms at any time. Continued use of the Service after changes are posted constitutes acceptance of the revised terms.</p>
+
+        <p style="margin-bottom:0;"><strong style="color:#f9fafb;">10. Governing Law</strong><br>
+        These Terms shall be governed by and construed in accordance with the laws of the United States. Any disputes shall be resolved in the jurisdiction where FinTrend News operates.</p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button class="btn btnGhost" id="closeTos2" style="width:100%;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REFUND POLICY MODAL ── -->
+  <div class="modalBackdrop" id="refundModal">
+    <div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;">
+      <button class="modalClose" id="closeRefund">×</button>
+      <div class="modalK">FinTrend News</div>
+      <div class="modalH">Refund Policy</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: February 2026</div>
+
+      <div style="font-size:13px;color:#d1d5db;line-height:1.75;">
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Overview</strong><br>
+        FinTrend News offers digital subscription products. Because our content is delivered immediately upon purchase, we have a limited refund policy as described below.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">7-Day Refund Window</strong><br>
+        If you are not satisfied with your Premium subscription, you may request a full refund within <strong style="color:#f4c15d;">7 days of your initial purchase</strong>. After 7 days, no refunds will be issued for the current billing period. To request a refund, contact us at the email associated with your account.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">No Partial Refunds</strong><br>
+        We do not offer partial refunds or prorated credits for unused portions of a subscription period beyond the 7-day window.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Cancellations</strong><br>
+        You may cancel your subscription at any time. Cancellation stops future charges but does not entitle you to a refund for the current billing period unless you are within the 7-day refund window. You will retain access to Premium content until the end of your paid period.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Duplicate Charges</strong><br>
+        If you were charged more than once in error, contact us immediately. Duplicate charges will be refunded in full with no time restriction.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">How to Request a Refund</strong><br>
+        Email us with your account email address and order details. We process refund requests within 3–5 business days. Refunds are returned to the original payment method.</p>
+
+        <p style="margin-bottom:0;"><strong style="color:#f9fafb;">Changes to This Policy</strong><br>
+        We reserve the right to modify this Refund Policy at any time. Changes apply to new purchases made after the updated policy is posted.</p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button class="btn btnGhost" id="closeRefund2" style="width:100%;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRIVACY POLICY MODAL ── -->
+  <div class="modalBackdrop" id="privacyModal">
+    <div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;">
+      <button class="modalClose" id="closePrivacy">×</button>
+      <div class="modalK">FinTrend News</div>
+      <div class="modalH">Privacy Policy</div>
+      <div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: February 2026</div>
+
+      <div style="font-size:13px;color:#d1d5db;line-height:1.75;">
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">What We Collect</strong><br>
+        We collect your email address and password when you create an account. If you subscribe to Premium, your payment is processed by Stripe — we do not store your card details. We may also collect basic usage data (pages visited, features used) via Google Analytics to improve the Service.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">How We Use Your Data</strong><br>
+        Your email is used to: authenticate your account, send briefings you've subscribed to, and communicate important account or service updates. We do not sell your personal data to third parties. We do not use your data for advertising.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Third-Party Services</strong><br>
+        We use the following third-party services which may process your data under their own privacy policies: <strong style="color:#e5e7eb;">Supabase</strong> (account authentication and database), <strong style="color:#e5e7eb;">Stripe</strong> (payment processing), <strong style="color:#e5e7eb;">Google Analytics</strong> (anonymous usage analytics), <strong style="color:#e5e7eb;">TradingView</strong> (embedded market charts).</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Cookies</strong><br>
+        We use cookies and local storage to keep you signed in. Google Analytics uses cookies to track anonymous usage. You can disable cookies in your browser settings, though some features may not function correctly.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Data Retention</strong><br>
+        We retain your account data for as long as your account is active. You may request deletion of your account and associated data at any time by contacting us.</p>
+
+        <p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Your Rights</strong><br>
+        Depending on your location, you may have rights to access, correct, or delete your personal data. To exercise these rights, contact us with your account email. EU/UK users have additional rights under GDPR/UK GDPR.</p>
+
+        <p style="margin-bottom:0;"><strong style="color:#f9fafb;">Changes to This Policy</strong><br>
+        We may update this Privacy Policy from time to time. We will notify you of significant changes via the email on your account.</p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button class="btn btnGhost" id="closePrivacy2" style="width:100%;">Close</button>
+      </div>
+    </div>
   </div>
 
   <!-- ── AUTH MODAL ── -->
@@ -746,7 +877,7 @@
       const chipText = document.getElementById("chipText");
       const signout = document.getElementById("signout");
       const openAuth = document.getElementById("open-auth");
-      const ctaCreate = document.getElementById("cta-create");
+      
 
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
       authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
@@ -774,7 +905,7 @@
       toggleModeBtn.addEventListener("click",()=>setMode(mode==="signup"?"signin":"signup"));
       openAuth.addEventListener("click",(e)=>{ e.preventDefault(); setMode("signin"); openModal(authModal); });
 
-      ["cta-create","cta-create-2","cta-create-3","cta-create-4"].forEach(id=>{
+      ["cta-create-2","cta-create-3","cta-create-4"].forEach(id=>{
         const el = document.getElementById(id);
         if(el) el.addEventListener("click",()=>{ setMode("signup"); openModal(authModal); });
       });
@@ -868,7 +999,7 @@
 
       function setSignedOutUI(){
         chip.style.display="none"; openAuth.style.display=""; signout.style.display="none";
-        if(ctaCreate) ctaCreate.style.display="";
+        
         const ps=document.getElementById("premiumStatus"); const psTop=document.getElementById("premiumStatusTop");
         if(ps) ps.style.display="none"; if(psTop) psTop.style.display="none";
       }
@@ -876,7 +1007,7 @@
         chip.style.display="inline-flex"; chip.classList.toggle("premium",!!isPremium);
         chipText.textContent=(isPremium?"Premium · ":"Free · ")+email;
         openAuth.style.display="none"; signout.style.display="";
-        if(ctaCreate) ctaCreate.style.display="none";
+        
         const ps=document.getElementById("premiumStatus"); const psTop=document.getElementById("premiumStatusTop");
         if(ps){ ps.style.display=""; ps.textContent=isPremium?"You have premium access.":"Free account active."; }
         if(psTop){ psTop.style.display=""; psTop.textContent=isPremium?"You have premium access.":"Upgrade for full access."; }
@@ -889,8 +1020,10 @@
       }
 
       document.getElementById("payLink").addEventListener("click",(e)=>{ e.preventDefault(); window.open(PAYMENT_LINK,"_blank"); });
-      document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
-      document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
+      const goPremiumEl = document.getElementById("goPremium");
+      if(goPremiumEl) goPremiumEl.addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
+      const goPremiumTopEl = document.getElementById("goPremiumTop");
+      if(goPremiumTopEl) goPremiumTopEl.addEventListener("click",(e)=>{ e.preventDefault(); window.location.href=PREMIUM_DASHBOARD; });
 
       let attempts = 0;
       const check = setInterval(()=>{
@@ -940,7 +1073,27 @@
         if(attempts>=100){ clearInterval(check); setSignedOutUI(); }
       }, 100);
 
-      window.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ closeModal(authModal); closeModal(premiumModal); } });
+      window.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ closeModal(authModal); closeModal(premiumModal); closeModal(tosModal); closeModal(refundModal); closeModal(privacyModal); } });
+
+      // Legal modals
+      const tosModal = document.getElementById("tosModal");
+      const refundModal = document.getElementById("refundModal");
+      const privacyModal = document.getElementById("privacyModal");
+
+      document.getElementById("openTos").addEventListener("click",(e)=>{ e.preventDefault(); openModal(tosModal); });
+      document.getElementById("closeTos").addEventListener("click",()=>closeModal(tosModal));
+      document.getElementById("closeTos2").addEventListener("click",()=>closeModal(tosModal));
+      tosModal.addEventListener("click",(e)=>{ if(e.target===tosModal) closeModal(tosModal); });
+
+      document.getElementById("openRefund").addEventListener("click",(e)=>{ e.preventDefault(); openModal(refundModal); });
+      document.getElementById("closeRefund").addEventListener("click",()=>closeModal(refundModal));
+      document.getElementById("closeRefund2").addEventListener("click",()=>closeModal(refundModal));
+      refundModal.addEventListener("click",(e)=>{ if(e.target===refundModal) closeModal(refundModal); });
+
+      document.getElementById("openPrivacy").addEventListener("click",(e)=>{ e.preventDefault(); openModal(privacyModal); });
+      document.getElementById("closePrivacy").addEventListener("click",()=>closeModal(privacyModal));
+      document.getElementById("closePrivacy2").addEventListener("click",()=>closeModal(privacyModal));
+      privacyModal.addEventListener("click",(e)=>{ if(e.target===privacyModal) closeModal(privacyModal); });
 
     })();
   </script>
