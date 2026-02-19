@@ -3,7 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FinTrend News</title>
+  <title>FinTrend News · Weekly Market Briefings for Serious Investors</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Clear market briefings built for fast decisions. Drivers, implications, levels — published Monday, Wednesday, Friday & Sunday. No noise. Just what moves markets." />
+  <meta name="keywords" content="market briefing, macro newsletter, stock market analysis, weekly market brief, financial newsletter" />
+  <meta name="author" content="FinTrend News" />
+  <link rel="canonical" href="https://fintrend.news/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fintrend.news/" />
+  <meta property="og:title" content="FinTrend News · Market Briefings for Serious Investors" />
+  <meta property="og:description" content="Clear market briefings built for fast decisions. Drivers → implications → levels. Published 4x weekly. No noise." />
+  <meta property="og:image" content="https://fintrend.news/assets/img/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FinTrend News · Market Briefings for Serious Investors" />
+  <meta name="twitter:description" content="Clear market briefings built for fast decisions. Drivers → implications → levels. Published 4x weekly." />
+  <meta name="twitter:image" content="https://fintrend.news/assets/img/og-image.png" />
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
@@ -85,9 +104,7 @@
 
     .logo{height:50px;width:auto;display:block}
 
-    .brand{
-      text-align:center;
-    }
+    .brand{text-align:center;}
     .brand h1{
       font-family:"Playfair Display",serif;
       letter-spacing:.18em;
@@ -197,6 +214,52 @@
       font-size:12px;
     }
 
+    /* AUTHOR BYLINE STRIP */
+    .authorStrip{
+      position:relative;z-index:1;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:12px 16px;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,0.18);
+      background: rgba(2,6,23,0.35);
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .authorAvatar{
+      width:38px;height:38px;border-radius:999px;
+      background: linear-gradient(135deg, rgba(244,193,93,0.35), rgba(147,197,253,0.25));
+      border:1px solid rgba(244,193,93,0.35);
+      display:flex;align-items:center;justify-content:center;
+      font-family:"Playfair Display",serif;
+      font-size:16px;
+      color:var(--accent);
+      flex-shrink:0;
+    }
+    .authorInfo{flex:1;min-width:0}
+    .authorName{font-size:13px;font-weight:700;color:#e5e7eb}
+    .authorBio{font-size:11px;color:var(--muted);margin-top:1px}
+    .authorStats{
+      display:flex;gap:16px;flex-wrap:wrap;
+    }
+    .authorStat{
+      text-align:center;
+    }
+    .authorStatNum{
+      font-size:15px;
+      font-weight:700;
+      color:var(--accent);
+      display:block;
+      line-height:1.1;
+    }
+    .authorStatLabel{
+      font-size:10px;
+      color:var(--muted);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
     /* HERO */
     .heroGrid{
       position:relative;z-index:1;
@@ -241,76 +304,37 @@
       color:var(--muted);
     }
 
+    /* LIVE BRIEF PREVIEW */
+    .liveBriefBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(74,222,128,0.35);
+      background:rgba(74,222,128,0.08);
+      color:#4ade80;
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .liveDot{
+      width:6px;height:6px;border-radius:999px;
+      background:#4ade80;
+      box-shadow:0 0 0 3px rgba(74,222,128,0.2);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,0.2)}
+      50%{box-shadow:0 0 0 5px rgba(74,222,128,0.0)}
+    }
+
     /* Right column cards */
     .rightStack{
       display:flex;
       flex-direction:column;
       gap:12px;
-    }
-
-    /* Premium spinning orb card */
-    .premiumSpin{
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      padding:14px;
-      position:relative;
-      overflow:hidden;
-      min-height:150px;
-    }
-    .premiumSpin::before{
-      content:"";
-      position:absolute;
-      inset:-55%;
-      background: radial-gradient(circle at 30% 20%, rgba(147,197,253,0.16), transparent 55%),
-                  radial-gradient(circle at 70% 60%, rgba(244,193,93,0.12), transparent 55%);
-      pointer-events:none;
-      opacity:.95;
-    }
-    .orb{
-      position:absolute;
-      right:-26px;
-      top:-26px;
-      width:180px;
-      height:180px;
-      border-radius:999px;
-      border:1px solid rgba(147,197,253,0.28);
-      background:
-        radial-gradient(circle at 35% 35%, rgba(147,197,253,0.35), rgba(2,6,23,0.0) 55%),
-        radial-gradient(circle at 70% 70%, rgba(244,193,93,0.18), rgba(2,6,23,0.0) 55%);
-      box-shadow:
-        inset 0 0 0 10px rgba(147,197,253,0.06),
-        0 18px 50px rgba(0,0,0,0.35);
-      animation: orbspin 12s linear infinite;
-      pointer-events:none;
-      opacity:.95;
-    }
-    .orb::after{
-      content:"";
-      position:absolute;
-      inset:18px;
-      border-radius:999px;
-      border:1px dashed rgba(244,193,93,0.28);
-      animation: orbspin 8s linear infinite reverse;
-      opacity:.9;
-    }
-    @keyframes orbspin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-    .premiumInner{
-      position:relative;
-      z-index:1;
-    }
-    .premiumTitle{
-      font-family:"Playfair Display",serif;
-      font-size:22px;
-      line-height:1.15;
-      margin:6px 0 6px;
-    }
-    .premiumText{
-      font-size:13px;
-      color:#d1d5db;
-      max-width:52ch;
-      margin-bottom:10px;
     }
 
     /* Market chart card */
@@ -349,6 +373,26 @@
       opacity:.8;
     }
     @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    /* CADENCE STRIP */
+    .cadenceStrip{
+      position:relative;z-index:1;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .cadencePill{
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.22);
+      background:rgba(2,6,23,0.30);
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .cadencePill span{color:var(--accent);font-weight:700;margin-right:4px;}
 
     /* Week interactive */
     .weekGrid{
@@ -467,74 +511,91 @@
       overflow:hidden;
     }
 
-    /* Deep dive section */
-    .grid2{
+    /* =====================
+       PRICING / PREMIUM SECTION
+    ===================== */
+    .pricingGrid{
       position:relative;z-index:1;
-      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
     }
-    @media (max-width:900px){.grid2{grid-template-columns:1fr}}
-    .card{
+    @media (max-width:860px){.pricingGrid{grid-template-columns:1fr}}
+
+    .pricingCard{
       border-radius:18px;
       border:1px solid rgba(148,163,184,0.22);
       background: rgba(2,6,23,0.35);
-      padding:16px;
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .pricingCard.featured{
+      border-color:rgba(244,193,93,0.45);
+      background: rgba(15,23,42,0.60);
+    }
+    .pricingCard.featured::before{
+      content:"";
+      position:absolute;inset:-45%;
+      background: radial-gradient(circle at top right, rgba(244,193,93,0.12), transparent 55%);
+      pointer-events:none;
+    }
+    .pricingCardInner{position:relative;z-index:1;}
+    .pricingTier{
+      font-size:11px;letter-spacing:.20em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:6px;
+    }
+    .pricingTier.gold{color:var(--accent);}
+    .pricingTitle{
+      font-family:"Playfair Display",serif;
+      font-size:26px;margin-bottom:8px;
+    }
+    .pricingDesc{font-size:13px;color:#d1d5db;margin-bottom:16px;max-width:48ch;}
+    .pricingFeatures{list-style:none;padding:0;margin-bottom:20px;}
+    .pricingFeatures li{
+      font-size:13px;
+      color:#e5e7eb;
+      padding:7px 0;
+      border-bottom:1px solid rgba(148,163,184,0.10);
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+    }
+    .pricingFeatures li:last-child{border-bottom:0;}
+    .featIcon{
+      width:16px;height:16px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;flex-shrink:0;margin-top:2px;
+    }
+    .featIcon.yes{background:rgba(74,222,128,0.15);color:#4ade80;border:1px solid rgba(74,222,128,0.25);}
+    .featIcon.no{background:rgba(148,163,184,0.08);color:rgba(148,163,184,0.4);border:1px solid rgba(148,163,184,0.15);}
+
+    /* Deep Dive explanation cards */
+    .deepDiveGrid{
+      position:relative;z-index:1;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      margin-bottom:20px;
+    }
+    @media (max-width:980px){.deepDiveGrid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.deepDiveGrid{grid-template-columns:1fr}}
+
+    .ddCard{
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,0.18);
+      background:rgba(2,6,23,0.30);
+      padding:14px;
       transition:.18s ease;
     }
-    .card:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.35)}
-    .cardTag{font-size:11px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
-    .cardTitle{font-size:16px;font-weight:900;line-height:1.25;margin-bottom:8px;color:#e5e7eb}
-    .cardText{font-size:12px;color:var(--muted)}
-    .cardText ul{margin-top:8px;padding-left:16px;color:#e5e7eb}
-    .cardText li{margin-bottom:6px}
+    .ddCard:hover{transform:translateY(-2px);border-color:rgba(244,193,93,0.28);}
+    .ddCardIcon{
+      font-size:20px;margin-bottom:8px;
+    }
+    .ddCardTitle{font-size:13px;font-weight:700;color:#e5e7eb;margin-bottom:4px;}
+    .ddCardText{font-size:12px;color:var(--muted);line-height:1.5;}
 
-    footer{
-      margin-top:22px;
-      text-align:center;
-      color: var(--muted);
-      font-size:11px;
-    }
-
-    /* Modals */
-    .modalBackdrop{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,0.62);
-      z-index:100000;
-      padding:14px;
-    }
-    .modalBackdrop.active{display:flex}
-    .modal{
-      width:100%;
-      max-width:460px;
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,0.35);
-      background: rgba(15, 23, 42, 0.97);
-      box-shadow: var(--shadow);
-      padding:22px 22px 18px;
-      position:relative;
-    }
-    .modalClose{
-      position:absolute; top:10px; right:12px;
-      border:0;background:transparent;color:var(--muted);
-      font-size:22px;cursor:pointer;
-    }
-    .modalK{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
-    .modalH{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:6px}
-    .modalP{font-size:13px;color:#d1d5db;margin-bottom:12px}
-    .in{
-      width:100%;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(148,163,184,0.4);
-      background:#020617;
-      color:var(--text);
-      font-size:12px;
-    }
-    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
-
-    /* Example briefing card */
+    /* Sample briefing */
     .sampleBrief{
       margin-top:14px;
       border:1px solid rgba(148,163,184,0.22);
@@ -595,13 +656,71 @@
       .sampleBriefRow{flex-direction:column;gap:6px}
       .sampleBriefTag{min-width:auto;align-self:flex-start}
     }
+
+    footer{
+      margin-top:22px;
+      text-align:center;
+      color: var(--muted);
+      font-size:11px;
+    }
+
+    /* Modals */
+    .modalBackdrop{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.62);
+      z-index:100000;
+      padding:14px;
+    }
+    .modalBackdrop.active{display:flex}
+    .modal{
+      width:100%;
+      max-width:460px;
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,0.35);
+      background: rgba(15, 23, 42, 0.97);
+      box-shadow: var(--shadow);
+      padding:22px 22px 18px;
+      position:relative;
+    }
+    .modalClose{
+      position:absolute; top:10px; right:12px;
+      border:0;background:transparent;color:var(--muted);
+      font-size:22px;cursor:pointer;
+    }
+    .modalK{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+    .modalH{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:6px}
+    .modalP{font-size:13px;color:#d1d5db;margin-bottom:12px}
+    .in{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,0.4);
+      background:#020617;
+      color:var(--text);
+      font-size:12px;
+    }
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .msg{margin-top:10px;font-size:12px;color:#e5e7eb}
+
+    /* Email-only quick capture */
+    .quickCapture{
+      display:flex;gap:8px;flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .quickCapture .in{
+      flex:1;min-width:180px;
+    }
+    .quickCaptureNote{
+      font-size:11px;color:var(--muted);margin-top:6px;
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <header>
-      <!-- TradingView ticker tape -->
       <div class="ticker">
         <div class="tradingview-widget-container">
           <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -636,44 +755,77 @@
         <div class="nav">
           <a class="navLink" href="archive.html">Archive</a>
           <a class="navLink" href="#week">Week Map</a>
-          <a class="navLink" href="#deepdive">Deep Dives</a>
+          <a class="navLink" href="#premium">Premium</a>
 
-          <!-- FIX: sign-in/out visibility controlled entirely by JS -->
-          <a class="navLink" href="#" id="open-auth" style="display:none;">Sign In</a>
+          <!-- Sign In shown by default; hidden when signed in -->
+          <a class="navLink btn btnGhost" href="#" id="open-auth" style="padding:7px 12px;">Sign In</a>
           <a class="navLink" href="#" id="signout" style="display:none;">Sign Out</a>
 
           <div class="chip" id="chip">
             <span class="chipDot"></span>
             <span id="chipText">Signed in</span>
           </div>
-
-          <button class="btn btnPrimary" id="cta-create">Create Free Account</button>
         </div>
       </div>
     </header>
 
     <!-- HERO -->
     <section class="panel" id="top">
-      <!-- FIX: removed dev note panelHead -->
+
+      <!-- Author strip -->
+      <div class="authorStrip">
+        <div class="authorAvatar">F</div>
+        <div class="authorInfo">
+          <div class="authorName">FinTrend Editorial</div>
+          <div class="authorBio">Macro markets covered since 2021 · Published every Mon, Wed, Fri & Sun · Not financial advice</div>
+        </div>
+        <div class="authorStats">
+          <div class="authorStat">
+            <span class="authorStatNum" id="statBriefings">180+</span>
+            <span class="authorStatLabel">Briefings</span>
+          </div>
+          <div class="authorStat">
+            <span class="authorStatNum">4×</span>
+            <span class="authorStatLabel">Weekly</span>
+          </div>
+          <div class="authorStat">
+            <span class="authorStatNum" id="statReaders">—</span>
+            <span class="authorStatLabel">Readers</span>
+          </div>
+        </div>
+      </div>
 
       <div class="heroGrid">
         <!-- Left copy -->
         <div class="heroCopy">
-          <h2>A <span>market brief</span> built for fast decisions.</h2>
+          <div class="liveBriefBadge">
+            <span class="liveDot"></span>
+            Latest brief available
+          </div>
+          <h2>The <span>market brief</span> serious retail investors actually read.</h2>
           <p>
-            Clear drivers → implications → levels. No long story. Just what matters and what changes the view.
+            Clear drivers → implications → levels. No long story. Just what matters and what changes the view — published Monday, Wednesday, Friday & Sunday.
           </p>
 
-          <!-- FIX: single primary CTA, archive is secondary text link only -->
+          <!-- Single primary CTA -->
           <div class="heroActions">
             <button class="btn btnPrimary" id="cta-create-2">Create Free Account</button>
+            <a href="archive.html" class="btn btnGhost">Browse Free Articles</a>
           </div>
-          <div style="margin-top:10px;">
-            <a href="archive.html" style="font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">or browse free articles →</a>
+          <div class="reassure">No credit card &nbsp;·&nbsp; Email used for login &nbsp;·&nbsp; Cancel anytime</div>
+
+          <!-- Quick email capture alternative -->
+          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(148,163,184,0.12);">
+            <div class="kicker" style="margin-bottom:8px;">Or just get the next brief by email →</div>
+            <div class="quickCapture">
+              <input class="in" type="email" id="quickEmail" placeholder="your@email.com" />
+              <button class="btn btnGhost" id="quickSubscribe" style="white-space:nowrap;">Subscribe Free</button>
+            </div>
+            <div class="quickCaptureNote" id="quickMsg">One email per brief. No spam. Unsubscribe anytime.</div>
           </div>
 
-          <!-- Example briefing format — strongest selling point, make it prominent -->
-          <div class="sampleBrief" aria-label="Example Briefing Format">
+          <!-- Real sample briefing format -->
+          <div class="sampleBrief" aria-label="Example Briefing Format" style="margin-top:18px;">
             <div class="sampleBriefInner">
               <div class="sampleBriefLabel">Example Briefing Format</div>
 
@@ -681,47 +833,25 @@
                 <div class="sampleBriefTag">Driver</div>
                 <div class="sampleBriefText">Inflation surprise shifts rate expectations.</div>
               </div>
-
               <div class="sampleBriefRow">
                 <div class="sampleBriefTag">Bias</div>
                 <div class="sampleBriefText">Short-term risk-off while yields stabilize.</div>
               </div>
-
               <div class="sampleBriefRow">
                 <div class="sampleBriefTag">Key Levels</div>
                 <div class="sampleBriefText">Support / resistance zones to monitor.</div>
               </div>
-
               <div class="sampleBriefRow" style="margin-bottom:0;">
                 <div class="sampleBriefTag">Catalyst</div>
                 <div class="sampleBriefText">Upcoming central bank commentary.</div>
               </div>
-
               <div class="sampleBriefFoot">*Illustrative example. Educational content only.</div>
             </div>
           </div>
-
-          <div class="reassure">No credit card • Email used for login</div>
         </div>
 
-        <!-- Right: Premium spin + market chart -->
+        <!-- Right: market chart only (cleaner) -->
         <div class="rightStack">
-          <div class="premiumSpin">
-            <div class="orb"></div>
-            <div class="premiumInner">
-              <div class="kicker">Premium</div>
-              <div class="premiumTitle">Premium Deep Dives</div>
-              <div class="premiumText">
-                Long-form sector reports: drivers, positioning, catalysts, and levels — built like a playbook.
-              </div>
-              <div class="row">
-                <button class="btn btnPrimary" id="goPremiumTop">View Premium</button>
-                <a class="btn btnGhost" href="#deepdive">What is a Deep Dive?</a>
-              </div>
-              <div class="reassure" id="premiumStatusTop" style="display:none;"></div>
-            </div>
-          </div>
-
           <div class="rotCard">
             <div class="rotRing"></div>
             <div class="rotTop">
@@ -740,6 +870,18 @@
               <div id="rotChart"></div>
             </div>
           </div>
+
+          <!-- Cadence strip on the right -->
+          <div style="border-radius:18px;border:1px solid rgba(148,163,184,0.18);background:rgba(2,6,23,0.30);padding:16px;">
+            <div class="kicker" style="margin-bottom:10px;">Published every week</div>
+            <div class="cadenceStrip" style="flex-direction:column;gap:6px;">
+              <div class="cadencePill"><span>Mon</span> Outlook — set the week's bias</div>
+              <div class="cadencePill"><span>Wed</span> Momentum — mid-week reality check</div>
+              <div class="cadencePill"><span>Fri</span> Recap — what actually changed</div>
+              <div class="cadencePill"><span>Sun</span> Macro Setup — map into next week</div>
+            </div>
+            <a href="archive.html" style="display:inline-block;margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">Browse the archive →</a>
+          </div>
         </div>
       </div>
     </section>
@@ -755,7 +897,6 @@
 
       <div class="weekGrid">
         <div class="weekLeft">
-          <!-- FIX: removed self-narrating copy, replaced with clean product copy -->
           <h3>4 formats. One consistent framework.</h3>
           <p>
             Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead. Pick a day to see what you get.
@@ -768,15 +909,7 @@
             <button class="pill" data-day="sun">Sun</button>
           </div>
 
-          <!-- FIX: single primary CTA here too -->
-          <div class="heroActions" style="margin-top:14px;">
-            <button class="btn btnPrimary" id="cta-create-3">Create Free Account</button>
-          </div>
-          <div style="margin-top:10px;">
-            <a href="archive.html" style="font-size:12px;color:var(--muted);letter-spacing:.10em;text-transform:uppercase;">or browse free articles →</a>
-          </div>
-
-          <div class="reassure">No credit card • Email used for login</div>
+          <div class="reassure" style="margin-top:14px;">Free to read &nbsp;·&nbsp; <a href="archive.html" style="color:var(--accent);">Browse all briefs →</a></div>
         </div>
 
         <div class="weekRight">
@@ -795,7 +928,6 @@
 
             <div class="chartBox">
               <div id="watchChart"></div>
-              <!-- FIX: fallback only shows if chart truly fails — handled in JS with load detection -->
               <div id="watchFallback" class="reassure" style="display:none;margin-top:10px;">
                 Chart unavailable. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a>
               </div>
@@ -805,41 +937,79 @@
       </div>
     </section>
 
-    <!-- Deep Dive section -->
-    <section class="panel" id="deepdive">
+    <!-- PREMIUM & DEEP DIVES — everything in one section -->
+    <section class="panel" id="premium">
       <div class="panelHead">
         <div>
-          <div class="kicker">Deep Dives</div>
+          <div class="kicker">Premium · Deep Dives</div>
           <div class="subk">One sector. One theme. Fully mapped.</div>
         </div>
       </div>
 
-      <div class="grid2">
-        <div class="card">
-          <div class="cardTag">What it is</div>
-          <div class="cardTitle">Not news. A playbook.</div>
-          <div class="cardText">
-            Each Deep Dive takes one sector or trending theme and breaks it down completely:
-            <ul>
-              <li><strong>Driver:</strong> what's actually moving it</li>
-              <li><strong>Winners/Losers:</strong> who benefits + who gets hurt</li>
-              <li><strong>Catalysts:</strong> what events change the story</li>
-              <li><strong>Levels:</strong> the "if this breaks, we're wrong" points</li>
+      <!-- What is a Deep Dive — 4 pillars -->
+      <div class="deepDiveGrid">
+        <div class="ddCard">
+          <div class="ddCardIcon">📌</div>
+          <div class="ddCardTitle">Driver</div>
+          <div class="ddCardText">What is actually moving the sector — macro shift, policy change, or structural rotation.</div>
+        </div>
+        <div class="ddCard">
+          <div class="ddCardIcon">⚖️</div>
+          <div class="ddCardTitle">Winners &amp; Losers</div>
+          <div class="ddCardText">Who benefits from the move and who gets hurt — specific names and the reasoning behind each.</div>
+        </div>
+        <div class="ddCard">
+          <div class="ddCardIcon">⚡</div>
+          <div class="ddCardTitle">Catalysts</div>
+          <div class="ddCardText">The events, data releases, or surprises that could change the thesis — and what to watch for.</div>
+        </div>
+        <div class="ddCard">
+          <div class="ddCardIcon">🎯</div>
+          <div class="ddCardTitle">Key Levels</div>
+          <div class="ddCardText">The "if this breaks, the thesis is wrong" levels — clearly defined so you know when to adjust.</div>
+        </div>
+      </div>
+
+      <!-- Free vs Premium comparison -->
+      <div class="pricingGrid">
+        <!-- Free -->
+        <div class="pricingCard">
+          <div class="pricingCardInner">
+            <div class="pricingTier">Free</div>
+            <div class="pricingTitle">Free Account</div>
+            <div class="pricingDesc">Everything you need to follow along with macro markets week to week.</div>
+            <ul class="pricingFeatures">
+              <li><span class="featIcon yes">✓</span>Monday Outlook brief</li>
+              <li><span class="featIcon yes">✓</span>Wednesday Momentum brief</li>
+              <li><span class="featIcon yes">✓</span>Friday Recap brief</li>
+              <li><span class="featIcon yes">✓</span>Sunday Macro Setup brief</li>
+              <li><span class="featIcon yes">✓</span>Full article archive access</li>
+              <li><span class="featIcon yes">✓</span>Live market charts</li>
+              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Deep Dive sector reports</span></li>
+              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Full members dashboard</span></li>
+              <li><span class="featIcon no">–</span><span style="color:var(--muted)">Positioning &amp; catalyst tracking</span></li>
             </ul>
+            <button class="btn btnGhost" id="cta-create-free" style="width:100%;">Create Free Account</button>
           </div>
         </div>
 
-        <!-- FIX: removed internal "unchanged logic" tag and self-narrating copy -->
-        <div class="card">
-          <div class="cardTag">Premium</div>
-          <div class="cardTitle">Unlock Deep Dives</div>
-          <div class="cardText">
-            Premium members get access to every Deep Dive and the full members dashboard.
-            <div class="row" style="margin-top:12px;">
-              <button class="btn btnPrimary" id="goPremium">View Premium</button>
-              <a class="btn btnGhost" href="archive.html">Browse Free</a>
-            </div>
-            <div class="reassure" id="premiumStatus" style="margin-top:10px;display:none;"></div>
+        <!-- Premium -->
+        <div class="pricingCard featured">
+          <div class="pricingCardInner">
+            <div class="pricingTier gold">Premium</div>
+            <div class="pricingTitle">Premium Access</div>
+            <div class="pricingDesc">For readers who want the full picture — deep sector analysis built like a playbook.</div>
+            <ul class="pricingFeatures">
+              <li><span class="featIcon yes">✓</span>Everything in Free</li>
+              <li><span class="featIcon yes">✓</span>Deep Dive sector reports</li>
+              <li><span class="featIcon yes">✓</span>Full members dashboard</li>
+              <li><span class="featIcon yes">✓</span>Positioning &amp; catalyst tracking</li>
+              <li><span class="featIcon yes">✓</span>Winners / Losers breakdown per report</li>
+              <li><span class="featIcon yes">✓</span>Key levels &amp; invalidation points</li>
+              <li><span class="featIcon yes">✓</span>Early access to new reports</li>
+            </ul>
+            <button class="btn btnPrimary" id="goPremium" style="width:100%;">View Premium →</button>
+            <div class="reassure" id="premiumStatus" style="display:none;margin-top:8px;"></div>
           </div>
         </div>
       </div>
@@ -847,7 +1017,7 @@
 
     <footer>
       <p style="max-width:760px;margin:0 auto 8px;">
-        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice.
+        <strong>Disclaimer:</strong> Informational + educational only. Not financial advice. Always do your own research.
       </p>
       <p>© 2026 FinTrend News · <a href="archive.html">Archive</a></p>
     </footer>
@@ -914,12 +1084,10 @@
       const chipText = document.getElementById("chipText");
       const signout = document.getElementById("signout");
       const openAuth = document.getElementById("open-auth");
-      const ctaCreate = document.getElementById("cta-create");
 
       // Close buttons
       document.getElementById("closeAuth").addEventListener("click",()=>closeModal(authModal));
       authModal.addEventListener("click",(e)=>{ if(e.target===authModal) closeModal(authModal); });
-
       document.getElementById("closePremium").addEventListener("click",()=>closeModal(premiumModal));
       document.getElementById("closePremium2").addEventListener("click",()=>closeModal(premiumModal));
       premiumModal.addEventListener("click",(e)=>{ if(e.target===premiumModal) closeModal(premiumModal); });
@@ -945,15 +1113,34 @@
       }
       toggleModeBtn.addEventListener("click",()=>setMode(mode==="signup"?"signin":"signup"));
 
+      // Sign in nav link
       openAuth.addEventListener("click",(e)=>{
         e.preventDefault();
         setMode("signin");
         openModal(authModal);
       });
 
-      [ "cta-create","cta-create-2","cta-create-3" ].forEach(id=>{
+      // All create account CTAs
+      ["cta-create-2","cta-create-free"].forEach(id=>{
         const el = document.getElementById(id);
         if(el) el.addEventListener("click",()=>{ setMode("signup"); openModal(authModal); });
+      });
+
+      // Quick email capture
+      document.getElementById("quickSubscribe").addEventListener("click", async () => {
+        const emailVal = document.getElementById("quickEmail").value.trim();
+        const msgEl = document.getElementById("quickMsg");
+        if (!emailVal || !emailVal.includes("@")) {
+          msgEl.textContent = "Please enter a valid email.";
+          msgEl.style.color = "#f87171";
+          return;
+        }
+        // Pre-fill the auth modal email and open signup
+        document.getElementById("email").value = emailVal;
+        setMode("signup");
+        msgEl.textContent = "One more step — set a password to finish.";
+        msgEl.style.color = "var(--accent)";
+        openModal(authModal);
       });
 
       function humanErr(err){
@@ -965,7 +1152,7 @@
         return raw || "Something went wrong. Try again.";
       }
 
-      // Week map
+      // Week map data
       const weekData = {
         mon: { title:"Monday · Outlook", meta:"Set the week's bias", desc:"Start with the driver. End with one level that changes your mind.", bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"] },
         wed: { title:"Wednesday · Momentum", meta:"Mid-week reality check", desc:"What's working, what's fading, and whether the move is healthy or crowded.", bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"] },
@@ -1024,16 +1211,12 @@
       document.querySelectorAll("[data-rot]").forEach(btn=>{
         btn.addEventListener("click",()=>{
           const parentRow = btn.closest(".chartRow");
-          if(parentRow){
-            parentRow.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
-          }
+          if(parentRow) parentRow.querySelectorAll(".watchBtn").forEach(b=>b.classList.remove("active"));
           btn.classList.add("active");
           loadRot(btn.getAttribute("data-rot"), btn.getAttribute("data-label"));
         });
       });
 
-      // FIX: chart fallback — only show if TradingView iframe fails to load after a longer window
-      // Instead of always showing after 2.5s, we check if an iframe actually appeared
       const watchFallback = document.getElementById("watchFallback");
       const watchOpenTV = document.getElementById("watchOpenTV");
       let watchFallbackTimer = null;
@@ -1052,7 +1235,6 @@
       function loadWatch(symbol){
         hideFallback();
         loadMiniSymbolOverview("watchChart", symbol, 300);
-        // Only show fallback if no iframe appears after 5 seconds
         watchFallbackTimer = setTimeout(()=>{
           const el = document.getElementById("watchChart");
           const hasIframe = el && el.querySelector("iframe");
@@ -1078,34 +1260,35 @@
 
       let supabase = null;
 
-      // FIX: proper signed-out state — show Sign In button, hide chip and sign out
       function setSignedOutUI(){
         chip.style.display = "none";
         openAuth.style.display = "";
         signout.style.display = "none";
-        if(ctaCreate) ctaCreate.style.display = "";
-
-        // Hide premium status text
         const ps = document.getElementById("premiumStatus");
-        const psTop = document.getElementById("premiumStatusTop");
         if(ps) ps.style.display = "none";
-        if(psTop) psTop.style.display = "none";
+        // Show free/premium cards normally
+        document.getElementById("cta-create-free").style.display = "";
       }
 
-      // FIX: signed-in state — hide Sign In and Create Account button, show chip + sign out
       function setSignedInUI(email, isPremium){
         chip.style.display = "inline-flex";
         chip.classList.toggle("premium", !!isPremium);
         chipText.textContent = (isPremium ? "Premium · " : "Free · ") + email;
         openAuth.style.display = "none";
         signout.style.display = "";
-        if(ctaCreate) ctaCreate.style.display = "none";
+        // Hide the free CTA if already signed in
+        const freeCta = document.getElementById("cta-create-free");
+        if(freeCta) freeCta.style.display = "none";
+        // Hide the hero CTA too
+        const heroCta = document.getElementById("cta-create-2");
+        if(heroCta) heroCta.style.display = "none";
 
-        // Show premium status
         const ps = document.getElementById("premiumStatus");
-        const psTop = document.getElementById("premiumStatusTop");
-        if(ps){ ps.style.display = ""; ps.textContent = isPremium ? "You have premium access." : "Free account active."; }
-        if(psTop){ psTop.style.display = ""; psTop.textContent = isPremium ? "You have premium access." : "Upgrade for full access."; }
+        if(ps){ ps.style.display = ""; ps.textContent = isPremium ? "✓ You have premium access." : "Free account active."; }
+
+        // Update reader stat if we have it
+        const statEl = document.getElementById("statReaders");
+        if(statEl) statEl.textContent = "Growing";
       }
 
       async function fetchPremiumStatus(userId){
@@ -1114,9 +1297,8 @@
           .select("is_premium, premium_until")
           .eq("id", userId)
           .single();
-
         if (error || !data) return false;
-        if (data.premium_until) {
+        if (data.premium_until){
           const until = new Date(data.premium_until);
           if (until < new Date()) return false;
         }
@@ -1128,10 +1310,11 @@
         window.open(PAYMENT_LINK,"_blank");
       });
 
-      document.getElementById("goPremium").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href = PREMIUM_DASHBOARD; });
-      document.getElementById("goPremiumTop").addEventListener("click",(e)=>{ e.preventDefault(); window.location.href = PREMIUM_DASHBOARD; });
+      document.getElementById("goPremium").addEventListener("click",(e)=>{
+        e.preventDefault();
+        window.location.href = PREMIUM_DASHBOARD;
+      });
 
-      // Init — wait for Supabase to load
       let attempts = 0;
       const check = setInterval(() => {
         attempts++;
@@ -1143,15 +1326,10 @@
 
           document.getElementById("authForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-
             authMsg.textContent = "";
             const emailVal = document.getElementById("email").value.trim();
             const passwordVal = document.getElementById("password").value;
-
-            if (!emailVal || !passwordVal) {
-              authMsg.textContent = "Enter email + password.";
-              return;
-            }
+            if (!emailVal || !passwordVal){ authMsg.textContent = "Enter email + password."; return; }
 
             authSubmit.disabled = true;
             const originalText = authSubmit.textContent;
@@ -1160,21 +1338,8 @@
             try {
               if (mode === "signin") {
                 const { data, error } = await supabase.auth.signInWithPassword({ email: emailVal, password: passwordVal });
-
-                if (error) {
-                  authMsg.textContent = humanErr(error);
-                  authSubmit.disabled = false;
-                  authSubmit.textContent = originalText;
-                  return;
-                }
-
-                if (!data || !data.user) {
-                  authMsg.textContent = "Sign in failed.";
-                  authSubmit.disabled = false;
-                  authSubmit.textContent = originalText;
-                  return;
-                }
-
+                if (error){ authMsg.textContent = humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
+                if (!data || !data.user){ authMsg.textContent = "Sign in failed."; authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
                 const isPremium = await fetchPremiumStatus(data.user.id);
                 setSignedInUI(emailVal, isPremium);
                 closeModal(authModal);
@@ -1182,16 +1347,8 @@
                 return;
               }
 
-              // SIGN UP
               const { error } = await supabase.auth.signUp({ email: emailVal, password: passwordVal });
-
-              if (error) {
-                authMsg.textContent = humanErr(error);
-                authSubmit.disabled = false;
-                authSubmit.textContent = originalText;
-                return;
-              }
-
+              if (error){ authMsg.textContent = humanErr(error); authSubmit.disabled=false; authSubmit.textContent=originalText; return; }
               authMsg.textContent = "Account created! Check your email to confirm, then sign in.";
               authSubmit.disabled = false;
               authSubmit.textContent = originalText;
@@ -1208,7 +1365,6 @@
             setSignedOutUI();
           });
 
-          // On page load: check session
           supabase.auth.getUser().then(async ({ data: { user } }) => {
             if(user){
               const isPremium = await fetchPremiumStatus(user.id);
@@ -1218,22 +1374,15 @@
             }
           });
 
-        } else if(attempts === 1) {
-          // Show sign-in button immediately while Supabase loads — better than blank
+        } else if(attempts === 1){
           openAuth.style.display = "";
         }
 
-        if (attempts >= 100) {
-          clearInterval(check);
-          setSignedOutUI();
-        }
+        if (attempts >= 100){ clearInterval(check); setSignedOutUI(); }
       }, 100);
 
       window.addEventListener("keydown",(e)=>{
-        if(e.key === "Escape"){
-          closeModal(authModal);
-          closeModal(premiumModal);
-        }
+        if(e.key === "Escape"){ closeModal(authModal); closeModal(premiumModal); }
       });
 
     })();
