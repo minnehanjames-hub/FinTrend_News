@@ -19,65 +19,231 @@
   </script>
 
   <style>
-    body { background:#0a0f1c; color:#f5f7fa; font-family:Inter,sans-serif; line-height:1.7; margin:0; padding:24px; }
-    .container { max-width:820px; margin:auto; background:rgba(255,255,255,0.03); padding:32px; border-radius:18px; border:1px solid rgba(255,255,255,0.08); }
-    h1 { font-family:"Playfair Display",serif; font-size:32px; margin-bottom:10px; line-height:1.2; }
-    h2 { margin-top:32px; font-family:"Playfair Display",serif; font-size:22px; color:#f4c15d; }
-    p, li { margin-bottom:16px; font-size:16px; color:#d5d7db; }
-    .meta { font-size:12px; color:#9ea3ab; margin-bottom:24px; text-transform:uppercase; letter-spacing:0.14em; }
-    .meta strong { color:#f4c15d; font-weight:600; }
-    a { color:#f4c15d; text-decoration:none; }
-    a:hover { text-decoration:underline; }
+    *, *::before, *::after { box-sizing: border-box; }
 
-    .grid {
-      margin-top:18px;
-      display:grid;
+    body {
+      background: #0a0f1c;
+      color: #f5f7fa;
+      font-family: Inter, sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: auto;
+      background: rgba(255,255,255,0.03);
+      padding: 40px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 34px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      color: #f5f7fa;
+    }
+
+    h2 {
+      margin-top: 36px;
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      color: #f4c15d;
+      letter-spacing: 0.01em;
+    }
+
+    p, li {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #d5d7db;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #9ea3ab;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .meta strong { color: #f4c15d; font-weight: 600; }
+
+    a { color: #f4c15d; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Executive Summary Banner */
+    .exec-summary {
+      margin-top: 20px;
+      padding: 18px 22px;
+      border-radius: 14px;
+      border-left: 4px solid #f4c15d;
+      background: rgba(244,193,93,0.07);
+    }
+    .exec-summary .k {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f4c15d;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .exec-summary p { margin: 0; color: #e7e2d6; font-size: 15px; }
+
+    /* Alert box */
+    .alert {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(244,193,93,0.35);
+      background: rgba(244,193,93,0.08);
+    }
+    .alert .k {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ea3ab;
+      margin-bottom: 10px;
+    }
+    .alert p { margin: 0; color: #e7e2d6; }
+
+    /* Neutral panel */
+    .panel {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.025);
+    }
+    .panel .k {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ea3ab;
+      margin-bottom: 12px;
+    }
+
+    /* Key levels grid */
+    .levels-grid {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap:12px;
+      gap: 14px;
+      margin-top: 20px;
     }
-    .tile {
-      border-radius:14px;
-      padding:16px 18px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.02);
+    .level-card {
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.025);
     }
-    .tile .k { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#9ea3ab; margin-bottom:10px; }
-    .tile ul { margin:10px 0 0 18px; padding:0; }
-    .tile li { margin-bottom:10px; }
+    .level-card .ticker {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f4c15d;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .level-card .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+    .level-card .row:last-child { border-bottom: none; }
+    .level-card .row .label { color: #9ea3ab; flex-shrink: 0; margin-right: 12px; }
+    .level-card .row .value { color: #f5f7fa; font-weight: 500; text-align: right; }
+    .level-card .row .support { color: #4ade80; text-align: right; }
+    .level-card .row .resistance { color: #f87171; text-align: right; }
 
-    details {
-      margin-top:16px;
-      border-radius:14px;
-      border:1px solid rgba(244,193,93,0.25);
-      background:rgba(244,193,93,0.06);
-      padding:12px 14px;
+    /* Bias badge */
+    .bias-badge {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(251,191,36,0.12);
+      border: 1px solid rgba(251,191,36,0.4);
+      color: #fbbf24;
     }
-    summary { cursor:pointer; color:#f4c15d; font-weight:600; letter-spacing:0.02em; }
-    details p { margin:12px 0 0 0; color:#e7e2d6; }
+
+    /* Risk panel */
+    .risk-panel {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(248,113,113,0.25);
+      background: rgba(248,113,113,0.05);
+    }
+    .risk-panel .k {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f87171;
+      margin-bottom: 10px;
+    }
+    .risk-panel p { margin: 0; color: #e7e2d6; }
+
+    /* Closing */
+    .closing {
+      margin-top: 28px;
+      padding: 18px 22px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      font-style: italic;
+      color: #b5b9c2;
+      font-size: 15px;
+    }
+
+    /* Sources */
+    .sources {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: #aeb3bb;
+    }
+    .sources h2 {
+      font-size: 15px;
+      margin-top: 10px;
+      color: #9ea3ab;
+      font-family: Inter, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+    .sources ul { margin: 10px 0 0 18px; padding: 0; }
+    .sources li { margin-bottom: 8px; font-size: 13px; color: #aeb3bb; }
 
     a.back {
-      display:inline-block; margin-top:28px; padding:10px 16px;
-      border-radius:999px; border:1px solid #f4c15d; color:#f4c15d;
-      text-decoration:none; font-size:12px; text-transform:uppercase; letter-spacing:0.15em;
+      display: inline-block;
+      margin-top: 28px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #f4c15d;
+      color: #f4c15d;
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
     }
-    a.back:hover { background:rgba(244,193,93,0.12); text-decoration:none; }
+    a.back:hover {
+      background: rgba(244,193,93,0.12);
+      text-decoration: none;
+    }
 
-    .sources { margin-top:30px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.10); font-size:13px; color:#aeb3bb; }
-    .sources h2 { font-size:18px; margin-top:14px; }
-    .sources ul { margin:10px 0 0 18px; }
-    .sources li { margin-bottom:10px; font-size:13px; color:#aeb3bb; }
-
-    .badge {
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(244,193,93,0.35);
-      background:rgba(244,193,93,0.08);
-      color:#f4c15d;
-      font-size:11px;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      margin-bottom:12px;
+    @media (max-width: 540px) {
+      .levels-grid { grid-template-columns: 1fr; }
+      .container { padding: 24px 18px; }
+      h1 { font-size: 26px; }
     }
   </style>
 </head>
@@ -85,80 +251,78 @@
 <body>
   <div class="container">
 
-    <div class="badge">Macro Setup · Fed Minutes + AI Rotation + PCE Friday</div>
-
     <h1>Minutes, Nvidia, and the Weight of 6,900</h1>
-    <div class="meta">By <strong>William Hunter Lang</strong> · FinTrend News · February 18, 2026</div>
+    <div class="meta">By <strong>William Hunter Lang</strong> · FinTrend News · Wednesday, February 18, 2026</div>
 
-    <h2>1️⃣ Headline (Clear + Positioning)</h2>
-    <p><strong>Minutes, Nvidia, and the Weight of 6,900</strong></p>
+    <!-- Executive Summary -->
+    <div class="exec-summary">
+      <div class="k">Executive Summary</div>
+      <p>Markets are staging a cautious tech-led recovery after last week's AI-driven selloff, but the real decision point arrives today at 2pm ET when the Fed releases January FOMC minutes — and again Friday when PCE data either validates or resets the dovish rate-cut narrative building in bonds.</p>
+    </div>
 
-    <h2>2️⃣ 1-Sentence Executive Summary</h2>
-    <p>Markets are staging a cautious tech-led recovery after last week's AI-driven selloff, but the real decision point arrives today at 2pm ET when the Fed releases January FOMC minutes — and again Friday when PCE data either validates or resets the dovish rate-cut narrative building in bonds.</p>
+    <!-- Driver -->
+    <h2>Driver</h2>
+    <p>The primary driver today is <strong>the FOMC minutes dropping at 2pm ET</strong>, and a market that still doesn't know what to make of them. Rate-cut expectations have been quietly rebuilding in the bond market since the AI disruption selloff last week — the 10-year is sitting near two-month lows just above 4%, and the implied June cut probability is back above 90% on CME FedWatch. But equities haven't fully committed to that story. Three consecutive sessions of late-day fade say as much.</p>
+    <p>Layered on top: Nvidia is up 2% on an expanded Meta AI chip deal, giving tech a tactical bid and raising the question of whether last week's DeepSeek-adjacent anxiety has actually been digested or is just temporarily shelved. The answer probably comes from the Fed this afternoon, not from one chip contract.</p>
 
-    <h2>3️⃣ Driver</h2>
-    <p>The primary driver today is <strong>the release of January FOMC meeting minutes at 2pm ET</strong>, which is impacting <strong>rate-cut expectations and equity multiples</strong> through <strong>a market searching for clarity on whether the Fed's pause is a brief hold or a prolonged freeze</strong>. Layered on top: Nvidia's 2%+ move on an expanded Meta AI chip deal is giving tech a tactical bid and testing whether last week's AI disruption fears have been fully digested.</p>
+    <div class="alert">
+      <div class="k">What's Moving Today</div>
+      <p>Nvidia +2.03%, Goldman Sachs +2.89%, Amazon +1.85% are leading a broad advance. About 350 S&amp;P 500 components are participating — healthy breadth on the surface. But AMD is -4% and Palo Alto Networks is down 10% after earnings, a reminder that stock-level dispersion is still elevated and the AI narrative is in repair mode, not recovery mode.</p>
+    </div>
 
-    <h2>4️⃣ Confirmation</h2>
-    <p>Confirmation appears through <strong>10-year Treasury yields drifting near two-month lows just above 4%, the VIX holding above 20 but pulling back from recent highs, and nearly 350 S&amp;P 500 components advancing today</strong>, suggesting that <strong>the tape is broadening under the surface even as the index itself remains choppy and below last month's 7,000 high-water mark</strong>. Three straight sessions of late-day rally fade, however, signal a market that lacks conviction on the upside without a macro catalyst.</p>
+    <!-- Confirmation -->
+    <h2>Confirmation</h2>
+    <p>The tape is broadening under the surface, even as the index remains choppy and well below January's 7,000 high. The 10-year yield hovering above 4% — near a two-month low — is quietly easing financial conditions without triggering a reflexive re-tightening. The VIX is still above 20 but declining today, suggesting caution rather than panic. And the Russell 2000 is outperforming the Nasdaq by a meaningful margin, with small caps up 1.2% — consistent with a genuine rotation rather than a dead-cat bounce in mega-cap names.</p>
+    <p>The catch is that confirmation has a short shelf life at the moment. Every afternoon this week has seen the rally fade into the close. Institutional sellers are not done distributing, and breadth expansion into financials and small caps — while structurally healthy — hasn't been enough to push the index back toward 6,950, let alone 7,000.</p>
 
-    <div class="grid">
-      <div class="tile">
-        <div class="k">What Confirmed It</div>
-        <ul>
-          <li>10-year yield hovering just above 4% — near two-month lows — quietly easing financial conditions.</li>
-          <li>Nvidia +2%, Amazon +1.85%, Goldman Sachs +2.89% leading a broad advance across ~350 S&amp;P names.</li>
-          <li>VIX above 20 but declining today — cautious, not panicked.</li>
-          <li>Russell 2000 +1.2% — small caps outperforming, consistent with rotation away from mega-cap dependency.</li>
-        </ul>
+    <!-- Market Bias -->
+    <h2>Market Bias</h2>
+    <span class="bias-badge">Rotation / Range-Bound</span>
+    <p style="margin-top:14px;">The market is no longer in outright rejection, but it hasn't earned acceptance above 7,000 either. What's happening looks like sector rotation playing out inside a constrained index range: tech digesting recent weakness while energy, financials, and small caps absorb the freed-up capital. The problem is that without a macro catalyst — specifically, a Fed minutes release that clears the air on the rate timeline — the index is likely to stay pinned between 6,840 and 6,950 through the afternoon. That range holds until something breaks it.</p>
+
+    <!-- Key Levels -->
+    <h2>Key Levels</h2>
+    <div class="levels-grid">
+      <div class="level-card">
+        <div class="ticker">SPX — S&amp;P 500</div>
+        <div class="row"><span class="label">Current</span><span class="value">~6,899</span></div>
+        <div class="row"><span class="label">Support</span><span class="support">6,843 (Tuesday close / post-selloff floor)</span></div>
+        <div class="row"><span class="label">Resistance</span><span class="resistance">6,950–7,000 (late-day rejection zone)</span></div>
       </div>
-      <div class="tile">
-        <div class="k">What It Implies</div>
-        <ul>
-          <li>Lower yields are providing equity support, but 3 consecutive sessions of fading rallies suggest institutional sellers are not done distributing.</li>
-          <li>Breadth expansion into small caps and financials is structurally healthy but not yet enough to reclaim 7,000.</li>
-          <li>AI narrative is in repair mode, not recovery mode — one chip deal is not a thesis reset.</li>
-        </ul>
+      <div class="level-card">
+        <div class="ticker">NDX — Nasdaq 100</div>
+        <div class="row"><span class="label">Current</span><span class="value">~24,900</span></div>
+        <div class="row"><span class="label">Support</span><span class="support">24,800 (post-selloff base; loss accelerates unwind)</span></div>
+        <div class="row"><span class="label">Resistance</span><span class="resistance">25,500–26,000 (overhead supply / AI breakdown zone)</span></div>
       </div>
     </div>
 
-    <h2>5️⃣ Market Bias</h2>
-    <p><strong>Rotation / Range-bound.</strong> The market is no longer in outright rejection, but it hasn't earned acceptance above 7,000 either. The current setup looks like a sector rotation story playing out inside a constrained index range: tech digesting recent weakness while energy, financials, and small caps pick up relative slack. Until the Fed minutes and Friday's PCE give rates a clear direction, the index is likely to remain anchored between 6,840–6,950.</p>
+    <!-- Catalyst Watch -->
+    <h2>Catalyst Watch</h2>
 
-    <h2>6️⃣ Key Levels</h2>
-    <div class="grid">
-      <div class="tile">
-        <div class="k">SPX</div>
-        <ul>
-          <li><strong>Support:</strong> 6,843 (Tuesday close / recent floor after last week's sharp drop)</li>
-          <li><strong>Resistance:</strong> 6,950–7,000 (late-day rejection zone / prior acceptance ceiling)</li>
-        </ul>
-      </div>
-      <div class="tile">
-        <div class="k">NDX</div>
-        <ul>
-          <li><strong>Support:</strong> 24,800 (post-selloff base; loss of this level accelerates tech unwinding)</li>
-          <li><strong>Resistance:</strong> 25,500–26,000 (overhead supply from the AI disruption breakdown zone)</li>
-        </ul>
-      </div>
+    <div class="panel">
+      <div class="k">Events That Can Move the Tape</div>
+      <p><strong>Today — FOMC Minutes at 2pm ET:</strong> The market is pricing roughly two rate cuts in 2026, with the first expected around June. If today's minutes show deep division around tariff-driven inflation — particularly language treating it as structural rather than transitory — the June timeline gets pushed out and yields rebound from their two-month lows. If the minutes reveal broad acknowledgment that disinflation is intact and the economy is near neutral, the dovish bond trade strengthens and equities finally get the catalyst to close strong for the first time all week.</p>
+      <p><strong>Tomorrow — Walmart Earnings:</strong> A real-economy pulse check on the consumer. After General Mills cut its full-year forecast last week citing active spending pullback, Walmart's tone on the low-to-middle income shopper will either confirm or complicate the tariff-pass-through narrative building in discretionary stocks.</p>
+      <p><strong>Friday — PCE Inflation + Q4 GDP Advance Estimate:</strong> PCE is the Fed's preferred inflation gauge. A soft print here — particularly on the core side — closes the loop on Tuesday's cooler CPI reading and gives the June cut pricing a durable foundation. A surprise to the upside reopens the hawkish scenario the bond market has been dismissing all week.</p>
     </div>
 
-    <h2>7️⃣ Catalyst Watch</h2>
-    <p>The next potential inflection point is <strong>today's FOMC minutes release at 2pm ET</strong>, followed closely by <strong>Friday's PCE inflation data and Q4 GDP advance estimate</strong>. If minutes signal the Fed is genuinely data-dependent and open to cuts in summer, yields can sustain their drift lower and give equities room. If the minutes lean hawkish — particularly on tariff-driven inflation risks — front-end rates reprice higher and the 6,950 ceiling holds firm. Walmart earnings tomorrow also matter as a real-economy pulse check on the consumer.</p>
+    <!-- Risk Scenario -->
+    <h2>Risk Scenario</h2>
+    <div class="risk-panel">
+      <div class="k">Risks to This View</div>
+      <p>The downside risk is hawkish minutes — specifically, FOMC language revealing more internal disagreement around tariff-driven inflation than the market expects. That snaps the 10-year back above 4.2%, reprices June cut odds lower, and puts the 6,843 support level under immediate pressure heading into the Walmart print tomorrow. The upside risk is the reverse: a dovish minutes surprise paired with soft PCE Friday compresses yields meaningfully, triggers a squeeze through 7,000, and makes the current rotation trade disorderly — growth and rate-sensitive names both spike simultaneously, and positioning gets messy fast.</p>
+    </div>
 
-    <details>
-      <summary>How to read the Fed minutes through today's tape</summary>
-      <p>The market is currently pricing roughly two rate cuts in 2026, with the first expected around June — consistent with CME FedWatch's 90%+ probability of a hold in March. If today's minutes show deep division inside the FOMC about the inflation outlook (especially tariff-related price pressures), that June timeline gets pushed out and yields rebound from their two-month lows. Conversely, if the minutes reveal broad acknowledgment that the economy is near neutral and disinflation is intact, the dovish trade in bonds strengthens — and the equity rally that's been fading every afternoon finally gets a catalyst to close strong.</p>
-    </details>
+    <!-- Closing -->
+    <h2>Closing</h2>
+    <div class="closing">
+      For now, momentum favors selective positioning and patience. The breadth expansion into small caps and financials is real, but the ceiling holds until the Fed gives it permission to move. Watch 2pm ET for the minutes, watch 6,950 on SPX as the tell for the afternoon session, and keep one eye on Friday's PCE — that's the macro print that decides whether this week becomes the start of a genuine recovery or just another false dawn below 7,000.
+    </div>
 
-    <h2>8️⃣ Risk Scenario</h2>
-    <p>The risk to this view would be <strong>FOMC minutes that reveal more hawkish internal deliberation than expected</strong>, reinforcing the Fed's tariff-inflation concern and repricing the June cut probability lower — which would snap the 10-year yield back above 4.2% and put the 6,843 support level under immediate pressure. The opposite risk is <strong>a dovish minutes surprise combined with a soft PCE Friday</strong>, which could compress yields meaningfully, trigger a squeeze through 7,000, and pull forward cut expectations — making the current rotation trade far less orderly as growth and rate-sensitive names both spike simultaneously.</p>
-
-    <h2>9️⃣ Closing Tone</h2>
-    <p>For now, momentum favors <strong>selective positioning and patience</strong>. The breadth expansion into small caps and financials is real, but the index ceiling holds until the Fed gives it permission to move. Watch <strong>2pm ET for the minutes, 6,950 on SPX as the tell for the afternoon session</strong>, and keep one eye on Friday's PCE — that's the macro print that decides whether this week becomes the start of a genuine recovery or just another false dawn below 7,000.</p>
-
+    <!-- Sources -->
     <div class="sources">
-      <h2>Sources (links)</h2>
+      <h2>Sources</h2>
       <ul>
         <li><a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank" rel="noopener">Charles Schwab — Market Update: Fed Minutes, Walmart Earnings, VIX above 20, 10-year near 4% (Feb 18, 2026)</a></li>
         <li><a href="https://www.bloomberg.com/news/articles/2026-02-17/stock-market-today-dow-s-p-live-updates-" target="_blank" rel="noopener">Bloomberg — Stocks Higher, Bonds Retreat, ~350 S&amp;P Names Advance; Nvidia Leads Tech Recovery (Feb 18, 2026)</a></li>
@@ -172,6 +336,7 @@
     </div>
 
     <a href="../index.html" class="back">← Back to Homepage</a>
+
   </div>
 </body>
 </html>
