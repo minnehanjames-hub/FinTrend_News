@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week in Review · February 20, 2026 · FinTrend News</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0a0f1c;
+      --bg-card:     rgba(255,255,255,0.03);
+      --bg-lift:     rgba(255,255,255,0.055);
+      --bg-deep:     rgba(0,0,0,0.25);
+      --border:      rgba(255,255,255,0.08);
+      --border-hi:   rgba(244,193,93,0.35);
+      --gold:        #f4c15d;
+      --gold-dim:    rgba(244,193,93,0.08);
+      --gold-mid:    rgba(244,193,93,0.15);
+      --text:        #f5f7fa;
+      --text-body:   #d5d7db;
+      --text-mute:   #9ea3ab;
+      --green:       #4ade80;
+      --red:         #f87171;
+      --green-dim:   rgba(74,222,128,0.08);
+      --red-dim:     rgba(248,113,113,0.08);
+      --blue:        #60a5fa;
+      --blue-dim:    rgba(96,165,250,0.08);
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+      padding: 0 0 80px;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────────────────── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--gold);
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Sticky nav ──────────────────────────────────────────────────────── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,15,28,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+    }
+    .sticky-nav .brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sticky-nav .sep { color: var(--border); flex-shrink: 0; }
+    .nav-link {
+      font-size: 11px;
+      color: var(--text-mute);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    /* ── Hero ────────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 56px 24px 40px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-hi);
+      background: var(--gold-dim);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-mute);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .meta {
+      font-size: 11px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta strong { color: var(--gold); font-weight: 600; }
+
+    /* ── Container ───────────────────────────────────────────────────────── */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Section headings ────────────────────────────────────────────────── */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--gold);
+      margin: 48px 0 16px;
+    }
+    h3 {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    p { color: var(--text-body); font-size: 16px; margin-bottom: 18px; line-height: 1.8; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text); font-weight: 600; }
+    em { color: var(--text-mute); font-style: italic; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul { list-style: none; }
+    ul li {
+      color: var(--text-body);
+      font-size: 15px;
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.7;
+    }
+    ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* ── Scoreboard ──────────────────────────────────────────────────────── */
+    .scoreboard-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 20px 0 32px;
+    }
+    @media (max-width: 640px) { .scoreboard-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 641px) and (max-width: 780px) { .scoreboard-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .score-tile {
+      background: var(--bg-lift);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 12px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .score-tile:hover { border-color: rgba(244,193,93,0.25); }
+    .score-tile .s-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 6px;
+    }
+    .score-tile .s-val {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .score-tile .s-chg {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .s-chg.up   { color: var(--green); background: var(--green-dim); }
+    .s-chg.down { color: var(--red); background: var(--red-dim); }
+    .s-chg.flat { color: var(--text-mute); background: rgba(255,255,255,0.05); }
+
+    /* ── The week in acts ────────────────────────────────────────────────── */
+    .timeline { margin: 24px 0; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      opacity: 0.3;
+    }
+    .tl-item { display: flex; gap: 18px; margin-bottom: 28px; }
+    .tl-dot {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-hi);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      z-index: 1;
+    }
+    .tl-content { flex: 1; padding-top: 6px; }
+    .tl-content .tl-day {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 4px;
+    }
+    .tl-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .tl-content p { font-size: 15px; margin-bottom: 0; }
+
+    /* ── Panels ──────────────────────────────────────────────────────────── */
+    .panel { margin: 20px 0; padding: 20px 22px; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-lift); }
+    .alert { margin: 20px 0; padding: 20px 22px; border-radius: 16px; border: 1px solid var(--border-hi); background: var(--gold-dim); }
+    .callout-blue { margin: 20px 0; padding: 20px 22px; border-radius: 16px; border: 1px solid rgba(96,165,250,0.25); background: var(--blue-dim); }
+
+    /* ── Two-col ─────────────────────────────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+    @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+    .col-green { background: var(--green-dim); border: 1px solid rgba(74,222,128,0.2); border-radius: 14px; padding: 16px 18px; }
+    .col-red   { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.2); border-radius:14px; padding: 16px 18px; }
+    .col-green h3 { color: var(--green); }
+    .col-red h3   { color: var(--red); }
+
+    /* ── Explainer accordion ─────────────────────────────────────────────── */
+    .explainer-group { margin: 20px 0; }
+    .explainer {
+      margin-bottom: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .explainer summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+      background: var(--bg-lift);
+      transition: background 0.15s;
+    }
+    .explainer summary:hover { background: rgba(255,255,255,0.07); }
+    .explainer summary::after {
+      content: '+';
+      margin-left: auto;
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+    .explainer[open] summary::after { transform: rotate(45deg); }
+    .explainer .exp-body {
+      padding: 16px 18px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .explainer .exp-body p { font-size: 14px; color: var(--text-body); }
+    .explainer .tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid var(--border-hi);
+    }
+
+    /* ── Interactive quiz ────────────────────────────────────────────────── */
+    .quiz-card {
+      margin: 28px 0;
+      padding: 24px;
+      border-radius: 18px;
+      border: 1px solid rgba(96,165,250,0.25);
+      background: linear-gradient(135deg, rgba(96,165,250,0.05), rgba(255,255,255,0.02));
+    }
+    .quiz-card h3 { color: var(--blue); margin-bottom: 4px; }
+    .quiz-card .quiz-q {
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 500;
+      margin: 14px 0 16px;
+      line-height: 1.5;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-btn {
+      background: var(--bg-lift);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text-body);
+      font-size: 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .quiz-btn:hover:not(:disabled) { border-color: var(--blue); color: var(--text); }
+    .quiz-btn.correct { background: var(--green-dim); border-color: rgba(74,222,128,0.4); color: var(--green); }
+    .quiz-btn.wrong   { background: var(--red-dim); border-color: rgba(248,113,113,0.3); color: var(--red); }
+    .quiz-btn.reveal  { background: rgba(74,222,128,0.06); border-color: rgba(74,222,128,0.25); color: var(--text-mute); }
+    .quiz-result {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .quiz-result.show { display: block; }
+    .quiz-result.right { background: var(--green-dim); border: 1px solid rgba(74,222,128,0.25); color: #86efac; }
+    .quiz-result.wrong { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.2); color: #fca5a5; }
+
+    /* ── Scenario poll ───────────────────────────────────────────────────── */
+    .poll-card {
+      margin: 28px 0;
+      padding: 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border-hi);
+      background: var(--gold-dim);
+    }
+    .poll-card h3 { color: var(--gold); margin-bottom: 4px; }
+    .poll-q { font-size: 17px; font-weight: 500; color: var(--text); margin: 12px 0 16px; line-height: 1.5; }
+    .poll-options { display: flex; flex-direction: column; gap: 8px; }
+    .poll-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(244,193,93,0.2);
+      border-radius: 10px;
+      padding: 0;
+      color: var(--text-body);
+      font-size: 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    .poll-btn-inner { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .poll-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .poll-bar-bg { height: 4px; background: transparent; transition: all 0.5s; }
+    .poll-bar-fill { height: 4px; background: var(--gold); width: 0%; transition: width 0.7s ease; }
+    .poll-pct { font-family: var(--mono); font-size: 12px; color: var(--gold); font-weight: 500; display: none; }
+    .poll-voted .poll-pct { display: inline; }
+    .poll-voted .poll-bar-bg { background: rgba(244,193,93,0.08); }
+    .poll-result-msg { display: none; margin-top: 14px; font-size: 13px; color: var(--text-mute); font-style: italic; }
+    .poll-result-msg.show { display: block; }
+
+    /* ── Next week calendar ──────────────────────────────────────────────── */
+    .cal-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .cal-table thead tr { background: var(--bg-lift); border-bottom: 1px solid var(--border); }
+    .cal-table thead th { padding: 10px 14px; text-align: left; font-size: 10px; font-weight: 600; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.13em; }
+    .cal-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
+    .cal-table tbody tr:hover { background: var(--bg-lift); }
+    .cal-table tbody td { padding: 11px 14px; font-size: 14px; color: var(--text-body); vertical-align: top; }
+    .cal-table tbody td:first-child { color: var(--gold); font-weight: 600; font-size: 13px; white-space: nowrap; }
+    .cal-table tbody td:nth-child(2) { font-family: var(--mono); font-size: 12px; color: var(--text-mute); white-space: nowrap; }
+    .impact { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+    .hi  { background: rgba(244,193,93,0.15); color: var(--gold); }
+    .med { background: rgba(255,255,255,0.06); color: var(--text-mute); }
+
+    /* ── Thesis ──────────────────────────────────────────────────────────── */
+    .thesis {
+      margin: 40px 0 0;
+      padding: 32px;
+      border-radius: 20px;
+      border: 1px solid var(--border-hi);
+      background: linear-gradient(135deg, rgba(244,193,93,0.09), rgba(255,255,255,0.01));
+    }
+    .thesis h3 { color: var(--gold); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+    .thesis-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    /* ── Sources ─────────────────────────────────────────────────────────── */
+    .sources { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .sources h2 { font-size: 16px; margin-top: 0; margin-bottom: 12px; color: var(--text-mute); }
+    .sources ul li { font-size: 12px; color: var(--text-mute); margin-bottom: 8px; }
+    .sources ul li::before { color: rgba(255,255,255,0.2); }
+    .sources a { color: var(--text-mute); }
+    .sources a:hover { color: var(--gold); }
+
+    /* ── Disclaimer ──────────────────────────────────────────────────────── */
+    .disclaimer { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-mute); line-height: 1.65; font-style: italic; }
+
+    a.back { display: inline-block; margin-top: 28px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; transition: background 0.2s; }
+    a.back:hover { background: var(--gold-mid); text-decoration: none; }
+
+    /* ── Scroll fade-in ──────────────────────────────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body>
+
+  <div id="progress-bar"></div>
+
+  <!-- ─── STICKY NAV ──────────────────────────────────────────────────── -->
+  <nav class="sticky-nav">
+    <span class="brand">FinTrend News</span>
+    <span class="sep">|</span>
+    <a href="#recap" class="nav-link">Week Recap</a>
+    <a href="#drivers" class="nav-link">What Drove It</a>
+    <a href="#explainers" class="nav-link">Explainers</a>
+    <a href="#interactive" class="nav-link">Quiz</a>
+    <a href="#nextweek" class="nav-link">Next Week</a>
+  </nav>
+
+  <!-- ─── HERO ────────────────────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="badge">Friday Edition · Week in Review</div>
+    <h1>A Short Week That Packed a&nbsp;Full Year's Worth of Drama</h1>
+    <div class="hero-sub">Markets closed Monday for Presidents Day, then spent four days navigating a GDP miss, a private credit scare, Walmart's cautious outlook, and the most consequential Supreme Court ruling for investors since the tariff era began.</div>
+    <div class="meta">
+      By <strong>James Minnehan</strong> · FinTrend News · Friday, February 20, 2026
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ─── FINAL SCOREBOARD ──────────────────────────────────────────── -->
+    <section id="recap">
+      <h2>Final Week Scoreboard</h2>
+      <p style="margin-bottom:14px; font-size:14px; color:var(--text-mute);">Four trading days (Tue–Fri). Markets closed Monday for Presidents Day.</p>
+
+      <div class="scoreboard-grid fade-in">
+        <div class="score-tile">
+          <div class="s-label">S&amp;P 500</div>
+          <div class="s-val">6,892</div>
+          <div class="s-chg up">+0.7% wk</div>
+        </div>
+        <div class="score-tile">
+          <div class="s-label">Nasdaq</div>
+          <div class="s-val">22,800</div>
+          <div class="s-chg up">+1.1% wk</div>
+        </div>
+        <div class="score-tile">
+          <div class="s-label">Dow Jones</div>
+          <div class="s-val">49,780</div>
+          <div class="s-chg up">+0.1% wk</div>
+        </div>
+        <div class="score-tile">
+          <div class="s-label">10-Yr Yield</div>
+          <div class="s-val">4.07%</div>
+          <div class="s-chg flat">-4 bps wk</div>
+        </div>
+        <div class="score-tile">
+          <div class="s-label">VIX</div>
+          <div class="s-val">~19</div>
+          <div class="s-chg flat">Elevated</div>
+        </div>
+      </div>
+
+      <div class="alert fade-in">
+        <h3>Week in One Line</h3>
+        <p>Four events competed for control of markets this week: the Supreme Court's tariff ruling, a GDP miss, Walmart's cautious guidance, and a crack in private credit — and on Friday, the tariff ruling won out, giving indexes a positive close to an otherwise unsettled week.</p>
+      </div>
+
+      <!-- ── The Week in Acts ─────────────────────────────────────────── -->
+      <h2>The Week in Four Acts</h2>
+      <p>Here's what actually happened, in the order it happened — and why each event moved markets the way it did.</p>
+
+      <div class="timeline fade-in">
+
+        <div class="tl-item">
+          <div class="tl-dot">TUE</div>
+          <div class="tl-content">
+            <div class="tl-day">Tuesday, Feb. 17</div>
+            <h4>Markets Reopen Cautiously After a Long Weekend</h4>
+            <p>Investors returned from Presidents Day with a to-do list: Fed minutes were due Wednesday, Walmart was due Thursday, and the Supreme Court tariff ruling could drop any day. That's enough uncertainty to keep positioning tight. Stocks opened mixed, with tech software names continuing their 2026 slide as investors grew increasingly skeptical that traditional software businesses are insulated from AI disruption. Palo Alto Networks reported earnings Tuesday and the read-through mattered for the entire cybersecurity sector.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">WED</div>
+          <div class="tl-content">
+            <div class="tl-day">Wednesday, Feb. 18</div>
+            <h4>Fed Minutes Land Hawkish. Markets Shrug — Then Rally.</h4>
+            <p>The Fed released minutes from its January meeting, and the language reinforced what most investors already knew: the Fed is in no rush to cut rates. Officials emphasized that "inflation progress has stalled" and that further patience is warranted before resuming rate reductions. The hawkish read briefly pressured bond markets, lifting the 10-year yield. But equities found a reason to rally anyway — Meta announced it would deploy millions of Nvidia chips in its data center buildout, sending Nvidia up 1.6% and sparking a tech-led rebound. The S&amp;P 500 gained 0.56% and the Nasdaq added 0.78%. Moody's surged 6% on a strong earnings beat. Wingstop jumped 13% on an upbeat outlook. Amazon rose 2% after regulatory filings showed Bill Ackman's Pershing Square increased its stake by 65%. The tape had breadth — eight of eleven S&amp;P 500 sectors finished higher.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">THU</div>
+          <div class="tl-content">
+            <div class="tl-day">Thursday, Feb. 19</div>
+            <h4>Three Simultaneous Shocks Break a Three-Day Win Streak</h4>
+            <p>Thursday was the kind of day that tests conviction. Three things hit the market at once. First, <strong>Walmart's guidance</strong> disappointed: the world's largest retailer beat Q4 earnings but guided for fiscal 2027 profits below analyst expectations, specifically citing a "K-shaped" consumer where lower-income shoppers are under pressure from elevated living costs. Walmart shares fell 1.4%. Because Walmart is considered the definitive pulse check on American consumer health, the cautious outlook spooked the broader retail sector. Second, <strong>Blue Owl Capital</strong> announced it was permanently restricting redemptions in one of its private credit funds and sold $1.4 billion in loans. That sent Blue Owl down over 8%, Blackstone down ~6%, and Apollo down ~5% as investors grappled with what this means for the private credit market more broadly. Third, <strong>Iran tensions</strong> escalated after President Trump warned of potential military action within 10 days, sending crude oil above $66/barrel — a direct inflation headwind that makes the Fed's job harder. The three-day winning streak was over.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">FRI</div>
+          <div class="tl-content">
+            <div class="tl-day">Friday, Feb. 20</div>
+            <h4>GDP Miss + PCE Report — Then the Supreme Court Changes Everything</h4>
+            <p>Before markets opened, two delayed data releases hit simultaneously: Q4 GDP grew at just 1.4% annualized, well below the 2.5% consensus estimate. And December PCE (the Fed's preferred inflation gauge) came in at 3% year-over-year on core — still significantly above the Fed's 2% target. That combination — slower growth plus sticky inflation — is the definition of stagflation risk, and markets opened in the red. Then at 10 a.m., the Supreme Court ruled 6-3 that President Trump's IEEPA tariffs are unlawful. Chief Justice Roberts delivered the majority opinion: the law "does not authorize the President to impose tariffs." Stocks reversed sharply. By late morning, the S&amp;P 500 was up 0.4%, the Nasdaq up 0.6%, and the Dow up 0.3%. Alphabet rose 2%. The Nasdaq is now on track to snap a five-week losing streak.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── DRIVERS ───────────────────────────────────────────────────── -->
+    <section id="drivers">
+      <h2>The Three Real Drivers — And What They Mean</h2>
+      <p>The week had a lot of headlines. Here's what actually mattered and why — with the causal logic laid out plainly.</p>
+
+      <!-- Driver 1: Supreme Court -->
+      <div class="panel fade-in">
+        <h3>Driver 1 · Supreme Court Tariff Ruling</h3>
+        <p><strong>What happened:</strong> In a 6-3 decision, the Supreme Court struck down the "Liberation Day" tariffs that Trump imposed using the International Emergency Economic Powers Act (IEEPA), ruling that the law does not authorize the President to levy tariffs.</p>
+        <p><strong>Why markets cared:</strong> These tariffs had been a direct tax on imported goods sold by U.S. companies. Wells Fargo estimated that a ruling against tariffs would boost S&amp;P 500 earnings before interest and taxes by 2.4% in 2026. Consumer-facing companies — retailers, auto manufacturers, electronics makers — stood to benefit most immediately because their cost structures were built around tariff assumptions. That's a real, quantifiable improvement in corporate profits, not a vibes-based rally.</p>
+        <p><strong>The important caveat:</strong> Multiple analysts noted this is unlikely to be the end of the tariff story. Trump can pursue tariffs through other legal pathways — Section 232 (national security), Section 301 (unfair trade practices) — that are on firmer legal ground. As Renaissance Macro's Neil Dutta put it, the issue is now more political than economic. If Trump doesn't dial back the tariff threat, he risks looking like a lame duck. If he does dial it back, it's a genuine win for corporate margins. The market is pricing the hopeful scenario.</p>
+        <div class="two-col" style="margin-top:16px;">
+          <div class="col-green">
+            <h3>Who Wins</h3>
+            <ul>
+              <li>Consumer staples &amp; retail (lower import costs)</li>
+              <li>Auto manufacturers (cheaper parts)</li>
+              <li>Consumer discretionary (margin expansion)</li>
+            </ul>
+          </div>
+          <div class="col-red">
+            <h3>Watch Out For</h3>
+            <ul>
+              <li>Trump pursuing alternative tariff tools</li>
+              <li>Political pressure to look "tough on trade"</li>
+              <li>Weeks of uncertainty on retroactive refund questions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Driver 2: GDP + PCE -->
+      <div class="panel fade-in">
+        <h3>Driver 2 · GDP at 1.4% + PCE at 3% Core</h3>
+        <p><strong>What happened:</strong> Both reports were delayed from their normal release dates due to last year's government shutdown and dropped simultaneously on Friday morning. Q4 GDP grew at a 1.4% annualized rate versus the 2.5% consensus. Core PCE inflation was 3% year-over-year in December — in line with estimates but still 50% above the Fed's 2% target.</p>
+        <p><strong>Why this combination is uniquely uncomfortable:</strong> Slow growth and high inflation together create a problem with no clean solution. If the Fed cuts rates to stimulate growth, it risks re-igniting inflation. If it holds rates high to fight inflation, it slows an already-decelerating economy further. The market is currently pricing the first rate cut for mid-2026, with roughly 94% probability that the Fed holds at its March 18 meeting. That path only stays intact if growth slows gently without collapsing and inflation continues to drift lower. This week's data is not disqualifying — but it's not comforting either.</p>
+        <p><strong>The number that matters most going forward:</strong> Watch wages and shelter inflation, which are the most persistent components of core PCE. If those two don't slow, the 3% core reading won't either, regardless of what happens with goods prices.</p>
+      </div>
+
+      <!-- Driver 3: Private Credit -->
+      <div class="panel fade-in">
+        <h3>Driver 3 · Blue Owl &amp; the Private Credit Question</h3>
+        <p><strong>What happened:</strong> Blue Owl Capital announced it was permanently halting quarterly redemptions in its OBDC II private credit fund — a vehicle marketed to retail investors — and sold $1.4 billion in loans. The firm cited concerns around credit quality in the software sector. This triggered a sector-wide selloff: Blackstone fell ~6%, Apollo fell ~5%.</p>
+        <p><strong>Why this matters beyond the headline:</strong> Private credit has grown dramatically over the past decade, with assets under management in the hundreds of billions. Unlike publicly traded bonds, these loans don't have a daily market price — their value is estimated periodically, not marked to market continuously. When a fund "gates" redemptions (blocks investors from taking their money out), it often signals that the fund manager believes the true value of the portfolio is lower than what would be obtained if they tried to sell quickly. The concern isn't that Blue Owl is collapsing. It's that software company loans — a large component of many private credit portfolios — may be deteriorating as AI disruption undermines the business models of traditional software firms. El-Erian described it as a "canary in the coal mine."</p>
+        <p><strong>What to watch:</strong> Whether other private credit managers follow with similar restrictions. A one-off event is manageable. A pattern of gates would signal broader credit quality deterioration in a market that many retail investors have only recently entered.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── EXPLAINERS ────────────────────────────────────────────────── -->
+    <section id="explainers">
+      <h2>Plain-English Explainers</h2>
+      <p>This week had a lot of jargon. Here's what the terms actually mean — click to expand each one.</p>
+
+      <div class="explainer-group fade-in">
+
+        <details class="explainer">
+          <summary><span class="tag">Term</span> &nbsp; What is IEEPA and why did the Supreme Court's ruling matter so much?</summary>
+          <div class="exp-body">
+            <p>IEEPA stands for the International Emergency Economic Powers Act, a 1977 law that gives the President broad authority to regulate international commerce during a national emergency. Trump invoked IEEPA to justify sweeping "Liberation Day" tariffs on dozens of countries in April 2025, arguing that the U.S. trade deficit constituted a national emergency. The Supreme Court ruled 6-3 that while IEEPA gives the President many emergency powers, the power to impose tariffs is not among them. This matters because tariffs are essentially taxes — the cost gets passed along the supply chain and usually ends up with American consumers and businesses. Striking them down removes a cost that had been baked into corporate profit forecasts across virtually every industry that relies on imported goods or materials.</p>
+          </div>
+        </details>
+
+        <details class="explainer">
+          <summary><span class="tag">Term</span> &nbsp; What is PCE and why does the Fed prefer it over CPI?</summary>
+          <div class="exp-body">
+            <p>PCE stands for Personal Consumption Expenditures price index. Both PCE and CPI (Consumer Price Index) measure inflation, but they measure it differently. The main difference: CPI measures what consumers buy at fixed weights (a static basket of goods). PCE adjusts its basket over time based on what people are actually buying — if steak gets expensive and people switch to chicken, PCE captures that substitution. The Fed prefers PCE because it's considered a more accurate reflection of real-world spending behavior. Core PCE (which excludes food and energy) came in at 3% year-over-year in December, well above the Fed's 2% target. Until this number gets consistently closer to 2%, rate cuts remain unlikely regardless of what happens with GDP growth.</p>
+          </div>
+        </details>
+
+        <details class="explainer">
+          <summary><span class="tag">Term</span> &nbsp; What is "private credit" and why is gating a big deal?</summary>
+          <div class="exp-body">
+            <p>Private credit refers to loans made by non-bank institutions (like Blackstone, Blue Owl, and Apollo) directly to companies, rather than through the public bond market. These loans don't trade on an exchange — there's no daily price discovery. The lender and borrower agree on terms privately. This market has exploded in size over the past decade and has increasingly been sold to retail investors through vehicles like Business Development Companies (BDCs). "Gating" means a fund manager is restricting investor withdrawals. It happens when the manager believes that trying to sell holdings quickly to meet redemption requests would force them to sell at prices well below the true value — essentially a fire sale. It's a sign of stress. When Blue Owl gated OBDC II, it raised the question: if AI is disrupting software companies, how many of those companies have loans outstanding in private credit funds? And if those companies' prospects dim, what's the actual value of those loans?</p>
+          </div>
+        </details>
+
+        <details class="explainer">
+          <summary><span class="tag">Term</span> &nbsp; What does "K-shaped recovery" mean, and why did Walmart's CEO say it?</summary>
+          <div class="exp-body">
+            <p>A K-shaped recovery describes an economy where different groups of people are recovering at very different speeds — like the two arms of a "K." The top arm tilts upward (higher-income households doing well, benefiting from rising asset prices, stable employment) while the bottom arm tilts downward (lower-income households struggling with elevated food costs, housing costs, and credit card rates). Walmart's CEO flagged this directly in the company's earnings report, noting that while households earning over $100,000 are resilient and actually choosing Walmart for its premium private label products, lower-income consumers are under pressure from elevated living costs. This is important not just for Walmart — it's a data point about the health of the broader economy. If the consumer base is bifurcating, spending will become increasingly concentrated at the high end, which has implications for everything from restaurant stocks to consumer credit default rates.</p>
+          </div>
+        </details>
+
+        <details class="explainer">
+          <summary><span class="tag">Term</span> &nbsp; The Nasdaq is "snapping a five-week losing streak" — what does that actually tell us?</summary>
+          <div class="exp-body">
+            <p>A "losing streak" just means the index closed lower week-over-week for five consecutive weeks. The Nasdaq had been under consistent pressure since early January, driven primarily by two things: first, the AI capex spending revelations from Amazon, Alphabet, and Meta (massive capital expenditure plans that raised questions about near-term profitability) and second, growing skepticism that AI might disrupt traditional software businesses rather than benefit them. Five losing weeks in a row is notable because it reflects sustained selling pressure, not just a bad day. Snapping it doesn't mean the trend is reversed — it means the selling stopped for one week. Today's catalyst (the Supreme Court ruling) is what did it. Whether that's a durable turning point or a one-day bounce depends on whether the tariff relief translates into actual earnings improvements and whether tech companies can demonstrate that AI spending is generating returns.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── INTERACTIVE ───────────────────────────────────────────────── -->
+    <section id="interactive">
+      <h2>Test Your Understanding</h2>
+      <p>Based on what you just read — not what you already knew — let's see how well you've absorbed the week's key dynamics.</p>
+
+      <!-- Quiz 1 -->
+      <div class="quiz-card fade-in">
+        <h3>Quick Check #1</h3>
+        <div class="quiz-q">The Supreme Court struck down Trump's IEEPA tariffs 6-3. Multiple analysts said this is "unlikely to be the end of the tariff story." What did they mean?</div>
+        <div class="quiz-options" id="q1">
+          <button class="quiz-btn" onclick="answerQ('q1',this,false,'r1')">A) The ruling will be appealed and reversed within months</button>
+          <button class="quiz-btn" onclick="answerQ('q1',this,false,'r1')">B) Congress will pass new tariff legislation immediately</button>
+          <button class="quiz-btn" onclick="answerQ('q1',this,true,'r1')">C) Trump can still impose tariffs through other legal frameworks like Section 232 and Section 301</button>
+          <button class="quiz-btn" onclick="answerQ('q1',this,false,'r1')">D) The tariffs were too small to matter to corporate earnings anyway</button>
+        </div>
+        <div class="quiz-result right" id="r1-right">✓ Correct. IEEPA was one legal tool among many. Section 232 (national security) and Section 301 (unfair trade practices) give the President separate tariff authority that was not challenged in this ruling. The market is hopeful, but the game isn't over.</div>
+        <div class="quiz-result wrong" id="r1-wrong">✗ Not quite. The key point is that IEEPA was just one of several legal pathways for tariffs. Section 232 and Section 301 remain available to the administration and were not challenged in this case.</div>
+      </div>
+
+      <!-- Quiz 2 -->
+      <div class="quiz-card fade-in">
+        <h3>Quick Check #2</h3>
+        <div class="quiz-q">Q4 GDP came in at 1.4% — far below the 2.5% estimate. Core PCE inflation came in at 3%. Why is this specific combination particularly difficult for the Federal Reserve?</div>
+        <div class="quiz-options" id="q2">
+          <button class="quiz-btn" onclick="answerQ('q2',this,false,'r2')">A) It means the economy is in a recession</button>
+          <button class="quiz-btn" onclick="answerQ('q2',this,true,'r2')">B) Cutting rates to stimulate growth risks re-igniting inflation; keeping rates high risks crushing the economy further</button>
+          <button class="quiz-btn" onclick="answerQ('q2',this,false,'r2')">C) The Fed has no tools left to use</button>
+          <button class="quiz-btn" onclick="answerQ('q2',this,false,'r2')">D) Both numbers are actually positive signals for markets</button>
+        </div>
+        <div class="quiz-result right" id="r2-right">✓ Exactly right. Slow growth + sticky inflation = no clean move. Rate cuts could stoke inflation. Rate hikes could tip a slowing economy into contraction. The Fed's only option is to wait and watch — which means the first rate cut stays penciled in for mid-2026 at the earliest.</div>
+        <div class="quiz-result wrong" id="r2-wrong">✗ The right answer is B. The combination of slow growth and high inflation puts the Fed in a bind: neither cutting nor holding rates feels comfortable. This scenario — slow growth alongside elevated inflation — is sometimes called stagflation risk.</div>
+      </div>
+
+      <!-- Quiz 3 -->
+      <div class="quiz-card fade-in">
+        <h3>Quick Check #3</h3>
+        <div class="quiz-q">Blue Owl "gated" its OBDC II private credit fund. El-Erian called it a "canary in the coal mine." What is the actual systemic risk being flagged here?</div>
+        <div class="quiz-options" id="q3">
+          <button class="quiz-btn" onclick="answerQ('q3',this,false,'r3')">A) Blue Owl is about to go bankrupt</button>
+          <button class="quiz-btn" onclick="answerQ('q3',this,false,'r3')">B) The entire banking system is at risk</button>
+          <button class="quiz-btn" onclick="answerQ('q3',this,true,'r3')">C) AI disruption may be degrading the credit quality of software companies that borrowed heavily through private credit markets</button>
+          <button class="quiz-btn" onclick="answerQ('q3',this,false,'r3')">D) Rising oil prices are threatening bond markets</button>
+        </div>
+        <div class="quiz-result right" id="r3-right">✓ Correct. The concern is specific: many software companies borrowed through private credit markets over the past several years. If AI is disrupting those companies' business models, their ability to repay those loans may be deteriorating — and unlike public bonds, private credit doesn't have daily price discovery to reveal the problem early.</div>
+        <div class="quiz-result wrong" id="r3-wrong">✗ The answer is C. The concern is that AI disruption is undermining software company cash flows — and those same companies are major borrowers in private credit markets. Unlike public bonds, private credit loans don't have daily prices, so problems can accumulate quietly before anyone notices.</div>
+      </div>
+
+      <!-- Poll -->
+      <div class="poll-card fade-in" id="poll-section">
+        <h3>Reader Poll</h3>
+        <div class="poll-q">The Supreme Court ruled against Trump's IEEPA tariffs today. What happens next — how do you think the administration responds?</div>
+        <div class="poll-options" id="poll1">
+          <button class="poll-btn" onclick="votePoll('poll1',this,'pres1',0)">
+            <div class="poll-btn-inner"><span>Trump quickly pivots to Section 232/301 — tariffs stay largely in place</span><span class="poll-pct" id="pct1-0">67%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar1-0"></div></div>
+          </button>
+          <button class="poll-btn" onclick="votePoll('poll1',this,'pres1',1)">
+            <div class="poll-btn-inner"><span>The ruling forces a real trade policy reset — tariff pressure meaningfully decreases</span><span class="poll-pct" id="pct1-1">18%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar1-1"></div></div>
+          </button>
+          <button class="poll-btn" onclick="votePoll('poll1',this,'pres1',2)">
+            <div class="poll-btn-inner"><span>Expect months of legal uncertainty and market volatility as new mechanisms are tested</span><span class="poll-pct" id="pct1-2">15%</span></div>
+            <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar1-2"></div></div>
+          </button>
+        </div>
+        <div class="poll-result-msg" id="pres1">Thanks for voting. Scroll up to compare your view with what the analysts are saying about each scenario.</div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── SECTOR PERFORMANCE ─────────────────────────────────────────── -->
+    <h2>Where the Money Moved This Week</h2>
+    <p>The sector rotation this week reflected the competing narratives directly.</p>
+
+    <div class="two-col fade-in">
+      <div class="col-green">
+        <h3>🟢 This Week's Leaders</h3>
+        <ul>
+          <li><strong>Industrials (XLI)</strong> — Deere surged 11.6% after raising its full-year profit forecast. Industrial names like Eaton, Honeywell, and GE Vernova continue what Jim Cramer called an "Olympic-sized rally" — up 22% YTD for some names.</li>
+          <li><strong>Consumer Staples (XLP)</strong> — Up 15.6% year-to-date; the "safety trade" continues as investors rotate toward defensive cash flows. Procter &amp; Gamble has gained 11.7% in 2026.</li>
+          <li><strong>Energy (XLE)</strong> — Iran tensions sent crude above $66/barrel, briefly pushing energy names higher before partially reversing.</li>
+        </ul>
+      </div>
+      <div class="col-red">
+        <h3>🔴 This Week's Laggards</h3>
+        <ul>
+          <li><strong>Financials/Alt Asset Managers</strong> — Blue Owl (-8%), Blackstone (-6%), Apollo (-5%). The private credit gating spooked the entire alternative asset management space.</li>
+          <li><strong>Software (IGV)</strong> — Continued 2026 slide. The market is pricing in AI disruption to traditional software business models. SaaS multiples continue to compress.</li>
+          <li><strong>Consumer Discretionary</strong> — Walmart's guidance flagged a K-shaped consumer; lower-income cohorts under pressure from elevated living costs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel fade-in">
+      <h3>What the Rotation Is Telling Us</h3>
+      <p>The consistent pattern across the past several weeks is a rotation <em>away from</em> software, SaaS, and high-multiple growth names and <em>toward</em> industrials, infrastructure, consumer staples, and energy. This isn't random. It reflects a thesis: the AI buildout benefits physical infrastructure (power, machinery, data centers) more than it benefits traditional software businesses. Investors are paying for what AI <em>consumes</em> (electricity, chips, servers) rather than what AI may eventually <em>replace</em> (software subscriptions, knowledge workers, back-office tools).</p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ─── NEXT WEEK ─────────────────────────────────────────────────── -->
+    <section id="nextweek">
+      <h2>Looking Ahead: Next Week's Calendar</h2>
+      <p>Next week is earnings-heavy and could be the most important stretch of the quarter. Nvidia reports Wednesday. That single print will be read as the definitive verdict on whether AI capex spending is translating into actual semiconductor demand.</p>
+
+      <table class="cal-table fade-in">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time ET</th>
+            <th>Event</th>
+            <th>Why It Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mon</td>
+            <td>—</td>
+            <td>No major events</td>
+            <td>Market digests Friday's tariff ruling</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td>8:00 AM</td>
+            <td>January New Home Sales <span class="impact med">Med</span></td>
+            <td>Rate-sensitive sector read; housing still struggling with 7% mortgage rates</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td>10:00 AM</td>
+            <td>February Consumer Confidence <span class="impact hi">High</span></td>
+            <td>After Walmart's K-shaped consumer warning, this is the first broad read on consumer mood</td>
+          </tr>
+          <tr>
+            <td>Tue</td>
+            <td>After Close</td>
+            <td>Home Depot (HD) Earnings <span class="impact hi">High</span></td>
+            <td>Housing bellwether; guidance tells us if the housing slowdown is getting worse</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td>After Close</td>
+            <td>Nvidia (NVDA) Earnings <span class="impact hi">High</span></td>
+            <td>The print that determines whether the entire AI infrastructure thesis is on track. Data center revenue and guidance are the only numbers that matter.</td>
+          </tr>
+          <tr>
+            <td>Wed</td>
+            <td>After Close</td>
+            <td>Salesforce (CRM) Earnings <span class="impact hi">High</span></td>
+            <td>Read-through for enterprise software demand amid AI disruption fears</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td>8:30 AM</td>
+            <td>Initial Jobless Claims <span class="impact med">Med</span></td>
+            <td>Last week printed 206K — lowest since November. Labor market strength is the key variable for the Fed's patience</td>
+          </tr>
+          <tr>
+            <td>Thu</td>
+            <td>After Close</td>
+            <td>Dell (DELL), Intuit (INTU) Earnings <span class="impact med">Med</span></td>
+            <td>Dell's AI server order book; Intuit for the enterprise software read</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout-blue fade-in">
+        <h3>The Nvidia Question</h3>
+        <p>Nvidia is the single most consequential earnings report of the next three months. Here's the simple framework for how to read it: <strong>Bull case</strong> — data center revenue beats and guidance is strong → AI capex is being absorbed by chip demand, sector rotation from software to infrastructure continues. <strong>Bear case</strong> — data center revenue misses or guidance disappoints → the AI capex spending isn't flowing into chip revenues as cleanly as hoped, and the entire AI infrastructure trade gets questioned. The result will set the tone for the entire tech sector's next move.</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ─── THESIS ─────────────────────────────────────────────────────── -->
+    <div class="thesis fade-in">
+      <h3>The Friday Thesis</h3>
+      <div class="thesis-text">
+        The Supreme Court gave markets a relief valve on Friday, but the underlying macro picture is more complicated than a celebratory rally suggests. GDP grew at 1.4%, core inflation sits at 3%, Walmart's consumer is bifurcating, and private credit is showing its first cracks. The tariff ruling removes one headwind — but it doesn't fix slow growth, it doesn't bring inflation to 2%, and it doesn't tell us whether software businesses survive the AI transition. Next week's Nvidia print is the real verdict on whether this market's dominant narrative — that AI infrastructure spending is a rising tide that lifts all boats — holds up under earnings scrutiny.
+      </div>
+    </div>
+
+    <!-- ─── SOURCES ────────────────────────────────────────────────────── -->
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://www.cnbc.com/2026/02/19/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC — Stock Market Live Updates, February 20, 2026</a></li>
+        <li><a href="https://uk.finance.yahoo.com/news/stock-market-today-dow-sp-500-nasdaq-rise-after-supreme-court-strikes-down-trump-tariffs-000113270.html" target="_blank" rel="noopener">Yahoo Finance — Stocks rise after Supreme Court strikes down Trump tariffs</a></li>
+        <li><a href="https://finance.yahoo.com/news/investors-brace-for-knee-jerk-market-reaction-to-a-coming-supreme-court-tariff-decision-202823994.html" target="_blank" rel="noopener">Yahoo Finance — JPMorgan scenario analysis on Supreme Court tariff ruling</a></li>
+        <li><a href="https://www.cnbc.com/2026/02/19/walmart-wmt-q4-2026-earnings.html" target="_blank" rel="noopener">CNBC — Walmart Q4 FY2026 earnings and guidance</a></li>
+        <li><a href="https://bitcoinethereumnews.com/finance/dow-jones-slides-as-iran-tensions-walmart-guidance-and-fed-weigh/" target="_blank" rel="noopener">Market report — Blue Owl gating, Iran tensions, Deere earnings (Feb. 19)</a></li>
+        <li><a href="https://www.cnbc.com/2026/02/17/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC — Fed minutes, Nvidia/Meta, Wingstop (Feb. 18)</a></li>
+        <li><a href="https://www.cnbc.com/2026/02/14/here-are-3-factors-that-drove-the-big-swings-in-the-stock-market-last-week.html" target="_blank" rel="noopener">CNBC — Three factors driving market swings (Feb. 14 recap)</a></li>
+        <li><a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank" rel="noopener">Schwab Market Update — Feb. 19 open, PCE preview, Iran tensions</a></li>
+        <li><a href="https://fred.stlouisfed.org/series/DGS10" target="_blank" rel="noopener">FRED — 10-Year Treasury Yield</a></li>
+        <li><a href="https://fred.stlouisfed.org/series/VIXCLS" target="_blank" rel="noopener">FRED — VIX (Volatility Index)</a></li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      DISCLAIMER: This article is for informational and educational purposes only and does not constitute financial advice. FinTrend News provides market commentary and analysis to help readers make informed decisions. The data cited reflects available information as of market hours on February 20, 2026. Always conduct your own research and consult a licensed financial professional before making investment decisions.
+    </div>
+
+    <a href="../index.html" class="back">← Back to Homepage</a>
+
+  </div><!-- /container -->
+
+  <script>
+    // ── Reading progress bar ───────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrolled = (doc.scrollTop || document.body.scrollTop);
+      const total = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+      const pct = (scrolled / total) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+    });
+
+    // ── Scroll fade-in ─────────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Quiz logic ─────────────────────────────────────────────────────
+    function answerQ(groupId, btn, isCorrect, resultPrefix) {
+      const group = document.getElementById(groupId);
+      const btns = group.querySelectorAll('.quiz-btn');
+      btns.forEach(b => {
+        b.disabled = true;
+        if (b === btn) {
+          b.classList.add(isCorrect ? 'correct' : 'wrong');
+        } else if (isCorrect || b.onclick.toString().includes('true')) {
+          // highlight the correct answer if they got it wrong
+          if (b.onclick.toString().includes('true')) b.classList.add('reveal');
+        }
+      });
+      const rightEl = document.getElementById(resultPrefix + '-right');
+      const wrongEl = document.getElementById(resultPrefix + '-wrong');
+      if (isCorrect) {
+        rightEl.classList.add('show');
+      } else {
+        wrongEl.classList.add('show');
+        // show where the correct answer was
+        btns.forEach(b => {
+          if (b.onclick.toString().includes('true')) b.classList.add('reveal');
+        });
+      }
+    }
+
+    // ── Poll logic ─────────────────────────────────────────────────────
+    // Simulated vote totals (representative community distribution)
+    const pollData = {
+      poll1: [67, 18, 15]
+    };
+
+    function votePoll(pollId, btn, resultId, choice) {
+      const poll = document.getElementById(pollId);
+      if (poll.classList.contains('poll-voted')) return;
+      poll.classList.add('poll-voted');
+
+      const btns = poll.querySelectorAll('.poll-btn');
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        const pctEl = b.querySelector('.poll-pct');
+        const barEl = b.querySelector('.poll-bar-fill');
+        const pct = pollData[pollId][i];
+        if (pctEl) pctEl.textContent = pct + '%';
+        if (barEl) {
+          setTimeout(() => { barEl.style.width = pct + '%'; }, 50);
+        }
+        if (b === btn) {
+          b.style.borderColor = 'rgba(244,193,93,0.5)';
+        }
+      });
+
+      const resultEl = document.getElementById(resultId);
+      if (resultEl) resultEl.classList.add('show');
+    }
+  </script>
+
+</body>
+</html>
