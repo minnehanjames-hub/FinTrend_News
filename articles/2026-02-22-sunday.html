@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sunday Macro Note — February 22, 2026 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Supreme Court killed IEEPA tariffs. Trump pivoted to Section 122. GDP came in at 1.4%. PCE ran hot. And Nvidia reports Wednesday. Here's what it all means going into next week." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    /* ── TOKENS ───────────────────────────────────────────── */
+    :root {
+      --bg:           #050816;
+      --bg-card:      rgba(15,23,42,0.92);
+      --bg-elevated:  rgba(15,23,42,0.97);
+      --accent:       #f4c15d;
+      --accent-soft:  rgba(244,193,93,0.12);
+      --accent-dim:   rgba(244,193,93,0.06);
+      --green:        #4ade80;
+      --green-soft:   rgba(74,222,128,0.10);
+      --red:          #f97373;
+      --red-soft:     rgba(249,115,115,0.10);
+      --blue:         #60a5fa;
+      --blue-soft:    rgba(96,165,250,0.10);
+      --text:         #f9fafb;
+      --muted:        #9ca3af;
+      --border:       rgba(148,163,184,0.18);
+      --border-mid:   rgba(148,163,184,0.30);
+      --max:          720px;
+      --r:            14px;
+      --r-lg:         20px;
+    }
+
+    /* ── RESET ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: radial-gradient(ellipse at 60% 0%, #131f3a 0%, #020617 50%, #000 100%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+      font-size: 16px;
+    }
+
+    /* ── PROGRESS BAR ─────────────────────────────────────── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #f4c15d, #fb923c);
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── LAYOUT ───────────────────────────────────────────── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* ── BACK LINK ────────────────────────────────────────── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero { margin-bottom: 48px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,193,93,0.35);
+      background: var(--accent-soft);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.45; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .hero-divider {
+      margin: 32px 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.35;
+    }
+
+    /* ── SECTION HEADERS ──────────────────────────────────── */
+    .section-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-mid);
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    /* ── SCORECARD ────────────────────────────────────────── */
+    .scorecard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+    .score-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 14px 14px 12px;
+      transition: border-color 0.2s, transform 0.18s;
+    }
+    .score-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .score-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .score-val {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .score-change {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+    }
+    .up   { color: var(--green); }
+    .down { color: var(--red);   }
+    .flat { color: var(--muted); }
+
+    /* ── CALLOUT ──────────────────────────────────────────── */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-dim);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 16px 18px;
+      margin: 28px 0;
+      font-size: 14px;
+      color: #e5e7eb;
+      line-height: 1.65;
+    }
+    .callout strong { color: var(--accent); }
+
+    .callout-red {
+      border-left-color: var(--red);
+      background: var(--red-soft);
+    }
+    .callout-blue {
+      border-left-color: var(--blue);
+      background: var(--blue-soft);
+    }
+    .callout-green {
+      border-left-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    /* ── BODY PROSE ───────────────────────────────────────── */
+    .prose {
+      margin-bottom: 48px;
+    }
+    .prose p {
+      font-size: 15.5px;
+      line-height: 1.82;
+      color: #d1d5db;
+      margin-bottom: 18px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* ── DRIVER CARDS ─────────────────────────────────────── */
+    .drivers { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+
+    .driver-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 22px 22px 18px;
+      transition: border-color 0.2s;
+    }
+    .driver-card:hover { border-color: rgba(244,193,93,0.3); }
+
+    .driver-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .driver-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-mid);
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .driver-title {
+      font-family: "Playfair Display", serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .driver-tag {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .driver-body {
+      font-size: 14.5px;
+      color: #c4cdd8;
+      line-height: 1.72;
+    }
+    .driver-body p { margin-bottom: 10px; }
+    .driver-body p:last-child { margin-bottom: 0; }
+    .driver-body strong { color: var(--text); }
+
+    .driver-verdict {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(244,193,93,0.15);
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .driver-verdict strong { color: var(--accent); }
+
+    /* ── EXPLAINERS ───────────────────────────────────────── */
+    .explainers { margin-bottom: 48px; }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 8px;
+      transition: border-color 0.2s;
+    }
+    details[open] { border-color: rgba(244,193,93,0.3); }
+    details[open] summary { background: var(--accent-dim); }
+
+    summary {
+      padding: 14px 18px;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #e5e7eb;
+      background: var(--bg-card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      user-select: none;
+      transition: background 0.18s;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:hover { background: rgba(15,23,42,0.98); }
+
+    .summary-icon {
+      font-size: 16px;
+      color: var(--accent);
+      transition: transform 0.25s;
+    }
+    details[open] .summary-icon { transform: rotate(45deg); }
+
+    .explainer-body {
+      padding: 16px 18px;
+      font-size: 13.5px;
+      color: #b0b9c6;
+      line-height: 1.72;
+      background: rgba(5,8,22,0.6);
+    }
+    .explainer-body p { margin-bottom: 10px; }
+    .explainer-body p:last-child { margin-bottom: 0; }
+    .explainer-body strong { color: var(--text); }
+
+    /* ── NEXT WEEK TABLE ──────────────────────────────────── */
+    .week-ahead { margin-bottom: 48px; }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .calendar-table thead tr {
+      background: var(--accent-soft);
+    }
+    .calendar-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-mid);
+    }
+    .calendar-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #c4cdd8;
+      vertical-align: top;
+    }
+    .calendar-table tr:hover td { background: rgba(15,23,42,0.4); }
+
+    .cal-day {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .cal-event { font-weight: 500; color: var(--text); }
+    .cal-why { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .heat-high   { color: var(--red);   font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; }
+    .heat-med    { color: var(--accent); font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; }
+    .heat-low    { color: var(--muted);  font-weight: 400; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; }
+
+    /* ── SECTORS ──────────────────────────────────────────── */
+    .sector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .sector-col {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px;
+    }
+    .sector-col-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .sector-col.winners .sector-col-title { color: var(--green); }
+    .sector-col.losers  .sector-col-title { color: var(--red);   }
+
+    .sector-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .sector-item:last-child { border-bottom: none; }
+    .sector-name { color: #d1d5db; }
+    .sector-pct {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ── THESIS ───────────────────────────────────────────── */
+    .thesis-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(244,193,93,0.3);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .thesis-box::before {
+      content: '"';
+      position: absolute;
+      top: -10px; left: 16px;
+      font-family: "Playfair Display", serif;
+      font-size: 120px;
+      color: rgba(244,193,93,0.06);
+      line-height: 1;
+    }
+    .thesis-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .thesis-text {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+    .thesis-text strong { font-style: normal; color: var(--accent); }
+
+    /* ── SOURCES ──────────────────────────────────────────── */
+    .sources {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      margin-bottom: 32px;
+    }
+    .sources-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .sources-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .sources-list a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .sources-list a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* ── DISCLAIMER ───────────────────────────────────────── */
+    .disclaimer {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    /* ── FADE-IN ANIMATION ────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .scorecard { grid-template-columns: repeat(2, 1fr); }
+      .sector-grid { grid-template-columns: 1fr; }
+      .calendar-table thead { display: none; }
+      .calendar-table td { display: block; padding: 6px 14px; }
+      .calendar-table tr { border-bottom: 1px solid var(--border); display: block; padding: 10px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+
+  <div class="page">
+
+    <a href="../index.html" class="back-link">← Back to FinTrend News</a>
+
+    <!-- ─── HERO ────────────────────────────────────────── -->
+    <header class="hero fade-in">
+      <div class="hero-badge">Sunday Macro Note</div>
+
+      <h1>The Court Ruled.<br><em>The War Continues.</em></h1>
+
+      <p class="hero-sub">The Supreme Court struck down IEEPA tariffs Friday in the week's biggest legal decision. Trump responded within hours with Section 122 — a 10% global levy effective Tuesday. Meanwhile GDP printed 1.4%, PCE ran hot, and Nvidia reports Wednesday. Here's what actually matters going into next week.</p>
+
+      <div class="hero-meta">
+        <span>📅 Sunday, February 22, 2026</span>
+        <span>⏱ 8 min read</span>
+        <span>🗓 Week of Feb 16–20</span>
+      </div>
+      <div class="hero-divider"></div>
+    </header>
+
+    <!-- ─── WEEKLY SCOREBOARD ───────────────────────────── -->
+    <section class="fade-in">
+      <div class="section-label">Weekly Scoreboard</div>
+      <div class="scorecard">
+        <div class="score-tile">
+          <div class="score-label">S&P 500</div>
+          <div class="score-val up">6,892</div>
+          <div class="score-change up">▲ +1.1% week</div>
+        </div>
+        <div class="score-tile">
+          <div class="score-label">Nasdaq</div>
+          <div class="score-val up">22,800</div>
+          <div class="score-change up">▲ +1.3% week</div>
+        </div>
+        <div class="score-tile">
+          <div class="score-label">Dow Jones</div>
+          <div class="score-val up">49,780</div>
+          <div class="score-change up">▲ +0.3% week</div>
+        </div>
+        <div class="score-tile">
+          <div class="score-label">10-Yr Yield</div>
+          <div class="score-val flat">4.07%</div>
+          <div class="score-change down">▼ −4 bps week</div>
+        </div>
+        <div class="score-tile">
+          <div class="score-label">Crude Oil</div>
+          <div class="score-val up">$66.10</div>
+          <div class="score-change up">▲ +5.5% week</div>
+        </div>
+        <div class="score-tile">
+          <div class="score-label">VIX</div>
+          <div class="score-val flat">~19</div>
+          <div class="score-change flat">Elevated</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ONE-LINE SUMMARY ────────────────────────────── -->
+    <div class="callout fade-in">
+      <strong>The week in one sentence:</strong> A four-day holiday-shortened week packed in a landmark Supreme Court ruling, the worst GDP print in years, hotter-than-expected inflation, and a pivot to Section 122 tariffs — and stocks still finished the week in the green.
+    </div>
+
+    <!-- ─── THREE BIG DRIVERS ───────────────────────────── -->
+    <section class="prose fade-in">
+      <div class="section-label">The Three Drivers</div>
+
+      <div class="drivers">
+
+        <!-- DRIVER 1: SCOTUS -->
+        <div class="driver-card">
+          <div class="driver-header">
+            <div class="driver-num">01</div>
+            <div>
+              <div class="driver-title">The Supreme Court Killed IEEPA Tariffs — But Tariffs Didn't Die</div>
+              <div class="driver-tag">Trade Policy · Tariffs · Legal</div>
+            </div>
+          </div>
+          <div class="driver-body">
+            <p><strong>What happened:</strong> In a 6-3 ruling delivered by Chief Justice John Roberts, the Supreme Court held that the International Emergency Economic Powers Act (IEEPA) does not authorize the president to impose tariffs. The majority included three liberal justices plus Gorsuch and Barrett — both Trump appointees. Thomas, Alito, and Kavanaugh dissented.</p>
+            <p><strong>Why it matters:</strong> IEEPA was the legal backbone for most of Trump's sweeping "reciprocal" tariffs — the ones targeting nearly every country simultaneously. The court said Congress has exclusive taxing authority under Article I, and "regulate importation" does not mean "levy tariffs." The effective U.S. tariff rate was estimated to fall from roughly 16.9% to 9.1% if the ruling had simply been absorbed.</p>
+            <p><strong>What happened next:</strong> Within hours, Trump responded at a press conference — calling the ruling "deeply disappointing" and saying he was "ashamed" of Gorsuch and Barrett. That same evening he signed an executive order imposing a 10% global tariff under Section 122 of the Trade Act of 1974, effective February 24. On Saturday he raised it to the maximum 15%. The crucial catch: Section 122 tariffs automatically expire after 150 days unless Congress votes to extend them — making this a temporary measure, roughly through the end of July. Secretary Bessent said the new structure would produce "virtually unchanged tariff revenue in 2026."</p>
+          </div>
+          <div class="driver-verdict">
+            <strong>Bottom line:</strong> The IEEPA door is closed, but the administration has other tools — Section 232 (national security), Section 301 (unfair trade practices), and now Section 122 for 150 days. The tariff war continues; only the legal vehicle changed. Importers who paid IEEPA tariffs may be owed refunds estimated at $175 billion, but Trump signaled no plans to honor them voluntarily.
+          </div>
+        </div>
+
+        <!-- DRIVER 2: MACRO DATA -->
+        <div class="driver-card">
+          <div class="driver-header">
+            <div class="driver-num">02</div>
+            <div>
+              <div class="driver-title">GDP at 1.4%, PCE Running Hot — The Stagflation Alarm Is Flashing</div>
+              <div class="driver-tag">Macro · Fed · Inflation · GDP</div>
+            </div>
+          </div>
+          <div class="driver-body">
+            <p><strong>What happened:</strong> The Commerce Department's first estimate for Q4 2025 GDP came in at 1.4% annualized — versus a Wall Street consensus of around 3%. That's a dramatic deceleration from 4.4% in Q3. At nearly the same time, December PCE inflation data showed prices rising 0.4% month-over-month, with core PCE (excluding food and energy) also at 0.4% — the fastest monthly pace since early 2025. The government shutdown delayed both reports; they landed simultaneously.</p>
+            <p><strong>Why it matters:</strong> Slow growth and sticky inflation is the most uncomfortable combination for the Federal Reserve. It means they can't simply cut rates to stimulate growth without risking re-igniting inflation, and they can't keep rates high without further suppressing an already slowing economy. The GDP shortfall was largely attributed to the government shutdown depressing federal output, but economists noted private demand also showed signs of softening.</p>
+            <p><strong>Fed implications:</strong> Markets sharply repriced rate-cut expectations. The probability of a March cut fell to roughly 5%, April to 18%, and even June dropped to 57% from 85% just a week prior. The Fed's own January minutes (released Wednesday) showed officials described inflation progress as having "stalled" and emphasized patience. The Fed funds rate sits at 3.5–3.75% and is going nowhere fast.</p>
+          </div>
+          <div class="driver-verdict">
+            <strong>Bottom line:</strong> A sub-2% GDP print and above-target PCE in the same week is not a rounding error — it's a signal. If next month's data doesn't reverse, the Fed's already thin case for cutting in 2026 gets thinner still.
+          </div>
+        </div>
+
+        <!-- DRIVER 3: IRAN / OIL -->
+        <div class="driver-card">
+          <div class="driver-header">
+            <div class="driver-num">03</div>
+            <div>
+              <div class="driver-title">Iran Tensions and the Oil Premium Nobody Wanted</div>
+              <div class="driver-tag">Geopolitics · Energy · Commodities</div>
+            </div>
+          </div>
+          <div class="driver-body">
+            <p><strong>What happened:</strong> On Thursday, President Trump said Iran has "10 to 15 days at most" to agree to a nuclear deal, raising the prospect of direct U.S. military action. Crude oil — already elevated this year — broke above $66/barrel, hitting new 2026 highs. Oil is now up roughly 15% since January 1, and about 11% just in February.</p>
+            <p><strong>Why it matters:</strong> Iran sits on the third-largest proved crude reserves in the world. More importantly, the Strait of Hormuz — the chokepoint Iran can threaten — sees roughly 20 million barrels per day pass through it. Even without actual military action, analysts noted that "prolonged uncertainty alone can sustain a geopolitical risk premium." If a targeted U.S. strike occurs without escalation, estimates suggest a $10/barrel spike before rebalancing. Full conflict is a different story entirely.</p>
+            <p><strong>Why it complicates everything:</strong> Oil is a direct inflation input. Every sustained dollar rise in crude adds to fuel costs, shipping costs, and eventually goods prices. The Fed's already-difficult balancing act between slow growth and hot inflation gets harder if energy prices keep climbing. The VIX closed above 19 — elevated, not panicked — suggesting markets are pricing in uncertainty but haven't yet moved to risk-off positioning in force.</p>
+          </div>
+          <div class="driver-verdict">
+            <strong>Bottom line:</strong> Iran headlines over the weekend could move markets Monday morning. Watch crude at the open.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SECTOR RECAP ─────────────────────────────────── -->
+    <section class="fade-in">
+      <div class="section-label">Sector Snapshot</div>
+      <div class="sector-grid">
+        <div class="sector-col winners">
+          <div class="sector-col-title">▲ Winners</div>
+          <div class="sector-item">
+            <span class="sector-name">Energy</span>
+            <span class="sector-pct up">+3.8%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Industrials</span>
+            <span class="sector-pct up">+2.1%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Consumer Staples</span>
+            <span class="sector-pct up">+1.4%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Technology</span>
+            <span class="sector-pct up">+1.2%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Utilities</span>
+            <span class="sector-pct up">+0.9%</span>
+          </div>
+        </div>
+        <div class="sector-col losers">
+          <div class="sector-col-title">▼ Laggards</div>
+          <div class="sector-item">
+            <span class="sector-name">Financials (Alt Mgrs)</span>
+            <span class="sector-pct down">−3.4%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Software / SaaS</span>
+            <span class="sector-pct down">−2.1%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Real Estate</span>
+            <span class="sector-pct down">−0.8%</span>
+          </div>
+          <div class="sector-item">
+            <span class="sector-name">Materials</span>
+            <span class="sector-pct down">−0.5%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPLAINERS ──────────────────────────────────── -->
+    <section class="explainers fade-in">
+      <div class="section-label">Plain-English Explainers</div>
+
+      <details>
+        <summary>
+          What is Section 122 and how is it different from IEEPA?
+          <span class="summary-icon">+</span>
+        </summary>
+        <div class="explainer-body">
+          <p><strong>IEEPA (International Emergency Economic Powers Act)</strong> is a 1977 law that gives the president sweeping authority to respond to national emergencies — but the Supreme Court ruled this week it was never intended to include the power to levy tariffs. That word — "tariffs" — simply doesn't appear in the statute.</p>
+          <p><strong>Section 122 of the Trade Act of 1974</strong> explicitly allows tariff imposition, but with guardrails Congress built in deliberately. It caps tariffs at 15%, requires the president to declare a "large and serious balance-of-payments deficit," and most importantly, sets a hard 150-day expiration unless Congress votes to extend it. Trump signed a 10% tariff under Section 122 Friday night, then raised it to 15% on Saturday.</p>
+          <p>The practical difference: IEEPA let Trump treat tariffs like a fast, flexible dial — turning them up, down, or off for individual countries within days. Section 122 is a blunter instrument with a sunset built in and no ability to target individual countries differently. It applies uniformly. The administration has 150 days — roughly until late July — to complete investigations under Section 232 and 301 that could replace this structure with more permanent tariffs.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          What does PCE mean, and why does the Fed watch it instead of CPI?
+          <span class="summary-icon">+</span>
+        </summary>
+        <div class="explainer-body">
+          <p><strong>PCE stands for Personal Consumption Expenditures</strong> — a measure of what Americans actually spend money on, priced month-by-month. The Fed uses it as its official inflation benchmark, with a 2% annual target for "core" PCE (which strips out food and energy, since those prices swing around too much to be useful for long-term policy).</p>
+          <p>The reason the Fed prefers PCE over CPI (Consumer Price Index) comes down to composition. PCE adjusts for substitution — if beef gets expensive and people buy more chicken, PCE captures that shift. CPI uses a fixed basket that doesn't adjust. PCE also includes spending on behalf of consumers (like employer-provided healthcare), which makes it a broader picture of actual consumption.</p>
+          <p>This week's December PCE came in at 0.4% month-over-month. Annualized, that's roughly 4.8% — more than double the Fed's target. That's the problem. Even the "core" reading was 0.4%, suggesting this wasn't just an energy spike. Persistently hot PCE is the clearest signal of why the Fed is on hold.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          Why does the Strait of Hormuz matter so much for oil prices?
+          <span class="summary-icon">+</span>
+        </summary>
+        <div class="explainer-body">
+          <p>The Strait of Hormuz is a narrow waterway — at its narrowest point, just 21 miles wide — between Iran and Oman. It connects the Persian Gulf, where most Middle Eastern oil is extracted, to the Gulf of Oman and the open sea.</p>
+          <p>Roughly <strong>20 million barrels of oil per day</strong> pass through it — about 20% of global petroleum trade. There is no practical alternative route for most of that volume. Saudi Arabia, Iraq, the UAE, Kuwait, and Bahrain all export oil primarily through this chokepoint.</p>
+          <p>Iran has historically threatened to "close" the Strait during periods of tension, and while closing it entirely is operationally difficult, even disrupting traffic there would spike global oil prices almost immediately. The mere threat — which we're seeing now — is enough to add a "geopolitical risk premium" to crude prices, which is why oil climbed above $66 this week before any military action occurred.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          Why does Nvidia's earnings report matter to the whole market?
+          <span class="summary-icon">+</span>
+        </summary>
+        <div class="explainer-body">
+          <p>Nvidia makes the GPUs that power the AI buildout. When Microsoft, Meta, Google, and Amazon spend hundreds of billions on AI infrastructure, most of that money flows through Nvidia's data center chips. That makes Nvidia's quarterly results one of the cleanest windows into whether the AI spending wave is accelerating, steady, or showing cracks.</p>
+          <p>The stakes this Wednesday: consensus expects $65.6 billion in revenue — a 65% year-over-year increase — and $1.52 in earnings per share. Nvidia has beaten expectations twelve consecutive quarters. Missing, or guiding down, would raise questions the market is already nervous about: Is AI infrastructure spending peaking? Are the hyperscalers pulling back capex? Are cheaper models from DeepSeek reducing GPU demand?</p>
+          <p>Beyond Nvidia itself, Salesforce also reports Wednesday. Software has been the most beaten-down sector in 2026 precisely because investors worry AI is replacing software workflows rather than just adding to them. A strong Salesforce report with AI-driven revenue growth would signal software can adapt. A weak one deepens the narrative that the disruption is real.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          What is a balance-of-payments deficit and why does it let Trump impose tariffs?
+          <span class="summary-icon">+</span>
+        </summary>
+        <div class="explainer-body">
+          <p>A <strong>balance-of-payments deficit</strong> occurs when a country spends more on foreign goods, services, and investments than it earns from them — essentially, more dollars flowing out than flowing in. The U.S. trade deficit totaled $901 billion in 2025.</p>
+          <p>Section 122 was written specifically to let a president address "large and serious" balance-of-payments deficits by imposing temporary tariffs. The Trump administration's position is that the U.S. trade deficit qualifies. The law allows up to 15% tariffs for 150 days without the extensive investigations required by Section 232 or 301.</p>
+          <p>The catch: Section 122 says tariffs must be applied uniformly — no targeting China differently from Germany. And the 150-day clock starts ticking immediately, with no provision for a president to simply restart it after expiration without congressional approval. That's why this is a bridge, not a solution.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ─── NEXT WEEK CALENDAR ──────────────────────────── -->
+    <section class="week-ahead fade-in">
+      <div class="section-label">What's on the Calendar</div>
+
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Event</th>
+            <th>Heat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cal-day">Mon Feb 23</td>
+            <td>
+              <div class="cal-event">Factory Orders &amp; Durable Goods (Dec)</div>
+              <div class="cal-why">First real demand read of 2026; context for that 1.4% GDP</div>
+            </td>
+            <td><span class="heat-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Mon Feb 23</td>
+            <td>
+              <div class="cal-event">Section 122 Tariffs Take Effect at 12:01am</div>
+              <div class="cal-why">10–15% global levy begins; futures market will react Sunday night</div>
+            </td>
+            <td><span class="heat-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Tue Feb 24</td>
+            <td>
+              <div class="cal-event">Consumer Confidence (February)</div>
+              <div class="cal-why">Sentiment check after weeks of tariff and inflation headlines</div>
+            </td>
+            <td><span class="heat-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Tue Feb 24</td>
+            <td>
+              <div class="cal-event">Home Depot Earnings (HD)</div>
+              <div class="cal-why">Housing proxy; tariff impact on building materials is the key question</div>
+            </td>
+            <td><span class="heat-med">Medium</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Tue Feb 24</td>
+            <td>
+              <div class="cal-event">State of the Union Address (9pm ET)</div>
+              <div class="cal-why">Trump will address tariff ruling; listen for trade policy signals</div>
+            </td>
+            <td><span class="heat-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Wed Feb 25</td>
+            <td>
+              <div class="cal-event">Nvidia Earnings After Close (NVDA)</div>
+              <div class="cal-why">$65.6B revenue consensus; AI infrastructure verdict for the whole market</div>
+            </td>
+            <td><span class="heat-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Wed Feb 25</td>
+            <td>
+              <div class="cal-event">Salesforce Earnings After Close (CRM)</div>
+              <div class="cal-why">Software sector's canary; does AI disrupt or accelerate CRM growth?</div>
+            </td>
+            <td><span class="heat-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td class="cal-day">Fri Feb 27</td>
+            <td>
+              <div class="cal-event">Producer Price Index (January)</div>
+              <div class="cal-why">Inflation pipeline check — does PPI signal more PCE heat ahead?</div>
+            </td>
+            <td><span class="heat-med">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ─── WHAT TO WATCH ───────────────────────────────── -->
+    <section class="prose fade-in">
+      <div class="section-label">Three Things to Watch</div>
+
+      <div class="callout">
+        <strong>1. Sunday night futures:</strong> Section 122 tariffs officially kick in at 12:01am Monday. Watch S&P and Nasdaq futures when Asian markets open Sunday evening. The initial tariff rate was 10%; Trump raised it to 15% Saturday. How much of that is already priced in tells you a lot about next week's tone.
+      </div>
+
+      <div class="callout callout-blue">
+        <strong>2. Nvidia's China language:</strong> The Wall Street consensus for Nvidia's Q4 revenue is $65.6 billion — and Nvidia is currently modeling zero revenue from China due to export restrictions. If Jensen Huang signals any progress on China sales during the conference call, the stock could move significantly higher. If he's silent or cautious, that $50 billion annual opportunity stays off the table.
+      </div>
+
+      <div class="callout callout-red">
+        <strong>3. Iran:</strong> Trump said 10–15 days on Thursday. That timeline expires around February 27. Any escalation — or any deal — between now and then moves crude oil, which in turn moves inflation expectations, which in turn moves Fed policy pricing. This is the wildcard nobody has a model for.
+      </div>
+    </section>
+
+    <!-- ─── SUNDAY THESIS ───────────────────────────────── -->
+    <section class="thesis-box fade-in">
+      <div class="thesis-label">The Sunday Thesis</div>
+      <p class="thesis-text">
+        The market's ability to finish a week higher despite a landmark legal ruling, a GDP miss of historic proportions, hot PCE inflation, and an Iran ultimatum tells you something important: <strong>dip buyers are real, and they're patient</strong>. But Wednesday's Nvidia report is not a routine earnings beat — it is a referendum on whether the AI spending cycle is intact. If Nvidia guides down or margins disappoint, the one sector that has held the market together loses its narrative. That would be a different week entirely.
+      </p>
+    </section>
+
+    <!-- ─── SOURCES ─────────────────────────────────────── -->
+    <section class="sources fade-in">
+      <div class="sources-title">Sources</div>
+      <div class="sources-list">
+        <a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf" target="_blank" rel="noopener">Supreme Court — Learning Resources v. Trump, No. 24-1287 (Feb. 20, 2026)</a>
+        <a href="https://www.cfr.org/articles/after-the-supreme-court-ruling-what-is-next-for-trumps-tariffs" target="_blank" rel="noopener">Council on Foreign Relations — What Is Next for Trump's Tariffs?</a>
+        <a href="https://www.wilmerhale.com/en/insights/client-alerts/20260220-supreme-court-strikes-down-ieepa-tariffs-what-now" target="_blank" rel="noopener">WilmerHale — Supreme Court Strikes Down IEEPA Tariffs: What Now?</a>
+        <a href="https://www.cnbc.com/2026/02/20/trump-global-trade-tariff-supreme-court.html" target="_blank" rel="noopener">CNBC — Trump announces 10% global tariff after raging over Supreme Court loss</a>
+        <a href="https://www.nbcnews.com/politics/supreme-court/supreme-court-strikes-trumps-tariffs-major-blow-president-rcna244827" target="_blank" rel="noopener">NBC News — Supreme Court strikes down most of Trump's tariffs</a>
+        <a href="https://www.stockrover.com/homepage/rovers-weekly-market-brief-02-20-2026/" target="_blank" rel="noopener">Stock Rover — Weekly Market Brief, Feb. 20, 2026</a>
+        <a href="https://www.schwab.com/learn/story/weekly-traders-outlook" target="_blank" rel="noopener">Charles Schwab — Weekly Trader's Outlook, Feb. 20, 2026</a>
+        <a href="https://www.schwab.com/learn/story/stock-market-update-open" target="_blank" rel="noopener">Charles Schwab — Market Open: GDP &amp; PCE, Feb. 20, 2026</a>
+        <a href="https://www.lpl.com/research/blog/weekly-market-performance-february-20-2026.html" target="_blank" rel="noopener">LPL Research — Weekly Market Performance, Feb. 20, 2026</a>
+        <a href="https://finance.yahoo.com/news/nvidia-earnings-scotus-tariff-fallout-geopolitical-tensions-rise-what-to-watch-this-week-124717965.html" target="_blank" rel="noopener">Yahoo Finance — What to Watch: Week of Feb. 23–27, 2026</a>
+        <a href="https://www.fool.com/investing/2026/02/22/feb-25-nvidia-important-things-watch-earnings/" target="_blank" rel="noopener">Motley Fool — 3 Things to Watch in Nvidia's Feb. 25 Earnings</a>
+        <a href="https://www.blackrock.com/us/individual/insights/blackrock-investment-institute/weekly-commentary" target="_blank" rel="noopener">BlackRock Investment Institute — Weekly Commentary, Feb. 17, 2026</a>
+      </div>
+    </section>
+
+    <!-- ─── DISCLAIMER ──────────────────────────────────── -->
+    <p class="disclaimer">
+      This note is for educational and informational purposes only. Nothing here is financial advice or a recommendation to buy, sell, or hold any security. All data reflects publicly available sources as of February 22, 2026. Markets move fast — verify figures before acting on them.
+    </p>
+
+  </div><!-- /page -->
+
+  <script>
+    // ── Progress bar
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (window.scrollY / (h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = pct + '%';
+    });
+
+    // ── Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Stagger summary icons inside details
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        const icon = d.querySelector('.summary-icon');
+        if (icon) icon.textContent = d.open ? '×' : '+';
+      });
+    });
+  </script>
+
+</body>
+</html>
