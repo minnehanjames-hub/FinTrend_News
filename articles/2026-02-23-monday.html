@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monday Outlook — February 23, 2026 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Section 122 tariffs at 15% kick in tomorrow. Futures opened lower. The EU is pushing back. Waller spoke. And Nvidia reports Wednesday. Here's how to frame the week." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --bg:          #04070f;
+      --bg-card:     rgba(10,17,35,0.96);
+      --accent:      #f4c15d;
+      --accent-soft: rgba(244,193,93,0.10);
+      --accent-dim:  rgba(244,193,93,0.05);
+      --green:       #4ade80;
+      --green-soft:  rgba(74,222,128,0.09);
+      --red:         #f87171;
+      --red-soft:    rgba(248,113,113,0.09);
+      --blue:        #60a5fa;
+      --blue-soft:   rgba(96,165,250,0.09);
+      --orange:      #fb923c;
+      --text:        #f9fafb;
+      --muted:       #9ca3af;
+      --border:      rgba(148,163,184,0.16);
+      --border-mid:  rgba(148,163,184,0.28);
+      --max:         720px;
+      --r:           13px;
+      --r-lg:        20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: radial-gradient(ellipse at 30% 0%, #0d1b38 0%, #020614 55%, #000 100%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+      font-size: 16px;
+    }
+
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--orange));
+      z-index: 999; transition: width 0.1s linear;
+    }
+
+    .page { max-width: var(--max); margin: 0 auto; padding: 48px 20px 80px; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--muted); text-decoration: none; margin-bottom: 40px;
+      transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 44px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid rgba(244,193,93,0.30);
+      background: var(--accent-soft);
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--accent); margin-bottom: 20px;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(0.75); }
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.16; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 17px; color: var(--muted);
+      line-height: 1.65; max-width: 640px; margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted);
+    }
+
+    .hero-divider {
+      margin: 30px 0 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent); opacity: 0.30;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.22em; color: var(--muted);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-mid); }
+
+    /* ── FUTURES STRIP ── */
+    .futures-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 10px; margin-bottom: 44px;
+    }
+    .future-tile {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 13px 14px 11px;
+      transition: border-color 0.2s, transform 0.18s;
+    }
+    .future-tile:hover { border-color: rgba(244,193,93,0.3); transform: translateY(-2px); }
+    .future-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 5px; }
+    .future-val { font-family: "JetBrains Mono", monospace; font-size: 17px; font-weight: 500; line-height: 1; margin-bottom: 3px; }
+    .future-change { font-family: "JetBrains Mono", monospace; font-size: 11px; }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--muted); }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--accent-dim);
+      border-radius: 0 var(--r) var(--r) 0; padding: 15px 18px; margin: 0 0 28px;
+      font-size: 14px; color: #e5e7eb; line-height: 1.65;
+    }
+    .callout strong { color: var(--accent); }
+    .callout-red   { border-left-color: var(--red);   background: var(--red-soft);   }
+    .callout-blue  { border-left-color: var(--blue);  background: var(--blue-soft);  }
+    .callout-green { border-left-color: var(--green); background: var(--green-soft); }
+
+    /* ── PROSE ── */
+    .prose { margin-bottom: 44px; }
+    .prose p { font-size: 15.5px; line-height: 1.82; color: #d1d5db; margin-bottom: 18px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* ── SIGNAL CARDS ── */
+    .signals { display: flex; flex-direction: column; gap: 14px; margin-bottom: 44px; }
+
+    .signal-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 20px 22px 16px;
+      transition: border-color 0.2s;
+    }
+    .signal-card:hover { border-color: rgba(244,193,93,0.28); }
+
+    .signal-header { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 11px; }
+    .signal-icon {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+      background: var(--accent-soft); border: 1px solid rgba(244,193,93,0.18);
+    }
+    .signal-title {
+      font-family: "Playfair Display", serif;
+      font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--text);
+    }
+    .signal-tag { font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); margin-top: 2px; }
+    .signal-body { font-size: 14px; color: #c4cdd8; line-height: 1.72; }
+    .signal-body p { margin-bottom: 9px; }
+    .signal-body p:last-child { margin-bottom: 0; }
+    .signal-body strong { color: var(--text); }
+    .signal-body em { font-style: italic; color: var(--muted); }
+
+    /* ── EVENTS ── */
+    .events-section { margin-bottom: 44px; }
+
+    .event-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden; margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .event-card:hover { border-color: rgba(244,193,93,0.2); }
+
+    .event-day-header {
+      padding: 9px 18px; background: rgba(244,193,93,0.06);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .event-day-name {
+      font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em;
+    }
+    .event-day-date { font-size: 11px; color: var(--muted); }
+
+    .event-row {
+      display: grid; grid-template-columns: 92px 1fr 104px;
+      gap: 12px; padding: 14px 18px;
+      border-bottom: 1px solid var(--border); align-items: start;
+    }
+    .event-row:last-child { border-bottom: none; }
+
+    .event-time {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; color: var(--muted); padding-top: 2px; white-space: nowrap;
+    }
+    .event-name { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+    .event-who  { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .event-why  { font-size: 12.5px; color: #b0b9c6; line-height: 1.58; }
+
+    .heat-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 3px 9px; border-radius: 999px; font-size: 9px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em; white-space: nowrap;
+      align-self: start; margin-top: 2px;
+    }
+    .heat-high   { background: rgba(248,113,113,0.14); color: var(--red);   border: 1px solid rgba(248,113,113,0.28); }
+    .heat-medium { background: rgba(244,193,93,0.11);  color: var(--accent); border: 1px solid rgba(244,193,93,0.26); }
+    .heat-low    { background: rgba(148,163,184,0.09); color: var(--muted);  border: 1px solid rgba(148,163,184,0.2); }
+    .heat-critical { background: rgba(251,146,60,0.14); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+
+    .earnings-badge {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+      background: rgba(96,165,250,0.11); color: var(--blue);
+      border: 1px solid rgba(96,165,250,0.24); margin-left: 5px; vertical-align: middle;
+    }
+
+    /* ── KEY LEVELS ── */
+    .levels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 44px; }
+    .level-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 15px; }
+    .level-name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 8px; }
+    .level-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 12.5px;
+    }
+    .level-row:last-child { border-bottom: none; }
+    .level-label { color: #c4cdd8; }
+    .level-val { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--text); }
+    .level-note { font-size: 11px; color: var(--muted); }
+
+    /* ── QUIZ ── */
+    .quiz-box {
+      background: var(--bg-card); border: 1px solid rgba(244,193,93,0.22);
+      border-radius: var(--r-lg); padding: 24px; margin-bottom: 44px;
+    }
+    .quiz-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--accent); margin-bottom: 14px; }
+    .quiz-q { font-family: "Playfair Display", serif; font-size: 17px; line-height: 1.5; margin-bottom: 18px; color: var(--text); }
+    .quiz-options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
+    .quiz-option {
+      background: rgba(15,23,42,0.7); border: 1px solid var(--border-mid);
+      border-radius: 9px; padding: 11px 16px; font-size: 13.5px; color: #d1d5db;
+      cursor: pointer; transition: all 0.18s; text-align: left;
+    }
+    .quiz-option:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }
+    .quiz-option.correct { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .quiz-option.wrong   { border-color: var(--red);   background: var(--red-soft);   color: var(--red);   }
+    .quiz-feedback { display: none; padding: 12px 16px; border-radius: 9px; font-size: 13px; line-height: 1.6; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: var(--green-soft); border: 1px solid rgba(74,222,128,0.2); color: #a7f3d0; }
+    .quiz-feedback.wrong-fb   { background: var(--red-soft);   border: 1px solid rgba(248,113,113,0.2); color: #fca5a5; }
+
+    /* ── POLL ── */
+    .poll-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 24px; margin-bottom: 44px;
+    }
+    .poll-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); margin-bottom: 12px; }
+    .poll-q { font-family: "Playfair Display", serif; font-size: 17px; line-height: 1.45; margin-bottom: 18px; }
+    .poll-options { display: flex; flex-direction: column; gap: 9px; }
+    .poll-option {
+      background: rgba(15,23,42,0.7); border: 1px solid var(--border-mid);
+      border-radius: 9px; padding: 11px 16px; font-size: 13.5px; color: #d1d5db;
+      cursor: pointer; transition: all 0.18s; text-align: left; position: relative; overflow: hidden;
+    }
+    .poll-option:hover:not(.voted) { border-color: var(--accent); color: var(--text); }
+    .poll-bar { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(244,193,93,0.10); width: 0%; transition: width 0.5s ease; border-radius: 9px; }
+    .poll-text { position: relative; z-index: 1; }
+    .poll-pct  { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); display: none; z-index: 1; }
+    .poll-option.voted .poll-pct { display: block; }
+    .poll-option.my-pick { border-color: var(--accent); }
+
+    /* ── THESIS ── */
+    .thesis-box {
+      background: var(--bg-card); border: 1px solid rgba(244,193,93,0.22);
+      border-radius: var(--r-lg); padding: 26px; margin-bottom: 44px;
+      position: relative; overflow: hidden;
+    }
+    .thesis-box::before {
+      content: '"'; position: absolute; top: -12px; left: 16px;
+      font-family: "Playfair Display", serif; font-size: 110px;
+      color: rgba(244,193,93,0.05); line-height: 1;
+    }
+    .thesis-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--accent); margin-bottom: 12px; }
+    .thesis-text { font-family: "Playfair Display", serif; font-size: 17px; font-style: italic; line-height: 1.6; color: #e5e7eb; }
+    .thesis-text strong { font-style: normal; color: var(--accent); }
+
+    /* ── SOURCES ── */
+    .sources { border-top: 1px solid var(--border); padding-top: 26px; margin-bottom: 28px; }
+    .sources-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 10px; }
+    .sources-list { display: flex; flex-direction: column; gap: 4px; }
+    .sources-list a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .sources-list a:hover { color: var(--accent); text-decoration: underline; }
+
+    .disclaimer { font-size: 11px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 22px; }
+
+    /* ── FADE-IN ── */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 560px) {
+      .futures-strip { grid-template-columns: repeat(2, 1fr); }
+      .levels-grid   { grid-template-columns: 1fr; }
+      .event-row     { grid-template-columns: 1fr; gap: 5px; }
+      .event-time    { font-size: 10px; color: var(--accent); }
+      .heat-badge    { align-self: auto; width: fit-content; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress-bar"></div>
+  <div class="page">
+
+    <a href="../index.html" class="back-link">← Back to FinTrend News</a>
+
+    <!-- ── HERO ── -->
+    <header class="hero fade-in">
+      <div class="hero-badge">Monday Outlook</div>
+      <h1>The Tariff Clock<br>Starts <em>Tomorrow</em></h1>
+      <p class="hero-sub">Section 122 tariffs hit 15% at 12:01am Tuesday. Futures opened in the red Sunday night. The EU is pushing back. Fed Governor Waller spoke this morning. And Nvidia reports Wednesday in what could be the most consequential earnings release of Q1. Here's how to frame the week.</p>
+      <div class="hero-meta">
+        <span>📅 Monday, February 23, 2026</span>
+        <span>⏱ 7 min read</span>
+        <span>🗓 Week of Feb 23–27</span>
+      </div>
+      <div class="hero-divider"></div>
+    </header>
+
+    <!-- ── FUTURES ── -->
+    <section class="fade-in">
+      <div class="section-label">Monday Morning Snapshot</div>
+      <div class="futures-strip">
+        <div class="future-tile">
+          <div class="future-label">S&amp;P 500 Futs</div>
+          <div class="future-val down">−0.4%</div>
+          <div class="future-change down">Red at open</div>
+        </div>
+        <div class="future-tile">
+          <div class="future-label">Nasdaq-100</div>
+          <div class="future-val down">−0.6%</div>
+          <div class="future-change down">Tech leads lower</div>
+        </div>
+        <div class="future-tile">
+          <div class="future-label">Dow Futs</div>
+          <div class="future-val down">−219 pts</div>
+          <div class="future-change down">−0.4%</div>
+        </div>
+        <div class="future-tile">
+          <div class="future-label">Gold</div>
+          <div class="future-val up">+1–2%</div>
+          <div class="future-change up">Safe-haven bid</div>
+        </div>
+        <div class="future-tile">
+          <div class="future-label">Bitcoin</div>
+          <div class="future-val down">~$66K</div>
+          <div class="future-change down">Briefly &lt;$65K</div>
+        </div>
+        <div class="future-tile">
+          <div class="future-label">VIX</div>
+          <div class="future-val flat">~19–20</div>
+          <div class="future-change flat">Elevated, not fearful</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ONE-LINER ── -->
+    <div class="callout fade-in">
+      <strong>The week in one sentence:</strong> Markets are still digesting the gap between Friday's relief rally (tariffs struck down!) and Saturday's reality check (15% tariffs signed anyway) — and the answer to which version wins arrives Wednesday when Nvidia reports after the bell.
+    </div>
+
+    <!-- ── THREE SIGNALS ── -->
+    <section class="fade-in">
+      <div class="section-label">Three Signals Setting the Tone</div>
+      <div class="signals">
+
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-icon">⚖️</div>
+            <div>
+              <div class="signal-title">The Weekend Whiplash: 10% → 15% Before Markets Opened</div>
+              <div class="signal-tag">Trade Policy · Section 122 · EU Reaction</div>
+            </div>
+          </div>
+          <div class="signal-body">
+            <p>Friday's Supreme Court ruling wiped out IEEPA tariffs. Markets celebrated — the S&amp;P finished Friday up 0.7%. Then Saturday arrived. Trump posted on Truth Social raising the Section 122 tariff rate from 10% to the <strong>statutory maximum of 15%</strong>, "effective immediately." The 15% officially lands at 12:01am Tuesday on most U.S. imports. USMCA-compliant Canadian and Mexican goods are exempt. Steel and autos already covered by Section 232 are exempt. Everything else faces the new surcharge.</p>
+            <p>According to Global Trade Alert, the trade-weighted average U.S. tariff rate is now <strong>13.2%</strong> under Section 122 at 15% — compared to 15.3% before the Supreme Court ruling. So tariffs came down slightly overall from their IEEPA peak, but the weekend jump from 10% to 15% is what spooked Sunday night futures. The EU responded Sunday saying it "will not accept any increase in tariffs." India delayed a planned trade visit to Washington. Customs and Border Protection hasn't yet updated its systems to stop collecting the now-illegal IEEPA tariffs, adding operational confusion for importers.</p>
+            <p>Strategist Ed Yardeni's read: <em>"It was much easier when he could use tariffs as a sledgehammer. Now it's become sort of a rubber mallet."</em> Section 122 has a built-in 150-day clock expiring July 24. The administration's plan is to use that window to complete Section 232 and Section 301 investigations, then replace the flat rate with targeted permanent tariffs before it runs out.</p>
+          </div>
+        </div>
+
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-icon">🏦</div>
+            <div>
+              <div class="signal-title">Fed's Waller Spoke — Cautious, Not Committed</div>
+              <div class="signal-tag">Federal Reserve · Rates · Inflation</div>
+            </div>
+          </div>
+          <div class="signal-body">
+            <p>Fed Governor Christopher Waller spoke this morning and offered markets little comfort on rate cuts. After dissenting at January's meeting — he wanted to cut — Waller is now <strong>noncommittal on the path forward</strong>. He acknowledged the labor market is mixed and that last month's payrolls number may be "more noise than signal." He expects inflation to ease through the year but isn't ready to call for cuts yet.</p>
+            <p>This matters because rate-cut expectations already collapsed after last week's hot PCE report (core at 0.4% month-over-month). March cut probability: 5%. June: 57%, down from 85% a week ago. Waller isn't the only Fed voice this week — <strong>Goolsbee, Bostic, and Cook all speak Tuesday</strong>. Three in one day is unusual, suggesting the Fed may be actively trying to shape market expectations before next month's meeting. If all three sound patient or cautious, long-duration assets and high-multiple tech face more pressure.</p>
+          </div>
+        </div>
+
+        <div class="signal-card">
+          <div class="signal-header">
+            <div class="signal-icon">📊</div>
+            <div>
+              <div class="signal-title">Markets Are Numb to Tariff Headlines — But Not Immune</div>
+              <div class="signal-tag">Sentiment · Positioning · Volatility</div>
+            </div>
+          </div>
+          <div class="signal-body">
+            <p>The most telling thing about this morning: futures are down 0.4–0.6%, not 2–3%. Traders have learned that no tariff statement from this administration is treated as durable. The market is choosing — for now — to focus on earnings and economic fundamentals rather than the trade policy noise. As Yardeni put it: <em>"Sit still and do nothing."</em></p>
+            <p>Gold up 1–2% is the hedge, not a panic signal. Bitcoin's brief dip below $65,000 is a liquidity reaction, not a macro call. The VIX at ~19–20 is elevated but not screaming. The market is cautious and watchful heading into a week with several binary outcomes — most importantly, Nvidia Wednesday. That report is the real sentiment arbiter for the week.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── EVENTS CALENDAR ── -->
+    <section class="events-section fade-in">
+      <div class="section-label">This Week's Events — Who They Affect &amp; Why</div>
+
+      <!-- MONDAY FEB 23 -->
+      <div class="event-card">
+        <div class="event-day-header">
+          <span class="event-day-name">Monday</span>
+          <span class="event-day-date">Feb 23</span>
+        </div>
+        <div class="event-row">
+          <div class="event-time">10:00am ET</div>
+          <div class="event-main">
+            <div class="event-name">Factory Orders &amp; Durable Goods — December Final</div>
+            <div class="event-who">👥 Who it moves: Industrial stocks, manufacturers, freight &amp; logistics</div>
+            <div class="event-why">Last week's GDP printed at 1.4% — half of what Wall Street expected. Factory Orders for December tell us whether business investment and equipment spending actually weakened on their own, or whether the miss was mostly government-shutdown noise. A weak number firms up the stagflation story. A solid number provides relief and gives the Fed more room to stay patient without being accused of ignoring the economy.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Dominion Energy (D) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: Utilities, energy infrastructure, AI power demand investors</div>
+            <div class="event-why">Dominion is a key proxy for the power grid buildout story. AI data centers are driving electricity demand to decade highs, and Dominion operates in some of the densest data center corridors in the U.S. (Northern Virginia). Any update on capacity expansion plans, regulatory approvals, or forward demand contracts feeds directly into the AI infrastructure narrative heading into Nvidia Wednesday.</div>
+          </div>
+          <div class="heat-badge heat-low">Low–Med</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Diamondback Energy (FANG) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: Energy sector, oil &amp; gas investors, inflation trackers</div>
+            <div class="event-why">With Iran tensions pushing crude above $66 and oil up 15% since January 1, Diamondback's results and guidance give a real-time read on U.S. shale output capacity and the profitability of domestic oil production at current prices. Higher oil prices are good for energy stocks but bad for inflation — and the Fed is already watching energy costs carefully.</div>
+          </div>
+          <div class="heat-badge heat-low">Low–Med</div>
+        </div>
+      </div>
+
+      <!-- TUESDAY FEB 24 -->
+      <div class="event-card">
+        <div class="event-day-header">
+          <span class="event-day-name">Tuesday</span>
+          <span class="event-day-date">Feb 24</span>
+        </div>
+        <div class="event-row">
+          <div class="event-time">12:01am ET</div>
+          <div class="event-main">
+            <div class="event-name">Section 122 Tariffs Go Live — 15% Global Levy</div>
+            <div class="event-who">👥 Who it moves: Every importer — apparel, consumer electronics, retailers, auto parts, general merchandise</div>
+            <div class="event-why">This is the structural event of the week. The 15% flat tariff applies to most U.S. imports for 150 days. Key exemptions: USMCA-qualifying Canadian and Mexican goods, products already covered by Section 232 (steel, aluminium, autos, copper, lumber), and goods with in-transit exemptions loaded before Feb 24 and cleared before Feb 28. For companies with heavy import exposure — especially apparel, consumer electronics, and general merchandise — this is an immediate margin pressure event. Expect management teams on earnings calls all week to field questions about supply chain exposure and pricing power.</div>
+          </div>
+          <div class="heat-badge heat-high">HIGH</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">10:00am ET</div>
+          <div class="event-main">
+            <div class="event-name">Consumer Confidence — February (Conference Board)</div>
+            <div class="event-who">👥 Who it moves: Consumer discretionary stocks, retailers, auto companies, housing</div>
+            <div class="event-why">University of Michigan sentiment ticked up marginally to 56.6 in February — still historically depressed. The Conference Board's measure focuses more on purchasing intentions than feelings, making it a harder economic signal. With tariff uncertainty building and inflation readings running hot, any meaningful drop in confidence signals the consumer may finally be pulling back. Consumer spending is roughly 70% of U.S. GDP — this is not a throwaway release.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">All day</div>
+          <div class="event-main">
+            <div class="event-name">Fed Speakers: Goolsbee, Bostic, Cook</div>
+            <div class="event-who">👥 Who it moves: Bonds, rate-sensitive equities (utilities, REITs), tech valuations, the dollar</div>
+            <div class="event-why">Three Fed officials speaking on the same day is a coordinated signal, not a coincidence. Goolsbee (Chicago) has been dovish. Bostic (Atlanta) is projecting just one cut in 2026. Cook has been measured. If all three sound patient or lean hawkish after last week's hot PCE, June cut odds fall further from their current 57%. Lower rate-cut expectations compress valuations on long-duration assets and high-multiple tech, two categories already under pressure from the AI-disrupts-software narrative.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">9:00pm ET</div>
+          <div class="event-main">
+            <div class="event-name">State of the Union Address — President Trump</div>
+            <div class="event-who">👥 Who it moves: All markets — trade policy, defense, energy, healthcare, fiscal outlook</div>
+            <div class="event-why">The SOTU lands the same night the Section 122 tariffs take effect. Trump will almost certainly address the Supreme Court ruling and frame the 15% tariff as a strength move, not a retreat. Watch for: any language about the 150-day clock and congressional extension plans; signals about Section 232/301 investigation timelines; any new trade deal announcements or threats; commentary on Iran. Asian futures markets will react before U.S. markets open Wednesday — the SOTU sets the tone for Nvidia day.</div>
+          </div>
+          <div class="heat-badge heat-high">HIGH</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Home Depot (HD) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: Housing sector, home improvement retail, building materials, consumer spending</div>
+            <div class="event-why">Home Depot is one of the cleanest proxies for housing market health and the DIY consumer. After last week's NAHB housing confidence index dropped to 36 and pending home sales fell 0.8%, Home Depot's guidance tells us whether affordability stress is translating into actual purchase pullbacks. Tariff exposure is also key — Home Depot imports significant amounts of building materials and tools. Management's commentary on the 15% tariff impact on costs will be closely scrutinised.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+      </div>
+
+      <!-- WEDNESDAY FEB 25 -->
+      <div class="event-card">
+        <div class="event-day-header">
+          <span class="event-day-name">Wednesday</span>
+          <span class="event-day-date">Feb 25</span>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Nvidia (NVDA) Q4 FY2026 Earnings <span class="earnings-badge">🔥 Earnings</span></div>
+            <div class="event-who">👥 Who it moves: The entire technology sector, AI supply chain, semiconductor stocks, and broad market sentiment</div>
+            <div class="event-why">This is the event of the week — and possibly the event of Q1. Wall Street expects $65.6B in revenue (up 65% year-over-year) and $1.52 EPS. Nvidia has beaten estimates twelve consecutive quarters. Polymarket assigns a 94.5% probability of a beat. But the real question isn't whether Nvidia beats — it's what Jensen Huang says about the forward outlook. Three things to watch: (1) <strong>Blackwell ramp</strong> — the GB300 chip now represents two-thirds of Blackwell revenue; does the $500B combined Blackwell/Rubin pipeline through end-2026 stay intact? (2) <strong>China</strong> — Nvidia currently assumes zero China revenue due to export restrictions; any signal that access is opening could add tens of billions to the forward outlook. (3) <strong>Margins</strong> — gross margins have been under pressure; investors need to see stability here. A miss or cautious guidance risks triggering a selloff across the entire AI-adjacent sector at a time when software stocks are already fragile.</div>
+          </div>
+          <div class="heat-badge heat-critical">🔥 Critical</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Salesforce (CRM) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: Software sector, SaaS stocks, enterprise tech broadly</div>
+            <div class="event-why">Software has been the most beaten-down corner of tech in 2026 because of one central fear: AI agents are replacing software workflows rather than augmenting them. Salesforce reporting strong AI-driven revenue growth — particularly from its Agentforce product — would be powerful evidence that legacy software can adapt. A weak report, or commentary about losing enterprise deals to AI alternatives, deepens the narrative that has already crushed the sector this year. Snowflake also reports Wednesday, adding a second datapoint to the same question.</div>
+          </div>
+          <div class="heat-badge heat-high">HIGH</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Lowe's (LOW) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: Housing sector, home improvement, consumer spending</div>
+            <div class="event-why">Back-to-back with Home Depot on Tuesday, Lowe's completes the housing-adjacent consumer picture. If both report weakness, it signals the housing recovery has stalled. If both hold up despite affordability headwinds, the consumer is more resilient than the macro data suggests. Tariff exposure on building materials is an identical question for Lowe's management.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+      </div>
+
+      <!-- THURSDAY FEB 26 -->
+      <div class="event-card">
+        <div class="event-day-header">
+          <span class="event-day-name">Thursday</span>
+          <span class="event-day-date">Feb 26</span>
+        </div>
+        <div class="event-row">
+          <div class="event-time">8:30am ET</div>
+          <div class="event-main">
+            <div class="event-name">Initial Jobless Claims (Week of Feb 21)</div>
+            <div class="event-who">👥 Who it moves: Rate cut expectations, consumer sentiment, broad equities</div>
+            <div class="event-why">Claims fell sharply last week to 206K — well below the 223K estimate and one of the cleanest signals that the labor market isn't collapsing despite slowing growth. If claims tick back up meaningfully toward 230K+, it reopens the question of whether the labor market is softening faster than headline payrolls suggest. The Fed's permission slip to cut rates runs directly through this number — a weakening labor market is the one thing that could override the Fed's inflation patience.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">After close</div>
+          <div class="event-main">
+            <div class="event-name">Dell Technologies (DELL) Earnings <span class="earnings-badge">Earnings</span></div>
+            <div class="event-who">👥 Who it moves: AI server market, enterprise IT, data centre infrastructure stocks</div>
+            <div class="event-why">Dell is a major assembler of AI servers built around Nvidia's GPUs. Its results either confirm or contradict Nvidia's demand narrative from the night before. Strong AI server order growth corroborates the buildout story. Slowing orders or cautious guidance is a yellow flag for the whole sector — and for the idea that Nvidia's chips are being absorbed at the pace the market expects. Dell also gives a broader read on enterprise IT spending.</div>
+          </div>
+          <div class="heat-badge heat-medium">Medium</div>
+        </div>
+      </div>
+
+      <!-- FRIDAY FEB 27 -->
+      <div class="event-card">
+        <div class="event-day-header">
+          <span class="event-day-name">Friday</span>
+          <span class="event-day-date">Feb 27</span>
+        </div>
+        <div class="event-row">
+          <div class="event-time">8:30am ET</div>
+          <div class="event-main">
+            <div class="event-name">Producer Price Index (PPI) — January</div>
+            <div class="event-who">👥 Who it moves: Fed policy, inflation-sensitive sectors, bond yields, consumer goods companies, retailers</div>
+            <div class="event-why">PPI measures inflation at the wholesale level — the prices producers pay before they pass costs downstream to consumers. After last Friday's hot PCE reading (core at 0.4% month-over-month), PPI tells us whether pipeline cost pressures are building or easing. A hot PPI print after a hot PCE print is the worst-case scenario for the Fed: it signals inflation is systemic, not just a blip. With new 15% tariffs adding to input costs starting this week, a hot January PPI would reinforce the stagflation narrative that has been building since the GDP miss.</div>
+          </div>
+          <div class="heat-badge heat-high">HIGH</div>
+        </div>
+        <div class="event-row">
+          <div class="event-time">9:45am ET</div>
+          <div class="event-main">
+            <div class="event-name">Chicago PMI — February</div>
+            <div class="event-who">👥 Who it moves: Industrial stocks, manufacturers, regional economic sentiment</div>
+            <div class="event-why">The Chicago-region Purchasing Managers' Index is an early read on whether manufacturing activity is expanding or contracting. Last week's Flash PMI from S&P Global showed U.S. business activity slowed to a 10-month low, with weakened demand, high prices, and adverse weather cited. Chicago PMI either confirms that softness or pushes back against it — providing context heading into next week's national ISM data.</div>
+          </div>
+          <div class="heat-badge heat-low">Low</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── LEVELS ── -->
+    <section class="fade-in">
+      <div class="section-label">Levels Worth Watching</div>
+      <div class="levels-grid">
+        <div class="level-tile">
+          <div class="level-name">S&amp;P 500</div>
+          <div class="level-row"><span class="level-label">Last close</span><span class="level-val">~6,892</span></div>
+          <div class="level-row"><span class="level-label">Support</span><span class="level-val level-note">~6,800 (50-day SMA)</span></div>
+          <div class="level-row"><span class="level-label">Resistance</span><span class="level-val level-note">6,900 ceiling</span></div>
+        </div>
+        <div class="level-tile">
+          <div class="level-name">Nasdaq-100</div>
+          <div class="level-row"><span class="level-label">Key level</span><span class="level-val">100-day SMA</span></div>
+          <div class="level-row"><span class="level-label">Status</span><span class="level-val level-note">Still below it</span></div>
+          <div class="level-row"><span class="level-label">Catalyst</span><span class="level-val level-note">Nvidia Wednesday</span></div>
+        </div>
+        <div class="level-tile">
+          <div class="level-name">10-Year Yield</div>
+          <div class="level-row"><span class="level-label">Current</span><span class="level-val">~4.07%</span></div>
+          <div class="level-row"><span class="level-label">Watch</span><span class="level-val level-note">4.20% as ceiling</span></div>
+          <div class="level-row"><span class="level-label">Key date</span><span class="level-val level-note">PPI Friday</span></div>
+        </div>
+        <div class="level-tile">
+          <div class="level-name">Crude Oil</div>
+          <div class="level-row"><span class="level-label">Last price</span><span class="level-val">~$66/bbl</span></div>
+          <div class="level-row"><span class="level-label">Wildcard</span><span class="level-val level-note">Iran deadline ~Feb 27</span></div>
+          <div class="level-row"><span class="level-label">Watch</span><span class="level-val level-note">$70 if tensions spike</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── QUIZ ── -->
+    <section class="quiz-box fade-in">
+      <div class="quiz-label">📝 Test Your Knowledge</div>
+      <p class="quiz-q">Section 122 tariffs expire in 150 days. What has to happen for them to be extended beyond July 24?</p>
+      <div class="quiz-options" id="quiz-opts">
+        <button class="quiz-option" onclick="answerQuiz(this,false)">The president signs a new executive order, resetting the 150-day clock</button>
+        <button class="quiz-option" onclick="answerQuiz(this,true)">Congress must vote to extend them — the president cannot renew unilaterally</button>
+        <button class="quiz-option" onclick="answerQuiz(this,false)">The Commerce Department certifies that a balance-of-payments crisis still exists</button>
+        <button class="quiz-option" onclick="answerQuiz(this,false)">The WTO must approve a continuation request from the U.S. Trade Representative</button>
+      </div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+    </section>
+
+    <!-- ── POLL ── -->
+    <section class="poll-box fade-in">
+      <div class="poll-label">📊 Reader Poll</div>
+      <p class="poll-q">Which event will have the biggest market impact this week?</p>
+      <div class="poll-options" id="poll-opts">
+        <button class="poll-option" onclick="vote(this,0)">
+          <div class="poll-bar"></div>
+          <span class="poll-text">🟢 Nvidia earnings Wednesday</span>
+          <span class="poll-pct"></span>
+        </button>
+        <button class="poll-option" onclick="vote(this,1)">
+          <div class="poll-bar"></div>
+          <span class="poll-text">⚖️ Section 122 tariffs taking effect Tuesday</span>
+          <span class="poll-pct"></span>
+        </button>
+        <button class="poll-option" onclick="vote(this,2)">
+          <div class="poll-bar"></div>
+          <span class="poll-text">🎤 State of the Union address Tuesday night</span>
+          <span class="poll-pct"></span>
+        </button>
+        <button class="poll-option" onclick="vote(this,3)">
+          <div class="poll-bar"></div>
+          <span class="poll-text">📊 PPI inflation data Friday</span>
+          <span class="poll-pct"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── THESIS ── -->
+    <section class="thesis-box fade-in">
+      <div class="thesis-label">Monday's Thesis</div>
+      <p class="thesis-text">The tariff story just changed vehicles — IEEPA is gone, Section 122 is in — but the destination looks roughly the same. The real question this week isn't what tariff rate applies; it's whether the <strong>AI earnings cycle is intact</strong>. Nvidia answering that on Wednesday matters more to market direction than every tariff headline combined. If Nvidia delivers, the market has a reason to look past the noise. If it doesn't, there is nothing holding the tech sector together through what promises to be months of continued trade policy uncertainty.</p>
+    </section>
+
+    <!-- ── SOURCES ── -->
+    <section class="sources fade-in">
+      <div class="sources-title">Sources</div>
+      <div class="sources-list">
+        <a href="https://www.cnbc.com/2026/02/23/cnbc-daily-open-trumps-reaction-to-supreme-court-tariff-ruling-seems-to-cause-more-uncertainty.html" target="_blank" rel="noopener">CNBC — Daily Open: Trump's tariff reaction adds more uncertainty, Feb 23 2026</a>
+        <a href="https://www.cnbc.com/2026/02/22/stock-market-today-live-updates.html" target="_blank" rel="noopener">CNBC — Dow futures drop 200 points as Trump raises tariffs again, Feb 23 2026</a>
+        <a href="https://www.cnbc.com/2026/02/23/trumps-tariffs-market-reaction-stocks-bitcoin.html" target="_blank" rel="noopener">CNBC — "Sit still and do nothing": markets unfazed by latest tariff salvos</a>
+        <a href="https://www.cnbc.com/2026/02/21/trump-tariffs.html" target="_blank" rel="noopener">CNBC — Trump hikes global tariffs to 15%, Feb 21 2026</a>
+        <a href="https://globaltradealert.org/reports/S122-US-Tariff-Estimates" target="_blank" rel="noopener">Global Trade Alert — Section 122 tariff rate analysis across four scenarios</a>
+        <a href="https://www.ghy.com/trade-compliance/us-10-section-122-tariff-in-effect-feb-24-ieepa-tariffs-directed-to-wind-down-de-minimis-suspension-continues/" target="_blank" rel="noopener">GHY International — Section 122 in effect Feb 24; IEEPA tariffs wind down</a>
+        <a href="https://www.cnbc.com/2026/02/20/stock-market-next-week-outlook-for-feb-23-27-2026-.html" target="_blank" rel="noopener">CNBC — Stock market next week: Outlook for Feb 23–27 2026</a>
+        <a href="https://www.schwab.com/learn/story/weekly-traders-outlook" target="_blank" rel="noopener">Charles Schwab — Weekly Trader's Outlook, Feb 20 2026</a>
+        <a href="https://www.fool.com/investing/2026/02/22/feb-25-nvidia-important-things-watch-earnings/" target="_blank" rel="noopener">Motley Fool — 3 Things to Watch in Nvidia's Feb 25 Earnings</a>
+        <a href="https://www.investing.com/analysis/liberation-day-take-2-the-tariff-machine-just-changed-gears-200675435" target="_blank" rel="noopener">Investing.com — Liberation Day Take 2: The Tariff Machine Just Changed Gears</a>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      This note is for educational and informational purposes only. Nothing here constitutes financial advice or a recommendation to buy, sell, or hold any security. All data reflects publicly available sources as of Monday, February 23, 2026. Markets move fast — verify figures before acting on them.
+    </p>
+
+  </div><!-- /page -->
+
+  <script>
+    // Progress bar
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = ((window.scrollY / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+    });
+
+    // Fade-in
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // Quiz
+    function answerQuiz(btn, correct) {
+      document.querySelectorAll('.quiz-option').forEach(o => o.disabled = true);
+      const fb = document.getElementById('quiz-feedback');
+      if (correct) {
+        btn.classList.add('correct');
+        fb.className = 'quiz-feedback show correct-fb';
+        fb.innerHTML = '✓ Correct. Section 122 explicitly requires a congressional vote to extend beyond 150 days — the president cannot unilaterally reset the clock. Congress is unlikely to grant an extension with midterms approaching. The administration\'s plan is to use the 150-day window to complete Section 232 and 301 investigations, then replace the flat rate with targeted permanent tariffs before July 24.';
+      } else {
+        btn.classList.add('wrong');
+        document.querySelectorAll('.quiz-option').forEach(o => { if (o.textContent.includes('Congress')) o.classList.add('correct'); });
+        fb.className = 'quiz-feedback show wrong-fb';
+        fb.innerHTML = '✗ Not quite. Section 122 puts extension authority with Congress, not the executive. Without a congressional vote, the tariffs expire automatically on July 24, 2026. The administration\'s plan is to complete Section 232 and Section 301 investigations during the window and replace the flat rate with targeted, permanent tariffs under those authorities before time runs out.';
+      }
+    }
+
+    // Poll
+    const votes = [48, 31, 12, 9];
+    let total = votes.reduce((a,b) => a+b, 0);
+    let voted = false;
+    function vote(btn, idx) {
+      if (voted) return;
+      voted = true;
+      votes[idx]++;
+      total++;
+      document.querySelectorAll('.poll-option').forEach((o, i) => {
+        o.classList.add('voted');
+        const pct = Math.round((votes[i] / total) * 100);
+        o.querySelector('.poll-bar').style.width = pct + '%';
+        o.querySelector('.poll-pct').textContent = pct + '%';
+        if (i === idx) o.classList.add('my-pick');
+      });
+    }
+  </script>
+
+</body>
+</html>
