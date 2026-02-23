@@ -314,10 +314,63 @@
       vertical-align: middle;
     }
 
+    /* ── MOBILE / IPHONE ─────────────────────────────────────── */
     @media (max-width: 720px) {
       .calendar-header { display: none; }
-      .calendar-row { grid-template-columns: 1fr; }
-      .week-label { font-weight: 500; padding-top: 0; margin-bottom: 4px; }
+      .calendar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .week-label {
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        padding: 8px 0 2px;
+        border-top: 1px solid rgba(148,163,184,0.15);
+        margin-top: 4px;
+      }
+      .week-label:first-child { border-top: none; }
+      .day-cell {
+        min-height: 60px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 10px;
+        align-items: start;
+        padding: 10px 11px;
+      }
+      .day-cell > div:first-child {
+        display: contents;
+      }
+      /* Stack day label + date together as left column */
+      .day-cell .day-label,
+      .day-cell .day-date {
+        grid-column: 1;
+      }
+      .day-cell .day-label {
+        font-size: 9px;
+        white-space: nowrap;
+        margin-bottom: 1px;
+      }
+      .day-cell .day-date {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e5e7eb;
+        margin-bottom: 0;
+      }
+      /* Tag and link go right column */
+      .tag-pill { grid-column: 2; margin-bottom: 2px; }
+      .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
+      .day-meta { grid-column: 2; font-size: 11px; }
+      .empty-note { grid-column: 2; font-size: 11px; margin-top: 0; }
+      /* Badge wraps ok on small screens */
+      .new-badge { font-size: 7px; padding: 1px 5px; }
+    }
+
+    @media (max-width: 400px) {
+      .day-cell { padding: 9px 10px; }
+      .day-link { font-size: 12px; }
     }
 
     .disclaimer {
@@ -384,23 +437,23 @@
                 </div>
                 <div class="day-meta">Fed minutes at 2pm ET; tech bids up on Meta-Nvidia deal; PCE Friday is the real test.</div>
               </div>
-              <div class="day-cell has-note latest">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">Feb 20</div>
                   <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/2026-02-20-friday.html" class="day-link">A Short Week That Packed a Full Year's Worth of Drama <span class="new-badge">New</span></a>
+                  <a href="articles/2026-02-20-friday.html" class="day-link">A Short Week That Packed a Full Year's Worth of Drama</a>
                 </div>
                 <div class="day-meta">Supreme Court strikes IEEPA tariffs; GDP misses at 1.4%; Walmart K-shaped consumer; Blue Owl gates private credit fund.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note latest">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Feb 22</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-02-22-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — February 22</a>
+                  <a href="articles/2026-02-22-sunday.html" class="day-link">The Court Ruled. The War Continues. <span class="new-badge">New</span></a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">SCOTUS killed IEEPA; Trump pivoted to Section 122 at 15%; GDP 1.4%; PCE hot; Nvidia Wednesday is the referendum.</div>
               </div>
             </div>
 
