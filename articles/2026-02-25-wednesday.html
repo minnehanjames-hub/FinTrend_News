@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wednesday Setup · February 25, 2026 · FinTrend News</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --bg:         #060912;
+      --surface:    #0d1221;
+      --surface-2:  #111827;
+      --gold:       #f4c15d;
+      --gold-mid:   rgba(244,193,93,0.15);
+      --gold-low:   rgba(244,193,93,0.07);
+      --red:        #f97373;
+      --green:      #4ade80;
+      --blue:       #60a5fa;
+      --text:       #eef0f6;
+      --text-mute:  #7b849a;
+      --border:     rgba(148,163,184,0.1);
+      --border-hi:  rgba(244,193,93,0.25);
+      --radius:     14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      padding: 24px 16px 80px;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(244,193,93,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,193,93,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────────────── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .site-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .site-logo span { color: var(--text-mute); font-style: italic; font-weight: 400; }
+    .header-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--text-mute);
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+    .header-meta strong { color: var(--gold); display: block; font-size: 12px; }
+
+    /* ── BADGES ─────────────────────────────────────────────────────── */
+    .label-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .badge-gold    { background: var(--gold-mid); color: var(--gold); border: 1px solid var(--border-hi); }
+    .badge-red     { background: rgba(249,115,115,0.1); color: var(--red); border: 1px solid rgba(249,115,115,0.25); }
+    .badge-blue    { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.25); }
+    .badge-green   { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.25); }
+
+    /* ── TITLE BLOCK ────────────────────────────────────────────────── */
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: #f9fafc;
+    }
+    h1 em { color: var(--gold); font-style: italic; }
+
+    .byline {
+      font-size: 13px;
+      color: var(--text-mute);
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .byline strong { color: var(--text); }
+
+    /* ── EXECUTIVE SUMMARY ──────────────────────────────────────────── */
+    .exec-box {
+      background: linear-gradient(135deg, rgba(244,193,93,0.1), rgba(244,193,93,0.04));
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 36px;
+    }
+    .exec-box .kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .exec-box p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #dfe5f0;
+      margin: 0;
+    }
+
+    /* ── FUTURES STRIP ──────────────────────────────────────────────── */
+    .futures-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .future-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .future-card .label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text-mute);
+      margin-bottom: 6px;
+    }
+    .future-card .value { font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+    .future-card .change { font-size: 12px; font-family: "JetBrains Mono", monospace; }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+
+    /* ── SECTION HEADERS ────────────────────────────────────────────── */
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      color: var(--gold);
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-hi);
+    }
+
+    p { margin-bottom: 16px; color: #dde2ee; }
+
+    ul { padding-left: 20px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; color: #dde2ee; }
+
+    /* ── CONFIRMATION GRID ──────────────────────────────────────────── */
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .signal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .signal-card .s-label {
+      font-size: 10px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 6px;
+    }
+    .signal-card .s-value {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .signal-card .s-note { font-size: 12px; color: var(--text-mute); line-height: 1.4; }
+
+    /* ── BIAS BOX ───────────────────────────────────────────────────── */
+    .bias-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin: 24px 0;
+    }
+    .bias-box .bias-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+    .bias-box .bias-call {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .bias-box p { margin: 0; font-size: 14.5px; }
+
+    /* ── KEY LEVELS ─────────────────────────────────────────────────── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .level-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .level-card h3 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .level-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .level-row:last-child { border-bottom: none; }
+    .level-row .l-name { color: var(--text-mute); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .level-row .l-val  { font-family: "JetBrains Mono", monospace; font-weight: 600; }
+    .sup { color: var(--green); }
+    .res { color: var(--red); }
+
+    /* ── CATALYST WATCH ─────────────────────────────────────────────── */
+    .catalyst-list { list-style: none; padding: 0; }
+    .catalyst-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .catalyst-list li:last-child { border-bottom: none; }
+    .c-time {
+      flex-shrink: 0;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--gold);
+      background: var(--gold-low);
+      border-radius: 6px;
+      padding: 2px 8px;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .c-content .c-title { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+    .c-content .c-desc  { font-size: 13px; color: var(--text-mute); line-height: 1.5; }
+    .priority-critical { background: rgba(249,115,115,0.1); color: var(--red); border: 1px solid rgba(249,115,115,0.25); }
+
+    /* ── RISK SCENARIO ──────────────────────────────────────────────── */
+    .risk-box {
+      background: rgba(249,115,115,0.05);
+      border: 1px solid rgba(249,115,115,0.2);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin: 24px 0;
+    }
+    .risk-box .risk-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .risk-box p { margin: 0; font-size: 14.5px; }
+
+    /* ── QUIZ ───────────────────────────────────────────────────────── */
+    .quiz-block {
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 36px 0;
+    }
+    .quiz-block .quiz-kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .quiz-block .quiz-q {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: Inter, sans-serif;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .quiz-btn:hover { border-color: var(--gold); background: var(--gold-low); }
+    .quiz-btn.correct { border-color: var(--green); background: rgba(74,222,128,0.08); color: var(--green); }
+    .quiz-btn.wrong   { border-color: var(--red);   background: rgba(249,115,115,0.08); color: var(--red); }
+    .quiz-btn.reveal  { border-color: var(--green); }
+    .quiz-result { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 14px; }
+    .quiz-result.show { display: block; }
+    .quiz-result.right { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.25); color: var(--green); }
+    .quiz-result.wrong { background: rgba(249,115,115,0.08); border: 1px solid rgba(249,115,115,0.25); color: var(--red); }
+
+    /* ── POLL ───────────────────────────────────────────────────────── */
+    .poll-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 36px 0;
+    }
+    .poll-block .poll-kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 10px;
+    }
+    .poll-block .poll-q { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+    .poll-opts { display: flex; flex-direction: column; gap: 8px; }
+    .poll-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: Inter, sans-serif;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .poll-btn:hover:not(:disabled) { border-color: var(--gold); }
+    .poll-bar-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--gold-low);
+      width: 0%;
+      transition: width 0.6s ease;
+      z-index: 0;
+    }
+    .poll-btn-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; }
+    .poll-pct { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--gold); display: none; }
+    .poll-voted .poll-pct { display: inline; }
+    .poll-result { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px; background: var(--gold-low); border: 1px solid var(--border-hi); color: var(--text-mute); }
+    .poll-result.show { display: block; }
+
+    /* ── CLOSING / VERDICT ──────────────────────────────────────────── */
+    .verdict {
+      background: linear-gradient(135deg, rgba(244,193,93,0.09), rgba(255,255,255,0.02));
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      margin-top: 40px;
+    }
+    .verdict h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .verdict p { margin: 0; font-size: 15px; }
+
+    /* ── SOURCES ────────────────────────────────────────────────────── */
+    .sources {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .sources h4 {
+      font-size: 11px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: 12px;
+    }
+    .sources ul { list-style: none; padding: 0; }
+    .sources ul li {
+      font-size: 12px;
+      color: var(--text-mute);
+      padding: 4px 0;
+      border-bottom: none;
+    }
+    .sources ul li::before { content: '→ '; color: var(--gold); }
+
+    /* ── BACK LINK ──────────────────────────────────────────────────── */
+    a.back {
+      display: inline-block;
+      margin-top: 36px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border-hi);
+      color: var(--gold);
+      font-size: 11px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    a.back:hover { background: var(--gold-mid); }
+
+    /* ── DISCLAIMER ─────────────────────────────────────────────────── */
+    .disclaimer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-mute);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .futures-strip { grid-template-columns: repeat(2, 1fr); }
+      .signal-grid   { grid-template-columns: 1fr; }
+      .levels-grid   { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- ── SITE HEADER ─────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <a class="site-logo" href="../index.html">FinTrend <span>News</span></a>
+    <div class="header-meta">
+      <strong>Wednesday Check</strong>
+      February 25, 2026
+    </div>
+  </header>
+
+  <!-- ── LABELS ──────────────────────────────────────────────────────── -->
+  <div class="label-row">
+    <span class="badge badge-gold">Wednesday Mid-Week Setup</span>
+    <span class="badge badge-red">Earnings Season</span>
+    <span class="badge badge-blue">AI / Semiconductors</span>
+    <span class="badge badge-gold">Tariff Watch</span>
+  </div>
+
+  <!-- ── HEADLINE ────────────────────────────────────────────────────── -->
+  <h1>The Verdict on AI Demand Lives or Dies <em>Tonight</em></h1>
+
+  <div class="byline">
+    By <strong>Hunter William Lang</strong> · FinTrend News · Wednesday Market Check · February 25, 2026
+  </div>
+
+  <!-- ── EXECUTIVE SUMMARY ────────────────────────────────────────────── -->
+  <div class="exec-box">
+    <div class="kicker">⚡ One-Sentence Summary</div>
+    <p>Markets are holding a cautious but constructive bid this morning — S&amp;P futures up 0.14%, Nasdaq up 0.19% — as the tariff narrative stabilizes after Trump's State of the Union and investors concentrate their entire attention on one event: Nvidia's fiscal Q4 earnings after the close today, which will either reaffirm or challenge the entire AI infrastructure thesis that has driven markets higher for two years.</p>
+  </div>
+
+  <!-- ── FUTURES STRIP ─────────────────────────────────────────────────── -->
+  <div class="futures-strip">
+    <div class="future-card">
+      <div class="label">S&amp;P 500 FUT</div>
+      <div class="value up">6,856</div>
+      <div class="change up">+0.14%</div>
+    </div>
+    <div class="future-card">
+      <div class="label">NASDAQ FUT</div>
+      <div class="value up">24,792</div>
+      <div class="change up">+0.19%</div>
+    </div>
+    <div class="future-card">
+      <div class="label">DOW FUT</div>
+      <div class="value up">49,549</div>
+      <div class="change up">+0.12%</div>
+    </div>
+    <div class="future-card">
+      <div class="label">VIX</div>
+      <div class="value down">20.82</div>
+      <div class="change down">Elevated</div>
+    </div>
+    <div class="future-card">
+      <div class="label">GOLD</div>
+      <div class="value up">$4,998</div>
+      <div class="change up">+1.00%</div>
+    </div>
+    <div class="future-card">
+      <div class="label">NVDA</div>
+      <div class="value up">~$191</div>
+      <div class="change up">+0.79% pre</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 1: DRIVER ─────────────────────────────────────────────── -->
+  <h2>1. The Primary Driver</h2>
+
+  <p>The primary driver today is Nvidia's fiscal fourth-quarter earnings report, due after the close. This single event is impacting the entire market — not just the semiconductor sector — through its role as a real-time signal on whether AI capital spending is sustainable.</p>
+
+  <p>The setup heading in: analysts expect $65.7 billion in revenue (up 67% year-over-year) and earnings of $1.53 per share. The company guided to exactly $65 billion last quarter, so meeting guidance is the floor. What the market actually wants is the forward number — Q1 FY2027 guidance — where consensus sits around $71.5 billion. Any guide above that and you'll see a rapid repricing of every AI-adjacent name. Any miss and the "AI capex bubble" narrative reignites fast.</p>
+
+  <p>The secondary driver: tariff policy has stabilized for now. Trump's State of the Union last night did not signal an escalation of Section 122 tariffs beyond the 15% level established Saturday, and early read on the speech suggests the White House is focused elsewhere near-term. That removes one source of daily volatility the market has been contending with since February 20.</p>
+
+  <!-- ── SECTION 2: CONFIRMATION ──────────────────────────────────────── -->
+  <h2>2. Confirmation Signals</h2>
+
+  <div class="signal-grid">
+    <div class="signal-card">
+      <div class="s-label">Treasuries</div>
+      <div class="s-value down">Falling</div>
+      <div class="s-note">Bond prices declining (yields rising) — money markets are trimming rate-cut bets. Fewer cuts priced in = bearish for long-duration growth stocks if sustained.</div>
+    </div>
+    <div class="signal-card">
+      <div class="s-label">Semis / AMD</div>
+      <div class="s-value up">+1% Pre-mkt</div>
+      <div class="s-note">AMD extending Tuesday's 9% surge (Meta 6GW deal). Sector bid intact. Money rotating into chips ahead of NVDA print — confirmation that AI trade is live.</div>
+    </div>
+    <div class="signal-card">
+      <div class="s-label">Software (IGV)</div>
+      <div class="s-value up">Recovering</div>
+      <div class="s-note">Salesforce +4.84%, IBM +2.71% on Tuesday. Software rebounding from Monday's 5% selloff. Not a rotation away from AI — a re-engagement after overreaction.</div>
+    </div>
+    <div class="signal-card">
+      <div class="s-label">VIX</div>
+      <div class="s-value down">20.82</div>
+      <div class="s-note">Elevated but stable. Not spiking, which says the market is cautious, not panicked. Options are expensive around NVDA specifically — implied move is significant.</div>
+    </div>
+    <div class="signal-card">
+      <div class="s-label">Gold</div>
+      <div class="s-value up">~$4,998</div>
+      <div class="s-note">Near $5,000 per ounce. Persistent bid in gold tells you uncertainty hasn't fully cleared — tariff risk and geopolitical tension (Iran) keeping safe-haven demand alive.</div>
+    </div>
+    <div class="signal-card">
+      <div class="s-label">Workday (WDAY)</div>
+      <div class="s-value down">-9.5% Pre</div>
+      <div class="s-note">Earnings beat but guidance disappointed. Reminder that in this environment, beats aren't enough — you need the forward story to hold up. Relevant context for NVDA watch.</div>
+    </div>
+  </div>
+
+  <p>Confirmation appears through the continued bid in semiconductor names and software sector recovery, suggesting that Tuesday's broader market rebound was real and not just a relief bounce — it was active repositioning ahead of the Nvidia print.</p>
+
+  <!-- ── SECTION 3: BIAS ──────────────────────────────────────────────── -->
+  <h2>3. Market Bias</h2>
+
+  <div class="bias-box">
+    <div class="bias-label">Current Bias</div>
+    <div class="bias-call">Breakout Setup — Conditional</div>
+    <p>Markets are coiled ahead of a binary event. The underlying bid is constructive: two consecutive days of gains following Monday's tariff shock, sector rotation into AI names, and a stabilizing macro backdrop. However, calling this risk-on outright would be premature. The Workday print this morning is a specific warning: guidance disappoints and the stock drops nearly 10% despite beating earnings. Nvidia faces the same dynamic at a much larger scale. The bias is a breakout setup — the market wants to go higher, but it needs Nvidia to give it permission.</p>
+  </div>
+
+  <!-- ── SECTION 4: KEY LEVELS ────────────────────────────────────────── -->
+  <h2>4. Key Levels to Watch</h2>
+
+  <div class="levels-grid">
+    <div class="level-card">
+      <h3>SPX (S&amp;P 500)</h3>
+      <div class="level-row">
+        <span class="l-name">Support 1</span>
+        <span class="l-val sup">5,980</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Support 2</span>
+        <span class="l-val sup">5,870</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Resistance</span>
+        <span class="l-val res">6,100</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Feb 20 Close</span>
+        <span class="l-val">6,091</span>
+      </div>
+    </div>
+    <div class="level-card">
+      <h3>NDX (Nasdaq 100)</h3>
+      <div class="level-row">
+        <span class="l-name">Support 1</span>
+        <span class="l-val sup">21,200</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Support 2</span>
+        <span class="l-val sup">20,500</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Resistance</span>
+        <span class="l-val res">22,000</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Note</span>
+        <span class="l-val" style="font-size:11px; color:var(--text-mute)">Nvidia post-earnings will set near-term range</span>
+      </div>
+    </div>
+    <div class="level-card">
+      <h3>NVDA (Nvidia)</h3>
+      <div class="level-row">
+        <span class="l-name">Current Price</span>
+        <span class="l-val">~$191</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Analyst Target</span>
+        <span class="l-val sup">$245–$250</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Key Level Down</span>
+        <span class="l-val res">$175</span>
+      </div>
+      <div class="level-row">
+        <span class="l-name">Key Level Up</span>
+        <span class="l-val sup">$205</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: CATALYST WATCH ───────────────────────────────────── -->
+  <h2>5. Catalyst Watch</h2>
+
+  <ul class="catalyst-list">
+    <li>
+      <span class="c-time badge badge-red priority-critical">4:20–4:30 PM ET</span>
+      <div class="c-content">
+        <div class="c-title">🔴 CRITICAL — Nvidia Q4 FY2026 Earnings Release</div>
+        <div class="c-desc">Revenue consensus: $65.7B. EPS consensus: $1.53. What matters more: Q1 FY2027 guidance vs. Street estimate of $71.5B. Watch for China revenue commentary — currently zeroed out in guidance. A guide above $75B would be a market-moving upside catalyst across the entire sector. A miss or cautious outlook risks reigniting the AI skepticism narrative that caused Monday's selloff.</div>
+      </div>
+    </li>
+    <li>
+      <span class="c-time badge badge-gold">5:00 PM ET</span>
+      <div class="c-content">
+        <div class="c-title">Nvidia Earnings Conference Call — Jensen Huang</div>
+        <div class="c-desc">The call often matters more than the numbers. Watch for: Vera Rubin ramp timing, Blackwell supply commentary, China market outlook, and any signal on agentic AI demand inflection. CEO Jensen Huang's tone and language around demand visibility will move the stock as much as the headline numbers.</div>
+      </div>
+    </li>
+    <li>
+      <span class="c-time badge badge-blue">After Close</span>
+      <div class="c-content">
+        <div class="c-title">Salesforce (CRM) Earnings</div>
+        <div class="c-desc">Reports tonight. Given Monday's AI-adjacent selloff and Tuesday's recovery, Salesforce guidance on enterprise AI adoption will be closely watched. Sets up additional overnight volatility for tech.</div>
+      </div>
+    </li>
+    <li>
+      <span class="c-time badge badge-gold">Ongoing</span>
+      <div class="c-content">
+        <div class="c-title">Section 122 Tariff Watch — 150-Day Clock</div>
+        <div class="c-desc">The 15% global tariff is now active. The 150-day window before Congressional approval is required is ticking. Any new tariff announcements or White House trade comments will re-introduce volatility to market-sensitive sectors (industrials, consumer goods, tech hardware).</div>
+      </div>
+    </li>
+    <li>
+      <span class="c-time badge badge-blue">Thursday</span>
+      <div class="c-content">
+        <div class="c-title">Geopolitical: Iran / Oil</div>
+        <div class="c-desc">Oil holding near highest levels since July as Trump signals possible military action against Iran. This is a background risk — not dominating headlines today — but a sudden escalation would immediately hit risk assets and energy sector pricing.</div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ── SECTION 6: RISK SCENARIO ─────────────────────────────────────── -->
+  <h2>6. Risk Scenario</h2>
+
+  <div class="risk-box">
+    <div class="risk-label">⚠ The Bear Case for Tonight</div>
+    <p>The risk to the constructive view would be Nvidia reporting in-line numbers but issuing Q1 FY2027 guidance that comes in around or below the $71.5B consensus — similar to what Workday just did this morning at a smaller scale. In that scenario, the market is likely to interpret "meeting expectations" as a deterioration, particularly since 12 consecutive beats have created a near-impossible bar. A guidance miss would validate the AI monetization concerns that triggered Monday's selloff, and could send both NVDA and the broader Nasdaq back toward their February lows. The secondary risk is Treasury yields continuing to rise — if markets price out rate cuts further, the long-duration premium on growth stocks compresses, independent of how Nvidia reports.</p>
+  </div>
+
+  <!-- ── QUIZ ─────────────────────────────────────────────────────────── -->
+  <div class="quiz-block">
+    <div class="quiz-kicker">📊 Test Your Knowledge</div>
+    <div class="quiz-q">Nvidia guided for $65 billion in Q4 revenue. What would they need to guide for in Q1 FY2027 to beat Wall Street's current consensus estimate?</div>
+    <div class="quiz-opts" id="q1-opts">
+      <button class="quiz-btn" onclick="answerQuiz('q1', this, false)">A. Above $65 billion</button>
+      <button class="quiz-btn" onclick="answerQuiz('q1', this, false)">B. Above $68 billion</button>
+      <button class="quiz-btn" onclick="answerQuiz('q1', this, true)">C. Above $71.5 billion</button>
+      <button class="quiz-btn" onclick="answerQuiz('q1', this, false)">D. Above $75 billion</button>
+    </div>
+    <div id="q1-right" class="quiz-result right show" style="display:none">✅ Correct. Analyst consensus for Q1 FY2027 sits at ~$71.5B. Anything above that would be a beat on guidance — the market's real focus point tonight.</div>
+    <div id="q1-wrong" class="quiz-result wrong show" style="display:none">❌ Not quite. The Street's Q1 FY2027 revenue estimate is approximately $71.5 billion. Nvidia would need to guide above that number to exceed expectations on forward outlook — which is what moves the stock.</div>
+  </div>
+
+  <!-- ── POLL ─────────────────────────────────────────────────────────── -->
+  <div class="poll-block">
+    <div class="poll-kicker">Reader Poll</div>
+    <div class="poll-q">What do you think happens to Nvidia's stock price tomorrow morning after earnings?</div>
+    <div class="poll-opts" id="poll1">
+      <button class="poll-btn" onclick="votePoll('poll1', this, 'poll1-result', 'up5')">
+        <div class="poll-bar-fill"></div>
+        <div class="poll-btn-inner"><span>📈 Up more than 5%</span><span class="poll-pct"></span></div>
+      </button>
+      <button class="poll-btn" onclick="votePoll('poll1', this, 'poll1-result', 'up2')">
+        <div class="poll-bar-fill"></div>
+        <div class="poll-btn-inner"><span>📊 Up 0–5%</span><span class="poll-pct"></span></div>
+      </button>
+      <button class="poll-btn" onclick="votePoll('poll1', this, 'poll1-result', 'flat')">
+        <div class="poll-bar-fill"></div>
+        <div class="poll-btn-inner"><span>➡ Roughly flat</span><span class="poll-pct"></span></div>
+      </button>
+      <button class="poll-btn" onclick="votePoll('poll1', this, 'poll1-result', 'down')">
+        <div class="poll-bar-fill"></div>
+        <div class="poll-btn-inner"><span>📉 Down — guidance disappoints</span><span class="poll-pct"></span></div>
+      </button>
+    </div>
+    <div id="poll1-result" class="poll-result">Thanks for voting — check back Thursday for a breakdown of how the market actually reacted.</div>
+  </div>
+
+  <!-- ── CLOSING VERDICT ───────────────────────────────────────────────── -->
+  <div class="verdict">
+    <h3>9. The Bottom Line</h3>
+    <p>For now, momentum favors the bulls — two consecutive recovery days, a stabilizing tariff backdrop, and a chip sector that is clearly bid. But watch the Nvidia guidance number closely. The earnings print tonight is not just a single-stock event. It's a referendum on whether the AI infrastructure buildout has years of runway or whether the easy money in that trade has already been made. Everything else this week is noise until Jensen Huang opens that call at 5pm.</p>
+  </div>
+
+  <!-- ── SOURCES ───────────────────────────────────────────────────────── -->
+  <div class="sources">
+    <h4>Sources</h4>
+    <ul>
+      <li>Bloomberg Markets — S&amp;P 500 Futures, Treasury markets, Feb 25 premarket (bloomberg.com)</li>
+      <li>CNBC Markets — Feb 24 live updates, Workday earnings, Lisa Cook Fed commentary (cnbc.com)</li>
+      <li>Kiplinger — Nvidia Q4 earnings preview, analyst consensus estimates (kiplinger.com)</li>
+      <li>Nvidia Newsroom — Q3 FY2026 earnings release and Q4 guidance (nvidianews.nvidia.com)</li>
+      <li>Motley Fool — Nvidia earnings preview, Vera Rubin commentary (fool.com)</li>
+      <li>24/7 Wall St. — Blackwell/GB300 analysis, hyperscaler capex data (247wallst.com)</li>
+      <li>Trading Economics — US Stock Market, Dow close data (tradingeconomics.com)</li>
+    </ul>
+  </div>
+
+  <a class="back" href="../index.html">← Back to FinTrend News</a>
+
+  <!-- ── DISCLAIMER ────────────────────────────────────────────────────── -->
+  <div class="disclaimer">
+    <strong>Educational Disclaimer:</strong> All content published by FinTrend News is for educational and informational purposes only. Nothing in this article constitutes financial advice, investment recommendations, or a solicitation to buy or sell any security. Market data is based on premarket conditions as of the morning of February 25, 2026, and is subject to change. Always do your own research and consult a licensed financial advisor before making any investment decisions.
+  </div>
+
+</div><!-- /container -->
+
+<script>
+  // ── Quiz logic ──────────────────────────────────────────────────────
+  function answerQuiz(prefix, btn, isCorrect) {
+    const opts = document.getElementById(prefix + '-opts');
+    if (opts.classList.contains('answered')) return;
+    opts.classList.add('answered');
+
+    Array.from(opts.children).forEach(b => {
+      b.disabled = true;
+      if (b === btn) {
+        b.classList.add(isCorrect ? 'correct' : 'wrong');
+      } else {
+        // reveal correct answer
+        if (b.onclick.toString().includes('true')) b.classList.add('reveal');
+      }
+    });
+
+    const rightEl = document.getElementById(prefix + '-right');
+    const wrongEl = document.getElementById(prefix + '-wrong');
+    if (isCorrect) {
+      rightEl.style.display = 'block';
+    } else {
+      wrongEl.style.display = 'block';
+    }
+  }
+
+  // ── Poll logic ──────────────────────────────────────────────────────
+  const pollData = {
+    poll1: [38, 29, 12, 21]
+  };
+
+  function votePoll(pollId, btn, resultId, choice) {
+    const poll = document.getElementById(pollId);
+    if (poll.classList.contains('poll-voted')) return;
+    poll.classList.add('poll-voted');
+
+    const btns = poll.querySelectorAll('.poll-btn');
+    btns.forEach((b, i) => {
+      b.disabled = true;
+      const pctEl = b.querySelector('.poll-pct');
+      const barEl = b.querySelector('.poll-bar-fill');
+      const pct = pollData[pollId][i];
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (barEl) {
+        setTimeout(() => { barEl.style.width = pct + '%'; }, 50);
+      }
+      if (b === btn) {
+        b.style.borderColor = 'rgba(244,193,93,0.5)';
+      }
+    });
+
+    const resultEl = document.getElementById(resultId);
+    if (resultEl) resultEl.classList.add('show');
+  }
+</script>
+
+</body>
+</html>
