@@ -343,7 +343,6 @@
       .day-cell > div:first-child {
         display: contents;
       }
-      /* Stack day label + date together as left column */
       .day-cell .day-label,
       .day-cell .day-date {
         grid-column: 1;
@@ -359,12 +358,10 @@
         color: #e5e7eb;
         margin-bottom: 0;
       }
-      /* Tag and link go right column */
       .tag-pill { grid-column: 2; margin-bottom: 2px; }
       .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
       .day-meta { grid-column: 2; font-size: 11px; }
       .empty-note { grid-column: 2; font-size: 11px; margin-top: 0; }
-      /* Badge wraps ok on small screens */
       .new-badge { font-size: 7px; padding: 1px 5px; }
     }
 
@@ -419,22 +416,24 @@
 
             <div class="calendar-row">
               <div class="week-label">Week of Feb 23</div>
-              <div class="day-cell has-note latest">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Monday</div>
                   <div class="day-date">Feb 23</div>
                   <span class="tag-pill tag-monday">Monday Outlook</span>
-                  <a href="articles/2026-02-23-monday.html" class="day-link">The Tariff Clock Starts Tomorrow <span class="new-badge">New</span></a>
+                  <a href="articles/2026-02-23-monday.html" class="day-link">The Tariff Clock Starts Tomorrow</a>
                 </div>
                 <div class="day-meta">Section 122 at 15% kicks in Tuesday; Nvidia Wednesday; SOTU Tuesday night; PPI Friday.</div>
               </div>
-              <div class="day-cell">
+              <!-- UPDATED: Wednesday Feb 25 now published -->
+              <div class="day-cell has-note latest">
                 <div>
                   <div class="day-label">Wednesday</div>
                   <div class="day-date">Feb 25</div>
                   <span class="tag-pill tag-wednesday">Momentum</span>
+                  <a href="articles/2026-02-25-wednesday.html" class="day-link">The Verdict on AI Demand Lives or Dies Tonight <span class="new-badge">New</span></a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">Nvidia Q4 earnings after close; S&amp;P futures +0.14%; tariff narrative stabilizes post-SOTU.</div>
               </div>
               <div class="day-cell">
                 <div>
