@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inflation Shock Closes Out February · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hotter-than-expected PPI data, Nvidia's extended slide, and private credit contagion fears drove the S&P 500 to its worst monthly close in 11 months." />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --bg-card: #0f1628;
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.12);
+      --accent-mid: rgba(244,193,93,0.25);
+      --text-main: #f0ede6;
+      --text-muted: #8a8f9e;
+      --text-mid: #b4b8c4;
+      --border: rgba(148,163,184,0.12);
+      --border-accent: rgba(244,193,93,0.3);
+      --red: #e05a5a;
+      --red-dim: rgba(224,90,90,0.1);
+      --green: #52c98b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      background-image: radial-gradient(ellipse 70% 40% at 50% -5%, rgba(244,193,93,0.05) 0%, transparent 65%);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(5,8,22,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 740px;
+      margin: 56px auto 0;
+      padding: 0 24px;
+    }
+
+    .article-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+
+    .byline {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+    }
+    .byline strong { color: var(--text-mid); }
+
+    /* ── EXEC SUMMARY ── */
+    .exec-summary {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 10px 10px 0;
+      padding: 18px 22px;
+      margin-bottom: 40px;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    .exec-summary span {
+      display: block;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section {
+      margin-bottom: 44px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── DATA CARDS (market snapshot) ── */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .data-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .data-card .dc-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .data-card .dc-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+    }
+    .data-card .dc-change {
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .dc-change.neg { color: var(--red); }
+    .dc-change.pos { color: var(--green); }
+
+    /* ── LEVELS TABLE ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .level-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .level-card .lc-index {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .level-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .level-row:last-child { border-bottom: none; }
+    .level-row .lr-label { color: var(--text-muted); }
+    .level-row .lr-val { color: var(--text-main); font-weight: 500; font-variant-numeric: tabular-nums; }
+    .lr-val.support { color: var(--green); }
+    .lr-val.resistance { color: var(--red); }
+
+    /* ── BIAS BADGE ── */
+    .bias-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--red-dim);
+      border: 1px solid rgba(224,90,90,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .bias-badge {
+      flex-shrink: 0;
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+    .bias-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+    /* ── CATALYST LIST ── */
+    .catalyst-list { list-style: none; margin: 16px 0; }
+    .catalyst-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+    .catalyst-list li:last-child { border-bottom: none; }
+    .catalyst-list .cl-dot {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 7px;
+    }
+
+    /* ── RISK BOX ── */
+    .risk-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 20px 0;
+    }
+    .risk-box .rb-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .risk-box p { font-size: 14px; color: var(--text-mid); margin-bottom: 0; }
+
+    /* ── CLOSING ── */
+    .closing-block {
+      background: linear-gradient(135deg, rgba(244,193,93,0.07), rgba(244,193,93,0.02));
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 24px 26px;
+    }
+    .closing-block p { color: var(--text-main); font-size: 15px; line-height: 1.75; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      max-width: 740px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .levels-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">FinTrend News</div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../archive.html">Archive</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="article-tag">Friday Close · Macro + Inflation</div>
+    <h1>Inflation Shock Closes Out February</h1>
+    <div class="byline">
+      By <strong>Hunter William Lang</strong> · FinTrend News · Friday, February 28, 2026
+    </div>
+
+    <!-- EXEC SUMMARY -->
+    <div class="exec-summary">
+      <span>Executive Summary</span>
+      A hotter-than-expected PPI print shattered rate-cut expectations, extending Nvidia's post-earnings slide and exposing private credit vulnerabilities to send the S&P 500 to its worst monthly close in 11 months.
+    </div>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <main class="article-body">
+
+    <!-- SECTION 1: MARKET SNAPSHOT -->
+    <div class="section">
+      <div class="section-label">01 — Market Close</div>
+      <h2>Where Markets Finished</h2>
+
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="dc-label">S&P 500</div>
+          <div class="dc-value">6,878</div>
+          <div class="dc-change neg">▼ 0.43% on the day · ▼ 1.43% for February</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">Nasdaq</div>
+          <div class="dc-value">22,668</div>
+          <div class="dc-change neg">▼ 0.92% on the day</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">Dow Jones</div>
+          <div class="dc-value">48,977</div>
+          <div class="dc-change neg">▼ 1.05% · −521 pts</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">VIX</div>
+          <div class="dc-value">~21</div>
+          <div class="dc-change neg">▲ Spiked +14% intraday</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">10-Yr Yield</div>
+          <div class="dc-value">~4.30%</div>
+          <div class="dc-change neg">▲ Pushed higher post-PPI</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">WTI Crude</div>
+          <div class="dc-value">~$66.52</div>
+          <div class="dc-change pos">▲ Jumped on geopolitical risk</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: DRIVER -->
+    <div class="section">
+      <div class="section-label">02 — Primary Driver</div>
+      <h2>PPI Blows the Soft Landing Narrative</h2>
+      <p>The primary driver today is the January Producer Price Index report, which is impacting equities through a rapid repricing of Federal Reserve rate-cut expectations. Wholesale prices rose 0.5% month-over-month against a 0.3% forecast. Core PPI — stripping out food and energy — surged 0.8%, more than double the 0.3% estimate.</p>
+      <p>This matters because PPI measures what producers pay before costs reach consumers. When it runs hot, it signals that CPI pressure is likely still in the pipeline, not behind us. The market had been pricing in at least two rate cuts in 2026. That thesis is now under serious review. The 10-year yield responded by pushing back toward 4.30%, compressing equity valuations — particularly in growth and tech.</p>
+      <p>Layered on top of the PPI shock: Nvidia extended its post-earnings slide and turned negative for 2026. Block (formerly Square) announced layoffs of 4,000+ employees — nearly 40% of its workforce — amplifying AI disruption fears across financial technology. And news broke that UK mortgage lender Market Financial Solutions collapsed, triggering bank contagion concerns at Wells Fargo, Barclays, Jefferies, Santander, and Apollo's Atlas SP Partners.</p>
+    </div>
+
+    <!-- SECTION 3: CONFIRMATION -->
+    <div class="section">
+      <div class="section-label">03 — Confirmation</div>
+      <h2>What the Market Structure Is Saying</h2>
+      <p>Confirmation appears through multiple corroborating signals, suggesting that this is not a one-day shakeout but a broader shift in market regime for now.</p>
+      <p>The VIX spiked above 21 intraday — crossing the line between complacency and caution. Treasuries rallied (the 10-year had its best month in a year), signaling flight to safety rather than growth confidence. Sector rotation is defensive: consumer staples (Walmart +2.5%, Costco +1.3%, P&G +1.5%) and utilities outperformed, while Technology, Communication Services, and Consumer Discretionary led losses. Breadth was weak. The S&P 500 closed February down 1.43% — its worst monthly performance in 11 months. The Nasdaq also finished February in the red.</p>
+      <p>One notable outlier: Dell surged 21.9% on strong earnings and a forecast that its AI server revenue will exceed $50 billion in fiscal 2027. This confirms that the AI theme has not collapsed — it has fragmented. Companies with real hardware revenue are being rewarded; companies trading on hype are being punished.</p>
+    </div>
+
+    <!-- SECTION 4: BIAS -->
+    <div class="section">
+      <div class="section-label">04 — Market Bias</div>
+      <h2>Current Positioning</h2>
+      <div class="bias-block">
+        <div class="bias-badge">Risk-Off</div>
+        <div class="bias-text">The PPI print has reset the macro playbook. Rate-cut optimism — the primary driver of the January rally — is in retreat. Defensives and cash are being rewarded. Until inflation data stabilizes and the private credit contagion fears are resolved, growth and AI-adjacent names are likely to face continued headwinds.</div>
+      </div>
+      <p>This is not yet a trend reversal call. The S&P 500's longer-term bullish structure remains intact above 6,600–6,700. But the short-term environment has shifted from "buy dips" to "watch the data closely before adding risk."</p>
+    </div>
+
+    <!-- SECTION 5: KEY LEVELS -->
+    <div class="section">
+      <div class="section-label">05 — Key Levels</div>
+      <h2>Where Structure Matters</h2>
+      <div class="levels-grid">
+        <div class="level-card">
+          <div class="lc-index">S&P 500 (SPX)</div>
+          <div class="level-row"><span class="lr-label">Closed</span><span class="lr-val">6,878</span></div>
+          <div class="level-row"><span class="lr-label">Support 1</span><span class="lr-val support">6,800</span></div>
+          <div class="level-row"><span class="lr-label">Support 2</span><span class="lr-val support">6,700</span></div>
+          <div class="level-row"><span class="lr-label">Resistance 1</span><span class="lr-val resistance">6,950</span></div>
+          <div class="level-row"><span class="lr-label">Resistance 2</span><span class="lr-val resistance">7,050</span></div>
+        </div>
+        <div class="level-card">
+          <div class="lc-index">Nasdaq (NDX)</div>
+          <div class="level-row"><span class="lr-label">Closed</span><span class="lr-val">22,668</span></div>
+          <div class="level-row"><span class="lr-label">Support 1</span><span class="lr-val support">22,200</span></div>
+          <div class="level-row"><span class="lr-label">Support 2</span><span class="lr-val support">21,800</span></div>
+          <div class="level-row"><span class="lr-label">Resistance 1</span><span class="lr-val resistance">23,000</span></div>
+          <div class="level-row"><span class="lr-label">Resistance 2</span><span class="lr-val resistance">23,400</span></div>
+        </div>
+        <div class="level-card">
+          <div class="lc-index">Dow Jones (DJIA)</div>
+          <div class="level-row"><span class="lr-label">Closed</span><span class="lr-val">48,977</span></div>
+          <div class="level-row"><span class="lr-label">Support</span><span class="lr-val support">48,000–47,200</span></div>
+          <div class="level-row"><span class="lr-label">Resistance</span><span class="lr-val resistance">49,700</span></div>
+        </div>
+        <div class="level-card">
+          <div class="lc-index">10-Year Yield</div>
+          <div class="level-row"><span class="lr-label">Current</span><span class="lr-val">~4.30%</span></div>
+          <div class="level-row"><span class="lr-label">Key Level</span><span class="lr-val resistance">4.40%+</span></div>
+          <div class="level-row"><span class="lr-label">Relief Zone</span><span class="lr-val support">Below 4.15%</span></div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--text-muted); margin-top:12px;">The 10-year yield is the most important variable in this environment. If it stabilizes below 4.20%, equities have room to stabilize. A sustained push above 4.40% would likely accelerate the current pullback.</p>
+    </div>
+
+    <!-- SECTION 6: CATALYST WATCH -->
+    <div class="section">
+      <div class="section-label">06 — Catalyst Watch</div>
+      <h2>What Could Change the Narrative</h2>
+      <ul class="catalyst-list">
+        <li>
+          <div class="cl-dot"></div>
+          <div><strong style="color:var(--text-main);">February Jobs Report — Friday, March 6:</strong> Analysts expect ~65,000 jobs added. A "hot" number would further destabilize the bond market and accelerate rate-cut repricing. A weak number would revive soft-landing hopes but raise recession concerns.</div>
+        </li>
+        <li>
+          <div class="cl-dot"></div>
+          <div><strong style="color:var(--text-main);">February CPI — Mid-March:</strong> The next major inflation print. If it confirms January's PPI signal, the "no rate cuts in 2026" scenario becomes the base case. A downside surprise could spark a significant relief rally.</div>
+        </li>
+        <li>
+          <div class="cl-dot"></div>
+          <div><strong style="color:var(--text-main);">Private Credit Contagion Resolution:</strong> The Market Financial Solutions collapse in the UK is being closely watched. If losses are contained and bank exposures are clarified, financial stocks can stabilize. If additional lenders are named, the sell-off in financials deepens.</div>
+        </li>
+        <li>
+          <div class="cl-dot"></div>
+          <div><strong style="color:var(--text-main);">Fed Communication:</strong> Any Fed speaker walking back aggressive rate-cut timelines — or conversely, downplaying the January PPI as transitory — will move markets sharply. Watch speeches next week carefully.</div>
+        </li>
+        <li>
+          <div class="cl-dot"></div>
+          <div><strong style="color:var(--text-main);">U.S.-Iran Talks (Vienna):</strong> If negotiations deteriorate and oil moves toward $70+, that adds another inflationary layer and compounds the current risk-off environment.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SECTION 7: RISK SCENARIO -->
+    <div class="section">
+      <div class="section-label">07 — Risk Scenario</div>
+      <h2>What Breaks This View</h2>
+      <div class="risk-box">
+        <div class="rb-label">Bull Risk — What Changes the Bearish Read</div>
+        <p>The risk to the current risk-off view would be a rapid reversal in yields. If the 10-year drops back below 4.10%—driven by either a weak jobs report, a dovish Fed speaker, or a reversal in PPI components—the conditions for a growth and tech recovery are in place quickly. Dell's 21.9% surge today shows that capital is not leaving the AI story permanently; it is relocating toward companies with demonstrable earnings. A rotation from AI hype to AI hardware and infrastructure could produce a strong Q1 bounce even within a volatile macro backdrop.</p>
+      </div>
+      <div class="risk-box" style="margin-top: 14px; border-color: rgba(224,90,90,0.3); background: var(--red-dim);">
+        <div class="rb-label" style="color: var(--red);">Bear Risk — What Makes This Worse</div>
+        <p>The risk to the downside deepens if January PPI proves to be the first of several consecutive hot prints, if private credit contagion spreads beyond UK mortgage markets, or if March jobs data comes in above 150,000 — removing any remaining justification for Fed cuts. In that scenario, the SPX tests 6,700 and the conversation shifts from "pullback" to "correction."</p>
+      </div>
+    </div>
+
+    <!-- SECTION 8: CLOSING -->
+    <div class="section">
+      <div class="section-label">08 — Closing Analysis</div>
+      <h2>Bottom Line</h2>
+      <div class="closing-block">
+        <p>February ended the way it began — with the market searching for a clear read on inflation. The soft landing is still possible, but it is no longer assumed. For now, momentum favors defensives and cash-generating businesses over high-multiple growth, but watch the 10-year yield and March 6 jobs data closely. Those two data points will determine whether today is the bottom of a healthy reset or the beginning of a more sustained correction. The S&P 500 at 6,878 is not broken — but it needs confirmation, not hope, to recover from here.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This article is for educational and informational purposes only. Nothing here constitutes financial advice or a solicitation to buy or sell any security. Market data referenced is sourced from public market reports for February 27, 2026. Always conduct your own due diligence before making investment decisions.
+  </div>
+
+</body>
+</html>
