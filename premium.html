@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinTrend Premium</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Supabase -->
-<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
@@ -24,848 +21,1142 @@
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
   <style>
-    :root{
-      --bg:#050816;
-      --panel: rgba(15,23,42,0.72);
-      --border: rgba(148,163,184,0.28);
-      --border2: rgba(148,163,184,0.45);
-      --text:#f9fafb;
-      --muted:#9ca3af;
-      --brand:#f4c15d;
-      --brand2: rgba(244,193,93,0.12);
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 18px;
+    :root {
+      --bg: #05080f;
+      --bg2: #0a0f1e;
+      --panel: rgba(10,15,30,0.85);
+      --panel2: rgba(15,22,40,0.9);
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text: #f0f2f8;
+      --muted: #6b7a99;
+      --muted2: #8892aa;
+      --gold: #c9a84c;
+      --gold2: #e8c878;
+      --gold-dim: rgba(201,168,76,0.1);
+      --gold-glow: rgba(201,168,76,0.18);
+      --red: #e05252;
+      --green: #4caf8a;
+      --blue: #5b8dee;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+      --shadow-sm: 0 4px 20px rgba(0,0,0,0.3);
     }
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 400;
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    /* ─── Background texture ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(91,141,238,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body > * { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
-    a:hover { color: var(--brand); }
 
-    .wrap { max-width: 1400px; margin: 28px auto; padding: 0 16px; }
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.45); }
 
-    .topbar{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin-bottom: 14px;
-    }
-    .brandTitle{
-      font-family: "Playfair Display", serif;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin:0;
-      font-size: 26px;
-      color: var(--brand);
-    }
-    .subhead{ margin:6px 0 0; color:var(--muted); font-size: 13px; }
+    /* ─── Layout ─── */
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 0 20px 60px; }
 
-    .card {
-      border:1px solid var(--border);
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
-    }
-    .muted { color:var(--muted); }
-
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid var(--border2);
-      background:rgba(2,6,23,0.40);
-      color:var(--text);
-      cursor:pointer;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:11px;
-      font-weight: 700;
-      text-decoration:none;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      user-select:none;
-      white-space:nowrap;
-      font-family: inherit;
-    }
-    .btn.primary { background:var(--brand); color:#000; border-color:var(--brand); font-weight:900; }
-    .btn.primary:hover { background:#f7d680; transform: translateY(-1px); }
-    .btn:hover { transform: translateY(-1px); border-color: rgba(244,193,93,0.45); }
-    .btn:active { transform: translateY(0px); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    .pill {
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid var(--border2);
-      background: rgba(2,6,23,0.35);
-      font-size:12px;
-      color: var(--muted);
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .pill.active { border-color: rgba(244,193,93,0.55); color: var(--brand); background: rgba(244,193,93,0.08); }
-
-    .layout {
-      display:grid;
-      grid-template-columns: 360px 1fr;
-      gap:12px;
-      margin-top: 12px;
-    }
-    @media (max-width: 980px){ .layout{ grid-template-columns: 1fr; } }
-
-    .sectionTitle{
-      margin:0;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:11px;
-      color: var(--muted);
-    }
-    .h2{
-      margin:8px 0 0;
-      font-family: "Playfair Display", serif;
-      font-size:22px;
-      line-height:1.2;
+    /* ─── Header ─── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
     }
 
-    .divider{
-      height:1px;
-      background: rgba(148,163,184,0.18);
-      margin: 14px 0;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
 
-    .checkgrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top: 10px;
-    }
-    .check{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:12px;
-      border-radius:14px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.22);
-      cursor: pointer;
-      transition: border-color .15s;
-    }
-    .check:hover { border-color: rgba(244,193,93,0.35); }
-    .check input{
-      margin-top:3px;
-      width:18px; height:18px;
-      accent-color: var(--brand);
-      cursor:pointer;
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-dim);
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--gold);
       flex-shrink: 0;
     }
-    .check strong{ display:block; font-size: 13px; }
-    .check small{ display:block; margin-top:3px; color: var(--muted); line-height:1.35; font-size: 12px; }
 
-    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
-    .chip{
-      display:inline-flex; align-items:center; gap:6px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.25);
-      background: rgba(2,6,23,0.25);
+    .brand-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
       color: var(--text);
-      font-size:12px;
-    }
-    .chip span{ color: var(--muted); letter-spacing:.10em; text-transform:uppercase; font-size:11px; }
-
-    .modules {
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
+      letter-spacing: 0.01em;
     }
 
-    .moduleHeader{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
-    }
-    .moduleMeta{
-      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
-    }
-    .badge{
-      display:inline-flex; align-items:center;
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.25);
+    .brand-sub {
+      font-size: 12px;
       color: var(--muted);
-      font-size:11px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      background: rgba(2,6,23,0.25);
+      margin-top: 2px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
     }
-    .moduleTitle{ margin:6px 0 0; font-size:18px; font-family: "Playfair Display", serif; }
-    .moduleDesc{ margin:8px 0 0; color: var(--muted); line-height:1.6; font-size: 13px; }
 
-    .twoCols{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top: 12px;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    @media (max-width: 980px){ .twoCols{ grid-template-columns: 1fr; } }
 
-    .field{
-      display:flex; flex-direction:column; gap:6px;
+    /* ─── Status pill ─── */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: var(--panel);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted2);
+      letter-spacing: 0.04em;
     }
-    .field label{
-      font-size:11px; color: var(--muted);
-      letter-spacing:.12em; text-transform:uppercase;
+    .status-pill.active {
+      border-color: rgba(76,175,138,0.4);
+      background: rgba(76,175,138,0.08);
+      color: var(--green);
     }
-    textarea, input[type="text"], input[type="number"], select{
-      background: rgba(2,6,23,0.50);
-      border:1px solid rgba(148,163,184,0.22);
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .status-pill.active .status-dot {
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.04);
       color: var(--text);
-      border-radius:12px;
-      padding:10px 12px;
-      outline:none;
-      width:100%;
-      box-sizing:border-box;
-      font-family: inherit;
-      font-size: 13px;
-      transition: border-color .15s;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      user-select: none;
     }
-    textarea:focus, input:focus, select:focus {
-      border-color: rgba(244,193,93,0.45);
+    .btn:hover {
+      border-color: rgba(201,168,76,0.4);
+      background: rgba(201,168,76,0.07);
+      color: var(--gold2);
+      transform: translateY(-1px);
     }
-    textarea{ min-height: 120px; resize: vertical; }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
 
-    pre{
-      background: rgba(2,6,23,0.50);
-      border:1px solid rgba(148,163,184,0.18);
-      padding:14px;
-      border-radius:14px;
-      overflow:auto;
-      color: #e5e7eb;
-      line-height:1.6;
-      margin: 10px 0 0;
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-size: 13px;
+    .btn-gold {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0a0a0a;
+      font-weight: 700;
     }
-    .note{
-      font-size:12px;
-      color: var(--muted);
-      margin-top: 10px;
-      line-height:1.5;
+    .btn-gold:hover {
+      background: var(--gold2);
+      border-color: var(--gold2);
+      color: #0a0a0a;
     }
 
-    /* Archive / deep dive */
-    .archiveRow{
-      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
-      padding:12px; border-radius:14px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.22);
-      cursor:pointer;
-      transition: border-color .15s;
-    }
-    .archiveRow:hover{ border-color: rgba(244,193,93,.45); }
-    .archiveMeta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
-    .miniChip{
-      display:inline-flex; align-items:center;
-      padding:4px 8px; border-radius:999px;
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.25);
-      color: var(--muted);
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .searchRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-
-    .dd-shell{
-      display:grid;
-      grid-template-columns: 420px 1fr;
-      gap:10px;
-      margin-top: 12px;
-      align-items:start;
-    }
-    @media (max-width: 980px){ .dd-shell{ grid-template-columns: 1fr; } }
-    .dd-shell.reading{ grid-template-columns: 1fr; }
-    .dd-shell.reading #ddArchiveCard{ display:none; }
-    #ddViewerCard{ min-width:0; }
-    .ddViewerTop{
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-bottom: 10px;
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 11px;
     }
 
-    .article-body{
-      max-width: 92ch;
-      margin: 0 auto;
-      font-size: 15px;
-      line-height: 1.85;
-      color: #e5e7eb;
+    /* ─── Cards ─── */
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      backdrop-filter: blur(12px);
     }
-    .dd-shell.reading .article-body{ max-width: 105ch; }
-    .article-body p{ margin: 0 0 14px; }
-    .article-body h2{ font-size: 22px; margin: 22px 0 10px; line-height: 1.25; font-family: "Playfair Display", serif; }
-    .article-body h3{ font-size: 18px; margin: 16px 0 8px; line-height: 1.25; color: #f9fafb; }
-    .article-body ul, .article-body ol{ margin: 8px 0 14px; padding-left: 18px; }
-    .article-body li{ margin: 8px 0; }
-    .article-body blockquote{
-      margin: 16px 0; padding: 12px 14px;
-      border-left: 3px solid rgba(244,193,93,.7);
-      background: rgba(2,6,23,0.35);
-      border-radius: 12px;
-    }
-    .article-body hr{ border: none; height: 1px; background: rgba(148,163,184,0.18); margin: 18px 0; }
-    .article-body a{ color: var(--brand); }
-    .article-body a:hover{ text-decoration: underline; }
 
-    /* Ideas cards */
-    .ideaCard{
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      border-radius:16px;
-      padding:16px;
-      transition: border-color .15s, transform .15s;
+    .card-elevated {
+      background: var(--panel2);
+      border-color: var(--border2);
+      box-shadow: var(--shadow-sm);
     }
-    .ideaCard:hover{ border-color: rgba(244,193,93,0.35); transform: translateY(-2px); }
-    .ideaTicker{
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-      color: var(--brand);
-      line-height: 1;
+
+    /* ─── Dashboard grid ─── */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 960px) { .dashboard { grid-template-columns: 1fr; } }
+
+    /* ─── Sidebar ─── */
+    .sidebar { position: sticky; top: 20px; }
+
+    .sidebar-section {
       margin-bottom: 6px;
     }
-    .ideaSector{
-      font-size: 11px;
-      letter-spacing: .14em;
+
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 10px;
+      padding: 10px 12px 6px;
     }
-    .ideaRow{
+
+    .sidebar-item {
       display: flex;
-      gap: 8px;
       align-items: flex-start;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+    .sidebar-item:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--border);
+    }
+    .sidebar-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--gold);
+      cursor: pointer;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .sidebar-item-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .sidebar-item-text small {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .sidebar-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── Modules column ─── */
+    .modules { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ─── Module card ─── */
+    .module {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.2s;
+    }
+    .module:hover { border-color: var(--border2); }
+
+    .module-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 22px 22px 0;
+    }
+
+    .module-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 8px;
     }
-    .ideaLabel{
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
       font-size: 10px;
-      letter-spacing: .14em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+    .badge-blue { background: rgba(91,141,238,0.1); color: var(--blue); border: 1px solid rgba(91,141,238,0.25); }
+    .badge-muted { background: rgba(255,255,255,0.05); color: var(--muted2); border: 1px solid var(--border); }
+
+    .module-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 21px;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .module-desc {
+      font-size: 13px;
+      color: var(--muted2);
+      margin-top: 6px;
+      line-height: 1.6;
+      max-width: 55ch;
+    }
+
+    .module-body { padding: 20px 22px 22px; }
+
+    /* ─── Divider ─── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    /* ─── Section label ─── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
-      min-width: 72px;
-      padding: 3px 7px;
+    }
+
+    /* ─── Chips ─── */
+    .chips { display: flex; gap: 7px; flex-wrap: wrap; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.2);
-      background: rgba(2,6,23,0.25);
-      line-height: 1.4;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      font-size: 11px;
+      color: var(--muted2);
+    }
+    .chip span { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ─── Mini badge ─── */
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Input / Select / Textarea ─── */
+    input[type="text"], input[type="number"], select, textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(201,168,76,0.45); }
+    textarea { min-height: 100px; resize: vertical; }
+    select option { background: #0a0f1e; }
+
+    /* ─── Loading pulse ─── */
+    .pulse { animation: fadeInOut 1.6s ease infinite; }
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ─── Spinner ─── */
+    .spinner {
+      display: inline-block;
+      width: 13px; height: 13px;
+      border: 2px solid rgba(201,168,76,0.25);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── Deep dives ─── */
+    .dd-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .dd-layout.reading { grid-template-columns: 1fr; }
+    .dd-layout.reading #ddArchiveCard { display: none; }
+    @media (max-width: 900px) { .dd-layout { grid-template-columns: 1fr; } }
+
+    .search-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+    .search-row input { max-width: 180px; }
+
+    .archive-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-bottom: 8px;
+    }
+    .archive-item:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: var(--gold-dim);
+    }
+    .archive-item-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+    .archive-item-date { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+    .article-body {
+      max-width: 74ch;
+      font-size: 15px;
+      line-height: 1.85;
+      color: #d8dde8;
+    }
+    .article-body p { margin-bottom: 14px; }
+    .article-body h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+    .article-body h3 { font-size: 17px; margin: 18px 0 8px; color: var(--text); }
+    .article-body ul, .article-body ol { padding-left: 20px; margin: 8px 0 14px; }
+    .article-body li { margin: 6px 0; }
+    .article-body blockquote {
+      border-left: 2px solid var(--gold);
+      padding: 10px 16px;
+      background: var(--gold-dim);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 16px 0;
+      color: var(--muted2);
+    }
+    .article-body hr { border: none; height: 1px; background: var(--border); margin: 20px 0; }
+    .article-body a { color: var(--gold2); }
+
+    /* ─── Ideas grid ─── */
+    .ideas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .idea-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: all 0.18s ease;
+    }
+    .idea-card:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: var(--gold-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .idea-ticker {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .idea-sector {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .idea-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .idea-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.04);
+      white-space: nowrap;
       flex-shrink: 0;
       margin-top: 1px;
     }
-    .ideaText{
-      font-size: 13px;
-      color: #e5e7eb;
-      line-height: 1.5;
+
+    .idea-text { font-size: 13px; color: #c8cdd8; line-height: 1.5; }
+
+    /* ─── Deal Tracker ─── */
+    .deal-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 12px;
+      transition: border-color 0.18s;
     }
-    .ideaGrid{
+    .deal-card:hover { border-color: rgba(201,168,76,0.25); }
+
+    .deal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .deal-ticker {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 52px;
+    }
+
+    .deal-type-badge {
+      display: inline-flex;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .deal-title { font-size: 15px; font-weight: 600; color: var(--text); }
+
+    .deal-body { font-size: 13px; color: #b0b8cc; line-height: 1.65; margin-bottom: 14px; }
+
+    .deal-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .deal-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .deal-row-label.view {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+    }
+    .deal-row-label.risk {
+      background: rgba(224,82,82,0.08);
+      border: 1px solid rgba(224,82,82,0.3);
+      color: var(--red);
+    }
+    .deal-row-text { font-size: 13px; line-height: 1.55; }
+    .deal-row-text.view { color: #d8dde8; }
+    .deal-row-text.risk { color: #e8a0a0; }
+
+    /* ─── Model Portfolios ─── */
+    .models-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    /* Roundup cards */
-    .roundupCard{
-      border:1px solid rgba(148,163,184,0.22);
-      background: rgba(2,6,23,0.35);
-      border-radius:16px;
-      padding:16px;
-      margin-bottom: 10px;
-      transition: border-color .15s;
+    .model-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: all 0.18s;
     }
-    .roundupCard:hover{ border-color: rgba(244,193,93,0.35); }
-    .roundupTitle{
-      font-family: "Playfair Display", serif;
-      font-size: 17px;
+    .model-card:hover {
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-2px);
+    }
+
+    .model-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
       color: var(--text);
-      margin-bottom: 6px;
-    }
-    .roundupMeta{
-      display: flex; gap: 8px; flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-    .roundupContent{
-      font-size: 13px;
-      color: #d1d5db;
-      line-height: 1.65;
-      white-space: pre-wrap;
+      margin-bottom: 4px;
     }
 
-    /* ===== QUANT LAB MODALS ===== */
-    .qlBackdrop{
+    .model-date {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .model-summary {
+      font-size: 13px;
+      color: var(--muted2);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .holding-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .holding-ticker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      min-width: 52px;
+    }
+
+    .holding-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .holding-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      transition: width 0.6s ease;
+    }
+
+    .holding-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted2);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    .holding-note {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    /* ─── Rebalance panel ─── */
+    .rebalance-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .model-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .model-tab {
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--muted2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .model-tab:hover {
+      border-color: rgba(201,168,76,0.4);
+      color: var(--gold2);
+    }
+    .model-tab.active {
+      background: var(--gold-dim);
+      border-color: rgba(201,168,76,0.4);
+      color: var(--gold);
+    }
+
+    /* ─── Templates ─── */
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .template-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .template-item:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+    .template-icon { font-size: 24px; }
+    .template-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .template-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* ─── Quant Lab ─── */
+    .ql-backdrop {
       position: fixed; inset: 0;
-      background: rgba(0,0,0,0.72);
-      z-index: 99999;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
     }
-    .qlBackdrop.active{ display: flex; }
+    .ql-backdrop.active { display: flex; }
 
-    .qlModal{
+    .ql-modal {
       width: 100%;
-      max-width: 680px;
-      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
-      border: 1px solid rgba(148,163,184,0.35);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      max-width: 660px;
+      background: linear-gradient(135deg, rgba(10,15,30,0.99), rgba(5,8,15,0.99));
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7);
       position: relative;
       max-height: 90vh;
       overflow-y: auto;
-      animation: modalIn .22s ease;
+      animation: modalIn 0.2s ease;
     }
-    @keyframes modalIn{
-      from{ transform: translateY(16px) scale(0.97); opacity:0; }
-      to{ transform: translateY(0) scale(1); opacity:1; }
+    .ql-modal.wide { max-width: 900px; }
+    @keyframes modalIn {
+      from { transform: translateY(12px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
     }
 
-    .qlModal.wide{ max-width: 900px; }
-
-    .qlClose{
-      position: absolute; top: 14px; right: 16px;
+    .ql-close {
+      position: absolute; top: 16px; right: 18px;
       background: transparent; border: none;
-      color: var(--muted); font-size: 22px;
+      color: var(--muted); font-size: 20px;
       cursor: pointer; line-height: 1;
-      transition: color .15s;
+      transition: color 0.15s;
     }
-    .qlClose:hover{ color: var(--text); }
+    .ql-close:hover { color: var(--text); }
 
-    .qlKicker{
-      font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--brand); margin-bottom: 8px;
-    }
-    .qlTitle{
-      font-family: "Playfair Display", serif;
-      font-size: 28px; line-height: 1.15;
-      margin-bottom: 10px;
-    }
-    .qlSubtitle{
-      font-size: 14px; color: #d1d5db;
-      line-height: 1.65; margin-bottom: 18px;
-      max-width: 58ch;
-    }
+    .ql-kicker { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .ql-title { font-family: 'DM Serif Display', serif; font-size: 26px; margin-bottom: 10px; }
+    .ql-subtitle { font-size: 14px; color: #c0c8d8; line-height: 1.65; margin-bottom: 18px; }
 
-    .qlInfoGrid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 18px 0;
-    }
-    @media (max-width: 600px){ .qlInfoGrid{ grid-template-columns: 1fr; } }
+    .ql-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+    @media (max-width: 600px) { .ql-info-grid { grid-template-columns: 1fr; } }
 
-    .qlInfoCard{
-      border: 1px solid rgba(148,163,184,0.2);
-      background: rgba(2,6,23,0.45);
-      border-radius: 14px;
+    .ql-info-card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-sm);
       padding: 14px;
     }
-    .qlInfoCard .qlInfoIcon{
-      font-size: 22px; margin-bottom: 8px;
-    }
-    .qlInfoCard .qlInfoLabel{
-      font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px;
-    }
-    .qlInfoCard .qlInfoText{
-      font-size: 12px; color: #e5e7eb; line-height: 1.5;
-    }
+    .ql-info-icon { font-size: 20px; margin-bottom: 8px; }
+    .ql-info-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .ql-info-text { font-size: 12px; color: #b0b8cc; line-height: 1.5; }
 
-    .qlWarning{
+    .ql-warning {
       display: flex; gap: 10px; align-items: flex-start;
       padding: 12px 14px;
-      border: 1px solid rgba(244,193,93,0.3);
-      background: rgba(244,193,93,0.06);
-      border-radius: 12px;
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.05);
+      border-radius: var(--radius-sm);
       margin: 14px 0;
-      font-size: 12px;
-      color: #e5e7eb;
-      line-height: 1.5;
+      font-size: 12px; color: #c0c8d8; line-height: 1.5;
     }
-    .qlWarning::before{ content: "⚠️"; flex-shrink: 0; }
+    .ql-warning::before { content: "⚠️"; flex-shrink: 0; }
 
-    .qlBtnRow{
-      display: flex; gap: 10px; flex-wrap: wrap;
-      margin-top: 18px;
-    }
+    .ql-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
-    /* Calc modal */
-    .qlSection{
-      margin-bottom: 18px;
-    }
-    .qlSectionTitle{
-      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--brand); margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(244,193,93,0.2);
+    .ql-section { margin-bottom: 18px; }
+    .ql-section-title {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+      padding-bottom: 6px; border-bottom: 1px solid rgba(201,168,76,0.15);
     }
 
-    .qlInputGrid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 600px){ .qlInputGrid{ grid-template-columns: 1fr; } }
+    .ql-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 600px) { .ql-input-grid { grid-template-columns: 1fr; } }
 
-    .qlAssetRow{
-      display: grid;
-      grid-template-columns: 100px 1fr 1fr 1fr;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 8px;
+    .ql-asset-row {
+      display: grid; grid-template-columns: 90px 1fr 1fr 1fr;
+      gap: 8px; align-items: center; margin-bottom: 8px;
     }
-    @media (max-width: 600px){ .qlAssetRow{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .ql-asset-row { grid-template-columns: 1fr 1fr; } }
 
-    .qlAssetLabel{
-      font-size: 12px; color: var(--brand); font-weight: 700;
-      letter-spacing: .08em;
-    }
+    .ql-asset-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; }
 
-    .qlColHeader{
-      display: grid;
-      grid-template-columns: 100px 1fr 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-    @media (max-width: 600px){ .qlColHeader{ display:none; } }
+    .ql-col-header { display: grid; grid-template-columns: 90px 1fr 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+    @media (max-width: 600px) { .ql-col-header { display: none; } }
+    .ql-col-header-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
-    .qlColHeaderLabel{
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .qlResults{
-      background: rgba(2,6,23,0.55);
-      border: 1px solid rgba(148,163,184,0.2);
-      border-radius: 14px;
-      padding: 16px;
+    .ql-results-panel {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
       margin-top: 14px;
     }
-    .qlResultsTitle{
-      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 12px;
+
+    .ql-result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 14px; }
+
+    .ql-result-cell {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-sm);
+      padding: 12px;
     }
-    .qlResultGrid{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .qlResultCell{
-      border: 1px solid rgba(148,163,184,0.18);
-      background: rgba(15,23,42,0.5);
-      border-radius: 10px;
-      padding: 10px;
-    }
-    .qlResultCellLabel{
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px;
-    }
-    .qlResultCellValue{
-      font-size: 18px; font-weight: 700; color: var(--brand);
-      font-family: "Playfair Display", serif;
-    }
-    .qlResultCellSub{
-      font-size: 11px; color: var(--muted); margin-top: 2px;
+    .ql-result-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .ql-result-value { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); }
+    .ql-result-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .ql-weight-bar { display: flex; gap: 3px; height: 6px; border-radius: 999px; overflow: hidden; margin: 10px 0 6px; }
+    .ql-weight-seg { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
+
+    .ql-weight-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+    .ql-weight-legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #c0c8d8; }
+    .ql-weight-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+    .ql-error {
+      color: var(--red); font-size: 13px; margin-top: 10px; padding: 10px 12px;
+      border: 1px solid rgba(224,82,82,0.25); background: rgba(224,82,82,0.06);
+      border-radius: var(--radius-sm); display: none;
     }
 
-    .qlWeightBar{
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .note { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
+
+    pre {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      padding: 14px; border-radius: var(--radius-sm);
+      color: #c0c8d8; line-height: 1.6; font-size: 12px;
+      overflow: auto; white-space: pre-wrap; word-break: break-word;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ─── State card ─── */
+    #state { margin-bottom: 20px; }
+
+    /* ─── Loading skeleton ─── */
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+      height: 14px;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    /* ─── Two-col layout ─── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ─── Week selector strip ─── */
+    .week-strip {
       display: flex;
-      gap: 4px;
-      height: 8px;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      margin-bottom: 16px;
+    }
+    .week-pill {
+      padding: 6px 14px;
       border-radius: 999px;
-      overflow: hidden;
-      margin: 10px 0 6px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--muted2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .qlWeightBarSeg{
-      height: 100%;
-      transition: width .4s ease;
-      border-radius: 999px;
+    .week-pill:hover, .week-pill.active {
+      background: var(--gold-dim);
+      border-color: rgba(201,168,76,0.4);
+      color: var(--gold);
     }
-
-    .qlWeightLegend{
-      display: flex; gap: 12px; flex-wrap: wrap;
-    }
-    .qlWeightLegendItem{
-      display: flex; align-items: center; gap: 5px;
-      font-size: 12px; color: #d1d5db;
-    }
-    .qlWeightLegendDot{
-      width: 8px; height: 8px; border-radius: 999px;
-    }
-
-    .qlError{
-      color: #f87171;
-      font-size: 13px;
-      margin-top: 10px;
-      padding: 10px 12px;
-      border: 1px solid rgba(248,113,113,0.25);
-      background: rgba(248,113,113,0.06);
-      border-radius: 10px;
-      display: none;
-    }
-
-    .qlSpinner{
-      display: inline-block;
-      width: 14px; height: 14px;
-      border: 2px solid rgba(244,193,93,0.3);
-      border-top-color: var(--brand);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      margin-right: 6px;
-      vertical-align: middle;
-    }
-    @keyframes spin{ to{ transform: rotate(360deg); } }
-
-    /* Loading states */
-    .loadingPulse{
-      animation: pulse 1.5s ease infinite;
-    }
-    @keyframes pulse{
-      0%,100%{ opacity:1; }
-      50%{ opacity:.4; }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar{ width:6px; height:6px; }
-    ::-webkit-scrollbar-track{ background: rgba(2,6,23,0.3); }
-    ::-webkit-scrollbar-thumb{ background: rgba(148,163,184,0.3); border-radius:999px; }
-    ::-webkit-scrollbar-thumb:hover{ background: rgba(244,193,93,0.4); }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div>
-        <h1 class="brandTitle">FinTrend Premium</h1>
-        <p class="subhead">Members-only dashboard.</p>
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-        <span class="pill" id="memberPill">Checking…</span>
-        <a class="btn" href="index.html">← Back</a>
-      </div>
-    </div>
 
-    <div id="state" class="card">
-      <p class="muted loadingPulse">Verifying your access…</p>
-    </div>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-mark">F</div>
+        <div>
+          <div class="brand-name">FinTrend</div>
+          <div class="brand-sub">Premium Dashboard</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="status-pill" id="memberPill">
+          <span class="status-dot"></span>
+          Verifying…
+        </span>
+        <a class="btn btn-sm" href="index.html">← Back</a>
+      </div>
+    </header>
+
+    <!-- State card (shown until auth resolves) -->
+    <div id="state" class="card"></div>
+
+    <!-- Main content -->
     <div id="content" style="display:none;"></div>
+
   </div>
 
-  <!-- ===== QUANT LAB MODAL 1: Explainer ===== -->
-  <div class="qlBackdrop" id="qlExplainer">
-    <div class="qlModal">
-      <button class="qlClose" id="qlExplainerClose">×</button>
-      <div class="qlKicker">Premium Tool</div>
-      <h2 class="qlTitle">Quant Lab</h2>
-      <p class="qlSubtitle">
-        A professional-grade portfolio optimization engine built directly into your dashboard.
-        It combines two of the most widely used frameworks in quantitative finance.
-      </p>
-
-      <div class="qlInfoGrid">
-        <div class="qlInfoCard">
-          <div class="qlInfoIcon">⚖️</div>
-          <div class="qlInfoLabel">Mean-Variance Optimization</div>
-          <div class="qlInfoText">
-            Finds the portfolio weights that maximize expected return for a given level of risk —
-            the mathematical foundation of modern portfolio theory, developed by Harry Markowitz (Nobel Prize, 1990).
-          </div>
+  <!-- ═══════════════════════════════════════ -->
+  <!-- QUANT LAB MODAL 1: Explainer           -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="ql-backdrop" id="qlExplainer">
+    <div class="ql-modal">
+      <button class="ql-close" id="qlExplainerClose">×</button>
+      <div class="ql-kicker">Premium Tool</div>
+      <h2 class="ql-title">Quant Lab</h2>
+      <p class="ql-subtitle">A professional-grade portfolio optimization engine built into your dashboard, combining two of the most widely used frameworks in quantitative finance.</p>
+      <div class="ql-info-grid">
+        <div class="ql-info-card">
+          <div class="ql-info-icon">⚖️</div>
+          <div class="ql-info-label">Mean-Variance Optimization</div>
+          <div class="ql-info-text">Finds weights that maximize expected return for a given risk level — the foundation of modern portfolio theory (Markowitz, Nobel 1990).</div>
         </div>
-        <div class="qlInfoCard">
-          <div class="qlInfoIcon">🎲</div>
-          <div class="qlInfoLabel">Monte Carlo Simulation</div>
-          <div class="qlInfoText">
-            Runs 20,000 simulated return scenarios using your inputs, then measures how bad
-            things get in the worst outcomes — giving you a realistic picture of tail risk.
-          </div>
+        <div class="ql-info-card">
+          <div class="ql-info-icon">🎲</div>
+          <div class="ql-info-label">Monte Carlo Simulation</div>
+          <div class="ql-info-text">Runs 20,000 simulated return scenarios using your inputs, measuring how bad things get in the worst outcomes.</div>
         </div>
-        <div class="qlInfoCard">
-          <div class="qlInfoIcon">📉</div>
-          <div class="qlInfoLabel">CVaR (Conditional Value at Risk)</div>
-          <div class="qlInfoText">
-            Goes beyond VaR to ask: "When things go wrong, how bad is the average loss?"
-            Used by institutional risk desks as a more conservative and complete risk measure.
-          </div>
+        <div class="ql-info-card">
+          <div class="ql-info-icon">📉</div>
+          <div class="ql-info-label">CVaR</div>
+          <div class="ql-info-text">Conditional Value at Risk — asks "when things go wrong, how bad is the average loss?" Used by institutional risk desks.</div>
         </div>
       </div>
-
-      <div class="qlWarning">
-        This tool is for educational and analytical purposes only. It is not financial advice.
-        All inputs are your own estimates — outputs are only as good as your assumptions.
-        Past covariance and return estimates do not guarantee future results.
-      </div>
-
-      <p style="font-size:13px; color:#d1d5db; line-height:1.65;">
-        <strong style="color:var(--text);">What you'll input:</strong> Expected annual returns for up to 5 assets,
-        their volatilities, and correlations between them. The optimizer finds the mathematically
-        optimal allocation, then stress-tests it with a Monte Carlo simulation to show you
-        95% VaR and CVaR — the same metrics used by hedge funds and institutional desks.
-      </p>
-
-      <div class="qlBtnRow">
-        <button class="btn primary" id="qlOpenCalc">Understood — Open Calculator</button>
-        <button class="btn" id="qlNevermind">Nevermind</button>
+      <div class="ql-warning">For educational and analytical purposes only. Not financial advice. Outputs are only as good as your assumptions.</div>
+      <div class="ql-btn-row">
+        <button class="btn btn-gold" id="qlOpenCalc">Open Calculator</button>
+        <button class="btn" id="qlNevermind">Cancel</button>
       </div>
     </div>
   </div>
 
-  <!-- ===== QUANT LAB MODAL 2: Calculator ===== -->
-  <div class="qlBackdrop" id="qlCalc">
-    <div class="qlModal wide">
-      <button class="qlClose" id="qlCalcClose">×</button>
-      <div class="qlKicker">Quant Lab · Calculator</div>
-      <h2 class="qlTitle" style="font-size:22px; margin-bottom:16px;">Portfolio Optimizer</h2>
+  <!-- ═══════════════════════════════════════ -->
+  <!-- QUANT LAB MODAL 2: Calculator          -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="ql-backdrop" id="qlCalc">
+    <div class="ql-modal wide">
+      <button class="ql-close" id="qlCalcClose">×</button>
+      <div class="ql-kicker">Quant Lab · Calculator</div>
+      <h2 class="ql-title" style="font-size:22px;margin-bottom:16px;">Portfolio Optimizer</h2>
 
-      <!-- Assets -->
-      <div class="qlSection">
-        <div class="qlSectionTitle">Assets & Expected Returns</div>
-        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
-          Enter 2–5 assets. Use annualized expected returns (e.g. 0.10 = 10%). Volatility = annualized standard deviation.
-        </p>
-
-        <div class="qlColHeader">
-          <div class="qlColHeaderLabel">Asset</div>
-          <div class="qlColHeaderLabel">Ticker / Name</div>
-          <div class="qlColHeaderLabel">Exp. Return (μ)</div>
-          <div class="qlColHeaderLabel">Volatility (σ)</div>
+      <div class="ql-section">
+        <div class="ql-section-title">Assets & Expected Returns</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Enter 2–5 assets. Use annualized expected returns (e.g. 0.10 = 10%). Volatility = annualized standard deviation.</p>
+        <div class="ql-col-header">
+          <div class="ql-col-header-label">Asset</div>
+          <div class="ql-col-header-label">Ticker / Name</div>
+          <div class="ql-col-header-label">Exp. Return (μ)</div>
+          <div class="ql-col-header-label">Volatility (σ)</div>
         </div>
-
-        <div id="assetRows">
-          <!-- Generated by JS -->
-        </div>
-
-        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-          <button class="btn" id="addAssetBtn">+ Add Asset</button>
-          <button class="btn" id="removeAssetBtn">− Remove Asset</button>
+        <div id="assetRows"></div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-sm" id="addAssetBtn">+ Add Asset</button>
+          <button class="btn btn-sm" id="removeAssetBtn">− Remove</button>
         </div>
       </div>
 
-      <!-- Correlations -->
-      <div class="qlSection">
-        <div class="qlSectionTitle">Correlations Between Assets</div>
-        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
-          Enter correlation coefficients between −1 and 1. (e.g. 0.3 = moderate positive correlation)
-        </p>
+      <div class="ql-section">
+        <div class="ql-section-title">Correlations Between Assets</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Correlation coefficients between −1 and 1.</p>
         <div id="corrGrid" style="overflow-x:auto;"></div>
       </div>
 
-      <!-- Settings -->
-      <div class="qlSection">
-        <div class="qlSectionTitle">Optimizer Settings</div>
-        <div class="qlInputGrid">
+      <div class="ql-section">
+        <div class="ql-section-title">Optimizer Settings</div>
+        <div class="ql-input-grid">
           <div class="field">
             <label>Risk Aversion (λ)</label>
             <input type="number" id="lambdaInput" value="4" min="0.5" max="20" step="0.5" />
-            <div class="note">Higher = more conservative. Range: 1 (aggressive) to 10 (defensive). Typical: 3–5.</div>
+            <div class="note">Higher = more conservative. Typical: 3–5.</div>
           </div>
           <div class="field">
             <label>Monte Carlo Simulations</label>
             <input type="number" id="simCount" value="20000" min="1000" max="50000" step="1000" />
-            <div class="note">More simulations = more accurate tail risk estimates. 20,000 is a good balance.</div>
+            <div class="note">More = more accurate tail risk estimates.</div>
           </div>
         </div>
       </div>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
-        <button class="btn primary" id="runOptBtn">
-          Run Optimization
-        </button>
-        <button class="btn" id="loadExampleBtn">Load Example Portfolio</button>
-        <button class="btn" id="resetCalcBtn">Reset</button>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <button class="btn btn-gold" id="runOptBtn">Run Optimization</button>
+        <button class="btn btn-sm" id="loadExampleBtn">Load Example</button>
+        <button class="btn btn-sm" id="resetCalcBtn">Reset</button>
       </div>
 
-      <div class="qlError" id="qlError"></div>
+      <div class="ql-error" id="qlError"></div>
 
-      <!-- Results -->
       <div id="qlResults" style="display:none;">
-        <div class="qlResults">
-          <div class="qlResultsTitle">Optimization Results</div>
-
+        <div class="ql-results-panel">
+          <div class="section-label" style="margin-bottom:12px;">Optimization Results</div>
           <div style="margin-bottom:14px;">
-            <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">
-              Optimal Weights
-            </div>
-            <div class="qlWeightBar" id="weightBar"></div>
-            <div class="qlWeightLegend" id="weightLegend"></div>
+            <div class="section-label" style="margin-bottom:6px;">Optimal Weights</div>
+            <div class="ql-weight-bar" id="weightBar"></div>
+            <div class="ql-weight-legend" id="weightLegend"></div>
           </div>
-
-          <div class="qlResultGrid" id="resultCells"></div>
-
+          <div class="ql-result-grid" id="resultCells"></div>
           <div class="divider"></div>
-
-          <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">
-            Monte Carlo Distribution
-          </div>
-          <pre id="mcDetails" style="margin:0; font-size:12px;"></pre>
+          <div class="section-label" style="margin-bottom:8px;">Monte Carlo Distribution</div>
+          <pre id="mcDetails" style="margin:0;"></pre>
         </div>
       </div>
-
     </div>
   </div>
 
   <script>
   (async function(){
 
-    const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
-    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
+    const PAYMENT_LINK  = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
+    const SUPABASE_URL  = "https://dxmdyperxyydqdshazcp.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
 
-    const stateEl = document.getElementById("state");
+    const stateEl   = document.getElementById("state");
     const contentEl = document.getElementById("content");
-    const memberPill = document.getElementById("memberPill");
+    const memberPill= document.getElementById("memberPill");
 
-    function withTimeout(promise, ms=8000){
-      return Promise.race([
-        promise,
-        new Promise((_,reject)=>setTimeout(()=>reject(new Error("Timed out")),ms))
-      ]);
+    function withTimeout(p, ms=8000){
+      return Promise.race([p, new Promise((_,r)=>setTimeout(()=>r(new Error("Timed out")),ms))]);
     }
 
     const watchdog = setTimeout(()=>{
       memberPill.textContent = "Timed out";
-      stateEl.innerHTML = `
-        <div class="sectionTitle">Timed out</div>
-        <h2 class="h2">Page didn't finish loading</h2>
-        <p class="muted" style="margin-top:8px;">Try refreshing. If this keeps happening, check your connection.</p>
-        <div style="display:flex;gap:10px;margin-top:12px;">
-          <a class="btn primary" href="index.html">Back to Sign In</a>
-        </div>`;
+      stateEl.innerHTML = `<p class="muted pulse">Page timed out — try refreshing.</p>`;
     }, 9000);
 
     function showFatal(title, msg, detail){
       clearTimeout(watchdog);
       memberPill.textContent = "Error";
       stateEl.innerHTML = `
-        <div class="sectionTitle">${title}</div>
-        <h2 class="h2">Something went wrong</h2>
-        <p class="muted" style="margin-top:8px;">${msg}</p>
+        <p class="section-label">${title}</p>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Something went wrong</h2>
+        <p style="color:var(--muted2);margin-top:6px;">${msg}</p>
         ${detail ? `<pre style="margin-top:10px;">${detail}</pre>` : ""}
-        <div style="display:flex;gap:10px;margin-top:12px;">
-          <a class="btn" href="index.html">Back</a>
-        </div>`;
+        <div style="margin-top:16px;"><a class="btn" href="index.html">← Back</a></div>`;
     }
 
     function escHtml(s){
-      return String(s??""
-      ).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+      return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
     }
 
     function fmtDate(ts){
@@ -874,51 +1165,37 @@
     }
 
     try{
-      if(!window.supabase||!window.supabase.createClient){
-        throw new Error("Supabase library not loaded.");
-      }
+      if(!window.supabase?.createClient) throw new Error("Supabase not loaded.");
 
       const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
         auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage:window.localStorage }
       });
 
-      // Auth check
-      const { data:u, error:uErr } = await withTimeout(sb.auth.getUser(), 8000);
-      if(uErr) throw new Error("Auth failed: "+uErr.message);
-      const user = u?.user || null;
+      const {data:u, error:uErr} = await withTimeout(sb.auth.getUser());
+      if(uErr) throw new Error("Auth: "+uErr.message);
+      const user = u?.user ?? null;
 
       if(!user){
         clearTimeout(watchdog);
         memberPill.textContent = "Signed out";
         stateEl.innerHTML = `
-          <div class="sectionTitle">Sign in required</div>
-          <h2 class="h2">You need to be signed in</h2>
-          <p class="muted" style="margin-top:8px;">Head back to sign in or create an account.</p>
-          <div style="display:flex;gap:10px;margin-top:12px;">
-            <a class="btn primary" href="index.html">Sign In</a>
-          </div>`;
+          <p class="section-label">Sign in required</p>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">You need to be signed in</h2>
+          <div style="margin-top:14px;"><a class="btn btn-gold" href="index.html">Sign In</a></div>`;
         return;
       }
 
-      // Profile check
-      const { data:profile, error:pErr } = await withTimeout(
-        sb.from("profiles").select("id,email,is_premium").eq("id",user.id).maybeSingle(), 8000
+      const {data:profile, error:pErr} = await withTimeout(
+        sb.from("profiles").select("id,email,is_premium").eq("id",user.id).maybeSingle()
       );
 
-      if(pErr){
-        showFatal("Database error", "Could not load your profile. RLS may be blocking access.", pErr.message);
-        return;
-      }
+      if(pErr){ showFatal("Database error","Could not load your profile.",pErr.message); return; }
       if(!profile){
         clearTimeout(watchdog);
-        memberPill.textContent = "Unknown";
         stateEl.innerHTML = `
-          <div class="sectionTitle">Profile missing</div>
-          <h2 class="h2">Can't verify your membership</h2>
-          <p class="muted" style="margin-top:8px;">Your profile row is missing. Contact support.</p>
-          <div style="display:flex;gap:10px;margin-top:12px;">
-            <a class="btn" href="index.html">Home</a>
-          </div>`;
+          <p class="section-label">Profile missing</p>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Can't verify membership</h2>
+          <div style="margin-top:14px;"><a class="btn" href="index.html">← Home</a></div>`;
         return;
       }
 
@@ -926,220 +1203,169 @@
         clearTimeout(watchdog);
         memberPill.textContent = "Free";
         stateEl.innerHTML = `
-          <div class="sectionTitle">Premium required</div>
-          <h2 class="h2">Upgrade to unlock this dashboard</h2>
-          <p class="muted" style="margin-top:8px;">Signed in as <strong>${escHtml(profile.email||"")}</strong></p>
-          <div style="display:flex;gap:10px;margin-top:12px;">
-            <a class="btn primary" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Go Premium</a>
-            <a class="btn" href="index.html">Back</a>
+          <p class="section-label">Upgrade required</p>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Go Premium to unlock this dashboard</h2>
+          <p style="color:var(--muted2);margin-top:6px;">Signed in as <strong>${escHtml(profile.email||"")}</strong></p>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <a class="btn btn-gold" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Upgrade Now</a>
+            <a class="btn" href="index.html">← Back</a>
           </div>`;
         return;
       }
 
       // ✅ PREMIUM UNLOCKED
       clearTimeout(watchdog);
-      memberPill.textContent = "Premium ✓";
+      memberPill.innerHTML = `<span class="status-dot"></span> Premium`;
       memberPill.classList.add("active");
       stateEl.innerHTML = `
-        <div class="sectionTitle">Access granted</div>
-        <h2 class="h2">Premium active ✅</h2>
-        <p class="muted" style="margin-top:6px;">Welcome back, ${escHtml(profile.email||"member")}.</p>`;
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div>
+            <p class="section-label">Access granted</p>
+            <p style="color:var(--muted2);margin-top:4px;font-size:13px;">Welcome back, <strong style="color:var(--text);">${escHtml(profile.email||"member")}</strong></p>
+          </div>
+          <span class="badge badge-gold">Premium Active ✓</span>
+        </div>`;
 
-      // =============================================
+      // ══════════════════════════════════════════
       // MODULE DEFINITIONS
-      // =============================================
-      const STORAGE_KEY = "fintrend_premium_modules_v2";
+      // ══════════════════════════════════════════
+      const STORAGE_KEY = "fintrend_premium_modules_v3";
 
       const MODULES = [
-        {
-          id:"deepdive", category:"Research", badge:"Deep Dives",
-          title:"Weekly Deep Dives + Archive",
-          desc:"Full-length sector reports with drivers, positioning, catalysts, and levels — loaded live from your database.",
-          render: renderDeepDives
-        },
-        {
-          id:"ideas", category:"Ideas", badge:"On My Radar",
-          title:"Curated Stock & ETF Ideas",
-          desc:"Weekly watchlist with thesis, catalysts, time horizon, and risk notes for each idea.",
-          render: renderIdeas
-        },
-        {
-          id:"roundup", category:"News", badge:"Deal Tracker",
-          title:"Weekly M&A · LBO · IPO Breakdown",
-          desc:"3 deals every week — what happened, the strategic logic, what we think happens next, and the key risk.",
-          render: renderRoundups
-        },
-        {
-          id:"templates", category:"Tools", badge:"Templates Vault",
-          title:"Simple Templates (Download + Checklists)",
-          desc:"Portfolio tracker, DCA planner, earnings checklist, and rebalancing checklist.",
-          render: renderTemplates
-        },
-        {
-          id:"models", category:"Portfolios", badge:"Model Portfolios",
-          title:"Cautious / Balanced / Aggressive Models",
-          desc:"3 model portfolio frameworks with periodic rebalance rationale and risk regime notes.",
-          render: renderModels
-        },
-        {
-          id:"quantlab", category:"Quant", badge:"Quant Lab",
-          title:"Portfolio Optimizer + Monte Carlo CVaR",
-          desc:"Mean-variance optimization + 20,000-scenario Monte Carlo simulation with VaR and CVaR output.",
-          render: renderQuantLab
-        }
+        { id:"deepdive",  category:"Research",   badge:"Deep Dives",       title:"Weekly Deep Dives + Archive",              desc:"Full-length sector reports with drivers, positioning, catalysts, and levels.",             render: renderDeepDives },
+        { id:"ideas",     category:"Ideas",       badge:"On My Radar",      title:"Curated Stock & ETF Ideas",                desc:"Weekly watchlist with thesis, catalysts, time horizon, and risk notes.",                   render: renderIdeas },
+        { id:"roundup",   category:"News",        badge:"Deal Tracker",     title:"Weekly M&A · LBO · IPO Breakdown",         desc:"3 deals every week — what happened, the logic, what we think next, and the key risk.",     render: renderRoundups },
+        { id:"templates", category:"Tools",       badge:"Templates Vault",  title:"Simple Templates (Download + Checklists)", desc:"Portfolio tracker, DCA planner, earnings checklist, and rebalancing checklist.",           render: renderTemplates },
+        { id:"models",    category:"Portfolios",  badge:"Model Portfolios", title:"Cautious / Balanced / Aggressive Models",  desc:"3 model portfolio frameworks with rebalance rationale and risk regime notes.",             render: renderModels },
+        { id:"quantlab",  category:"Quant",       badge:"Quant Lab",        title:"Portfolio Optimizer + Monte Carlo CVaR",   desc:"Mean-variance optimization + 20,000-scenario Monte Carlo simulation with VaR and CVaR.", render: renderQuantLab }
       ];
 
       const DEFAULT = MODULES.map(m=>m.id);
 
       function loadSel(){
         try{
-          const r=localStorage.getItem(STORAGE_KEY);
+          const r = localStorage.getItem(STORAGE_KEY);
           if(!r) return DEFAULT.slice();
-          const p=JSON.parse(r);
-          if(!Array.isArray(p)) return DEFAULT.slice();
-          return p.filter(id=>MODULES.some(m=>m.id===id));
+          const p = JSON.parse(r);
+          return Array.isArray(p) ? p.filter(id=>MODULES.some(m=>m.id===id)) : DEFAULT.slice();
         }catch{ return DEFAULT.slice(); }
       }
-      function saveSel(s){ localStorage.setItem(STORAGE_KEY,JSON.stringify(s)); }
+      function saveSel(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
 
       let selectedIds = loadSel();
 
-      // =============================================
+      // ══════════════════════════════════════════
       // RENDER FUNCTIONS
-      // =============================================
+      // ══════════════════════════════════════════
 
       function renderDeepDives(){
         return `
-          <div class="chips">
-            <div class="chip"><span>Source</span> Supabase (RLS protected)</div>
-            <div class="chip"><span>Updated</span> When you publish</div>
+          <div class="chips" style="margin-bottom:14px;">
+            <div class="chip"><span>Source</span> Supabase · RLS protected</div>
+            <div class="chip"><span>Updated</span> Each publish</div>
           </div>
-          <div class="divider"></div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <button class="btn primary" data-deepdive="latest">Open Latest Deep Dive</button>
-            <button class="btn" data-deepdive="archive">Browse Archive</button>
-            <button class="btn" data-deepdive="exit" style="display:none;">Exit Reader</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+            <button class="btn btn-gold btn-sm" data-deepdive="latest">Open Latest</button>
+            <button class="btn btn-sm" data-deepdive="archive">Browse Archive</button>
+            <button class="btn btn-sm" data-deepdive="exit" style="display:none;">Exit Reader</button>
           </div>
-          <div class="divider"></div>
-          <div class="dd-shell" id="ddShell">
-            <div class="card" id="ddArchiveCard" style="padding:14px;box-shadow:none;">
-              <div class="sectionTitle">Archive</div>
-              <div class="searchRow">
-                <input id="ddSearch" type="text" placeholder="Search titles…" style="max-width:200px;" />
+          <div class="dd-layout" id="ddShell">
+            <div id="ddArchiveCard" style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+              <p class="section-label" style="margin-bottom:10px;">Archive</p>
+              <div class="search-row">
+                <input id="ddSearch" type="text" placeholder="Search titles…" style="max-width:170px;" />
                 <select id="ddSector"><option value="">All sectors</option></select>
-                <button class="btn" data-deepdive="refresh">Refresh</button>
+                <button class="btn btn-sm" data-deepdive="refresh">Refresh</button>
               </div>
               <div class="divider"></div>
-              <div id="ddList" class="checkgrid" style="gap:10px;"></div>
+              <div id="ddList"></div>
             </div>
-            <div class="card" id="ddViewerCard" style="padding:14px;box-shadow:none;">
-              <div class="ddViewerTop">
-                <div class="sectionTitle">Reader</div>
-                <button class="btn" data-deepdive="backToArchive" style="display:none;">← Back to Archive</button>
+            <div id="ddViewerCard" style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+                <p class="section-label">Reader</p>
+                <button class="btn btn-sm" data-deepdive="backToArchive" style="display:none;">← Archive</button>
               </div>
-              <div id="ddViewer"><p class="muted">Click "Open Latest" or choose from the archive.</p></div>
+              <div id="ddViewer"><p style="color:var(--muted);font-size:13px;">Click "Open Latest" or choose from the archive.</p></div>
             </div>
           </div>`;
       }
 
       function renderIdeas(){
         return `
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-            <button class="btn primary" id="loadIdeasBtn">Load Ideas</button>
-            <select id="ideasSectorFilter" style="max-width:180px;">
-              <option value="">All Sectors</option>
-            </select>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
+            <button class="btn btn-gold btn-sm" id="loadIdeasBtn">Load Ideas</button>
+            <select id="ideasWeekFilter" style="max-width:200px;"><option value="">All Weeks</option></select>
+            <select id="ideasSectorFilter" style="max-width:160px;"><option value="">All Sectors</option></select>
           </div>
-          <div id="ideasContainer">
-            <p class="muted">Click "Load Ideas" to fetch your latest watchlist.</p>
+          <div id="ideasContainer" style="margin-top:8px;">
+            <p style="color:var(--muted);font-size:13px;">Click "Load Ideas" to fetch the latest watchlist.</p>
           </div>`;
       }
 
       function renderRoundups(){
         return `
-          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;">
-            <button class="btn primary" id="loadRoundupsBtn">Load Deal Tracker</button>
-            <select id="roundupWeekFilter" style="max-width:220px;">
-              <option value="">All Weeks</option>
-            </select>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
+            <button class="btn btn-gold btn-sm" id="loadRoundupsBtn">Load Deal Tracker</button>
+            <select id="roundupWeekFilter" style="max-width:200px;"><option value="">All Weeks</option></select>
           </div>
-          <div id="roundupsContainer">
-            <p class="muted">Click "Load Deal Tracker" to fetch the latest deals.</p>
+          <div id="roundupsContainer" style="margin-top:12px;">
+            <p style="color:var(--muted);font-size:13px;">Click "Load Deal Tracker" to fetch the latest deals.</p>
           </div>`;
       }
 
       function renderTemplates(){
         return `
-          <div class="twoCols">
-            <div class="card" style="padding:14px;">
-              <div class="sectionTitle">Downloads</div>
-              <p class="muted" style="margin-top:8px;font-size:12px;">Upload files to Supabase Storage and replace the # hrefs below.</p>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
-                <a class="btn primary" href="FinTrend-Portfolio-Tracker.xlsx">Portfolio Tracker</a>
-                <a class="btn" href="FinTrend-DCA-Planner.xlsx">DCA Planner</a>
-                <a class="btn" href="FinTrend-Earnings-Checklist.xlsx">Earnings Checklist</a>
-                <a class="btn" href="FinTrend-Rebalancing-Checklist.xlsx">Rebalancing Checklist</a>
-              </div>
-            </div>
-            <div class="card" style="padding:14px;">
-              <div class="sectionTitle">How to use</div>
-              <ul class="muted" style="margin:10px 0 0;line-height:1.8;font-size:13px;padding-left:16px;">
-                <li><strong style="color:var(--text);">Portfolio Tracker:</strong> performance + contributions + attribution</li>
-                <li><strong style="color:var(--text);">DCA Planner:</strong> schedule + target allocation + "what to buy next"</li>
-                <li><strong style="color:var(--text);">Earnings Checklist:</strong> forces thesis review before trading</li>
-                <li><strong style="color:var(--text);">Rebalancing Checklist:</strong> rules-based, removes emotion</li>
-              </ul>
-            </div>
+          <div class="template-grid">
+            <a class="template-item" href="FinTrend-Portfolio-Tracker.xlsx">
+              <div class="template-icon">📊</div>
+              <div class="template-name">Portfolio Tracker</div>
+              <div class="template-desc">Performance, contributions & attribution</div>
+            </a>
+            <a class="template-item" href="FinTrend-DCA-Planner.xlsx">
+              <div class="template-icon">📅</div>
+              <div class="template-name">DCA Planner</div>
+              <div class="template-desc">Schedule, target allocation & "what to buy next"</div>
+            </a>
+            <a class="template-item" href="FinTrend-Earnings-Checklist.xlsx">
+              <div class="template-icon">✅</div>
+              <div class="template-name">Earnings Checklist</div>
+              <div class="template-desc">Forces thesis review before trading</div>
+            </a>
+            <a class="template-item" href="FinTrend-Rebalancing-Checklist.xlsx">
+              <div class="template-icon">⚖️</div>
+              <div class="template-name">Rebalancing Checklist</div>
+              <div class="template-desc">Rules-based — removes emotion</div>
+            </a>
           </div>`;
       }
 
       function renderModels(){
         return `
-          <div class="twoCols">
-            <div class="card" style="padding:14px;">
-              <div class="sectionTitle">Framework Portfolios</div>
-              <ul class="muted" style="margin:10px 0 0;line-height:1.8;font-size:13px;padding-left:16px;">
-                <li><strong style="color:var(--text);">Cautious:</strong> lower volatility, quality tilt, capital preservation</li>
-                <li><strong style="color:var(--text);">Balanced:</strong> core equity + diversifiers, moderate growth</li>
-                <li><strong style="color:var(--text);">Aggressive:</strong> growth tilt + tactical sleeve, higher beta</li>
-              </ul>
-              <p class="note" style="margin-top:10px;">These are illustrative frameworks for educational purposes only. Not financial advice.</p>
-            </div>
-            <div class="card" style="padding:14px;">
-              <div class="sectionTitle">Rebalance Notes</div>
-              <p class="muted" style="margin-top:10px;font-size:13px;line-height:1.65;">
-                Each rebalance note answers: what changed → why now → risk → what would reverse it.
-                Connect to <strong>premium_model_portfolios</strong> table when ready.
-              </p>
-              <div style="margin-top:12px;">
-                <button class="btn primary" data-toast="Connect premium_model_portfolios table to load rebalance notes">View Latest Rebalance</button>
-              </div>
-            </div>
+          <div id="modelsContainer">
+            <p style="color:var(--muted);font-size:13px;" class="pulse">Loading portfolios…</p>
           </div>`;
       }
 
       function renderQuantLab(){
         return `
-          <div class="chips">
+          <div class="chips" style="margin-bottom:14px;">
             <div class="chip"><span>Method</span> Mean-Variance Optimization</div>
             <div class="chip"><span>Risk</span> Monte Carlo CVaR</div>
             <div class="chip"><span>Simulations</span> Up to 50,000</div>
           </div>
-          <div class="divider"></div>
-          <p class="muted" style="font-size:13px;line-height:1.65;margin-bottom:12px;">
+          <p style="font-size:13px;color:var(--muted2);line-height:1.65;margin-bottom:14px;">
             Professional portfolio optimization using the Markowitz framework + Monte Carlo simulation.
             Find optimal weights, then stress-test them with 20,000+ return scenarios.
           </p>
-          <button class="btn primary" id="openQuantLabBtn">Open Quant Lab</button>`;
+          <button class="btn btn-gold" id="openQuantLabBtn">Open Quant Lab</button>`;
       }
 
-      // =============================================
-      // DASHBOARD RENDER
-      // =============================================
-
+      // ══════════════════════════════════════════
+      // DASHBOARD BUILD
+      // ══════════════════════════════════════════
       function groupByCat(mods){
         const m={};
-        for(const mod of mods){ if(!m[mod.category]) m[mod.category]=[]; m[mod.category].push(mod); }
+        for(const mod of mods){ (m[mod.category]=m[mod.category]||[]).push(mod); }
         return m;
       }
 
@@ -1147,58 +1373,53 @@
         const sel = MODULES.filter(m=>selIds.includes(m.id));
         const grouped = groupByCat(MODULES);
 
-        return `<div class="layout">
-          <div class="card">
-            <div class="sectionTitle">Build your dashboard</div>
-            <h2 class="h2">Choose what to see</h2>
-            <p class="muted" style="margin-top:8px;font-size:13px;">Your layout saves automatically.</p>
-            <div class="divider"></div>
-            <div id="selector">
-              ${Object.keys(grouped).map(cat=>`
-                <div class="card" style="padding:14px;box-shadow:none;margin-bottom:10px;">
-                  <div class="sectionTitle">${cat}</div>
-                  <div style="margin-top:10px;display:grid;gap:8px;">
-                    ${grouped[cat].map(m=>`
-                      <label class="check">
-                        <input type="checkbox" data-module="${m.id}" ${selIds.includes(m.id)?"checked":""} />
-                        <div>
-                          <strong>${m.badge}</strong>
-                          <small>${m.title}</small>
-                        </div>
-                      </label>`).join("")}
-                  </div>
-                </div>`).join("")}
-            </div>
-            <div class="divider"></div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="btn primary" id="selAllBtn">Select All</button>
-              <button class="btn" id="selNoneBtn">Select None</button>
-              <button class="btn" id="selResetBtn">Reset</button>
-            </div>
-          </div>
-
-          <div class="modules" id="modulesCol">
-            ${sel.length ? sel.map(m=>`
-              <div class="card" id="module-${m.id}">
-                <div class="moduleHeader">
-                  <div>
-                    <div class="moduleMeta">
-                      <span class="badge">${m.badge}</span>
-                      <span class="badge">${m.category}</span>
-                    </div>
-                    <h3 class="moduleTitle">${m.title}</h3>
-                    <p class="moduleDesc">${m.desc}</p>
-                  </div>
-                  <button class="btn" data-scrolltop>↑ Top</button>
+        const sidebarHtml = Object.keys(grouped).map(cat=>`
+          <div class="sidebar-section">
+            <div class="sidebar-label">${cat}</div>
+            ${grouped[cat].map(m=>`
+              <label class="sidebar-item">
+                <input type="checkbox" data-module="${m.id}" ${selIds.includes(m.id)?"checked":""} />
+                <div class="sidebar-item-text">
+                  <strong>${m.badge}</strong>
+                  <small>${m.title}</small>
                 </div>
-                <div style="margin-top:12px;">${m.render()}</div>
-              </div>`).join("") : `
+              </label>`).join("")}
+          </div>`).join("");
+
+        const modulesHtml = sel.length
+          ? sel.map(m=>`
+              <div class="module" id="module-${m.id}">
+                <div class="module-header">
+                  <div>
+                    <div class="module-kicker">
+                      <span class="badge badge-gold">${m.badge}</span>
+                      <span class="badge badge-muted">${m.category}</span>
+                    </div>
+                    <h3 class="module-title">${m.title}</h3>
+                    <p class="module-desc">${m.desc}</p>
+                  </div>
+                  <button class="btn btn-sm" data-scrolltop>↑ Top</button>
+                </div>
+                <div class="module-body">${m.render()}</div>
+              </div>`).join("")
+          : `<div class="card"><p class="section-label">Nothing selected</p><p style="color:var(--muted2);margin-top:8px;font-size:13px;">Pick a module from the sidebar.</p></div>`;
+
+        return `
+          <div class="dashboard">
+            <aside class="sidebar">
               <div class="card">
-                <div class="sectionTitle">Nothing selected</div>
-                <h3 class="moduleTitle" style="margin-top:8px;">Select a module on the left</h3>
-              </div>`}
-          </div>
-        </div>`;
+                <p class="section-label" style="margin-bottom:4px;">Your Dashboard</p>
+                <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Saved automatically.</p>
+                ${sidebarHtml}
+                <div class="sidebar-actions">
+                  <button class="btn btn-sm btn-gold" id="selAllBtn">All</button>
+                  <button class="btn btn-sm" id="selNoneBtn">None</button>
+                  <button class="btn btn-sm" id="selResetBtn">Reset</button>
+                </div>
+              </div>
+            </aside>
+            <div class="modules" id="modulesCol">${modulesHtml}</div>
+          </div>`;
       }
 
       function rerender(){
@@ -1210,117 +1431,108 @@
       contentEl.innerHTML = buildDashboard(selectedIds);
       wireAll();
 
-      // =============================================
-      // WIRE ALL EVENTS
-      // =============================================
-
+      // ══════════════════════════════════════════
+      // WIRE EVENTS
+      // ══════════════════════════════════════════
       function wireAll(){
         wireSelectorEvents();
-        wireCommonEvents();
         wireDeepDiveEvents();
         wireIdeasEvents(sb);
         wireRoundupsEvents(sb);
+        wireModelsEvents(sb);
         wireQuantLabBtn();
+
+        contentEl.querySelectorAll("[data-scrolltop]").forEach(b=>{
+          b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+        });
       }
 
       function wireSelectorEvents(){
         contentEl.querySelectorAll('input[type="checkbox"][data-module]').forEach(cb=>{
           cb.addEventListener("change",()=>{
-            const id=cb.getAttribute("data-module");
+            const id = cb.getAttribute("data-module");
             if(cb.checked){ if(!selectedIds.includes(id)) selectedIds.push(id); }
-            else { selectedIds=selectedIds.filter(x=>x!==id); }
+            else { selectedIds = selectedIds.filter(x=>x!==id); }
             saveSel(selectedIds);
             rerender();
           });
         });
-        const sa=document.getElementById("selAllBtn");
-        const sn=document.getElementById("selNoneBtn");
-        const sr=document.getElementById("selResetBtn");
-        if(sa) sa.onclick=()=>{ selectedIds=MODULES.map(m=>m.id); saveSel(selectedIds); rerender(); };
-        if(sn) sn.onclick=()=>{ selectedIds=[]; saveSel(selectedIds); rerender(); };
-        if(sr) sr.onclick=()=>{ selectedIds=DEFAULT.slice(); saveSel(selectedIds); rerender(); };
+        const sa = document.getElementById("selAllBtn");
+        const sn = document.getElementById("selNoneBtn");
+        const sr = document.getElementById("selResetBtn");
+        if(sa) sa.onclick = ()=>{ selectedIds = MODULES.map(m=>m.id); saveSel(selectedIds); rerender(); };
+        if(sn) sn.onclick = ()=>{ selectedIds = []; saveSel(selectedIds); rerender(); };
+        if(sr) sr.onclick = ()=>{ selectedIds = DEFAULT.slice(); saveSel(selectedIds); rerender(); };
       }
 
-      function wireCommonEvents(){
-        contentEl.querySelectorAll("[data-scrolltop]").forEach(b=>{
-          b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-        });
-        contentEl.querySelectorAll("[data-toast]").forEach(el=>{
-          el.addEventListener("click",()=>alert(el.getAttribute("data-toast")));
-        });
-      }
-
-      // =============================================
+      // ══════════════════════════════════════════
       // DEEP DIVES
-      // =============================================
-      let ddCache=[];
+      // ══════════════════════════════════════════
+      let ddCache = [];
 
       async function fetchLatestDD(){
-        const {data,error}=await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(1);
+        const {data,error} = await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(1);
         if(error) throw error;
-        return data&&data.length?data[0]:null;
+        return data?.length ? data[0] : null;
       }
       async function fetchDDArchive(){
-        const {data,error}=await sb.from("premium_articles").select("id,title,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(200);
+        const {data,error} = await sb.from("premium_articles").select("id,title,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(200);
         if(error) throw error;
         return data||[];
       }
       async function fetchDDById(id){
-        const {data,error}=await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("id",id).single();
+        const {data,error} = await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("id",id).single();
         if(error) throw error;
         return data;
       }
 
       function enterReader(){
-        const s=document.getElementById("ddShell"); if(s) s.classList.add("reading");
-        const e=contentEl.querySelector('[data-deepdive="exit"]'); if(e) e.style.display="";
-        const b=contentEl.querySelector('[data-deepdive="backToArchive"]'); if(b) b.style.display="";
+        document.getElementById("ddShell")?.classList.add("reading");
+        contentEl.querySelector('[data-deepdive="exit"]')?.style && (contentEl.querySelector('[data-deepdive="exit"]').style.display="");
+        contentEl.querySelector('[data-deepdive="backToArchive"]')?.style && (contentEl.querySelector('[data-deepdive="backToArchive"]').style.display="");
       }
       function exitReader(){
-        const s=document.getElementById("ddShell"); if(s) s.classList.remove("reading");
-        const e=contentEl.querySelector('[data-deepdive="exit"]'); if(e) e.style.display="none";
-        const b=contentEl.querySelector('[data-deepdive="backToArchive"]'); if(b) b.style.display="none";
+        document.getElementById("ddShell")?.classList.remove("reading");
+        contentEl.querySelector('[data-deepdive="exit"]')?.style && (contentEl.querySelector('[data-deepdive="exit"]').style.display="none");
+        contentEl.querySelector('[data-deepdive="backToArchive"]')?.style && (contentEl.querySelector('[data-deepdive="backToArchive"]').style.display="none");
       }
 
       function renderDDViewer(article){
-        const v=document.getElementById("ddViewer"); if(!v) return;
-        if(!article){ v.innerHTML=`<p class="muted">No deep dives found yet.</p>`; return; }
-        const sector=article.sector?`<span class="miniChip">${escHtml(article.sector)}</span>`:"";
+        const v = document.getElementById("ddViewer"); if(!v) return;
+        if(!article){ v.innerHTML=`<p style="color:var(--muted);">No deep dives found yet.</p>`; return; }
         v.innerHTML=`
-          <div class="moduleMeta" style="margin-bottom:12px;">
-            ${sector}
-            <span class="miniChip">${escHtml(fmtDate(article.created_at))}</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+            ${article.sector ? `<span class="mini-badge">${escHtml(article.sector)}</span>` : ""}
+            <span class="mini-badge">${escHtml(fmtDate(article.created_at))}</span>
           </div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:14px;">${escHtml(article.title)}</h2>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:16px;line-height:1.2;">${escHtml(article.title)}</h2>
           <div class="divider"></div>
           <div class="article-body">${article.content}</div>`;
         enterReader();
       }
 
       function renderDDList(){
-        const list=document.getElementById("ddList");
-        const sec=document.getElementById("ddSector");
-        const srch=document.getElementById("ddSearch");
+        const list = document.getElementById("ddList");
+        const sec  = document.getElementById("ddSector");
+        const srch = document.getElementById("ddSearch");
         if(!list) return;
-        const sv=sec?sec.value:"";
-        const q=(srch?srch.value:"").trim().toLowerCase();
-        const filtered=ddCache.filter(r=>(!sv||(r.sector===sv))&&(!q||r.title.toLowerCase().includes(q)));
-        if(!filtered.length){ list.innerHTML=`<p class="muted">No matches.</p>`; return; }
-        list.innerHTML=filtered.map(r=>`
-          <div class="archiveRow" data-dd-id="${escHtml(r.id)}">
+        const sv = sec?.value || "";
+        const q  = (srch?.value || "").trim().toLowerCase();
+        const filtered = ddCache.filter(r=>(!sv||(r.sector===sv))&&(!q||r.title.toLowerCase().includes(q)));
+        if(!filtered.length){ list.innerHTML=`<p style="color:var(--muted);font-size:13px;">No matches.</p>`; return; }
+        list.innerHTML = filtered.map(r=>`
+          <div class="archive-item" data-dd-id="${escHtml(r.id)}">
             <div>
-              <div style="font-weight:700;font-size:14px;">${escHtml(r.title)}</div>
-              <div class="archiveMeta">
-                ${r.sector?`<span class="miniChip">${escHtml(r.sector)}</span>`:""}
-              </div>
+              <div class="archive-item-title">${escHtml(r.title)}</div>
+              ${r.sector ? `<span class="mini-badge" style="margin-top:6px;display:inline-flex;">${escHtml(r.sector)}</span>` : ""}
             </div>
-            <div class="muted" style="font-size:12px;white-space:nowrap;">${escHtml(fmtDate(r.created_at))}</div>
+            <div class="archive-item-date">${escHtml(fmtDate(r.created_at))}</div>
           </div>`).join("");
         list.querySelectorAll("[data-dd-id]").forEach(el=>{
-          el.addEventListener("click",async()=>{
-            const id=el.getAttribute("data-dd-id");
-            const v=document.getElementById("ddViewer");
-            if(v) v.innerHTML=`<p class="muted loadingPulse">Loading…</p>`;
+          el.addEventListener("click", async()=>{
+            const id = el.getAttribute("data-dd-id");
+            const v = document.getElementById("ddViewer");
+            if(v) v.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading…</p>`;
             try{ renderDDViewer(await fetchDDById(id)); }
             catch(err){ alert("Could not load: "+(err?.message||String(err))); }
           });
@@ -1328,369 +1540,414 @@
       }
 
       async function refreshArchive(){
-        ddCache=await fetchDDArchive();
-        const sec=document.getElementById("ddSector");
+        ddCache = await fetchDDArchive();
+        const sec = document.getElementById("ddSector");
         if(sec){
-          const sectors=[...new Set(ddCache.filter(r=>r.sector).map(r=>r.sector))].sort();
-          const cur=sec.value;
-          sec.innerHTML=`<option value="">All sectors</option>`+sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
-          if(sectors.includes(cur)) sec.value=cur;
-          sec.onchange=()=>renderDDList();
+          const sectors = [...new Set(ddCache.filter(r=>r.sector).map(r=>r.sector))].sort();
+          sec.innerHTML = `<option value="">All sectors</option>` + sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
+          sec.onchange = ()=>renderDDList();
         }
-        const srch=document.getElementById("ddSearch");
-        if(srch) srch.oninput=()=>renderDDList();
+        const srch = document.getElementById("ddSearch");
+        if(srch) srch.oninput = ()=>renderDDList();
         renderDDList();
       }
 
       function wireDeepDiveEvents(){
-        const latBtn=contentEl.querySelector('[data-deepdive="latest"]');
-        const arcBtn=contentEl.querySelector('[data-deepdive="archive"]');
-        const refBtn=contentEl.querySelector('[data-deepdive="refresh"]');
-        const exitBtn=contentEl.querySelector('[data-deepdive="exit"]');
-        const backBtn=contentEl.querySelector('[data-deepdive="backToArchive"]');
+        const latBtn = contentEl.querySelector('[data-deepdive="latest"]');
+        const arcBtn = contentEl.querySelector('[data-deepdive="archive"]');
+        const refBtn = contentEl.querySelector('[data-deepdive="refresh"]');
+        const exitBtn= contentEl.querySelector('[data-deepdive="exit"]');
+        const backBtn= contentEl.querySelector('[data-deepdive="backToArchive"]');
 
-        if(latBtn) latBtn.onclick=async()=>{
-          const v=document.getElementById("ddViewer");
-          if(v) v.innerHTML=`<p class="muted loadingPulse">Loading latest…</p>`;
+        if(latBtn) latBtn.onclick = async()=>{
+          const v = document.getElementById("ddViewer");
+          if(v) v.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading latest…</p>`;
           try{ renderDDViewer(await fetchLatestDD()); }
           catch(err){ alert("Error: "+(err?.message||String(err))); }
         };
-        if(arcBtn) arcBtn.onclick=async()=>{
+        if(arcBtn) arcBtn.onclick = async()=>{
           exitReader();
-          const l=document.getElementById("ddList");
-          if(l) l.innerHTML=`<p class="muted loadingPulse">Loading archive…</p>`;
+          const l = document.getElementById("ddList");
+          if(l) l.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading archive…</p>`;
           try{ await refreshArchive(); }
           catch(err){ alert("Error: "+(err?.message||String(err))); }
         };
-        if(refBtn) refBtn.onclick=async()=>{
+        if(refBtn) refBtn.onclick = async()=>{
           exitReader();
           try{ await refreshArchive(); }
           catch(err){ alert("Error: "+(err?.message||String(err))); }
         };
-        if(exitBtn) exitBtn.onclick=()=>exitReader();
-        if(backBtn) backBtn.onclick=async()=>{
+        if(exitBtn) exitBtn.onclick = ()=>exitReader();
+        if(backBtn) backBtn.onclick = async()=>{
           exitReader();
           if(!ddCache.length){ try{ await refreshArchive(); }catch{} }
         };
       }
 
-      // =============================================
-      // IDEAS — wired to premium_ideas
-      // =============================================
+      // ══════════════════════════════════════════
+      // IDEAS
+      // ══════════════════════════════════════════
       function wireIdeasEvents(sbClient){
-        const loadBtn=document.getElementById("loadIdeasBtn");
-        const container=document.getElementById("ideasContainer");
-        const sectorFilter=document.getElementById("ideasSectorFilter");
+        const loadBtn     = document.getElementById("loadIdeasBtn");
+        const container   = document.getElementById("ideasContainer");
+        const weekFilter  = document.getElementById("ideasWeekFilter");
+        const sectorFilter= document.getElementById("ideasSectorFilter");
         if(!loadBtn||!container) return;
 
-        let ideasCache=[];
+        let cache = [];
 
-        function renderIdeasCards(){
-          const sv=sectorFilter?sectorFilter.value:"";
-          const filtered=ideasCache.filter(i=>!sv||(i.sector===sv));
+        function renderCards(){
+          const wv = weekFilter?.value || "";
+          const sv = sectorFilter?.value || "";
+          const filtered = cache.filter(i=>(!wv||(String(i.week_of)===wv))&&(!sv||(i.sector===sv)));
           if(!filtered.length){
-            container.innerHTML=`<p class="muted">No ideas found. Add some in Supabase → premium_ideas.</p>`;
+            container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No ideas found for this filter.</p>`;
             return;
           }
-          container.innerHTML=`<div class="ideaGrid">${filtered.map(idea=>`
-            <div class="ideaCard">
-              <div class="ideaTicker">${escHtml(idea.ticker||"—")}</div>
-              <div class="ideaSector">${escHtml(idea.sector||"")} ${idea.horizon?`· ${escHtml(idea.horizon)}`:""}
-                <span class="miniChip" style="margin-left:6px;">${escHtml(fmtDate(idea.created_at))}</span>
+          container.innerHTML=`<div class="ideas-grid">${filtered.map(idea=>`
+            <div class="idea-card">
+              <div class="idea-ticker">${escHtml(idea.ticker||"—")}</div>
+              <div class="idea-sector">
+                ${escHtml(idea.sector||"")}
+                ${idea.horizon ? `<span class="mini-badge">${escHtml(idea.horizon)}</span>` : ""}
+                ${idea.week_of ? `<span class="mini-badge">${escHtml(idea.week_of)}</span>` : ""}
               </div>
-              ${idea.thesis?`<div class="ideaRow"><div class="ideaLabel">Thesis</div><div class="ideaText">${escHtml(idea.thesis)}</div></div>`:""}
-              ${idea.catalysts?`<div class="ideaRow"><div class="ideaLabel">Catalysts</div><div class="ideaText">${escHtml(idea.catalysts)}</div></div>`:""}
-              ${idea.risk_note?`<div class="ideaRow"><div class="ideaLabel">Risk</div><div class="ideaText">${escHtml(idea.risk_note)}</div></div>`:""}
+              ${idea.thesis    ? `<div class="idea-row"><div class="idea-label">Thesis</div><div class="idea-text">${escHtml(idea.thesis)}</div></div>`:""}
+              ${idea.catalysts ? `<div class="idea-row"><div class="idea-label">Catalysts</div><div class="idea-text">${escHtml(idea.catalysts)}</div></div>`:""}
+              ${(idea.risk_notes||idea.risk_note) ? `<div class="idea-row"><div class="idea-label">Risk</div><div class="idea-text">${escHtml(idea.risk_notes||idea.risk_note)}</div></div>`:""}
             </div>`).join("")}</div>`;
         }
 
-        loadBtn.onclick=async()=>{
-          container.innerHTML=`<p class="muted loadingPulse">Loading ideas…</p>`;
+        loadBtn.onclick = async()=>{
+          container.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading ideas…</p>`;
           loadBtn.disabled=true;
           try{
-            const {data,error}=await sbClient
-              .from("premium_ideas")
-              .select("*")
-              .order("created_at",{ascending:false});
+            const {data,error} = await sbClient.from("premium_ideas").select("*").order("week_of",{ascending:false});
             if(error) throw error;
-            ideasCache=data||[];
-
-            // Populate sector filter
-            if(sectorFilter){
-              const sectors=[...new Set(ideasCache.filter(i=>i.sector).map(i=>i.sector))].sort();
-              sectorFilter.innerHTML=`<option value="">All Sectors</option>`+sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
-              sectorFilter.onchange=()=>renderIdeasCards();
+            cache = data||[];
+            if(weekFilter){
+              const weeks = [...new Set(cache.map(i=>String(i.week_of)).filter(Boolean))].sort().reverse();
+              weekFilter.innerHTML = `<option value="">All Weeks</option>` + weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
+              weekFilter.onchange = ()=>renderCards();
             }
-            renderIdeasCards();
+            if(sectorFilter){
+              const sectors = [...new Set(cache.filter(i=>i.sector).map(i=>i.sector))].sort();
+              sectorFilter.innerHTML = `<option value="">All Sectors</option>` + sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
+              sectorFilter.onchange = ()=>renderCards();
+            }
+            renderCards();
           }catch(err){
-            container.innerHTML=`<p style="color:#f87171;">Failed to load ideas: ${escHtml(err?.message||String(err))}</p>`;
-          } finally {
-            loadBtn.disabled=false;
-          }
+            container.innerHTML=`<p style="color:var(--red);">Failed: ${escHtml(err?.message||String(err))}</p>`;
+          }finally{ loadBtn.disabled=false; }
         };
       }
 
-      // =============================================
-      // DEAL TRACKER — wired to premium_roundups
-      // =============================================
-      const DEAL_TYPE_COLORS = {
-        "LBO":  { bg:"rgba(244,193,93,0.12)",  border:"rgba(244,193,93,0.45)",  text:"#f4c15d" },
-        "M&A":  { bg:"rgba(147,197,253,0.12)", border:"rgba(147,197,253,0.45)", text:"#93c5fd" },
-        "IPO":  { bg:"rgba(110,231,183,0.12)", border:"rgba(110,231,183,0.45)", text:"#6ee7b7" },
+      // ══════════════════════════════════════════
+      // DEAL TRACKER
+      // ══════════════════════════════════════════
+      const DEAL_COLORS = {
+        "LBO": {bg:"rgba(201,168,76,0.1)", border:"rgba(201,168,76,0.4)", text:"var(--gold)"},
+        "M&A": {bg:"rgba(91,141,238,0.1)", border:"rgba(91,141,238,0.4)", text:"var(--blue)"},
+        "IPO": {bg:"rgba(76,175,138,0.1)", border:"rgba(76,175,138,0.4)", text:"var(--green)"},
       };
 
-      function dealTypeBadge(type){
-        const t=(type||"").toUpperCase();
-        const c=DEAL_TYPE_COLORS[t]||{bg:"rgba(148,163,184,0.12)",border:"rgba(148,163,184,0.35)",text:"#9ca3af"};
-        return `<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid ${c.border};background:${c.bg};color:${c.text};font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">${escHtml(t||"DEAL")}</span>`;
+      function dealBadge(type){
+        const t = (type||"").toUpperCase();
+        const c = DEAL_COLORS[t]||{bg:"rgba(255,255,255,0.06)",border:"var(--border2)",text:"var(--muted2)"};
+        return `<span class="deal-type-badge" style="background:${c.bg};border:1px solid ${c.border};color:${c.text};">${escHtml(t||"DEAL")}</span>`;
       }
 
-      function renderOneDeal(ticker, type, title, body, view, risk){
-        if(!title && !body) return "";
+      function renderOneDeal(ticker,type,title,body,view,risk){
+        if(!title&&!body) return "";
         return `
-          <div style="border:1px solid rgba(148,163,184,0.2);background:rgba(2,6,23,0.35);border-radius:16px;padding:18px;margin-bottom:12px;transition:border-color .15s;" onmouseover="this.style.borderColor='rgba(244,193,93,0.3)'" onmouseout="this.style.borderColor='rgba(148,163,184,0.2)'">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                ${ticker ? `<div style="font-family:'Playfair Display',serif;font-size:26px;color:var(--brand);line-height:1;min-width:48px;">${escHtml(ticker)}</div>` : ""}
-                <div>
-                  ${dealTypeBadge(type)}
-                  <div style="font-size:16px;font-weight:700;margin-top:5px;color:var(--text);">${escHtml(title||"")}</div>
-                </div>
+          <div class="deal-card">
+            <div class="deal-header">
+              ${ticker ? `<div class="deal-ticker">${escHtml(ticker)}</div>` : ""}
+              <div>
+                ${dealBadge(type)}
+                <div class="deal-title" style="margin-top:5px;">${escHtml(title||"")}</div>
               </div>
             </div>
-            ${body ? `
-              <div style="font-size:13px;color:#d1d5db;line-height:1.65;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(148,163,184,0.12);">
-                ${escHtml(body)}
-              </div>` : ""}
-            ${view ? `
-              <div style="display:flex;gap:10px;margin-bottom:10px;">
-                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);padding:3px 8px;border-radius:999px;border:1px solid rgba(244,193,93,0.3);background:rgba(244,193,93,0.06);flex-shrink:0;margin-top:2px;white-space:nowrap;">Our View</div>
-                <div style="font-size:13px;color:#e5e7eb;line-height:1.55;">${escHtml(view)}</div>
-              </div>` : ""}
-            ${risk ? `
-              <div style="display:flex;gap:10px;">
-                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f87171;padding:3px 8px;border-radius:999px;border:1px solid rgba(248,113,113,0.3);background:rgba(248,113,113,0.06);flex-shrink:0;margin-top:2px;white-space:nowrap;">Key Risk</div>
-                <div style="font-size:13px;color:#fca5a5;line-height:1.55;">${escHtml(risk)}</div>
-              </div>` : ""}
+            ${body ? `<div class="deal-body">${escHtml(body)}</div>` : ""}
+            ${view ? `<div class="deal-row"><div class="deal-row-label view">Our View</div><div class="deal-row-text view">${escHtml(view)}</div></div>` : ""}
+            ${risk ? `<div class="deal-row"><div class="deal-row-label risk">Key Risk</div><div class="deal-row-text risk">${escHtml(risk)}</div></div>` : ""}
           </div>`;
       }
 
       function wireRoundupsEvents(sbClient){
-        const loadBtn=document.getElementById("loadRoundupsBtn");
-        const container=document.getElementById("roundupsContainer");
-        const weekFilter=document.getElementById("roundupWeekFilter");
+        const loadBtn   = document.getElementById("loadRoundupsBtn");
+        const container = document.getElementById("roundupsContainer");
+        const weekFilter= document.getElementById("roundupWeekFilter");
         if(!loadBtn||!container) return;
 
-        let roundupsCache=[];
+        let cache = [];
 
-        function renderDealTrackerCards(){
-          const wv=weekFilter?weekFilter.value:"";
-          const filtered=roundupsCache.filter(r=>!wv||(r.title===wv));
+        function renderDeals(){
+          const wv = weekFilter?.value || "";
+          const filtered = cache.filter(r=>!wv||(r.title===wv));
           if(!filtered.length){
-            container.innerHTML=`<p class="muted">No Deal Tracker entries found. Add some in Supabase → premium_roundups.</p>`;
+            container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No deals found.</p>`;
             return;
           }
-          container.innerHTML=filtered.map(r=>`
-            <div style="margin-bottom:20px;">
-              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
-                <div style="font-family:'Playfair Display',serif;font-size:19px;color:var(--text);">${escHtml(r.title||"Deal Tracker")}</div>
-                <span class="miniChip">${escHtml(fmtDate(r.created_at))}</span>
-                ${r.period?`<span class="miniChip">${escHtml(r.period)}</span>`:""}
+          container.innerHTML = filtered.map(r=>`
+            <div style="margin-bottom:24px;">
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+                <h3 style="font-family:'DM Serif Display',serif;font-size:18px;">${escHtml(r.title||"Deal Tracker")}</h3>
+                <span class="mini-badge">${escHtml(fmtDate(r.created_at))}</span>
+                ${r.period ? `<span class="mini-badge">${escHtml(r.period)}</span>` : ""}
               </div>
               ${renderOneDeal(r.deal1_ticker,r.deal1_type,r.deal1_title,r.deal1_body,r.deal1_view,r.deal1_risk)}
               ${renderOneDeal(r.deal2_ticker,r.deal2_type,r.deal2_title,r.deal2_body,r.deal2_view,r.deal2_risk)}
               ${renderOneDeal(r.deal3_ticker,r.deal3_type,r.deal3_title,r.deal3_body,r.deal3_view,r.deal3_risk)}
-            </div>`).join('<div style="height:1px;background:rgba(148,163,184,0.15);margin:8px 0 20px;"></div>');
+            </div>`).join(`<div class="divider"></div>`);
         }
 
-        loadBtn.onclick=async()=>{
-          container.innerHTML=`<p class="muted loadingPulse">Loading deals…</p>`;
+        loadBtn.onclick = async()=>{
+          container.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading deals…</p>`;
           loadBtn.disabled=true;
           try{
-            const {data,error}=await sbClient
-              .from("premium_roundups")
-              .select("*")
-              .order("created_at",{ascending:false});
+            const {data,error} = await sbClient.from("premium_roundups").select("*").order("created_at",{ascending:false});
             if(error) throw error;
-            roundupsCache=data||[];
-
+            cache = data||[];
             if(weekFilter){
-              const weeks=[...new Set(roundupsCache.map(r=>r.title).filter(Boolean))];
-              weekFilter.innerHTML=`<option value="">All Weeks</option>`+weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
-              weekFilter.onchange=()=>renderDealTrackerCards();
+              const weeks = [...new Set(cache.map(r=>r.title).filter(Boolean))];
+              weekFilter.innerHTML = `<option value="">All Weeks</option>` + weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
+              weekFilter.onchange = ()=>renderDeals();
             }
-            renderDealTrackerCards();
+            renderDeals();
           }catch(err){
-            container.innerHTML=`<p style="color:#f87171;">Failed to load deals: ${escHtml(err?.message||String(err))}</p>`;
-          } finally {
-            loadBtn.disabled=false;
+            container.innerHTML=`<p style="color:var(--red);">Failed: ${escHtml(err?.message||String(err))}</p>`;
+          }finally{ loadBtn.disabled=false; }
+        };
+      }
+
+      // ══════════════════════════════════════════
+      // MODEL PORTFOLIOS — FIXED (was alert placeholder)
+      // ══════════════════════════════════════════
+      function wireModelsEvents(sbClient){
+        const container = document.getElementById("modelsContainer");
+        if(!container) return;
+
+        (async()=>{
+          try{
+            const {data,error} = await sbClient
+              .from("premium_model_portfolios")
+              .select("id,model,as_of,summary,holdings")
+              .order("as_of",{ascending:false});
+
+            if(error) throw error;
+            if(!data||!data.length){
+              container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No portfolio data yet.</p>`;
+              return;
+            }
+
+            // Group by model name, take latest of each
+            const latest = {};
+            for(const row of data){
+              if(!latest[row.model]) latest[row.model] = row;
+            }
+
+            // Get all unique dates for the week tab strip
+            const allDates = [...new Set(data.map(r=>String(r.as_of)))].sort().reverse();
+
+            let activeDate = allDates[0];
+            let activeModel = Object.keys(latest)[0];
+
+            function render(){
+              const weekRows = data.filter(r=>String(r.as_of)===activeDate);
+              const modelNames = [...new Set(weekRows.map(r=>r.model))];
+
+              if(!modelNames.includes(activeModel) && modelNames.length) activeModel = modelNames[0];
+
+              const current = weekRows.find(r=>r.model===activeModel);
+
+              container.innerHTML = `
+                <!-- Week strip -->
+                <div class="week-strip">
+                  ${allDates.map(d=>`
+                    <button class="week-pill ${d===activeDate?"active":""}" data-date="${escHtml(d)}">
+                      ${escHtml(d)}
+                    </button>`).join("")}
+                </div>
+
+                <!-- Model tabs -->
+                <div class="model-tabs">
+                  ${modelNames.map(n=>`
+                    <button class="model-tab ${n===activeModel?"active":""}" data-model="${escHtml(n)}">
+                      ${escHtml(n)}
+                    </button>`).join("")}
+                </div>
+
+                <!-- Portfolio card -->
+                ${current ? renderPortfolioCard(current) : `<p style="color:var(--muted);font-size:13px;">No data for this selection.</p>`}
+              `;
+
+              // Wire week pills
+              container.querySelectorAll(".week-pill").forEach(btn=>{
+                btn.addEventListener("click",()=>{
+                  activeDate = btn.getAttribute("data-date");
+                  render();
+                });
+              });
+
+              // Wire model tabs
+              container.querySelectorAll(".model-tab").forEach(btn=>{
+                btn.addEventListener("click",()=>{
+                  activeModel = btn.getAttribute("data-model");
+                  render();
+                });
+              });
+            }
+
+            function renderPortfolioCard(row){
+              const holdings = Array.isArray(row.holdings) ? row.holdings : [];
+              return `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px;">
+                  <!-- Left: holdings -->
+                  <div style="border:1px solid var(--border);background:rgba(255,255,255,0.02);border-radius:var(--radius);padding:18px;">
+                    <p class="section-label" style="margin-bottom:4px;">Holdings</p>
+                    <p style="font-size:11px;color:var(--muted);margin-bottom:14px;">As of ${escHtml(row.as_of)}</p>
+                    ${holdings.map(h=>`
+                      <div class="holding-row">
+                        <div class="holding-ticker">${escHtml(h.ticker||"")}</div>
+                        <div class="holding-bar-wrap">
+                          <div class="holding-bar-fill" style="width:${Math.min(100,h.allocation||0)}%;"></div>
+                        </div>
+                        <div class="holding-pct">${h.allocation||0}%</div>
+                      </div>
+                      <div class="holding-note">${escHtml(h.rationale||"")}</div>
+                    `).join("")}
+                  </div>
+                  <!-- Right: rebalance note -->
+                  <div style="border:1px solid var(--border);background:rgba(255,255,255,0.02);border-radius:var(--radius);padding:18px;">
+                    <p class="section-label" style="margin-bottom:12px;">Rebalance Note</p>
+                    <div style="font-size:13px;color:var(--muted2);line-height:1.7;">
+                      ${row.summary ? escHtml(row.summary) : '<span style="color:var(--muted);">No note this week.</span>'}
+                    </div>
+                    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+                      <p class="section-label" style="margin-bottom:4px;">Framework</p>
+                      <p style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6;">
+                        Each rebalance note covers: what changed → why now → key risk → what would reverse the call.
+                      </p>
+                      <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;font-style:italic;">
+                        Illustrative framework for educational purposes only. Not financial advice.
+                      </p>
+                    </div>
+                  </div>
+                </div>`;
+            }
+
+            render();
+
+          }catch(err){
+            container.innerHTML=`<p style="color:var(--red);font-size:13px;">Failed to load portfolios: ${escHtml(err?.message||String(err))}</p>`;
           }
-        };
+        })();
       }
 
-      // =============================================
-      // QUANT LAB — popup flow
-      // =============================================
+      // ══════════════════════════════════════════
+      // QUANT LAB
+      // ══════════════════════════════════════════
       function wireQuantLabBtn(){
-        const btn=document.getElementById("openQuantLabBtn");
-        if(btn) btn.onclick=()=>{
-          document.getElementById("qlExplainer").classList.add("active");
-        };
+        const btn = document.getElementById("openQuantLabBtn");
+        if(btn) btn.onclick = ()=>{ document.getElementById("qlExplainer").classList.add("active"); };
       }
 
-      // Explainer modal events
-      document.getElementById("qlExplainerClose").onclick=()=>{
-        document.getElementById("qlExplainer").classList.remove("active");
-      };
-      document.getElementById("qlNevermind").onclick=()=>{
-        document.getElementById("qlExplainer").classList.remove("active");
-      };
-      document.getElementById("qlOpenCalc").onclick=()=>{
+      document.getElementById("qlExplainerClose").onclick = ()=>{ document.getElementById("qlExplainer").classList.remove("active"); };
+      document.getElementById("qlNevermind").onclick      = ()=>{ document.getElementById("qlExplainer").classList.remove("active"); };
+      document.getElementById("qlOpenCalc").onclick       = ()=>{
         document.getElementById("qlExplainer").classList.remove("active");
         document.getElementById("qlCalc").classList.add("active");
         initCalc();
       };
+      document.getElementById("qlCalcClose").onclick = ()=>{ document.getElementById("qlCalc").classList.remove("active"); };
 
-      // Calc modal close
-      document.getElementById("qlCalcClose").onclick=()=>{
-        document.getElementById("qlCalc").classList.remove("active");
-      };
+      document.getElementById("qlExplainer").addEventListener("click",e=>{ if(e.target===document.getElementById("qlExplainer")) document.getElementById("qlExplainer").classList.remove("active"); });
+      document.getElementById("qlCalc").addEventListener("click",e=>{ if(e.target===document.getElementById("qlCalc")) document.getElementById("qlCalc").classList.remove("active"); });
+      window.addEventListener("keydown",e=>{ if(e.key==="Escape"){ document.getElementById("qlExplainer").classList.remove("active"); document.getElementById("qlCalc").classList.remove("active"); } });
 
-      // Close on backdrop click
-      document.getElementById("qlExplainer").addEventListener("click",e=>{
-        if(e.target===document.getElementById("qlExplainer"))
-          document.getElementById("qlExplainer").classList.remove("active");
-      });
-      document.getElementById("qlCalc").addEventListener("click",e=>{
-        if(e.target===document.getElementById("qlCalc"))
-          document.getElementById("qlCalc").classList.remove("active");
-      });
-
-      // ESC to close
-      window.addEventListener("keydown",e=>{
-        if(e.key==="Escape"){
-          document.getElementById("qlExplainer").classList.remove("active");
-          document.getElementById("qlCalc").classList.remove("active");
-        }
-      });
-
-      // =============================================
+      // ══════════════════════════════════════════
       // QUANT CALCULATOR
-      // =============================================
-      const ASSET_COLORS=["#f4c15d","#93c5fd","#6ee7b7","#f87171","#c084fc"];
-      let numAssets=3;
-      let calcInited=false;
+      // ══════════════════════════════════════════
+      const ASSET_COLORS = ["#c9a84c","#5b8dee","#4caf8a","#e05252","#c084fc"];
+      let numAssets = 3, calcInited = false;
 
       function initCalc(){
         if(calcInited) return;
-        calcInited=true;
-        renderAssetRows();
-        renderCorrGrid();
-
-        document.getElementById("addAssetBtn").onclick=()=>{
-          if(numAssets>=5) return;
-          numAssets++;
-          renderAssetRows();
-          renderCorrGrid();
-        };
-        document.getElementById("removeAssetBtn").onclick=()=>{
-          if(numAssets<=2) return;
-          numAssets--;
-          renderAssetRows();
-          renderCorrGrid();
-        };
-        document.getElementById("loadExampleBtn").onclick=loadExample;
-        document.getElementById("resetCalcBtn").onclick=resetCalc;
-        document.getElementById("runOptBtn").onclick=runOptimizer;
+        calcInited = true;
+        renderAssetRows(); renderCorrGrid();
+        document.getElementById("addAssetBtn").onclick    = ()=>{ if(numAssets<5){ numAssets++; renderAssetRows(); renderCorrGrid(); } };
+        document.getElementById("removeAssetBtn").onclick = ()=>{ if(numAssets>2){ numAssets--; renderAssetRows(); renderCorrGrid(); } };
+        document.getElementById("loadExampleBtn").onclick = loadExample;
+        document.getElementById("resetCalcBtn").onclick   = resetCalc;
+        document.getElementById("runOptBtn").onclick      = runOptimizer;
       }
 
       function renderAssetRows(){
-        const container=document.getElementById("assetRows");
-        const names=["Asset 1","Asset 2","Asset 3","Asset 4","Asset 5"];
-        let html="";
+        const container = document.getElementById("assetRows");
+        let html = "";
         for(let i=0;i<numAssets;i++){
-          const existing=container?container.querySelector(`#assetName_${i}`)?.value:null;
-          const mu=container?container.querySelector(`#assetMu_${i}`)?.value:null;
-          const sig=container?container.querySelector(`#assetSig_${i}`)?.value:null;
-          html+=`<div class="qlAssetRow">
-            <div class="qlAssetLabel" style="color:${ASSET_COLORS[i]};">Asset ${i+1}</div>
-            <input type="text" id="assetName_${i}" placeholder="${names[i]}" value="${existing||""}" />
-            <input type="number" id="assetMu_${i}" placeholder="0.10" step="0.01" value="${mu||""}" />
-            <input type="number" id="assetSig_${i}" placeholder="0.20" step="0.01" value="${sig||""}" />
+          const ex=container?.querySelector(`#assetName_${i}`)?.value||"";
+          const mu=container?.querySelector(`#assetMu_${i}`)?.value||"";
+          const sg=container?.querySelector(`#assetSig_${i}`)?.value||"";
+          html+=`<div class="ql-asset-row">
+            <div class="ql-asset-label" style="color:${ASSET_COLORS[i]};">Asset ${i+1}</div>
+            <input type="text" id="assetName_${i}" placeholder="Name" value="${ex}" />
+            <input type="number" id="assetMu_${i}" placeholder="0.10" step="0.01" value="${mu}" />
+            <input type="number" id="assetSig_${i}" placeholder="0.20" step="0.01" value="${sg}" />
           </div>`;
         }
-        container.innerHTML=html;
+        container.innerHTML = html;
       }
 
       function renderCorrGrid(){
-        const container=document.getElementById("corrGrid");
+        const container = document.getElementById("corrGrid");
         if(numAssets<2){ container.innerHTML=""; return; }
-        // Build upper triangle correlation inputs
-        let html=`<table style="border-collapse:separate;border-spacing:6px;">`;
-        // Header row
-        html+=`<tr><td></td>`;
-        for(let j=0;j<numAssets;j++){
-          html+=`<td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[j]};text-align:center;padding:4px;">A${j+1}</td>`;
-        }
-        html+=`</tr>`;
+        let html = `<table style="border-collapse:separate;border-spacing:6px;">`;
+        html += `<tr><td></td>`;
+        for(let j=0;j<numAssets;j++) html+=`<td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[j]};text-align:center;padding:4px;">A${j+1}</td>`;
+        html += `</tr>`;
         for(let i=0;i<numAssets;i++){
           html+=`<tr><td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[i]};padding:4px;">A${i+1}</td>`;
           for(let j=0;j<numAssets;j++){
             if(i===j){
-              html+=`<td><input type="number" value="1" readonly style="width:70px;background:rgba(244,193,93,0.08);border-color:rgba(244,193,93,0.2);text-align:center;cursor:not-allowed;opacity:.6;" /></td>`;
-            } else if(j>i){
-              const existing=document.getElementById(`corr_${i}_${j}`)?.value;
-              html+=`<td><input type="number" id="corr_${i}_${j}" placeholder="0.30" step="0.05" min="-1" max="1" value="${existing||""}" style="width:70px;text-align:center;" /></td>`;
-            } else {
+              html+=`<td><input type="number" value="1" readonly style="width:70px;background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.2);text-align:center;cursor:not-allowed;opacity:.6;" /></td>`;
+            }else if(j>i){
+              const ex=document.getElementById(`corr_${i}_${j}`)?.value||"";
+              html+=`<td><input type="number" id="corr_${i}_${j}" placeholder="0.30" step="0.05" min="-1" max="1" value="${ex}" style="width:70px;text-align:center;" /></td>`;
+            }else{
               html+=`<td><input type="number" value="—" readonly style="width:70px;opacity:.3;cursor:not-allowed;" /></td>`;
             }
           }
           html+=`</tr>`;
         }
         html+=`</table>`;
-        container.innerHTML=html;
+        container.innerHTML = html;
       }
 
       function loadExample(){
-        numAssets=3;
-        renderAssetRows();
-        renderCorrGrid();
-        // Names
+        numAssets=3; renderAssetRows(); renderCorrGrid();
         ["SPX","Bonds","Gold"].forEach((n,i)=>{ const el=document.getElementById(`assetName_${i}`); if(el) el.value=n; });
-        // Returns
         [0.10,0.04,0.06].forEach((v,i)=>{ const el=document.getElementById(`assetMu_${i}`); if(el) el.value=v; });
-        // Vols
         [0.18,0.06,0.14].forEach((v,i)=>{ const el=document.getElementById(`assetSig_${i}`); if(el) el.value=v; });
-        // Corrs
-        const corrs={corr_0_1:-0.2,corr_0_2:0.05,corr_1_2:0.1};
-        Object.entries(corrs).forEach(([id,v])=>{ const el=document.getElementById(id); if(el) el.value=v; });
+        [{id:"corr_0_1",v:-0.2},{id:"corr_0_2",v:0.05},{id:"corr_1_2",v:0.1}].forEach(({id,v})=>{ const el=document.getElementById(id); if(el) el.value=v; });
         document.getElementById("lambdaInput").value=4;
         document.getElementById("simCount").value=20000;
-        hideError();
-        document.getElementById("qlResults").style.display="none";
+        hideError(); document.getElementById("qlResults").style.display="none";
       }
 
       function resetCalc(){
-        numAssets=3;
-        renderAssetRows();
-        renderCorrGrid();
+        numAssets=3; renderAssetRows(); renderCorrGrid();
         document.getElementById("lambdaInput").value=4;
         document.getElementById("simCount").value=20000;
-        hideError();
-        document.getElementById("qlResults").style.display="none";
+        hideError(); document.getElementById("qlResults").style.display="none";
       }
 
-      function showError(msg){
-        const el=document.getElementById("qlError");
-        el.textContent=msg; el.style.display="block";
-      }
-      function hideError(){
-        const el=document.getElementById("qlError");
-        el.style.display="none"; el.textContent="";
-      }
+      function showError(msg){ const el=document.getElementById("qlError"); el.textContent=msg; el.style.display="block"; }
+      function hideError(){ const el=document.getElementById("qlError"); el.style.display="none"; el.textContent=""; }
 
       function getInputs(){
-        const mu=[], sig=[], names=[];
+        const mu=[],sig=[],names=[];
         for(let i=0;i<numAssets;i++){
           const n=document.getElementById(`assetName_${i}`)?.value||`Asset ${i+1}`;
           const m=parseFloat(document.getElementById(`assetMu_${i}`)?.value);
@@ -1699,24 +1956,20 @@
           if(s<=0) throw new Error(`Asset ${i+1}: volatility must be > 0.`);
           names.push(n); mu.push(m); sig.push(s);
         }
-        // Build covariance matrix from correlations + vols
         const Sigma=Array.from({length:numAssets},(_,i)=>Array.from({length:numAssets},(_,j)=>{
           if(i===j) return sig[i]*sig[i];
-          const key1=`corr_${Math.min(i,j)}_${Math.max(i,j)}`;
-          const rho=parseFloat(document.getElementById(key1)?.value);
-          if(!Number.isFinite(rho)||rho<-1||rho>1) throw new Error(`Correlation A${Math.min(i,j)+1}/A${Math.max(i,j)+1}: enter a value between -1 and 1.`);
+          const key=`corr_${Math.min(i,j)}_${Math.max(i,j)}`;
+          const rho=parseFloat(document.getElementById(key)?.value);
+          if(!Number.isFinite(rho)||rho<-1||rho>1) throw new Error(`Correlation A${Math.min(i,j)+1}/A${Math.max(i,j)+1}: must be between -1 and 1.`);
           return rho*sig[i]*sig[j];
         }));
         const lambda=parseFloat(document.getElementById("lambdaInput")?.value);
         const nSim=parseInt(document.getElementById("simCount")?.value)||20000;
         if(!Number.isFinite(lambda)||lambda<=0) throw new Error("Risk aversion λ must be > 0.");
-        return {mu, sig, Sigma, names, lambda, nSim};
+        return {mu,sig,Sigma,names,lambda,nSim};
       }
 
-      // Math utilities
-      function matVecN(A,v){
-        return A.map(row=>row.reduce((s,a,j)=>s+a*v[j],0));
-      }
+      function matVecN(A,v){ return A.map(row=>row.reduce((s,a,j)=>s+a*v[j],0)); }
       function dotN(a,b){ return a.reduce((s,x,i)=>s+x*b[i],0); }
 
       function invN(A){
@@ -1725,26 +1978,17 @@
         for(let col=0;col<n;col++){
           let pivot=-1,pv=0;
           for(let row=col;row<n;row++) if(Math.abs(aug[row][col])>pv){pv=Math.abs(aug[row][col]);pivot=row;}
-          if(pv<1e-12) throw new Error("Matrix is singular — check correlations (no perfect collinearity).");
+          if(pv<1e-12) throw new Error("Matrix is singular — check correlations.");
           [aug[col],aug[pivot]]=[aug[pivot],aug[col]];
-          const sc=aug[col][col];
-          aug[col]=aug[col].map(x=>x/sc);
-          for(let row=0;row<n;row++){
-            if(row!==col){
-              const f=aug[row][col];
-              aug[row]=aug[row].map((x,k)=>x-f*aug[col][k]);
-            }
-          }
+          const sc=aug[col][col]; aug[col]=aug[col].map(x=>x/sc);
+          for(let row=0;row<n;row++) if(row!==col){ const f=aug[row][col]; aug[row]=aug[row].map((x,k)=>x-f*aug[col][k]); }
         }
         return aug.map(r=>r.slice(n));
       }
 
       function projectSimplexN(v){
         let x=v.map(a=>Math.max(0,a));
-        for(let k=0;k<10;k++){
-          const s=x.reduce((a,b)=>a+b,0);
-          x=s>1e-12?x.map(a=>a/s):x.map(()=>1/x.length);
-        }
+        for(let k=0;k<10;k++){ const s=x.reduce((a,b)=>a+b,0); x=s>1e-12?x.map(a=>a/s):x.map(()=>1/x.length); }
         return x;
       }
 
@@ -1755,133 +1999,76 @@
           for(let j=0;j<=i;j++){
             let s=S[i][j];
             for(let k=0;k<j;k++) s-=L[i][k]*L[j][k];
-            if(i===j){
-              if(s<=0) throw new Error("Covariance matrix is not positive definite. Check your correlations — they may be inconsistent.");
-              L[i][j]=Math.sqrt(s);
-            } else { L[i][j]=s/L[j][j]; }
+            if(i===j){ if(s<=0) throw new Error("Covariance matrix not positive definite. Check correlations."); L[i][j]=Math.sqrt(s); }
+            else{ L[i][j]=s/L[j][j]; }
           }
         }
         return L;
       }
 
-      function randn(){
-        let u=0,v=0;
-        while(u===0) u=Math.random();
-        while(v===0) v=Math.random();
-        return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
-      }
+      function randn(){ let u=0,v=0; while(!u) u=Math.random(); while(!v) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
 
       function runMonteCarlo(mu,L,w,nSim){
-        const n=mu.length;
-        const port=new Float64Array(nSim);
+        const n=mu.length; const port=new Float64Array(nSim);
         for(let s=0;s<nSim;s++){
-          let ret=0;
-          const z=Array.from({length:n},()=>randn());
-          for(let i=0;i<n;i++){
-            let ri=mu[i];
-            for(let k=0;k<=i;k++) ri+=L[i][k]*z[k];
-            ret+=w[i]*ri;
-          }
+          let ret=0; const z=Array.from({length:n},()=>randn());
+          for(let i=0;i<n;i++){ let ri=mu[i]; for(let k=0;k<=i;k++) ri+=L[i][k]*z[k]; ret+=w[i]*ri; }
           port[s]=ret;
         }
         port.sort((a,b)=>a-b);
-        const alpha=0.05;
-        const idx=Math.floor(alpha*nSim);
+        const idx=Math.floor(0.05*nSim);
         const var95=port[idx];
         const tail=Array.from(port.slice(0,idx+1));
         const cvar95=tail.reduce((a,b)=>a+b,0)/tail.length;
         const mean=Array.from(port).reduce((a,b)=>a+b,0)/nSim;
-        const std=Math.sqrt(Array.from(port).reduce((a,b)=>a+(b-mean)*(b-mean),0)/nSim);
+        const std=Math.sqrt(Array.from(port).reduce((a,b)=>a+(b-mean)**2,0)/nSim);
         return {mean,std,var95,cvar95};
       }
 
-      function fmtPct(x,dec=2){ return (x*100).toFixed(dec)+"%"; }
+      function fmtPct(x,d=2){ return (x*100).toFixed(d)+"%"; }
       function fmtRatio(x){ return x.toFixed(2); }
 
       function runOptimizer(){
         hideError();
         const btn=document.getElementById("runOptBtn");
-        btn.innerHTML=`<span class="qlSpinner"></span>Running…`;
-        btn.disabled=true;
-
+        btn.innerHTML=`<span class="spinner"></span>Running…`; btn.disabled=true;
         setTimeout(()=>{
           try{
             const {mu,sig,Sigma,names,lambda,nSim}=getInputs();
             const SigInv=invN(Sigma);
             const raw=matVecN(SigInv,mu).map(v=>v/lambda);
             const w=projectSimplexN(raw);
-
             const portMu=dotN(w,mu);
             const sigW=matVecN(Sigma,w);
             const portVar=dotN(w,sigW);
             const portVol=Math.sqrt(Math.max(0,portVar));
-            const sharpe=(portVol>1e-10)?portMu/portVol:0;
-
+            const sharpe=portVol>1e-10?portMu/portVol:0;
             const L=cholN(Sigma);
             const mc=runMonteCarlo(mu,L,w,nSim);
 
-            // Render results
-            const resEl=document.getElementById("qlResults");
-            resEl.style.display="block";
-
-            // Weight bar
-            const wb=document.getElementById("weightBar");
-            wb.innerHTML=w.map((wi,i)=>`<div class="qlWeightBarSeg" style="width:${(wi*100).toFixed(1)}%;background:${ASSET_COLORS[i]};"></div>`).join("");
-
-            // Weight legend
-            const wl=document.getElementById("weightLegend");
-            wl.innerHTML=w.map((wi,i)=>`
-              <div class="qlWeightLegendItem">
-                <div class="qlWeightLegendDot" style="background:${ASSET_COLORS[i]};"></div>
-                ${escHtml(names[i])}: <strong>${fmtPct(wi,1)}</strong>
-              </div>`).join("");
-
-            // Result cells
-            const cells=[
+            document.getElementById("qlResults").style.display="block";
+            document.getElementById("weightBar").innerHTML=w.map((wi,i)=>`<div class="ql-weight-seg" style="width:${(wi*100).toFixed(1)}%;background:${ASSET_COLORS[i]};"></div>`).join("");
+            document.getElementById("weightLegend").innerHTML=w.map((wi,i)=>`<div class="ql-weight-legend-item"><div class="ql-weight-dot" style="background:${ASSET_COLORS[i]};"></div>${escHtml(names[i])}: <strong>${fmtPct(wi,1)}</strong></div>`).join("");
+            document.getElementById("resultCells").innerHTML=[
               {label:"Expected Return",value:fmtPct(portMu),sub:"Annualized"},
               {label:"Volatility",value:fmtPct(portVol),sub:"Annualized"},
               {label:"Sharpe Ratio",value:fmtRatio(sharpe),sub:"Return / Vol"},
               {label:"95% VaR",value:fmtPct(mc.var95),sub:"1-year horizon"},
               {label:"95% CVaR",value:fmtPct(mc.cvar95),sub:"Avg worst 5%"},
-              {label:"MC Mean Return",value:fmtPct(mc.mean),sub:`${nSim.toLocaleString()} scenarios`},
-            ];
-            document.getElementById("resultCells").innerHTML=cells.map(c=>`
-              <div class="qlResultCell">
-                <div class="qlResultCellLabel">${c.label}</div>
-                <div class="qlResultCellValue">${c.value}</div>
-                <div class="qlResultCellSub">${c.sub}</div>
-              </div>`).join("");
-
-            // MC details
+              {label:"MC Mean",value:fmtPct(mc.mean),sub:`${nSim.toLocaleString()} runs`},
+            ].map(c=>`<div class="ql-result-cell"><div class="ql-result-label">${c.label}</div><div class="ql-result-value">${c.value}</div><div class="ql-result-sub">${c.sub}</div></div>`).join("");
             document.getElementById("mcDetails").textContent=
-`Optimal Weights:
-${w.map((wi,i)=>`  ${names[i].padEnd(14)} ${fmtPct(wi,2)}`).join("\n")}
-
-Analytic Portfolio:
-  Expected Return  ${fmtPct(portMu)}
-  Volatility       ${fmtPct(portVol)}
-  Sharpe Ratio     ${fmtRatio(sharpe)}
-
-Monte Carlo (${nSim.toLocaleString()} scenarios):
-  Mean Return      ${fmtPct(mc.mean)}
-  Std Dev          ${fmtPct(mc.std)}
-  95% VaR          ${fmtPct(mc.var95)}   ← worst 5th percentile return
-  95% CVaR         ${fmtPct(mc.cvar95)}   ← avg return in worst 5%
-
-Disclaimer: Educational only. Not financial advice.`;
-
-            resEl.scrollIntoView({behavior:"smooth",block:"nearest"});
-
+`Optimal Weights:\n${w.map((wi,i)=>`  ${names[i].padEnd(14)} ${fmtPct(wi,2)}`).join("\n")}\n\nAnalytic Portfolio:\n  Expected Return  ${fmtPct(portMu)}\n  Volatility       ${fmtPct(portVol)}\n  Sharpe Ratio     ${fmtRatio(sharpe)}\n\nMonte Carlo (${nSim.toLocaleString()} scenarios):\n  Mean Return      ${fmtPct(mc.mean)}\n  Std Dev          ${fmtPct(mc.std)}\n  95% VaR          ${fmtPct(mc.var95)}\n  95% CVaR         ${fmtPct(mc.cvar95)}\n\nDisclaimer: Educational only. Not financial advice.`;
+            document.getElementById("qlResults").scrollIntoView({behavior:"smooth",block:"nearest"});
           }catch(err){
             showError(err?.message||String(err));
           }finally{
-            btn.innerHTML="Run Optimization";
-            btn.disabled=false;
+            btn.innerHTML="Run Optimization"; btn.disabled=false;
           }
         },50);
       }
 
-    } catch(e){
+    }catch(e){
       console.error("[premium] fatal:",e);
       showFatal("Fatal error","The page crashed before finishing.",e?.message||String(e));
     }
