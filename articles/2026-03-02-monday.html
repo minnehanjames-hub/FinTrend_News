@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>War Premium Meets Jobs Week | FinTrend News</title>
+  <meta name="description" content="A U.S.-Israel strike on Iran has repriced oil, defense, and rate-cut odds overnight. Here's what it means for the week ahead." />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:       #0d0d0f;
+      --surface:  #131316;
+      --border:   rgba(255,255,255,0.07);
+      --border-hi:rgba(244,193,93,0.22);
+      --gold:     #f4c15d;
+      --gold-mid: rgba(244,193,93,0.12);
+      --text:     #e7e2d6;
+      --text-mute:#9a9488;
+      --red:      #e05c5c;
+      --green:    #4caf88;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* BADGE */
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-mid);
+      border: 1px solid var(--border-hi);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+
+    /* HEADLINE */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--text-mute);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta strong { color: var(--text); }
+
+    /* SECTIONS */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      margin: 36px 0 14px;
+    }
+
+    p { margin-bottom: 16px; color: var(--text); }
+
+    /* ALERT / EXEC SUMMARY */
+    .alert {
+      background: linear-gradient(135deg, rgba(244,193,93,0.08), rgba(255,255,255,0.02));
+      border: 1px solid var(--border-hi);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 32px;
+    }
+    .alert h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .alert p { color: var(--text); font-size: 15px; margin: 0; }
+
+    /* DATA TABLE */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+    }
+    .data-table thead th {
+      text-align: left;
+      color: var(--text-mute);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table tbody td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+    .neutral { color: var(--text-mute); }
+
+    /* LEVELS GRID */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+    .level-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .level-card h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .level-card p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+    .level-card span { color: var(--text); }
+
+    /* BIAS BADGE */
+    .bias-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0 28px;
+    }
+    .bias-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .risk-off { background: rgba(224,92,92,0.15); color: var(--red); border: 1px solid rgba(224,92,92,0.3); }
+    .bias-block p { margin: 0; font-size: 14px; color: var(--text-mute); }
+
+    /* CATALYST LIST */
+    .catalyst-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 28px;
+    }
+    .catalyst-list li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .catalyst-list li:last-child { border-bottom: none; }
+    .cat-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      min-width: 54px;
+      padding-top: 2px;
+    }
+    .cat-text strong { color: var(--text); display: block; font-size: 13px; margin-bottom: 2px; }
+    .cat-text span { color: var(--text-mute); font-size: 12px; }
+
+    /* RISK BOX */
+    .risk-box {
+      background: rgba(224,92,92,0.06);
+      border: 1px solid rgba(224,92,92,0.2);
+      border-left: 3px solid var(--red);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 20px 0 28px;
+    }
+    .risk-box h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .risk-box p { margin: 0; font-size: 14px; color: var(--text-mute); }
+
+    /* VERDICT */
+    .verdict {
+      padding: 22px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-hi);
+      background: linear-gradient(135deg, rgba(244,193,93,0.09), rgba(255,255,255,0.02));
+      margin-top: 32px;
+    }
+    .verdict h3 { color: var(--gold); margin-bottom: 10px; font-size: 14px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
+    .verdict p  { color: var(--text); font-size: 15px; margin: 0; }
+
+    /* SOURCES */
+    .sources {
+      margin-top: 40px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .sources h2 { font-size: 14px; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); }
+    .sources ul { list-style: none; }
+    .sources ul li { font-size: 12px; color: var(--text-mute); margin-bottom: 4px; }
+    .sources ul li a { color: var(--text-mute); text-decoration: underline; }
+
+    /* BACK LINK */
+    a.back {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    a.back:hover { background: var(--gold-mid); }
+
+    .disclaimer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-mute);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    @media (max-width: 520px) {
+      .levels-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="badge">Monday Outlook · Macro + Geopolitical Risk</div>
+
+    <h1>War Premium Meets Jobs Week</h1>
+
+    <div class="meta">
+      By <strong>Hunter William Lang</strong> · FinTrend News · Monday Market Outlook · <strong>March 2, 2026</strong>
+    </div>
+
+    <!-- EXEC SUMMARY -->
+    <div class="alert">
+      <h3>Executive Summary</h3>
+      <p>A joint U.S.-Israeli strike on Iran over the weekend has sent oil surging, defense stocks flying, and crushed rate-cut expectations — all while Friday's February jobs report is set to deliver the most complicated read the Fed has faced in years.</p>
+    </div>
+
+
+    <!-- SECTION 1: DRIVER -->
+    <h2>1. The Primary Driver</h2>
+
+    <p>This week was always going to be about jobs. Then Saturday happened.</p>
+
+    <p>U.S. and Israeli forces launched coordinated strikes on Iranian strategic targets over the weekend, killing supreme leader Khamenei and setting off a wave of retaliatory attacks across the region. Iran has already hit Saudi energy infrastructure at Ras Tanura and is actively disrupting Strait of Hormuz shipping. The Strait moves roughly 20% of the world's oil. That's not a rounding error — that's the price of everything.</p>
+
+    <p>The primary driver this week is geopolitical supply shock, which is transmitting through energy prices into inflation expectations, rate-cut odds, and sector rotation simultaneously. Brent crude opened the week up over 8% to around $79–82 depending on the session, with JPMorgan flagging a path to $120 if the Strait closure extends. Gold hit $5,400. Treasuries weakened — not the safe-haven bid you might expect — because markets are pricing the inflation consequences ahead of the economic slowdown risk.</p>
+
+    <p>The Ukraine-Russia situation is still grinding in the background. Geneva talks are scheduled for early March, and Zelenskyy confirmed after the Paris coalition summit in January that roughly 90% of a potential ceasefire framework is agreed. But that story is slow-moving and largely priced into European defense names already. The Iran shock is fresh, uncontrolled, and directly threatens the energy complex in a way the Ukraine war never did at scale.</p>
+
+
+    <!-- SECTION 2: CONFIRMATION -->
+    <h2>2. Confirmation</h2>
+
+    <p>The confirmation that this is real and not just noise is in the cross-asset moves. When markets sell bonds and buy gold simultaneously alongside an equity drawdown, they're not hedging — they're repricing. That's what you're seeing.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Move (Monday AM)</th>
+          <th>Read</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Brent Crude (BZ=F)</td>
+          <td class="up">+8.6% → ~$79–82/bbl</td>
+          <td>Supply shock priced in, closure risk live</td>
+        </tr>
+        <tr>
+          <td>Gold (GC=F)</td>
+          <td class="up">+3.1% → $5,400+</td>
+          <td>War premium, dollar hedge bid</td>
+        </tr>
+        <tr>
+          <td>10Y Treasury Yield</td>
+          <td class="up">Higher (~4.00%)</td>
+          <td>Inflation fear > safe-haven demand</td>
+        </tr>
+        <tr>
+          <td>VIX</td>
+          <td class="up">+~1.5 pts</td>
+          <td>Elevated but not panic-level yet</td>
+        </tr>
+        <tr>
+          <td>S&P 500 (SPX)</td>
+          <td class="down">−1.2% open → recovered to ~−0.1%</td>
+          <td>Dip buyers stepped in; resilience notable</td>
+        </tr>
+        <tr>
+          <td>Nasdaq</td>
+          <td class="down">−1.6% open → +0.2%</td>
+          <td>Tech bid at lows — quality trade</td>
+        </tr>
+        <tr>
+          <td>Lockheed Martin (LMT)</td>
+          <td class="up">+6–7%</td>
+          <td>Defense rotation; hard confirmation</td>
+        </tr>
+        <tr>
+          <td>Delta Air Lines (DAL)</td>
+          <td class="down">−6%</td>
+          <td>Fuel cost + airspace disruption hit</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Sector rotation is clean and directional: energy, defense, gold miners up. Airlines, hotels, consumer discretionary down. This isn't ambiguous. The market knows exactly what it's pricing.</p>
+
+
+    <!-- SECTION 3: MARKET BIAS -->
+    <h2>3. Market Bias</h2>
+
+    <div class="bias-block">
+      <span class="bias-tag risk-off">Risk-Off / Rotation</span>
+      <p>Money is moving — not leaving. Defense and energy are receiving the flows that growth and travel are shedding.</p>
+    </div>
+
+    <p>Here's the nuance: equity markets have historically recovered within a month of geopolitical shocks that don't become multi-year entanglements. The S&P 500 average return around Middle East conflicts going back to 1980 is roughly flat to slightly positive two weeks out. Dip buyers know this playbook, which is why you saw the index pare a 1.2% gap-down to nearly unchanged intraday.</p>
+
+    <p>But the inflation feedback loop is new terrain. If Brent sustains above $85 heading into the March Fed meeting, the "cut in May" consensus evaporates. The Fed cannot ease into an energy supply shock. That's the real risk to growth assets — not the conflict itself, but what it does to the Fed's room to maneuver.</p>
+
+    <p>The bias this week is risk-off leaning into a rotation trade. Avoid chasing defense after day-one moves. Energy has more runway if the Strait stays closed. Growth tech is resilient at quality names (Nvidia, Microsoft) but vulnerable at high-multiple, low-profitability plays.</p>
+
+
+    <!-- SECTION 4: KEY LEVELS -->
+    <h2>4. Key Levels</h2>
+
+    <div class="levels-grid">
+      <div class="level-card">
+        <h4>S&P 500 (SPX)</h4>
+        <p>Support: <span>6,800 (100-day MA confluence)</span></p>
+        <p>Support 2: <span>6,675 / 6,650 (prior structure)</span></p>
+        <p>Resistance: <span>6,900</span></p>
+        <p>ATH: <span>~6,950</span></p>
+      </div>
+      <div class="level-card">
+        <h4>Nasdaq 100 (NDX)</h4>
+        <p>Support: <span>Watch mega-cap tech as anchor</span></p>
+        <p>Resistance: <span>Prior February highs</span></p>
+        <p>Signal: <span>NDX holding > SPX on open = tech resilience</span></p>
+      </div>
+      <div class="level-card">
+        <h4>Brent Crude (BZ=F)</h4>
+        <p>Current: <span>~$79–82/bbl</span></p>
+        <p>Critical: <span>$85 = Fed pivot risk</span></p>
+        <p>Tail risk: <span>$100–120 if Hormuz stays closed</span></p>
+      </div>
+      <div class="level-card">
+        <h4>Gold (GC=F)</h4>
+        <p>Current: <span>~$5,300–$5,400</span></p>
+        <p>Support: <span>$5,300 (holding above = bid intact)</span></p>
+        <p>JPM target: <span>+10% war premium potential</span></p>
+      </div>
+    </div>
+
+
+    <!-- SECTION 5: CATALYST WATCH -->
+    <h2>5. Catalyst Watch</h2>
+
+    <p>This week runs two tracks at once — the geopolitical and the macro. Both matter. Neither can be ignored.</p>
+
+    <ul class="catalyst-list">
+      <li>
+        <span class="cat-date">MON</span>
+        <div class="cat-text">
+          <strong>ISM Manufacturing PMI (February)</strong>
+          <span>Already released at 52.0 — expansion. But Prices Paid jumped to 70.5. That's the inflation warning shot embedded in today's data. Watch this number get repriced in context of oil.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">TUE</span>
+        <div class="cat-text">
+          <strong>JOLTS Job Openings</strong>
+          <span>Expected 7.11–7.15M. A downside miss here starts building the "labor market cracking" narrative alongside oil inflation — the worst combination for the Fed.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">WED</span>
+        <div class="cat-text">
+          <strong>ADP Employment Report</strong>
+          <span>January ADP came in at 41K (vs 49K estimate). Another soft read confirms the "low-hire, low-fire" trend. Context: ADP and NFP have diverged before — don't over-trade Wednesday's print.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">WED</span>
+        <div class="cat-text">
+          <strong>Broadcom (AVGO) Earnings</strong>
+          <span>Key read on AI infrastructure spending. Any forward guidance cut in the context of geopolitical uncertainty could pressure semiconductors broadly.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">THU</span>
+        <div class="cat-text">
+          <strong>Costco (COST) + Target (TGT) Earnings</strong>
+          <span>Consumer health check. If oil feeds through to consumer sentiment, you'll see it in guidance.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">FRI</span>
+        <div class="cat-text">
+          <strong>February NFP (Non-Farm Payrolls) — 8:30am ET</strong>
+          <span>The week's anchor. Consensus: ~60K jobs added. Unemployment at 4.3%. Avg hourly earnings +0.3% MoM. A weak print normally triggers rate-cut hope — but with oil at $80+, the Fed can't deliver. Watch for the paradox: bad jobs + high oil = worst of both worlds for equities.</span>
+        </div>
+      </li>
+      <li>
+        <span class="cat-date">LIVE</span>
+        <div class="cat-text">
+          <strong>Strait of Hormuz Shipping Status</strong>
+          <span>The single most important variable this week that doesn't appear in an economic calendar. Commercial shipping through the Strait has been disrupted. If it doesn't reopen within 48–72 hours, Brent toward $100 is the base case per multiple desks. Watch tanker traffic reports and CENTCOM statements.</span>
+        </div>
+      </li>
+    </ul>
+
+
+    <!-- SECTION 6: RISK SCENARIO -->
+    <h2>6. Risk Scenario</h2>
+
+    <div class="risk-box">
+      <h4>The Bear Case This Week</h4>
+      <p>The risk to a resilient-market base case is a Strait of Hormuz closure that extends beyond a week, driving Brent toward $100+. At that level, the inflation re-acceleration narrative takes hold, the Fed is paralyzed, Q2 rate-cut pricing is gutted entirely, and high-multiple growth equities re-rate lower even as energy names hold up. You get a bifurcated market that looks range-bound in the index but brutal underneath the surface — the worst kind of tape to trade.</p>
+    </div>
+
+    <div class="risk-box" style="background: rgba(76,175,136,0.06); border-color: rgba(76,175,136,0.2); border-left-color: var(--green);">
+      <h4 style="color: var(--green);">The Bull Case</h4>
+      <p style="color: var(--text-mute);">Shipping resumes quickly, Iran's retaliation proves limited, and markets return focus to the Friday jobs number. If NFP comes in at 80–100K with benign wage growth, the "soft landing still alive" narrative returns and dip buyers who loaded Monday are rewarded. History suggests equities are flat to positive 2–4 weeks after geopolitical flare-ups that don't escalate into prolonged ground conflicts.</p>
+    </div>
+
+
+    <!-- VERDICT -->
+    <div class="verdict">
+      <h3>The Bottom Line</h3>
+      <p>For now, momentum favors defense, energy, and gold — but those trades already moved on day one and chasing them is dangerous. The real game this week is watching whether oil holds above $85 into Friday's jobs data, because that's the combination that breaks the rate-cut thesis for 2026 and forces a genuine re-rating of growth multiples. Don't confuse a bouncing index with a healthy market. Underneath, the rotation is real and the Fed just got a lot more complicated. Stay selective, stay hedged, and watch the Strait.</p>
+    </div>
+
+
+    <!-- SOURCES -->
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li>CNBC — Stock Market Live, March 2, 2026</li>
+        <li>Yahoo Finance — Market Futures & Live Updates, March 2, 2026</li>
+        <li>Confluence Investment Management — Daily Comment, March 2, 2026</li>
+        <li>FinancialContent / MarketMinute — "Shadows of War and Economic Cooling," March 2, 2026</li>
+        <li>247WallSt — S&P 500 Live Blog, March 2, 2026</li>
+        <li>Bureau of Labor Statistics — January 2026 Employment Situation</li>
+        <li>Carnegie Endowment for International Peace — Ukraine War Analysis, Feb 24, 2026</li>
+        <li>UK House of Commons Library — Ukraine Peace Talks Briefing, updated March 2026</li>
+      </ul>
+    </div>
+
+    <a class="back" href="/index.html">← Back to FinTrend News</a>
+
+    <div class="disclaimer">
+      This article is published for educational and informational purposes only and does not constitute investment advice. FinTrend News and Hunter William Lang are not registered investment advisors. All market data referenced reflects conditions at time of publication. Past performance is not indicative of future results. Consult a licensed financial professional before making investment decisions.
+    </div>
+
+  </div>
+</body>
+</html>
