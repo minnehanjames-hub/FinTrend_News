@@ -294,7 +294,6 @@
     }
 
     .tag-monday    { border-color: var(--success); color: var(--success); }
-    .tag-tuesday   { border-color: var(--success); color: var(--success); }
     .tag-wednesday { border-color: #60a5fa; color: #60a5fa; }
     .tag-friday    { border-color: var(--danger); color: var(--danger); }
     .tag-sunday    { border-color: var(--accent); color: var(--accent); }
@@ -314,50 +313,24 @@
       vertical-align: middle;
     }
 
-    /* ── MOBILE / IPHONE ─────────────────────────────────────── */
+    /* ── MOBILE ─────────────────────────────────────── */
     @media (max-width: 720px) {
       .calendar-header { display: none; }
-      .calendar-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
+      .calendar-row { grid-template-columns: 1fr; gap: 6px; }
       .week-label {
-        font-weight: 600;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--accent);
-        padding: 8px 0 2px;
-        border-top: 1px solid rgba(148,163,184,0.15);
-        margin-top: 4px;
+        font-weight: 600; font-size: 11px; text-transform: uppercase;
+        letter-spacing: 0.12em; color: var(--accent); padding: 8px 0 2px;
+        border-top: 1px solid rgba(148,163,184,0.15); margin-top: 4px;
       }
       .week-label:first-child { border-top: none; }
       .day-cell {
-        min-height: 60px;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 0 10px;
-        align-items: start;
-        padding: 10px 11px;
+        min-height: 60px; display: grid; grid-template-columns: auto 1fr;
+        gap: 0 10px; align-items: start; padding: 10px 11px;
       }
-      .day-cell > div:first-child {
-        display: contents;
-      }
-      .day-cell .day-label,
-      .day-cell .day-date {
-        grid-column: 1;
-      }
-      .day-cell .day-label {
-        font-size: 9px;
-        white-space: nowrap;
-        margin-bottom: 1px;
-      }
-      .day-cell .day-date {
-        font-size: 13px;
-        font-weight: 600;
-        color: #e5e7eb;
-        margin-bottom: 0;
-      }
+      .day-cell > div:first-child { display: contents; }
+      .day-cell .day-label, .day-cell .day-date { grid-column: 1; }
+      .day-cell .day-label { font-size: 9px; white-space: nowrap; margin-bottom: 1px; }
+      .day-cell .day-date { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 0; }
       .tag-pill { grid-column: 2; margin-bottom: 2px; }
       .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
       .day-meta { grid-column: 2; font-size: 11px; }
@@ -395,7 +368,7 @@
 
     <div class="month-nav">
       <button class="month-nav-link" id="month-prev" type="button">← Prev</button>
-      <div class="month-label" id="month-label">February 2026</div>
+      <div class="month-label" id="month-label">March 2026</div>
       <button class="month-nav-link" id="month-next" type="button">Next →</button>
     </div>
     <div class="month-dots" id="month-dots" aria-label="Month dots"></div>
@@ -405,7 +378,57 @@
         <div class="month-track" id="month-track">
 
           <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- FEBRUARY 2026 — newest, shown first                    -->
+          <!-- MARCH 2026 — newest, shown first                       -->
+          <!-- ═══════════════════════════════════════════════════════ -->
+          <section class="month-slide" data-month="March 2026">
+            <div class="slide-kicker"><strong>March 2026</strong></div>
+            <div class="calendar-header">
+              <div class="week-col-label">Week</div>
+              <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
+            </div>
+
+            <div class="calendar-row">
+              <div class="week-label">Week of Mar 2</div>
+              <div class="day-cell has-note latest">
+                <div>
+                  <div class="day-label">Monday</div>
+                  <div class="day-date">Mar 2</div>
+                  <span class="tag-pill tag-monday">Monday Outlook</span>
+                  <a href="articles/2026-03-02-monday.html" class="day-link">War Premium Meets Jobs Week <span class="new-badge">New</span></a>
+                </div>
+                <div class="day-meta">U.S.-Israel strikes Iran; Strait of Hormuz closed; Brent +8%; defense rotation live; NFP Friday.</div>
+              </div>
+              <div class="day-cell">
+                <div>
+                  <div class="day-label">Wednesday</div>
+                  <div class="day-date">Mar 4</div>
+                  <span class="tag-pill tag-wednesday">Momentum</span>
+                </div>
+                <div class="empty-note">Not yet published.</div>
+              </div>
+              <div class="day-cell">
+                <div>
+                  <div class="day-label">Friday</div>
+                  <div class="day-date">Mar 6</div>
+                  <span class="tag-pill tag-friday">Friday Recap</span>
+                </div>
+                <div class="empty-note">Not yet published.</div>
+              </div>
+              <div class="day-cell has-note">
+                <div>
+                  <div class="day-label">Sunday</div>
+                  <div class="day-date">Mar 1</div>
+                  <span class="tag-pill tag-sunday">Sunday Macro</span>
+                  <a href="articles/2026-03-01-sunday.html" class="day-link">The World Changed Saturday Night</a>
+                </div>
+                <div class="day-meta">Operation Epic Fury; Khamenei killed; Strait closed; three scenarios for the week ahead.</div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- FEBRUARY 2026                                          -->
           <!-- ═══════════════════════════════════════════════════════ -->
           <section class="month-slide" data-month="February 2026">
             <div class="slide-kicker"><strong>February 2026</strong></div>
@@ -434,22 +457,23 @@
                 </div>
                 <div class="day-meta">Nvidia Q4 earnings after close; S&amp;P futures +0.14%; tariff narrative stabilizes post-SOTU.</div>
               </div>
-              <div class="day-cell has-note latest">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">Feb 27</div>
                   <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/2026-02-27-friday.html" class="day-link">Inflation Shock Closes Out February <span class="new-badge">New</span></a>
+                  <a href="articles/2026-02-27-friday.html" class="day-link">Inflation Shock Closes Out February</a>
                 </div>
                 <div class="day-meta">PPI beats hard; Nvidia extends slide; S&amp;P 500 posts worst February in 11 months.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Mar 1</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
+                  <a href="articles/2026-03-01-sunday.html" class="day-link">The World Changed Saturday Night</a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">Operation Epic Fury; Khamenei killed; Strait closed; three scenarios for the week ahead.</div>
               </div>
             </div>
 
@@ -1156,7 +1180,7 @@
       })();
 
       renderDots();
-      setMonth(0); // Open on February 2026 (newest) by default
+      setMonth(0); // Open on March 2026 (newest) by default
     })();
   </script>
 
