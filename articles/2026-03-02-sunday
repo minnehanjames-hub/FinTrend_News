@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The World Changed Saturday Night | FinTrend News</title>
+  <meta name="description" content="The U.S. and Israel struck Iran on Saturday. Khamenei is dead. The Strait of Hormuz is closed. Here is what you need to know before Monday's open." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#0d0d0f; --surface:#131316; --border:rgba(255,255,255,0.07);
+      --border-hi:rgba(244,193,93,0.22); --gold:#f4c15d; --gold-mid:rgba(244,193,93,0.12);
+      --text:#e7e2d6; --text-mute:#9a9488; --red:#e05c5c; --green:#4caf88; --blue:#60a5fa;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    .container{max-width:740px;margin:0 auto;padding:48px 24px 80px;}
+    .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);background:var(--gold-mid);border:1px solid var(--border-hi);border-radius:999px;padding:4px 12px;margin-bottom:20px;}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(28px,5vw,42px);font-weight:400;line-height:1.2;color:#fff;margin-bottom:14px;}
+    .meta{font-size:12px;color:var(--text-mute);letter-spacing:0.04em;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+    .meta strong{color:var(--text);}
+    h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:#fff;margin:36px 0 14px;}
+    p{margin-bottom:16px;color:var(--text);}
+
+    .alert{background:linear-gradient(135deg,rgba(244,193,93,0.08),rgba(255,255,255,0.02));border:1px solid var(--border-hi);border-radius:14px;padding:20px 22px;margin-bottom:32px;}
+    .alert h3{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:10px;}
+    .alert p{color:var(--text);font-size:15px;margin:0;}
+
+    .scenario-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0 28px;}
+    .scenario-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;}
+    .scenario-card h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;}
+    .scenario-card p{font-size:12.5px;color:var(--text-mute);margin:0;line-height:1.6;}
+    .scenario-card.bear{border-color:rgba(224,92,92,0.25);} .scenario-card.bear h4{color:var(--red);}
+    .scenario-card.base{border-color:rgba(244,193,93,0.25);} .scenario-card.base h4{color:var(--gold);}
+    .scenario-card.bull{border-color:rgba(76,175,136,0.25);} .scenario-card.bull h4{color:var(--green);}
+
+    .watch-list{list-style:none;padding:0;margin:16px 0 28px;}
+    .watch-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;align-items:flex-start;}
+    .watch-list li:last-child{border-bottom:none;}
+    .watch-icon{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;min-width:54px;padding-top:2px;}
+    .watch-text strong{color:var(--text);display:block;font-size:13px;margin-bottom:2px;}
+    .watch-text span{color:var(--text-mute);font-size:12px;}
+
+    .pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 28px;}
+    .pos-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+    .pos-card h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+    .pos-card.favor h4{color:var(--green);} .pos-card.avoid h4{color:var(--red);}
+    .pos-card ul{list-style:none;padding:0;}
+    .pos-card ul li{font-size:13px;color:var(--text-mute);padding:4px 0;border-bottom:1px solid var(--border);}
+    .pos-card ul li:last-child{border-bottom:none;}
+
+    .thesis{background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.2);border-left:3px solid var(--blue);border-radius:10px;padding:18px 20px;margin:20px 0 28px;}
+    .thesis h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:10px;}
+    .thesis p{margin:0;font-size:14px;font-style:italic;color:var(--text);}
+
+    .verdict{padding:22px 24px;border-radius:16px;border:1px solid var(--border-hi);background:linear-gradient(135deg,rgba(244,193,93,0.09),rgba(255,255,255,0.02));margin-top:32px;}
+    .verdict h3{color:var(--gold);margin-bottom:10px;font-size:14px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.1em;}
+    .verdict p{color:var(--text);font-size:15px;margin:0;}
+
+    .sources{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);}
+    .sources h2{font-size:14px;margin-bottom:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-mute);}
+    .sources ul{list-style:none;}
+    .sources ul li{font-size:12px;color:var(--text-mute);margin-bottom:4px;}
+
+    a.back{display:inline-block;margin-top:32px;padding:10px 18px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;transition:background 0.2s;font-family:'JetBrains Mono',monospace;}
+    a.back:hover{background:var(--gold-mid);}
+    .disclaimer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--text-mute);line-height:1.6;font-style:italic;}
+
+    @media(max-width:560px){.scenario-grid{grid-template-columns:1fr;}.pos-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="badge">Sunday Macro · Pre-Week Positioning</div>
+    <h1>The World Changed Saturday Night</h1>
+    <div class="meta">By <strong>William Hunter Lang</strong> · FinTrend News · Sunday Macro Note · <strong>March 1, 2026</strong></div>
+
+    <div class="alert">
+      <h3>The Sunday Thesis</h3>
+      <p>Operation Epic Fury — the joint U.S.-Israeli strike on Iran — killed Supreme Leader Khamenei and closed the Strait of Hormuz. The week ahead is no longer just about jobs data. It is about whether a new war reprices inflation, kills rate cuts, and forces a complete rethink of 2026 positioning.</p>
+    </div>
+
+    <h2>1. What Actually Happened This Weekend</h2>
+
+    <p>On Saturday, February 28, U.S. and Israeli forces launched a coordinated series of strikes on Iranian strategic targets in what the Pentagon named "Operation Epic Fury." Ayatollah Khamenei — Iran's supreme leader since 1989 — was killed. Dozens of other senior military and government officials were also reported dead.</p>
+
+    <p>Iran retaliated within hours. The Revolutionary Guard launched drone and missile strikes across the Gulf, hitting Saudi energy infrastructure at Ras Tanura and targeting oil tankers in the Strait of Hormuz. The Strait — which handles roughly 20% of the world's seaborne oil supply, approximately 13 million barrels per day — was declared closed by Iranian commanders by Sunday morning. Maersk, MSC, Hapag-Lloyd, and other major shipping lines suspended all transit through the route until further notice.</p>
+
+    <p>Trump described the operation as "our last, best chance to strike" and vowed operations would continue "as long as necessary." He later told the NYT Sunday evening he was open to lifting sanctions on a new Iranian leadership willing to be a "pragmatic partner." That comment alone — regime change as an explicit goal — tells you this isn't a surgical strike designed to end quickly. This has an open-ended mandate.</p>
+
+    <p>Futures markets opened Sunday at 6pm ET into immediate selling. S&P futures dropped over 1%, Nasdaq futures fell 1.4%, and Dow futures fell more than 500 points. Oil futures gapped higher. This is your context heading into Monday's bell.</p>
+
+    <h2>2. Three Scenarios for the Week</h2>
+
+    <p>There is genuine uncertainty here — more than a typical geopolitical shock — because the endgame is explicitly regime change, which has no defined timeline or clean exit ramp.</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bear">
+        <h4>Bear Case</h4>
+        <p>Strait stays closed 2+ weeks. Brent grinds toward $100. Inflation expectations re-anchor higher. Fed can't cut. Growth multiples compress. S&P tests 6,675 support. Duration and consumer discretionary take the hardest hit.</p>
+      </div>
+      <div class="scenario-card base">
+        <h4>Base Case</h4>
+        <p>Strait disruption is short-lived — days, not weeks. Oil spikes then pulls back. Markets recover from Monday's gap-down as the week progresses. Jobs report on Friday re-anchors attention. S&P holds 6,800 and closes near flat.</p>
+      </div>
+      <div class="scenario-card bull">
+        <h4>Bull Case</h4>
+        <p>Iran's interim leadership signals willingness to negotiate. Strait reopens rapidly. Oil gives back the weekend premium. Rate-cut timeline intact. Dip buyers who loaded Monday are rewarded. S&P pushes back toward 6,900 by Friday.</p>
+      </div>
+    </div>
+
+    <p>Barclays' global research chair said Sunday they would "not recommend buying any immediate dip — the risk-reward doesn't seem compelling." KKM Financial's Jeff Kilburg posted Sunday night that markets would turn green before Monday's close. Both made bets on which scenario materializes. Neither is wrong to hold a view — but both are guessing. Size your risk accordingly.</p>
+
+    <h2>3. What to Watch This Week</h2>
+
+    <ul class="watch-list">
+      <li>
+        <span class="watch-icon">Live</span>
+        <div class="watch-text">
+          <strong>Strait of Hormuz — shipping status</strong>
+          <span>The single most important variable this week. If commercial shipping does not resume within 48–72 hours, the path to $100 Brent becomes the base case across multiple desks. Watch tanker traffic data, CENTCOM statements, and any Iran leadership signals.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Live</span>
+        <div class="watch-text">
+          <strong>Iran interim leadership</strong>
+          <span>Trump explicitly said he's open to lifting sanctions for pragmatic new leadership. If someone emerges from Tehran signaling de-escalation, the risk-off unwind accelerates fast. This is the bull case trigger — watch it closely.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Mon</span>
+        <div class="watch-text">
+          <strong>ISM Manufacturing PMI — already released at 52.0</strong>
+          <span>Prices Paid component jumped to 70.5. In the context of an oil spike, that number will be cited all week as evidence inflation was already re-accelerating before the Strait even closed. The retroactive framing matters.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Tue</span>
+        <div class="watch-text">
+          <strong>JOLTS Job Openings</strong>
+          <span>Expected ~7.1M. A miss here layered on top of an oil shock creates the stagflation framing — slowing labor market plus supply-driven inflation. That combination is the most difficult scenario for the Fed and the worst for equities.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Wed</span>
+        <div class="watch-text">
+          <strong>ADP Private Payrolls + Fed Beige Book</strong>
+          <span>ADP gives the first February employment read. The Beige Book will have been written before the strikes — making it nearly outdated on arrival — but language around inflation and business conditions will still move bond markets.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Wed</span>
+        <div class="watch-text">
+          <strong>Broadcom (AVGO) Earnings</strong>
+          <span>Key AI infrastructure read. Forward guidance tone matters more than the beat or miss. Any cautious language on capex or demand gets amplified in this macro environment.</span>
+        </div>
+      </li>
+      <li>
+        <span class="watch-icon">Fri</span>
+        <div class="watch-text">
+          <strong>February NFP — 8:30am ET</strong>
+          <span>Consensus ~60K jobs, unemployment 4.3%, wages +0.3% MoM. A soft print would normally be dovish — but if oil is still elevated, the Fed is pinned. Weaker jobs plus higher oil equals no cuts and slower growth. The most painful combination for multi-asset portfolios.</span>
+        </div>
+      </li>
+    </ul>
+
+    <h2>4. How to Position Into This Week</h2>
+
+    <p>The macro rotation is underway. The question is whether day-one prices already reflect the move or if there's more runway — particularly in energy.</p>
+
+    <div class="pos-grid">
+      <div class="pos-card favor">
+        <h4>Favor</h4>
+        <ul>
+          <li>Energy: XOM, CVX, COP — direct supply shock</li>
+          <li>Defense: LMT, NOC, RTX, AVAV — demand surge</li>
+          <li>Gold (GLD, GC=F) — war premium + inflation hedge</li>
+          <li>Cash / short duration — optionality in uncertainty</li>
+          <li>Quality tech (NVDA, MSFT) — holds at dips</li>
+        </ul>
+      </div>
+      <div class="pos-card avoid">
+        <h4>Caution</h4>
+        <ul>
+          <li>Airlines (DAL, UAL, AAL) — fuel + airspace disruption</li>
+          <li>Hotels / travel — regional demand collapse</li>
+          <li>High-multiple unprofitable tech — rate repricing</li>
+          <li>Consumer discretionary — fuel cost pass-through</li>
+          <li>Freight carriers (FDX, UPS) — Africa rerouting cost</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>Defense names moved 6–10% on day one. Chasing Monday morning is dangerous. The cleaner trade is watching for a 2–3 day consolidation in LMT, NOC, and RTX before adding exposure. Energy has more runway if the Strait remains closed. Gold is the cleanest single expression of this environment — war premium, inflation repricing, and dollar hedging all pointing the same direction. JPMorgan flagged up to 10% additional upside in gold under extended conflict scenarios. $5,300 is your support to watch.</p>
+
+    <h2>5. The Sunday Thesis</h2>
+
+    <div class="thesis">
+      <h4>One Arguable Claim Into the Week</h4>
+      <p>The Iran shock does not end the bull market — it ends the rate-cut narrative for 2026. If Brent holds above $80 through Friday's jobs report, the Fed is functionally paralyzed regardless of what payrolls print. Markets will eventually shrug off the geopolitical noise, as they have every time since WWII — but the repricing of "no cuts this year" is a structural shift that growth multiples haven't fully absorbed yet. That is the real trade this week, not oil itself.</p>
+    </div>
+
+    <div class="verdict">
+      <h3>Bottom Line</h3>
+      <p>Sunday night futures were scared but not broken — and Monday told the same story. The S&P closed nearly flat after falling 1.2% at its lows. Resilience matters. But the week ahead carries genuine tail risk that previous geopolitical shocks didn't: an open-ended regime-change mandate, a closed Strait, and a jobs report landing into the middle of it all. Stay selective. Keep cash ready. The dip will come — just make sure you know which scenario you're buying before you pull the trigger.</p>
+    </div>
+
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li>CNBC — "U.S.-Israel Strikes Iran: What We Know," March 1, 2026</li>
+        <li>CNBC — "Global Week Ahead: Operation Epic Fury," March 2, 2026</li>
+        <li>CNN Business — "US Stocks Recover, Gold Rises and Oil Surges," March 2, 2026</li>
+        <li>Fortune — "Dow Futures Fall 350 Points on U.S.-Iran Conflict," March 1, 2026</li>
+        <li>CNBC / Barclays — Ajay Rajadhyaksha comment on dip-buying, March 2, 2026</li>
+        <li>S&P Global — "Week Ahead Economic Preview: Week of 2 March 2026"</li>
+        <li>Forex.com — "Iran War, Gold, Oil, USD Majors Weekly Technical Outlook," March 2, 2026</li>
+      </ul>
+    </div>
+
+    <a class="back" href="/index.html">← Back to FinTrend News</a>
+
+    <div class="disclaimer">
+      This article is published for educational and informational purposes only and does not constitute investment advice. FinTrend News and Hunter William Lang are not registered investment advisors. All market data referenced reflects conditions at time of publication on March 1, 2026. Past performance is not indicative of future results. Consult a licensed financial professional before making investment decisions.
+    </div>
+
+  </div>
+</body>
+</html>
