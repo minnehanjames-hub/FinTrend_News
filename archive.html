@@ -294,6 +294,7 @@
     }
 
     .tag-monday    { border-color: var(--success); color: var(--success); }
+    .tag-tuesday   { border-color: var(--success); color: var(--success); }
     .tag-wednesday { border-color: #60a5fa; color: #60a5fa; }
     .tag-friday    { border-color: var(--danger); color: var(--danger); }
     .tag-sunday    { border-color: var(--accent); color: var(--accent); }
@@ -313,24 +314,50 @@
       vertical-align: middle;
     }
 
-    /* ── MOBILE ─────────────────────────────────────── */
+    /* ── MOBILE / IPHONE ─────────────────────────────────────── */
     @media (max-width: 720px) {
       .calendar-header { display: none; }
-      .calendar-row { grid-template-columns: 1fr; gap: 6px; }
+      .calendar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
       .week-label {
-        font-weight: 600; font-size: 11px; text-transform: uppercase;
-        letter-spacing: 0.12em; color: var(--accent); padding: 8px 0 2px;
-        border-top: 1px solid rgba(148,163,184,0.15); margin-top: 4px;
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        padding: 8px 0 2px;
+        border-top: 1px solid rgba(148,163,184,0.15);
+        margin-top: 4px;
       }
       .week-label:first-child { border-top: none; }
       .day-cell {
-        min-height: 60px; display: grid; grid-template-columns: auto 1fr;
-        gap: 0 10px; align-items: start; padding: 10px 11px;
+        min-height: 60px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 10px;
+        align-items: start;
+        padding: 10px 11px;
       }
-      .day-cell > div:first-child { display: contents; }
-      .day-cell .day-label, .day-cell .day-date { grid-column: 1; }
-      .day-cell .day-label { font-size: 9px; white-space: nowrap; margin-bottom: 1px; }
-      .day-cell .day-date { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 0; }
+      .day-cell > div:first-child {
+        display: contents;
+      }
+      .day-cell .day-label,
+      .day-cell .day-date {
+        grid-column: 1;
+      }
+      .day-cell .day-label {
+        font-size: 9px;
+        white-space: nowrap;
+        margin-bottom: 1px;
+      }
+      .day-cell .day-date {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e5e7eb;
+        margin-bottom: 0;
+      }
       .tag-pill { grid-column: 2; margin-bottom: 2px; }
       .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
       .day-meta { grid-column: 2; font-size: 11px; }
@@ -396,7 +423,7 @@
                   <span class="tag-pill tag-monday">Monday Outlook</span>
                   <a href="articles/2026-03-02-monday.html" class="day-link">War Premium Meets Jobs Week <span class="new-badge">New</span></a>
                 </div>
-                <div class="day-meta">U.S.-Israel strikes Iran; Strait of Hormuz closed; Brent +8%; defense rotation live; NFP Friday.</div>
+                <div class="day-meta">U.S.-Israel strikes on Iran; Brent +8%; defense bid; NFP Friday is the anchor event.</div>
               </div>
               <div class="day-cell">
                 <div>
@@ -414,17 +441,15 @@
                 </div>
                 <div class="empty-note">Not yet published.</div>
               </div>
-              <div class="day-cell has-note">
+              <div class="day-cell">
                 <div>
                   <div class="day-label">Sunday</div>
-                  <div class="day-date">Mar 1</div>
+                  <div class="day-date">Mar 8</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-03-01-sunday.html" class="day-link">The World Changed Saturday Night</a>
                 </div>
-                <div class="day-meta">Operation Epic Fury; Khamenei killed; Strait closed; three scenarios for the week ahead.</div>
+                <div class="empty-note">Not yet published.</div>
               </div>
             </div>
-
           </section>
 
           <!-- ═══════════════════════════════════════════════════════ -->
@@ -471,9 +496,9 @@
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Mar 1</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-03-01-sunday.html" class="day-link">The World Changed Saturday Night</a>
+                  <a href="articles/2026-03-01-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — March 1</a>
                 </div>
-                <div class="day-meta">Operation Epic Fury; Khamenei killed; Strait closed; three scenarios for the week ahead.</div>
+                <div class="day-meta">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div>
               </div>
             </div>
 
@@ -619,23 +644,23 @@
                 </div>
                 <div class="day-meta">Central bank + earnings collision: watch yields and guidance tone.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Wednesday</div>
                   <div class="day-date">Jan 28</div>
                   <span class="tag-pill tag-wednesday">Momentum</span>
                   <a href="articles/2026-01-28-wednesday.html" class="day-link">Wednesday Momentum — January 28</a>
                 </div>
-                <div class="empty-note">Rotation + earnings reactions: momentum turns more selective.</div>
+                <div class="day-meta">Rotation + earnings reactions: momentum turns more selective.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">Jan 30</div>
                   <span class="tag-pill tag-friday">Friday Recap</span>
                   <a href="articles/2026-01-30-friday.html" class="day-link">Friday Weekly Recap — January 30</a>
                 </div>
-                <div class="empty-note">Earnings digestion week: rates as referee, leadership more selective.</div>
+                <div class="day-meta">Earnings digestion week: rates as referee, leadership more selective.</div>
               </div>
               <div class="day-cell has-note">
                 <div>
@@ -781,7 +806,7 @@
 
             <div class="calendar-row">
               <div class="week-label">Week of Dec 29</div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Monday</div>
                   <div class="day-date">Dec 29</div>
@@ -790,7 +815,7 @@
                 </div>
                 <div class="day-meta">Year-end positioning into the first week of 2026.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Wednesday</div>
                   <div class="day-date">Dec 31</div>
@@ -808,20 +833,20 @@
                 </div>
                 <div class="day-meta">First recap of 2026.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Jan 4</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
                   <a href="articles/2026-01-04-sunday.html" class="day-link">Sunday MacroNote — January 4</a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div>
               </div>
             </div>
 
             <div class="calendar-row">
               <div class="week-label">Week of Dec 22</div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Monday</div>
                   <div class="day-date">Dec 22</div>
@@ -830,7 +855,7 @@
                 </div>
                 <div class="day-meta">Holiday-shortened setup: liquidity, rates, year-end positioning.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Wednesday</div>
                   <div class="day-date">Dec 24</div>
@@ -839,7 +864,7 @@
                 </div>
                 <div class="day-meta">Holiday tape momentum check.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">Dec 26</div>
@@ -848,14 +873,14 @@
                 </div>
                 <div class="day-meta">Year-end recap framing.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Dec 28</div>
                   <span class="tag-pill tag-sunday">Sunday Macro</span>
                   <a href="articles/2025-12-28-sunday.html" class="day-link">Sunday MacroNote — December 28</a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">Big-picture themes &amp; positioning for next week.</div>
               </div>
             </div>
 
@@ -879,7 +904,7 @@
                 </div>
                 <div class="day-meta">Midweek tape &amp; sector rotation.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">Dec 19</div>
@@ -888,7 +913,7 @@
                 </div>
                 <div class="day-meta">End-of-week equity &amp; macro wrap.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">Dec 21</div>
