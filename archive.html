@@ -1603,13 +1603,8 @@
     }
 
     function showVaultAndGrantAccess(email){
-      if(loadingScreen) loadingScreen.classList.add("gone");
-      // Small delay so vault is visible before text appears
-      setTimeout(()=>{
-        if(vaultText) vaultText.classList.add("show");
-        startDots();
-      }, 600);
-      setTimeout(()=>{ showVaultGranted(email); }, 2000);
+      // This is now only called after vault minimum time — just show granted
+      showVaultGranted(email);
     }
 
     // ── Tabs
@@ -1675,7 +1670,40 @@
       });
     }
 
-    // ── Supabase auth check
+    // ── Auth runs in parallel with vault animation
+    // Vault ALWAYS plays fully — auth result is queued and fires only after vault is ready
+
+    const VAULT_MIN_MS = 3200; // minimum time vault is on screen before anything can happen
+    const vaultStartTime = Date.now();
+
+    // Holds the resolved auth result until vault sequence is ready
+    let authResult = null; // { granted: bool, email: string }
+    let vaultSequenceDone = false;
+
+    function applyAuthResult(){
+      // Only fires once BOTH vault sequence is done AND auth has resolved
+      if(!authResult || !vaultSequenceDone) return;
+      if(authResult.granted){
+        showVaultGranted(authResult.email);
+      } else {
+        showAccessGate();
+      }
+    }
+
+    // Start vault sequence immediately — show text + dots right away
+    if(loadingScreen) loadingScreen.classList.add("gone");
+    setTimeout(()=>{
+      if(vaultText) vaultText.classList.add("show");
+      startDots();
+    }, 400);
+
+    // After minimum vault time, mark sequence as done
+    setTimeout(()=>{
+      vaultSequenceDone = true;
+      applyAuthResult();
+    }, VAULT_MIN_MS);
+
+    // Auth check runs immediately in background
     let attempts = 0;
     const check = setInterval(()=>{
       attempts++;
@@ -1685,11 +1713,11 @@
 
         supabase.auth.getUser().then(async({ data:{ user }})=>{
           if(!user){
-            showAccessGate();
+            authResult = { granted: false, email: "" };
+            applyAuthResult();
             return;
           }
-          // Check premium status
-          const { data, error } = await supabase.from("profiles")
+          const { data } = await supabase.from("profiles")
             .select("is_premium, premium_until")
             .eq("id", user.id)
             .maybeSingle();
@@ -1703,21 +1731,18 @@
             }
           }
 
-          if(!isPremium){
-            showAccessGate();
-            return;
-          }
-
           currentUser = user;
-          showVaultAndGrantAccess(user.email);
+          authResult = { granted: isPremium, email: user.email };
+          applyAuthResult();
         });
 
-      } else if(attempts === 1){
-        // Supabase not loaded yet, keep waiting
       }
       if(attempts >= 80){
         clearInterval(check);
-        showAccessGate();
+        if(!authResult){
+          authResult = { granted: false, email: "" };
+          applyAuthResult();
+        }
       }
     }, 100);
 
