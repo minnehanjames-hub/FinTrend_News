@@ -4,1756 +4,535 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Premium · FinTrend News</title>
-
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-
   <style>
-    :root {
-      --bg: #050816;
-      --surface: rgba(10,16,36,0.92);
-      --surface2: rgba(2,6,23,0.60);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: rgba(148,163,184,0.18);
-      --border-gold: rgba(244,193,93,0.30);
-      --accent: #f4c15d;
-      --accent-dim: rgba(244,193,93,0.10);
-      --green: #4ade80;
-      --red: #f87171;
-      --blue: #60a5fa;
-      --max: 1160px;
-      --nav-h: 58px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body.vault-active { overflow: hidden; }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ═══════════════════════════════════════════════
-       VAULT DOOR — Full screen intro
-    ═══════════════════════════════════════════════ */
-    #vault-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: #020510;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0;
-      pointer-events: all;
-      transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
-      transform-origin: left center;
-    }
-
-    #vault-screen.swing-open {
-      transform: perspective(1200px) rotateY(-105deg);
-      pointer-events: none;
-    }
-
-    /* subtle background grid lines on vault */
-    #vault-screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(244,193,93,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(244,193,93,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-    }
-
-    /* thick gold border frame on vault face */
-    #vault-screen::after {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border: 1px solid rgba(244,193,93,0.15);
-      pointer-events: none;
-    }
-
-    /* vault center content */
-    .vault-center {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-    }
-
-    /* The spinning dial SVG wrapper */
-    .vault-dial-wrap {
-      position: relative;
-      width: 220px;
-      height: 220px;
-    }
-
-    .vault-dial-outer {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 2px solid rgba(244,193,93,0.25);
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 35% 30%, rgba(244,193,93,0.07), transparent 60%);
-      box-shadow:
-        0 0 0 8px rgba(244,193,93,0.04),
-        0 0 40px rgba(244,193,93,0.08),
-        inset 0 0 60px rgba(0,0,0,0.5);
-    }
-
-    /* tick marks ring */
-    .vault-ticks {
-      width: 220px;
-      height: 220px;
-      position: absolute;
-      inset: 0;
-      animation: vault-spin-fast 0.6s linear 0.2s 3, vault-spin-slow 1.4s ease-out 2s forwards;
-    }
-
-    .vault-ticks-reverse {
-      width: 200px;
-      height: 200px;
-      position: absolute;
-      top: 10px; left: 10px;
-      animation: vault-spin-rev 0.55s linear 0.4s 2, vault-spin-slow-rev 1.0s ease-out 1.5s forwards;
-    }
-
-    @keyframes vault-spin-fast {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes vault-spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(320deg); }
-    }
-    @keyframes vault-spin-rev {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(-360deg); }
-    }
-    @keyframes vault-spin-slow-rev {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(-240deg); }
-    }
-
-    /* center hub */
-    .vault-hub {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, rgba(244,193,93,0.28), rgba(2,6,23,0.9) 65%);
-      border: 1.5px solid rgba(244,193,93,0.45);
-      box-shadow: 0 0 0 6px rgba(244,193,93,0.07), 0 0 20px rgba(244,193,93,0.12);
-      z-index: 3;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .vault-hub-inner {
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: rgba(244,193,93,0.55);
-      box-shadow: 0 0 10px rgba(244,193,93,0.4);
-    }
-
-    /* handle bars */
-    .vault-handle {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 6px; height: 70px;
-      background: linear-gradient(to bottom, rgba(244,193,93,0.7), rgba(244,193,93,0.2));
-      border-radius: 3px;
-      transform-origin: 50% 0%;
-      z-index: 2;
-    }
-    .vault-handle:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
-    .vault-handle:nth-child(2) { transform: translate(-50%, -100%) rotate(90deg); }
-    .vault-handle:nth-child(3) { transform: translate(-50%, -100%) rotate(180deg); }
-    .vault-handle:nth-child(4) { transform: translate(-50%, -100%) rotate(270deg); }
-
-    /* locking bolts around rim */
-    .vault-bolt {
-      position: absolute;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, rgba(244,193,93,0.6), rgba(244,193,93,0.15));
-      border: 1px solid rgba(244,193,93,0.35);
-      top: 50%; left: 50%;
-    }
-
-    .vault-text-block {
-      text-align: center;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .vault-text-block.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .vault-label {
-      font-size: 10px;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,0.55);
-      margin-bottom: 10px;
-    }
-
-    .vault-name {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .vault-status {
-      margin-top: 14px;
-      font-size: 11px;
-      letter-spacing: .20em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-family: "JetBrains Mono", monospace;
-      min-height: 18px;
-    }
-
-    .vault-status.granted {
-      color: var(--green);
-      letter-spacing: .22em;
-    }
-
-    /* gold line under vault name */
-    .vault-line {
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin: 12px auto 0;
-      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-    }
-    .vault-line.extend { width: 220px; }
-
-    /* corner ornaments */
-    .vault-corner {
-      position: absolute;
-      width: 28px; height: 28px;
-      opacity: 0.35;
-    }
-    .vault-corner.tl { top: 28px; left: 28px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
-    .vault-corner.tr { top: 28px; right: 28px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
-    .vault-corner.bl { bottom: 28px; left: 28px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); }
-    .vault-corner.br { bottom: 28px; right: 28px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
-
-    /* ═══════════════════════════════════════════════
-       DASHBOARD — hidden until vault opens
-    ═══════════════════════════════════════════════ */
-    #dashboard {
-      min-height: 100vh;
-      opacity: 0;
-      transition: opacity 0.7s ease 0.5s;
-    }
-    #dashboard.revealed { opacity: 1; }
-
-    /* NAV */
-    .top-nav {
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(5,8,22,0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0; z-index: 999;
-      gap: 16px;
-    }
-
-    .nav-brand {
-      display: flex; align-items: center; gap: 12px;
-      font-family: "Playfair Display", serif;
-      font-size: 17px;
-      letter-spacing: .08em;
-      color: var(--accent);
-      text-transform: uppercase;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .nav-brand img { height: 30px; width: auto; }
-
-    .nav-badge {
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border: 1px solid var(--border-gold);
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .nav-tabs {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      height: 100%;
-      flex: 1;
-      justify-content: center;
-    }
-
-    .nav-tab {
-      height: 100%;
-      padding: 0 20px;
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: .15s;
-      white-space: nowrap;
-    }
-    .nav-tab:hover { color: var(--text); }
-    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-    .nav-right {
-      display: flex; align-items: center; gap: 12px;
-      white-space: nowrap;
-    }
-    .nav-user {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: "JetBrains Mono", monospace;
-      letter-spacing: .04em;
-    }
-    .nav-signout {
-      font-size: 10px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(148,163,184,0.50);
-      cursor: pointer;
-      border: 0;
-      background: none;
-      padding: 6px 10px;
-      border: 1px solid var(--border);
-      transition: .15s;
-    }
-    .nav-signout:hover { color: var(--text); border-color: var(--border-gold); }
-
-    /* ═══════════════════════════════════════════════
-       TABS CONTENT
-    ═══════════════════════════════════════════════ */
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    .page-wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 36px 24px 80px;
-    }
-
-    /* ═══════════════════════════════════════════════
-       TODAY FEED — main tab
-    ═══════════════════════════════════════════════ */
-    .feed-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 28px;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .feed-kicker {
-      font-size: 10px;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .feed-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(26px, 3.5vw, 40px);
-      line-height: 1.08;
-      font-weight: 700;
-    }
-
-    .feed-date {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: "JetBrains Mono", monospace;
-      letter-spacing: .06em;
-      text-align: right;
-    }
-
-    /* Hero article card */
-    .hero-article {
-      border: 1px solid var(--border-gold);
-      background: rgba(10,16,36,0.80);
-      backdrop-filter: blur(6px);
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 0;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-    @media(max-width:760px){ .hero-article { grid-template-columns: 1fr; } }
-
-    .hero-article::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at top left, rgba(244,193,93,0.06), transparent 55%);
-      pointer-events: none;
-    }
-
-    .hero-body { padding: 32px; position: relative; z-index: 1; }
-
-    .hero-kicker {
-      font-size: 10px;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 10px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .hero-kicker::before { content: ""; display: block; width: 20px; height: 1px; background: var(--accent); opacity: .5; }
-
-    .hero-headline {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.1;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-    .hero-headline em { font-style: italic; color: var(--accent); }
-
-    .hero-deck {
-      font-size: 14px;
-      color: #d1d5db;
-      line-height: 1.75;
-      max-width: 58ch;
-      margin-bottom: 22px;
-      border-left: 2px solid var(--border-gold);
-      padding-left: 14px;
-    }
-
-    .hero-meta {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    }
-    .hero-tag {
-      font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: "JetBrains Mono", monospace;
-    }
-    .hero-tag.featured { border-color: var(--border-gold); color: var(--accent); background: var(--accent-dim); }
-
-    .hero-read {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--accent); font-weight: 600;
-      padding: 9px 18px;
-      border: 1px solid var(--border-gold);
-      background: var(--accent-dim);
-      cursor: pointer;
-      transition: .15s;
-    }
-    .hero-read:hover { background: rgba(244,193,93,0.16); }
-
-    .hero-sidebar {
-      border-left: 1px solid var(--border);
-      padding: 28px 22px;
-      display: flex; flex-direction: column; gap: 0;
-      position: relative; z-index: 1;
-    }
-    @media(max-width:760px){ .hero-sidebar { border-left: 0; border-top: 1px solid var(--border); } }
-
-    .hero-sb-label {
-      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--accent); font-weight: 600; margin-bottom: 14px;
-    }
-
-    .signal-row {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(148,163,184,0.07);
-      gap: 10px;
-    }
-    .signal-row:last-child { border-bottom: 0; }
-
-    .signal-tag {
-      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--muted); font-family: "JetBrains Mono", monospace;
-      flex-shrink: 0; padding-top: 1px; min-width: 60px;
-    }
-
-    .signal-val {
-      font-size: 12px; color: #e5e7eb; text-align: right; line-height: 1.4;
-    }
-    .signal-val.bull { color: var(--green); }
-    .signal-val.bear { color: var(--red); }
-    .signal-val.neutral { color: #facc15; }
-
-    /* Article list grid */
-    .article-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-    @media(max-width:840px){ .article-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:520px){ .article-grid { grid-template-columns: 1fr; } }
-
-    .article-card {
-      background: var(--surface);
-      padding: 22px 20px;
-      transition: .18s;
-      cursor: pointer;
-      position: relative;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .article-card:hover { background: rgba(14,22,48,0.98); }
-    .article-card:hover .article-arrow { opacity: 1; transform: translateX(3px); }
-
-    .article-day-tag {
-      font-size: 9px; letter-spacing: .20em; text-transform: uppercase;
-      font-weight: 600; margin-bottom: 2px;
-    }
-    .article-day-tag.mon { color: var(--green); }
-    .article-day-tag.wed { color: var(--blue); }
-    .article-day-tag.fri { color: var(--red); }
-    .article-day-tag.sun { color: var(--accent); }
-
-    .article-headline {
-      font-family: "Playfair Display", serif;
-      font-size: 15px; line-height: 1.3; font-weight: 500; color: var(--text);
-    }
-
-    .article-deck {
-      font-size: 12px; color: var(--muted); line-height: 1.6;
-    }
-
-    .article-footer {
-      margin-top: auto; padding-top: 10px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(148,163,184,0.07);
-    }
-    .article-date { font-size: 10px; color: rgba(148,163,184,0.40); font-family: "JetBrains Mono", monospace; }
-    .article-arrow { font-size: 11px; color: var(--accent); opacity: 0; transition: .15s; }
-
-    /* Section divider */
-    .section-rule {
-      display: flex; align-items: center; gap: 14px;
-      margin: 32px 0 20px;
-    }
-    .section-rule-label {
-      font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--accent); white-space: nowrap; font-weight: 600;
-    }
-    .section-rule-line { flex: 1; height: 1px; background: var(--border); }
-
-    /* ═══════════════════════════════════════════════
-       PORTFOLIO TAB
-    ═══════════════════════════════════════════════ */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-    @media(max-width:840px){ .portfolio-grid { grid-template-columns: 1fr; } }
-
-    .portfolio-tier {
-      background: var(--surface);
-      padding: 28px 24px;
-    }
-    .portfolio-tier.balanced { background: rgba(10,18,40,0.95); }
-    .portfolio-tier.aggressive {
-      background: rgba(8,14,34,0.95);
-      border-left: 2px solid rgba(244,193,93,0.20);
-    }
-
-    .portfolio-tier-label {
-      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 10px; font-family: "JetBrains Mono", monospace;
-    }
-    .portfolio-tier-name {
-      font-family: "Playfair Display", serif;
-      font-size: 22px; font-weight: 700; margin-bottom: 4px;
-    }
-    .portfolio-bias {
-      font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.5;
-    }
-
-    .holding-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(148,163,184,0.07);
-    }
-    .holding-row:last-child { border-bottom: 0; }
-    .holding-ticker {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 13px; color: var(--text); font-weight: 500;
-    }
-    .holding-name { font-size: 11px; color: var(--muted); margin-top: 1px; }
-    .holding-pct {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 13px; font-weight: 500;
-    }
-    .holding-pct.up { color: var(--green); }
-    .holding-pct.dn { color: var(--red); }
-    .holding-pct.fl { color: var(--muted); }
-
-    .portfolio-note {
-      margin-top: 16px; padding-top: 14px;
-      border-top: 1px solid rgba(148,163,184,0.10);
-      font-size: 11px; color: var(--muted); line-height: 1.6;
-      font-style: italic;
-    }
-
-    /* ═══════════════════════════════════════════════
-       DEALS / IDEAS TAB
-    ═══════════════════════════════════════════════ */
-    .deal-stack { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); }
-
-    .deal-row {
-      background: var(--surface);
-      display: grid;
-      grid-template-columns: 90px 1fr auto;
-      gap: 0;
-      padding: 0;
-      transition: .15s;
-      cursor: pointer;
-    }
-    .deal-row:hover { background: rgba(14,22,48,0.98); }
-    @media(max-width:600px){ .deal-row { grid-template-columns: 1fr; } }
-
-    .deal-ticker-block {
-      padding: 18px 16px;
-      border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      gap: 4px;
-      background: rgba(2,6,23,0.35);
-    }
-    .deal-ticker {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 16px; font-weight: 500; color: var(--accent);
-    }
-    .deal-type {
-      font-size: 8px; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--muted); padding: 2px 6px; border: 1px solid var(--border);
-    }
-    .deal-type.long { border-color: rgba(74,222,128,0.30); color: var(--green); }
-    .deal-type.short { border-color: rgba(248,113,113,0.30); color: var(--red); }
-    .deal-type.watch { border-color: rgba(96,165,250,0.30); color: var(--blue); }
-
-    .deal-body { padding: 16px 18px; }
-    .deal-thesis { font-size: 13px; color: #e5e7eb; line-height: 1.55; margin-bottom: 6px; }
-    .deal-meta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .deal-meta-pill {
-      font-size: 10px; letter-spacing: .10em; text-transform: uppercase;
-      color: var(--muted); font-family: "JetBrains Mono", monospace;
-    }
-    .deal-meta-pill span { color: var(--text); }
-
-    .deal-right {
-      padding: 16px 20px;
-      border-left: 1px solid var(--border);
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 8px; min-width: 110px;
-    }
-    @media(max-width:600px){ .deal-right { border-left: 0; border-top: 1px solid var(--border); flex-direction: row; } }
-    .deal-stat-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-    .deal-stat-val { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 500; }
-    .deal-stat-val.up { color: var(--green); }
-    .deal-stat-val.dn { color: var(--red); }
-
-    /* ═══════════════════════════════════════════════
-       QUANT LAB TAB
-    ═══════════════════════════════════════════════ */
-    .quant-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-    @media(max-width:700px){ .quant-grid { grid-template-columns: 1fr; } }
-
-    .quant-block {
-      background: var(--surface);
-      padding: 26px 24px;
-    }
-
-    .quant-block-label {
-      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 10px; font-weight: 600;
-    }
-    .quant-block-title {
-      font-family: "Playfair Display", serif;
-      font-size: 19px; margin-bottom: 12px;
-    }
-
-    /* Regime bars */
-    .regime-bars { display: flex; flex-direction: column; gap: 10px; }
-    .regime-bar-row { display: flex; flex-direction: column; gap: 4px; }
-    .regime-bar-top { display: flex; justify-content: space-between; }
-    .regime-bar-label { font-size: 11px; color: var(--muted); }
-    .regime-bar-val { font-size: 11px; font-family: "JetBrains Mono", monospace; color: var(--text); }
-    .regime-bar-track {
-      height: 4px; background: rgba(148,163,184,0.12); border-radius: 2px; overflow: hidden;
-    }
-    .regime-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
-    .regime-bar-fill.bull { background: var(--green); }
-    .regime-bar-fill.bear { background: var(--red); }
-    .regime-bar-fill.neutral { background: #facc15; }
-
-    /* Monte Carlo mini */
-    .mc-output {
-      background: rgba(2,6,23,0.50);
-      border: 1px solid var(--border);
-      padding: 16px;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 12px;
-      line-height: 1.9;
-      color: #d1d5db;
-    }
-    .mc-output .mc-up { color: var(--green); }
-    .mc-output .mc-dn { color: var(--red); }
-    .mc-output .mc-neutral { color: #facc15; }
-    .mc-run-btn {
-      margin-top: 12px;
-      width: 100%;
-      padding: 10px;
-      background: var(--accent-dim);
-      border: 1px solid var(--border-gold);
-      color: var(--accent);
-      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-      cursor: pointer; font-family: "JetBrains Mono", monospace;
-      transition: .15s;
-    }
-    .mc-run-btn:hover { background: rgba(244,193,93,0.16); }
-
-    /* ═══════════════════════════════════════════════
-       ROUNDUP TAB
-    ═══════════════════════════════════════════════ */
-    .roundup-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); }
-    .roundup-item {
-      background: var(--surface);
-      padding: 20px 22px;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 0 18px;
-      border-left: 2px solid transparent;
-      transition: .15s;
-    }
-    .roundup-item:hover { background: rgba(14,22,48,0.98); }
-    .roundup-item.bull { border-left-color: var(--green); }
-    .roundup-item.bear { border-left-color: var(--red); }
-    .roundup-item.watch { border-left-color: var(--blue); }
-    .roundup-item.macro { border-left-color: var(--accent); }
-
-    .roundup-tag {
-      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
-      font-family: "JetBrains Mono", monospace; color: var(--muted);
-      padding-top: 2px;
-    }
-    .roundup-text { font-size: 13px; color: #e5e7eb; line-height: 1.6; }
-    .roundup-source { font-size: 11px; color: rgba(148,163,184,0.40); margin-top: 3px; font-style: italic; }
-
-    /* ═══════════════════════════════════════════════
-       ACCESS GATE (not premium)
-    ═══════════════════════════════════════════════ */
-    #access-gate {
-      position: fixed; inset: 0; z-index: 9998;
-      background: rgba(2,6,23,0.96);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-    }
-    .gate-box {
-      max-width: 420px; width: 100%;
-      border: 1px solid var(--border-gold);
-      background: rgba(10,16,36,0.98);
-      padding: 40px 36px;
-      text-align: center;
-    }
-    .gate-icon { font-size: 36px; margin-bottom: 16px; opacity: .8; }
-    .gate-kicker { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-    .gate-title { font-family: "Playfair Display", serif; font-size: 26px; margin-bottom: 10px; }
-    .gate-text { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-    .gate-btn {
-      display: inline-block; padding: 12px 28px;
-      background: var(--accent); color: #000;
-      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-      font-weight: 700; cursor: pointer; border: 0; text-decoration: none;
-      transition: .15s;
-    }
-    .gate-btn:hover { background: #f7d680; }
-    .gate-sub { margin-top: 12px; font-size: 11px; color: rgba(148,163,184,0.40); }
-
-    /* ═══════════════════════════════════════════════
-       LOADING STATE
-    ═══════════════════════════════════════════════ */
-    #loading-screen {
-      position: fixed; inset: 0; z-index: 9997;
-      background: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity .4s ease;
-    }
-    #loading-screen.gone { opacity: 0; pointer-events: none; }
-    .loading-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-      animation: ldot 1.2s infinite ease-in-out;
-      margin: 0 4px;
-    }
-    .loading-dot:nth-child(2) { animation-delay: .2s; }
-    .loading-dot:nth-child(3) { animation-delay: .4s; }
-    @keyframes ldot { 0%,80%,100%{opacity:.15;transform:scale(0.7)} 40%{opacity:1;transform:scale(1)} }
-
-    /* ═══════════════════════════════════════════════
-       UTILITIES
-    ═══════════════════════════════════════════════ */
-    .disclaimer-footer {
-      padding: 20px 24px;
-      border-top: 1px solid var(--border);
-      font-size: 11px;
-      color: rgba(148,163,184,0.35);
-      text-align: center;
-      max-width: var(--max);
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    @media(max-width:600px){
-      .nav-tabs { display: none; }
-      .mobile-tab-bar {
-        display: flex;
-        position: fixed; bottom: 0; left: 0; right: 0;
-        border-top: 1px solid var(--border);
-        background: rgba(5,8,22,0.98);
-        backdrop-filter: blur(10px);
-        z-index: 998;
-      }
-      .mobile-tab-btn {
-        flex: 1; padding: 12px 6px;
-        font-size: 9px; letter-spacing: .10em; text-transform: uppercase;
-        color: var(--muted); border: 0; background: none; cursor: pointer;
-        display: flex; flex-direction: column; align-items: center; gap: 3px;
-        transition: .15s;
-      }
-      .mobile-tab-btn.active { color: var(--accent); }
-      .mobile-tab-btn .mtab-icon { font-size: 16px; }
-      .page-wrap { padding-bottom: 80px; }
-    }
-    @media(min-width:601px){ .mobile-tab-bar { display: none; } }
+    :root{
+      --bg:#060a1a;--ink:#f0f2f8;--muted:#8892a4;--faint:rgba(136,146,164,0.12);
+      --border:rgba(136,146,164,0.18);--gold:#f4c15d;--gold-bg:rgba(244,193,93,0.08);
+      --gold-bd:rgba(244,193,93,0.22);--green:#4ade80;--red:#f87171;--blue:#60a5fa;
+      --panel:rgba(8,13,30,0.90);--max:1200px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit;cursor:pointer}
+
+    /* GATE */
+    #gate{display:none;position:fixed;inset:0;z-index:9999;background:var(--bg);align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:24px}
+    #gate.show{display:flex}
+    .gate-mark{width:52px;height:52px;border:1px solid var(--gold-bd);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gold);margin:0 auto 4px}
+    .gate-title{font-size:24px;font-weight:800}
+    .gate-sub{font-size:13px;color:var(--muted);max-width:320px;line-height:1.7}
+    .gate-cta{display:inline-block;padding:11px 28px;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .gate-back{font-size:11px;color:var(--muted)}
+    .gate-back a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+    /* TOPBAR */
+    .topbar{height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:14px;background:rgba(6,10,26,0.97);backdrop-filter:blur(8px);position:sticky;top:0;z-index:100}
+    .tb-brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+    .tb-brand img{height:26px;width:auto;opacity:.9}
+    .tb-home{display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:5px 11px;transition:.14s;white-space:nowrap;flex-shrink:0}
+    .tb-home:hover{color:var(--ink);border-color:var(--gold-bd)}
+    .tb-div{width:1px;height:20px;background:var(--border);flex-shrink:0}
+    .tb-nav{display:flex;align-items:stretch;height:52px;flex:1}
+    .tnav{padding:0 16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:0;background:none;border-bottom:2px solid transparent;transition:.14s;white-space:nowrap}
+    .tnav:hover{color:var(--ink)}
+    .tnav.on{color:var(--gold);border-bottom-color:var(--gold)}
+    .tb-right{margin-left:auto;display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .tb-badge{font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--gold-bd);background:var(--gold-bg);color:var(--gold);font-family:"JetBrains Mono",monospace}
+    .tb-user{font-size:11px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+    .tb-signout{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);background:none;padding:5px 10px;transition:.14s}
+    .tb-signout:hover{color:var(--ink);border-color:var(--gold-bd)}
+    @media(max-width:700px){.tb-nav{display:none}.tb-user{display:none}}
+
+    /* PANELS */
+    .panel{display:none}
+    .panel.on{display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:36px 24px 80px}
+
+    /* PAGE HEAD */
+    .pg-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:30px;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px}
+    .pg-kicker{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;font-family:"JetBrains Mono",monospace}
+    .pg-title{font-size:clamp(22px,3.2vw,36px);line-height:1.08;font-weight:800;letter-spacing:-.01em}
+    .pg-title em{font-style:normal;color:var(--gold)}
+    .pg-meta{font-size:11px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+
+    /* RULE */
+    .rule{display:flex;align-items:center;gap:12px;margin:26px 0 16px}
+    .rule-lbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);white-space:nowrap;font-weight:600}
+    .rule-line{flex:1;height:1px;background:var(--border)}
+
+    /* ── TODAY ── */
+    .hero{display:grid;grid-template-columns:1fr 256px;border:1px solid var(--gold-bd);background:var(--panel);margin-bottom:2px}
+    @media(max-width:740px){.hero{grid-template-columns:1fr}}
+    .hero-body{padding:28px;border-right:1px solid var(--border)}
+    @media(max-width:740px){.hero-body{border-right:0;border-bottom:1px solid var(--border)}}
+    .hero-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:10px;font-weight:600}
+    .hero-kicker::before{content:"";width:16px;height:1px;background:var(--gold);opacity:.5}
+    .hero-hed{font-size:clamp(18px,2.6vw,30px);line-height:1.08;margin-bottom:12px;font-weight:800;letter-spacing:-.01em}
+    .hero-hed em{font-style:normal;color:var(--gold)}
+    .hero-deck{font-size:13px;color:#c0c7d4;line-height:1.78;max-width:54ch;margin-bottom:18px;border-left:2px solid var(--gold-bd);padding-left:14px}
+    .hero-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .htag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--border);color:var(--muted);font-family:"JetBrains Mono",monospace}
+    .htag.feat{border-color:var(--gold-bd);color:var(--gold);background:var(--gold-bg)}
+    .hero-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:var(--gold-bg);border:1px solid var(--gold-bd);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:.15s}
+    .hero-cta:hover{background:rgba(244,193,93,.14)}
+    .hero-aside{padding:22px 18px;display:flex;flex-direction:column}
+    .aside-lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+    .sig{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--faint);gap:8px}
+    .sig:last-child{border-bottom:0}
+    .stag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:"JetBrains Mono",monospace;flex-shrink:0;min-width:56px;padding-top:1px}
+    .sval{font-size:12px;color:#d0d5e0;text-align:right;line-height:1.4}
+    .sval.up{color:var(--green)}.sval.dn{color:var(--red)}.sval.neu{color:#facc15}
+
+    .art-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);gap:1px;background:var(--border);margin-bottom:14px}
+    @media(max-width:820px){.art-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:500px){.art-grid{grid-template-columns:1fr}}
+    .art{background:var(--panel);padding:18px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:background .15s}
+    .art:hover{background:rgba(10,16,36,.99)}
+    .art:hover .art-arr{opacity:1;transform:translateX(3px)}
+    .aday{font-size:9px;font-weight:700;letter-spacing:.20em;text-transform:uppercase}
+    .aday.mon{color:var(--green)}.aday.wed{color:var(--blue)}.aday.fri{color:var(--red)}.aday.sun{color:var(--gold)}
+    .ahed{font-size:14px;line-height:1.3;color:var(--ink);font-weight:700}
+    .adeck{font-size:11px;color:var(--muted);line-height:1.55}
+    .afoot{margin-top:auto;padding-top:8px;border-top:1px solid var(--faint);display:flex;justify-content:space-between;align-items:center}
+    .adate{font-size:10px;color:rgba(136,146,164,.35);font-family:"JetBrains Mono",monospace}
+    .art-arr{font-size:11px;color:var(--gold);opacity:0;transition:.15s}
+    .arch-link{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:9px 18px;transition:.15s}
+    .arch-link:hover{border-color:var(--gold-bd);color:var(--gold)}
+
+    /* ── PORTFOLIOS ── */
+    .port-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);gap:1px;background:var(--border)}
+    @media(max-width:820px){.port-grid{grid-template-columns:1fr}}
+    .pcol{background:var(--panel);padding:24px 20px}
+    .pcol.agg{border-left:2px solid var(--gold-bd);background:rgba(8,13,30,.96)}
+    .ptier{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-family:"JetBrains Mono",monospace}
+    .pname{font-size:19px;font-weight:800;margin-bottom:4px;letter-spacing:-.01em}
+    .pname.agg{color:var(--gold)}
+    .pdesc{font-size:11px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+    .hrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--faint)}
+    .hrow:last-of-type{border-bottom:0}
+    .htick{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500}
+    .hname{font-size:10px;color:var(--muted);margin-top:1px}
+    .hpct{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500}
+    .hpct.up{color:var(--green)}.hpct.dn{color:var(--red)}.hpct.fl{color:var(--muted)}
+    .pnote{margin-top:12px;padding-top:10px;border-top:1px solid var(--faint);font-size:11px;color:var(--muted);line-height:1.6;font-style:italic}
+
+    /* ── DEALS ── */
+    .deal-list{border:1px solid var(--border);display:flex;flex-direction:column;gap:1px;background:var(--border)}
+    .deal{background:var(--panel);display:grid;grid-template-columns:78px 1fr 114px;transition:background .15s}
+    .deal:hover{background:rgba(10,16,36,.99)}
+    @media(max-width:600px){.deal{grid-template-columns:1fr}}
+    .dtcol{border-right:1px solid var(--border);padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(2,6,23,.28)}
+    .dtick{font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:500;color:var(--gold)}
+    .dtype{font-size:8px;letter-spacing:.16em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--border);color:var(--muted);font-family:"JetBrains Mono",monospace}
+    .dtype.long{border-color:rgba(74,222,128,.28);color:var(--green)}
+    .dtype.short{border-color:rgba(248,113,113,.28);color:var(--red)}
+    .dtype.watch{border-color:rgba(96,165,250,.28);color:var(--blue)}
+    .dbody{padding:14px 16px}
+    .dthesis{font-size:13px;color:#c8cdd8;line-height:1.6;margin-bottom:8px}
+    .dlevs{display:flex;gap:14px;flex-wrap:wrap}
+    .dlev{font-size:10px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+    .dlev span{color:var(--ink)}
+    .dscol{border-left:1px solid var(--border);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+    @media(max-width:600px){.dscol{border-left:0;border-top:1px solid var(--border);flex-direction:row;gap:18px}}
+    .dslbl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .dsval{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:500}
+    .dsval.up{color:var(--green)}.dsval.dn{color:var(--red)}.dsval.wt{color:var(--blue)}
+
+    /* ── QUANT ── */
+    .q-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);gap:1px;background:var(--border)}
+    @media(max-width:660px){.q-grid{grid-template-columns:1fr}}
+    .qblock{background:var(--panel);padding:22px 20px}
+    .qlbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:600}
+    .qtitle{font-size:17px;margin-bottom:14px;font-weight:800;letter-spacing:-.01em}
+    .rb-wrap{display:flex;flex-direction:column;gap:11px}
+    .rb-row{display:flex;flex-direction:column;gap:4px}
+    .rb-top{display:flex;justify-content:space-between}
+    .rb-lbl{font-size:11px;color:var(--muted)}
+    .rb-pct{font-size:11px;font-family:"JetBrains Mono",monospace}
+    .rb-track{height:3px;background:var(--faint);border-radius:2px;overflow:hidden}
+    .rb-fill{height:100%;border-radius:2px}
+    .rb-fill.bull{background:var(--green)}.rb-fill.bear{background:var(--red)}.rb-fill.neu{background:#facc15}
+    .mc-out{background:rgba(2,6,23,.55);border:1px solid var(--border);padding:14px;font-family:"JetBrains Mono",monospace;font-size:11px;line-height:2;color:#b8c0cc;white-space:pre;overflow-x:auto}
+    .mc-btn{margin-top:10px;width:100%;padding:9px;background:var(--gold-bg);border:1px solid var(--gold-bd);color:var(--gold);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-family:"JetBrains Mono",monospace;transition:.14s}
+    .mc-btn:hover{background:rgba(244,193,93,.14)}
+    .lvl-tbl{border:1px solid var(--border);background:var(--panel)}
+    .lvl-head{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid var(--border);background:rgba(2,6,23,.35)}
+    .lvl-th{padding:8px 13px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .lvl-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid var(--faint);transition:background .14s}
+    .lvl-row:last-child{border-bottom:0}
+    .lvl-row:hover{background:rgba(12,18,40,.80)}
+    .lvl-td{padding:10px 13px;font-size:12px;font-family:"JetBrains Mono",monospace}
+    .lvl-td.asset{font-weight:500;color:var(--ink)}
+    .lvl-td.num{color:var(--muted)}
+    .lvl-td.bull{color:var(--green);font-size:10px;letter-spacing:.10em;text-transform:uppercase}
+    .lvl-td.bear{color:var(--red);font-size:10px;letter-spacing:.10em;text-transform:uppercase}
+    .lvl-td.neu{color:#facc15;font-size:10px;letter-spacing:.10em;text-transform:uppercase}
+
+    /* ── ROUNDUP ── */
+    .rup{border:1px solid var(--border);display:flex;flex-direction:column;gap:1px;background:var(--border)}
+    .ritem{background:var(--panel);display:grid;grid-template-columns:72px 1fr;border-left:2px solid transparent;transition:background .14s}
+    .ritem:hover{background:rgba(10,16,36,.99)}
+    .ritem.bull{border-left-color:var(--green)}.ritem.bear{border-left-color:var(--red)}
+    .ritem.watch{border-left-color:var(--blue)}.ritem.macro{border-left-color:var(--gold)}
+    .rtag-col{padding:16px 12px;border-right:1px solid var(--faint);display:flex;align-items:flex-start;padding-top:18px}
+    .rtag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:"JetBrains Mono",monospace;line-height:1.4}
+    .rbody{padding:14px 16px}
+    .rtext{font-size:13px;color:#c8cdd8;line-height:1.65}
+    .rsrc{font-size:10px;color:rgba(136,146,164,.38);margin-top:4px;font-style:italic}
+
+    /* DISC */
+    .disc{padding:16px 24px;border-top:1px solid var(--border);font-size:11px;color:rgba(136,146,164,.32);text-align:center;line-height:1.7;max-width:var(--max);margin:0 auto}
+    .disc a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+    /* MOB NAV */
+    .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--border);background:rgba(6,10,26,.97);backdrop-filter:blur(8px);z-index:99}
+    @media(max-width:700px){.mob-nav{display:flex}.wrap{padding-bottom:72px}}
+    .mob-btn{flex:1;padding:10px 6px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);border:0;background:none;transition:.14s}
+    .mob-btn.on{color:var(--gold)}
+    .micon{font-size:14px}
   </style>
 </head>
+<body>
 
-<body class="vault-active">
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-mark">◈</div>
+  <div class="gate-title">Premium Required</div>
+  <div class="gate-sub">This dashboard is exclusive to Premium subscribers. Upgrade to unlock full access.</div>
+  <a class="gate-cta" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener">Upgrade to Premium →</a>
+  <div class="gate-back" style="margin-top:10px;"><a href="index.html">← Back to FinTrend News</a></div>
+</div>
 
-  <!-- Loading dots while auth checks -->
-  <div id="loading-screen">
-    <div style="display:flex;align-items:center;">
-      <div class="loading-dot"></div>
-      <div class="loading-dot"></div>
-      <div class="loading-dot"></div>
+<!-- TOPBAR -->
+<header class="topbar">
+  <a href="index.html" class="tb-brand">
+    <img src="assets/img/FTN-logo.png" alt="FinTrend News" />FinTrend
+  </a>
+  <a href="index.html" class="tb-home">← Home</a>
+  <div class="tb-div"></div>
+  <nav class="tb-nav" id="tb-nav">
+    <button class="tnav on" data-panel="today">Today's Brief</button>
+    <button class="tnav" data-panel="portfolios">Portfolios</button>
+    <button class="tnav" data-panel="deals">Deal Tracker</button>
+    <button class="tnav" data-panel="quant">Quant Lab</button>
+    <button class="tnav" data-panel="roundup">Roundup</button>
+  </nav>
+  <div class="tb-right">
+    <div class="tb-badge">✦ Premium</div>
+    <div class="tb-user" id="tb-email"></div>
+    <button class="tb-signout" id="tb-so">Sign Out</button>
+  </div>
+</header>
+
+<!-- ══ TODAY'S BRIEF ══ -->
+<div class="panel on" id="panel-today">
+  <div class="wrap">
+    <div class="pg-head">
+      <div><div class="pg-kicker">Premium · Today's Brief</div><div class="pg-title">What matters <em>right now</em></div></div>
+      <div class="pg-meta" id="today-date"></div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-body">
+        <div class="hero-kicker">Latest · Premium Report</div>
+        <div class="hero-hed">War Premium Meets <em>Jobs Week</em></div>
+        <div class="hero-deck">U.S.-Israel strikes on Iran sent Brent crude +8% overnight. Defense bids. Oil majors wake up. But Non-Farm Payrolls Friday is the real anchor — if the number softens, risk-off from the war premium collides with rate-cut hope.</div>
+        <div class="hero-tags">
+          <span class="htag feat">✦ Premium</span>
+          <span class="htag">Mar 2, 2026</span>
+          <span class="htag">Monday Outlook</span>
+        </div>
+        <a class="hero-cta" href="articles/2026-03-02-monday.html">Read Full Report →</a>
+      </div>
+      <div class="hero-aside">
+        <div class="aside-lbl">Signal Snapshot</div>
+        <div class="sig"><span class="stag">Driver</span><span class="sval">Iran Strike / Oil</span></div>
+        <div class="sig"><span class="stag">Bias</span><span class="sval dn">Risk-Off ST</span></div>
+        <div class="sig"><span class="stag">Key Level</span><span class="sval">SPX 5,780</span></div>
+        <div class="sig"><span class="stag">Catalyst</span><span class="sval">NFP Friday</span></div>
+        <div class="sig"><span class="stag">Brent</span><span class="sval up">+8.2%</span></div>
+        <div class="sig"><span class="stag">Conviction</span><span class="sval neu">Medium</span></div>
+      </div>
+    </div>
+
+    <div class="rule"><div class="rule-lbl">Premium Archive</div><div class="rule-line"></div></div>
+
+    <div class="art-grid" id="premium-articles">
+      <!-- Loaded from Supabase premium_articles table -->
+      <div class="art" onclick="location.href='articles/2026-03-01-sunday.html'">
+        <div class="aday sun">Sunday Macro</div>
+        <div class="ahed">Sunday Macro &amp; Positioning Note — March 1</div>
+        <div class="adeck">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion. Members-only deep dive.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+      <div class="art" onclick="location.href='articles/2026-02-27-friday.html'">
+        <div class="aday fri">Friday Recap</div>
+        <div class="ahed">Inflation Shock Closes Out February</div>
+        <div class="adeck">PPI beats hard; Nvidia extends slide; S&amp;P 500 posts worst February in 11 months. Full analysis.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+      <div class="art" onclick="location.href='articles/2026-02-25-wednesday.html'">
+        <div class="aday wed">Wednesday</div>
+        <div class="ahed">The Verdict on AI Demand Lives or Dies Tonight</div>
+        <div class="adeck">Nvidia Q4 after close — positioning, levels, and what a miss or beat means for the broader tech trade.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+      <div class="art" onclick="location.href='articles/2026-02-23-monday.html'">
+        <div class="aday mon">Monday Outlook</div>
+        <div class="ahed">The Tariff Clock Starts Tomorrow</div>
+        <div class="adeck">Section 122 at 15% kicks in. Full cross-asset playbook: what moves, what hedges, what to avoid.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+      <div class="art" onclick="location.href='articles/2026-02-22-sunday.html'">
+        <div class="aday sun">Sunday Macro</div>
+        <div class="ahed">The Court Ruled. The War Continues.</div>
+        <div class="adeck">SCOTUS killed IEEPA. Trump pivoted to Section 122. Full macro positioning note with Fed implications.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+      <div class="art" onclick="location.href='articles/2026-02-20-friday.html'">
+        <div class="aday fri">Friday Recap</div>
+        <div class="ahed">A Short Week That Packed a Full Year's Drama</div>
+        <div class="adeck">SCOTUS tariff ruling; GDP misses; Walmart signals K-shaped consumer. Weekly close debrief.</div>
+        <div class="afoot"><span class="adate htag feat" style="border:none;background:none;padding:0;font-size:9px">✦ Premium</span><span class="art-arr">→</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:12px;"><a class="arch-link" href="archive.html">Browse Full Premium Archive →</a></div>
+  </div>
+</div>
+
+<!-- ══ PORTFOLIOS ══ -->
+<div class="panel" id="panel-portfolios">
+  <div class="wrap">
+    <div class="pg-head">
+      <div><div class="pg-kicker">Premium · Model Portfolios</div><div class="pg-title">Three frameworks. <em>One direction.</em></div></div>
+      <div class="pg-meta">Educational · Not advice</div>
+    </div>
+    <div class="port-grid">
+      <div class="pcol">
+        <div class="ptier">Tier 1</div><div class="pname">Cautious</div>
+        <div class="pdesc">Low risk. Capital preservation. Cash and quality first.</div>
+        <div class="hrow"><div><div class="htick">BIL</div><div class="hname">T-Bill ETF</div></div><div class="hpct fl">40%</div></div>
+        <div class="hrow"><div><div class="htick">GLD</div><div class="hname">SPDR Gold</div></div><div class="hpct up">20%</div></div>
+        <div class="hrow"><div><div class="htick">XLU</div><div class="hname">Utilities</div></div><div class="hpct fl">20%</div></div>
+        <div class="hrow"><div><div class="htick">XLP</div><div class="hname">Consumer Staples</div></div><div class="hpct fl">20%</div></div>
+        <div class="pnote">Max defensive amid war premium and rate uncertainty.</div>
+      </div>
+      <div class="pcol">
+        <div class="ptier">Tier 2</div><div class="pname">Balanced</div>
+        <div class="pdesc">Moderate exposure. Selective risk. Quality tilt.</div>
+        <div class="hrow"><div><div class="htick">SPY</div><div class="hname">S&amp;P 500</div></div><div class="hpct fl">30%</div></div>
+        <div class="hrow"><div><div class="htick">XLE</div><div class="hname">Energy (elevated)</div></div><div class="hpct up">20%</div></div>
+        <div class="hrow"><div><div class="htick">GLD</div><div class="hname">SPDR Gold</div></div><div class="hpct up">15%</div></div>
+        <div class="hrow"><div><div class="htick">BIL</div><div class="hname">T-Bills / Cash</div></div><div class="hpct fl">20%</div></div>
+        <div class="hrow"><div><div class="htick">VIG</div><div class="hname">Dividend Growth</div></div><div class="hpct fl">15%</div></div>
+        <div class="pnote">Energy overweight on oil shock; tech underweight post-AI reset.</div>
+      </div>
+      <div class="pcol agg">
+        <div class="ptier">Tier 3 · ✦</div><div class="pname agg">Aggressive</div>
+        <div class="pdesc">High risk. Thematic bets. Active rotation.</div>
+        <div class="hrow"><div><div class="htick">XLE</div><div class="hname">Energy Sector</div></div><div class="hpct up">25%</div></div>
+        <div class="hrow"><div><div class="htick">ITA</div><div class="hname">Defense Aerospace</div></div><div class="hpct up">20%</div></div>
+        <div class="hrow"><div><div class="htick">GLD</div><div class="hname">Gold</div></div><div class="hpct up">15%</div></div>
+        <div class="hrow"><div><div class="htick">NVDA</div><div class="hname">Nvidia (reduced)</div></div><div class="hpct dn">15%</div></div>
+        <div class="hrow"><div><div class="htick">USO</div><div class="hname">Oil ETF (tactical)</div></div><div class="hpct up">25%</div></div>
+        <div class="pnote">War premium playbook: energy + defense + gold. Tech underweight until AI monetization clears.</div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);background:rgba(2,6,23,.40);padding:12px 16px;font-size:11px;color:var(--muted);line-height:1.7;margin-top:2px;">
+      <strong style="color:var(--ink)">Disclaimer:</strong> Model portfolios are educational frameworks only. Not personalized investment advice. Not a recommendation to buy or sell any security. Consult a licensed financial professional.
     </div>
   </div>
+</div>
 
-  <!-- Access gate for non-premium -->
-  <div id="access-gate" style="display:none;">
-    <div class="gate-box">
-      <div class="gate-icon">◈</div>
-      <div class="gate-kicker">FinTrend Premium</div>
-      <div class="gate-title">Premium Access Required</div>
-      <div class="gate-text">This dashboard is available to Premium subscribers. Upgrade to unlock long-form reports, model portfolios, deal tracker, and the quant lab.</div>
-      <a class="gate-btn" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener">Upgrade to Premium →</a>
-      <div class="gate-sub"><a href="index.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">← Back to FinTrend News</a></div>
+<!-- ══ DEAL TRACKER ══ -->
+<div class="panel" id="panel-deals">
+  <div class="wrap">
+    <div class="pg-head">
+      <div><div class="pg-kicker">Premium · Deal Tracker</div><div class="pg-title">Ideas on <em>the radar.</em></div></div>
+      <div class="pg-meta">Educational · Not advice</div>
+    </div>
+    <div class="deal-list">
+      <div class="deal">
+        <div class="dtcol"><div class="dtick">XLE</div><div class="dtype long">Long</div></div>
+        <div class="dbody"><div class="dthesis">Iran strike adds genuine supply-shock risk. Energy is the direct beneficiary. War premium may not fully unwind given regional escalation risk.</div><div class="dlevs"><div class="dlev">Entry <span>~$94</span></div><div class="dlev">Target <span>$104</span></div><div class="dlev">Stop <span>$89</span></div><div class="dlev">Thesis <span>Geo + supply</span></div></div></div>
+        <div class="dscol"><div><div class="dslbl">P&amp;L Est.</div><div class="dsval up">+10.6%</div></div><div><div class="dslbl">Status</div><div class="dsval up" style="font-size:10px;letter-spacing:.10em">Active</div></div></div>
+      </div>
+      <div class="deal">
+        <div class="dtcol"><div class="dtick">ITA</div><div class="dtype long">Long</div></div>
+        <div class="dbody"><div class="dthesis">Defense aerospace ETF captures geopolitical risk premium without single-name exposure. NATO spending commitments + Middle East tailwinds persist.</div><div class="dlevs"><div class="dlev">Entry <span>~$138</span></div><div class="dlev">Target <span>$155</span></div><div class="dlev">Stop <span>$129</span></div><div class="dlev">Thesis <span>Defense cycle</span></div></div></div>
+        <div class="dscol"><div><div class="dslbl">P&amp;L Est.</div><div class="dsval up">+12.3%</div></div><div><div class="dslbl">Status</div><div class="dsval up" style="font-size:10px;letter-spacing:.10em">Active</div></div></div>
+      </div>
+      <div class="deal">
+        <div class="dtcol"><div class="dtick">NVDA</div><div class="dtype watch">Watch</div></div>
+        <div class="dbody"><div class="dthesis">Still owns the AI narrative but Q4 showed margin pressure. Watching for base-building near $115–$120 before re-entry. No rush.</div><div class="dlevs"><div class="dlev">Watch <span>$115–$120</span></div><div class="dlev">Invalidation <span>&lt;$108</span></div><div class="dlev">Thesis <span>AI structural</span></div></div></div>
+        <div class="dscol"><div><div class="dslbl">Signal</div><div class="dsval wt" style="font-size:10px;letter-spacing:.10em">Watching</div></div><div><div class="dslbl">Risk</div><div class="dsval" style="color:var(--muted);font-size:10px;letter-spacing:.10em">Medium</div></div></div>
+      </div>
+      <div class="deal">
+        <div class="dtcol"><div class="dtick">GLD</div><div class="dtype long">Long</div></div>
+        <div class="dbody"><div class="dthesis">Gold benefits from three concurrent tailwinds: geopolitical risk, central bank buying (China, India), and rate-cut optionality if NFP softens. Structural.</div><div class="dlevs"><div class="dlev">Entry <span>~$268</span></div><div class="dlev">Target <span>$295</span></div><div class="dlev">Stop <span>$254</span></div><div class="dlev">Thesis <span>Multi-factor</span></div></div></div>
+        <div class="dscol"><div><div class="dslbl">P&amp;L Est.</div><div class="dsval up">+10.1%</div></div><div><div class="dslbl">Status</div><div class="dsval up" style="font-size:10px;letter-spacing:.10em">Active</div></div></div>
+      </div>
+      <div class="deal">
+        <div class="dtcol"><div class="dtick">TLT</div><div class="dtype short">Short</div></div>
+        <div class="dbody"><div class="dthesis">Long-duration bonds remain vulnerable if inflation re-accelerates. PPI beat reinforces the thesis. Fed unlikely to cut until data clears.</div><div class="dlevs"><div class="dlev">Entry <span>~$88</span></div><div class="dlev">Target <span>$78</span></div><div class="dlev">Stop <span>$94</span></div><div class="dlev">Thesis <span>Higher-for-longer</span></div></div></div>
+        <div class="dscol"><div><div class="dslbl">P&amp;L Est.</div><div class="dsval up">+11.4%</div></div><div><div class="dslbl">Status</div><div class="dsval up" style="font-size:10px;letter-spacing:.10em">Active</div></div></div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);background:rgba(2,6,23,.40);padding:11px 16px;font-size:11px;color:var(--muted);line-height:1.7;margin-top:2px;">All ideas are educational analysis only. Not investment advice. Entries, targets, and stops are illustrative. Do your own research.</div>
+  </div>
+</div>
+
+<!-- ══ QUANT LAB ══ -->
+<div class="panel" id="panel-quant">
+  <div class="wrap">
+    <div class="pg-head">
+      <div><div class="pg-kicker">Premium · Quant Lab</div><div class="pg-title">Numbers that <em>tell the story.</em></div></div>
+    </div>
+    <div class="q-grid">
+      <div class="qblock">
+        <div class="qlbl">Macro Regime Indicator</div>
+        <div class="qtitle">Current Market Regime</div>
+        <div class="rb-wrap">
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Risk-Off Pressure</span><span class="rb-pct" style="color:var(--red)">72%</span></div><div class="rb-track"><div class="rb-fill bear" style="width:72%"></div></div></div>
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Geopolitical Premium</span><span class="rb-pct" style="color:var(--red)">68%</span></div><div class="rb-track"><div class="rb-fill bear" style="width:68%"></div></div></div>
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Rate Cut Probability (6mo)</span><span class="rb-pct" style="color:#facc15">41%</span></div><div class="rb-track"><div class="rb-fill neu" style="width:41%"></div></div></div>
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Earnings Growth Confidence</span><span class="rb-pct" style="color:var(--green)">58%</span></div><div class="rb-track"><div class="rb-fill bull" style="width:58%"></div></div></div>
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Credit Stress</span><span class="rb-pct" style="color:var(--red)">55%</span></div><div class="rb-track"><div class="rb-fill bear" style="width:55%"></div></div></div>
+          <div class="rb-row"><div class="rb-top"><span class="rb-lbl">Dollar Strength</span><span class="rb-pct" style="color:var(--green)">63%</span></div><div class="rb-track"><div class="rb-fill bull" style="width:63%"></div></div></div>
+        </div>
+        <div style="margin-top:13px;padding-top:11px;border-top:1px solid var(--faint);font-size:11px;color:var(--muted);line-height:1.6">Regime: <strong style="color:var(--red)">Risk-Off / Stagflationary Lean</strong><br>Updated weekly. Descriptive, not predictive.</div>
+      </div>
+      <div class="qblock">
+        <div class="qlbl">Monte Carlo Simulation</div>
+        <div class="qtitle">S&amp;P 500 — 90-Day Scenarios</div>
+        <div class="mc-out" id="mc-out">Press "Run Simulation" to generate&#10;a fresh set of 1,000 simulated outcomes.</div>
+        <button class="mc-btn" id="mc-run">⬡ Run Simulation</button>
+      </div>
+    </div>
+    <div class="rule" style="margin-top:26px"><div class="rule-lbl">Key Levels Monitor</div><div class="rule-line"></div></div>
+    <div class="lvl-tbl">
+      <div class="lvl-head"><div class="lvl-th">Asset</div><div class="lvl-th">Support</div><div class="lvl-th">Resistance</div><div class="lvl-th">Bias</div></div>
+      <div id="lvl-body"></div>
     </div>
   </div>
+</div>
 
-  <!-- ═══ VAULT DOOR ═══ -->
-  <div id="vault-screen">
-    <!-- corner ornaments -->
-    <div class="vault-corner tl"></div>
-    <div class="vault-corner tr"></div>
-    <div class="vault-corner bl"></div>
-    <div class="vault-corner br"></div>
-
-    <div class="vault-center">
-      <!-- The dial -->
-      <div class="vault-dial-wrap">
-        <div class="vault-dial-outer"></div>
-
-        <!-- outer ring tick marks via SVG -->
-        <svg class="vault-ticks" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="110" cy="110" r="104" stroke="rgba(244,193,93,0.20)" stroke-width="1"/>
-          <!-- 40 tick marks around the ring -->
-          <g stroke="rgba(244,193,93,0.45)">
-            <line x1="110" y1="8" x2="110" y2="18" stroke-width="2"/>
-            <line x1="110" y1="202" x2="110" y2="212" stroke-width="2"/>
-            <line x1="8" y1="110" x2="18" y2="110" stroke-width="2"/>
-            <line x1="202" y1="110" x2="212" y2="110" stroke-width="2"/>
-          </g>
-          <g stroke="rgba(244,193,93,0.25)" stroke-width="1">
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(9 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(18 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(27 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(36 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(45 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(54 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(63 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(72 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(81 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(99 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(108 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(117 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(126 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(135 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(144 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(153 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(162 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(171 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(189 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(198 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(207 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(216 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(225 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(234 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(243 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(252 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(261 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(279 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(288 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(297 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(306 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(315 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(324 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(333 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(342 110 110)"/>
-            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(351 110 110)"/>
-          </g>
-          <!-- inner ring -->
-          <circle cx="110" cy="110" r="88" stroke="rgba(244,193,93,0.10)" stroke-width="1" stroke-dasharray="4 6"/>
-        </svg>
-
-        <!-- reverse-spinning inner ring -->
-        <svg class="vault-ticks-reverse" viewBox="0 0 200 200" fill="none" style="position:absolute;top:10px;left:10px;">
-          <circle cx="100" cy="100" r="94" stroke="rgba(244,193,93,0.12)" stroke-width="1" stroke-dasharray="3 8"/>
-          <g stroke="rgba(244,193,93,0.30)" stroke-width="1.5">
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(0 100 100)"/>
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(60 100 100)"/>
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(120 100 100)"/>
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(180 100 100)"/>
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(240 100 100)"/>
-            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(300 100 100)"/>
-          </g>
-        </svg>
-
-        <!-- Handle spokes -->
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-          <div style="position:relative;width:140px;height:140px;" id="vault-spokes">
-            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(0deg);"></div>
-            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(90deg);"></div>
-            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(180deg);"></div>
-            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(270deg);"></div>
-          </div>
-        </div>
-
-        <!-- Center hub -->
-        <div class="vault-hub">
-          <div class="vault-hub-inner"></div>
-        </div>
-      </div>
-
-      <!-- Text below dial -->
-      <div class="vault-text-block" id="vault-text">
-        <div class="vault-label">FinTrend News</div>
-        <div class="vault-name">Premium</div>
-        <div class="vault-line" id="vault-line"></div>
-        <div class="vault-status" id="vault-status">Verifying access<span id="vault-dots"></span></div>
-      </div>
+<!-- ══ ROUNDUP ══ -->
+<div class="panel" id="panel-roundup">
+  <div class="wrap">
+    <div class="pg-head">
+      <div><div class="pg-kicker">Premium · Weekly Roundup</div><div class="pg-title">Signal vs. <em>noise.</em></div></div>
+      <div class="pg-meta">Week of Mar 2, 2026</div>
+    </div>
+    <div class="rup">
+      <div class="ritem bull"><div class="rtag-col"><div class="rtag">Energy ↑</div></div><div class="rbody"><div class="rtext">Brent crude surged 8.2% on the Iran strike news. XLE and oil majors (CVX, XOM) outperformed sharply. Defense names followed — ITA up 3.4% on the week.</div><div class="rsrc">via Brent spot, Bloomberg · Mar 2</div></div></div>
+      <div class="ritem bear"><div class="rtag-col"><div class="rtag">Inflation ↑</div></div><div class="rbody"><div class="rtext">February PPI came in hotter than expected. Core services remain sticky. The read-through to PCE complicated the rate-cut narrative heading into March.</div><div class="rsrc">via BLS PPI release · Feb 27</div></div></div>
+      <div class="ritem bear"><div class="rtag-col"><div class="rtag">Tech ↓</div></div><div class="rbody"><div class="rtext">Nvidia extended its post-earnings slide despite beating estimates. Guidance was underwhelming on margin expansion. AI monetization question isn't resolved — base-building territory, not momentum.</div><div class="rsrc">via Nvidia earnings call · Feb 26</div></div></div>
+      <div class="ritem macro"><div class="rtag-col"><div class="rtag">Fed Watch</div></div><div class="rbody"><div class="rtext">Markets now pricing just one cut in 2026. Hot PPI, sticky PCE, and a geopolitical oil shock make the Fed's path narrower. NFP Friday is the next reset point.</div><div class="rsrc">via CME FedWatch · Mar 2</div></div></div>
+      <div class="ritem watch"><div class="rtag-col"><div class="rtag">Geo Risk</div></div><div class="rbody"><div class="rtext">Ukraine-Russia ceasefire talks remain in framework stage. Iran strike risk premium now embedded in oil and defense. Middle East escalation timeline is the wildcard that overrides any technical setup.</div><div class="rsrc">via Reuters, FT · Mar 1–2</div></div></div>
+      <div class="ritem bull"><div class="rtag-col"><div class="rtag">Gold ↑</div></div><div class="rbody"><div class="rtext">Gold continued its structural bid — up over 12% YTD. Central bank buying (China, India) remains the floor. Geopolitical bid adds a second layer. $3,000 is the psychological next test.</div><div class="rsrc">via COMEX, WGC data · Mar 2</div></div></div>
     </div>
   </div>
+</div>
 
-  <!-- ═══ DASHBOARD ═══ -->
-  <div id="dashboard">
+<div class="disc">All content is for informational and educational purposes only. Not financial advice. Not a registered investment adviser.<br><a href="index.html">← Back to FinTrend News</a></div>
 
-    <!-- NAV -->
-    <nav class="top-nav">
-      <div class="nav-brand">
-        <img src="assets/img/FTN-logo.png" alt="FinTrend News" />
-        <span>FinTrend</span>
-        <div class="nav-badge">Premium</div>
-      </div>
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mob-nav">
+  <button class="mob-btn on" data-panel="today"><span class="micon">◈</span>Brief</button>
+  <button class="mob-btn" data-panel="portfolios"><span class="micon">◎</span>Port.</button>
+  <button class="mob-btn" data-panel="deals"><span class="micon">◉</span>Deals</button>
+  <button class="mob-btn" data-panel="quant"><span class="micon">⬡</span>Quant</button>
+  <button class="mob-btn" data-panel="roundup"><span class="micon">⊞</span>Recap</button>
+</nav>
 
-      <div class="nav-tabs" id="nav-tabs">
-        <button class="nav-tab active" data-tab="today">Today's Brief</button>
-        <button class="nav-tab" data-tab="portfolio">Model Portfolios</button>
-        <button class="nav-tab" data-tab="deals">Deal Tracker</button>
-        <button class="nav-tab" data-tab="quant">Quant Lab</button>
-        <button class="nav-tab" data-tab="roundup">Weekly Roundup</button>
-      </div>
+<script>
+(function(){
+  "use strict";
+  const SB_URL="https://dxmdyperxyydqdshazcp.supabase.co";
+  const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+  let sb=null;
 
-      <div class="nav-right">
-        <span class="nav-user" id="nav-user-email"></span>
-        <button class="nav-signout" id="nav-signout">Sign Out</button>
-      </div>
-    </nav>
+  // date
+  const de=document.getElementById("today-date");
+  if(de) de.textContent=new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
 
-    <!-- Mobile tab bar -->
-    <div class="mobile-tab-bar" id="mobile-tab-bar">
-      <button class="mobile-tab-btn active" data-tab="today"><span class="mtab-icon">◈</span>Brief</button>
-      <button class="mobile-tab-btn" data-tab="portfolio"><span class="mtab-icon">◎</span>Portfolios</button>
-      <button class="mobile-tab-btn" data-tab="deals"><span class="mtab-icon">◉</span>Deals</button>
-      <button class="mobile-tab-btn" data-tab="quant"><span class="mtab-icon">⬡</span>Quant</button>
-      <button class="mobile-tab-btn" data-tab="roundup"><span class="mtab-icon">⊞</span>Roundup</button>
-    </div>
+  // tabs
+  function go(name){
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+    document.querySelectorAll(".tnav,.mob-btn").forEach(b=>b.classList.remove("on"));
+    const p=document.getElementById("panel-"+name);
+    if(p) p.classList.add("on");
+    document.querySelectorAll("[data-panel='"+name+"']").forEach(b=>b.classList.add("on"));
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  document.querySelectorAll("[data-panel]").forEach(b=>b.addEventListener("click",()=>go(b.getAttribute("data-panel"))));
 
-    <!-- ─── TODAY'S BRIEF ─── -->
-    <div class="tab-panel active" id="tab-today">
-      <div class="page-wrap">
-        <div class="feed-header">
-          <div>
-            <div class="feed-kicker">Premium · Today's Brief</div>
-            <div class="feed-title">What Matters <em style="font-style:italic;color:var(--accent);">Right Now</em></div>
-          </div>
-          <div class="feed-date" id="today-date"></div>
-        </div>
+  // monte carlo
+  document.getElementById("mc-run").addEventListener("click",()=>{
+    const base=5780,S=[];
+    for(let i=0;i<1000;i++){let v=base;for(let d=0;d<90;d++)v*=(1+(Math.random()-.5)*.025+.0003);S.push(v);}
+    S.sort((a,b)=>a-b);
+    const pf=v=>(((v-base)/base)*100).toFixed(1)+"%",vf=v=>Math.round(v).toLocaleString();
+    const el=document.getElementById("mc-out");
+    if(el) el.innerHTML=
+      `<span style="color:var(--muted)">Simulations: 1,000  Base: ${base.toLocaleString()}  Horizon: 90 days</span>\n\n`+
+      `<span style="color:var(--red)">P10 (bear)    </span>${vf(S[100])}  <span style="color:var(--red)">${pf(S[100])}</span>\n`+
+      `<span style="color:#facc15">P25           </span>${vf(S[250])}  <span style="color:#facc15">${pf(S[250])}</span>\n`+
+      `<span style="color:var(--ink)">P50 (median)  </span>${vf(S[500])}  <span style="color:${S[500]>=base?'var(--green)':'var(--red)'}">${pf(S[500])}</span>\n`+
+      `<span style="color:#facc15">P75           </span>${vf(S[750])}  <span style="color:var(--green)">${pf(S[750])}</span>\n`+
+      `<span style="color:var(--green)">P90 (bull)    </span>${vf(S[900])}  <span style="color:var(--green)">${pf(S[900])}</span>\n\n`+
+      `<span style="color:var(--muted);font-size:10px">Educational illustration only. Not a forecast.</span>`;
+  });
 
-        <!-- Hero article -->
-        <div class="hero-article">
-          <div class="hero-body">
-            <div class="hero-kicker">Latest · Monday Outlook</div>
-            <div class="hero-headline">War Premium Meets <em>Jobs Week</em></div>
-            <div class="hero-deck">U.S.-Israel strikes on Iran sent Brent crude +8% overnight. Defense bids. Oil majors wake up. But Non-Farm Payrolls Friday is the real anchor — if the number softens, risk-off from the war premium collides with rate-cut hope. That's a crowded trade waiting to unwind.</div>
-            <div class="hero-meta">
-              <span class="hero-tag featured">✦ Latest Report</span>
-              <span class="hero-tag">Mar 2, 2026</span>
-              <span class="hero-tag">Monday Outlook</span>
-            </div>
-            <div style="margin-top:18px;">
-              <a class="hero-read" href="articles/2026-03-02-monday.html">Read Full Brief →</a>
-            </div>
-          </div>
-          <div class="hero-sidebar">
-            <div class="hero-sb-label">Signal Snapshot</div>
-            <div class="signal-row">
-              <div class="signal-tag">Driver</div>
-              <div class="signal-val">Iran Strike / Oil</div>
-            </div>
-            <div class="signal-row">
-              <div class="signal-tag">Bias</div>
-              <div class="signal-val bull">Risk-Off Short-Term</div>
-            </div>
-            <div class="signal-row">
-              <div class="signal-tag">Key Level</div>
-              <div class="signal-val">SPX 5,780</div>
-            </div>
-            <div class="signal-row">
-              <div class="signal-tag">Catalyst</div>
-              <div class="signal-val">NFP Friday</div>
-            </div>
-            <div class="signal-row">
-              <div class="signal-tag">Oil</div>
-              <div class="signal-val bull">Brent +8.2%</div>
-            </div>
-            <div class="signal-row">
-              <div class="signal-tag">Conviction</div>
-              <div class="signal-val neutral">Medium</div>
-            </div>
-          </div>
-        </div>
+  // key levels
+  const lvls=[
+    {a:"SPX",s:"5,700",r:"5,980",b:"bear"},
+    {a:"NDX",s:"19,800",r:"20,800",b:"bear"},
+    {a:"BRENT",s:"$78",r:"$92",b:"bull"},
+    {a:"GOLD",s:"$2,820",r:"$2,960",b:"bull"},
+    {a:"DXY",s:"103.2",r:"106.0",b:"neu"},
+    {a:"10Y UST",s:"4.28%",r:"4.70%",b:"bear"},
+  ];
+  const lb=document.getElementById("lvl-body");
+  if(lb) lvls.forEach(l=>{
+    const label=l.b==="bull"?"Bullish":l.b==="bear"?"Bearish":"Neutral";
+    lb.innerHTML+=`<div class="lvl-row"><div class="lvl-td asset">${l.a}</div><div class="lvl-td num">${l.s}</div><div class="lvl-td num">${l.r}</div><div class="lvl-td ${l.b}">${label}</div></div>`;
+  });
 
-        <!-- Recent articles -->
-        <div class="section-rule">
-          <div class="section-rule-label">Recent Reports</div>
-          <div class="section-rule-line"></div>
-        </div>
-
-        <div class="article-grid" id="article-grid">
-          <div class="article-card" onclick="location.href='articles/2026-03-01-sunday.html'">
-            <div class="article-day-tag sun">Sunday Macro</div>
-            <div class="article-headline">Sunday Macro &amp; Positioning Note — March 1</div>
-            <div class="article-deck">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div>
-            <div class="article-footer">
-              <span class="article-date">Mar 1</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-          <div class="article-card" onclick="location.href='articles/2026-02-27-friday.html'">
-            <div class="article-day-tag fri">Friday Recap</div>
-            <div class="article-headline">Inflation Shock Closes Out February</div>
-            <div class="article-deck">PPI beats hard; Nvidia extends slide; S&amp;P 500 posts worst February in 11 months.</div>
-            <div class="article-footer">
-              <span class="article-date">Feb 27</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-          <div class="article-card" onclick="location.href='articles/2026-02-25-wednesday.html'">
-            <div class="article-day-tag wed">Wednesday</div>
-            <div class="article-headline">The Verdict on AI Demand Lives or Dies Tonight</div>
-            <div class="article-deck">Nvidia Q4 after close; S&amp;P futures +0.14%; tariff narrative stabilizes post-SOTU.</div>
-            <div class="article-footer">
-              <span class="article-date">Feb 25</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-          <div class="article-card" onclick="location.href='articles/2026-02-23-monday.html'">
-            <div class="article-day-tag mon">Monday Outlook</div>
-            <div class="article-headline">The Tariff Clock Starts Tomorrow</div>
-            <div class="article-deck">Section 122 at 15% kicks in Tuesday; Nvidia Wednesday; SOTU Tuesday night; PPI Friday.</div>
-            <div class="article-footer">
-              <span class="article-date">Feb 23</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-          <div class="article-card" onclick="location.href='articles/2026-02-22-sunday.html'">
-            <div class="article-day-tag sun">Sunday Macro</div>
-            <div class="article-headline">The Court Ruled. The War Continues.</div>
-            <div class="article-deck">SCOTUS killed IEEPA; Trump pivoted to Section 122 at 15%; GDP 1.4%; PCE hot.</div>
-            <div class="article-footer">
-              <span class="article-date">Feb 22</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-          <div class="article-card" onclick="location.href='articles/2026-02-20-friday.html'">
-            <div class="article-day-tag fri">Friday Recap</div>
-            <div class="article-headline">A Short Week That Packed a Full Year's Drama</div>
-            <div class="article-deck">Supreme Court strikes IEEPA tariffs; GDP misses at 1.4%; Walmart K-shaped consumer.</div>
-            <div class="article-footer">
-              <span class="article-date">Feb 20</span>
-              <span class="article-arrow">→</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:16px;">
-          <a href="archive.html" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:9px 20px;display:inline-block;transition:.15s;" onmouseover="this.style.borderColor='var(--border-gold)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">View Full Archive →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── MODEL PORTFOLIOS ─── -->
-    <div class="tab-panel" id="tab-portfolio">
-      <div class="page-wrap">
-        <div class="feed-header">
-          <div>
-            <div class="feed-kicker">Premium · Model Portfolios</div>
-            <div class="feed-title">Three frameworks. <em style="font-style:italic;color:var(--accent);">One direction.</em></div>
-          </div>
-          <div class="feed-date">Educational · Not financial advice</div>
-        </div>
-
-        <div class="portfolio-grid">
-          <div class="portfolio-tier">
-            <div class="portfolio-tier-label">Tier 1</div>
-            <div class="portfolio-tier-name">Cautious</div>
-            <div class="portfolio-bias">Low risk tolerance. Capital preservation. Cash and quality first.</div>
-            <div id="port-cautious">
-              <div class="holding-row">
-                <div><div class="holding-ticker">BIL</div><div class="holding-name">T-Bill ETF</div></div>
-                <div class="holding-pct fl">40%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">GLD</div><div class="holding-name">SPDR Gold</div></div>
-                <div class="holding-pct up">20%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">XLU</div><div class="holding-name">Utilities</div></div>
-                <div class="holding-pct fl">20%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">XLP</div><div class="holding-name">Consumer Staples</div></div>
-                <div class="holding-pct fl">20%</div>
-              </div>
-            </div>
-            <div class="portfolio-note">Current tilt: max defensive amid war premium and rate uncertainty.</div>
-          </div>
-
-          <div class="portfolio-tier balanced">
-            <div class="portfolio-tier-label">Tier 2</div>
-            <div class="portfolio-tier-name">Balanced</div>
-            <div class="portfolio-bias">Moderate exposure. Selective risk. Dividend and quality tilt.</div>
-            <div id="port-balanced">
-              <div class="holding-row">
-                <div><div class="holding-ticker">SPY</div><div class="holding-name">S&amp;P 500</div></div>
-                <div class="holding-pct fl">30%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">GLD</div><div class="holding-name">SPDR Gold</div></div>
-                <div class="holding-pct up">15%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">XLE</div><div class="holding-name">Energy (tactically elevated)</div></div>
-                <div class="holding-pct up">20%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">BIL</div><div class="holding-name">T-Bills / Cash</div></div>
-                <div class="holding-pct fl">20%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">VIG</div><div class="holding-name">Dividend Growth</div></div>
-                <div class="holding-pct fl">15%</div>
-              </div>
-            </div>
-            <div class="portfolio-note">Energy overweight on oil supply shock; tech underweight post-AI reset.</div>
-          </div>
-
-          <div class="portfolio-tier aggressive">
-            <div class="portfolio-tier-label">Tier 3 · ✦</div>
-            <div class="portfolio-tier-name" style="color:var(--accent);">Aggressive</div>
-            <div class="portfolio-bias">High risk tolerance. Thematic bets. Active rotation.</div>
-            <div id="port-aggressive">
-              <div class="holding-row">
-                <div><div class="holding-ticker">XLE</div><div class="holding-name">Energy Sector</div></div>
-                <div class="holding-pct up">25%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">ITA</div><div class="holding-name">Defense Aerospace</div></div>
-                <div class="holding-pct up">20%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">GLD</div><div class="holding-name">Gold</div></div>
-                <div class="holding-pct up">15%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">NVDA</div><div class="holding-name">Nvidia (reduced)</div></div>
-                <div class="holding-pct dn">15%</div>
-              </div>
-              <div class="holding-row">
-                <div><div class="holding-ticker">USO</div><div class="holding-name">Oil ETF (tactical)</div></div>
-                <div class="holding-pct up">25%</div>
-              </div>
-            </div>
-            <div class="portfolio-note">War premium playbook: energy + defense + gold. Tech underweight until AI monetization clears.</div>
-          </div>
-        </div>
-
-        <div style="border:1px solid var(--border);background:rgba(2,6,23,0.40);padding:16px 20px;font-size:12px;color:var(--muted);line-height:1.7;">
-          <strong style="color:var(--text);">Disclaimer:</strong> Model portfolios are educational frameworks only. They are not personalized investment advice, not recommendations to buy or sell any security, and should not be relied upon for financial decisions. Always consult a licensed financial professional.
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── DEAL TRACKER ─── -->
-    <div class="tab-panel" id="tab-deals">
-      <div class="page-wrap">
-        <div class="feed-header">
-          <div>
-            <div class="feed-kicker">Premium · Deal Tracker</div>
-            <div class="feed-title">Ideas on <em style="font-style:italic;color:var(--accent);">the radar.</em></div>
-          </div>
-          <div class="feed-date">Educational · Not financial advice</div>
-        </div>
-
-        <div class="deal-stack" id="deal-stack">
-          <div class="deal-row">
-            <div class="deal-ticker-block">
-              <div class="deal-ticker">XLE</div>
-              <div class="deal-type long">Long</div>
-            </div>
-            <div class="deal-body">
-              <div class="deal-thesis">Iran strike adds genuine supply-shock risk to oil. Energy sector is a direct beneficiary. War premium may not fully unwind quickly given regional escalation risk.</div>
-              <div class="deal-meta-row">
-                <div class="deal-meta-pill">Entry: <span>~$94</span></div>
-                <div class="deal-meta-pill">Target: <span>$104</span></div>
-                <div class="deal-meta-pill">Stop: <span>$89</span></div>
-                <div class="deal-meta-pill">Thesis: <span>Geopolitical + supply</span></div>
-              </div>
-            </div>
-            <div class="deal-right">
-              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+10.6%</div></div>
-              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
-            </div>
-          </div>
-
-          <div class="deal-row">
-            <div class="deal-ticker-block">
-              <div class="deal-ticker">ITA</div>
-              <div class="deal-type long">Long</div>
-            </div>
-            <div class="deal-body">
-              <div class="deal-thesis">Defense aerospace ETF captures the geopolitical risk premium without single-name exposure. NATO spending commitments + Middle East conflict tailwinds persist.</div>
-              <div class="deal-meta-row">
-                <div class="deal-meta-pill">Entry: <span>~$138</span></div>
-                <div class="deal-meta-pill">Target: <span>$155</span></div>
-                <div class="deal-meta-pill">Stop: <span>$129</span></div>
-                <div class="deal-meta-pill">Thesis: <span>Defense spending cycle</span></div>
-              </div>
-            </div>
-            <div class="deal-right">
-              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+12.3%</div></div>
-              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
-            </div>
-          </div>
-
-          <div class="deal-row">
-            <div class="deal-ticker-block">
-              <div class="deal-ticker">NVDA</div>
-              <div class="deal-type watch">Watch</div>
-            </div>
-            <div class="deal-body">
-              <div class="deal-thesis">Nvidia still owns AI infrastructure narrative but Q4 earnings showed margin pressure and guidance was underwhelming. Watching for base-building near $115–$120 before re-entry.</div>
-              <div class="deal-meta-row">
-                <div class="deal-meta-pill">Watch Zone: <span>$115–$120</span></div>
-                <div class="deal-meta-pill">Invalidation: <span>&lt;$108</span></div>
-                <div class="deal-meta-pill">Thesis: <span>AI demand structural</span></div>
-              </div>
-            </div>
-            <div class="deal-right">
-              <div><div class="deal-stat-label">Signal</div><div class="deal-stat-val neutral" style="color:#facc15;font-size:11px;">Watching</div></div>
-              <div><div class="deal-stat-label">Risk</div><div class="deal-stat-val" style="color:var(--muted);font-size:11px;">Medium</div></div>
-            </div>
-          </div>
-
-          <div class="deal-row">
-            <div class="deal-ticker-block">
-              <div class="deal-ticker">GLD</div>
-              <div class="deal-type long">Long</div>
-            </div>
-            <div class="deal-body">
-              <div class="deal-thesis">Gold benefits from three concurrent tailwinds: geopolitical risk premium, central bank buying (China, India), and rate-cut optionality if NFP softens. Structural not tactical.</div>
-              <div class="deal-meta-row">
-                <div class="deal-meta-pill">Entry: <span>~$268</span></div>
-                <div class="deal-meta-pill">Target: <span>$295</span></div>
-                <div class="deal-meta-pill">Stop: <span>$254</span></div>
-                <div class="deal-meta-pill">Thesis: <span>Multi-factor</span></div>
-              </div>
-            </div>
-            <div class="deal-right">
-              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+10.1%</div></div>
-              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
-            </div>
-          </div>
-
-          <div class="deal-row">
-            <div class="deal-ticker-block">
-              <div class="deal-ticker">TLT</div>
-              <div class="deal-type short">Short</div>
-            </div>
-            <div class="deal-body">
-              <div class="deal-thesis">Long-duration bonds remain vulnerable if inflation re-accelerates. PPI beat Friday reinforces the thesis. Fed unlikely to cut until data clears — TLT stays under pressure.</div>
-              <div class="deal-meta-row">
-                <div class="deal-meta-pill">Entry: <span>~$88</span></div>
-                <div class="deal-meta-pill">Target: <span>$78</span></div>
-                <div class="deal-meta-pill">Stop: <span>$94</span></div>
-                <div class="deal-meta-pill">Thesis: <span>Rates higher-for-longer</span></div>
-              </div>
-            </div>
-            <div class="deal-right">
-              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+11.4%</div></div>
-              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div style="border:1px solid var(--border);background:rgba(2,6,23,0.40);padding:14px 20px;font-size:12px;color:var(--muted);line-height:1.7;margin-top:1px;">
-          All ideas are educational analysis only. Not investment advice. Entries, targets, and stops are illustrative. Do your own research.
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── QUANT LAB ─── -->
-    <div class="tab-panel" id="tab-quant">
-      <div class="page-wrap">
-        <div class="feed-header">
-          <div>
-            <div class="feed-kicker">Premium · Quant Lab</div>
-            <div class="feed-title">Numbers that <em style="font-style:italic;color:var(--accent);">tell the story.</em></div>
-          </div>
-        </div>
-
-        <div class="quant-grid">
-          <div class="quant-block">
-            <div class="quant-block-label">Macro Regime Indicator</div>
-            <div class="quant-block-title">Current Market Regime</div>
-            <div class="regime-bars">
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Risk-Off Pressure</span><span class="regime-bar-val" style="color:var(--red);">72%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:72%"></div></div>
-              </div>
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Geopolitical Premium</span><span class="regime-bar-val" style="color:var(--red);">68%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:68%"></div></div>
-              </div>
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Rate Cut Probability (6mo)</span><span class="regime-bar-val" style="color:#facc15;">41%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill neutral" style="width:41%"></div></div>
-              </div>
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Earnings Growth Confidence</span><span class="regime-bar-val" style="color:var(--green);">58%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill bull" style="width:58%"></div></div>
-              </div>
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Credit Stress</span><span class="regime-bar-val" style="color:var(--red);">55%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:55%"></div></div>
-              </div>
-              <div class="regime-bar-row">
-                <div class="regime-bar-top"><span class="regime-bar-label">Dollar Strength</span><span class="regime-bar-val" style="color:var(--green);">63%</span></div>
-                <div class="regime-bar-track"><div class="regime-bar-fill bull" style="width:63%"></div></div>
-              </div>
-            </div>
-            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.6;">
-              Regime: <strong style="color:var(--red);">Risk-Off / Stagflationary Lean</strong><br>
-              Signals updated weekly. Not predictive — descriptive of current conditions.
-            </div>
-          </div>
-
-          <div class="quant-block">
-            <div class="quant-block-label">Monte Carlo Simulation</div>
-            <div class="quant-block-title">S&P 500 — 90-Day Scenarios</div>
-            <div class="mc-output" id="mc-output">
-              Press "Run Simulation" to generate<br>a fresh set of 90-day outcomes.
-            </div>
-            <button class="mc-run-btn" id="mc-run">⬡ Run Simulation</button>
-          </div>
-        </div>
-
-        <div class="section-rule">
-          <div class="section-rule-label">Key Levels Monitor</div>
-          <div class="section-rule-line"></div>
-        </div>
-
-        <div style="border:1px solid var(--border);background:var(--surface);">
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);">
-            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Asset</div>
-            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Support</div>
-            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Resistance</div>
-            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Bias</div>
-          </div>
-          <div id="levels-table">
-            <!-- populated by JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── WEEKLY ROUNDUP ─── -->
-    <div class="tab-panel" id="tab-roundup">
-      <div class="page-wrap">
-        <div class="feed-header">
-          <div>
-            <div class="feed-kicker">Premium · Weekly Roundup</div>
-            <div class="feed-title">The week's <em style="font-style:italic;color:var(--accent);">signal vs. noise.</em></div>
-          </div>
-          <div class="feed-date">Week of Mar 2, 2026</div>
-        </div>
-
-        <div class="roundup-list" id="roundup-list">
-          <div class="roundup-item bull">
-            <div class="roundup-tag">Energy ↑</div>
-            <div>
-              <div class="roundup-text">Brent crude surged 8.2% on the Iran strike news. XLE and oil majors (CVX, XOM) outperformed sharply. Defense names followed — ITA up 3.4% on the week.</div>
-              <div class="roundup-source">via Brent spot, Bloomberg · Mar 2</div>
-            </div>
-          </div>
-          <div class="roundup-item bear">
-            <div class="roundup-tag">Inflation ↑</div>
-            <div>
-              <div class="roundup-text">February PPI came in hotter than expected. Core services remain sticky. The read-through to PCE — the Fed's preferred gauge — complicated the rate-cut narrative heading into March.</div>
-              <div class="roundup-source">via BLS PPI release · Feb 27</div>
-            </div>
-          </div>
-          <div class="roundup-item bear">
-            <div class="roundup-tag">Tech ↓</div>
-            <div>
-              <div class="roundup-text">Nvidia extended its post-earnings slide despite beating estimates. Guidance was underwhelming on margin expansion. The AI monetization question isn't resolved — the stock is now base-building territory not momentum territory.</div>
-              <div class="roundup-source">via Nvidia earnings call · Feb 26</div>
-            </div>
-          </div>
-          <div class="roundup-item macro">
-            <div class="roundup-tag">Fed Watch</div>
-            <div>
-              <div class="roundup-text">Markets are now pricing just one cut in 2026. The combination of hot PPI, sticky PCE, and a geopolitical oil shock makes the Fed's path narrower. Watch NFP Friday — a strong number removes any near-term cut optionality.</div>
-              <div class="roundup-source">via CME FedWatch · Mar 2</div>
-            </div>
-          </div>
-          <div class="roundup-item watch">
-            <div class="roundup-tag">Geopolitical</div>
-            <div>
-              <div class="roundup-text">Ukraine-Russia ceasefire talks remain in framework stage — nothing signed. Iran strike risk premium now embedded in oil and defense. Middle East escalation timeline is the wildcard that can override any technical setup.</div>
-              <div class="roundup-source">via Reuters, FT · Mar 1–2</div>
-            </div>
-          </div>
-          <div class="roundup-item bull">
-            <div class="roundup-tag">Gold ↑</div>
-            <div>
-              <div class="roundup-text">Gold continued its structural bid — now up over 12% YTD. Central bank buying (China, India) remains the structural floor. Geopolitical bid adds a second layer. $2,900 was breached briefly — $3,000 is the psychological next test.</div>
-              <div class="roundup-source">via COMEX, WGC data · Mar 2</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="disclaimer-footer">
-      All content on this dashboard is for informational and educational purposes only. Not financial advice. Not a registered investment adviser. Always conduct your own research and consult a licensed financial professional before making investment decisions.
-      <br><a href="index.html" style="color:rgba(148,163,184,0.40);text-decoration:underline;text-underline-offset:3px;font-size:11px;margin-top:6px;display:inline-block;">← Back to FinTrend News</a>
-    </div>
-  </div><!-- /dashboard -->
-
-  <script>
-  (function(){
-    "use strict";
-
-    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-    const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
-
-    let supabase = null;
-    let currentUser = null;
-
-    // ── Date
-    const todayDateEl = document.getElementById("today-date");
-    if(todayDateEl){
-      const d = new Date();
-      todayDateEl.textContent = d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
-    }
-
-    // ── Vault sequence
-    const vaultScreen = document.getElementById("vault-screen");
-    const dashboard = document.getElementById("dashboard");
-    const vaultText = document.getElementById("vault-text");
-    const vaultLine = document.getElementById("vault-line");
-    const vaultStatus = document.getElementById("vault-status");
-    const loadingScreen = document.getElementById("loading-screen");
-    const accessGate = document.getElementById("access-gate");
-
-    // Animated dots
-    let dotsInterval = null;
-    function startDots(){
-      const el = document.getElementById("vault-dots");
-      if(!el) return;
-      let n = 0;
-      dotsInterval = setInterval(()=>{ n=(n+1)%4; el.textContent=".".repeat(n); }, 400);
-    }
-    function stopDots(){
-      if(dotsInterval) clearInterval(dotsInterval);
-      const el = document.getElementById("vault-dots");
-      if(el) el.textContent = "";
-    }
-
-    function showVaultGranted(email){
-      stopDots();
-      if(vaultStatus){
-        vaultStatus.textContent = "✓ Access Granted";
-        vaultStatus.classList.add("granted");
-      }
-      // Show text block
-      if(vaultText) vaultText.classList.add("show");
-      if(vaultLine) setTimeout(()=>{ vaultLine.classList.add("extend"); }, 200);
-
-      // After a beat, swing door open
-      setTimeout(()=>{
-        if(vaultScreen) vaultScreen.classList.add("swing-open");
-        if(dashboard) dashboard.classList.add("revealed");
-        document.body.classList.remove("vault-active");
-
-        // Set user email
-        const emailEl = document.getElementById("nav-user-email");
-        if(emailEl && email) emailEl.textContent = email;
-
-        setTimeout(()=>{
-          if(vaultScreen) vaultScreen.style.display = "none";
-        }, 1200);
-      }, 1100);
-    }
-
-    function showAccessGate(){
-      stopDots();
-      if(vaultScreen) vaultScreen.style.display = "none";
-      if(accessGate) accessGate.style.display = "flex";
-      if(loadingScreen) loadingScreen.classList.add("gone");
-      document.body.classList.remove("vault-active");
-    }
-
-    function showVaultAndGrantAccess(email){
-      // This is now only called after vault minimum time — just show granted
-      showVaultGranted(email);
-    }
-
-    // ── Tabs
-    function switchTab(name){
-      document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
-      document.querySelectorAll(".nav-tab, .mobile-tab-btn").forEach(b=>b.classList.remove("active"));
-      const panel = document.getElementById("tab-"+name);
-      if(panel) panel.classList.add("active");
-      document.querySelectorAll("[data-tab='"+name+"']").forEach(b=>b.classList.add("active"));
-    }
-    document.querySelectorAll("[data-tab]").forEach(btn=>{
-      btn.addEventListener("click",()=>switchTab(btn.getAttribute("data-tab")));
-    });
-
-    // ── Monte Carlo
-    document.getElementById("mc-run").addEventListener("click",()=>{
-      const base = 5780;
-      const scenarios = [];
-      for(let i=0;i<1000;i++){
-        let val = base;
-        for(let d=0;d<90;d++){
-          val *= (1 + (Math.random()-0.5)*0.025 + 0.0003);
-        }
-        scenarios.push(val);
-      }
-      scenarios.sort((a,b)=>a-b);
-      const p10 = scenarios[100], p25 = scenarios[250], p50 = scenarios[500], p75 = scenarios[750], p90 = scenarios[900];
-      const pctFmt = (v)=>(((v-base)/base)*100).toFixed(1)+"%";
-      const valFmt = (v)=>v.toFixed(0);
-      const mc = document.getElementById("mc-output");
-      if(mc) mc.innerHTML = `
-<span style="color:var(--muted);">Simulations: 1,000 · Base: ${base.toLocaleString()} · Horizon: 90 days</span>
-
-<span style="color:var(--red);">P10 (bear)    </span>${valFmt(p10)} <span class="mc-dn">${pctFmt(p10)}</span>
-<span style="color:#facc15;">P25           </span>${valFmt(p25)} <span class="mc-neutral">${pctFmt(p25)}</span>
-<span style="color:var(--text);">P50 (median)  </span>${valFmt(p50)} <span class="${p50>=base?'mc-up':'mc-dn'}">${pctFmt(p50)}</span>
-<span style="color:#facc15;">P75           </span>${valFmt(p75)} <span class="mc-up">${pctFmt(p75)}</span>
-<span style="color:var(--green);">P90 (bull)    </span>${valFmt(p90)} <span class="mc-up">${pctFmt(p90)}</span>
-
-<span style="color:var(--muted);font-size:10px;">For educational illustration only. Not a forecast.</span>`;
-    });
-
-    // ── Key levels table
-    const levelsData = [
-      { asset:"SPX", support:"5,700", resistance:"5,980", bias:"bear", biasLabel:"Bearish" },
-      { asset:"NDX", support:"19,800", resistance:"20,800", bias:"bear", biasLabel:"Bearish" },
-      { asset:"BRENT", support:"$78", resistance:"$92", bias:"bull", biasLabel:"Bullish" },
-      { asset:"GOLD", support:"$2,820", resistance:"$2,960", bias:"bull", biasLabel:"Bullish" },
-      { asset:"DXY", support:"103.2", resistance:"106.0", bias:"neutral", biasLabel:"Neutral" },
-      { asset:"10Y UST", support:"4.28%", resistance:"4.70%", bias:"bear", biasLabel:"Bearish" },
-    ];
-    const levelsTable = document.getElementById("levels-table");
-    if(levelsTable){
-      levelsData.forEach(row=>{
-        const color = row.bias==="bull"?"var(--green)":row.bias==="bear"?"var(--red)":"#facc15";
-        levelsTable.innerHTML += `
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);transition:.15s;" onmouseover="this.style.background='rgba(14,22,48,0.98)'" onmouseout="this.style.background=''">
-            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--text);">${row.asset}</div>
-            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);">${row.support}</div>
-            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);">${row.resistance}</div>
-            <div style="padding:12px 14px;font-size:11px;color:${color};letter-spacing:.10em;text-transform:uppercase;">${row.biasLabel}</div>
-          </div>`;
+  // auth
+  let n=0;
+  const poll=setInterval(()=>{
+    n++;
+    if(window.supabase&&window.supabase.createClient){
+      clearInterval(poll);
+      sb=window.supabase.createClient(SB_URL,SB_KEY);
+      sb.auth.getUser().then(async({data:{user}})=>{
+        if(!user){document.getElementById("gate").classList.add("show");return;}
+        const{data}=await sb.from("profiles").select("is_premium,premium_until").eq("id",user.id).maybeSingle();
+        let ok=false;
+        if(data) ok=data.premium_until?data.is_premium&&new Date(data.premium_until)>new Date():!!data.is_premium;
+        if(!ok){document.getElementById("gate").classList.add("show");return;}
+        const em=document.getElementById("tb-email");
+        if(em) em.textContent=user.email;
       });
     }
+    if(n>=80){clearInterval(poll);document.getElementById("gate").classList.add("show");}
+  },100);
 
-    // ── Auth runs in parallel with vault animation
-    // Vault ALWAYS plays fully — auth result is queued and fires only after vault is ready
-
-    const VAULT_MIN_MS = 3200; // minimum time vault is on screen before anything can happen
-    const vaultStartTime = Date.now();
-
-    // Holds the resolved auth result until vault sequence is ready
-    let authResult = null; // { granted: bool, email: string }
-    let vaultSequenceDone = false;
-
-    function applyAuthResult(){
-      // Only fires once BOTH vault sequence is done AND auth has resolved
-      if(!authResult || !vaultSequenceDone) return;
-      if(authResult.granted){
-        showVaultGranted(authResult.email);
-      } else {
-        showAccessGate();
-      }
-    }
-
-    // Start vault sequence immediately — show text + dots right away
-    if(loadingScreen) loadingScreen.classList.add("gone");
-    setTimeout(()=>{
-      if(vaultText) vaultText.classList.add("show");
-      startDots();
-    }, 400);
-
-    // After minimum vault time, mark sequence as done
-    setTimeout(()=>{
-      vaultSequenceDone = true;
-      applyAuthResult();
-    }, VAULT_MIN_MS);
-
-    // Auth check runs immediately in background
-    let attempts = 0;
-    const check = setInterval(()=>{
-      attempts++;
-      if(window.supabase && window.supabase.createClient){
-        clearInterval(check);
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        supabase.auth.getUser().then(async({ data:{ user }})=>{
-          if(!user){
-            authResult = { granted: false, email: "" };
-            applyAuthResult();
-            return;
-          }
-          const { data } = await supabase.from("profiles")
-            .select("is_premium, premium_until")
-            .eq("id", user.id)
-            .maybeSingle();
-
-          let isPremium = false;
-          if(data){
-            if(data.premium_until){
-              isPremium = data.is_premium && new Date(data.premium_until) > new Date();
-            } else {
-              isPremium = !!data.is_premium;
-            }
-          }
-
-          currentUser = user;
-          authResult = { granted: isPremium, email: user.email };
-          applyAuthResult();
-        });
-
-      }
-      if(attempts >= 80){
-        clearInterval(check);
-        if(!authResult){
-          authResult = { granted: false, email: "" };
-          applyAuthResult();
-        }
-      }
-    }, 100);
-
-    // ── Sign out
-    document.getElementById("nav-signout").addEventListener("click", async()=>{
-      if(supabase) await supabase.auth.signOut();
-      window.location.href = "index.html";
-    });
-
-  })();
-  </script>
-
+  document.getElementById("tb-so").addEventListener("click",async()=>{
+    if(sb) await sb.auth.signOut();
+    window.location.href="index.html";
+  });
+})();
+</script>
 </body>
 </html>
