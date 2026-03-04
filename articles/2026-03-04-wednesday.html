@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Pulls Back, Jobs Surprise, Chips on Deck — March 4 | FinTrend News</title>
+  <meta name="description" content="Markets bounce Wednesday as oil retreats from its Iran-panic spike, ADP drops a 63K beat, and all eyes lock on Broadcom after the bell. Momentum check, March 4.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --gold:       #f4c15d;
+      --gold-dim:   #c9943a;
+      --bg:         #0d0d0f;
+      --surface:    #141418;
+      --surface-2:  #1c1c22;
+      --surface-3:  #242430;
+      --border:     #2a2a36;
+      --text:       #e8e6e0;
+      --text-muted: #8a8898;
+      --green:      #4caf7d;
+      --red:        #e05c5c;
+      --blue:       #5b8dee;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOPBAR ─────────────────────────────── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .topbar-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+    .topbar-nav {
+      display: flex;
+      gap: 20px;
+    }
+    .topbar-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .topbar-nav a:hover { color: var(--gold); }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 60px;
+      background: var(--gold-dim);
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #f0ede6;
+      margin-bottom: 24px;
+    }
+    .hero-summary {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+      border-left: 3px solid var(--gold);
+      padding-left: 18px;
+      margin-bottom: 28px;
+    }
+    .byline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      display: flex;
+      gap: 20px;
+    }
+    .byline span { color: var(--text); font-weight: 500; }
+
+    /* ── SNAPSHOT STRIP ─────────────────────── */
+    .snapshot-strip {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px;
+    }
+    .snap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+    .snap-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .snap-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .snap-change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--text-muted); }
+
+    /* ── BODY ───────────────────────────────── */
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── SECTION ────────────────────────────── */
+    .section {
+      padding: 44px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #f0ede6;
+      margin-bottom: 18px;
+    }
+    .section p {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── CONFIRMATION SIGNALS ───────────────── */
+    .signals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .signal-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 18px;
+    }
+    .signal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .signal-reading {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .signal-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── BIAS BLOCK ─────────────────────────── */
+    .bias-block {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+    .bias-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .bias-verdict {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .bias-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* ── KEY LEVELS ─────────────────────────── */
+    .levels-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .levels-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--surface-3);
+      color: var(--text-muted);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .levels-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .levels-table tr:last-child td { border-bottom: none; }
+    .levels-table .support  { color: var(--green); font-weight: 700; }
+    .levels-table .resist   { color: var(--red);   font-weight: 700; }
+    .levels-table .index-name { color: var(--gold); font-weight: 700; }
+
+    /* ── CATALYST & RISK ────────────────────── */
+    .catalyst-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 580px) { .catalyst-grid { grid-template-columns: 1fr; } }
+
+    .catalyst-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+    }
+    .catalyst-card .c-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .catalyst-card .c-event {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .catalyst-card .c-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── RISK SCENARIOS ─────────────────────── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 580px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+    .scenario-card {
+      border-radius: 4px;
+      padding: 20px;
+      border: 1px solid;
+    }
+    .scenario-card.bull {
+      background: rgba(76,175,125,0.06);
+      border-color: rgba(76,175,125,0.25);
+    }
+    .scenario-card.bear {
+      background: rgba(224,92,92,0.06);
+      border-color: rgba(224,92,92,0.25);
+    }
+    .scenario-card .s-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scenario-card.bull .s-label { color: var(--green); }
+    .scenario-card.bear .s-label { color: var(--red); }
+    .scenario-card .s-title {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .scenario-card .s-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── CLOSING VERDICT ────────────────────── */
+    .verdict-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 32px 36px;
+      margin-top: 20px;
+    }
+    .verdict-block .v-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .verdict-block p {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .verdict-block p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 32px; }
+      .topbar-meta { display: none; }
+      .article-body { padding: 0 20px 60px; }
+      .snapshot-strip { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a class="topbar-brand" href="../index.html">FinTrend News</a>
+  <span class="topbar-meta">Wednesday · March 4, 2026</span>
+  <div class="topbar-nav">
+    <a href="../archive.html">Archive</a>
+    <a href="../premium.html">Premium</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Midweek Momentum Check</div>
+  <h1>Oil Pulls Back, Jobs Surprise, Chips on Deck</h1>
+  <p class="hero-summary">
+    Markets found traction Wednesday as crude reversed its geopolitical spike, ADP delivered a stronger-than-expected 63K print, and the week's biggest catalyst — Broadcom earnings — looms after the bell. The panic trade is cooling. What comes next depends on whether the chip sector can hold it together tonight.
+  </p>
+  <div class="byline">
+    By <span>Arshia Morshedian</span>&nbsp;·&nbsp;FinTrend News&nbsp;·&nbsp;<span>March 4, 2026</span>
+  </div>
+</header>
+
+<!-- MARKET SNAPSHOT STRIP -->
+<div class="snapshot-strip">
+  <div class="snap-card">
+    <div class="snap-label">S&P 500</div>
+    <div class="snap-value">6,884</div>
+    <div class="snap-change up">+1.0% session</div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-label">Nasdaq Comp.</div>
+    <div class="snap-value">22,745</div>
+    <div class="snap-change up">+1.6% session</div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-label">Dow Jones</div>
+    <div class="snap-value">48,809</div>
+    <div class="snap-change up">+0.6% session</div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-label">10-Yr Yield</div>
+    <div class="snap-value">4.06%</div>
+    <div class="snap-change flat">Holding steady</div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-label">WTI Crude</div>
+    <div class="snap-value">~$72</div>
+    <div class="snap-change down">Pulling back</div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-label">VIX</div>
+    <div class="snap-value">23.57</div>
+    <div class="snap-change flat">Elevated, easing</div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- 1. DRIVER -->
+  <div class="section">
+    <div class="section-label">§ 01 — Primary Driver</div>
+    <h2>Three Forces Running Simultaneously — Oil, Labor, and Silicon</h2>
+    <p>
+      Tuesday closed ugly. The S&P 500 dropped nearly a percent, the Nasdaq gave up over one, and at their worst the indices were down two-and-a-half percent intraday as Iran conflict headlines kept traders defensive. Wednesday is a different conversation — not because the Middle East got resolved, but because the market is repricing the tail risk downward.
+    </p>
+    <p>
+      The core driver today is a three-part stack. First: crude oil reversed. Brent futures traded near flat after several days of geopolitical-driven spikes following Operation Epic Fury. Treasury Secretary Bessent signaled that measures to ease fuel prices are coming, and reports surfaced of indirect Iranian outreach to the U.S. — enough to take the fear trade off the table for now. A 5.6 million barrel inventory build compounded the oil story, raising supply-side questions that offset the conflict premium.
+    </p>
+    <p>
+      Second: ADP printed 63,000 private sector jobs for February — beating the 50,000 consensus by a wide margin and rebounding sharply from January's downwardly revised 11,000. Hiring was not broad. Education and health services carried 58,000 of those jobs. But markets didn't need a broad print. They needed evidence that the labor market hadn't collapsed under the weight of AI displacement and immigration policy. They got it.
+    </p>
+    <p>
+      Third: Broadcom reports Q1 FY2026 after the bell tonight. AVGO is the anchor catalyst for chipmakers and AI infrastructure names this week. The entire semiconductor tape — Micron, AMD, Nvidia, and AVGO itself — is trading around what Hock Tan says on that call at 5 PM ET. The session is a setup, not a resolution.
+    </p>
+  </div>
+
+  <!-- 2. CONFIRMATION -->
+  <div class="section">
+    <div class="section-label">§ 02 — Confirmation Signals</div>
+    <h2>Chips, Credit, and Crude All Pointing the Same Direction</h2>
+    <p>
+      The signals today are coherent. Risk appetite is recovering in a measured way — not euphoric, but consistent with a market that's done overreacting to geopolitical shock.
+    </p>
+
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="signal-name">Semis</div>
+        <div class="signal-reading up">AMD +6%, MU +6%</div>
+        <div class="signal-note">Chips leading — bounce off two-day selloff. AVGO +2% pre-earnings.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-name">10-Yr Yield</div>
+        <div class="signal-reading flat">4.06% — Stable</div>
+        <div class="signal-note">Not spiking on the ADP beat. Bond market not panicking about labor strength.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-name">WTI Crude</div>
+        <div class="signal-reading flat">~$72 — Flatline</div>
+        <div class="signal-note">Inflationary pressure easing. Inventory build adds bearish supply argument.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-name">Breadth</div>
+        <div class="signal-reading up">Tech & Industrials</div>
+        <div class="signal-note">Tech and industrials leading. Energy giving back some war premium gains.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-name">VIX</div>
+        <div class="signal-reading flat">23.57 — Off highs</div>
+        <div class="signal-note">Still elevated. Fear not gone. But tail risk being repriced lower.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-name">Dow Inc. (DOW)</div>
+        <div class="signal-reading up">+4% — KeyBanc OW</div>
+        <div class="signal-note">Upgrade on oil-price ethylene thesis. Industrials benefiting from energy story.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MARKET BIAS -->
+  <div class="section">
+    <div class="section-label">§ 03 — Market Bias</div>
+    <h2>Cautious Rotation Back Into Risk</h2>
+    <div class="bias-block">
+      <div class="bias-label">Current Posture</div>
+      <div class="bias-verdict">Risk-On — Conditional</div>
+      <div class="bias-body">
+        The market is staging a bounce, not a breakout. The S&P has reclaimed the green for the week but sits in the 6,860–6,900 zone that has been the highest-volume trading range since the conflict began. The POC here acts as a magnet — price swings through it without conviction. Technicals cap the upside at 7,000, which remains unbroken. Until AVGO reports, the bias is risk-on in the near term, with significant event risk attached to tonight's print. A strong Broadcom print with raised guidance could push the tape meaningfully higher. A cautious print — especially around margins or AI visibility — brings tech back under pressure fast.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. KEY LEVELS -->
+  <div class="section">
+    <div class="section-label">§ 04 — Key Levels</div>
+    <h2>Price Structure After Two Days of Geopolitical Noise</h2>
+    <p>These are the levels that matter going into and coming out of the Broadcom event tonight. Respect the range until something forces a break.</p>
+
+    <table class="levels-table">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Support</th>
+          <th>Resistance</th>
+          <th>Context</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="index-name">SPX</td>
+          <td class="support">6,750 – 6,730</td>
+          <td class="resist">7,000</td>
+          <td>E-mini hit downside target at 6,750 Tuesday. 7,000 remains unbroken ATH ceiling.</td>
+        </tr>
+        <tr>
+          <td class="index-name">NDX</td>
+          <td class="support">22,300</td>
+          <td class="resist">23,500</td>
+          <td>Nasdaq running on chip recovery. AVGO earnings could reset both these levels by tomorrow.</td>
+        </tr>
+        <tr>
+          <td class="index-name">AVGO</td>
+          <td class="support">$295</td>
+          <td class="resist">$334</td>
+          <td>$306 midpoint in descending channel. Bull case targets $334. Bear break below $281.</td>
+        </tr>
+        <tr>
+          <td class="index-name">WTI</td>
+          <td class="support">$68</td>
+          <td class="resist">$80</td>
+          <td>Conflict premium unwinding. Inventory build gives bears ammo. Watch Hormuz headlines.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. CATALYST WATCH -->
+  <div class="section">
+    <div class="section-label">§ 05 — Catalyst Watch</div>
+    <h2>Everything Tonight Is About Broadcom</h2>
+    <p>
+      The macro calendar delivered today. ADP cleared the bar, the ISM Non-Manufacturing PMI was expected near 53.5 — services expansion. The Beige Book drops this afternoon, providing qualitative color on regional economic conditions. All of it is secondary to what happens at 5 PM ET. 
+    </p>
+
+    <div class="catalyst-grid">
+      <div class="catalyst-card">
+        <div class="c-label">After Bell — March 4</div>
+        <div class="c-event">Broadcom Q1 FY2026 Earnings</div>
+        <div class="c-note">Consensus: $19.26B revenue, $2.03 EPS. AI revenue watch: CEO guided $8.2B — if it doubles year-over-year it's a catalyst. If margins compress and guidance is vague, expect a sharp reversal.</div>
+      </div>
+      <div class="catalyst-card">
+        <div class="c-label">Friday — March 6</div>
+        <div class="c-event">February Nonfarm Payrolls</div>
+        <div class="c-note">Wall Street expects +50K. ADP's 63K beat sets a constructive tone going in. But ADP and NFP diverged badly in January — don't over-anchor to today's print.</div>
+      </div>
+      <div class="catalyst-card">
+        <div class="c-label">Thursday — March 5</div>
+        <div class="c-event">Costco + Marvell Earnings</div>
+        <div class="c-note">COST gives a consumer spending read. MRVL is another data center / networking chip read — will trade in sympathy with AVGO's call tonight.</div>
+      </div>
+      <div class="catalyst-card">
+        <div class="c-label">Ongoing</div>
+        <div class="c-event">Iran Conflict Headlines</div>
+        <div class="c-note">Market is treating reported Iranian diplomatic outreach as de-escalation. Any renewed Hormuz disruption or escalation reverses today's oil calm fast. This risk doesn't expire.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RISK SCENARIOS -->
+  <div class="section">
+    <div class="section-label">§ 06 — Risk Scenarios</div>
+    <h2>Two Paths Out of Tonight's Print</h2>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bull">
+        <div class="s-label">Bull Case</div>
+        <div class="s-title">AVGO Raises, AI Margins Hold</div>
+        <div class="s-body">
+          Broadcom reports $19.3B+ revenue with AI segment at or above $8.2B. Hock Tan provides clear demand visibility and raises the forward AI revenue figure. Infrastructure software margins stay above 78%. Market rips — AVGO tests $334, semis broadly follow, S&P pushes back toward 6,950+.
+        </div>
+      </div>
+      <div class="scenario-card bear">
+        <div class="s-label">Bear Case</div>
+        <div class="s-title">Margin Compression, Vague Guidance</div>
+        <div class="s-body">
+          AI revenue meets but doesn't beat. Gross margins disappoint as custom XPU mix weighs. Tan stays cautious on visibility — "demand is hard to pinpoint" again. Options are pricing an 8.5% weekly move. The downside case takes AVGO toward $281, drags Nvidia and AMD lower, and re-pressures the Nasdaq back toward 22,300.
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px; font-style: italic; color: var(--text-muted); font-size: 0.92rem;">
+      The macro risk to both scenarios remains the same: a Strait of Hormuz headline that spikes oil above $80 rewrites the inflation calculus and sends yields higher — compressing multiples across the board regardless of what Broadcom does.
+    </p>
+  </div>
+
+  <!-- 7. CLOSING VERDICT -->
+  <div class="section">
+    <div class="section-label">§ 07 — Closing Note</div>
+    <h2>Wednesday Is a Setup Day</h2>
+    <div class="verdict-block">
+      <div class="v-label">Arshia Morshedian — FinTrend News</div>
+      <p>
+        Today's session is doing what a Wednesday should: clearing the noise, establishing a cleaner price structure, and funneling attention toward the thing that actually matters. The ADP beat was real but narrow — 58,000 of 63,000 jobs came from one sector. Labor is not collapsing, but it is also not broad. The bond market recognized that — yields didn't spike. The oil reversal is a relief trade, not a resolution.
+      </p>
+      <p>
+        What you're watching tonight is Broadcom's ability to tell a coherent AI story. The stock is down 9% year-to-date trading at roughly $314. The bar isn't impossibly high. But the margin compression question is real — custom XPUs carry lower gross margins than infrastructure software, and if AI mix shifts further in that direction, the profitability story gets complicated. Hock Tan needs to either raise guidance or provide clear demand visibility. Anything short of that gets sold.
+      </p>
+      <p>
+        For now: momentum favors the bulls intraday, the 7,000 ceiling on the S&P remains intact, and Friday's jobs report is the next macro gate. Watch the AVGO call closely — whatever tone Tan sets on AI capex will matter more to the tape than any geopolitical update between now and the weekend.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>
+    FinTrend News · Educational market analysis only · Not investment advice<br />
+    <a href="../index.html">Home</a> &nbsp;·&nbsp;
+    <a href="../archive.html">Archive</a> &nbsp;·&nbsp;
+    <a href="../premium.html">Premium</a>
+  </p>
+  <p style="margin-top:12px;">
+    © 2026 FinTrend News. All rights reserved.
+  </p>
+</footer>
+
+</body>
+</html>
