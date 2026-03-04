@@ -5,45 +5,46 @@
   <title>Archive Calendar · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KSK5YVPJBR');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
 
   <style>
     :root {
       --bg: #050816;
-      --bg-elevated: #0b1020;
+      --surface: rgba(10,16,36,0.92);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.18);
+      --border-gold: rgba(244,193,93,0.30);
       --accent: #f4c15d;
-      --accent-soft: rgba(244, 193, 93, 0.12);
-      --text-main: #f9fafb;
+      --accent-soft: rgba(244,193,93,0.12);
       --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.35);
+      --border-subtle: rgba(148,163,184,0.35);
       --danger: #f97373;
       --success: #4ade80;
       --radius-lg: 16px;
       --radius-xl: 22px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.8);
       --max-width: 980px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
-      color: var(--text-main);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
       line-height: 1.7;
       min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    a { color: inherit; text-decoration: none; }
 
     .page {
       max-width: var(--max-width);
@@ -54,31 +55,33 @@
     .back-link {
       font-size: 12px;
       color: var(--text-muted);
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 18px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      transition: .15s;
     }
-    .back-link:hover { color: var(--accent); }
+    .back-link:hover { color: var(--accent); border-color: var(--border-gold); }
 
     .title-block { margin-bottom: 12px; }
 
     .kicker {
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-muted);
       margin-bottom: 4px;
+      font-family: "JetBrains Mono", monospace;
     }
 
     h1 {
-      font-family: "Playfair Display", "Times New Roman", serif;
+      font-family: "Playfair Display", serif;
       font-size: 28px;
       line-height: 1.2;
       margin-bottom: 6px;
     }
-
     h1 span {
       background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
       -webkit-background-clip: text;
@@ -91,32 +94,29 @@
       max-width: 640px;
     }
 
+    /* ── MONTH NAV ── */
     .month-nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 10px;
       margin: 14px 0 10px;
     }
     .month-nav-link {
       font-size: 12px;
-      text-decoration: none;
       color: var(--text-muted);
       padding: 6px 12px;
-      border-radius: 999px;
       border: 1px solid var(--border-subtle);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15,23,42,0.9);
       transition: 0.18s ease;
       cursor: pointer;
       user-select: none;
+      font-family: inherit;
     }
     .month-nav-link:hover {
       border-color: var(--accent);
       color: var(--accent);
       background: var(--accent-soft);
-      transform: translateY(-1px);
     }
-    .month-nav-link:active { transform: translateY(0); }
 
     .month-label {
       font-size: 11px;
@@ -126,6 +126,7 @@
       text-align: center;
       flex: 1;
       user-select: none;
+      font-family: "JetBrains Mono", monospace;
     }
 
     .month-dots {
@@ -150,9 +151,10 @@
       box-shadow: 0 0 0 4px rgba(244,193,93,0.12);
     }
 
+    /* ── CALENDAR ── */
     .calendar-wrapper {
       margin-top: 10px;
-      background: rgba(15, 23, 42, 0.96);
+      background: rgba(15,23,42,0.96);
       border-radius: var(--radius-xl);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
@@ -160,11 +162,7 @@
       overflow: hidden;
     }
 
-    .month-wheel {
-      position: relative;
-      overflow: hidden;
-      touch-action: pan-y;
-    }
+    .month-wheel { position: relative; overflow: hidden; touch-action: pan-y; }
     .month-track {
       display: flex;
       width: 100%;
@@ -172,10 +170,7 @@
       transition: transform 0.35s ease;
       will-change: transform;
     }
-    .month-slide {
-      min-width: 100%;
-      padding: 0;
-    }
+    .month-slide { min-width: 100%; padding: 0; }
 
     .slide-kicker {
       font-size: 11px;
@@ -184,24 +179,21 @@
       color: var(--text-muted);
       margin-bottom: 10px;
       padding: 0 2px;
+      font-family: "JetBrains Mono", monospace;
     }
-    .slide-kicker strong {
-      color: #e5e7eb;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-    }
+    .slide-kicker strong { color: #e5e7eb; letter-spacing: 0.12em; font-weight: 600; }
 
     .calendar-header {
       display: grid;
       grid-template-columns: 0.9fr repeat(4, 1fr);
       gap: 8px;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       color: var(--text-muted);
-      margin-bottom: 10px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(148,163,184,0.15);
+      padding-bottom: 6px;
+      margin-bottom: 6px;
     }
     .calendar-header div { text-align: center; }
     .calendar-header .week-col-label { text-align: left; }
@@ -215,15 +207,17 @@
     }
 
     .week-label {
-      font-size: 12px;
+      font-size: 10px;
+      letter-spacing: .08em;
       color: var(--text-muted);
       padding-top: 4px;
+      font-family: "JetBrains Mono", monospace;
     }
 
     .day-cell {
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(31,41,55,0.95);
+      background: rgba(15,23,42,0.94);
       padding: 8px 9px;
       font-size: 12px;
       display: flex;
@@ -234,10 +228,9 @@
     }
     .day-cell.has-note:hover {
       border-color: var(--accent);
-      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.96));
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15,23,42,0.96));
       transform: translateY(-1px);
     }
-
     .day-cell.latest {
       border-color: rgba(244,193,93,0.45);
       background: radial-gradient(circle at top left, rgba(244,193,93,0.10), rgba(15,23,42,0.96));
@@ -251,53 +244,12 @@
       color: var(--text-muted);
       margin-bottom: 2px;
     }
-
     .day-date {
       font-size: 11px;
       color: var(--text-muted);
       margin-bottom: 4px;
+      font-family: "JetBrains Mono", monospace;
     }
-
-    .day-link {
-      font-size: 12px;
-      color: #e5e7eb;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .day-link:hover { text-decoration: underline; }
-
-    .day-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 3px;
-    }
-
-    .empty-note {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-top: 8px;
-    }
-
-    .tag-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 1px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-
-    .tag-monday    { border-color: var(--success); color: var(--success); }
-    .tag-tuesday   { border-color: var(--success); color: var(--success); }
-    .tag-wednesday { border-color: #60a5fa; color: #60a5fa; }
-    .tag-friday    { border-color: var(--danger); color: var(--danger); }
-    .tag-sunday    { border-color: var(--accent); color: var(--accent); }
 
     .new-badge {
       display: inline-block;
@@ -314,19 +266,56 @@
       vertical-align: middle;
     }
 
-    /* ── MOBILE / IPHONE ─────────────────────────────────────── */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .tag-monday    { border-color: var(--success); color: var(--success); }
+    .tag-wednesday { border-color: #60a5fa; color: #60a5fa; }
+    .tag-friday    { border-color: var(--danger); color: var(--danger); }
+    .tag-sunday    { border-color: var(--accent); color: var(--accent); }
+
+    .day-link {
+      font-size: 12px;
+      color: #e5e7eb;
+      font-weight: 500;
+      line-height: 1.35;
+      display: block;
+      margin-top: 2px;
+      transition: color .14s;
+    }
+    .day-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    .day-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+    .empty-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 8px;
+      opacity: .45;
+    }
+
+    /* ── MOBILE ── */
     @media (max-width: 720px) {
       .calendar-header { display: none; }
-      .calendar-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
+      .calendar-row { grid-template-columns: 1fr; gap: 6px; }
       .week-label {
-        font-weight: 600;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--accent);
+        font-weight: 600; font-size: 11px; text-transform: uppercase;
+        letter-spacing: 0.12em; color: var(--accent);
         padding: 8px 0 2px;
         border-top: 1px solid rgba(148,163,184,0.15);
         margin-top: 4px;
@@ -340,34 +329,14 @@
         align-items: start;
         padding: 10px 11px;
       }
-      .day-cell > div:first-child {
-        display: contents;
-      }
-      .day-cell .day-label,
-      .day-cell .day-date {
-        grid-column: 1;
-      }
-      .day-cell .day-label {
-        font-size: 9px;
-        white-space: nowrap;
-        margin-bottom: 1px;
-      }
-      .day-cell .day-date {
-        font-size: 13px;
-        font-weight: 600;
-        color: #e5e7eb;
-        margin-bottom: 0;
-      }
+      .day-cell > div:first-child { display: contents; }
+      .day-cell .day-label, .day-cell .day-date { grid-column: 1; }
+      .day-cell .day-label { font-size: 9px; white-space: nowrap; margin-bottom: 1px; }
+      .day-cell .day-date { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 0; }
       .tag-pill { grid-column: 2; margin-bottom: 2px; }
       .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
       .day-meta { grid-column: 2; font-size: 11px; }
       .empty-note { grid-column: 2; font-size: 11px; margin-top: 0; }
-      .new-badge { font-size: 7px; padding: 1px 5px; }
-    }
-
-    @media (max-width: 400px) {
-      .day-cell { padding: 9px 10px; }
-      .day-link { font-size: 12px; }
     }
 
     .disclaimer {
@@ -375,6 +344,8 @@
       font-size: 11px;
       color: var(--text-muted);
       max-width: 640px;
+      opacity: .6;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -404,16 +375,13 @@
       <div class="month-wheel" id="month-wheel">
         <div class="month-track" id="month-track">
 
-          <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- MARCH 2026 — newest, shown first                       -->
-          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- ═══════════════ MARCH 2026 ═══════════════ -->
           <section class="month-slide" data-month="March 2026">
             <div class="slide-kicker"><strong>March 2026</strong></div>
             <div class="calendar-header">
               <div class="week-col-label">Week</div>
               <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Mar 2</div>
               <div class="day-cell has-note latest">
@@ -425,13 +393,14 @@
                 </div>
                 <div class="day-meta">U.S.-Israel strikes on Iran; Brent +8%; defense bid; NFP Friday is the anchor event.</div>
               </div>
-              <div class="day-cell">
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Wednesday</div>
                   <div class="day-date">Mar 4</div>
                   <span class="tag-pill tag-wednesday">Momentum</span>
+                  <a href="articles/2026-03-04-wednesday.html" class="day-link">Wednesday Momentum Check — March 4</a>
                 </div>
-                <div class="empty-note">Not yet published.</div>
+                <div class="day-meta">Midweek tape check; tariff escalation + jobs data reaction; sector rotation update.</div>
               </div>
               <div class="day-cell">
                 <div>
@@ -452,16 +421,13 @@
             </div>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- FEBRUARY 2026                                          -->
-          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- ═══════════════ FEBRUARY 2026 ═══════════════ -->
           <section class="month-slide" data-month="February 2026">
             <div class="slide-kicker"><strong>February 2026</strong></div>
             <div class="calendar-header">
               <div class="week-col-label">Week</div>
               <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Feb 23</div>
               <div class="day-cell has-note">
@@ -501,7 +467,6 @@
                 <div class="day-meta">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Feb 16</div>
               <div class="day-cell has-note">
@@ -541,7 +506,6 @@
                 <div class="day-meta">SCOTUS killed IEEPA; Trump pivoted to Section 122 at 15%; GDP 1.4%; PCE hot; Nvidia Wednesday is the referendum.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Feb 9</div>
               <div class="day-cell has-note">
@@ -581,7 +545,6 @@
                 <div class="day-meta">Week recap: rate-cut repricing, defensive leadership, gold up, oil heavy.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Feb 1</div>
               <div class="day-cell has-note">
@@ -623,16 +586,13 @@
             </div>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- JANUARY 2026                                           -->
-          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- ═══════════════ JANUARY 2026 ═══════════════ -->
           <section class="month-slide" data-month="January 2026">
             <div class="slide-kicker"><strong>January 2026</strong></div>
             <div class="calendar-header">
               <div class="week-col-label">Week</div>
               <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Jan 26</div>
               <div class="day-cell has-note">
@@ -672,7 +632,6 @@
                 <div class="day-meta">Macro framing into early-February positioning.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Jan 19</div>
               <div class="day-cell has-note">
@@ -712,7 +671,6 @@
                 <div class="day-meta">Macro framing into a Fed + peak earnings week: reactions, not predictions.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Jan 12</div>
               <div class="day-cell has-note">
@@ -752,7 +710,6 @@
                 <div class="day-meta">Macro + earnings overlap: watching the variables that move the tape.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Jan 5</div>
               <div class="day-cell has-note">
@@ -794,16 +751,13 @@
             </div>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- DECEMBER 2025                                          -->
-          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- ═══════════════ DECEMBER 2025 ═══════════════ -->
           <section class="month-slide" data-month="December 2025">
             <div class="slide-kicker"><strong>December 2025</strong></div>
             <div class="calendar-header">
               <div class="week-col-label">Week</div>
               <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Dec 29</div>
               <div class="day-cell has-note">
@@ -843,7 +797,6 @@
                 <div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Dec 22</div>
               <div class="day-cell has-note">
@@ -883,7 +836,6 @@
                 <div class="day-meta">Big-picture themes &amp; positioning for next week.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Dec 15</div>
               <div class="day-cell has-note">
@@ -923,7 +875,6 @@
                 <div class="day-meta">Sunday macro note &amp; positioning for next week.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Dec 8</div>
               <div class="day-cell has-note">
@@ -963,7 +914,6 @@
                 <div class="day-meta">Big-picture themes &amp; positioning for next week.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Dec 1</div>
               <div class="day-cell has-note">
@@ -1005,16 +955,13 @@
             </div>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════ -->
-          <!-- NOVEMBER 2025 — oldest, shown last                     -->
-          <!-- ═══════════════════════════════════════════════════════ -->
+          <!-- ═══════════════ NOVEMBER 2025 ═══════════════ -->
           <section class="month-slide" data-month="November 2025">
             <div class="slide-kicker"><strong>November 2025</strong></div>
             <div class="calendar-header">
               <div class="week-col-label">Week</div>
               <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Nov 24</div>
               <div class="day-cell has-note">
@@ -1054,7 +1001,6 @@
                 <div class="day-meta">Month-end macro wrap and positioning into December.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Nov 16</div>
               <div class="day-cell has-note">
@@ -1094,7 +1040,6 @@
                 <div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div>
               </div>
             </div>
-
             <div class="calendar-row">
               <div class="week-label">Week of Nov 10</div>
               <div class="day-cell has-note">
@@ -1147,66 +1092,66 @@
   </div><!-- /page -->
 
   <script>
-    (function(){
-      "use strict";
+  (function(){
+    "use strict";
 
-      const track    = document.getElementById("month-track");
-      const wheel    = document.getElementById("month-wheel");
-      const prevBtn  = document.getElementById("month-prev");
-      const nextBtn  = document.getElementById("month-next");
-      const label    = document.getElementById("month-label");
-      const dotsWrap = document.getElementById("month-dots");
+    const track    = document.getElementById("month-track");
+    const wheel    = document.getElementById("month-wheel");
+    const prevBtn  = document.getElementById("month-prev");
+    const nextBtn  = document.getElementById("month-next");
+    const label    = document.getElementById("month-label");
+    const dotsWrap = document.getElementById("month-dots");
 
-      const slides = Array.from(document.querySelectorAll(".month-slide"));
-      const months = slides.map(s => s.getAttribute("data-month") || "Month");
-      let idx = 0;
+    const slides = Array.from(document.querySelectorAll(".month-slide"));
+    const months = slides.map(s => s.getAttribute("data-month") || "Month");
+    let idx = 0;
 
-      function renderDots() {
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = "";
-        months.forEach((m, i) => {
-          const b = document.createElement("button");
-          b.type = "button";
-          b.className = "month-dot";
-          b.setAttribute("aria-label", "Go to " + m);
-          b.addEventListener("click", () => setMonth(i));
-          dotsWrap.appendChild(b);
-        });
-      }
-
-      function setMonth(i) {
-        idx = (i + slides.length) % slides.length;
-        if (track)    track.style.transform = "translateX(" + (-idx * 100) + "%)";
-        if (label)    label.textContent = months[idx];
-        if (dotsWrap) Array.from(dotsWrap.children).forEach((d, di) => d.classList.toggle("active", di === idx));
-      }
-
-      if (prevBtn) prevBtn.addEventListener("click", () => setMonth(idx - 1));
-      if (nextBtn) nextBtn.addEventListener("click", () => setMonth(idx + 1));
-
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft")  setMonth(idx - 1);
-        if (e.key === "ArrowRight") setMonth(idx + 1);
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      months.forEach((m, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "month-dot";
+        b.setAttribute("aria-label", "Go to " + m);
+        b.addEventListener("click", () => setMonth(i));
+        dotsWrap.appendChild(b);
       });
+    }
 
-      (function initSwipe() {
-        if (!wheel) return;
-        let startX = 0, startY = 0, tracking = false;
-        wheel.addEventListener("pointerdown",   (e) => { tracking = true; startX = e.clientX; startY = e.clientY; });
-        wheel.addEventListener("pointerup",     (e) => {
-          if (!tracking) return;
-          tracking = false;
-          const dx = e.clientX - startX;
-          const dy = e.clientY - startY;
-          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-          setMonth(dx < 0 ? idx + 1 : idx - 1);
-        });
-        wheel.addEventListener("pointercancel", () => { tracking = false; });
-      })();
+    function setMonth(i) {
+      idx = ((i % slides.length) + slides.length) % slides.length;
+      if (track)    track.style.transform = "translateX(" + (-idx * 100) + "%)";
+      if (label)    label.textContent = months[idx];
+      if (dotsWrap) Array.from(dotsWrap.children).forEach((d, di) => d.classList.toggle("active", di === idx));
+    }
 
-      renderDots();
-      setMonth(0); // Open on March 2026 (newest) by default
+    if (prevBtn) prevBtn.addEventListener("click", () => setMonth(idx - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => setMonth(idx + 1));
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft")  setMonth(idx - 1);
+      if (e.key === "ArrowRight") setMonth(idx + 1);
+    });
+
+    (function initSwipe() {
+      if (!wheel) return;
+      let startX = 0, startY = 0, tracking = false;
+      wheel.addEventListener("pointerdown",   (e) => { tracking = true; startX = e.clientX; startY = e.clientY; });
+      wheel.addEventListener("pointerup",     (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        setMonth(dx < 0 ? idx + 1 : idx - 1);
+      });
+      wheel.addEventListener("pointercancel", () => { tracking = false; });
     })();
+
+    renderDots();
+    setMonth(0); // Open on March 2026 (newest) by default
+  })();
   </script>
 
 </body>
