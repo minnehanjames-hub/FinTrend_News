@@ -3,2076 +3,1757 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FinTrend Premium</title>
+  <title>Premium · FinTrend News</title>
 
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KSK5YVPJBR');
-  </script>
-
-  <!-- Supabase -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <style>
     :root {
-      --bg: #05080f;
-      --bg2: #0a0f1e;
-      --panel: rgba(10,15,30,0.85);
-      --panel2: rgba(15,22,40,0.9);
-      --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.13);
-      --text: #f0f2f8;
-      --muted: #6b7a99;
-      --muted2: #8892aa;
-      --gold: #c9a84c;
-      --gold2: #e8c878;
-      --gold-dim: rgba(201,168,76,0.1);
-      --gold-glow: rgba(201,168,76,0.18);
-      --red: #e05252;
-      --green: #4caf8a;
-      --blue: #5b8dee;
-      --radius: 16px;
-      --radius-sm: 10px;
-      --shadow: 0 20px 60px rgba(0,0,0,0.5);
-      --shadow-sm: 0 4px 20px rgba(0,0,0,0.3);
+      --bg: #050816;
+      --surface: rgba(10,16,36,0.92);
+      --surface2: rgba(2,6,23,0.60);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.18);
+      --border-gold: rgba(244,193,93,0.30);
+      --accent: #f4c15d;
+      --accent-dim: rgba(244,193,93,0.10);
+      --green: #4ade80;
+      --red: #f87171;
+      --blue: #60a5fa;
+      --max: 1160px;
+      --nav-h: 58px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
+      font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-weight: 400;
       line-height: 1.6;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ─── Background texture ─── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(201,168,76,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(91,141,238,0.05) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body > * { position: relative; z-index: 1; }
+    body.vault-active { overflow: hidden; }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ─── Scrollbar ─── */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); border-radius: 999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.45); }
+    /* ═══════════════════════════════════════════════
+       VAULT DOOR — Full screen intro
+    ═══════════════════════════════════════════════ */
+    #vault-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #020510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0;
+      pointer-events: all;
+      transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+      transform-origin: left center;
+    }
 
-    /* ─── Layout ─── */
-    .wrap { max-width: 1440px; margin: 0 auto; padding: 0 20px 60px; }
+    #vault-screen.swing-open {
+      transform: perspective(1200px) rotateY(-105deg);
+      pointer-events: none;
+    }
 
-    /* ─── Header ─── */
-    .header {
+    /* subtle background grid lines on vault */
+    #vault-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(244,193,93,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,193,93,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* thick gold border frame on vault face */
+    #vault-screen::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(244,193,93,0.15);
+      pointer-events: none;
+    }
+
+    /* vault center content */
+    .vault-center {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    /* The spinning dial SVG wrapper */
+    .vault-dial-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    .vault-dial-outer {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid rgba(244,193,93,0.25);
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 30%, rgba(244,193,93,0.07), transparent 60%);
+      box-shadow:
+        0 0 0 8px rgba(244,193,93,0.04),
+        0 0 40px rgba(244,193,93,0.08),
+        inset 0 0 60px rgba(0,0,0,0.5);
+    }
+
+    /* tick marks ring */
+    .vault-ticks {
+      width: 220px;
+      height: 220px;
+      position: absolute;
+      inset: 0;
+      animation: vault-spin-fast 0.6s linear 0.2s 3, vault-spin-slow 1.4s ease-out 2s forwards;
+    }
+
+    .vault-ticks-reverse {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: 10px; left: 10px;
+      animation: vault-spin-rev 0.55s linear 0.4s 2, vault-spin-slow-rev 1.0s ease-out 1.5s forwards;
+    }
+
+    @keyframes vault-spin-fast {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes vault-spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(320deg); }
+    }
+    @keyframes vault-spin-rev {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-360deg); }
+    }
+    @keyframes vault-spin-slow-rev {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(-240deg); }
+    }
+
+    /* center hub */
+    .vault-hub {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(244,193,93,0.28), rgba(2,6,23,0.9) 65%);
+      border: 1.5px solid rgba(244,193,93,0.45);
+      box-shadow: 0 0 0 6px rgba(244,193,93,0.07), 0 0 20px rgba(244,193,93,0.12);
+      z-index: 3;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .vault-hub-inner {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(244,193,93,0.55);
+      box-shadow: 0 0 10px rgba(244,193,93,0.4);
+    }
+
+    /* handle bars */
+    .vault-handle {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 6px; height: 70px;
+      background: linear-gradient(to bottom, rgba(244,193,93,0.7), rgba(244,193,93,0.2));
+      border-radius: 3px;
+      transform-origin: 50% 0%;
+      z-index: 2;
+    }
+    .vault-handle:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+    .vault-handle:nth-child(2) { transform: translate(-50%, -100%) rotate(90deg); }
+    .vault-handle:nth-child(3) { transform: translate(-50%, -100%) rotate(180deg); }
+    .vault-handle:nth-child(4) { transform: translate(-50%, -100%) rotate(270deg); }
+
+    /* locking bolts around rim */
+    .vault-bolt {
+      position: absolute;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(244,193,93,0.6), rgba(244,193,93,0.15));
+      border: 1px solid rgba(244,193,93,0.35);
+      top: 50%; left: 50%;
+    }
+
+    .vault-text-block {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .vault-text-block.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .vault-label {
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.55);
+      margin-bottom: 10px;
+    }
+
+    .vault-name {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .vault-status {
+      margin-top: 14px;
+      font-size: 11px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      min-height: 18px;
+    }
+
+    .vault-status.granted {
+      color: var(--green);
+      letter-spacing: .22em;
+    }
+
+    /* gold line under vault name */
+    .vault-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 12px auto 0;
+      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .vault-line.extend { width: 220px; }
+
+    /* corner ornaments */
+    .vault-corner {
+      position: absolute;
+      width: 28px; height: 28px;
+      opacity: 0.35;
+    }
+    .vault-corner.tl { top: 28px; left: 28px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+    .vault-corner.tr { top: 28px; right: 28px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+    .vault-corner.bl { bottom: 28px; left: 28px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+    .vault-corner.br { bottom: 28px; right: 28px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+
+    /* ═══════════════════════════════════════════════
+       DASHBOARD — hidden until vault opens
+    ═══════════════════════════════════════════════ */
+    #dashboard {
+      min-height: 100vh;
+      opacity: 0;
+      transition: opacity 0.7s ease 0.5s;
+    }
+    #dashboard.revealed { opacity: 1; }
+
+    /* NAV */
+    .top-nav {
+      height: var(--nav-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding: 28px 0 24px;
+      padding: 0 28px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 28px;
+      background: rgba(5,8,22,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0; z-index: 999;
+      gap: 16px;
     }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(201,168,76,0.4);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--gold-dim);
-      font-family: 'DM Serif Display', serif;
-      font-size: 18px;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .brand-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px;
-      color: var(--text);
-      letter-spacing: 0.01em;
-    }
-
-    .brand-sub {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 2px;
-      letter-spacing: 0.06em;
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+      letter-spacing: .08em;
+      color: var(--accent);
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .nav-brand img { height: 30px; width: auto; }
+
+    .nav-badge {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--border-gold);
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
     }
 
-    .header-right {
+    .nav-tabs {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0;
+      height: 100%;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-tab {
+      height: 100%;
+      padding: 0 20px;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: .15s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 12px;
+      white-space: nowrap;
+    }
+    .nav-user {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: .04em;
+    }
+    .nav-signout {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.50);
+      cursor: pointer;
+      border: 0;
+      background: none;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      transition: .15s;
+    }
+    .nav-signout:hover { color: var(--text); border-color: var(--border-gold); }
+
+    /* ═══════════════════════════════════════════════
+       TABS CONTENT
+    ═══════════════════════════════════════════════ */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .page-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       TODAY FEED — main tab
+    ═══════════════════════════════════════════════ */
+    .feed-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    /* ─── Status pill ─── */
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: var(--panel);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted2);
-      letter-spacing: 0.04em;
-    }
-    .status-pill.active {
-      border-color: rgba(76,175,138,0.4);
-      background: rgba(76,175,138,0.08);
-      color: var(--green);
-    }
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-    .status-pill.active .status-dot {
-      animation: pulse-dot 2s ease infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    /* ─── Buttons ─── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      padding: 9px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+    .feed-kicker {
+      font-size: 10px;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.18s ease;
-      white-space: nowrap;
-      user-select: none;
-    }
-    .btn:hover {
-      border-color: rgba(201,168,76,0.4);
-      background: rgba(201,168,76,0.07);
-      color: var(--gold2);
-      transform: translateY(-1px);
-    }
-    .btn:active { transform: translateY(0); }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
-
-    .btn-gold {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #0a0a0a;
-      font-weight: 700;
-    }
-    .btn-gold:hover {
-      background: var(--gold2);
-      border-color: var(--gold2);
-      color: #0a0a0a;
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 11px;
-    }
-
-    /* ─── Cards ─── */
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      backdrop-filter: blur(12px);
-    }
-
-    .card-elevated {
-      background: var(--panel2);
-      border-color: var(--border2);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* ─── Dashboard grid ─── */
-    .dashboard {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-    @media (max-width: 960px) { .dashboard { grid-template-columns: 1fr; } }
-
-    /* ─── Sidebar ─── */
-    .sidebar { position: sticky; top: 20px; }
-
-    .sidebar-section {
+      color: var(--muted);
       margin-bottom: 6px;
     }
 
-    .sidebar-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 10px 12px 6px;
-    }
-
-    .sidebar-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 11px 12px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: background 0.15s;
-      border: 1px solid transparent;
-    }
-    .sidebar-item:hover {
-      background: rgba(255,255,255,0.04);
-      border-color: var(--border);
-    }
-    .sidebar-item input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--gold);
-      cursor: pointer;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-    .sidebar-item-text strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .sidebar-item-text small {
-      display: block;
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
-      line-height: 1.4;
-    }
-
-    .sidebar-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ─── Modules column ─── */
-    .modules { display: flex; flex-direction: column; gap: 16px; }
-
-    /* ─── Module card ─── */
-    .module {
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: var(--radius);
-      overflow: hidden;
-      backdrop-filter: blur(12px);
-      transition: border-color 0.2s;
-    }
-    .module:hover { border-color: var(--border2); }
-
-    .module-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 22px 22px 0;
-    }
-
-    .module-kicker {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
-    .badge-blue { background: rgba(91,141,238,0.1); color: var(--blue); border: 1px solid rgba(91,141,238,0.25); }
-    .badge-muted { background: rgba(255,255,255,0.05); color: var(--muted2); border: 1px solid var(--border); }
-
-    .module-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 21px;
-      line-height: 1.2;
-      color: var(--text);
-    }
-    .module-desc {
-      font-size: 13px;
-      color: var(--muted2);
-      margin-top: 6px;
-      line-height: 1.6;
-      max-width: 55ch;
-    }
-
-    .module-body { padding: 20px 22px 22px; }
-
-    /* ─── Divider ─── */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 16px 0;
-    }
-
-    /* ─── Section label ─── */
-    .section-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── Chips ─── */
-    .chips { display: flex; gap: 7px; flex-wrap: wrap; }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.03);
-      font-size: 11px;
-      color: var(--muted2);
-    }
-    .chip span { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
-
-    /* ─── Mini badge ─── */
-    .mini-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-    }
-
-    /* ─── Input / Select / Textarea ─── */
-    input[type="text"], input[type="number"], select, textarea {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border2);
-      border-radius: var(--radius-sm);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      padding: 9px 12px;
-      outline: none;
-      width: 100%;
-      transition: border-color 0.15s;
-    }
-    input:focus, select:focus, textarea:focus { border-color: rgba(201,168,76,0.45); }
-    textarea { min-height: 100px; resize: vertical; }
-    select option { background: #0a0f1e; }
-
-    /* ─── Loading pulse ─── */
-    .pulse { animation: fadeInOut 1.6s ease infinite; }
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    /* ─── Spinner ─── */
-    .spinner {
-      display: inline-block;
-      width: 13px; height: 13px;
-      border: 2px solid rgba(201,168,76,0.25);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ─── Deep dives ─── */
-    .dd-layout {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-    .dd-layout.reading { grid-template-columns: 1fr; }
-    .dd-layout.reading #ddArchiveCard { display: none; }
-    @media (max-width: 900px) { .dd-layout { grid-template-columns: 1fr; } }
-
-    .search-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
-    .search-row input { max-width: 180px; }
-
-    .archive-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      cursor: pointer;
-      transition: all 0.15s;
-      margin-bottom: 8px;
-    }
-    .archive-item:hover {
-      border-color: rgba(201,168,76,0.3);
-      background: var(--gold-dim);
-    }
-    .archive-item-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
-    .archive-item-date { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
-
-    .article-body {
-      max-width: 74ch;
-      font-size: 15px;
-      line-height: 1.85;
-      color: #d8dde8;
-    }
-    .article-body p { margin-bottom: 14px; }
-    .article-body h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      margin: 24px 0 10px;
-      color: var(--text);
-    }
-    .article-body h3 { font-size: 17px; margin: 18px 0 8px; color: var(--text); }
-    .article-body ul, .article-body ol { padding-left: 20px; margin: 8px 0 14px; }
-    .article-body li { margin: 6px 0; }
-    .article-body blockquote {
-      border-left: 2px solid var(--gold);
-      padding: 10px 16px;
-      background: var(--gold-dim);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin: 16px 0;
-      color: var(--muted2);
-    }
-    .article-body hr { border: none; height: 1px; background: var(--border); margin: 20px 0; }
-    .article-body a { color: var(--gold2); }
-
-    /* ─── Ideas grid ─── */
-    .ideas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .idea-card {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius);
-      padding: 18px;
-      transition: all 0.18s ease;
-    }
-    .idea-card:hover {
-      border-color: rgba(201,168,76,0.3);
-      background: var(--gold-dim);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-
-    .idea-ticker {
-      font-family: 'DM Serif Display', serif;
-      font-size: 30px;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .idea-sector {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .idea-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-      align-items: flex-start;
-    }
-
-    .idea-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.04);
-      white-space: nowrap;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .idea-text { font-size: 13px; color: #c8cdd8; line-height: 1.5; }
-
-    /* ─── Deal Tracker ─── */
-    .deal-card {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 12px;
-      transition: border-color 0.18s;
-    }
-    .deal-card:hover { border-color: rgba(201,168,76,0.25); }
-
-    .deal-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .deal-ticker {
-      font-family: 'DM Serif Display', serif;
-      font-size: 28px;
-      color: var(--gold);
-      line-height: 1;
-      min-width: 52px;
-    }
-
-    .deal-type-badge {
-      display: inline-flex;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 10px;
+    .feed-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      line-height: 1.08;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
     }
 
-    .deal-title { font-size: 15px; font-weight: 600; color: var(--text); }
-
-    .deal-body { font-size: 13px; color: #b0b8cc; line-height: 1.65; margin-bottom: 14px; }
-
-    .deal-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .deal-row-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 999px;
-      white-space: nowrap;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .deal-row-label.view {
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold);
-    }
-    .deal-row-label.risk {
-      background: rgba(224,82,82,0.08);
-      border: 1px solid rgba(224,82,82,0.3);
-      color: var(--red);
-    }
-    .deal-row-text { font-size: 13px; line-height: 1.55; }
-    .deal-row-text.view { color: #d8dde8; }
-    .deal-row-text.risk { color: #e8a0a0; }
-
-    /* ─── Model Portfolios ─── */
-    .models-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .model-card {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius);
-      padding: 20px;
-      transition: all 0.18s;
-    }
-    .model-card:hover {
-      border-color: rgba(201,168,76,0.3);
-      transform: translateY(-2px);
-    }
-
-    .model-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .model-date {
+    .feed-date {
       font-size: 11px;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-    }
-
-    .model-summary {
-      font-size: 13px;
-      color: var(--muted2);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .holding-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .holding-ticker {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--gold);
-      min-width: 52px;
-    }
-
-    .holding-bar-wrap {
-      flex: 1;
-      height: 4px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .holding-bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
-      transition: width 0.6s ease;
-    }
-
-    .holding-pct {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted2);
-      min-width: 36px;
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: .06em;
       text-align: right;
     }
 
-    .holding-note {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-bottom: 12px;
-      padding-left: 4px;
-    }
-
-    /* ─── Rebalance panel ─── */
-    .rebalance-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .model-tabs {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .model-tab {
-      padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--muted2);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .model-tab:hover {
-      border-color: rgba(201,168,76,0.4);
-      color: var(--gold2);
-    }
-    .model-tab.active {
-      background: var(--gold-dim);
-      border-color: rgba(201,168,76,0.4);
-      color: var(--gold);
-    }
-
-    /* ─── Templates ─── */
-    .template-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .template-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      text-decoration: none;
-      transition: all 0.18s;
-    }
-    .template-item:hover {
-      border-color: rgba(201,168,76,0.3);
-      background: var(--gold-dim);
-      transform: translateY(-2px);
-    }
-    .template-icon { font-size: 24px; }
-    .template-name { font-size: 13px; font-weight: 600; color: var(--text); }
-    .template-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-    /* ─── Quant Lab ─── */
-    .ql-backdrop {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 9999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
+    /* Hero article card */
+    .hero-article {
+      border: 1px solid var(--border-gold);
+      background: rgba(10,16,36,0.80);
       backdrop-filter: blur(6px);
-    }
-    .ql-backdrop.active { display: flex; }
-
-    .ql-modal {
-      width: 100%;
-      max-width: 660px;
-      background: linear-gradient(135deg, rgba(10,15,30,0.99), rgba(5,8,15,0.99));
-      border: 1px solid var(--border2);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 0;
+      margin-bottom: 20px;
       position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-      animation: modalIn 0.2s ease;
+      overflow: hidden;
     }
-    .ql-modal.wide { max-width: 900px; }
-    @keyframes modalIn {
-      from { transform: translateY(12px) scale(0.98); opacity: 0; }
-      to { transform: translateY(0) scale(1); opacity: 1; }
-    }
+    @media(max-width:760px){ .hero-article { grid-template-columns: 1fr; } }
 
-    .ql-close {
-      position: absolute; top: 16px; right: 18px;
-      background: transparent; border: none;
-      color: var(--muted); font-size: 20px;
-      cursor: pointer; line-height: 1;
-      transition: color 0.15s;
-    }
-    .ql-close:hover { color: var(--text); }
-
-    .ql-kicker { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-    .ql-title { font-family: 'DM Serif Display', serif; font-size: 26px; margin-bottom: 10px; }
-    .ql-subtitle { font-size: 14px; color: #c0c8d8; line-height: 1.65; margin-bottom: 18px; }
-
-    .ql-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
-    @media (max-width: 600px) { .ql-info-grid { grid-template-columns: 1fr; } }
-
-    .ql-info-card {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-    }
-    .ql-info-icon { font-size: 20px; margin-bottom: 8px; }
-    .ql-info-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .ql-info-text { font-size: 12px; color: #b0b8cc; line-height: 1.5; }
-
-    .ql-warning {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 12px 14px;
-      border: 1px solid rgba(201,168,76,0.25);
-      background: rgba(201,168,76,0.05);
-      border-radius: var(--radius-sm);
-      margin: 14px 0;
-      font-size: 12px; color: #c0c8d8; line-height: 1.5;
-    }
-    .ql-warning::before { content: "⚠️"; flex-shrink: 0; }
-
-    .ql-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-
-    .ql-section { margin-bottom: 18px; }
-    .ql-section-title {
-      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 10px;
-      padding-bottom: 6px; border-bottom: 1px solid rgba(201,168,76,0.15);
+    .hero-article::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(244,193,93,0.06), transparent 55%);
+      pointer-events: none;
     }
 
-    .ql-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 600px) { .ql-input-grid { grid-template-columns: 1fr; } }
+    .hero-body { padding: 32px; position: relative; z-index: 1; }
 
-    .ql-asset-row {
-      display: grid; grid-template-columns: 90px 1fr 1fr 1fr;
-      gap: 8px; align-items: center; margin-bottom: 8px;
-    }
-    @media (max-width: 600px) { .ql-asset-row { grid-template-columns: 1fr 1fr; } }
-
-    .ql-asset-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; }
-
-    .ql-col-header { display: grid; grid-template-columns: 90px 1fr 1fr 1fr; gap: 8px; margin-bottom: 4px; }
-    @media (max-width: 600px) { .ql-col-header { display: none; } }
-    .ql-col-header-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-
-    .ql-results-panel {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-top: 14px;
-    }
-
-    .ql-result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 14px; }
-
-    .ql-result-cell {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-    }
-    .ql-result-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .ql-result-value { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); }
-    .ql-result-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-    .ql-weight-bar { display: flex; gap: 3px; height: 6px; border-radius: 999px; overflow: hidden; margin: 10px 0 6px; }
-    .ql-weight-seg { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
-
-    .ql-weight-legend { display: flex; gap: 12px; flex-wrap: wrap; }
-    .ql-weight-legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #c0c8d8; }
-    .ql-weight-dot { width: 7px; height: 7px; border-radius: 50%; }
-
-    .ql-error {
-      color: var(--red); font-size: 13px; margin-top: 10px; padding: 10px 12px;
-      border: 1px solid rgba(224,82,82,0.25); background: rgba(224,82,82,0.06);
-      border-radius: var(--radius-sm); display: none;
-    }
-
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .note { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
-
-    pre {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      padding: 14px; border-radius: var(--radius-sm);
-      color: #c0c8d8; line-height: 1.6; font-size: 12px;
-      overflow: auto; white-space: pre-wrap; word-break: break-word;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ─── State card ─── */
-    #state { margin-bottom: 20px; }
-
-    /* ─── Loading skeleton ─── */
-    .skeleton {
-      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 6px;
-      height: 14px;
-    }
-    @keyframes shimmer { to { background-position: -200% 0; } }
-
-    /* ─── Two-col layout ─── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
-
-    /* ─── Week selector strip ─── */
-    .week-strip {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      margin-bottom: 16px;
-    }
-    .week-pill {
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--muted2);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+    .hero-kicker {
+      font-size: 10px;
+      letter-spacing: .24em;
       text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-kicker::before { content: ""; display: block; width: 20px; height: 1px; background: var(--accent); opacity: .5; }
+
+    .hero-headline {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero-headline em { font-style: italic; color: var(--accent); }
+
+    .hero-deck {
+      font-size: 14px;
+      color: #d1d5db;
+      line-height: 1.75;
+      max-width: 58ch;
+      margin-bottom: 22px;
+      border-left: 2px solid var(--border-gold);
+      padding-left: 14px;
+    }
+
+    .hero-meta {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .hero-tag {
+      font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .hero-tag.featured { border-color: var(--border-gold); color: var(--accent); background: var(--accent-dim); }
+
+    .hero-read {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+      padding: 9px 18px;
+      border: 1px solid var(--border-gold);
+      background: var(--accent-dim);
       cursor: pointer;
-      transition: all 0.15s;
-      white-space: nowrap;
-      flex-shrink: 0;
+      transition: .15s;
     }
-    .week-pill:hover, .week-pill.active {
-      background: var(--gold-dim);
-      border-color: rgba(201,168,76,0.4);
-      color: var(--gold);
+    .hero-read:hover { background: rgba(244,193,93,0.16); }
+
+    .hero-sidebar {
+      border-left: 1px solid var(--border);
+      padding: 28px 22px;
+      display: flex; flex-direction: column; gap: 0;
+      position: relative; z-index: 1;
     }
+    @media(max-width:760px){ .hero-sidebar { border-left: 0; border-top: 1px solid var(--border); } }
+
+    .hero-sb-label {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 14px;
+    }
+
+    .signal-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(148,163,184,0.07);
+      gap: 10px;
+    }
+    .signal-row:last-child { border-bottom: 0; }
+
+    .signal-tag {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); font-family: "JetBrains Mono", monospace;
+      flex-shrink: 0; padding-top: 1px; min-width: 60px;
+    }
+
+    .signal-val {
+      font-size: 12px; color: #e5e7eb; text-align: right; line-height: 1.4;
+    }
+    .signal-val.bull { color: var(--green); }
+    .signal-val.bear { color: var(--red); }
+    .signal-val.neutral { color: #facc15; }
+
+    /* Article list grid */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    @media(max-width:840px){ .article-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:520px){ .article-grid { grid-template-columns: 1fr; } }
+
+    .article-card {
+      background: var(--surface);
+      padding: 22px 20px;
+      transition: .18s;
+      cursor: pointer;
+      position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .article-card:hover { background: rgba(14,22,48,0.98); }
+    .article-card:hover .article-arrow { opacity: 1; transform: translateX(3px); }
+
+    .article-day-tag {
+      font-size: 9px; letter-spacing: .20em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 2px;
+    }
+    .article-day-tag.mon { color: var(--green); }
+    .article-day-tag.wed { color: var(--blue); }
+    .article-day-tag.fri { color: var(--red); }
+    .article-day-tag.sun { color: var(--accent); }
+
+    .article-headline {
+      font-family: "Playfair Display", serif;
+      font-size: 15px; line-height: 1.3; font-weight: 500; color: var(--text);
+    }
+
+    .article-deck {
+      font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    .article-footer {
+      margin-top: auto; padding-top: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(148,163,184,0.07);
+    }
+    .article-date { font-size: 10px; color: rgba(148,163,184,0.40); font-family: "JetBrains Mono", monospace; }
+    .article-arrow { font-size: 11px; color: var(--accent); opacity: 0; transition: .15s; }
+
+    /* Section divider */
+    .section-rule {
+      display: flex; align-items: center; gap: 14px;
+      margin: 32px 0 20px;
+    }
+    .section-rule-label {
+      font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--accent); white-space: nowrap; font-weight: 600;
+    }
+    .section-rule-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ═══════════════════════════════════════════════
+       PORTFOLIO TAB
+    ═══════════════════════════════════════════════ */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    @media(max-width:840px){ .portfolio-grid { grid-template-columns: 1fr; } }
+
+    .portfolio-tier {
+      background: var(--surface);
+      padding: 28px 24px;
+    }
+    .portfolio-tier.balanced { background: rgba(10,18,40,0.95); }
+    .portfolio-tier.aggressive {
+      background: rgba(8,14,34,0.95);
+      border-left: 2px solid rgba(244,193,93,0.20);
+    }
+
+    .portfolio-tier-label {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-family: "JetBrains Mono", monospace;
+    }
+    .portfolio-tier-name {
+      font-family: "Playfair Display", serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 4px;
+    }
+    .portfolio-bias {
+      font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.5;
+    }
+
+    .holding-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(148,163,184,0.07);
+    }
+    .holding-row:last-child { border-bottom: 0; }
+    .holding-ticker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px; color: var(--text); font-weight: 500;
+    }
+    .holding-name { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .holding-pct {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px; font-weight: 500;
+    }
+    .holding-pct.up { color: var(--green); }
+    .holding-pct.dn { color: var(--red); }
+    .holding-pct.fl { color: var(--muted); }
+
+    .portfolio-note {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid rgba(148,163,184,0.10);
+      font-size: 11px; color: var(--muted); line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════════
+       DEALS / IDEAS TAB
+    ═══════════════════════════════════════════════ */
+    .deal-stack { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); }
+
+    .deal-row {
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 0;
+      padding: 0;
+      transition: .15s;
+      cursor: pointer;
+    }
+    .deal-row:hover { background: rgba(14,22,48,0.98); }
+    @media(max-width:600px){ .deal-row { grid-template-columns: 1fr; } }
+
+    .deal-ticker-block {
+      padding: 18px 16px;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      gap: 4px;
+      background: rgba(2,6,23,0.35);
+    }
+    .deal-ticker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px; font-weight: 500; color: var(--accent);
+    }
+    .deal-type {
+      font-size: 8px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); padding: 2px 6px; border: 1px solid var(--border);
+    }
+    .deal-type.long { border-color: rgba(74,222,128,0.30); color: var(--green); }
+    .deal-type.short { border-color: rgba(248,113,113,0.30); color: var(--red); }
+    .deal-type.watch { border-color: rgba(96,165,250,0.30); color: var(--blue); }
+
+    .deal-body { padding: 16px 18px; }
+    .deal-thesis { font-size: 13px; color: #e5e7eb; line-height: 1.55; margin-bottom: 6px; }
+    .deal-meta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .deal-meta-pill {
+      font-size: 10px; letter-spacing: .10em; text-transform: uppercase;
+      color: var(--muted); font-family: "JetBrains Mono", monospace;
+    }
+    .deal-meta-pill span { color: var(--text); }
+
+    .deal-right {
+      padding: 16px 20px;
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 8px; min-width: 110px;
+    }
+    @media(max-width:600px){ .deal-right { border-left: 0; border-top: 1px solid var(--border); flex-direction: row; } }
+    .deal-stat-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .deal-stat-val { font-family: "JetBrains Mono", monospace; font-size: 14px; font-weight: 500; }
+    .deal-stat-val.up { color: var(--green); }
+    .deal-stat-val.dn { color: var(--red); }
+
+    /* ═══════════════════════════════════════════════
+       QUANT LAB TAB
+    ═══════════════════════════════════════════════ */
+    .quant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    @media(max-width:700px){ .quant-grid { grid-template-columns: 1fr; } }
+
+    .quant-block {
+      background: var(--surface);
+      padding: 26px 24px;
+    }
+
+    .quant-block-label {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 600;
+    }
+    .quant-block-title {
+      font-family: "Playfair Display", serif;
+      font-size: 19px; margin-bottom: 12px;
+    }
+
+    /* Regime bars */
+    .regime-bars { display: flex; flex-direction: column; gap: 10px; }
+    .regime-bar-row { display: flex; flex-direction: column; gap: 4px; }
+    .regime-bar-top { display: flex; justify-content: space-between; }
+    .regime-bar-label { font-size: 11px; color: var(--muted); }
+    .regime-bar-val { font-size: 11px; font-family: "JetBrains Mono", monospace; color: var(--text); }
+    .regime-bar-track {
+      height: 4px; background: rgba(148,163,184,0.12); border-radius: 2px; overflow: hidden;
+    }
+    .regime-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+    .regime-bar-fill.bull { background: var(--green); }
+    .regime-bar-fill.bear { background: var(--red); }
+    .regime-bar-fill.neutral { background: #facc15; }
+
+    /* Monte Carlo mini */
+    .mc-output {
+      background: rgba(2,6,23,0.50);
+      border: 1px solid var(--border);
+      padding: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #d1d5db;
+    }
+    .mc-output .mc-up { color: var(--green); }
+    .mc-output .mc-dn { color: var(--red); }
+    .mc-output .mc-neutral { color: #facc15; }
+    .mc-run-btn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 10px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-gold);
+      color: var(--accent);
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      cursor: pointer; font-family: "JetBrains Mono", monospace;
+      transition: .15s;
+    }
+    .mc-run-btn:hover { background: rgba(244,193,93,0.16); }
+
+    /* ═══════════════════════════════════════════════
+       ROUNDUP TAB
+    ═══════════════════════════════════════════════ */
+    .roundup-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); }
+    .roundup-item {
+      background: var(--surface);
+      padding: 20px 22px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 18px;
+      border-left: 2px solid transparent;
+      transition: .15s;
+    }
+    .roundup-item:hover { background: rgba(14,22,48,0.98); }
+    .roundup-item.bull { border-left-color: var(--green); }
+    .roundup-item.bear { border-left-color: var(--red); }
+    .roundup-item.watch { border-left-color: var(--blue); }
+    .roundup-item.macro { border-left-color: var(--accent); }
+
+    .roundup-tag {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      font-family: "JetBrains Mono", monospace; color: var(--muted);
+      padding-top: 2px;
+    }
+    .roundup-text { font-size: 13px; color: #e5e7eb; line-height: 1.6; }
+    .roundup-source { font-size: 11px; color: rgba(148,163,184,0.40); margin-top: 3px; font-style: italic; }
+
+    /* ═══════════════════════════════════════════════
+       ACCESS GATE (not premium)
+    ═══════════════════════════════════════════════ */
+    #access-gate {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(2,6,23,0.96);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .gate-box {
+      max-width: 420px; width: 100%;
+      border: 1px solid var(--border-gold);
+      background: rgba(10,16,36,0.98);
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .gate-icon { font-size: 36px; margin-bottom: 16px; opacity: .8; }
+    .gate-kicker { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .gate-title { font-family: "Playfair Display", serif; font-size: 26px; margin-bottom: 10px; }
+    .gate-text { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .gate-btn {
+      display: inline-block; padding: 12px 28px;
+      background: var(--accent); color: #000;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      font-weight: 700; cursor: pointer; border: 0; text-decoration: none;
+      transition: .15s;
+    }
+    .gate-btn:hover { background: #f7d680; }
+    .gate-sub { margin-top: 12px; font-size: 11px; color: rgba(148,163,184,0.40); }
+
+    /* ═══════════════════════════════════════════════
+       LOADING STATE
+    ═══════════════════════════════════════════════ */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 9997;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .4s ease;
+    }
+    #loading-screen.gone { opacity: 0; pointer-events: none; }
+    .loading-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      animation: ldot 1.2s infinite ease-in-out;
+      margin: 0 4px;
+    }
+    .loading-dot:nth-child(2) { animation-delay: .2s; }
+    .loading-dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes ldot { 0%,80%,100%{opacity:.15;transform:scale(0.7)} 40%{opacity:1;transform:scale(1)} }
+
+    /* ═══════════════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════════════ */
+    .disclaimer-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: rgba(148,163,184,0.35);
+      text-align: center;
+      max-width: var(--max);
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    @media(max-width:600px){
+      .nav-tabs { display: none; }
+      .mobile-tab-bar {
+        display: flex;
+        position: fixed; bottom: 0; left: 0; right: 0;
+        border-top: 1px solid var(--border);
+        background: rgba(5,8,22,0.98);
+        backdrop-filter: blur(10px);
+        z-index: 998;
+      }
+      .mobile-tab-btn {
+        flex: 1; padding: 12px 6px;
+        font-size: 9px; letter-spacing: .10em; text-transform: uppercase;
+        color: var(--muted); border: 0; background: none; cursor: pointer;
+        display: flex; flex-direction: column; align-items: center; gap: 3px;
+        transition: .15s;
+      }
+      .mobile-tab-btn.active { color: var(--accent); }
+      .mobile-tab-btn .mtab-icon { font-size: 16px; }
+      .page-wrap { padding-bottom: 80px; }
+    }
+    @media(min-width:601px){ .mobile-tab-bar { display: none; } }
   </style>
 </head>
 
-<body>
-  <div class="wrap">
+<body class="vault-active">
 
-    <!-- Header -->
-    <header class="header">
-      <div class="header-left">
-        <div class="logo-mark">F</div>
-        <div>
-          <div class="brand-name">FinTrend</div>
-          <div class="brand-sub">Premium Dashboard</div>
-        </div>
-      </div>
-      <div class="header-right">
-        <span class="status-pill" id="memberPill">
-          <span class="status-dot"></span>
-          Verifying…
-        </span>
-        <a class="btn btn-sm" href="index.html">← Back</a>
-      </div>
-    </header>
-
-    <!-- State card (shown until auth resolves) -->
-    <div id="state" class="card"></div>
-
-    <!-- Main content -->
-    <div id="content" style="display:none;"></div>
-
+  <!-- Loading dots while auth checks -->
+  <div id="loading-screen">
+    <div style="display:flex;align-items:center;">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
   </div>
 
-  <!-- ═══════════════════════════════════════ -->
-  <!-- QUANT LAB MODAL 1: Explainer           -->
-  <!-- ═══════════════════════════════════════ -->
-  <div class="ql-backdrop" id="qlExplainer">
-    <div class="ql-modal">
-      <button class="ql-close" id="qlExplainerClose">×</button>
-      <div class="ql-kicker">Premium Tool</div>
-      <h2 class="ql-title">Quant Lab</h2>
-      <p class="ql-subtitle">A professional-grade portfolio optimization engine built into your dashboard, combining two of the most widely used frameworks in quantitative finance.</p>
-      <div class="ql-info-grid">
-        <div class="ql-info-card">
-          <div class="ql-info-icon">⚖️</div>
-          <div class="ql-info-label">Mean-Variance Optimization</div>
-          <div class="ql-info-text">Finds weights that maximize expected return for a given risk level — the foundation of modern portfolio theory (Markowitz, Nobel 1990).</div>
+  <!-- Access gate for non-premium -->
+  <div id="access-gate" style="display:none;">
+    <div class="gate-box">
+      <div class="gate-icon">◈</div>
+      <div class="gate-kicker">FinTrend Premium</div>
+      <div class="gate-title">Premium Access Required</div>
+      <div class="gate-text">This dashboard is available to Premium subscribers. Upgrade to unlock long-form reports, model portfolios, deal tracker, and the quant lab.</div>
+      <a class="gate-btn" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener">Upgrade to Premium →</a>
+      <div class="gate-sub"><a href="index.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">← Back to FinTrend News</a></div>
+    </div>
+  </div>
+
+  <!-- ═══ VAULT DOOR ═══ -->
+  <div id="vault-screen">
+    <!-- corner ornaments -->
+    <div class="vault-corner tl"></div>
+    <div class="vault-corner tr"></div>
+    <div class="vault-corner bl"></div>
+    <div class="vault-corner br"></div>
+
+    <div class="vault-center">
+      <!-- The dial -->
+      <div class="vault-dial-wrap">
+        <div class="vault-dial-outer"></div>
+
+        <!-- outer ring tick marks via SVG -->
+        <svg class="vault-ticks" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="110" r="104" stroke="rgba(244,193,93,0.20)" stroke-width="1"/>
+          <!-- 40 tick marks around the ring -->
+          <g stroke="rgba(244,193,93,0.45)">
+            <line x1="110" y1="8" x2="110" y2="18" stroke-width="2"/>
+            <line x1="110" y1="202" x2="110" y2="212" stroke-width="2"/>
+            <line x1="8" y1="110" x2="18" y2="110" stroke-width="2"/>
+            <line x1="202" y1="110" x2="212" y2="110" stroke-width="2"/>
+          </g>
+          <g stroke="rgba(244,193,93,0.25)" stroke-width="1">
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(9 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(18 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(27 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(36 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(45 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(54 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(63 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(72 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(81 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(99 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(108 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(117 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(126 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(135 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(144 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(153 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(162 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(171 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(189 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(198 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(207 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(216 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(225 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(234 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(243 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(252 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(261 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(279 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(288 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(297 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(306 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(315 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(324 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(333 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(342 110 110)"/>
+            <line x1="110" y1="8" x2="110" y2="14" transform="rotate(351 110 110)"/>
+          </g>
+          <!-- inner ring -->
+          <circle cx="110" cy="110" r="88" stroke="rgba(244,193,93,0.10)" stroke-width="1" stroke-dasharray="4 6"/>
+        </svg>
+
+        <!-- reverse-spinning inner ring -->
+        <svg class="vault-ticks-reverse" viewBox="0 0 200 200" fill="none" style="position:absolute;top:10px;left:10px;">
+          <circle cx="100" cy="100" r="94" stroke="rgba(244,193,93,0.12)" stroke-width="1" stroke-dasharray="3 8"/>
+          <g stroke="rgba(244,193,93,0.30)" stroke-width="1.5">
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(0 100 100)"/>
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(60 100 100)"/>
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(120 100 100)"/>
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(180 100 100)"/>
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(240 100 100)"/>
+            <line x1="100" y1="6" x2="100" y2="18" transform="rotate(300 100 100)"/>
+          </g>
+        </svg>
+
+        <!-- Handle spokes -->
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:140px;height:140px;" id="vault-spokes">
+            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(0deg);"></div>
+            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(90deg);"></div>
+            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(180deg);"></div>
+            <div class="vault-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%) rotate(270deg);"></div>
+          </div>
         </div>
-        <div class="ql-info-card">
-          <div class="ql-info-icon">🎲</div>
-          <div class="ql-info-label">Monte Carlo Simulation</div>
-          <div class="ql-info-text">Runs 20,000 simulated return scenarios using your inputs, measuring how bad things get in the worst outcomes.</div>
-        </div>
-        <div class="ql-info-card">
-          <div class="ql-info-icon">📉</div>
-          <div class="ql-info-label">CVaR</div>
-          <div class="ql-info-text">Conditional Value at Risk — asks "when things go wrong, how bad is the average loss?" Used by institutional risk desks.</div>
+
+        <!-- Center hub -->
+        <div class="vault-hub">
+          <div class="vault-hub-inner"></div>
         </div>
       </div>
-      <div class="ql-warning">For educational and analytical purposes only. Not financial advice. Outputs are only as good as your assumptions.</div>
-      <div class="ql-btn-row">
-        <button class="btn btn-gold" id="qlOpenCalc">Open Calculator</button>
-        <button class="btn" id="qlNevermind">Cancel</button>
+
+      <!-- Text below dial -->
+      <div class="vault-text-block" id="vault-text">
+        <div class="vault-label">FinTrend News</div>
+        <div class="vault-name">Premium</div>
+        <div class="vault-line" id="vault-line"></div>
+        <div class="vault-status" id="vault-status">Verifying access<span id="vault-dots"></span></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════ -->
-  <!-- QUANT LAB MODAL 2: Calculator          -->
-  <!-- ═══════════════════════════════════════ -->
-  <div class="ql-backdrop" id="qlCalc">
-    <div class="ql-modal wide">
-      <button class="ql-close" id="qlCalcClose">×</button>
-      <div class="ql-kicker">Quant Lab · Calculator</div>
-      <h2 class="ql-title" style="font-size:22px;margin-bottom:16px;">Portfolio Optimizer</h2>
+  <!-- ═══ DASHBOARD ═══ -->
+  <div id="dashboard">
 
-      <div class="ql-section">
-        <div class="ql-section-title">Assets & Expected Returns</div>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Enter 2–5 assets. Use annualized expected returns (e.g. 0.10 = 10%). Volatility = annualized standard deviation.</p>
-        <div class="ql-col-header">
-          <div class="ql-col-header-label">Asset</div>
-          <div class="ql-col-header-label">Ticker / Name</div>
-          <div class="ql-col-header-label">Exp. Return (μ)</div>
-          <div class="ql-col-header-label">Volatility (σ)</div>
-        </div>
-        <div id="assetRows"></div>
-        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn btn-sm" id="addAssetBtn">+ Add Asset</button>
-          <button class="btn btn-sm" id="removeAssetBtn">− Remove</button>
-        </div>
+    <!-- NAV -->
+    <nav class="top-nav">
+      <div class="nav-brand">
+        <img src="assets/img/FTN-logo.png" alt="FinTrend News" />
+        <span>FinTrend</span>
+        <div class="nav-badge">Premium</div>
       </div>
 
-      <div class="ql-section">
-        <div class="ql-section-title">Correlations Between Assets</div>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Correlation coefficients between −1 and 1.</p>
-        <div id="corrGrid" style="overflow-x:auto;"></div>
+      <div class="nav-tabs" id="nav-tabs">
+        <button class="nav-tab active" data-tab="today">Today's Brief</button>
+        <button class="nav-tab" data-tab="portfolio">Model Portfolios</button>
+        <button class="nav-tab" data-tab="deals">Deal Tracker</button>
+        <button class="nav-tab" data-tab="quant">Quant Lab</button>
+        <button class="nav-tab" data-tab="roundup">Weekly Roundup</button>
       </div>
 
-      <div class="ql-section">
-        <div class="ql-section-title">Optimizer Settings</div>
-        <div class="ql-input-grid">
-          <div class="field">
-            <label>Risk Aversion (λ)</label>
-            <input type="number" id="lambdaInput" value="4" min="0.5" max="20" step="0.5" />
-            <div class="note">Higher = more conservative. Typical: 3–5.</div>
+      <div class="nav-right">
+        <span class="nav-user" id="nav-user-email"></span>
+        <button class="nav-signout" id="nav-signout">Sign Out</button>
+      </div>
+    </nav>
+
+    <!-- Mobile tab bar -->
+    <div class="mobile-tab-bar" id="mobile-tab-bar">
+      <button class="mobile-tab-btn active" data-tab="today"><span class="mtab-icon">◈</span>Brief</button>
+      <button class="mobile-tab-btn" data-tab="portfolio"><span class="mtab-icon">◎</span>Portfolios</button>
+      <button class="mobile-tab-btn" data-tab="deals"><span class="mtab-icon">◉</span>Deals</button>
+      <button class="mobile-tab-btn" data-tab="quant"><span class="mtab-icon">⬡</span>Quant</button>
+      <button class="mobile-tab-btn" data-tab="roundup"><span class="mtab-icon">⊞</span>Roundup</button>
+    </div>
+
+    <!-- ─── TODAY'S BRIEF ─── -->
+    <div class="tab-panel active" id="tab-today">
+      <div class="page-wrap">
+        <div class="feed-header">
+          <div>
+            <div class="feed-kicker">Premium · Today's Brief</div>
+            <div class="feed-title">What Matters <em style="font-style:italic;color:var(--accent);">Right Now</em></div>
           </div>
-          <div class="field">
-            <label>Monte Carlo Simulations</label>
-            <input type="number" id="simCount" value="20000" min="1000" max="50000" step="1000" />
-            <div class="note">More = more accurate tail risk estimates.</div>
+          <div class="feed-date" id="today-date"></div>
+        </div>
+
+        <!-- Hero article -->
+        <div class="hero-article">
+          <div class="hero-body">
+            <div class="hero-kicker">Latest · Monday Outlook</div>
+            <div class="hero-headline">War Premium Meets <em>Jobs Week</em></div>
+            <div class="hero-deck">U.S.-Israel strikes on Iran sent Brent crude +8% overnight. Defense bids. Oil majors wake up. But Non-Farm Payrolls Friday is the real anchor — if the number softens, risk-off from the war premium collides with rate-cut hope. That's a crowded trade waiting to unwind.</div>
+            <div class="hero-meta">
+              <span class="hero-tag featured">✦ Latest Report</span>
+              <span class="hero-tag">Mar 2, 2026</span>
+              <span class="hero-tag">Monday Outlook</span>
+            </div>
+            <div style="margin-top:18px;">
+              <a class="hero-read" href="articles/2026-03-02-monday.html">Read Full Brief →</a>
+            </div>
+          </div>
+          <div class="hero-sidebar">
+            <div class="hero-sb-label">Signal Snapshot</div>
+            <div class="signal-row">
+              <div class="signal-tag">Driver</div>
+              <div class="signal-val">Iran Strike / Oil</div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-tag">Bias</div>
+              <div class="signal-val bull">Risk-Off Short-Term</div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-tag">Key Level</div>
+              <div class="signal-val">SPX 5,780</div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-tag">Catalyst</div>
+              <div class="signal-val">NFP Friday</div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-tag">Oil</div>
+              <div class="signal-val bull">Brent +8.2%</div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-tag">Conviction</div>
+              <div class="signal-val neutral">Medium</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-        <button class="btn btn-gold" id="runOptBtn">Run Optimization</button>
-        <button class="btn btn-sm" id="loadExampleBtn">Load Example</button>
-        <button class="btn btn-sm" id="resetCalcBtn">Reset</button>
-      </div>
+        <!-- Recent articles -->
+        <div class="section-rule">
+          <div class="section-rule-label">Recent Reports</div>
+          <div class="section-rule-line"></div>
+        </div>
 
-      <div class="ql-error" id="qlError"></div>
-
-      <div id="qlResults" style="display:none;">
-        <div class="ql-results-panel">
-          <div class="section-label" style="margin-bottom:12px;">Optimization Results</div>
-          <div style="margin-bottom:14px;">
-            <div class="section-label" style="margin-bottom:6px;">Optimal Weights</div>
-            <div class="ql-weight-bar" id="weightBar"></div>
-            <div class="ql-weight-legend" id="weightLegend"></div>
+        <div class="article-grid" id="article-grid">
+          <div class="article-card" onclick="location.href='articles/2026-03-01-sunday.html'">
+            <div class="article-day-tag sun">Sunday Macro</div>
+            <div class="article-headline">Sunday Macro &amp; Positioning Note — March 1</div>
+            <div class="article-deck">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div>
+            <div class="article-footer">
+              <span class="article-date">Mar 1</span>
+              <span class="article-arrow">→</span>
+            </div>
           </div>
-          <div class="ql-result-grid" id="resultCells"></div>
-          <div class="divider"></div>
-          <div class="section-label" style="margin-bottom:8px;">Monte Carlo Distribution</div>
-          <pre id="mcDetails" style="margin:0;"></pre>
+          <div class="article-card" onclick="location.href='articles/2026-02-27-friday.html'">
+            <div class="article-day-tag fri">Friday Recap</div>
+            <div class="article-headline">Inflation Shock Closes Out February</div>
+            <div class="article-deck">PPI beats hard; Nvidia extends slide; S&amp;P 500 posts worst February in 11 months.</div>
+            <div class="article-footer">
+              <span class="article-date">Feb 27</span>
+              <span class="article-arrow">→</span>
+            </div>
+          </div>
+          <div class="article-card" onclick="location.href='articles/2026-02-25-wednesday.html'">
+            <div class="article-day-tag wed">Wednesday</div>
+            <div class="article-headline">The Verdict on AI Demand Lives or Dies Tonight</div>
+            <div class="article-deck">Nvidia Q4 after close; S&amp;P futures +0.14%; tariff narrative stabilizes post-SOTU.</div>
+            <div class="article-footer">
+              <span class="article-date">Feb 25</span>
+              <span class="article-arrow">→</span>
+            </div>
+          </div>
+          <div class="article-card" onclick="location.href='articles/2026-02-23-monday.html'">
+            <div class="article-day-tag mon">Monday Outlook</div>
+            <div class="article-headline">The Tariff Clock Starts Tomorrow</div>
+            <div class="article-deck">Section 122 at 15% kicks in Tuesday; Nvidia Wednesday; SOTU Tuesday night; PPI Friday.</div>
+            <div class="article-footer">
+              <span class="article-date">Feb 23</span>
+              <span class="article-arrow">→</span>
+            </div>
+          </div>
+          <div class="article-card" onclick="location.href='articles/2026-02-22-sunday.html'">
+            <div class="article-day-tag sun">Sunday Macro</div>
+            <div class="article-headline">The Court Ruled. The War Continues.</div>
+            <div class="article-deck">SCOTUS killed IEEPA; Trump pivoted to Section 122 at 15%; GDP 1.4%; PCE hot.</div>
+            <div class="article-footer">
+              <span class="article-date">Feb 22</span>
+              <span class="article-arrow">→</span>
+            </div>
+          </div>
+          <div class="article-card" onclick="location.href='articles/2026-02-20-friday.html'">
+            <div class="article-day-tag fri">Friday Recap</div>
+            <div class="article-headline">A Short Week That Packed a Full Year's Drama</div>
+            <div class="article-deck">Supreme Court strikes IEEPA tariffs; GDP misses at 1.4%; Walmart K-shaped consumer.</div>
+            <div class="article-footer">
+              <span class="article-date">Feb 20</span>
+              <span class="article-arrow">→</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:16px;">
+          <a href="archive.html" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:9px 20px;display:inline-block;transition:.15s;" onmouseover="this.style.borderColor='var(--border-gold)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">View Full Archive →</a>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- ─── MODEL PORTFOLIOS ─── -->
+    <div class="tab-panel" id="tab-portfolio">
+      <div class="page-wrap">
+        <div class="feed-header">
+          <div>
+            <div class="feed-kicker">Premium · Model Portfolios</div>
+            <div class="feed-title">Three frameworks. <em style="font-style:italic;color:var(--accent);">One direction.</em></div>
+          </div>
+          <div class="feed-date">Educational · Not financial advice</div>
+        </div>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-tier">
+            <div class="portfolio-tier-label">Tier 1</div>
+            <div class="portfolio-tier-name">Cautious</div>
+            <div class="portfolio-bias">Low risk tolerance. Capital preservation. Cash and quality first.</div>
+            <div id="port-cautious">
+              <div class="holding-row">
+                <div><div class="holding-ticker">BIL</div><div class="holding-name">T-Bill ETF</div></div>
+                <div class="holding-pct fl">40%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">GLD</div><div class="holding-name">SPDR Gold</div></div>
+                <div class="holding-pct up">20%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">XLU</div><div class="holding-name">Utilities</div></div>
+                <div class="holding-pct fl">20%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">XLP</div><div class="holding-name">Consumer Staples</div></div>
+                <div class="holding-pct fl">20%</div>
+              </div>
+            </div>
+            <div class="portfolio-note">Current tilt: max defensive amid war premium and rate uncertainty.</div>
+          </div>
+
+          <div class="portfolio-tier balanced">
+            <div class="portfolio-tier-label">Tier 2</div>
+            <div class="portfolio-tier-name">Balanced</div>
+            <div class="portfolio-bias">Moderate exposure. Selective risk. Dividend and quality tilt.</div>
+            <div id="port-balanced">
+              <div class="holding-row">
+                <div><div class="holding-ticker">SPY</div><div class="holding-name">S&amp;P 500</div></div>
+                <div class="holding-pct fl">30%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">GLD</div><div class="holding-name">SPDR Gold</div></div>
+                <div class="holding-pct up">15%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">XLE</div><div class="holding-name">Energy (tactically elevated)</div></div>
+                <div class="holding-pct up">20%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">BIL</div><div class="holding-name">T-Bills / Cash</div></div>
+                <div class="holding-pct fl">20%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">VIG</div><div class="holding-name">Dividend Growth</div></div>
+                <div class="holding-pct fl">15%</div>
+              </div>
+            </div>
+            <div class="portfolio-note">Energy overweight on oil supply shock; tech underweight post-AI reset.</div>
+          </div>
+
+          <div class="portfolio-tier aggressive">
+            <div class="portfolio-tier-label">Tier 3 · ✦</div>
+            <div class="portfolio-tier-name" style="color:var(--accent);">Aggressive</div>
+            <div class="portfolio-bias">High risk tolerance. Thematic bets. Active rotation.</div>
+            <div id="port-aggressive">
+              <div class="holding-row">
+                <div><div class="holding-ticker">XLE</div><div class="holding-name">Energy Sector</div></div>
+                <div class="holding-pct up">25%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">ITA</div><div class="holding-name">Defense Aerospace</div></div>
+                <div class="holding-pct up">20%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">GLD</div><div class="holding-name">Gold</div></div>
+                <div class="holding-pct up">15%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">NVDA</div><div class="holding-name">Nvidia (reduced)</div></div>
+                <div class="holding-pct dn">15%</div>
+              </div>
+              <div class="holding-row">
+                <div><div class="holding-ticker">USO</div><div class="holding-name">Oil ETF (tactical)</div></div>
+                <div class="holding-pct up">25%</div>
+              </div>
+            </div>
+            <div class="portfolio-note">War premium playbook: energy + defense + gold. Tech underweight until AI monetization clears.</div>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);background:rgba(2,6,23,0.40);padding:16px 20px;font-size:12px;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--text);">Disclaimer:</strong> Model portfolios are educational frameworks only. They are not personalized investment advice, not recommendations to buy or sell any security, and should not be relied upon for financial decisions. Always consult a licensed financial professional.
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── DEAL TRACKER ─── -->
+    <div class="tab-panel" id="tab-deals">
+      <div class="page-wrap">
+        <div class="feed-header">
+          <div>
+            <div class="feed-kicker">Premium · Deal Tracker</div>
+            <div class="feed-title">Ideas on <em style="font-style:italic;color:var(--accent);">the radar.</em></div>
+          </div>
+          <div class="feed-date">Educational · Not financial advice</div>
+        </div>
+
+        <div class="deal-stack" id="deal-stack">
+          <div class="deal-row">
+            <div class="deal-ticker-block">
+              <div class="deal-ticker">XLE</div>
+              <div class="deal-type long">Long</div>
+            </div>
+            <div class="deal-body">
+              <div class="deal-thesis">Iran strike adds genuine supply-shock risk to oil. Energy sector is a direct beneficiary. War premium may not fully unwind quickly given regional escalation risk.</div>
+              <div class="deal-meta-row">
+                <div class="deal-meta-pill">Entry: <span>~$94</span></div>
+                <div class="deal-meta-pill">Target: <span>$104</span></div>
+                <div class="deal-meta-pill">Stop: <span>$89</span></div>
+                <div class="deal-meta-pill">Thesis: <span>Geopolitical + supply</span></div>
+              </div>
+            </div>
+            <div class="deal-right">
+              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+10.6%</div></div>
+              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
+            </div>
+          </div>
+
+          <div class="deal-row">
+            <div class="deal-ticker-block">
+              <div class="deal-ticker">ITA</div>
+              <div class="deal-type long">Long</div>
+            </div>
+            <div class="deal-body">
+              <div class="deal-thesis">Defense aerospace ETF captures the geopolitical risk premium without single-name exposure. NATO spending commitments + Middle East conflict tailwinds persist.</div>
+              <div class="deal-meta-row">
+                <div class="deal-meta-pill">Entry: <span>~$138</span></div>
+                <div class="deal-meta-pill">Target: <span>$155</span></div>
+                <div class="deal-meta-pill">Stop: <span>$129</span></div>
+                <div class="deal-meta-pill">Thesis: <span>Defense spending cycle</span></div>
+              </div>
+            </div>
+            <div class="deal-right">
+              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+12.3%</div></div>
+              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
+            </div>
+          </div>
+
+          <div class="deal-row">
+            <div class="deal-ticker-block">
+              <div class="deal-ticker">NVDA</div>
+              <div class="deal-type watch">Watch</div>
+            </div>
+            <div class="deal-body">
+              <div class="deal-thesis">Nvidia still owns AI infrastructure narrative but Q4 earnings showed margin pressure and guidance was underwhelming. Watching for base-building near $115–$120 before re-entry.</div>
+              <div class="deal-meta-row">
+                <div class="deal-meta-pill">Watch Zone: <span>$115–$120</span></div>
+                <div class="deal-meta-pill">Invalidation: <span>&lt;$108</span></div>
+                <div class="deal-meta-pill">Thesis: <span>AI demand structural</span></div>
+              </div>
+            </div>
+            <div class="deal-right">
+              <div><div class="deal-stat-label">Signal</div><div class="deal-stat-val neutral" style="color:#facc15;font-size:11px;">Watching</div></div>
+              <div><div class="deal-stat-label">Risk</div><div class="deal-stat-val" style="color:var(--muted);font-size:11px;">Medium</div></div>
+            </div>
+          </div>
+
+          <div class="deal-row">
+            <div class="deal-ticker-block">
+              <div class="deal-ticker">GLD</div>
+              <div class="deal-type long">Long</div>
+            </div>
+            <div class="deal-body">
+              <div class="deal-thesis">Gold benefits from three concurrent tailwinds: geopolitical risk premium, central bank buying (China, India), and rate-cut optionality if NFP softens. Structural not tactical.</div>
+              <div class="deal-meta-row">
+                <div class="deal-meta-pill">Entry: <span>~$268</span></div>
+                <div class="deal-meta-pill">Target: <span>$295</span></div>
+                <div class="deal-meta-pill">Stop: <span>$254</span></div>
+                <div class="deal-meta-pill">Thesis: <span>Multi-factor</span></div>
+              </div>
+            </div>
+            <div class="deal-right">
+              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+10.1%</div></div>
+              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
+            </div>
+          </div>
+
+          <div class="deal-row">
+            <div class="deal-ticker-block">
+              <div class="deal-ticker">TLT</div>
+              <div class="deal-type short">Short</div>
+            </div>
+            <div class="deal-body">
+              <div class="deal-thesis">Long-duration bonds remain vulnerable if inflation re-accelerates. PPI beat Friday reinforces the thesis. Fed unlikely to cut until data clears — TLT stays under pressure.</div>
+              <div class="deal-meta-row">
+                <div class="deal-meta-pill">Entry: <span>~$88</span></div>
+                <div class="deal-meta-pill">Target: <span>$78</span></div>
+                <div class="deal-meta-pill">Stop: <span>$94</span></div>
+                <div class="deal-meta-pill">Thesis: <span>Rates higher-for-longer</span></div>
+              </div>
+            </div>
+            <div class="deal-right">
+              <div><div class="deal-stat-label">P&amp;L Est.</div><div class="deal-stat-val up">+11.4%</div></div>
+              <div><div class="deal-stat-label">Status</div><div class="deal-stat-val" style="color:var(--green);font-size:11px;">Active</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);background:rgba(2,6,23,0.40);padding:14px 20px;font-size:12px;color:var(--muted);line-height:1.7;margin-top:1px;">
+          All ideas are educational analysis only. Not investment advice. Entries, targets, and stops are illustrative. Do your own research.
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── QUANT LAB ─── -->
+    <div class="tab-panel" id="tab-quant">
+      <div class="page-wrap">
+        <div class="feed-header">
+          <div>
+            <div class="feed-kicker">Premium · Quant Lab</div>
+            <div class="feed-title">Numbers that <em style="font-style:italic;color:var(--accent);">tell the story.</em></div>
+          </div>
+        </div>
+
+        <div class="quant-grid">
+          <div class="quant-block">
+            <div class="quant-block-label">Macro Regime Indicator</div>
+            <div class="quant-block-title">Current Market Regime</div>
+            <div class="regime-bars">
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Risk-Off Pressure</span><span class="regime-bar-val" style="color:var(--red);">72%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:72%"></div></div>
+              </div>
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Geopolitical Premium</span><span class="regime-bar-val" style="color:var(--red);">68%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:68%"></div></div>
+              </div>
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Rate Cut Probability (6mo)</span><span class="regime-bar-val" style="color:#facc15;">41%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill neutral" style="width:41%"></div></div>
+              </div>
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Earnings Growth Confidence</span><span class="regime-bar-val" style="color:var(--green);">58%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill bull" style="width:58%"></div></div>
+              </div>
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Credit Stress</span><span class="regime-bar-val" style="color:var(--red);">55%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill bear" style="width:55%"></div></div>
+              </div>
+              <div class="regime-bar-row">
+                <div class="regime-bar-top"><span class="regime-bar-label">Dollar Strength</span><span class="regime-bar-val" style="color:var(--green);">63%</span></div>
+                <div class="regime-bar-track"><div class="regime-bar-fill bull" style="width:63%"></div></div>
+              </div>
+            </div>
+            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.6;">
+              Regime: <strong style="color:var(--red);">Risk-Off / Stagflationary Lean</strong><br>
+              Signals updated weekly. Not predictive — descriptive of current conditions.
+            </div>
+          </div>
+
+          <div class="quant-block">
+            <div class="quant-block-label">Monte Carlo Simulation</div>
+            <div class="quant-block-title">S&P 500 — 90-Day Scenarios</div>
+            <div class="mc-output" id="mc-output">
+              Press "Run Simulation" to generate<br>a fresh set of 90-day outcomes.
+            </div>
+            <button class="mc-run-btn" id="mc-run">⬡ Run Simulation</button>
+          </div>
+        </div>
+
+        <div class="section-rule">
+          <div class="section-rule-label">Key Levels Monitor</div>
+          <div class="section-rule-line"></div>
+        </div>
+
+        <div style="border:1px solid var(--border);background:var(--surface);">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);">
+            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Asset</div>
+            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Support</div>
+            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Resistance</div>
+            <div style="padding:8px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);">Bias</div>
+          </div>
+          <div id="levels-table">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WEEKLY ROUNDUP ─── -->
+    <div class="tab-panel" id="tab-roundup">
+      <div class="page-wrap">
+        <div class="feed-header">
+          <div>
+            <div class="feed-kicker">Premium · Weekly Roundup</div>
+            <div class="feed-title">The week's <em style="font-style:italic;color:var(--accent);">signal vs. noise.</em></div>
+          </div>
+          <div class="feed-date">Week of Mar 2, 2026</div>
+        </div>
+
+        <div class="roundup-list" id="roundup-list">
+          <div class="roundup-item bull">
+            <div class="roundup-tag">Energy ↑</div>
+            <div>
+              <div class="roundup-text">Brent crude surged 8.2% on the Iran strike news. XLE and oil majors (CVX, XOM) outperformed sharply. Defense names followed — ITA up 3.4% on the week.</div>
+              <div class="roundup-source">via Brent spot, Bloomberg · Mar 2</div>
+            </div>
+          </div>
+          <div class="roundup-item bear">
+            <div class="roundup-tag">Inflation ↑</div>
+            <div>
+              <div class="roundup-text">February PPI came in hotter than expected. Core services remain sticky. The read-through to PCE — the Fed's preferred gauge — complicated the rate-cut narrative heading into March.</div>
+              <div class="roundup-source">via BLS PPI release · Feb 27</div>
+            </div>
+          </div>
+          <div class="roundup-item bear">
+            <div class="roundup-tag">Tech ↓</div>
+            <div>
+              <div class="roundup-text">Nvidia extended its post-earnings slide despite beating estimates. Guidance was underwhelming on margin expansion. The AI monetization question isn't resolved — the stock is now base-building territory not momentum territory.</div>
+              <div class="roundup-source">via Nvidia earnings call · Feb 26</div>
+            </div>
+          </div>
+          <div class="roundup-item macro">
+            <div class="roundup-tag">Fed Watch</div>
+            <div>
+              <div class="roundup-text">Markets are now pricing just one cut in 2026. The combination of hot PPI, sticky PCE, and a geopolitical oil shock makes the Fed's path narrower. Watch NFP Friday — a strong number removes any near-term cut optionality.</div>
+              <div class="roundup-source">via CME FedWatch · Mar 2</div>
+            </div>
+          </div>
+          <div class="roundup-item watch">
+            <div class="roundup-tag">Geopolitical</div>
+            <div>
+              <div class="roundup-text">Ukraine-Russia ceasefire talks remain in framework stage — nothing signed. Iran strike risk premium now embedded in oil and defense. Middle East escalation timeline is the wildcard that can override any technical setup.</div>
+              <div class="roundup-source">via Reuters, FT · Mar 1–2</div>
+            </div>
+          </div>
+          <div class="roundup-item bull">
+            <div class="roundup-tag">Gold ↑</div>
+            <div>
+              <div class="roundup-text">Gold continued its structural bid — now up over 12% YTD. Central bank buying (China, India) remains the structural floor. Geopolitical bid adds a second layer. $2,900 was breached briefly — $3,000 is the psychological next test.</div>
+              <div class="roundup-source">via COMEX, WGC data · Mar 2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-footer">
+      All content on this dashboard is for informational and educational purposes only. Not financial advice. Not a registered investment adviser. Always conduct your own research and consult a licensed financial professional before making investment decisions.
+      <br><a href="index.html" style="color:rgba(148,163,184,0.40);text-decoration:underline;text-underline-offset:3px;font-size:11px;margin-top:6px;display:inline-block;">← Back to FinTrend News</a>
+    </div>
+  </div><!-- /dashboard -->
 
   <script>
-  (async function(){
+  (function(){
+    "use strict";
 
-    const PAYMENT_LINK  = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
-    const SUPABASE_URL  = "https://dxmdyperxyydqdshazcp.supabase.co";
+    const SUPABASE_URL = "https://dxmdyperxyydqdshazcp.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+    const PAYMENT_LINK = "https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00";
 
-    const stateEl   = document.getElementById("state");
-    const contentEl = document.getElementById("content");
-    const memberPill= document.getElementById("memberPill");
+    let supabase = null;
+    let currentUser = null;
 
-    function withTimeout(p, ms=8000){
-      return Promise.race([p, new Promise((_,r)=>setTimeout(()=>r(new Error("Timed out")),ms))]);
+    // ── Date
+    const todayDateEl = document.getElementById("today-date");
+    if(todayDateEl){
+      const d = new Date();
+      todayDateEl.textContent = d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
     }
 
-    const watchdog = setTimeout(()=>{
-      memberPill.textContent = "Timed out";
-      stateEl.innerHTML = `<p class="muted pulse">Page timed out — try refreshing.</p>`;
-    }, 9000);
+    // ── Vault sequence
+    const vaultScreen = document.getElementById("vault-screen");
+    const dashboard = document.getElementById("dashboard");
+    const vaultText = document.getElementById("vault-text");
+    const vaultLine = document.getElementById("vault-line");
+    const vaultStatus = document.getElementById("vault-status");
+    const loadingScreen = document.getElementById("loading-screen");
+    const accessGate = document.getElementById("access-gate");
 
-    function showFatal(title, msg, detail){
-      clearTimeout(watchdog);
-      memberPill.textContent = "Error";
-      stateEl.innerHTML = `
-        <p class="section-label">${title}</p>
-        <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Something went wrong</h2>
-        <p style="color:var(--muted2);margin-top:6px;">${msg}</p>
-        ${detail ? `<pre style="margin-top:10px;">${detail}</pre>` : ""}
-        <div style="margin-top:16px;"><a class="btn" href="index.html">← Back</a></div>`;
+    // Animated dots
+    let dotsInterval = null;
+    function startDots(){
+      const el = document.getElementById("vault-dots");
+      if(!el) return;
+      let n = 0;
+      dotsInterval = setInterval(()=>{ n=(n+1)%4; el.textContent=".".repeat(n); }, 400);
+    }
+    function stopDots(){
+      if(dotsInterval) clearInterval(dotsInterval);
+      const el = document.getElementById("vault-dots");
+      if(el) el.textContent = "";
     }
 
-    function escHtml(s){
-      return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
-    }
-
-    function fmtDate(ts){
-      try{ return new Date(ts).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); }
-      catch{ return ""; }
-    }
-
-    try{
-      if(!window.supabase?.createClient) throw new Error("Supabase not loaded.");
-
-      const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-        auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true, storage:window.localStorage }
-      });
-
-      const {data:u, error:uErr} = await withTimeout(sb.auth.getUser());
-      if(uErr) throw new Error("Auth: "+uErr.message);
-      const user = u?.user ?? null;
-
-      if(!user){
-        clearTimeout(watchdog);
-        memberPill.textContent = "Signed out";
-        stateEl.innerHTML = `
-          <p class="section-label">Sign in required</p>
-          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">You need to be signed in</h2>
-          <div style="margin-top:14px;"><a class="btn btn-gold" href="index.html">Sign In</a></div>`;
-        return;
+    function showVaultGranted(email){
+      stopDots();
+      if(vaultStatus){
+        vaultStatus.textContent = "✓ Access Granted";
+        vaultStatus.classList.add("granted");
       }
+      // Show text block
+      if(vaultText) vaultText.classList.add("show");
+      if(vaultLine) setTimeout(()=>{ vaultLine.classList.add("extend"); }, 200);
+
+      // After a beat, swing door open
+      setTimeout(()=>{
+        if(vaultScreen) vaultScreen.classList.add("swing-open");
+        if(dashboard) dashboard.classList.add("revealed");
+        document.body.classList.remove("vault-active");
+
+        // Set user email
+        const emailEl = document.getElementById("nav-user-email");
+        if(emailEl && email) emailEl.textContent = email;
 
-      const {data:profile, error:pErr} = await withTimeout(
-        sb.from("profiles").select("id,email,is_premium").eq("id",user.id).maybeSingle()
-      );
-
-      if(pErr){ showFatal("Database error","Could not load your profile.",pErr.message); return; }
-      if(!profile){
-        clearTimeout(watchdog);
-        stateEl.innerHTML = `
-          <p class="section-label">Profile missing</p>
-          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Can't verify membership</h2>
-          <div style="margin-top:14px;"><a class="btn" href="index.html">← Home</a></div>`;
-        return;
-      }
-
-      if(!profile.is_premium){
-        clearTimeout(watchdog);
-        memberPill.textContent = "Free";
-        stateEl.innerHTML = `
-          <p class="section-label">Upgrade required</p>
-          <h2 style="font-family:'DM Serif Display',serif;font-size:22px;margin:8px 0;">Go Premium to unlock this dashboard</h2>
-          <p style="color:var(--muted2);margin-top:6px;">Signed in as <strong>${escHtml(profile.email||"")}</strong></p>
-          <div style="display:flex;gap:10px;margin-top:14px;">
-            <a class="btn btn-gold" href="${PAYMENT_LINK}" target="_blank" rel="noopener">Upgrade Now</a>
-            <a class="btn" href="index.html">← Back</a>
-          </div>`;
-        return;
-      }
-
-      // ✅ PREMIUM UNLOCKED
-      clearTimeout(watchdog);
-      memberPill.innerHTML = `<span class="status-dot"></span> Premium`;
-      memberPill.classList.add("active");
-      stateEl.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-          <div>
-            <p class="section-label">Access granted</p>
-            <p style="color:var(--muted2);margin-top:4px;font-size:13px;">Welcome back, <strong style="color:var(--text);">${escHtml(profile.email||"member")}</strong></p>
-          </div>
-          <span class="badge badge-gold">Premium Active ✓</span>
-        </div>`;
-
-      // ══════════════════════════════════════════
-      // MODULE DEFINITIONS
-      // ══════════════════════════════════════════
-      const STORAGE_KEY = "fintrend_premium_modules_v3";
-
-      const MODULES = [
-        { id:"deepdive",  category:"Research",   badge:"Deep Dives",       title:"Weekly Deep Dives + Archive",              desc:"Full-length sector reports with drivers, positioning, catalysts, and levels.",             render: renderDeepDives },
-        { id:"ideas",     category:"Ideas",       badge:"On My Radar",      title:"Curated Stock & ETF Ideas",                desc:"Weekly watchlist with thesis, catalysts, time horizon, and risk notes.",                   render: renderIdeas },
-        { id:"roundup",   category:"News",        badge:"Deal Tracker",     title:"Weekly M&A · LBO · IPO Breakdown",         desc:"3 deals every week — what happened, the logic, what we think next, and the key risk.",     render: renderRoundups },
-        { id:"templates", category:"Tools",       badge:"Templates Vault",  title:"Simple Templates (Download + Checklists)", desc:"Portfolio tracker, DCA planner, earnings checklist, and rebalancing checklist.",           render: renderTemplates },
-        { id:"models",    category:"Portfolios",  badge:"Model Portfolios", title:"Cautious / Balanced / Aggressive Models",  desc:"3 model portfolio frameworks with rebalance rationale and risk regime notes.",             render: renderModels },
-        { id:"quantlab",  category:"Quant",       badge:"Quant Lab",        title:"Portfolio Optimizer + Monte Carlo CVaR",   desc:"Mean-variance optimization + 20,000-scenario Monte Carlo simulation with VaR and CVaR.", render: renderQuantLab }
-      ];
-
-      const DEFAULT = MODULES.map(m=>m.id);
-
-      function loadSel(){
-        try{
-          const r = localStorage.getItem(STORAGE_KEY);
-          if(!r) return DEFAULT.slice();
-          const p = JSON.parse(r);
-          return Array.isArray(p) ? p.filter(id=>MODULES.some(m=>m.id===id)) : DEFAULT.slice();
-        }catch{ return DEFAULT.slice(); }
-      }
-      function saveSel(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
-
-      let selectedIds = loadSel();
-
-      // ══════════════════════════════════════════
-      // RENDER FUNCTIONS
-      // ══════════════════════════════════════════
-
-      function renderDeepDives(){
-        return `
-          <div class="chips" style="margin-bottom:14px;">
-            <div class="chip"><span>Source</span> Supabase · RLS protected</div>
-            <div class="chip"><span>Updated</span> Each publish</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
-            <button class="btn btn-gold btn-sm" data-deepdive="latest">Open Latest</button>
-            <button class="btn btn-sm" data-deepdive="archive">Browse Archive</button>
-            <button class="btn btn-sm" data-deepdive="exit" style="display:none;">Exit Reader</button>
-          </div>
-          <div class="dd-layout" id="ddShell">
-            <div id="ddArchiveCard" style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
-              <p class="section-label" style="margin-bottom:10px;">Archive</p>
-              <div class="search-row">
-                <input id="ddSearch" type="text" placeholder="Search titles…" style="max-width:170px;" />
-                <select id="ddSector"><option value="">All sectors</option></select>
-                <button class="btn btn-sm" data-deepdive="refresh">Refresh</button>
-              </div>
-              <div class="divider"></div>
-              <div id="ddList"></div>
-            </div>
-            <div id="ddViewerCard" style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-                <p class="section-label">Reader</p>
-                <button class="btn btn-sm" data-deepdive="backToArchive" style="display:none;">← Archive</button>
-              </div>
-              <div id="ddViewer"><p style="color:var(--muted);font-size:13px;">Click "Open Latest" or choose from the archive.</p></div>
-            </div>
-          </div>`;
-      }
-
-      function renderIdeas(){
-        return `
-          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
-            <button class="btn btn-gold btn-sm" id="loadIdeasBtn">Load Ideas</button>
-            <select id="ideasWeekFilter" style="max-width:200px;"><option value="">All Weeks</option></select>
-            <select id="ideasSectorFilter" style="max-width:160px;"><option value="">All Sectors</option></select>
-          </div>
-          <div id="ideasContainer" style="margin-top:8px;">
-            <p style="color:var(--muted);font-size:13px;">Click "Load Ideas" to fetch the latest watchlist.</p>
-          </div>`;
-      }
-
-      function renderRoundups(){
-        return `
-          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:4px;">
-            <button class="btn btn-gold btn-sm" id="loadRoundupsBtn">Load Deal Tracker</button>
-            <select id="roundupWeekFilter" style="max-width:200px;"><option value="">All Weeks</option></select>
-          </div>
-          <div id="roundupsContainer" style="margin-top:12px;">
-            <p style="color:var(--muted);font-size:13px;">Click "Load Deal Tracker" to fetch the latest deals.</p>
-          </div>`;
-      }
-
-      function renderTemplates(){
-        return `
-          <div class="template-grid">
-            <a class="template-item" href="FinTrend-Portfolio-Tracker.xlsx">
-              <div class="template-icon">📊</div>
-              <div class="template-name">Portfolio Tracker</div>
-              <div class="template-desc">Performance, contributions & attribution</div>
-            </a>
-            <a class="template-item" href="FinTrend-DCA-Planner.xlsx">
-              <div class="template-icon">📅</div>
-              <div class="template-name">DCA Planner</div>
-              <div class="template-desc">Schedule, target allocation & "what to buy next"</div>
-            </a>
-            <a class="template-item" href="FinTrend-Earnings-Checklist.xlsx">
-              <div class="template-icon">✅</div>
-              <div class="template-name">Earnings Checklist</div>
-              <div class="template-desc">Forces thesis review before trading</div>
-            </a>
-            <a class="template-item" href="FinTrend-Rebalancing-Checklist.xlsx">
-              <div class="template-icon">⚖️</div>
-              <div class="template-name">Rebalancing Checklist</div>
-              <div class="template-desc">Rules-based — removes emotion</div>
-            </a>
-          </div>`;
-      }
-
-      function renderModels(){
-        return `
-          <div id="modelsContainer">
-            <p style="color:var(--muted);font-size:13px;" class="pulse">Loading portfolios…</p>
-          </div>`;
-      }
-
-      function renderQuantLab(){
-        return `
-          <div class="chips" style="margin-bottom:14px;">
-            <div class="chip"><span>Method</span> Mean-Variance Optimization</div>
-            <div class="chip"><span>Risk</span> Monte Carlo CVaR</div>
-            <div class="chip"><span>Simulations</span> Up to 50,000</div>
-          </div>
-          <p style="font-size:13px;color:var(--muted2);line-height:1.65;margin-bottom:14px;">
-            Professional portfolio optimization using the Markowitz framework + Monte Carlo simulation.
-            Find optimal weights, then stress-test them with 20,000+ return scenarios.
-          </p>
-          <button class="btn btn-gold" id="openQuantLabBtn">Open Quant Lab</button>`;
-      }
-
-      // ══════════════════════════════════════════
-      // DASHBOARD BUILD
-      // ══════════════════════════════════════════
-      function groupByCat(mods){
-        const m={};
-        for(const mod of mods){ (m[mod.category]=m[mod.category]||[]).push(mod); }
-        return m;
-      }
-
-      function buildDashboard(selIds){
-        const sel = MODULES.filter(m=>selIds.includes(m.id));
-        const grouped = groupByCat(MODULES);
-
-        const sidebarHtml = Object.keys(grouped).map(cat=>`
-          <div class="sidebar-section">
-            <div class="sidebar-label">${cat}</div>
-            ${grouped[cat].map(m=>`
-              <label class="sidebar-item">
-                <input type="checkbox" data-module="${m.id}" ${selIds.includes(m.id)?"checked":""} />
-                <div class="sidebar-item-text">
-                  <strong>${m.badge}</strong>
-                  <small>${m.title}</small>
-                </div>
-              </label>`).join("")}
-          </div>`).join("");
-
-        const modulesHtml = sel.length
-          ? sel.map(m=>`
-              <div class="module" id="module-${m.id}">
-                <div class="module-header">
-                  <div>
-                    <div class="module-kicker">
-                      <span class="badge badge-gold">${m.badge}</span>
-                      <span class="badge badge-muted">${m.category}</span>
-                    </div>
-                    <h3 class="module-title">${m.title}</h3>
-                    <p class="module-desc">${m.desc}</p>
-                  </div>
-                  <button class="btn btn-sm" data-scrolltop>↑ Top</button>
-                </div>
-                <div class="module-body">${m.render()}</div>
-              </div>`).join("")
-          : `<div class="card"><p class="section-label">Nothing selected</p><p style="color:var(--muted2);margin-top:8px;font-size:13px;">Pick a module from the sidebar.</p></div>`;
-
-        return `
-          <div class="dashboard">
-            <aside class="sidebar">
-              <div class="card">
-                <p class="section-label" style="margin-bottom:4px;">Your Dashboard</p>
-                <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Saved automatically.</p>
-                ${sidebarHtml}
-                <div class="sidebar-actions">
-                  <button class="btn btn-sm btn-gold" id="selAllBtn">All</button>
-                  <button class="btn btn-sm" id="selNoneBtn">None</button>
-                  <button class="btn btn-sm" id="selResetBtn">Reset</button>
-                </div>
-              </div>
-            </aside>
-            <div class="modules" id="modulesCol">${modulesHtml}</div>
-          </div>`;
-      }
-
-      function rerender(){
-        contentEl.innerHTML = buildDashboard(selectedIds);
-        wireAll();
-      }
-
-      contentEl.style.display = "block";
-      contentEl.innerHTML = buildDashboard(selectedIds);
-      wireAll();
-
-      // ══════════════════════════════════════════
-      // WIRE EVENTS
-      // ══════════════════════════════════════════
-      function wireAll(){
-        wireSelectorEvents();
-        wireDeepDiveEvents();
-        wireIdeasEvents(sb);
-        wireRoundupsEvents(sb);
-        wireModelsEvents(sb);
-        wireQuantLabBtn();
-
-        contentEl.querySelectorAll("[data-scrolltop]").forEach(b=>{
-          b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-        });
-      }
-
-      function wireSelectorEvents(){
-        contentEl.querySelectorAll('input[type="checkbox"][data-module]').forEach(cb=>{
-          cb.addEventListener("change",()=>{
-            const id = cb.getAttribute("data-module");
-            if(cb.checked){ if(!selectedIds.includes(id)) selectedIds.push(id); }
-            else { selectedIds = selectedIds.filter(x=>x!==id); }
-            saveSel(selectedIds);
-            rerender();
-          });
-        });
-        const sa = document.getElementById("selAllBtn");
-        const sn = document.getElementById("selNoneBtn");
-        const sr = document.getElementById("selResetBtn");
-        if(sa) sa.onclick = ()=>{ selectedIds = MODULES.map(m=>m.id); saveSel(selectedIds); rerender(); };
-        if(sn) sn.onclick = ()=>{ selectedIds = []; saveSel(selectedIds); rerender(); };
-        if(sr) sr.onclick = ()=>{ selectedIds = DEFAULT.slice(); saveSel(selectedIds); rerender(); };
-      }
-
-      // ══════════════════════════════════════════
-      // DEEP DIVES
-      // ══════════════════════════════════════════
-      let ddCache = [];
-
-      async function fetchLatestDD(){
-        const {data,error} = await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(1);
-        if(error) throw error;
-        return data?.length ? data[0] : null;
-      }
-      async function fetchDDArchive(){
-        const {data,error} = await sb.from("premium_articles").select("id,title,created_at,sector,tags").eq("type","deep_dive").order("created_at",{ascending:false}).limit(200);
-        if(error) throw error;
-        return data||[];
-      }
-      async function fetchDDById(id){
-        const {data,error} = await sb.from("premium_articles").select("id,title,content,created_at,sector,tags").eq("id",id).single();
-        if(error) throw error;
-        return data;
-      }
-
-      function enterReader(){
-        document.getElementById("ddShell")?.classList.add("reading");
-        contentEl.querySelector('[data-deepdive="exit"]')?.style && (contentEl.querySelector('[data-deepdive="exit"]').style.display="");
-        contentEl.querySelector('[data-deepdive="backToArchive"]')?.style && (contentEl.querySelector('[data-deepdive="backToArchive"]').style.display="");
-      }
-      function exitReader(){
-        document.getElementById("ddShell")?.classList.remove("reading");
-        contentEl.querySelector('[data-deepdive="exit"]')?.style && (contentEl.querySelector('[data-deepdive="exit"]').style.display="none");
-        contentEl.querySelector('[data-deepdive="backToArchive"]')?.style && (contentEl.querySelector('[data-deepdive="backToArchive"]').style.display="none");
-      }
-
-      function renderDDViewer(article){
-        const v = document.getElementById("ddViewer"); if(!v) return;
-        if(!article){ v.innerHTML=`<p style="color:var(--muted);">No deep dives found yet.</p>`; return; }
-        v.innerHTML=`
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
-            ${article.sector ? `<span class="mini-badge">${escHtml(article.sector)}</span>` : ""}
-            <span class="mini-badge">${escHtml(fmtDate(article.created_at))}</span>
-          </div>
-          <h2 style="font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:16px;line-height:1.2;">${escHtml(article.title)}</h2>
-          <div class="divider"></div>
-          <div class="article-body">${article.content}</div>`;
-        enterReader();
-      }
-
-      function renderDDList(){
-        const list = document.getElementById("ddList");
-        const sec  = document.getElementById("ddSector");
-        const srch = document.getElementById("ddSearch");
-        if(!list) return;
-        const sv = sec?.value || "";
-        const q  = (srch?.value || "").trim().toLowerCase();
-        const filtered = ddCache.filter(r=>(!sv||(r.sector===sv))&&(!q||r.title.toLowerCase().includes(q)));
-        if(!filtered.length){ list.innerHTML=`<p style="color:var(--muted);font-size:13px;">No matches.</p>`; return; }
-        list.innerHTML = filtered.map(r=>`
-          <div class="archive-item" data-dd-id="${escHtml(r.id)}">
-            <div>
-              <div class="archive-item-title">${escHtml(r.title)}</div>
-              ${r.sector ? `<span class="mini-badge" style="margin-top:6px;display:inline-flex;">${escHtml(r.sector)}</span>` : ""}
-            </div>
-            <div class="archive-item-date">${escHtml(fmtDate(r.created_at))}</div>
-          </div>`).join("");
-        list.querySelectorAll("[data-dd-id]").forEach(el=>{
-          el.addEventListener("click", async()=>{
-            const id = el.getAttribute("data-dd-id");
-            const v = document.getElementById("ddViewer");
-            if(v) v.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading…</p>`;
-            try{ renderDDViewer(await fetchDDById(id)); }
-            catch(err){ alert("Could not load: "+(err?.message||String(err))); }
-          });
-        });
-      }
-
-      async function refreshArchive(){
-        ddCache = await fetchDDArchive();
-        const sec = document.getElementById("ddSector");
-        if(sec){
-          const sectors = [...new Set(ddCache.filter(r=>r.sector).map(r=>r.sector))].sort();
-          sec.innerHTML = `<option value="">All sectors</option>` + sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
-          sec.onchange = ()=>renderDDList();
-        }
-        const srch = document.getElementById("ddSearch");
-        if(srch) srch.oninput = ()=>renderDDList();
-        renderDDList();
-      }
-
-      function wireDeepDiveEvents(){
-        const latBtn = contentEl.querySelector('[data-deepdive="latest"]');
-        const arcBtn = contentEl.querySelector('[data-deepdive="archive"]');
-        const refBtn = contentEl.querySelector('[data-deepdive="refresh"]');
-        const exitBtn= contentEl.querySelector('[data-deepdive="exit"]');
-        const backBtn= contentEl.querySelector('[data-deepdive="backToArchive"]');
-
-        if(latBtn) latBtn.onclick = async()=>{
-          const v = document.getElementById("ddViewer");
-          if(v) v.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading latest…</p>`;
-          try{ renderDDViewer(await fetchLatestDD()); }
-          catch(err){ alert("Error: "+(err?.message||String(err))); }
-        };
-        if(arcBtn) arcBtn.onclick = async()=>{
-          exitReader();
-          const l = document.getElementById("ddList");
-          if(l) l.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading archive…</p>`;
-          try{ await refreshArchive(); }
-          catch(err){ alert("Error: "+(err?.message||String(err))); }
-        };
-        if(refBtn) refBtn.onclick = async()=>{
-          exitReader();
-          try{ await refreshArchive(); }
-          catch(err){ alert("Error: "+(err?.message||String(err))); }
-        };
-        if(exitBtn) exitBtn.onclick = ()=>exitReader();
-        if(backBtn) backBtn.onclick = async()=>{
-          exitReader();
-          if(!ddCache.length){ try{ await refreshArchive(); }catch{} }
-        };
-      }
-
-      // ══════════════════════════════════════════
-      // IDEAS
-      // ══════════════════════════════════════════
-      function wireIdeasEvents(sbClient){
-        const loadBtn     = document.getElementById("loadIdeasBtn");
-        const container   = document.getElementById("ideasContainer");
-        const weekFilter  = document.getElementById("ideasWeekFilter");
-        const sectorFilter= document.getElementById("ideasSectorFilter");
-        if(!loadBtn||!container) return;
-
-        let cache = [];
-
-        function renderCards(){
-          const wv = weekFilter?.value || "";
-          const sv = sectorFilter?.value || "";
-          const filtered = cache.filter(i=>(!wv||(String(i.week_of)===wv))&&(!sv||(i.sector===sv)));
-          if(!filtered.length){
-            container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No ideas found for this filter.</p>`;
-            return;
-          }
-          container.innerHTML=`<div class="ideas-grid">${filtered.map(idea=>`
-            <div class="idea-card">
-              <div class="idea-ticker">${escHtml(idea.ticker||"—")}</div>
-              <div class="idea-sector">
-                ${escHtml(idea.sector||"")}
-                ${idea.horizon ? `<span class="mini-badge">${escHtml(idea.horizon)}</span>` : ""}
-                ${idea.week_of ? `<span class="mini-badge">${escHtml(idea.week_of)}</span>` : ""}
-              </div>
-              ${idea.thesis    ? `<div class="idea-row"><div class="idea-label">Thesis</div><div class="idea-text">${escHtml(idea.thesis)}</div></div>`:""}
-              ${idea.catalysts ? `<div class="idea-row"><div class="idea-label">Catalysts</div><div class="idea-text">${escHtml(idea.catalysts)}</div></div>`:""}
-              ${(idea.risk_notes||idea.risk_note) ? `<div class="idea-row"><div class="idea-label">Risk</div><div class="idea-text">${escHtml(idea.risk_notes||idea.risk_note)}</div></div>`:""}
-            </div>`).join("")}</div>`;
-        }
-
-        loadBtn.onclick = async()=>{
-          container.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading ideas…</p>`;
-          loadBtn.disabled=true;
-          try{
-            const {data,error} = await sbClient.from("premium_ideas").select("*").order("week_of",{ascending:false});
-            if(error) throw error;
-            cache = data||[];
-            if(weekFilter){
-              const weeks = [...new Set(cache.map(i=>String(i.week_of)).filter(Boolean))].sort().reverse();
-              weekFilter.innerHTML = `<option value="">All Weeks</option>` + weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
-              weekFilter.onchange = ()=>renderCards();
-            }
-            if(sectorFilter){
-              const sectors = [...new Set(cache.filter(i=>i.sector).map(i=>i.sector))].sort();
-              sectorFilter.innerHTML = `<option value="">All Sectors</option>` + sectors.map(s=>`<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
-              sectorFilter.onchange = ()=>renderCards();
-            }
-            renderCards();
-          }catch(err){
-            container.innerHTML=`<p style="color:var(--red);">Failed: ${escHtml(err?.message||String(err))}</p>`;
-          }finally{ loadBtn.disabled=false; }
-        };
-      }
-
-      // ══════════════════════════════════════════
-      // DEAL TRACKER
-      // ══════════════════════════════════════════
-      const DEAL_COLORS = {
-        "LBO": {bg:"rgba(201,168,76,0.1)", border:"rgba(201,168,76,0.4)", text:"var(--gold)"},
-        "M&A": {bg:"rgba(91,141,238,0.1)", border:"rgba(91,141,238,0.4)", text:"var(--blue)"},
-        "IPO": {bg:"rgba(76,175,138,0.1)", border:"rgba(76,175,138,0.4)", text:"var(--green)"},
-      };
-
-      function dealBadge(type){
-        const t = (type||"").toUpperCase();
-        const c = DEAL_COLORS[t]||{bg:"rgba(255,255,255,0.06)",border:"var(--border2)",text:"var(--muted2)"};
-        return `<span class="deal-type-badge" style="background:${c.bg};border:1px solid ${c.border};color:${c.text};">${escHtml(t||"DEAL")}</span>`;
-      }
-
-      function renderOneDeal(ticker,type,title,body,view,risk){
-        if(!title&&!body) return "";
-        return `
-          <div class="deal-card">
-            <div class="deal-header">
-              ${ticker ? `<div class="deal-ticker">${escHtml(ticker)}</div>` : ""}
-              <div>
-                ${dealBadge(type)}
-                <div class="deal-title" style="margin-top:5px;">${escHtml(title||"")}</div>
-              </div>
-            </div>
-            ${body ? `<div class="deal-body">${escHtml(body)}</div>` : ""}
-            ${view ? `<div class="deal-row"><div class="deal-row-label view">Our View</div><div class="deal-row-text view">${escHtml(view)}</div></div>` : ""}
-            ${risk ? `<div class="deal-row"><div class="deal-row-label risk">Key Risk</div><div class="deal-row-text risk">${escHtml(risk)}</div></div>` : ""}
-          </div>`;
-      }
-
-      function wireRoundupsEvents(sbClient){
-        const loadBtn   = document.getElementById("loadRoundupsBtn");
-        const container = document.getElementById("roundupsContainer");
-        const weekFilter= document.getElementById("roundupWeekFilter");
-        if(!loadBtn||!container) return;
-
-        let cache = [];
-
-        function renderDeals(){
-          const wv = weekFilter?.value || "";
-          const filtered = cache.filter(r=>!wv||(r.title===wv));
-          if(!filtered.length){
-            container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No deals found.</p>`;
-            return;
-          }
-          container.innerHTML = filtered.map(r=>`
-            <div style="margin-bottom:24px;">
-              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
-                <h3 style="font-family:'DM Serif Display',serif;font-size:18px;">${escHtml(r.title||"Deal Tracker")}</h3>
-                <span class="mini-badge">${escHtml(fmtDate(r.created_at))}</span>
-                ${r.period ? `<span class="mini-badge">${escHtml(r.period)}</span>` : ""}
-              </div>
-              ${renderOneDeal(r.deal1_ticker,r.deal1_type,r.deal1_title,r.deal1_body,r.deal1_view,r.deal1_risk)}
-              ${renderOneDeal(r.deal2_ticker,r.deal2_type,r.deal2_title,r.deal2_body,r.deal2_view,r.deal2_risk)}
-              ${renderOneDeal(r.deal3_ticker,r.deal3_type,r.deal3_title,r.deal3_body,r.deal3_view,r.deal3_risk)}
-            </div>`).join(`<div class="divider"></div>`);
-        }
-
-        loadBtn.onclick = async()=>{
-          container.innerHTML=`<p class="pulse" style="color:var(--muted);">Loading deals…</p>`;
-          loadBtn.disabled=true;
-          try{
-            const {data,error} = await sbClient.from("premium_roundups").select("*").order("created_at",{ascending:false});
-            if(error) throw error;
-            cache = data||[];
-            if(weekFilter){
-              const weeks = [...new Set(cache.map(r=>r.title).filter(Boolean))];
-              weekFilter.innerHTML = `<option value="">All Weeks</option>` + weeks.map(w=>`<option value="${escHtml(w)}">${escHtml(w)}</option>`).join("");
-              weekFilter.onchange = ()=>renderDeals();
-            }
-            renderDeals();
-          }catch(err){
-            container.innerHTML=`<p style="color:var(--red);">Failed: ${escHtml(err?.message||String(err))}</p>`;
-          }finally{ loadBtn.disabled=false; }
-        };
-      }
-
-      // ══════════════════════════════════════════
-      // MODEL PORTFOLIOS — FIXED (was alert placeholder)
-      // ══════════════════════════════════════════
-      function wireModelsEvents(sbClient){
-        const container = document.getElementById("modelsContainer");
-        if(!container) return;
-
-        (async()=>{
-          try{
-            const {data,error} = await sbClient
-              .from("premium_model_portfolios")
-              .select("id,model,as_of,summary,holdings")
-              .order("as_of",{ascending:false});
-
-            if(error) throw error;
-            if(!data||!data.length){
-              container.innerHTML=`<p style="color:var(--muted);font-size:13px;">No portfolio data yet.</p>`;
-              return;
-            }
-
-            // Group by model name, take latest of each
-            const latest = {};
-            for(const row of data){
-              if(!latest[row.model]) latest[row.model] = row;
-            }
-
-            // Get all unique dates for the week tab strip
-            const allDates = [...new Set(data.map(r=>String(r.as_of)))].sort().reverse();
-
-            let activeDate = allDates[0];
-            let activeModel = Object.keys(latest)[0];
-
-            function render(){
-              const weekRows = data.filter(r=>String(r.as_of)===activeDate);
-              const modelNames = [...new Set(weekRows.map(r=>r.model))];
-
-              if(!modelNames.includes(activeModel) && modelNames.length) activeModel = modelNames[0];
-
-              const current = weekRows.find(r=>r.model===activeModel);
-
-              container.innerHTML = `
-                <!-- Week strip -->
-                <div class="week-strip">
-                  ${allDates.map(d=>`
-                    <button class="week-pill ${d===activeDate?"active":""}" data-date="${escHtml(d)}">
-                      ${escHtml(d)}
-                    </button>`).join("")}
-                </div>
-
-                <!-- Model tabs -->
-                <div class="model-tabs">
-                  ${modelNames.map(n=>`
-                    <button class="model-tab ${n===activeModel?"active":""}" data-model="${escHtml(n)}">
-                      ${escHtml(n)}
-                    </button>`).join("")}
-                </div>
-
-                <!-- Portfolio card -->
-                ${current ? renderPortfolioCard(current) : `<p style="color:var(--muted);font-size:13px;">No data for this selection.</p>`}
-              `;
-
-              // Wire week pills
-              container.querySelectorAll(".week-pill").forEach(btn=>{
-                btn.addEventListener("click",()=>{
-                  activeDate = btn.getAttribute("data-date");
-                  render();
-                });
-              });
-
-              // Wire model tabs
-              container.querySelectorAll(".model-tab").forEach(btn=>{
-                btn.addEventListener("click",()=>{
-                  activeModel = btn.getAttribute("data-model");
-                  render();
-                });
-              });
-            }
-
-            function renderPortfolioCard(row){
-              const holdings = Array.isArray(row.holdings) ? row.holdings : [];
-              return `
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px;">
-                  <!-- Left: holdings -->
-                  <div style="border:1px solid var(--border);background:rgba(255,255,255,0.02);border-radius:var(--radius);padding:18px;">
-                    <p class="section-label" style="margin-bottom:4px;">Holdings</p>
-                    <p style="font-size:11px;color:var(--muted);margin-bottom:14px;">As of ${escHtml(row.as_of)}</p>
-                    ${holdings.map(h=>`
-                      <div class="holding-row">
-                        <div class="holding-ticker">${escHtml(h.ticker||"")}</div>
-                        <div class="holding-bar-wrap">
-                          <div class="holding-bar-fill" style="width:${Math.min(100,h.allocation||0)}%;"></div>
-                        </div>
-                        <div class="holding-pct">${h.allocation||0}%</div>
-                      </div>
-                      <div class="holding-note">${escHtml(h.rationale||"")}</div>
-                    `).join("")}
-                  </div>
-                  <!-- Right: rebalance note -->
-                  <div style="border:1px solid var(--border);background:rgba(255,255,255,0.02);border-radius:var(--radius);padding:18px;">
-                    <p class="section-label" style="margin-bottom:12px;">Rebalance Note</p>
-                    <div style="font-size:13px;color:var(--muted2);line-height:1.7;">
-                      ${row.summary ? escHtml(row.summary) : '<span style="color:var(--muted);">No note this week.</span>'}
-                    </div>
-                    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
-                      <p class="section-label" style="margin-bottom:4px;">Framework</p>
-                      <p style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6;">
-                        Each rebalance note covers: what changed → why now → key risk → what would reverse the call.
-                      </p>
-                      <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;font-style:italic;">
-                        Illustrative framework for educational purposes only. Not financial advice.
-                      </p>
-                    </div>
-                  </div>
-                </div>`;
-            }
-
-            render();
-
-          }catch(err){
-            container.innerHTML=`<p style="color:var(--red);font-size:13px;">Failed to load portfolios: ${escHtml(err?.message||String(err))}</p>`;
-          }
-        })();
-      }
-
-      // ══════════════════════════════════════════
-      // QUANT LAB
-      // ══════════════════════════════════════════
-      function wireQuantLabBtn(){
-        const btn = document.getElementById("openQuantLabBtn");
-        if(btn) btn.onclick = ()=>{ document.getElementById("qlExplainer").classList.add("active"); };
-      }
-
-      document.getElementById("qlExplainerClose").onclick = ()=>{ document.getElementById("qlExplainer").classList.remove("active"); };
-      document.getElementById("qlNevermind").onclick      = ()=>{ document.getElementById("qlExplainer").classList.remove("active"); };
-      document.getElementById("qlOpenCalc").onclick       = ()=>{
-        document.getElementById("qlExplainer").classList.remove("active");
-        document.getElementById("qlCalc").classList.add("active");
-        initCalc();
-      };
-      document.getElementById("qlCalcClose").onclick = ()=>{ document.getElementById("qlCalc").classList.remove("active"); };
-
-      document.getElementById("qlExplainer").addEventListener("click",e=>{ if(e.target===document.getElementById("qlExplainer")) document.getElementById("qlExplainer").classList.remove("active"); });
-      document.getElementById("qlCalc").addEventListener("click",e=>{ if(e.target===document.getElementById("qlCalc")) document.getElementById("qlCalc").classList.remove("active"); });
-      window.addEventListener("keydown",e=>{ if(e.key==="Escape"){ document.getElementById("qlExplainer").classList.remove("active"); document.getElementById("qlCalc").classList.remove("active"); } });
-
-      // ══════════════════════════════════════════
-      // QUANT CALCULATOR
-      // ══════════════════════════════════════════
-      const ASSET_COLORS = ["#c9a84c","#5b8dee","#4caf8a","#e05252","#c084fc"];
-      let numAssets = 3, calcInited = false;
-
-      function initCalc(){
-        if(calcInited) return;
-        calcInited = true;
-        renderAssetRows(); renderCorrGrid();
-        document.getElementById("addAssetBtn").onclick    = ()=>{ if(numAssets<5){ numAssets++; renderAssetRows(); renderCorrGrid(); } };
-        document.getElementById("removeAssetBtn").onclick = ()=>{ if(numAssets>2){ numAssets--; renderAssetRows(); renderCorrGrid(); } };
-        document.getElementById("loadExampleBtn").onclick = loadExample;
-        document.getElementById("resetCalcBtn").onclick   = resetCalc;
-        document.getElementById("runOptBtn").onclick      = runOptimizer;
-      }
-
-      function renderAssetRows(){
-        const container = document.getElementById("assetRows");
-        let html = "";
-        for(let i=0;i<numAssets;i++){
-          const ex=container?.querySelector(`#assetName_${i}`)?.value||"";
-          const mu=container?.querySelector(`#assetMu_${i}`)?.value||"";
-          const sg=container?.querySelector(`#assetSig_${i}`)?.value||"";
-          html+=`<div class="ql-asset-row">
-            <div class="ql-asset-label" style="color:${ASSET_COLORS[i]};">Asset ${i+1}</div>
-            <input type="text" id="assetName_${i}" placeholder="Name" value="${ex}" />
-            <input type="number" id="assetMu_${i}" placeholder="0.10" step="0.01" value="${mu}" />
-            <input type="number" id="assetSig_${i}" placeholder="0.20" step="0.01" value="${sg}" />
-          </div>`;
-        }
-        container.innerHTML = html;
-      }
-
-      function renderCorrGrid(){
-        const container = document.getElementById("corrGrid");
-        if(numAssets<2){ container.innerHTML=""; return; }
-        let html = `<table style="border-collapse:separate;border-spacing:6px;">`;
-        html += `<tr><td></td>`;
-        for(let j=0;j<numAssets;j++) html+=`<td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[j]};text-align:center;padding:4px;">A${j+1}</td>`;
-        html += `</tr>`;
-        for(let i=0;i<numAssets;i++){
-          html+=`<tr><td style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:${ASSET_COLORS[i]};padding:4px;">A${i+1}</td>`;
-          for(let j=0;j<numAssets;j++){
-            if(i===j){
-              html+=`<td><input type="number" value="1" readonly style="width:70px;background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.2);text-align:center;cursor:not-allowed;opacity:.6;" /></td>`;
-            }else if(j>i){
-              const ex=document.getElementById(`corr_${i}_${j}`)?.value||"";
-              html+=`<td><input type="number" id="corr_${i}_${j}" placeholder="0.30" step="0.05" min="-1" max="1" value="${ex}" style="width:70px;text-align:center;" /></td>`;
-            }else{
-              html+=`<td><input type="number" value="—" readonly style="width:70px;opacity:.3;cursor:not-allowed;" /></td>`;
-            }
-          }
-          html+=`</tr>`;
-        }
-        html+=`</table>`;
-        container.innerHTML = html;
-      }
-
-      function loadExample(){
-        numAssets=3; renderAssetRows(); renderCorrGrid();
-        ["SPX","Bonds","Gold"].forEach((n,i)=>{ const el=document.getElementById(`assetName_${i}`); if(el) el.value=n; });
-        [0.10,0.04,0.06].forEach((v,i)=>{ const el=document.getElementById(`assetMu_${i}`); if(el) el.value=v; });
-        [0.18,0.06,0.14].forEach((v,i)=>{ const el=document.getElementById(`assetSig_${i}`); if(el) el.value=v; });
-        [{id:"corr_0_1",v:-0.2},{id:"corr_0_2",v:0.05},{id:"corr_1_2",v:0.1}].forEach(({id,v})=>{ const el=document.getElementById(id); if(el) el.value=v; });
-        document.getElementById("lambdaInput").value=4;
-        document.getElementById("simCount").value=20000;
-        hideError(); document.getElementById("qlResults").style.display="none";
-      }
-
-      function resetCalc(){
-        numAssets=3; renderAssetRows(); renderCorrGrid();
-        document.getElementById("lambdaInput").value=4;
-        document.getElementById("simCount").value=20000;
-        hideError(); document.getElementById("qlResults").style.display="none";
-      }
-
-      function showError(msg){ const el=document.getElementById("qlError"); el.textContent=msg; el.style.display="block"; }
-      function hideError(){ const el=document.getElementById("qlError"); el.style.display="none"; el.textContent=""; }
-
-      function getInputs(){
-        const mu=[],sig=[],names=[];
-        for(let i=0;i<numAssets;i++){
-          const n=document.getElementById(`assetName_${i}`)?.value||`Asset ${i+1}`;
-          const m=parseFloat(document.getElementById(`assetMu_${i}`)?.value);
-          const s=parseFloat(document.getElementById(`assetSig_${i}`)?.value);
-          if(!Number.isFinite(m)||!Number.isFinite(s)) throw new Error(`Asset ${i+1}: enter valid return and volatility.`);
-          if(s<=0) throw new Error(`Asset ${i+1}: volatility must be > 0.`);
-          names.push(n); mu.push(m); sig.push(s);
-        }
-        const Sigma=Array.from({length:numAssets},(_,i)=>Array.from({length:numAssets},(_,j)=>{
-          if(i===j) return sig[i]*sig[i];
-          const key=`corr_${Math.min(i,j)}_${Math.max(i,j)}`;
-          const rho=parseFloat(document.getElementById(key)?.value);
-          if(!Number.isFinite(rho)||rho<-1||rho>1) throw new Error(`Correlation A${Math.min(i,j)+1}/A${Math.max(i,j)+1}: must be between -1 and 1.`);
-          return rho*sig[i]*sig[j];
-        }));
-        const lambda=parseFloat(document.getElementById("lambdaInput")?.value);
-        const nSim=parseInt(document.getElementById("simCount")?.value)||20000;
-        if(!Number.isFinite(lambda)||lambda<=0) throw new Error("Risk aversion λ must be > 0.");
-        return {mu,sig,Sigma,names,lambda,nSim};
-      }
-
-      function matVecN(A,v){ return A.map(row=>row.reduce((s,a,j)=>s+a*v[j],0)); }
-      function dotN(a,b){ return a.reduce((s,x,i)=>s+x*b[i],0); }
-
-      function invN(A){
-        const n=A.length;
-        const aug=A.map((r,i)=>[...r,...Array.from({length:n},(_,j)=>i===j?1:0)]);
-        for(let col=0;col<n;col++){
-          let pivot=-1,pv=0;
-          for(let row=col;row<n;row++) if(Math.abs(aug[row][col])>pv){pv=Math.abs(aug[row][col]);pivot=row;}
-          if(pv<1e-12) throw new Error("Matrix is singular — check correlations.");
-          [aug[col],aug[pivot]]=[aug[pivot],aug[col]];
-          const sc=aug[col][col]; aug[col]=aug[col].map(x=>x/sc);
-          for(let row=0;row<n;row++) if(row!==col){ const f=aug[row][col]; aug[row]=aug[row].map((x,k)=>x-f*aug[col][k]); }
-        }
-        return aug.map(r=>r.slice(n));
-      }
-
-      function projectSimplexN(v){
-        let x=v.map(a=>Math.max(0,a));
-        for(let k=0;k<10;k++){ const s=x.reduce((a,b)=>a+b,0); x=s>1e-12?x.map(a=>a/s):x.map(()=>1/x.length); }
-        return x;
-      }
-
-      function cholN(S){
-        const n=S.length;
-        const L=Array.from({length:n},()=>new Array(n).fill(0));
-        for(let i=0;i<n;i++){
-          for(let j=0;j<=i;j++){
-            let s=S[i][j];
-            for(let k=0;k<j;k++) s-=L[i][k]*L[j][k];
-            if(i===j){ if(s<=0) throw new Error("Covariance matrix not positive definite. Check correlations."); L[i][j]=Math.sqrt(s); }
-            else{ L[i][j]=s/L[j][j]; }
-          }
-        }
-        return L;
-      }
-
-      function randn(){ let u=0,v=0; while(!u) u=Math.random(); while(!v) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
-
-      function runMonteCarlo(mu,L,w,nSim){
-        const n=mu.length; const port=new Float64Array(nSim);
-        for(let s=0;s<nSim;s++){
-          let ret=0; const z=Array.from({length:n},()=>randn());
-          for(let i=0;i<n;i++){ let ri=mu[i]; for(let k=0;k<=i;k++) ri+=L[i][k]*z[k]; ret+=w[i]*ri; }
-          port[s]=ret;
-        }
-        port.sort((a,b)=>a-b);
-        const idx=Math.floor(0.05*nSim);
-        const var95=port[idx];
-        const tail=Array.from(port.slice(0,idx+1));
-        const cvar95=tail.reduce((a,b)=>a+b,0)/tail.length;
-        const mean=Array.from(port).reduce((a,b)=>a+b,0)/nSim;
-        const std=Math.sqrt(Array.from(port).reduce((a,b)=>a+(b-mean)**2,0)/nSim);
-        return {mean,std,var95,cvar95};
-      }
-
-      function fmtPct(x,d=2){ return (x*100).toFixed(d)+"%"; }
-      function fmtRatio(x){ return x.toFixed(2); }
-
-      function runOptimizer(){
-        hideError();
-        const btn=document.getElementById("runOptBtn");
-        btn.innerHTML=`<span class="spinner"></span>Running…`; btn.disabled=true;
         setTimeout(()=>{
-          try{
-            const {mu,sig,Sigma,names,lambda,nSim}=getInputs();
-            const SigInv=invN(Sigma);
-            const raw=matVecN(SigInv,mu).map(v=>v/lambda);
-            const w=projectSimplexN(raw);
-            const portMu=dotN(w,mu);
-            const sigW=matVecN(Sigma,w);
-            const portVar=dotN(w,sigW);
-            const portVol=Math.sqrt(Math.max(0,portVar));
-            const sharpe=portVol>1e-10?portMu/portVol:0;
-            const L=cholN(Sigma);
-            const mc=runMonteCarlo(mu,L,w,nSim);
-
-            document.getElementById("qlResults").style.display="block";
-            document.getElementById("weightBar").innerHTML=w.map((wi,i)=>`<div class="ql-weight-seg" style="width:${(wi*100).toFixed(1)}%;background:${ASSET_COLORS[i]};"></div>`).join("");
-            document.getElementById("weightLegend").innerHTML=w.map((wi,i)=>`<div class="ql-weight-legend-item"><div class="ql-weight-dot" style="background:${ASSET_COLORS[i]};"></div>${escHtml(names[i])}: <strong>${fmtPct(wi,1)}</strong></div>`).join("");
-            document.getElementById("resultCells").innerHTML=[
-              {label:"Expected Return",value:fmtPct(portMu),sub:"Annualized"},
-              {label:"Volatility",value:fmtPct(portVol),sub:"Annualized"},
-              {label:"Sharpe Ratio",value:fmtRatio(sharpe),sub:"Return / Vol"},
-              {label:"95% VaR",value:fmtPct(mc.var95),sub:"1-year horizon"},
-              {label:"95% CVaR",value:fmtPct(mc.cvar95),sub:"Avg worst 5%"},
-              {label:"MC Mean",value:fmtPct(mc.mean),sub:`${nSim.toLocaleString()} runs`},
-            ].map(c=>`<div class="ql-result-cell"><div class="ql-result-label">${c.label}</div><div class="ql-result-value">${c.value}</div><div class="ql-result-sub">${c.sub}</div></div>`).join("");
-            document.getElementById("mcDetails").textContent=
-`Optimal Weights:\n${w.map((wi,i)=>`  ${names[i].padEnd(14)} ${fmtPct(wi,2)}`).join("\n")}\n\nAnalytic Portfolio:\n  Expected Return  ${fmtPct(portMu)}\n  Volatility       ${fmtPct(portVol)}\n  Sharpe Ratio     ${fmtRatio(sharpe)}\n\nMonte Carlo (${nSim.toLocaleString()} scenarios):\n  Mean Return      ${fmtPct(mc.mean)}\n  Std Dev          ${fmtPct(mc.std)}\n  95% VaR          ${fmtPct(mc.var95)}\n  95% CVaR         ${fmtPct(mc.cvar95)}\n\nDisclaimer: Educational only. Not financial advice.`;
-            document.getElementById("qlResults").scrollIntoView({behavior:"smooth",block:"nearest"});
-          }catch(err){
-            showError(err?.message||String(err));
-          }finally{
-            btn.innerHTML="Run Optimization"; btn.disabled=false;
-          }
-        },50);
-      }
-
-    }catch(e){
-      console.error("[premium] fatal:",e);
-      showFatal("Fatal error","The page crashed before finishing.",e?.message||String(e));
+          if(vaultScreen) vaultScreen.style.display = "none";
+        }, 1200);
+      }, 1100);
     }
+
+    function showAccessGate(){
+      stopDots();
+      if(vaultScreen) vaultScreen.style.display = "none";
+      if(accessGate) accessGate.style.display = "flex";
+      if(loadingScreen) loadingScreen.classList.add("gone");
+      document.body.classList.remove("vault-active");
+    }
+
+    function showVaultAndGrantAccess(email){
+      // This is now only called after vault minimum time — just show granted
+      showVaultGranted(email);
+    }
+
+    // ── Tabs
+    function switchTab(name){
+      document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+      document.querySelectorAll(".nav-tab, .mobile-tab-btn").forEach(b=>b.classList.remove("active"));
+      const panel = document.getElementById("tab-"+name);
+      if(panel) panel.classList.add("active");
+      document.querySelectorAll("[data-tab='"+name+"']").forEach(b=>b.classList.add("active"));
+    }
+    document.querySelectorAll("[data-tab]").forEach(btn=>{
+      btn.addEventListener("click",()=>switchTab(btn.getAttribute("data-tab")));
+    });
+
+    // ── Monte Carlo
+    document.getElementById("mc-run").addEventListener("click",()=>{
+      const base = 5780;
+      const scenarios = [];
+      for(let i=0;i<1000;i++){
+        let val = base;
+        for(let d=0;d<90;d++){
+          val *= (1 + (Math.random()-0.5)*0.025 + 0.0003);
+        }
+        scenarios.push(val);
+      }
+      scenarios.sort((a,b)=>a-b);
+      const p10 = scenarios[100], p25 = scenarios[250], p50 = scenarios[500], p75 = scenarios[750], p90 = scenarios[900];
+      const pctFmt = (v)=>(((v-base)/base)*100).toFixed(1)+"%";
+      const valFmt = (v)=>v.toFixed(0);
+      const mc = document.getElementById("mc-output");
+      if(mc) mc.innerHTML = `
+<span style="color:var(--muted);">Simulations: 1,000 · Base: ${base.toLocaleString()} · Horizon: 90 days</span>
+
+<span style="color:var(--red);">P10 (bear)    </span>${valFmt(p10)} <span class="mc-dn">${pctFmt(p10)}</span>
+<span style="color:#facc15;">P25           </span>${valFmt(p25)} <span class="mc-neutral">${pctFmt(p25)}</span>
+<span style="color:var(--text);">P50 (median)  </span>${valFmt(p50)} <span class="${p50>=base?'mc-up':'mc-dn'}">${pctFmt(p50)}</span>
+<span style="color:#facc15;">P75           </span>${valFmt(p75)} <span class="mc-up">${pctFmt(p75)}</span>
+<span style="color:var(--green);">P90 (bull)    </span>${valFmt(p90)} <span class="mc-up">${pctFmt(p90)}</span>
+
+<span style="color:var(--muted);font-size:10px;">For educational illustration only. Not a forecast.</span>`;
+    });
+
+    // ── Key levels table
+    const levelsData = [
+      { asset:"SPX", support:"5,700", resistance:"5,980", bias:"bear", biasLabel:"Bearish" },
+      { asset:"NDX", support:"19,800", resistance:"20,800", bias:"bear", biasLabel:"Bearish" },
+      { asset:"BRENT", support:"$78", resistance:"$92", bias:"bull", biasLabel:"Bullish" },
+      { asset:"GOLD", support:"$2,820", resistance:"$2,960", bias:"bull", biasLabel:"Bullish" },
+      { asset:"DXY", support:"103.2", resistance:"106.0", bias:"neutral", biasLabel:"Neutral" },
+      { asset:"10Y UST", support:"4.28%", resistance:"4.70%", bias:"bear", biasLabel:"Bearish" },
+    ];
+    const levelsTable = document.getElementById("levels-table");
+    if(levelsTable){
+      levelsData.forEach(row=>{
+        const color = row.bias==="bull"?"var(--green)":row.bias==="bear"?"var(--red)":"#facc15";
+        levelsTable.innerHTML += `
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);transition:.15s;" onmouseover="this.style.background='rgba(14,22,48,0.98)'" onmouseout="this.style.background=''">
+            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--text);">${row.asset}</div>
+            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);">${row.support}</div>
+            <div style="padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);">${row.resistance}</div>
+            <div style="padding:12px 14px;font-size:11px;color:${color};letter-spacing:.10em;text-transform:uppercase;">${row.biasLabel}</div>
+          </div>`;
+      });
+    }
+
+    // ── Auth runs in parallel with vault animation
+    // Vault ALWAYS plays fully — auth result is queued and fires only after vault is ready
+
+    const VAULT_MIN_MS = 3200; // minimum time vault is on screen before anything can happen
+    const vaultStartTime = Date.now();
+
+    // Holds the resolved auth result until vault sequence is ready
+    let authResult = null; // { granted: bool, email: string }
+    let vaultSequenceDone = false;
+
+    function applyAuthResult(){
+      // Only fires once BOTH vault sequence is done AND auth has resolved
+      if(!authResult || !vaultSequenceDone) return;
+      if(authResult.granted){
+        showVaultGranted(authResult.email);
+      } else {
+        showAccessGate();
+      }
+    }
+
+    // Start vault sequence immediately — show text + dots right away
+    if(loadingScreen) loadingScreen.classList.add("gone");
+    setTimeout(()=>{
+      if(vaultText) vaultText.classList.add("show");
+      startDots();
+    }, 400);
+
+    // After minimum vault time, mark sequence as done
+    setTimeout(()=>{
+      vaultSequenceDone = true;
+      applyAuthResult();
+    }, VAULT_MIN_MS);
+
+    // Auth check runs immediately in background
+    let attempts = 0;
+    const check = setInterval(()=>{
+      attempts++;
+      if(window.supabase && window.supabase.createClient){
+        clearInterval(check);
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        supabase.auth.getUser().then(async({ data:{ user }})=>{
+          if(!user){
+            authResult = { granted: false, email: "" };
+            applyAuthResult();
+            return;
+          }
+          const { data } = await supabase.from("profiles")
+            .select("is_premium, premium_until")
+            .eq("id", user.id)
+            .maybeSingle();
+
+          let isPremium = false;
+          if(data){
+            if(data.premium_until){
+              isPremium = data.is_premium && new Date(data.premium_until) > new Date();
+            } else {
+              isPremium = !!data.is_premium;
+            }
+          }
+
+          currentUser = user;
+          authResult = { granted: isPremium, email: user.email };
+          applyAuthResult();
+        });
+
+      }
+      if(attempts >= 80){
+        clearInterval(check);
+        if(!authResult){
+          authResult = { granted: false, email: "" };
+          applyAuthResult();
+        }
+      }
+    }, 100);
+
+    // ── Sign out
+    document.getElementById("nav-signout").addEventListener("click", async()=>{
+      if(supabase) await supabase.auth.signOut();
+      window.location.href = "index.html";
+    });
+
   })();
   </script>
+
 </body>
 </html>
