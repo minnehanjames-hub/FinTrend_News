@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire in the Gulf: What This Week's Markets Are Really Telling You | FinTrend News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-primary: #0d0f12;
+      --bg-secondary: #13161b;
+      --bg-card: #181c22;
+      --bg-elevated: #1e2330;
+      --border: #252b38;
+      --border-light: #2e3547;
+      --gold: #f4c15d;
+      --gold-dim: #c9973a;
+      --gold-bg: rgba(244, 193, 93, 0.07);
+      --text-primary: #e8ecf2;
+      --text-secondary: #8a93a8;
+      --text-muted: #525c72;
+      --red: #e05454;
+      --green: #4caf87;
+      --blue: #5b8dee;
+      --orange: #e87d3e;
+      --purple: #9b6dff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--bg-primary);
+    }
+    .site-header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .site-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-left: 22px;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .article-hero {
+      max-width: 860px;
+      margin: 56px auto 0;
+      padding: 0 24px;
+    }
+    .article-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .article-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .article-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.18;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .article-subhead {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+    .article-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .article-meta span { color: var(--text-secondary); }
+
+    /* ── BODY ── */
+    .article-body {
+      max-width: 860px;
+      margin: 48px auto 80px;
+      padding: 0 24px;
+    }
+
+    /* section panels */
+    .section-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .section-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 6px 0 0 6px;
+    }
+    .panel-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .panel-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+    .section-panel p {
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      font-size: 0.975rem;
+    }
+    .section-panel p:last-child { margin-bottom: 0; }
+    .section-panel strong { color: var(--text-primary); font-weight: 600; }
+
+    /* executive summary callout */
+    .exec-summary {
+      background: var(--gold-bg);
+      border: 1px solid rgba(244,193,93,0.2);
+      border-radius: 6px;
+      padding: 28px 34px;
+      margin-bottom: 28px;
+    }
+    .exec-summary .panel-label { color: var(--gold); }
+    .exec-summary p {
+      font-size: 1.0rem;
+      color: var(--text-primary);
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+    .exec-summary p:last-child { margin-bottom: 0; }
+
+    /* data grids */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .data-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 16px 18px;
+    }
+    .data-card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .data-card-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .data-card-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      margin-top: 4px;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .warn { color: var(--orange); }
+    .neutral { color: var(--text-secondary); }
+
+    /* scenario grid */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 600px) { .scenario-grid { grid-template-columns: 1fr; } }
+    .scenario-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 18px 20px;
+    }
+    .scenario-card.bull { border-top: 2px solid var(--green); }
+    .scenario-card.bear { border-top: 2px solid var(--red); }
+    .scenario-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scenario-card.bull .scenario-tag { color: var(--green); }
+    .scenario-card.bear .scenario-tag { color: var(--red); }
+    .scenario-card p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+
+    /* key levels table */
+    .levels-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 0.88rem;
+    }
+    .levels-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .levels-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .levels-table td:first-child { color: var(--text-primary); font-weight: 500; }
+    .levels-table tr:last-child td { border-bottom: none; }
+
+    /* catalyst watch */
+    .catalyst-list { list-style: none; margin-top: 16px; }
+    .catalyst-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .catalyst-list li:last-child { border-bottom: none; }
+    .catalyst-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 72px;
+      padding-top: 2px;
+    }
+
+    /* bias verdict */
+    .bias-verdict {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--orange);
+      border-radius: 5px;
+      padding: 22px 26px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .bias-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(232,125,62,0.12);
+      padding: 6px 14px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .bias-text { font-size: 0.92rem; color: var(--text-secondary); }
+
+    /* closing note */
+    .closing-note {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 30px 36px;
+      margin-top: 12px;
+    }
+    .closing-note p {
+      font-size: 0.975rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .closing-note p:last-child { margin-bottom: 0; }
+    .author-sig {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+    .author-sig strong { color: var(--gold); font-weight: 600; }
+
+    /* disclaimer */
+    .disclaimer {
+      max-width: 860px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo">FinTrend News</a>
+    <nav class="site-nav">
+      <a href="/archive.html">Archive</a>
+      <a href="/premium.html">Premium</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="article-hero">
+  <div class="article-kicker">Sunday Macro Notes &nbsp;·&nbsp; March 8, 2026</div>
+  <h1 class="article-headline">Fire in the Gulf:<br>What This Week's Markets Are Really Telling You</h1>
+  <p class="article-subhead">Oil is up 12%. Treasuries are repricing. The jobs report just printed ugly. And Oracle reports Tuesday night while CPI lands Wednesday morning. This isn't a normal Monday open — here's how to think about it.</p>
+  <div class="article-meta">
+    <div>By <span>Hunter William Lang</span></div>
+    <div>Published <span>Sunday, March 8, 2026</span></div>
+    <div>Category <span>Sunday Macro Notes</span></div>
+  </div>
+</div>
+
+<!-- ══════════════ BODY ══════════════ -->
+<div class="article-body">
+
+  <!-- 1. EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <div class="panel-label">Executive Summary</div>
+    <p>Markets stumbled into the weekend carrying real damage. The S&amp;P 500 closed Friday at 6,740 after shedding 90 points on the day — the DOW lost 453 and the Nasdaq fell 361 — capping what's been Wall Street's worst weekly stretch in months. Two overlapping shocks drove it: a February jobs report that genuinely surprised to the downside, and the ongoing escalation of the U.S.-Israel military action against Iran that sent crude surging over 12% on the week alone.</p>
+    <p>This week doesn't get calmer. We have February CPI on Wednesday, PPI and factory orders Thursday, and Friday brings the second-estimate GDP read alongside PCE prices and University of Michigan consumer sentiment. Oracle reports Tuesday night and Adobe hits Thursday. The Iran situation remains the wild card above all of it. Heading into Monday's open, the operative word is <strong>caution</strong> — but there are specific setups worth watching closely, and this note will walk through all of them.</p>
+  </div>
+
+  <!-- 2. MACRO DRIVER ANALYSIS -->
+  <div class="section-panel">
+    <div class="panel-label">Driver Analysis</div>
+    <div class="panel-title">The Three Forces Shaping This Week</div>
+
+    <p><strong>Force #1 — Iran and the Oil Shock.</strong> This is the dominant variable, and it's not going away quietly. WTI crude has spiked over 12% in a single week, and Qatar's energy minister publicly warned that Gulf oil and gas exporters could halt production within days if the conflict broadens. President Trump has stated flatly he won't negotiate without unconditional surrender from Iran. Roughly one-fifth of global oil supply transits the region — a fact that every algorithm on the Street already knows and is repricing in real time. Until there is a clear de-escalation signal, energy volatility has the steering wheel. Defense names and energy producers are the obvious beneficiaries; the rest of the market is navigating headwinds.</p>
+
+    <p><strong>Force #2 — The February Jobs Report.</strong> Friday's number was genuinely bad. Not a soft miss — a contraction that caught consensus off-guard and put a question mark on the labor-market narrative that's been propping up consumer spending. The Russell 2000 got hit hardest, down nearly 3.7% on the week, as higher oil prices compound the borrowing-cost squeeze that small caps are already feeling from elevated Treasury yields. If you were in the "soft landing is locked in" camp, this week dented that thesis.</p>
+
+    <p><strong>Force #3 — The Fed's Frozen Hand.</strong> Rate-cut probabilities barely moved this week despite the weak jobs data — a March cut is just 5%, April at 23%, June at 60%. The reason is simple: rising oil prices are an inflationary input, and the Fed cannot cut into accelerating energy costs without risking credibility. That's the central tension heading into CPI on Wednesday. If energy pass-through is showing up in the February inflation print, the June cut probability collapses. If core CPI stays contained, the bond market gets a lifeline.</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="data-card-label">S&amp;P 500 Close</div>
+        <div class="data-card-value down">6,740</div>
+        <div class="data-card-sub down">▼ 1.3% Friday</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">WTI Crude (Wk)</div>
+        <div class="data-card-value warn">+12%</div>
+        <div class="data-card-sub warn">▲ Iran escalation</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">10-Yr Treasury</div>
+        <div class="data-card-value warn">4.14%</div>
+        <div class="data-card-sub warn">▲ +18 bps on week</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">June Cut Prob.</div>
+        <div class="data-card-value neutral">60%</div>
+        <div class="data-card-sub neutral">vs. 57% last week</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">Russell 2000 (Wk)</div>
+        <div class="data-card-value down">−3.7%</div>
+        <div class="data-card-sub down">▼ Below 50/100-day MA</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">Dow Close</div>
+        <div class="data-card-value down">47,501</div>
+        <div class="data-card-sub down">▼ 453 pts Friday</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CONFIRMATION SIGNALS -->
+  <div class="section-panel">
+    <div class="panel-label">Confirmation Signals</div>
+    <div class="panel-title">What the Internals Are Saying</div>
+
+    <p>One of the more interesting reads from last week's rotation: defensive sectors — consumer staples, utilities, healthcare — outperformed while financials and information technology lagged. That's a classic flight to quality playbook, and it tells you institutional money is repositioning, not just hedging at the margins. When the equal-weighted S&amp;P advances while the cap-weighted index falls — and that's exactly what happened with the equal-weight version up 3.5% in February versus the cap-weight's -0.8% — you're seeing a genuine rotation out of megacap tech into broader value. That trend held into this week's selling.</p>
+
+    <p>Bond markets are doing something worth noting: even with yields rising on oil-inflation fears, investment-grade bonds still posted positive returns in February as flight-to-quality demand provides a floor. The 2-year yield hit 3.56% against 4.14% on the 10-year — modest steepening. For the Fed, that curve shape is not screaming recession. It's screaming stagflation risk, which is a more complicated hand to play.</p>
+
+    <p>The global PMI picture, for its part, had actually been improving before the Iran conflict began — S&amp;P Global noted the February reading hit its highest level since May 2024, suggesting global economic growth had more or less returned to trend. That's context worth keeping: the underlying economy isn't falling apart. This is an exogenous shock being layered onto a fundamentally resilient backdrop.</p>
+  </div>
+
+  <!-- 4. MARKET BIAS -->
+  <div class="section-panel">
+    <div class="panel-label">Market Bias</div>
+    <div class="panel-title">The Lean for the Week Ahead</div>
+
+    <p>This is not a week to be a hero on the long side in growth and technology. The macro backdrop — rising oil, sticky inflation risk, a Fed that can't ride to the rescue — argues for staying defensive or raising cash on rallies. That said, this is also not a 2008 moment. Corporate fundamentals remain solid in aggregate, AI infrastructure spending isn't stopping, and historical data shows equity markets typically recover within 12 months following major geopolitical shocks (averaging roughly 9% returns over that horizon).</p>
+
+    <p>The more interesting asymmetric setup is in energy and defense — sectors directly benefiting from the conflict premium. With Qatar's energy minister jawboning about production halts and Trump signaling no quick resolution, the oil trade has legs unless there's a credible ceasefire signal. Defense names carry a similar calculus.</p>
+
+    <div class="bias-verdict">
+      <div class="bias-badge">⚡ Cautious / Selective</div>
+      <div class="bias-text">Reduce exposure to rate-sensitive small caps and speculative tech. Energy and defense remain the logical overweight. Watch CPI Wednesday — it's the fulcrum event that either stabilizes sentiment or accelerates the selloff.</div>
+    </div>
+  </div>
+
+  <!-- 5. KEY LEVELS -->
+  <div class="section-panel">
+    <div class="panel-label">Key Levels to Watch</div>
+    <div class="panel-title">Where Price Action Gets Interesting</div>
+
+    <table class="levels-table">
+      <thead>
+        <tr>
+          <th>Instrument</th>
+          <th>Support</th>
+          <th>Resistance</th>
+          <th>Read</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S&amp;P 500</td>
+          <td>6,650 – 6,680</td>
+          <td>6,800 – 6,830</td>
+          <td class="warn">Tests prior consolidation zone on any Iran escalation</td>
+        </tr>
+        <tr>
+          <td>Nasdaq Comp.</td>
+          <td>22,000</td>
+          <td>22,600</td>
+          <td class="down">Software/AI sentiment fragile — ADBE Thursday is a read</td>
+        </tr>
+        <tr>
+          <td>Russell 2000</td>
+          <td>Below 50/100-day MA</td>
+          <td>50-day reclaim</td>
+          <td class="down">Technically damaged; needs CPI relief to stabilize</td>
+        </tr>
+        <tr>
+          <td>WTI Crude</td>
+          <td>$75 – $78/bbl</td>
+          <td>$92 – $95/bbl</td>
+          <td class="warn">Qatar production threat is the upside catalyst</td>
+        </tr>
+        <tr>
+          <td>10-Yr Yield</td>
+          <td>4.00%</td>
+          <td>4.30%</td>
+          <td class="warn">CPI determines which way this breaks this week</td>
+        </tr>
+        <tr>
+          <td>Gold</td>
+          <td>$2,850 – $2,900</td>
+          <td>$3,100+</td>
+          <td class="up">Safe-haven bid intact; geopolitical premium not going away</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. CATALYST WATCH -->
+  <div class="section-panel">
+    <div class="panel-label">Catalyst Watch</div>
+    <div class="panel-title">Every Event That Can Move the Needle This Week</div>
+
+    <ul class="catalyst-list">
+      <li>
+        <span class="catalyst-date">MON · MAR 9</span>
+        <div>HPE, Casey's General Stores, ZIM Integrated Shipping, Korn Ferry, and Vail Resorts all report. ZIM gives you a read on shipping conditions in a disrupted Gulf environment. Also: NFIB Optimism Index — small business sentiment after a rough jobs print.</div>
+      </li>
+      <li>
+        <span class="catalyst-date">TUE · MAR 10</span>
+        <div><strong>Oracle (ORCL) earnings after close.</strong> Analysts expect EPS of $1.71 (+16% YoY) on $16.9B revenue (+20% YoY). Shares have shed roughly 50% since late September — the bar is low, but guidance on AI data center spending and capex outlook (projected near $60B) is everything. AeroVironment and BioNTech also report. OPEC monthly oil report drops — watch for supply-side commentary relative to Gulf disruption risk.</div>
+      </li>
+      <li>
+        <span class="catalyst-date">WED · MAR 11</span>
+        <div><strong>February CPI — the week's fulcrum event.</strong> This is the print that tells us whether oil's spike is already filtering into consumer prices. EIA crude oil inventories also land Wednesday and will move energy names. Treasury Budget report out as well.</div>
+      </li>
+      <li>
+        <span class="catalyst-date">THU · MAR 12</span>
+        <div><strong>Adobe (ADBE) earnings after close.</strong> A key barometer for enterprise software demand and AI-tool monetization. PPI also reports — wholesale inflation gives you the upstream pressure read. Factory orders, initial jobless claims (follow-on from Friday's weak print). Dick's Sporting Goods and Ulta Beauty offer consumer discretionary sentiment.</div>
+      </li>
+      <li>
+        <span class="catalyst-date">FRI · MAR 13</span>
+        <div><strong>GDP Second Estimate (Q4) + PCE Prices + Personal Income/Spending + UMich Consumer Sentiment.</strong> The first GDP read disappointed. Any downward revision here reinforces the narrative that growth was slowing before the oil shock hit. PCE — the Fed's preferred inflation gauge — alongside UMich sentiment closes out what will be a dense data week.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 7. RISK SCENARIOS -->
+  <div class="section-panel">
+    <div class="panel-label">Risk Scenarios</div>
+    <div class="panel-title">Bull and Bear Cases for the Week</div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bull">
+        <div class="scenario-tag">Bull Case</div>
+        <p>Iran signals openness to ceasefire talks, oil gives back half its gains. CPI comes in tame — core under 3% — giving the Fed room to maintain its June cut optionality. Oracle beats on revenue and raises FY guidance, reigniting AI infrastructure confidence. Markets rally 2–3% off support and the Nasdaq reclaims 22,600.</p>
+      </div>
+      <div class="scenario-card bear">
+        <div class="scenario-tag">Bear Case</div>
+        <p>Qatar and Gulf producers follow through on production halt threats, WTI pushes toward $95. CPI surprises to the upside, June cut probability collapses below 40%. Oracle guidance disappoints on margins. GDP second estimate gets revised down hard. S&amp;P tests 6,600 and the risk-off move accelerates into the weekend.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. CLOSING NOTE -->
+  <div class="closing-note">
+    <div class="panel-label" style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Closing Note</div>
+    <p>Markets walk into Monday carrying a bruise from the worst weekly performance in months — and the honest answer is that nobody knows how long the Iran situation lasts or how high crude can push before demand destruction kicks in. History says equities recover from geopolitical shocks. History also says the recovery is messy, uneven, and doesn't happen on the first bounce.</p>
+    <p>The useful question this week isn't "is the market cheap?" It's "what is CPI telling me on Wednesday, and is Oracle's AI guidance holding up?" Those two data points will either give bulls something to lean on or confirm that the rotation out of growth is still in motion. Either way, this is a week to watch more than act — and to keep position sizing honest.</p>
+    <p>Stay sharp. The noise is loud right now. Signal is in the data.</p>
+    <div class="author-sig">
+      <strong>Hunter William Lang</strong> &nbsp;·&nbsp; FinTrend News &nbsp;·&nbsp; Sunday Macro Notes &nbsp;·&nbsp; March 8, 2026
+    </div>
+  </div>
+
+</div><!-- /article-body -->
+
+<div class="disclaimer">
+  <strong>Educational Disclaimer:</strong> All content published by FinTrend News is for educational and informational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. Market analysis reflects the views of the author at the time of writing. Past performance is not indicative of future results. Always consult a qualified financial advisor before making investment decisions.
+</div>
+
+</body>
+</html>
