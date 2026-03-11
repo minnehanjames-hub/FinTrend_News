@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The CPI Is Already a Relic — FinTrend News</title>
+  <meta name="description" content="February inflation came in clean. But the war in the Gulf has already rewritten the outlook. Here's where the momentum actually stands right now." />
+  <meta name="author" content="Arshia Morshedian" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+  <style>
+    :root {
+      --gold: #f4c15d;
+      --gold-dim: rgba(244,193,93,0.15);
+      --gold-border: rgba(244,193,93,0.35);
+      --bg: #0d0d0f;
+      --surface: #141417;
+      --surface2: #1c1c21;
+      --surface3: #222228;
+      --text: #e8e6e0;
+      --text-muted: #8a8880;
+      --text-dim: #5a5856;
+      --red: #e05252;
+      --red-dim: rgba(224,82,82,0.12);
+      --green: #4caf7d;
+      --green-dim: rgba(76,175,125,0.12);
+      --amber: #e8a842;
+      --amber-dim: rgba(232,168,66,0.12);
+      --blue: #5b9bd5;
+      --blue-dim: rgba(91,155,213,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .article-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 1.4rem;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-deck {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+      max-width: 640px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+    .hero-meta .author { color: var(--gold); font-weight: 500; }
+    .hero-meta .separator { opacity: 0.3; }
+
+    /* ── BODY ── */
+    .article-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── SCORECARD ── */
+    .scorecard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 2rem 0 2.5rem;
+    }
+    .score-cell {
+      background: var(--surface);
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .score-change {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--text-muted); }
+
+    /* ── CALLOUT BOX ── */
+    .callout {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-dim);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 6px 6px 0;
+      margin: 2rem 0;
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .callout.red { border-color: var(--red); background: var(--red-dim); }
+    .callout.green { border-color: var(--green); background: var(--green-dim); }
+    .callout.amber { border-color: var(--amber); background: var(--amber-dim); }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin: 2.8rem 0 1.2rem;
+    }
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: #fff;
+      font-style: italic;
+    }
+
+    /* ── PROSE ── */
+    p { margin-bottom: 1.2rem; color: var(--text); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── DATA TABLE ── */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 1.8rem 0;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    thead tr {
+      background: var(--surface2);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    thead th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    tbody td {
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+    }
+    td.label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+
+    /* ── INTERACTIVE CPI BREAKDOWN ── */
+    .cpi-explorer {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+    .cpi-explorer-header {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .cpi-explorer-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .tab-group { display: flex; gap: 0.4rem; }
+    .tab-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn.active {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+    .cpi-bars {
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 60px;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    .bar-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bar-track {
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .bar-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ── OIL TIMELINE ── */
+    .timeline {
+      margin: 2rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(244,193,93,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.4rem;
+      padding-left: 1.4rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.05rem;
+      top: 0.45rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--bg);
+    }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-headline {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-body {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── SCENARIO GRID ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 600px) {
+      .scenario-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 120px 1fr 50px; }
+    }
+    .scenario-card {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 1.2rem;
+      border-top: 3px solid transparent;
+    }
+    .scenario-card.bull { border-color: var(--green); }
+    .scenario-card.bear { border-color: var(--red); }
+    .scenario-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .scenario-card.bull .scenario-label { color: var(--green); }
+    .scenario-card.bear .scenario-label { color: var(--red); }
+    .scenario-head {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .scenario-body { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* ── MOMENTUM GAUGE ── */
+    .gauge-section {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 1.6rem 1.4rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .gauge-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1.2rem;
+    }
+    .gauge-svg-wrap { display: flex; justify-content: center; margin-bottom: 1rem; }
+    .gauge-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--amber);
+      margin-bottom: 0.3rem;
+    }
+    .gauge-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* ── SIGNALS ROW ── */
+    .signals-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .signal-cell {
+      background: var(--surface);
+      padding: 1rem 1.1rem;
+    }
+    .signal-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.35rem;
+    }
+    .signal-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .signal-read {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">FinTrend News</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../archive.html">Archive</a></li>
+    <li><a href="../premium.html">Premium</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="article-tag">Wednesday Momentum Check — Mar 11, 2026</div>
+  <h1>The CPI Is Already a Relic</h1>
+  <p class="hero-deck">February inflation came in clean — 2.4% annual, in line, nothing to panic about. The problem is the report describes a world that no longer exists. The Strait of Hormuz is still partially blocked, three more ships were hit this morning, and the IEA just proposed an emergency reserve release bigger than anything it has ever done. We're not trading February anymore.</p>
+  <div class="hero-meta">
+    <span class="author">Arshia Morshedian</span>
+    <span class="separator">|</span>
+    <span>March 11, 2026</span>
+    <span class="separator">|</span>
+    <span>Momentum Check</span>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- LIVE SCORECARD -->
+  <div class="scorecard">
+    <div class="score-cell">
+      <span class="score-label">S&amp;P 500</span>
+      <span class="score-value">Flat</span>
+      <span class="score-change down">−0.04% intraday</span>
+    </div>
+    <div class="score-cell">
+      <span class="score-label">Dow Jones</span>
+      <span class="score-value">47,557</span>
+      <span class="score-change down">−0.27%</span>
+    </div>
+    <div class="score-cell">
+      <span class="score-label">Brent Crude</span>
+      <span class="score-value">$90+</span>
+      <span class="score-change up">+4.3% today</span>
+    </div>
+    <div class="score-cell">
+      <span class="score-label">WTI Crude</span>
+      <span class="score-value">$85.65</span>
+      <span class="score-change up">+2.6%</span>
+    </div>
+    <div class="score-cell">
+      <span class="score-label">VIX</span>
+      <span class="score-value">24.77</span>
+      <span class="score-change down">−0.64%</span>
+    </div>
+    <div class="score-cell">
+      <span class="score-label">CPI (Feb)</span>
+      <span class="score-value">2.4%</span>
+      <span class="score-change flat">In-line</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: CPI -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">The Inflation Report That Nobody Cares About</h2>
+  </div>
+
+  <p>Let me be direct: the February CPI number is fine. It's actually pretty good, all things considered. Headline came in at 2.4% year-over-year — matching consensus exactly. Core CPI, which strips out food and energy, landed at 2.5% annually and 0.2% month-over-month. Rent, the long-running villain of this inflation cycle, posted its smallest monthly increase since January 2021. Egg prices fell. Apparel ticked up. Used vehicles continued their quiet retreat.</p>
+
+  <p>Under normal circumstances this would be a "calm before the storm" report — inflation stabilizing, the Fed gets some breathing room, markets drift sideways. But these are not normal circumstances, and the market is treating this CPI print with exactly the amount of enthusiasm you'd give a weather forecast from last Tuesday.</p>
+
+  <div class="callout">
+    <strong>"Today's CPI report is already something of a historical artefact."</strong> That was Seema Shah, Chief Global Strategist at Principal Asset Management, speaking within minutes of the data dropping this morning. Oil prices are up roughly $30 since the February data was collected. The report tells you where we were. The market is pricing where we're going.
+  </div>
+
+  <!-- INTERACTIVE CPI EXPLORER -->
+  <div class="cpi-explorer">
+    <div class="cpi-explorer-header">
+      <span class="cpi-explorer-title">CPI Component Breakdown — February 2026</span>
+      <div class="tab-group">
+        <button class="tab-btn active" onclick="switchTab('mom')">Month/Month</button>
+        <button class="tab-btn" onclick="switchTab('yoy')">Year/Year</button>
+      </div>
+    </div>
+    <div class="cpi-bars" id="cpi-bars-container">
+      <!-- bars populated by JS -->
+    </div>
+  </div>
+
+  <p>The thing that matters in this print isn't the headline — it's what it tells us about the pre-war baseline. Services inflation outside of housing remains elevated. Medical care, airline fares, and lodging all pushed higher. Tariff-exposed goods like apparel showed a 1.3% monthly jump. The Fed was already navigating stubborn service-sector inflation before oil prices entered the picture. Now it has to deal with a potential energy shock on top of that foundation.</p>
+
+  <p>The March CPI — which will capture the oil surge — doesn't drop until April 10th. Between now and then, the Fed meets on March 18th and will almost certainly hold rates where they are. Traders are assigning near-100% odds to a hold. But the longer the Strait stays disrupted, the harder that calculus gets at subsequent meetings.</p>
+
+  <!-- SECTION 2: OIL -->
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Oil's Week Has Been a Three-Act Play</h2>
+  </div>
+
+  <p>If you've been watching crude prices this week you might have developed whiplash. The oil market has swung violently on every piece of news coming out of the Gulf — real and fabricated. Here's the condensed version of a chaotic five days.</p>
+
+  <!-- OIL TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Mon Mar 9</div>
+      <div class="timeline-headline">Trump says conflict "very soon" over</div>
+      <div class="timeline-body">Oil retreats sharply from near $120 as President Trump signals diplomatic progress. Markets start pricing in an offramp. WTI falls toward $95, equity markets rally into close.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Tue Mar 10</div>
+      <div class="timeline-headline">Energy Secretary's deleted tweet — the fake pivot</div>
+      <div class="timeline-body">Energy Secretary Chris Wright posts — then deletes — a tweet claiming the US Navy had escorted a tanker through the Strait. WTI craters intraday to near $70. The White House walks it back. Oil recovers to close around $83.86. The S&P wipes its gains. A single deleted post cost some traders a career-defining afternoon.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Tue Eve</div>
+      <div class="timeline-headline">API inventory draw — bullish surprise</div>
+      <div class="timeline-body">API data showed crude stockpiles fell 1.7 million barrels against an expected build of 1.4 million. A 3.1 million barrel swing. Tight near-term supply picture confirmed.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Wed Mar 11 (AM)</div>
+      <div class="timeline-headline">Three more ships hit — IEA proposes 400M barrel release</div>
+      <div class="timeline-body">Iran struck the Thai-flagged Mayuree Naree, Liberian-flagged Express Rome, and Japanese ONE Majesty overnight. Mines are reportedly being laid along the Strait. IEA proposes releasing 400 million barrels from strategic reserves — more than double the 182 million barrels deployed after Russia invaded Ukraine. Brent jumps back above $90 anyway.</div>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    What this week's oil action tells you: the market doesn't believe there's a near-term resolution. An emergency reserve release of historic scale pushed Brent up, not down. When the cure makes the disease look worse, you pay attention.
+  </div>
+
+  <!-- OIL DATA TABLE -->
+  <div class="data-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Context</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Brent Crude (Mar 11)</td>
+          <td class="up">$90+/bbl</td>
+          <td>Up from ~$68 pre-war</td>
+        </tr>
+        <tr>
+          <td class="label">WTI Crude (Mar 11)</td>
+          <td class="up">$85.65/bbl</td>
+          <td>+2.6% on the day</td>
+        </tr>
+        <tr>
+          <td class="label">IEA Reserve Release Proposed</td>
+          <td>400M barrels</td>
+          <td>Previous record: 182M (2022 Russia)</td>
+        </tr>
+        <tr>
+          <td class="label">Ships Attacked in Strait</td>
+          <td class="down">13+ vessels</td>
+          <td">3 more struck this morning</td>
+        </tr>
+        <tr>
+          <td class="label">US Gas Prices (avg)</td>
+          <td class="down">$3.54/gal</td>
+          <td>+~60¢ since war began</td>
+        </tr>
+        <tr>
+          <td class="label">Strait of Hormuz Share of Global Oil</td>
+          <td class="down">&gt;20%</td>
+          <td>Still effectively disrupted</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 3: ORACLE + EARNINGS -->
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Oracle Reminded Everyone AI Is Still Real</h2>
+  </div>
+
+  <p>In the middle of this geopolitical chaos, Oracle dropped a quarter that had nothing to do with oil and everything to do with why certain tech names are still holding up. Revenue came in at $17.19 billion — up 22% year-over-year, beating estimates by $280 million. Cloud revenue grew 44% to $8.9 billion. Remaining performance obligations — the forward-looking backlog — exploded 325% to $553 billion. That number deserves a second read: $553 billion in committed future revenue.</p>
+
+  <p>Management guided fiscal 2027 revenue to $90 billion (analysts expected $86.6 billion), and made clear it wouldn't need additional capital raises after pulling $20 billion in an equity offering and $25 billion in senior notes earlier this year. The stock is up roughly 10–13% on the session. JPMorgan upgraded to Overweight with a $210 price target.</p>
+
+  <div class="callout green">
+    The Oracle print matters beyond Oracle. It confirms that hyperscaler capex commitments are real and growing, that cloud demand hasn't cracked under rate pressure, and that AI infrastructure buildout is in a multi-year cycle. When a company's forward backlog grows 325% year-over-year, that's not a trade. That's a structural shift.
+  </div>
+
+  <p>The rest of the earnings tape this week told a messier story. AeroVironment — a defense drone maker you'd think would benefit from an active conflict — fell 10% after badly missing revenue estimates ($408M actual vs. $476M expected). Cadre Holdings, a safety equipment company, missed by a wide margin on both earnings and revenue. NIO, the Chinese EV maker, was the week's other bright spot — jumping 12% after posting its first-ever quarterly net profit, with vehicle deliveries up 71.7% year-over-year and gross margins expanding from 11.7% to 17.5%.</p>
+
+  <!-- SECTION 4: WHERE THINGS STAND -->
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Where the Momentum Actually Sits Right Now</h2>
+  </div>
+
+  <p>The overall picture entering Wednesday afternoon is one of paralysis with an inflation shadow forming on the horizon. The Dow is flirting with red. The S&P 500 is effectively flat. The Nasdaq is holding a slim positive bias carried almost entirely by tech. Defensive sectors — consumer staples, materials — are getting hit hardest. Energy and tech are the only places with genuine tailwinds right now.</p>
+
+  <!-- SIGNALS ROW -->
+  <div class="signals-row">
+    <div class="signal-cell">
+      <div class="signal-name">Trend Bias</div>
+      <div class="signal-val" style="color:var(--amber)">Cautious</div>
+      <div class="signal-read">War premium intact</div>
+    </div>
+    <div class="signal-cell">
+      <div class="signal-name">Fed Path</div>
+      <div class="signal-val" style="color:var(--text-muted)">Hold</div>
+      <div class="signal-read">~100% odds Mar 18</div>
+    </div>
+    <div class="signal-cell">
+      <div class="signal-name">Oil Regime</div>
+      <div class="signal-val" style="color:var(--red)">Elevated</div>
+      <div class="signal-read">Brent $90+ on IEA news</div>
+    </div>
+    <div class="signal-cell">
+      <div class="signal-name">Inflation Lag</div>
+      <div class="signal-val" style="color:var(--amber)">Pending</div>
+      <div class="signal-read">March CPI Apr 10</div>
+    </div>
+    <div class="signal-cell">
+      <div class="signal-name">Jobs Market</div>
+      <div class="signal-val" style="color:var(--red)">Weak</div>
+      <div class="signal-read">−92K Feb payrolls</div>
+    </div>
+    <div class="signal-cell">
+      <div class="signal-name">Tech Earnings</div>
+      <div class="signal-val" style="color:var(--green)">Solid</div>
+      <div class="signal-read">Oracle +22% revenue</div>
+    </div>
+  </div>
+
+  <!-- MOMENTUM GAUGE -->
+  <div class="gauge-section">
+    <div class="gauge-title">Weekly Momentum Reading — March 11, 2026</div>
+    <div class="gauge-svg-wrap">
+      <svg width="240" height="130" viewBox="0 0 240 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background arc -->
+        <path d="M 20 120 A 100 100 0 0 1 220 120" stroke="rgba(255,255,255,0.07)" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <!-- Colored segments -->
+        <path d="M 20 120 A 100 100 0 0 1 72 34" stroke="#e05252" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <path d="M 72 34 A 100 100 0 0 1 168 34" stroke="#e8a842" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <path d="M 168 34 A 100 100 0 0 1 220 120" stroke="#4caf7d" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <!-- Needle — pointing slightly left of center (cautious/amber zone) -->
+        <line x1="120" y1="120" x2="88" y2="50" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="120" cy="120" r="6" fill="white"/>
+        <!-- Labels -->
+        <text x="14" y="148" fill="#e05252" font-size="9" font-family="JetBrains Mono, monospace" font-weight="700" letter-spacing="0.05em">BEAR</text>
+        <text x="101" y="22" fill="#e8a842" font-size="9" font-family="JetBrains Mono, monospace" font-weight="700" letter-spacing="0.05em">MIXED</text>
+        <text x="196" y="148" fill="#4caf7d" font-size="9" font-family="JetBrains Mono, monospace" font-weight="700" letter-spacing="0.05em">BULL</text>
+      </svg>
+    </div>
+    <div class="gauge-label">Cautious / Mixed</div>
+    <p class="gauge-sub">Earnings resilient. Oil disrupted. Jobs soft. Inflation lagged but incoming. Market has no clean thesis right now — it's trading headlines, not fundamentals.</p>
+  </div>
+
+  <!-- SECTION 5: SCENARIOS -->
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">The Two Paths From Here</h2>
+  </div>
+
+  <p>The market is being priced by one variable above all else: how long does the Strait stay disrupted? Everything else — the Fed's next move, Q1 earnings season, whether small business confidence rebounds, whether the consumer holds up — those are all secondary to that one question. Here's how the two dominant scenarios read from where we're standing today.</p>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-label">Bull Path</div>
+      <div class="scenario-head">Diplomatic Resolution Within Days</div>
+      <div class="scenario-body">Strait reopens, oil retreats toward $75–80, the February CPI number suddenly looks like a soft landing in progress, and the Fed gets to hold in March with confidence. Tech earnings drive the tape higher. The market's underlying resilience — which has been visible all week despite the noise — gets to show itself. VIX collapses back toward 18.</div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-label">Bear Path</div>
+      <div class="scenario-head">Conflict Drags Into April</div>
+      <div class="scenario-body">Oil pushes through $100. Gas at $4+ nationally. March CPI comes in hot when it prints on April 10. The Fed is suddenly in a stagflationary bind — jobs weak, inflation spiking. Consumer spending falls off. The S&P tests the 200-day moving average. An energy analyst from Marex told CNBC this morning: "This conflict needs to end by end of week. Otherwise we'll see oil spike back over $100."</div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: WHAT TO WATCH -->
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">What's Left on This Week's Calendar</h2>
+  </div>
+
+  <div class="data-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Event</th>
+          <th>Significance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wed PM</td>
+          <td class="label">IEA Reserve Decision Finalized</td>
+          <td>400M bbl proposal goes to vote — any country objection delays it</td>
+        </tr>
+        <tr>
+          <td>Wed PM</td>
+          <td class="label">EIA Weekly Oil Inventories</td>
+          <td>Follow-up to API's bullish 1.7M bbl draw; directional signal for crude</td>
+        </tr>
+        <tr>
+          <td>Wed PM</td>
+          <td class="label">OPEC Monthly Report</td>
+          <td>Demand/supply balance assessment; watch for downgrade in global demand</td>
+        </tr>
+        <tr>
+          <td>Thu</td>
+          <td class="label">Jobless Claims</td>
+          <td>First post-war labor read; any spike accelerates stagflation narrative</td>
+        </tr>
+        <tr>
+          <td>Fri</td>
+          <td class="label">University of Michigan Consumer Sentiment</td>
+          <td>Forward-looking. If confidence drops sharply, recession odds rise</td>
+        </tr>
+        <tr>
+          <td>Fri</td>
+          <td class="label">US Federal Budget (Feb)</td>
+          <td>Defense spending trajectory; war cost starting to show up in fiscal data</td>
+        </tr>
+        <tr>
+          <td>Wed Mar 18</td>
+          <td class="label">Federal Reserve Rate Decision</td>
+          <td>Near-certain hold, but Powell's press conference tone is everything</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CLOSING NOTE -->
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">The Honest Bottom Line</h2>
+  </div>
+
+  <p>Here's what I keep coming back to this week: we have two fundamentally incompatible stories running in parallel and the market doesn't know which one to price. The first story is that the U.S. economy's underlying structure is holding — inflation was contained in February, Oracle just put up one of the best cloud quarters in years, NIO turned profitable, and tech capex commitments are expanding at a pace that would have seemed impossible two years ago. That story is bullish.</p>
+
+  <p>The second story is that a war in the Gulf has disrupted more than 20% of global oil supply, three ships were hit this morning before markets opened, gasoline prices have jumped 60 cents per gallon in two weeks, the February jobs report came in at negative 92,000, and the IEA just proposed a reserve release bigger than any in its history — and oil went up anyway. That story is not bullish.</p>
+
+  <p>Markets sitting flat on the day isn't confusion. It's the honest answer to a genuinely unresolvable question. Until the Strait of Hormuz reopens or the conflict escalates past a point of no return, we're going to keep watching this same tug-of-war play out in 0.2% daily swings. Friday's recap will tell us whether the week resolved anything. Right now, it hasn't.</p>
+
+  <div class="callout red">
+    <strong>One thing worth watching closely:</strong> the NFIB Small Business Optimism print this week came in at 98.8, missing expectations and sliding from 99.3. Small business sentiment tends to lead the broader economy by a quarter or two. Add that to a −92,000 payroll print and you have the early outline of a consumer deceleration that hasn't hit the big indices yet.
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>Educational Disclaimer:</strong> FinTrend News is a financial markets publication for informational and educational purposes only. Nothing in this article constitutes investment advice, a recommendation to buy or sell any security, or a solicitation of any investment decision. All data and market references reflect publicly available information as of publication date. Past performance is not indicative of future results. Always conduct your own due diligence and consult a licensed financial advisor before making investment decisions.
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 FinTrend News · fintrend.news · All content is for educational purposes only</p>
+</footer>
+
+<script>
+  // ── CPI EXPLORER DATA ──
+  const cpiData = {
+    mom: [
+      { label: 'All Items',     val: 0.3,  color: '#e8a842', max: 1.5 },
+      { label: 'Shelter',       val: 0.2,  color: '#5b9bd5', max: 1.5 },
+      { label: 'Food',          val: 0.4,  color: '#e8a842', max: 1.5 },
+      { label: 'Food at Home',  val: 0.4,  color: '#e8a842', max: 1.5 },
+      { label: 'Food Away',     val: 0.3,  color: '#e8a842', max: 1.5 },
+      { label: 'Energy',        val: 0.6,  color: '#f4c15d', max: 1.5 },
+      { label: 'Apparel',       val: 1.3,  color: '#e05252', max: 1.5 },
+      { label: 'Core CPI',      val: 0.2,  color: '#4caf7d', max: 1.5 },
+      { label: 'New Vehicles',  val: 0.0,  color: '#4caf7d', max: 1.5 },
+      { label: 'Egg Prices',    val: -3.8, color: '#4caf7d', max: 5 },
+    ],
+    yoy: [
+      { label: 'All Items',     val: 2.4,  color: '#e8a842', max: 12 },
+      { label: 'Shelter',       val: 3.0,  color: '#5b9bd5', max: 12 },
+      { label: 'Food',          val: 3.1,  color: '#e8a842', max: 12 },
+      { label: 'Food Away',     val: 3.9,  color: '#e05252', max: 12 },
+      { label: 'Energy',        val: 0.5,  color: '#4caf7d', max: 12 },
+      { label: 'Gasoline',      val: -5.6, color: '#4caf7d', max: 12 },
+      { label: 'Electricity',   val: 4.8,  color: '#e05252', max: 12 },
+      { label: 'Natural Gas',   val: 10.9, color: '#e05252', max: 12 },
+      { label: 'Core CPI',      val: 2.5,  color: '#e8a842', max: 12 },
+      { label: 'Egg Prices',    val: -42.1,color: '#4caf7d', max: 50 },
+    ]
+  };
+
+  let activeTab = 'mom';
+
+  function renderBars(tab) {
+    const container = document.getElementById('cpi-bars-container');
+    const rows = cpiData[tab];
+    container.innerHTML = '';
+    rows.forEach((row, i) => {
+      const pct = Math.min(Math.abs(row.val) / row.max * 100, 100);
+      const valStr = (row.val >= 0 ? '+' : '') + row.val.toFixed(1) + '%';
+      const valColor = row.val > 0 ? (row.val > 3 ? '#e05252' : '#e8a842') : '#4caf7d';
+      const div = document.createElement('div');
+      div.className = 'bar-row';
+      div.style.opacity = '0';
+      div.style.transform = 'translateX(-8px)';
+      div.style.transition = `opacity 0.3s ${i * 40}ms, transform 0.3s ${i * 40}ms`;
+      div.innerHTML = `
+        <span class="bar-label">${row.label}</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:0%;background:${row.color};transition:width 0.5s ${i*40+100}ms cubic-bezier(0.4,0,0.2,1)"></div>
+        </div>
+        <span class="bar-val" style="color:${valColor}">${valStr}</span>
+      `;
+      container.appendChild(div);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          div.style.opacity = '1';
+          div.style.transform = 'translateX(0)';
+          const fill = div.querySelector('.bar-fill');
+          fill.style.width = pct + '%';
+        });
+      });
+    });
+  }
+
+  function switchTab(tab) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('onclick').includes(tab));
+    });
+    renderBars(tab);
+  }
+
+  // Initialize
+  renderBars('mom');
+</script>
+
+</body>
+</html>
