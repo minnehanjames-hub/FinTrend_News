@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friday Recap — March 13, 2026 | FinTrend News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0f;
+      --surface: #141417;
+      --border: #222228;
+      --gold: #f4c15d;
+      --gold-dim: rgba(244,193,93,0.12);
+      --gold-mid: rgba(244,193,93,0.35);
+      --text: #e8e6e1;
+      --muted: #888;
+      --red: #e05c5c;
+      --green: #5ce07c;
+      --blue: #5c9ee0;
+      --tag-friday: #e05c5c;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,15,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 40px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tag-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .tag-friday-pill { background: rgba(224,92,92,0.15); color: var(--tag-friday); border: 1px solid rgba(224,92,92,0.3); }
+    .tag-recap { background: rgba(244,193,93,0.1); color: var(--gold); border: 1px solid rgba(244,193,93,0.2); }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .hero .dek {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .byline-row .author { color: var(--text); font-weight: 600; }
+    .byline-sep { color: var(--border); }
+
+    /* SCORECARD */
+    .scorecard {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .scorecard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .score-cell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .score-cell .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .score-cell .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .score-cell .change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      margin-top: 3px;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+
+    /* BODY */
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    .section-panel {
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 40px 0 24px;
+    }
+    .section-panel h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+    .section-panel .panel-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    p { margin-bottom: 18px; color: var(--text); }
+
+    .callout {
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-mid);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+    .callout strong { color: var(--gold); }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .data-row:last-child { border-bottom: none; }
+    .data-row .item { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; }
+    .data-row .reading { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+    .disclaimer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero, .scorecard, .article-body { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">FinTrend News</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../premium.html">Premium</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="tag-row">
+    <span class="tag tag-friday-pill">Friday Recap</span>
+    <span class="tag tag-recap">March 13, 2026</span>
+  </div>
+  <h1>Three Weeks Down. No Floor in Sight.</h1>
+  <p class="dek">The S&P 500 posted its first three-week losing streak in nearly a year. Oil is threatening $100. The Strait of Hormuz is still a warzone. And somehow the market hasn't fully broken yet — which is either a sign of resilience or denial.</p>
+  <div class="byline-row">
+    <span class="author">Hunter William Lang</span>
+    <span class="byline-sep">|</span>
+    <span>Friday, March 13, 2026</span>
+    <span class="byline-sep">|</span>
+    <span>FinTrend News</span>
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard">
+  <div class="scorecard-grid">
+    <div class="score-cell">
+      <div class="label">S&P 500 (Wk)</div>
+      <div class="value">−1.6%</div>
+      <div class="change down">3-wk losing streak</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">Nasdaq (Wk)</div>
+      <div class="value">−1.3%</div>
+      <div class="change down">Below 200-DMA</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">Dow (Wk)</div>
+      <div class="value">−2.0%</div>
+      <div class="change down">Broad weakness</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">WTI Crude</div>
+      <div class="value">$98.71</div>
+      <div class="change up">+3.1% Friday</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">Brent Crude</div>
+      <div class="value">$103.14</div>
+      <div class="change up">First >$100 since '22</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">VIX</div>
+      <div class="value">&gt;30</div>
+      <div class="change down">11-mo high (partial retreat)</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">UMich Sentiment</div>
+      <div class="value">55.5</div>
+      <div class="change down">−1.9% from Feb</div>
+    </div>
+    <div class="score-cell">
+      <div class="label">Fed Cuts Priced</div>
+      <div class="value">≤1</div>
+      <div class="change down">Was 3 in Jan</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="article-body">
+
+  <div class="section-panel">
+    <div class="panel-sub">Weekly Tape</div>
+    <h2>The Streak Nobody Wanted</h2>
+  </div>
+
+  <p>Three losing weeks in a row. The S&P 500 set a new 2026 low on Friday, and the Nasdaq slipped below its 200-day moving average — a line that, once broken cleanly, tends to invite more sellers. The Dow dropped about 2% for the week. None of this is catastrophic yet, but the math is adding up in the wrong direction.</p>
+
+  <p>What made this week's selloff particularly nasty was the oil-equity feedback loop. Every time Brent crude ticked higher, equities cracked. Every risk-on attempt failed at the open or died by lunch. By Friday, WTI settled at $98.71 and Brent closed above $103 — the first time it has crossed $100 since August 2022. The week ended with crude up 5.5%. That kind of weekly move in energy is not a rounding error. It is a policy problem, a margin problem, and a Fed problem, all at once.</p>
+
+  <p>The only sectors that held up were the ones you hold when you are scared: Energy and Utilities were the week's sole winners. Everything else — tech, industrials, consumer discretionary, materials — leaked lower. Home builders dropped more than 5% as mortgage rates followed Treasury yields north. Travel names got hit hard as jet fuel costs started showing up in forward estimates. It was a defensive rotation with nowhere elegant to hide.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">Energy Shock</div>
+    <h2>Iran's Play, The Market's Problem</h2>
+  </div>
+
+  <p>The new Supreme Leader of Iran, Mojtaba Khamenei, made the regime's position crystal clear on Thursday: the Strait of Hormuz should stay closed as a "tool to pressure the enemy." That single quote sent oil up another 3% and equities sliding into the weekend. When a geopolitical adversary telegraphs their leverage and means it, the market has no choice but to price accordingly.</p>
+
+  <p>Traffic through the strait has essentially stopped for commercial operators. Major carriers — Maersk, CMA CGM, Hapag-Lloyd — suspended transits weeks ago. The IRGC has already attacked more than 16 vessels. War-risk insurance premiums have exploded in some cases by 1,000%. Without insurance, commercial ships simply cannot sail. This is not a temporary blip. This is structured disruption.</p>
+
+  <div class="callout">
+    <strong>By the numbers:</strong> Before the war, roughly 14.7 million barrels of crude and 4.8 million barrels of refined products moved daily through the strait — about one-fifth of global oil consumption. As of March 12, 85 large tankers carrying at least 21 billion liters of oil sat anchored in the Persian Gulf with nowhere to go. Saudi Arabia and the UAE are running pipeline alternatives hard, but their combined non-Hormuz output of roughly 6 million barrels per day doesn't come close to covering the gap.
+  </div>
+
+  <div class="section-panel">
+    <div class="panel-sub">Under the Hood</div>
+    <h2>Where the Week's Real Story Hid</h2>
+  </div>
+
+  <p>Semiconductors were the outlier. The PHLX Semiconductor Index actually gained 1.8% for the week — an anomaly worth noting when everything else was bleeding. Nvidia held, Micron held, AMD held. The AI buildout trade has a certain structural stickiness: enterprises don't cancel multi-year infrastructure contracts because oil spikes for a few weeks. That resilience matters.</p>
+
+  <p>Software stocks told the opposite story — down more than 4% for the week. When energy prices threaten margins and the Fed can't cut, software multiples compress. Add in reports that Meta's next major AI model may face delays, and the communication services sector had a rough go of it. Goldman Sachs broke down from its up-trending channel and showed an RSI reading under 29 by Thursday. That is oversold, but oversold can stay oversold for longer than most people expect when macro headwinds are this heavy.</p>
+
+  <p>Retail investors were not passive observers. Vanda Research flagged record retail buying of oil ETFs on Thursday — $211 million flowing into pure-play energy products in a single session, beating records set in May 2020. The United States Oil Fund saw its third-biggest day of retail inflows ever. Individual investors are not hedging here. They are speculating on a continued oil run. Whether that is genius or hubris depends entirely on how the next few weeks play out at the strait.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">Macro Watch</div>
+    <h2>Stagflation Is Back in the Conversation</h2>
+  </div>
+
+  <p>The University of Michigan consumer sentiment survey came in at 55.5, down 1.9% from February. The more revealing detail: interviews completed before the Iran military action showed improvement from the prior month. The nine days of post-war data wiped out those gains completely. Americans felt better, then the bombs dropped, and they stopped feeling better. The survey director noted that the expectations index fell 4.4%, while one-year inflation expectations held at 3.4%.</p>
+
+  <p>That matters for the Fed. February CPI — collected before the oil shock hit — printed at 2.4% year-over-year. Clean. But that is ancient history. Economists are already modeling headline CPI reaching 2.6% to 2.9% in March, and potentially 3.5% by year-end if the strait stays closed. The market has already repriced Fed easing: expectations have gone from three cuts at the start of 2026 to fewer than one now. Jerome Powell walks into his March 17–18 meeting with his term expiring in May, oil above $100, a labor market that shed 92,000 jobs in February, and no clean policy answer. The Fed is boxed.</p>
+
+  <div class="callout">
+    <strong>The stagflation template:</strong> In 1973, the S&P 500 fell more than 40% as recession collided with the OPEC oil embargo. Nobody is forecasting that outcome today — but the words "stagflation" and "1970s" are appearing in sell-side notes again. That alone tells you something about how this week changed the macro conversation.
+  </div>
+
+  <div class="section-panel">
+    <div class="panel-sub">Looking Ahead</div>
+    <h2>Three Things That Will Move the Tape Next Week</h2>
+  </div>
+
+  <div class="data-row">
+    <span class="item">FOMC Decision (Mar 18)</span>
+    <span class="reading">Dot plot &gt; rate decision</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Strait of Hormuz developments</span>
+    <span class="reading">Escorted convoys? Mine clearing?</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Oil trajectory</span>
+    <span class="reading">$100 Brent ceiling or base?</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Micron earnings (Mar 19)</span>
+    <span class="reading">Semiconductor pulse check</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Powell press conference tone</span>
+    <span class="reading">Hawkish hold vs. dovish hold</span>
+  </div>
+
+  <p style="margin-top:28px;">The rate decision is almost certainly a hold — CME FedWatch has it above 92%. But the dot plot and Powell's language on the oil shock will generate more market movement than the decision itself. If the dot plot shifts to signal two cuts in 2026 rather than one, you could see a sharp relief rally. If the language is hawkish and the dots remain tight, the pressure on equities continues.</p>
+
+  <p>The market is not trading on earnings or fundamentals right now. It is trading on a 21-mile-wide channel of water and what the Iranian regime decides to do with it. That is an uncomfortable place to be heading into a weekend — and into a week that will test every thesis you've built for 2026.</p>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> FinTrend News is a financial markets publication for informational and educational purposes only. Nothing published here constitutes investment advice or a solicitation to buy or sell any security. Always consult a qualified financial advisor before making investment decisions. Past performance is not indicative of future results.
+  </div>
+
+</div>
+
+</body>
+</html>
