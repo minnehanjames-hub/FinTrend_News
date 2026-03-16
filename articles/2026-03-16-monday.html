@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monday Outlook — March 16, 2026 | FinTrend News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0f;
+      --surface: #141417;
+      --border: #222228;
+      --gold: #f4c15d;
+      --gold-dim: rgba(244,193,93,0.10);
+      --gold-mid: rgba(244,193,93,0.30);
+      --text: #e8e6e1;
+      --muted: #888;
+      --red: #e05c5c;
+      --green: #5ce07c;
+      --blue: #5c9ee0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.78;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,15,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 40px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tag-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .tag-monday { background: rgba(92,224,124,0.1); color: var(--green); border: 1px solid rgba(92,224,124,0.25); }
+    .tag-outlook { background: rgba(244,193,93,0.08); color: var(--gold); border: 1px solid rgba(244,193,93,0.2); }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .hero .dek {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .byline-row .author { color: var(--text); font-weight: 600; }
+    .byline-sep { color: var(--border); }
+
+    /* morning brief strip */
+    .brief-strip {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brief-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .brief-pill .bp-label { color: var(--muted); }
+    .brief-pill .bp-val { font-weight: 700; }
+    .up { color: #5ce07c; }
+    .down { color: #e05c5c; }
+
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    .section-panel {
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 40px 0 24px;
+    }
+    .section-panel h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+    .section-panel .panel-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    p { margin-bottom: 18px; color: var(--text); }
+
+    .callout {
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-mid);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+    .callout strong { color: var(--gold); }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .week-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .week-card .wc-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .week-card .wc-event { font-size: 0.88rem; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+    .week-card .wc-note { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-row:last-child { border-bottom: none; }
+    .data-row .item { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.04em; }
+    .data-row .reading { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+    .disclaimer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero, .brief-strip, .article-body { padding-left: 20px; padding-right: 20px; }
+      .week-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">FinTrend News</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../premium.html">Premium</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="tag-row">
+    <span class="tag tag-monday">Monday Outlook</span>
+    <span class="tag tag-outlook">March 16, 2026</span>
+  </div>
+  <h1>Markets Bounce. The Hard Part Starts Wednesday.</h1>
+  <p class="dek">Equities opened Monday sharply higher as a few tankers slipping through the Hormuz dark triggered a short-covering rally. Enjoy it cautiously. The FOMC meets Tuesday. The dot plot drops Wednesday. And the real question — when the strait reopens for real — still has no answer.</p>
+  <div class="byline-row">
+    <span class="author">James Thomas Minnehan</span>
+    <span class="byline-sep">|</span>
+    <span>Monday, March 16, 2026</span>
+    <span class="byline-sep">|</span>
+    <span>FinTrend News</span>
+  </div>
+</div>
+
+<!-- MORNING BRIEF STRIP -->
+<div class="brief-strip">
+  <div class="brief-pill"><span class="bp-label">S&P 500</span><span class="bp-val up">6,718 ↑1.3%</span></div>
+  <div class="brief-pill"><span class="bp-label">Dow</span><span class="bp-val up">+649 pts ↑1.4%</span></div>
+  <div class="brief-pill"><span class="bp-label">Nasdaq</span><span class="bp-val up">↑~1%</span></div>
+  <div class="brief-pill"><span class="bp-label">WTI</span><span class="bp-val">~$97</span></div>
+  <div class="brief-pill"><span class="bp-label">NVDA</span><span class="bp-val up">+2.4%</span></div>
+  <div class="brief-pill"><span class="bp-label">META</span><span class="bp-val up">+2.9%</span></div>
+  <div class="brief-pill"><span class="bp-label">MU</span><span class="bp-val up">+5%+</span></div>
+  <div class="brief-pill"><span class="bp-label">FOMC Kick-off</span><span class="bp-val" style="color:var(--gold);">Tuesday</span></div>
+</div>
+
+<div class="article-body">
+
+  <div class="section-panel">
+    <div class="panel-sub">Market Open</div>
+    <h2>Buying the Dip, Again</h2>
+  </div>
+
+  <p>Markets opened Monday with genuine conviction. The S&P 500 rose to 6,718, up 1.3% from Friday's close. The Dow gained 649 points. The Nasdaq gained roughly 1%. After three straight losing weeks and a new 2026 low on Friday, buyers showed up — and the catalyst was modest: selected tankers carrying liquefied petroleum gas crossed the Strait of Hormuz over the weekend without incident, suggesting Iran is maintaining a degree of selective leniency toward energy exports for allied and neutral states.</p>
+
+  <p>That is not the same thing as the strait reopening. But the market has been looking for any excuse to bounce, and this gave it one. Chip stocks led the move, with Nvidia up more than 2%, Micron jumping over 5% ahead of its earnings Thursday, and Goldman Sachs gaining more than 2%. Meta surged close to 3% on reports it plans to lay off roughly 20% of its workforce due to efficiency gains from AI adoption — a counterintuitive market reaction that tells you exactly what investors are focused on right now: margins, not headcount.</p>
+
+  <p>The S&P closing above its 200-day moving average would be the first real technical signal that this bounce has legs. The Nasdaq, which broke below that line last week, needs to reclaim it cleanly. For now, this reads as a relief trade — meaningful, potentially multi-day, but not yet confirmed as a trend reversal.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">The Strait</div>
+    <h2>Selective Passage Is Not an Open Strait</h2>
+  </div>
+
+  <p>Let's be clear about what happened over the weekend and what it means. An Iranian supertanker transited north of Hormuz heading to China. Two Indian LPG ships reportedly got through with back-channel coordination. Treasury Secretary Bessent confirmed on CNBC Monday morning that the U.S. is allowing Iranian tankers to pass: "We've let that happen to supply the rest of the world." These are significant data points. They are not a resolution.</p>
+
+  <p>Iran is running a tiered access system. Iran-linked vessels and ships heading to allied countries — China, India — get through. Western commercial traffic does not. Major carriers have not resumed service. War-risk insurance remains commercially unworkable for most operators. The effective closure continues for the bulk of the world's energy trade.</p>
+
+  <div class="callout">
+    <strong>The pipeline math:</strong> Saudi Arabia and the UAE are running their bypass pipelines hard — combined non-Hormuz output has climbed to roughly 6 million barrels per day, up from the normal 3.5 million. Still far short of the 14.7 million barrels of crude that used to transit the strait daily. The IEA has pledged strategic reserve releases. It is not enough. The physical market is still tight, and it will stay tight until Iran either makes a deal or the U.S. Navy begins a sustained escort operation.
+  </div>
+
+  <p>President Trump said Friday the Navy would "soon" begin escorting tankers through. The operational reality is more complicated: degrading Iranian drone and missile capabilities enough to make convoy operations survivable takes time. Energy Secretary Wright was direct about this last week — "We're simply not ready." The administration is not hiding the timeline; it just doesn't have one yet.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">FOMC Preview</div>
+    <h2>Two Days That Will Define the Next Quarter</h2>
+  </div>
+
+  <p>The Fed meeting kicks off Tuesday. The decision and press conference are Wednesday. The rate doesn't move — the market is pricing that at 92% certainty. But the dot plot is live, and the dot plot is everything right now.</p>
+
+  <p>The December dot plot showed one 25-basis-point cut for 2026. The current median expectation on the street is that the dots stay roughly there — one cut, maybe two if the labor data and the inflation picture diverge enough to give the committee cover. What the Fed cannot do Wednesday is look confused. The institution's credibility is already being tested by a stagflation scenario it has no clean precedent for managing in the post-QE era.</p>
+
+  <p>Powell's press conference language will be parsed at the word level. Watch for how he characterizes the oil shock — "likely transitory" is a dovish lean; "a meaningful upside risk to inflation" is a hawkish lean. The prepared statement will be careful and rehearsed. The Q&A is where the real Fed shows up. Kevin Warsh, the leading candidate to replace Powell when his term expires May 15, is viewed as more hawkish. Any signal from the dot plot or press conference that anticipates that transition will move fixed income sharply.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">Week Ahead</div>
+    <h2>The Calendar That Will Define the Week</h2>
+  </div>
+
+  <div class="week-grid">
+    <div class="week-card">
+      <div class="wc-day">Tuesday — March 17</div>
+      <div class="wc-event">FOMC Meeting Begins</div>
+      <div class="wc-note">Two-day meeting opens. No decision today. Pre-meeting positioning expected.</div>
+    </div>
+    <div class="week-card">
+      <div class="wc-day">Wednesday — March 18</div>
+      <div class="wc-event">Fed Rate Decision + Dot Plot + Powell</div>
+      <div class="wc-note">2:00 PM decision. 2:30 PM press conference. Most consequential event of the quarter.</div>
+    </div>
+    <div class="week-card">
+      <div class="wc-day">Thursday — March 19</div>
+      <div class="wc-event">Micron Technology Earnings</div>
+      <div class="wc-note">After-close. Memory demand, AI server cycle, forward guidance on data center buildout.</div>
+    </div>
+    <div class="week-card">
+      <div class="wc-day">All Week</div>
+      <div class="wc-event">Hormuz Developments</div>
+      <div class="wc-note">Convoy timing, IRGC posture, mine-clearing operations. Oil moves on any headline.</div>
+    </div>
+  </div>
+
+  <div class="section-panel">
+    <div class="panel-sub">Sector Watch</div>
+    <h2>Where the Action Is This Week</h2>
+  </div>
+
+  <p>Semiconductors are the one place where the fundamental thesis is holding. Micron's earnings Thursday are the biggest near-term read on the health of the AI infrastructure cycle. The stock's jump Monday suggests the market expects a strong report. If Micron guides well, it likely anchors Nvidia, AMD, and Broadcom through the rest of the week regardless of what the Fed does. If Micron disappoints, the last reliable bull case for tech gets shakier.</p>
+
+  <p>Financials had a rough time in the back half of last week. Goldman's technical breakdown was ugly. JPMorgan, BofA, and Morgan Stanley all face a quarter where trading revenue is going to be elevated — volatility is a friend to flow desks — but credit conditions are getting more complex as the oil shock ripples through energy-exposed loan books. Watch how bank stocks react to the Fed Wednesday. They are pricing a specific yield curve trajectory; any pivot on that trajectory moves the sector.</p>
+
+  <p>Energy remains the only sector that closed the past three weeks in positive territory. Retail investors poured a record $211 million into oil ETFs in a single session Thursday. The risk here is concentration: if the strait unexpectedly reopens or a ceasefire deal surfaces, the unwind could be violent. Energy bulls have the fundamentals on their side right now. That doesn't mean the position isn't crowded.</p>
+
+  <div class="section-panel">
+    <div class="panel-sub">Bottom Line</div>
+    <h2>What I'm Watching Most Closely</h2>
+  </div>
+
+  <p>Monday's rally is real enough. The market needed a pressure valve after three weeks of relentless selling, and the tanker headlines gave it one. But the rally's durability depends entirely on what Powell signals Wednesday — and what happens in the 21-mile-wide channel in between.</p>
+
+  <p>If I had to rank the week's risks: the dot plot is first, the Hormuz trajectory is second, and Micron is third. Everything else is noise around those three variables. The market wants permission to go back to thinking about earnings and AI and the regular economy. Wednesday either grants that permission or denies it. We'll know by Wednesday at 3:30 p.m. which version of 2026 we're living in.</p>
+
+  <div class="data-row" style="margin-top:28px;">
+    <span class="item">S&P 500 support</span>
+    <span class="reading" style="color:var(--muted);">~6,520 (Evercore floor estimate)</span>
+  </div>
+  <div class="data-row">
+    <span class="item">WTI resistance</span>
+    <span class="reading" style="color:var(--muted);">$100 psychological ceiling</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Fed cut probability (2026)</span>
+    <span class="reading" style="color:var(--muted);">Market pricing ≤1 cut</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Key level to reclaim</span>
+    <span class="reading" style="color:var(--gold);">Nasdaq 200-day MA</span>
+  </div>
+  <div class="data-row">
+    <span class="item">Wildcard of the week</span>
+    <span class="reading" style="color:var(--gold);">Iran ceasefire signal or escalation</span>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> FinTrend News is a financial markets publication for informational and educational purposes only. Nothing published here constitutes investment advice or a solicitation to buy or sell any security. Always consult a qualified financial advisor before making investment decisions. Past performance is not indicative of future results.
+  </div>
+
+</div>
+
+</body>
+</html>
