@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Deadline That Moved | FinTrend News</title>
+  <meta name="description" content="Trump extended his 48-hour Hormuz ultimatum by 5 days after 'very good and productive conversations' with Iran. Oil whipsawed. Equities stabilized. Here's what today actually means."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--gold:#f4c15d;--gold-dim:#c9983a;--bg:#0d0d0f;--surface:#141416;--surface-2:#1c1c1f;--border:#2a2a2e;--text:#e8e6e1;--text-muted:#8a8880;--red:#e05c5c;--green:#4caf82;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.7;}
+    nav{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(13,13,15,.92);backdrop-filter:blur(10px);z-index:100;}
+    .nav-brand{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gold);text-decoration:none;}
+    .nav-links{display:flex;gap:1.5rem;}
+    .nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;}
+    .hero{max-width:820px;margin:0 auto;padding:4rem 2rem 2.5rem;border-bottom:1px solid var(--border);}
+    .tag-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.4rem;}
+    .tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:3px;}
+    .tag-monday{background:rgba(76,175,130,.12);color:var(--green);border:1px solid rgba(76,175,130,.25);}
+    .tag-sub{background:rgba(244,193,93,.06);color:var(--gold-dim);border:1px solid rgba(244,193,93,.15);}
+    .datestamp{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-muted);}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3rem);line-height:1.15;color:var(--text);margin-bottom:1.1rem;font-weight:400;}
+    .deck{font-size:1.1rem;color:var(--text-muted);line-height:1.65;max-width:680px;}
+    .ticker-strip{max-width:820px;margin:0 auto;padding:1.25rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.75rem;border-bottom:1px solid var(--border);}
+    .tick-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.75rem 1rem;}
+    .tick-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem;}
+    .tick-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:600;color:var(--text);}
+    .tick-chg{font-family:'JetBrains Mono',monospace;font-size:.72rem;margin-top:.15rem;}
+    .down{color:var(--red);}.up{color:var(--green);}
+    .article-body{max-width:820px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+    .article-body p{font-size:1.02rem;line-height:1.82;margin-bottom:1.5rem;}
+    .section-panel{border-left:3px solid var(--gold);padding:.25rem 0 .25rem 1.2rem;margin:2.5rem 0 1rem;}
+    .section-panel h2{font-family:'DM Serif Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);}
+    .callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold-dim);border-radius:6px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .callout p{font-size:.96rem;color:var(--text-muted);margin:0;font-style:italic;}
+    .callout strong{color:var(--text);font-style:normal;}
+    .data-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;margin:1.75rem 0;}
+    .data-block-title{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.85rem;}
+    .data-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.88rem;}
+    .data-row:last-child{border-bottom:none;}
+    .data-key{color:var(--text-muted);}
+    .data-val{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;}
+    .byline{display:flex;align-items:center;gap:.75rem;padding:1.5rem 0 0;border-top:1px solid var(--border);margin-top:2rem;}
+    .byline-avatar{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:2px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:1rem;color:var(--gold);}
+    .byline-name{font-size:.88rem;font-weight:600;color:var(--text);}
+    .byline-role{font-size:.78rem;color:var(--text-muted);}
+    .disclaimer{max-width:820px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);}
+    .disclaimer p{font-size:.75rem;color:var(--text-muted);line-height:1.6;}
+    @media(max-width:600px){.hero{padding:2.5rem 1.25rem 2rem;}.ticker-strip{padding:1rem 1.25rem;grid-template-columns:repeat(2,1fr);}.article-body{padding:2rem 1.25rem 3rem;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="/">FinTrend News</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/archive.html">Archive</a><a href="/premium.html">Premium</a></div>
+</nav>
+<header class="hero">
+  <div class="tag-row">
+    <span class="tag tag-monday">Monday Outlook</span>
+    <span class="tag tag-sub">Diplomacy &middot; Oil &middot; PCE Week</span>
+    <span class="datestamp">March 23, 2026</span>
+  </div>
+  <h1>The Deadline That Moved</h1>
+  <p class="deck">Trump extended his 48-hour Hormuz ultimatum by 5 days after what he called "very good and productive conversations" with Iran. Oil pulled back from overnight highs. Equities stabilized into the open. Here's what today actually means — and what it doesn't.</p>
+</header>
+<div class="ticker-strip">
+  <div class="tick-item"><div class="tick-label">Brent Crude</div><div class="tick-val">~$112-113</div><div class="tick-chg down">Off overnight highs</div></div>
+  <div class="tick-item"><div class="tick-label">WTI Crude</div><div class="tick-val">~$99</div><div class="tick-chg up">Near $100</div></div>
+  <div class="tick-item"><div class="tick-label">S&amp;P 500</div><div class="tick-val">6,506</div><div class="tick-chg down">Friday close</div></div>
+  <div class="tick-item"><div class="tick-label">S&amp;P Futures</div><div class="tick-val">Volatile</div><div class="tick-chg down">Whipsawing on headlines</div></div>
+  <div class="tick-item"><div class="tick-label">US Dollar</div><div class="tick-val">3-mo high</div><div class="tick-chg up">Safe-haven bid</div></div>
+  <div class="tick-item"><div class="tick-label">New Deadline</div><div class="tick-val">5 Days</div><div class="tick-chg">Extended from 48 hrs</div></div>
+</div>
+<article class="article-body">
+  <div class="section-panel"><h2>What Happened Before the Open</h2></div>
+  <p>Trump moved the goalposts early Monday morning, hours before his 48-hour deadline was set to expire. A Truth Social post announced that the U.S. would hold off on strikes against Iranian power plants for five days, citing "very good and productive conversations" that could yield "a complete and total resolution" to the war. Talks will continue "throughout the week," he said, without elaborating on who was involved or what the framework looks like.</p>
+  <p>Iran did not immediately confirm any direct negotiations. Iranian Foreign Minister Abbas Araghchi acknowledged speaking with his Turkish counterpart. Oman separately confirmed it is working on safe passage arrangements for the Strait. That is the closest thing to a diplomatic architecture visible from the outside right now — Turkey and Oman as intermediaries, back-channel conversations, and a five-day window to find something workable.</p>
+  <p>Oil reversed sharply off overnight highs. Brent had traded above $114 Sunday night as the IRGC threats were hitting the tape. By Monday morning the extension news pulled it back toward $112-113. WTI is hovering near $100. Equity futures whipsawed from -1% overnight to roughly flat at the open. Asian markets partially recovered from their early session lows. This is the market pricing a reduced immediate escalation risk, not a resolution of anything.</p>
+  <div class="section-panel"><h2>What the Extension Tells You</h2></div>
+  <p>The extension is not nothing. An ultimatum that expires without action and gets quietly extended tells you two things: there is something happening diplomatically that justified the pause, and the administration concluded the immediate costs of striking were too high. Whether that's the market reaction, the threat of Gulf-wide mining, the geopolitical blowback from allied nations in Europe and Asia, or genuine progress in back-channel talks — we don't know the weight of each. All of the above probably played a role.</p>
+  <p>What the extension does not tell you is that this gets resolved cleanly this week. Five days to a "complete and total resolution" in a war that has been running for 23 days, with Iran striking nuclear sites in Israel, Kuwait refineries hit by drones, and Iraq's entire foreign-operated oil sector in force majeure — that is an extraordinarily ambitious diplomatic timeline. The more realistic read is that Trump bought himself time and market cover. If the talks collapse, the threat remains live.</p>
+  <div class="callout">
+    <p><strong>"Survival is winning for Iran. They just need to hit one tanker every so often going through the Strait — they effectively have the bottleneck, even if it's not fully mined."</strong> — Nate Swanson, Iran Strategy Project, Atlantic Council. Iran's strategic calculus is not symmetric with the U.S.'s.</p>
+  </div>
+  <div class="section-panel"><h2>The PCE Setup and Why It Matters This Week</h2></div>
+  <p>Monday's calendar is light — construction spending and a handful of earnings previews. But this week has two meaningful data events that will define the macro narrative regardless of what happens diplomatically. Thursday brings the final Q4 2025 GDP revision — it has already been revised down to 0.7% annualized and a further cut would be another blow to anyone still arguing soft landing. Friday is PCE, the Fed's preferred inflation measure. Core PCE is currently at 3.1%.</p>
+  <p>Here is the problem: the PCE print on Friday will reflect February data, which predates most of the oil shock's pass-through into consumer prices. Even if it prints in line or slightly above expectations, the March PCE — which will reflect the $100+ oil environment — is going to be substantially worse. The Fed knows this. The market knows this. The question is how bad, and whether it forces the dot plot's one remaining 2026 cut off the calendar entirely at the May meeting. A core PCE above 3.1% on Friday accelerates that conversation meaningfully.</p>
+  <div class="data-block">
+    <div class="data-block-title">Week Ahead Calendar — March 23-27</div>
+    <div class="data-row"><span class="data-key">Monday</span><span class="data-val">January Construction Spending</span></div>
+    <div class="data-row"><span class="data-key">Tuesday</span><span class="data-val">Flash US PMI (March) — business conditions read</span></div>
+    <div class="data-row"><span class="data-key">Wednesday</span><span class="data-val">GameStop earnings; KB Home earnings</span></div>
+    <div class="data-row"><span class="data-key">Thursday</span><span class="data-val">Q4 2025 GDP — final revision</span></div>
+    <div class="data-row"><span class="data-key">Friday</span><span class="data-val">February PCE inflation — Fed's preferred gauge</span></div>
+    <div class="data-row"><span class="data-key">Friday</span><span class="data-val">UMich final March Consumer Sentiment</span></div>
+    <div class="data-row"><span class="data-key">All week</span><span class="data-val">Iran-US diplomatic talks — 5-day window closes ~Saturday</span></div>
+  </div>
+  <div class="section-panel"><h2>What to Actually Watch Today</h2></div>
+  <p>The oil price stabilization into the open is the most important variable to watch in Monday's session. If Brent holds below $113 on no new escalation, equities can mount a modest bounce — the S&P 500 has oversold conditions and any relief on the immediate threat of power plant strikes gives short-covering cover. Watch whether the index can reclaim 6,600 on a sustained basis, or whether sellers come in on any strength the way they have for four straight weeks.</p>
+  <p>Don't trust any single-day bounce as a signal. The structural headwinds — oil still near $100, core inflation above target, the Fed on hold with rising hike speculation, and consumer confidence at 2026 lows — haven't changed. A diplomatic pause is not a diplomatic resolution. The five-day clock is already ticking, and the next IRGC statement or missile strike can reprice everything in an afternoon. Stay nimble, stay hedged, and watch the 6,600 level on the S&P as the line between "stabilization" and "another leg lower."</p>
+  <div class="byline">
+    <div class="byline-avatar">H</div>
+    <div><div class="byline-name">Arshia Morshedian</div><div class="byline-role">FinTrend News — Monday Outlook</div></div>
+  </div>
+</article>
+<div class="disclaimer">
+  <p>FinTrend News is an independent financial markets publication. All content is for informational and educational purposes only and does not constitute investment advice. Hunter William Lang is not a licensed financial advisor. Please consult a qualified financial professional before making investment decisions.</p>
+</div>
+</body>
+</html>
