@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Four Weeks Down, No Floor Found | FinTrend News</title>
+  <meta name="description" content="Brent hit $112. Iraq declared force majeure. Drones struck Kuwait refineries. The S&P posted its fourth straight losing week at a six-month low."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--gold:#f4c15d;--gold-dim:#c9983a;--bg:#0d0d0f;--surface:#141416;--surface-2:#1c1c1f;--border:#2a2a2e;--text:#e8e6e1;--text-muted:#8a8880;--red:#e05c5c;--green:#4caf82;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.7;}
+    nav{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(13,13,15,.92);backdrop-filter:blur(10px);z-index:100;}
+    .nav-brand{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gold);text-decoration:none;}
+    .nav-links{display:flex;gap:1.5rem;}
+    .nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;}
+    .hero{max-width:820px;margin:0 auto;padding:4rem 2rem 2.5rem;border-bottom:1px solid var(--border);}
+    .tag-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.4rem;}
+    .tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:3px;}
+    .tag-friday{background:rgba(224,92,92,.15);color:var(--red);border:1px solid rgba(224,92,92,.3);}
+    .tag-recap{background:rgba(244,193,93,.1);color:var(--gold);border:1px solid rgba(244,193,93,.2);}
+    .datestamp{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-muted);}
+    h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3rem);line-height:1.15;color:var(--text);margin-bottom:1.1rem;font-weight:400;}
+    .deck{font-size:1.1rem;color:var(--text-muted);line-height:1.65;max-width:680px;}
+    .ticker-strip{max-width:820px;margin:0 auto;padding:1.25rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.75rem;border-bottom:1px solid var(--border);}
+    .tick-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.75rem 1rem;}
+    .tick-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem;}
+    .tick-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:600;color:var(--text);}
+    .tick-chg{font-family:'JetBrains Mono',monospace;font-size:.72rem;margin-top:.15rem;}
+    .down{color:var(--red);}.up{color:var(--green);}
+    .article-body{max-width:820px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+    .article-body p{font-size:1.02rem;line-height:1.82;margin-bottom:1.5rem;}
+    .section-panel{border-left:3px solid var(--gold);padding:.25rem 0 .25rem 1.2rem;margin:2.5rem 0 1rem;}
+    .section-panel h2{font-family:'DM Serif Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);}
+    .callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold-dim);border-radius:6px;padding:1.25rem 1.5rem;margin:2rem 0;}
+    .callout p{font-size:.96rem;color:var(--text-muted);margin:0;font-style:italic;}
+    .callout strong{color:var(--text);font-style:normal;}
+    .data-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;margin:1.75rem 0;}
+    .data-block-title{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.85rem;}
+    .data-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.88rem;}
+    .data-row:last-child{border-bottom:none;}
+    .data-key{color:var(--text-muted);}
+    .data-val{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;}
+    .byline{display:flex;align-items:center;gap:.75rem;padding:1.5rem 0 0;border-top:1px solid var(--border);margin-top:2rem;}
+    .byline-avatar{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:2px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:1rem;color:var(--gold);}
+    .byline-name{font-size:.88rem;font-weight:600;color:var(--text);}
+    .byline-role{font-size:.78rem;color:var(--text-muted);}
+    .disclaimer{max-width:820px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);}
+    .disclaimer p{font-size:.75rem;color:var(--text-muted);line-height:1.6;}
+    @media(max-width:600px){.hero{padding:2.5rem 1.25rem 2rem;}.ticker-strip{padding:1rem 1.25rem;grid-template-columns:repeat(2,1fr);}.article-body{padding:2rem 1.25rem 3rem;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="/">FinTrend News</a>
+  <div class="nav-links"><a href="/">Home</a><a href="/archive.html">Archive</a><a href="/premium.html">Premium</a></div>
+</nav>
+<header class="hero">
+  <div class="tag-row">
+    <span class="tag tag-friday">Friday Recap</span>
+    <span class="tag tag-recap">Markets &middot; Oil &middot; War</span>
+    <span class="datestamp">March 20, 2026</span>
+  </div>
+  <h1>Four Weeks Down, No Floor Found</h1>
+  <p class="deck">Brent closed at $112. Iraq declared force majeure on every foreign-operated oilfield. Drones hit Kuwait refineries. The S&P posted its fourth straight losing week at a six-month low. The worst four-week stretch since the tariff shock.</p>
+</header>
+<div class="ticker-strip">
+  <div class="tick-item"><div class="tick-label">S&amp;P 500</div><div class="tick-val">6,506</div><div class="tick-chg down">&#9660; 1.51% / 6-mo low</div></div>
+  <div class="tick-item"><div class="tick-label">Nasdaq</div><div class="tick-val">21,647</div><div class="tick-chg down">&#9660; 2.01%</div></div>
+  <div class="tick-item"><div class="tick-label">Dow Jones</div><div class="tick-val">45,577</div><div class="tick-chg down">&#9660; 0.96% / -444 pts</div></div>
+  <div class="tick-item"><div class="tick-label">Brent Crude</div><div class="tick-val">$112.19</div><div class="tick-chg up">&#9650; 3.26% / +9% wk</div></div>
+  <div class="tick-item"><div class="tick-label">WTI Crude</div><div class="tick-val">$98.32</div><div class="tick-chg up">&#9650; 2.27%</div></div>
+  <div class="tick-item"><div class="tick-label">Russell 2000</div><div class="tick-val">Correction</div><div class="tick-chg down">&#9660; 10%+ from high</div></div>
+</div>
+<article class="article-body">
+  <div class="section-panel"><h2>The Week That Put Correction on the Table</h2></div>
+  <p>Friday closed out the worst four-week stretch for U.S. equities since the tariff shock of early 2026. The S&P 500 fell to 6,506 — a six-month low not seen since September 2025. The Nasdaq shed 2% on the day. The Russell 2000 officially entered correction territory, down over 10% from its recent peak. At their intraday lows, both the Dow and Nasdaq touched correction thresholds before climbing back slightly into the close. About four in five S&P 500 stocks finished Friday in the red. This was not a sector rotation. This was broad-based institutional de-risking.</p>
+  <p>Two escalations drove Friday's session. Iraq declared force majeure on all foreign-operated oilfields — Baghdad cannot ship crude through the Hormuz Strait and was forced to formally acknowledge it. Hours later, Iranian drones struck the Mina Al-Ahmadi and Mina Abdullah refineries in Kuwait. Brent surged 3.26% to close at $112.19 — levels not seen since the Russia-Ukraine shock of 2022. Brent finished the week up nearly 9%.</p>
+  <div class="data-block">
+    <div class="data-block-title">Week Ending March 20 — Full Damage Report</div>
+    <div class="data-row"><span class="data-key">S&amp;P 500</span><span class="data-val down">-1.9% wk / -7.4% from Jan high</span></div>
+    <div class="data-row"><span class="data-key">Dow Jones</span><span class="data-val down">-2.11% wk / correction at intraday lows</span></div>
+    <div class="data-row"><span class="data-key">Nasdaq Composite</span><span class="data-val down">-2.07% wk</span></div>
+    <div class="data-row"><span class="data-key">Russell 2000</span><span class="data-val down">Official correction — 10%+ from high</span></div>
+    <div class="data-row"><span class="data-key">Brent Crude (wk change)</span><span class="data-val up">+9% / $112.19</span></div>
+    <div class="data-row"><span class="data-key">WTI Crude</span><span class="data-val up">$98.32</span></div>
+    <div class="data-row"><span class="data-key">US Equity Fund Outflows (wk)</span><span class="data-val down">-$24.78B (LSEG Lipper)</span></div>
+    <div class="data-row"><span class="data-key">Money Market Inflows (wk)</span><span class="data-val up">+$32.73B</span></div>
+  </div>
+  <div class="section-panel"><h2>Oil Is Not a Spike Anymore. It Is a Regime.</h2></div>
+  <p>The word "spike" needs to be retired. Brent is up roughly 50% since the war began on February 28. Iraq is in force majeure. Kuwait refineries have been struck. Qatar's LNG exports are disrupted. The IEA's executive director said this week that the current situation is worse than the two consecutive oil crises of 1973 and 1979 combined — over 11 million barrels per day of lost supply. Goldman Sachs said elevated prices could persist through 2027. That is not a spike. That is an energy regime change.</p>
+  <p>JPMorgan's Dubravko Lakos-Bujas cut his year-end S&P 500 target to 7,200 from 7,500, citing the threshold at which oil up 30%+ begins forcing household spending recalibrations. We crossed that threshold three weeks ago. The downstream effects — higher gas prices, tighter consumer budgets, compressing corporate margins in transport, retail, and manufacturing — are only beginning to show up in the data. PCE on Friday will be an early read.</p>
+  <div class="callout">
+    <p><strong>"The point when oil increasingly starts to hurt the S&amp;P 500 is when oil rises by roughly 30% in a short period of time because households typically need to recalibrate their income and spending habits."</strong> — Dubravko Lakos-Bujas, JPMorgan. Oil is up roughly 50% since Feb. 28.</p>
+  </div>
+  <div class="section-panel"><h2>Kharg Island and the Scenario the Market Has Not Priced</h2></div>
+  <p>By Friday's close, multiple outlets were reporting that the Trump administration is actively weighing options to occupy or blockade Kharg Island — Iran's primary crude export hub, through which 90% of Iranian oil flows. The Wall Street Journal reported 2,200 to 2,500 Marines and three warships being repositioned. Axios said the White House is weighing seizure as leverage to force Hormuz reopening. Trump, asked directly, was vague: "Maybe I have a plan, maybe I don't, but how can I tell a journalist about it?"</p>
+  <p>BCA Research's Marko Papic said it plainly: if taking Kharg Island requires a month of military positioning, a recession this year is highly likely and the S&P 500 could fall at least 20%. He also noted the feedback loop — a severe enough market collapse might itself restrain Trump from following through, since the administration monitors markets closely. This is a strange but credible dynamic in the current environment.</p>
+  <div class="section-panel"><h2>The Bright Spots</h2></div>
+  <p>FedEx jumped more than 8% after blowing past estimates and raising full-year guidance — a genuinely impressive result given the fuel cost pressure. LNG names had an extraordinary week: Venture Global surged 20%, NextDecade gained 37%, Cheniere Energy climbed 14%. The market is pricing a lasting structural shift toward non-Middle East LNG supply. Chevron was upgraded by HSBC with a $215 target, preferred over Exxon due to lower Middle East exposure. Chevron is up 32% year-to-date.</p>
+  <div class="section-panel"><h2>What Matters Next Week</h2></div>
+  <p>The week ahead is thin on earnings and heavy on geopolitics. Q4 GDP final revision lands Thursday. PCE on Friday — if core comes in above 3%, expect another equity leg down and the September rate cut to fully vanish from market pricing. The real driver remains whatever happens over the weekend and into early next week on Kharg Island and Hormuz. U.S. equity funds bled $24.78 billion this week while money markets absorbed $32.73 billion. The risk-off rotation has institutional scale. Do not position heavily into Sunday night.</p>
+  <div class="byline">
+    <div class="byline-avatar">H</div>
+    <div><div class="byline-name">Arshia Mordeshian</div><div class="byline-role">FinTrend News — Friday Recap</div></div>
+  </div>
+</article>
+<div class="disclaimer">
+  <p>FinTrend News is an independent financial markets publication. All content is for informational and educational purposes only and does not constitute investment advice. Hunter William Lang is not a licensed financial advisor. Please consult a qualified financial professional before making investment decisions.</p>
+</div>
+</body>
+</html>
