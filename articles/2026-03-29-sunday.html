@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The April 6 Threshold — FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --surface: rgba(10,16,36,0.95);
+      --text: #f0f2f5;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.15);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.10);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius: 12px;
+      --max-width: 760px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(ellipse at top, #0d1524 0%, #020617 50%, #000 100%);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      margin-bottom: 40px;
+      transition: .15s;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .back-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    .article-header { margin-bottom: 36px; border-bottom: 1px solid var(--border); padding-bottom: 28px; }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+    }
+    .tag-sunday { border-color: var(--accent); color: var(--accent); }
+
+    .dateline {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #f5f6f8;
+    }
+
+    .deck {
+      font-size: 16px;
+      color: #c9cdd4;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-weight: 300;
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .byline {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .byline strong { color: var(--accent); font-weight: 500; }
+
+    /* Scenario grid */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 32px 0;
+    }
+    @media (max-width: 540px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+    .scenario-card {
+      padding: 18px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.96);
+    }
+    .scenario-card.bull { border-top: 2px solid var(--success); }
+    .scenario-card.bear { border-top: 2px solid var(--danger); }
+    .scenario-card.base { border-top: 2px solid var(--accent); grid-column: 1 / -1; }
+
+    .scenario-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .scenario-label.bull { color: var(--success); }
+    .scenario-label.bear { color: var(--danger); }
+    .scenario-label.base { color: var(--accent); }
+
+    .scenario-title {
+      font-family: "DM Serif Display", serif;
+      font-size: 17px;
+      margin-bottom: 8px;
+      color: #e8ecf2;
+    }
+    .scenario-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* Calendar table */
+    .week-ahead {
+      margin: 32px 0;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .week-ahead-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .week-ahead-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(148,163,184,0.07);
+      font-size: 13px;
+    }
+    .week-ahead-row:last-child { border-bottom: none; }
+    .cal-day { color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 11px; }
+    .cal-event { color: #c9cdd4; }
+
+    /* Body copy */
+    .article-body { font-size: 15.5px; color: #dde1e8; }
+
+    .article-body p { margin-bottom: 22px; }
+
+    .article-body h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #f0f2f5;
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote {
+      margin: 32px 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(244,193,93,0.06);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #e8ecf2;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .disclaimer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      opacity: .55;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <a href="../archive.html" class="back-link">← Archive</a>
+
+    <header class="article-header">
+      <div class="label-row">
+        <span class="tag tag-sunday">Sunday Macro Note</span>
+        <span class="dateline">March 29, 2026</span>
+      </div>
+      <h1>The April 6 Threshold</h1>
+      <p class="deck">Iran rejected the U.S. 15-point framework, submitted its own counterproposal, and hit Saudi air bases over the weekend. The next eight days are the most consequential of this conflict for financial markets — and both paths are extreme.</p>
+      <div class="byline">By <strong>Arshia Morshedian</strong> · FinTrend News</div>
+    </header>
+
+    <div class="article-body">
+
+      <p>This is what the situation looks like entering the final week of March: Trump has extended his deadline to April 6 at 8 p.m. Eastern. Iran rejected the U.S. 15-point ceasefire framework via Pakistan intermediaries and presented five counter-conditions that include compensation for war damages and international recognition of Iranian sovereignty over the Strait of Hormuz. The Iranian parliament speaker called the negotiations a form of coercion. The IRGC spokesman accused Trump of cycling between diplomacy and threats. Over the weekend, Iran attacked Prince Sultan Air Base in Saudi Arabia for the second time in a week, injuring 29 American soldiers. Israel hit Iranian nuclear facilities — a heavy-water plant and a yellowcake production facility — on Friday, hours after Trump announced a pause in energy plant targeting.</p>
+
+      <p>The market spent Friday pricing in what it saw: not an imminent deal, but a compressed timeline that is now eight days from a binary outcome. The S&P closed at 6,368. The Dow is in correction. The Nasdaq is 13% below its October peak. Brent crude is up more than 45% since hostilities began on February 28. None of that changes unless the Strait reopens or a credible ceasefire framework emerges.</p>
+
+      <h2>Two Paths, No Middle Ground</h2>
+
+      <p>The structural problem with this moment is that the scenarios don't average out neatly. A genuine ceasefire agreement before April 6 — even a preliminary one, even a month-long pause while terms are negotiated — would produce a sharp and fast equity rally. Oil could drop $20–25 per barrel in a matter of days. The EIA projects stabilization below $80 by Q3 in a resolution scenario. That removes the inflation transmission mechanism that has paralyzed the Fed, likely reprices cut odds upward, and gives rate-sensitive sectors room to recover. The S&P would be expected to reclaim 6,600–6,700 quickly.</p>
+
+      <p>The other path: Trump orders strikes on Iranian energy infrastructure on April 6. That is not a negotiating posture at that point — it is escalation with direct economic consequences. Iranian energy production, already constrained, faces further disruption. Brent would be expected to test $120+. At $120 oil, headline CPI acceleration becomes a near-certainty, and the Fed faces its most difficult meeting since 2022 with nothing good to say. The S&P support at 6,200 gets tested, and a break below that opens the 6,000 range.</p>
+
+    </div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bull">
+        <div class="scenario-label bull">Bull Case</div>
+        <div class="scenario-title">Ceasefire Before Apr 6</div>
+        <div class="scenario-body">Formal month-long pause agreed via Pakistan mediation. Strait reopens or commitment to reopen within 30 days. Oil -$20+ rapidly. S&P reclaims 6,600+. Rate cut odds reprice higher. IGV and rate-sensitive sectors lead recovery.</div>
+      </div>
+      <div class="scenario-card bear">
+        <div class="scenario-label bear">Bear Case</div>
+        <div class="scenario-title">U.S. Hits Energy Plants Apr 6</div>
+        <div class="scenario-body">Talks collapse. Trump follows through on energy plant strikes. Iran retaliates more broadly, extends Strait closure. Brent tests $120+. S&P breaks 6,200 support, opens 5,900–6,000 range. Fed trapped in stagflationary bind with no easing path.</div>
+      </div>
+      <div class="scenario-card base">
+        <div class="scenario-label base">Base Case</div>
+        <div class="scenario-title">Another Extension, More Uncertainty</div>
+        <div class="scenario-body">Talks remain open but inconclusive. Trump extends again past April 6. Oil stays elevated in $95–110 range. S&P oscillates in a 6,200–6,550 band. Market enters Q1 earnings season (banks April 11) without macro resolution — earnings guidance becomes the next catalyst test. Core PCE April 9 is the macro anchor.</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <h2>The Macro Underneath the War</h2>
+
+      <p>It is easy to frame this as purely a geopolitical story, but the economic transmission is now embedded. The January core PCE printed at 3.1%. The FOMC's March projections revised their 2026 headline PCE forecast up 30 basis points, to 2.7%, with core at 2.7% as well. The February PCE print, rescheduled to April 9, will be the most watched data release since the March FOMC. At elevated oil, that print is likely to show acceleration. Commodity prices — as measured by the Bloomberg Commodity Index — are up nearly 19% year-over-year and running at a 55% annualized pace over the past three months.</p>
+
+      <p>The Fed currently has exactly one cut priced in for all of 2026. That is not a soft-landing setup; it is a hold-and-watch setup. Philadelphia Fed President Paulson said Friday that above-target inflation is making her more apprehensive about policy. None of the Fed's public communications this week suggested any interest in easing. The rate structure is therefore not a market support mechanism right now — it is neutral at best, and potentially a headwind if the April 9 PCE surprises to the upside.</p>
+
+      <div class="pull-quote">
+        <p>The Iranian parliament's rejection of talks on Sunday does not close the door — both negotiations before this one looked the same before they moved. But the credibility of the April 6 deadline matters in a way the previous deadlines did not.</p>
+      </div>
+
+      <p>There is one meaningful difference between this deadline and the prior extension. Last time, the extension was announced with no explicit escalation commitment. This time, Trump's Truth Social post explicitly describes the pause as covering "Energy Plant destruction." The escalation path is named. Markets understand that if talks fail again, the next step is a category of action — strikes on oil infrastructure — that has not yet occurred in this conflict and would represent a significant qualitative escalation in both humanitarian and economic terms.</p>
+
+      <h2>Positioning into the Week</h2>
+
+      <p>The constructive signals are thin but real. Iran submitted a counterproposal. Counterproposals are not ceasefire agreements, but they are not the same as a unilateral rejection either. Pakistan is still in the room. Witkoff is still traveling. The existence of competing frameworks at least suggests both sides are calculating rather than simply fighting. The IRGC's language has hardened publicly while Iranian diplomats continue to engage through intermediaries — that gap between public posture and private channel is the most common precursor to eventual de-escalation in this region.</p>
+
+      <p>For the week ahead, the calendar is thin on economic data until April 9. The dominant driver will be headlines. Any credible signal of movement toward even a temporary ceasefire should be treated as a tactical long signal in broad equity. Any escalation — new strikes on Gulf infrastructure, a Strait closure formalization, or an Iranian NPT exit announcement — is the opposite. The CNN Fear and Greed Index hit its lowest level since November on Friday. Sentiment is already extreme. Positioning is defensive. The asymmetry is there if a deal happens. The question is whether it does.</p>
+
+    </div>
+
+    <div class="week-ahead">
+      <div class="week-ahead-header">Week-Ahead Calendar · Mar 30 – Apr 6</div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Mon Mar 30</div>
+        <div class="cal-event">Monday Outlook — Q1 close; month-end positioning; Iran deadline watch begins</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Tue Mar 31</div>
+        <div class="cal-event">Q1 2026 officially ends — equity/bond fund rebalancing flows; ISM Manufacturing</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Wed Apr 1</div>
+        <div class="cal-event">ISM Services; JOLTS job openings — labor market health check</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Fri Apr 3</div>
+        <div class="cal-event">Nonfarm Payrolls — critical labor data; hourly wages closely watched</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Mon Apr 6</div>
+        <div class="cal-event">Trump Iran deadline expires 8 PM ET — the week's binary event</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Wed Apr 9</div>
+        <div class="cal-event">February PCE / Core PCE — Fed's preferred inflation gauge; key market mover</div>
+      </div>
+      <div class="week-ahead-row">
+        <div class="cal-day">Fri Apr 11</div>
+        <div class="cal-event">Q1 earnings season opens: JPMorgan, Wells Fargo, Morgan Stanley</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>This is the week where the macro arc of Q1 2026 gets resolved or extended. A quarter that began with an unexpected war, repriced energy markets, a frozen Fed, and five consecutive weeks of equity losses now arrives at its final days with a hard deadline and two plausible outcomes. The week-ahead positioning note is straightforward: watch the Iran channel closely, stay defensive on duration and high-multiple tech until there is clarity on April 6, and treat the April 9 PCE as the second most important event of the next two weeks after the deadline itself.</p>
+    </div>
+
+    <p class="disclaimer">
+      FinTrend News publishes for educational and informational purposes only. Nothing here constitutes financial advice or a recommendation to buy or sell any security. All figures sourced from public market data and news reporting as of March 29, 2026.
+    </p>
+
+  </div>
+</body>
+</html>
