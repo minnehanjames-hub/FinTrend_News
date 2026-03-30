@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Last Week of Q1 Has One Question — FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --surface: rgba(10,16,36,0.95);
+      --text: #f0f2f5;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.15);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.10);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius: 12px;
+      --max-width: 760px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(ellipse at top, #0a1020 0%, #020617 50%, #000 100%);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      margin-bottom: 40px;
+      transition: .15s;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .back-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    .article-header { margin-bottom: 36px; border-bottom: 1px solid var(--border); padding-bottom: 28px; }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+    }
+    .tag-monday { border-color: var(--success); color: var(--success); }
+
+    .dateline {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #f5f6f8;
+    }
+
+    .deck {
+      font-size: 16px;
+      color: #c9cdd4;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-weight: 300;
+      border-left: 2px solid var(--success);
+      padding-left: 16px;
+    }
+
+    .byline {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .byline strong { color: var(--accent); font-weight: 500; }
+
+    /* Focus ticker */
+    .focus-box {
+      margin: 32px 0;
+      padding: 20px 22px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--success);
+    }
+    .focus-box-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--success);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 10px;
+    }
+    .focus-items { display: flex; flex-direction: column; gap: 8px; }
+    .focus-item {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      font-size: 13.5px;
+    }
+    .focus-item-date {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--accent);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .focus-item-desc { color: #c9cdd4; line-height: 1.5; }
+    .focus-item-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* Watch list */
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin: 28px 0;
+    }
+    .watch-card {
+      padding: 14px 14px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .watch-card-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 4px;
+    }
+    .watch-card-val {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .watch-card-desc { font-size: 11px; color: var(--muted); line-height: 1.45; }
+    .red { color: var(--danger); }
+    .gold { color: var(--accent); }
+    .green { color: var(--success); }
+
+    /* Body copy */
+    .article-body { font-size: 15.5px; color: #dde1e8; }
+    .article-body p { margin-bottom: 22px; }
+
+    .article-body h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #f0f2f5;
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote {
+      margin: 32px 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(244,193,93,0.06);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #e8ecf2;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .disclaimer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      opacity: .55;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <a href="../archive.html" class="back-link">← Archive</a>
+
+    <header class="article-header">
+      <div class="label-row">
+        <span class="tag tag-monday">Monday Outlook</span>
+        <span class="dateline">March 30, 2026</span>
+      </div>
+      <h1>The Last Week of Q1 Has One Question</h1>
+      <p class="deck">Q1 ends Tuesday. Five consecutive down weeks, a war that isn't over, a Fed that can't move, and the April 6 deadline sitting eight days out. The market doesn't need more data this week — it needs a signal from Iran.</p>
+      <div class="byline">By <strong>James Thomas Minnehan</strong> · FinTrend News</div>
+    </header>
+
+    <div class="article-body">
+
+      <p>Quarter-end arrived at the worst possible time. Funds are rebalancing into a tape that has delivered five straight down weeks, the worst stretch in four years, and a geopolitical variable that no model prices correctly. The S&P closed Friday at 6,368 — nearly 6% below its January high. The Dow is in correction. The Nasdaq is 13% off peak. Q1 2026 is going to be written about as the quarter the war came for the market.</p>
+
+      <p>The setup for this week is deceptively simple. There is one event that matters more than any other between now and next Monday: the April 6 deadline. Trump's pause on Iranian energy-plant strikes expires Monday evening at 8 p.m. Eastern. Between now and then, every headline out of the Middle East is a potential market catalyst. Everything else — ISM prints, JOLTS, even payrolls on Friday — is secondary context.</p>
+
+    </div>
+
+    <div class="watch-grid">
+      <div class="watch-card">
+        <div class="watch-card-label">S&P 500</div>
+        <div class="watch-card-val red">6,368</div>
+        <div class="watch-card-desc">7-month low. Next support 6,200.</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-card-label">Brent Crude</div>
+        <div class="watch-card-val gold">~$110</div>
+        <div class="watch-card-desc">+45% since Feb 28 open. Resolution catalyst would pull this sharply.</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-card-label">VIX</div>
+        <div class="watch-card-val red">Elevated</div>
+        <div class="watch-card-desc">Fear/Greed at November lows. Sentiment extreme.</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-card-label">10-yr Yield</div>
+        <div class="watch-card-val red">4.43%</div>
+        <div class="watch-card-desc">Highest since July. Rate cut odds: 1 cut all year.</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-card-label">Apr 6 Deadline</div>
+        <div class="watch-card-val gold">8 days</div>
+        <div class="watch-card-desc">Trump energy-plant pause expires. The week's binary.</div>
+      </div>
+      <div class="watch-card">
+        <div class="watch-card-label">Apr 9 PCE</div>
+        <div class="watch-card-val gold">Next week</div>
+        <div class="watch-card-desc">Feb Core PCE — rescheduled from Mar 27. Fed's key gauge.</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <h2>What Quarter-End Rebalancing Looks Like Here</h2>
+
+      <p>When stocks are down and bonds are volatile, the rebalancing flows can be complicated. Pension funds and balanced mandates that entered 2026 with equity overweights may be forced to sell into further weakness rather than buy the dip — their equity-to-bond ratios are already distorted by a quarter where both assets lost ground simultaneously. That is not a catastrophic dynamic, but it does mean Monday and Tuesday could see mechanically-driven selling that doesn't reflect any new fundamental information. Read the Monday tape skeptically if futures are soft at open.</p>
+
+      <p>Month-end is also a natural window for short-covering. Five straight weeks of selling means short positioning in equities is elevated by historical standards. Any credible ceasefire headline — even a rumor of progress in the Pakistan channel — could trigger a fast, violent cover rally in beaten-down tech and discretionary names. The setup is there. The catalyst isn't yet.</p>
+
+      <h2>The Iran Variable: What Changes This Week</h2>
+
+      <p>The state of play entering Monday: Iran's parliament speaker publicly rejected the talks as coercive. The IRGC accused Trump of bad faith. Iran attacked Saudi air bases twice last week. Israel hit Iranian nuclear facilities — a heavy-water plant and yellowcake production — on Friday, which complicated the diplomatic backdrop further. On the other side of the ledger: Iran submitted a counterproposal with five conditions, Pakistan is still mediating, and Witkoff said the 15-point framework remains on the table.</p>
+
+      <div class="pull-quote">
+        <p>Both previous negotiations in this conflict looked dead before they moved. The gap between Iran's public posture and private channel activity is the only indicator that matters this week.</p>
+      </div>
+
+      <p>The counterproposal matters more than the rhetoric. When a party in conflict responds with conditions rather than a unilateral refusal, it is leaving a door open. Iran's five conditions are aggressive — reparations, sovereignty over the Strait — but they are a negotiating position, not a final answer. The question is whether Witkoff and the Pakistani intermediaries can find overlap between those five points and the U.S. 15-point framework in the next eight days. That seems unlikely on paper. These things have surprised before.</p>
+
+      <h2>The Data Week and Why It's Secondary</h2>
+
+      <p>ISM Manufacturing drops today. ISM Services and JOLTS hit Wednesday. Nonfarm Payrolls land Friday. These are all relevant reads on how the economy is absorbing the oil shock, and payrolls in particular will give the first clean labor data since the NFP disaster of early March. But none of them will move the tape the way a single credible sentence from Witkoff or an Iranian official would. The Fed is not cutting regardless of what the data shows this week — they need PCE and CPI context, both of which come after April 6.</p>
+
+      <p>One data point to watch that doesn't get enough attention: the JOLTS quits rate. If workers are starting to stay put rather than quit, that's an early signal of labor market softening that precedes the payroll headline by a quarter or two. In a stagflation scenario, a softening labor market alongside sticky inflation is exactly the sequence the Fed most fears — it removes the one anchor that has been holding the soft-landing narrative together.</p>
+
+    </div>
+
+    <div class="focus-box">
+      <div class="focus-box-label">Week-Ahead Watch List</div>
+      <div class="focus-items">
+        <div class="focus-item">
+          <div class="focus-item-date">Mon Mar 30</div>
+          <div>
+            <div class="focus-item-desc">ISM Manufacturing — first read on industrial activity post-oil shock</div>
+            <div class="focus-item-note">Watch new orders sub-index for demand destruction signal</div>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-date">Tue Mar 31</div>
+          <div>
+            <div class="focus-item-desc">Q1 2026 quarter-end — rebalancing flows; any Iran channel developments</div>
+            <div class="focus-item-note">Mechanical selling possible; don't over-read early tape</div>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-date">Wed Apr 1</div>
+          <div>
+            <div class="focus-item-desc">ISM Services + JOLTS — consumer economy health; labor market quits rate</div>
+            <div class="focus-item-note">Quits rate softening = early stagflation signal</div>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-date">Fri Apr 3</div>
+          <div>
+            <div class="focus-item-desc">Nonfarm Payrolls — first clean labor read since −92K in March</div>
+            <div class="focus-item-note">Consensus likely to be cautious; wage growth is what the Fed watches</div>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-date">Mon Apr 6</div>
+          <div>
+            <div class="focus-item-desc">Trump Iran deadline expires 8 PM ET — the week's defining event</div>
+            <div class="focus-item-note">Every prior hour of that day will trade on ceasefire headlines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <h2>Tactical Framing for the Week</h2>
+
+      <p>The bias entering Monday is defensive, not because the bear case is certain, but because the risk asymmetry still tilts toward further downside. A confirmed escalation on April 6 has a cleaner path to S&P 6,200 than a ceasefire has to S&P 6,700 — only because the market is unlikely to believe a ceasefire is durable until it has held for several days. Knee-jerk ceasefire rallies are faded historically in Middle East conflicts.</p>
+
+      <p>That said: sentiment is genuinely extreme. The Fear and Greed Index hit its lowest reading since November on Friday. Positioning is defensive. Short interest is elevated. In that environment, a surprise moves faster and harder than the fundamental case would suggest. If something breaks in the Pakistan channel this week — any signal that Iran is serious about negotiating conditions rather than simply presenting them — the speed of the recovery trade would be severe. Energy goes lower, software leads higher, and five weeks of damage gets partially unwound in days.</p>
+
+      <p>The Q1 report card is ugly. The Q2 outlook is a coin flip with a hard deadline. That is an uncomfortable place to sit, but it is the actual situation. Watch the Iran channel, respect the April 6 date, and don't anchor to the current tape level as if it reflects a permanent equilibrium. It doesn't. One phone call changes this.</p>
+
+    </div>
+
+    <p class="disclaimer">
+      FinTrend News publishes for educational and informational purposes only. Nothing here constitutes financial advice or a recommendation to buy or sell any security. All figures sourced from public market data and news reporting as of March 30, 2026.
+    </p>
+
+  </div>
+</body>
+</html>
