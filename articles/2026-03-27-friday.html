@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Five Weeks Down, No Deal in Sight — FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --surface: rgba(10,16,36,0.95);
+      --text: #f0f2f5;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.15);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.10);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius: 12px;
+      --max-width: 760px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(ellipse at top, #0f1729 0%, #020617 50%, #000 100%);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      margin-bottom: 40px;
+      transition: .15s;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .back-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    .article-header { margin-bottom: 36px; border-bottom: 1px solid var(--border); padding-bottom: 28px; }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+    }
+    .tag-friday { border-color: var(--danger); color: var(--danger); }
+
+    .dateline {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #f5f6f8;
+    }
+
+    .deck {
+      font-size: 16px;
+      color: #c9cdd4;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-weight: 300;
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .byline {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .byline strong { color: var(--accent); font-weight: 500; }
+
+    /* Scoreboard */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 32px 0;
+      padding: 20px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .score-item { text-align: center; padding: 6px 4px; }
+    .score-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .score-val {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+      line-height: 1;
+    }
+    .score-chg {
+      font-size: 11px;
+      margin-top: 3px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .red { color: var(--danger); }
+    .green { color: var(--success); }
+    .gold { color: var(--accent); }
+
+    /* Body copy */
+    .article-body { font-size: 15.5px; color: #dde1e8; }
+
+    .article-body p { margin-bottom: 22px; }
+
+    .article-body h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #f0f2f5;
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote {
+      margin: 32px 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(244,193,93,0.06);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #e8ecf2;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 13px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .data-table th {
+      text-align: left;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(148,163,184,0.08);
+      color: #c9cdd4;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:last-child { text-align: right; }
+    .data-table th:last-child { text-align: right; }
+
+    .disclaimer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      opacity: .55;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <a href="../archive.html" class="back-link">← Archive</a>
+
+    <header class="article-header">
+      <div class="label-row">
+        <span class="tag tag-friday">Friday Recap</span>
+        <span class="dateline">March 27, 2026</span>
+      </div>
+      <h1>Five Weeks Down, No Deal in Sight</h1>
+      <p class="deck">The S&P closed at a seven-month low. The Dow entered correction. Israel hit Iranian nuclear facilities on the same day Trump claimed talks were going well. The market is tired of hearing that.</p>
+      <div class="byline">By <strong>Hunter William Lang</strong> · FinTrend News</div>
+    </header>
+
+    <div class="scoreboard">
+      <div class="score-item">
+        <div class="score-label">S&P 500</div>
+        <div class="score-val red">6,368</div>
+        <div class="score-chg red">−1.67% / −2.1% wk</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Dow Jones</div>
+        <div class="score-val red">45,166</div>
+        <div class="score-chg red">−1.73% · Correction</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Nasdaq</div>
+        <div class="score-val red">20,948</div>
+        <div class="score-chg red">−2.15% · −13% peak</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Brent Crude</div>
+        <div class="score-val gold">$110+</div>
+        <div class="score-chg gold">+45% since Feb 28</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">10-yr Yield</div>
+        <div class="score-val red">4.43%</div>
+        <div class="score-chg red">High since July</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Gold</div>
+        <div class="score-val green">$4,421</div>
+        <div class="score-chg green">+$38 on the day</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>Five straight weeks of losses. The S&P 500 hasn't done that in four years. Friday ended where the week had been pointing since Monday — another round of selling, another headline from a war that has no visible off-ramp, another Trump post claiming progress that the market increasingly doesn't believe.</p>
+
+      <p>The Dow fell 793 points and entered correction territory. The S&P closed at 6,368 — a seven-month low. The Nasdaq is now nearly 13% below its October record. Every major index is down roughly 7% for March alone, a month that opened with a war premium and never stopped compounding it.</p>
+
+      <h2>The Problem With "Talks Are Going Very Well"</h2>
+
+      <p>Trump extended his energy-plant destruction deadline by ten days, to April 6. He posted on Truth Social that talks were going "very well." He said Iran had requested the pause. Iran said it had requested no such thing. Then Israel hit an Iranian heavy-water plant and a yellowcake production facility on Friday afternoon, hours after the extension announcement.</p>
+
+      <p>The market's response was to sell. Not because investors don't want a ceasefire — they desperately do — but because this pattern has repeated enough times that the credibility gap is now priced in. A deadline extension without a formal deal is noise. And the noise is becoming indistinguishable from the signal.</p>
+
+      <div class="pull-quote">
+        <p>"The longer the Strait is closed, the worse the oil market is going to get — even if there's a path to resolution, if it takes another month to reopen, oil might stay elevated while we rebuild stocks."</p>
+      </div>
+
+      <p>Brent had a volatile week. It surged above $110 on Thursday after Iran signaled it had no intention of direct talks, then pulled back toward $97 midweek on ceasefire speculation, then ripped again Friday when the Israeli strikes landed. The intraday range alone tells you how much uncertainty is being repriced hour by hour. The USO fund is up 48% over the past month. That is not a normal backdrop for equity markets trying to hold a bid.</p>
+
+      <h2>What the Tape Actually Said This Week</h2>
+
+      <p>Beneath the geopolitics, the week's data wasn't catastrophic — it was just consistently unhelpful. The PCE print that was supposed to land Friday got rescheduled to April 9 due to government shutdown disruptions. The most important inflation data point of the month, which the Fed watches more closely than anything, simply didn't show up. What we do know: January core PCE came in at 3.1%, well above the 2% target, and the FOMC's own March projections revised their 2026 inflation forecast upward by 20 basis points. The Fed has exactly one cut priced in for all of 2026. That isn't a tailwind for anything rate-sensitive.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Asset / Indicator</th><th>Level</th><th>Week Δ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>S&P 500</td><td>6,368.85</td><td class="red">−2.1%</td></tr>
+          <tr><td>Nasdaq Composite</td><td>20,948.36</td><td class="red">−3.2%</td></tr>
+          <tr><td>Dow Jones</td><td>45,166.64</td><td class="red">−0.9%</td></tr>
+          <tr><td>Brent Crude (Spot)</td><td>~$110</td><td class="red">+volatile</td></tr>
+          <tr><td>10-yr Treasury</td><td>4.43%</td><td class="red">+elevated</td></tr>
+          <tr><td>Gold</td><td>$4,421</td><td class="green">+bid</td></tr>
+          <tr><td>IGV (Software ETF)</td><td>−23% YTD</td><td class="red">ongoing</td></tr>
+          <tr><td>Core PCE (Jan)</td><td>3.1% YoY</td><td>Feb delayed →Apr 9</td></tr>
+        </tbody>
+      </table>
+
+      <p>Tech continued to absorb the most damage. The iShares Software ETF (IGV) is down 23% year-to-date. All seven of the Magnificent 7 names fell on Friday, with Meta and Amazon leading declines of more than 3%. The thesis that elevated oil prices will compress consumer discretionary margins is not subtle, and the market isn't waiting for Q1 earnings to price it in. Bank earnings season opens April 11. Analysts currently expect 8% earnings growth for the full S&P — that number will be stress-tested hard in three weeks.</p>
+
+      <h2>The Correction Math</h2>
+
+      <p>The Dow officially joined the Nasdaq in correction territory on Friday. The S&P, at roughly 5.8% below its January high, is approaching correction territory of its own. History says corrections that coincide with genuine supply shocks, sticky inflation, and Fed paralysis tend to be more persistent than garden-variety pullbacks. The 2022 analog keeps coming up in research notes. That one took the S&P down 25% before it bottomed. The current setup is different in some ways — the economy isn't contracting, and the labor market is holding — but the oil-inflation-rates triangle is structurally similar.</p>
+
+      <p>Philadelphia Fed President Anna Paulson said Friday that inflation running above 2% is making her more apprehensive. She didn't say she'd be hiking. She said she'd be watching. Watching isn't cutting, and right now the market needs something more than surveillance.</p>
+
+      <h2>What Needs to Happen, and What Might</h2>
+
+      <p>The only circuit breaker that matters is a credible ceasefire that reopens the Strait of Hormuz. The EIA has modeled oil stabilizing below $80 per barrel by Q3 if the conflict resolves — that would take meaningful pressure off inflation expectations, give the Fed room to breathe, and likely produce a sharp equity rally. The S&P's next major support sits near 6,200. If talks deteriorate before April 6, that level gets tested.</p>
+
+      <p>The counterpoint: Iran rejected the U.S. 15-point framework but submitted its own five conditions. The existence of a counter-proposal, however one-sided, means channels are open. Witkoff is still talking. Pakistan is still mediating. Iranian parliament speaker Ghalibaf said Sunday that Iran cannot be forced into submission — that's hardline posturing, but it's also how every negotiation involving the IRGC looks before it moves.</p>
+
+      <p>The week ahead brings the Monday March 30 Outlook and then a quieter data calendar until April 9 PCE and April 10 CPI. The market is running on geopolitics now. That means more volatility, lower conviction, and a premium on anything defensive or energy-adjacent until there's a reason to believe otherwise.</p>
+
+    </div>
+
+    <p class="disclaimer">
+      FinTrend News publishes for educational and informational purposes only. Nothing here constitutes financial advice or a recommendation to buy or sell any security. All figures sourced from public market data and news reporting as of March 27, 2026.
+    </p>
+
+  </div>
+</body>
+</html>
