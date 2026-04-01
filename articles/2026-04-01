@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momentum Check: Five Days to April 6 | FinTrend News</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #131a24;
+      --border:    #1e2d3d;
+      --gold:      #f4c15d;
+      --gold-dim:  #b8882a;
+      --text:      #d4dce8;
+      --muted:     #6b7a8f;
+      --white:     #f0f4f8;
+      --red:       #e05c5c;
+      --green:     #4caf7d;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+    .site-header .inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── ARTICLE WRAPPER ── */
+    .article-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── KICKER / META ── */
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .kicker span {
+      color: var(--muted);
+      margin: 0 8px;
+    }
+
+    /* ── HEADLINE ── */
+    h1.headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+      max-width: 720px;
+    }
+
+    .deck {
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 680px;
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    /* ── BYLINE ── */
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 52px;
+    }
+    .byline-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .byline-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .byline-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 52px;
+    }
+    .score-cell {
+      background: var(--surface);
+      padding: 18px 20px;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .score-change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      margin-top: 4px;
+    }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+
+    /* ── BODY COPY ── */
+    .body-copy p {
+      margin-bottom: 1.5em;
+      max-width: 700px;
+    }
+    .body-copy p:last-child { margin-bottom: 0; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      margin: 40px 0;
+      background: var(--surface);
+      border-radius: 0 4px 4px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 40px 0;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+    table.data-table thead th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    table.data-table tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    table.data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    table.data-table .ticker {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* ── SCENARIO CARDS ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .scenario-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px;
+    }
+    .scenario-card.bull { border-top: 3px solid var(--green); }
+    .scenario-card.base { border-top: 3px solid var(--gold); }
+    .scenario-card.bear { border-top: 3px solid var(--red); }
+    .scenario-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+    .scenario-card.bull .scenario-label { color: var(--green); }
+    .scenario-card.base .scenario-label { color: var(--gold); }
+    .scenario-card.bear .scenario-label { color: var(--red); }
+    .scenario-card p {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── FOCUS BOX ── */
+    .focus-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-dim);
+      border-radius: 0 6px 6px 0;
+      padding: 24px 28px;
+      margin: 44px 0;
+    }
+    .focus-box-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+    }
+    .focus-box p {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.75em;
+      line-height: 1.65;
+    }
+    .focus-box p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 36px;
+      margin-top: 72px;
+    }
+    .disclaimer {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gold-dim);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-logo" href="/">FinTrend News</a>
+      <span class="header-label">Wednesday Momentum Check</span>
+    </div>
+  </header>
+
+  <main class="article-wrap">
+
+    <div class="kicker">
+      Momentum Check <span>·</span> Wednesday, April 1, 2026 <span>·</span> Week of Mar 30
+    </div>
+
+    <h1 class="headline">Five Days to the Deadline: Markets Are Not Ready for April 6</h1>
+
+    <p class="deck">
+      The S&amp;P 500 closed Q1 on uncertain footing, oil is hovering in territory that rewrites inflation math, and the Federal Reserve has all but told markets not to expect relief. Whatever happens at Hormuz in the next five days will define the second quarter.
+    </p>
+
+    <div class="byline-row">
+      <div class="byline-avatar">JM</div>
+      <div class="byline-text">
+        <strong>James Thomas Minnehan</strong><br />
+        Senior Markets Editor, FinTrend News
+      </div>
+    </div>
+
+    <!-- SCOREBOARD -->
+    <div class="scoreboard">
+      <div class="score-cell">
+        <div class="score-label">S&amp;P 500</div>
+        <div class="score-value">6,584</div>
+        <div class="score-change down">▼ ~6.6% from Jan high</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Brent Crude</div>
+        <div class="score-value">$107</div>
+        <div class="score-change up">▲ ~50% since Feb 28</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">WTI</div>
+        <div class="score-value">$94</div>
+        <div class="score-change up">▲ approaching $100 threshold</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Fed Funds Rate</div>
+        <div class="score-value">3.50–3.75%</div>
+        <div class="score-change">On hold · no cuts priced 2026</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">10-Yr Treasury</div>
+        <div class="score-value">4.27%</div>
+        <div class="score-change down">Higher-for-longer repricing</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Hormuz Traffic</div>
+        <div class="score-value">–70%+</div>
+        <div class="score-change down">▼ from pre-war levels</div>
+      </div>
+    </div>
+
+    <!-- BODY COPY -->
+    <div class="body-copy">
+
+      <p>
+        The first quarter ended the way it began: with markets uncertain about what kind of economy they're actually navigating. The S&amp;P 500 brushed 7,000 briefly in January, retreated on Liberation Day anniversary anxiety in February, and then absorbed the initial shock of U.S.-Israeli strikes on Iran at the end of the month. Three weeks later, equities are sitting roughly six percent off their highs, oil is at a level not seen since 2022, and the Federal Reserve has made clear — politely but firmly — that none of this qualifies as a crisis requiring their intervention.
+      </p>
+
+      <p>
+        The central narrative entering Q2 is not complicated, but it is uncomfortable. Oil above $100 is inflationary. A cooling labor market is not. The Fed is caught between the two, and for now it is choosing inaction. Jerome Powell acknowledged "uncertainty" around the Iran conflict at the March FOMC meeting without addressing the Strait directly, and held rates at 3.50–3.75%. Markets that had entered 2026 pricing two cuts are now pricing none. A small but growing cohort on Wall Street — Macquarie among them — has moved their base case to a hike, though they're not expecting it until early 2027.
+      </p>
+
+      <p>
+        That context is essential for understanding what the next five days mean. The April 6 window — which we first identified in last Monday's Outlook — has now absorbed enough market attention that it is genuinely binary. Either Strait of Hormuz traffic begins recovering toward something functional, or it doesn't. If it does, the oil risk premium deflates, the Fed gets breathing room, and the growth-scare narrative that has capped equities gives way to a second-half recovery trade. If it doesn't — or if the next round of Iranian retaliatory action targets Gulf energy infrastructure again — none of the current assumptions hold.
+      </p>
+
+      <hr class="section-divider" />
+
+      <!-- WHERE THE TAPE ACTUALLY STANDS -->
+      <p>
+        Momentum in the tape right now belongs to energy. The broader market has not collapsed — the S&amp;P 500 is down but not broken — and that resilience reflects genuine structural support. Corporate earnings are still growing. The AI infrastructure build is real and ongoing, with top tech firms on pace for roughly $700 billion in capital expenditure in 2026, a figure that puts a meaningful floor under the Nasdaq even as sentiment turns cautious. The Dow Jones, rotating toward value and dividend-payers, has held up relatively better than the growth-heavy Nasdaq.
+      </p>
+
+      <p>
+        But the bifurcation is sharp. Energy stocks — XOM, CVX, and the broader XLE complex — have reclaimed their status as portfolio anchors in a way that hasn't been true since 2022. Airlines and consumer discretionary names are getting punished. Jet fuel benchmark prices have more than doubled in Asia. Delta and its peers are facing cost structures that make sustained profitability difficult above $100 oil, and that is before demand softens in response to higher fares and gasoline prices that have already moved above $4 per gallon nationally.
+      </p>
+
+      <div class="pull-quote">
+        <p>The stagflation word keeps surfacing, and it keeps getting dismissed. The dismissals are getting less convincing.</p>
+      </div>
+
+      <p>
+        February CPI came in at 2.4% year-over-year, technically in-line with estimates. But the February read predates most of the energy shock. The March CPI print — due in mid-April — will be the first real evidence of whether higher oil is feeding through into the consumer basket in a durable way. Wholesale prices already gave us an early warning signal: PPI rose 0.7% in February against an estimate of 0.3%, and the core read excluding food and energy also surprised to the upside. Goldman Sachs has moved their unemployment forecast to 4.6% by year-end from 4.4%, and they see inflation running closer to 3% than 2% for 2026. That combination — rising prices, softening employment — is precisely the stagflation setup the Fed does not want to name out loud.
+      </p>
+
+      <hr class="section-divider" />
+
+      <!-- DATA TABLE: SECTOR PERFORMANCE -->
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Sector / Asset</th>
+              <th>Trend</th>
+              <th>Key Driver</th>
+              <th>Watch Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ticker">Energy (XLE)</td>
+              <td class="up">Bullish</td>
+              <td>Hormuz disruption, elevated Brent</td>
+              <td>Brent holding above $95</td>
+            </tr>
+            <tr>
+              <td class="ticker">Financials (XLF)</td>
+              <td>Neutral</td>
+              <td>Higher-for-longer rate repricing</td>
+              <td>10-yr above 4.40%</td>
+            </tr>
+            <tr>
+              <td class="ticker">Industrials (XLI)</td>
+              <td class="down">Cautious</td>
+              <td>Input costs, supply chain strain</td>
+              <td>Hormuz resolution timeline</td>
+            </tr>
+            <tr>
+              <td class="ticker">Consumer Disc. (XLY)</td>
+              <td class="down">Bearish</td>
+              <td>Gas prices, airline cost surge</td>
+              <td>Gasoline above / below $4</td>
+            </tr>
+            <tr>
+              <td class="ticker">Technology (XLK)</td>
+              <td>Neutral</td>
+              <td>AI capex floor vs. valuation drag</td>
+              <td>NDX 20,000 support</td>
+            </tr>
+            <tr>
+              <td class="ticker">Gold (GLD)</td>
+              <td class="down">Volatile</td>
+              <td>Inflation vs. real rate compression</td>
+              <td>Post-selloff trajectory</td>
+            </tr>
+            <tr>
+              <td class="ticker">Treasuries (TLT)</td>
+              <td class="down">Pressure</td>
+              <td>No-cut repricing, inflation risk</td>
+              <td>10-yr yield direction</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- HORMUZ: WHAT THE DATA SAYS -->
+      <p>
+        On the supply side, the IEA's latest data is arresting. Crude and oil product flows through the Strait have dropped from roughly 20 million barrels per day before hostilities began to what the agency describes as "a trickle." More than 200 tankers are anchored offshore, waiting. Gulf producers have cut total output by over 11 million barrels per day as storage fills and export outlets close. The Ras Laffan LNG facility in Qatar — the largest liquefaction plant in the world — has been offline since it was first struck on March 2. European natural gas prices are nearly 75% higher since the conflict began.
+      </p>
+
+      <p>
+        The IEA response has been the largest coordinated emergency stock release in the agency's history, and it has helped pull Brent off its intraday highs near $117. But releases of strategic reserves are a bridge, not a solution. The bridge runs out if the Strait stays closed through April and into May. At that point, the tail-risk scenarios that analysts have been marking as low-probability become structurally relevant: Brent above $130, diesel and jet fuel markets in outright shortage, central banks unable to cut into what would effectively be a supply-shock recession.
+      </p>
+
+      <div class="focus-box">
+        <div class="focus-box-label">Context: The April 6 Window</div>
+        <p>The diplomatic framework framing the next 120 hours centers on a narrow opening for a ceasefire agreement tied to Iranian transition-of-power negotiations. Multiple institutional scenario models — including those from Allianz Research and BlackRock's Investment Institute — have treated a roughly four-week post-strike resolution window as their baseline. That window closes on or around April 6.</p>
+        <p>Markets have not priced in this deadline explicitly, but positioning data and the behavior of energy futures suggest traders are aware of it. A clean resolution — shipping resumes, risk premium deflates — would represent a significant relief trade across equities and a sharp reversal in the energy complex. The absence of resolution, particularly if accompanied by further infrastructure targeting, would be a different kind of inflection entirely.</p>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- THE FED'S POSITION -->
+      <p>
+        It is worth sitting with what Powell actually said on March 18, because the market has not fully processed it. He described job growth as "zero net" and inflation as still above target, called economic growth "solid," and declined to engage with Iran directly in his press conference. The FOMC statement mentioned "uncertainty" from Middle East developments. The dot plot still implies one cut by year-end, but market-based pricing has moved to zero cuts, and the Atlanta Fed's probability model now assigns more than 40% odds to a rate hike by mid-June.
+      </p>
+
+      <p>
+        The Fed is not going to ease into an oil shock. That much is now clear. What is less clear is whether the next CPI print — due in the second week of April — gives them reason to reconsider even holding. If March inflation surprises meaningfully to the upside, the conversation shifts from "cuts are off the table" to "are hikes necessary," and that is a different equity market entirely. The S&amp;P 500 entered 2026 at its second-most expensive valuation in history. Premium valuations and a tightening central bank are a difficult combination.
+      </p>
+
+      <!-- Q2 SCENARIO CARDS -->
+      <div class="scenario-grid">
+        <div class="scenario-card bull">
+          <div class="scenario-label">Bull · Resolution by Apr 6</div>
+          <p>Ceasefire framework holds. Hormuz shipping resumes partially by mid-April. Brent retreats toward $85–90. Fed holds but rate-hike fears fade. S&amp;P recovers toward 6,900–7,000 by June. Energy still outperforms but rotation back into growth begins.</p>
+        </div>
+        <div class="scenario-card base">
+          <div class="scenario-label">Base · Prolonged Stalemate</div>
+          <p>No clean resolution by April 6 but no major escalation. Oil stays in $95–110 range. Fed holds through mid-year. S&amp;P grinds between 6,200–6,700. Sector leadership stays with energy and defensives. March CPI reading becomes the next pivotal event.</p>
+        </div>
+        <div class="scenario-card bear">
+          <div class="scenario-label">Bear · Infrastructure Escalation</div>
+          <p>Further strikes on Gulf energy infrastructure. Brent pushes above $120–130. Fed is forced to choose between inflation and growth — neither answer is good. S&amp;P tests 6,000–6,145 support. Recession probability rises materially. Defensive positioning becomes the only trade.</p>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- CLOSE -->
+      <p>
+        The honest read on Wednesday, April 1 is this: nothing has broken, but nothing has healed. The economic architecture of the first quarter — AI momentum, consumer resilience, two implied Fed cuts — has been replaced by something messier. The new architecture involves $100 oil, a central bank that is explicitly on hold, and a geopolitical clock running down to a deadline that markets haven't priced with precision.
+      </p>
+
+      <p>
+        Energy infrastructure attacks have a way of crystallizing things quickly. The Ras Laffan facility has been offline for a month. The Strait is running at a fraction of normal capacity. If the next five days pass without resolution and the April 6 window closes, the base case starts looking like the bear case. That is not a prediction — it is a conditional. The conditions are worth watching closely.
+      </p>
+
+      <p>
+        Friday's Recap will cover whatever the market gives us between now and then.
+      </p>
+
+    </div><!-- /body-copy -->
+
+    <!-- FOOTER -->
+    <footer class="article-footer">
+      <div class="footer-logo">FinTrend News</div>
+      <p class="disclaimer">
+        This article is published for educational and informational purposes only and does not constitute investment advice or a solicitation to buy or sell any security. James Thomas Minnehan is not a licensed financial advisor. All data points referenced reflect publicly available information as of publication. Past market behavior is not indicative of future results. Readers should conduct their own due diligence before making any financial decisions.
+      </p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
