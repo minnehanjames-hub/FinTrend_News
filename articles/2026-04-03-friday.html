@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Week That Ate Itself · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+  <style>
+    :root {
+      --bg: #050816;
+      --text: #f0ece3;
+      --muted: #8a8a7a;
+      --border: rgba(148,163,184,0.14);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.10);
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius: 12px;
+      --max: 740px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #050816;
+      background-image:
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(20,10,5,0.9) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(148,163,184,0.03) 80px),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(148,163,184,0.03) 80px);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: "DM Serif Display", serif;
+      font-size: 18px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    .nav-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 13px;
+      transition: 0.15s;
+    }
+    .nav-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max);
+      margin: 64px auto 0;
+      padding: 0 20px;
+    }
+
+    .article-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--danger);
+      border: 1px solid rgba(249,115,115,0.35);
+      padding: 4px 12px;
+      margin-bottom: 28px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .article-label::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--danger);
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      color: #f0ece3;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .deck {
+      font-size: 17px;
+      color: rgba(240,236,227,0.72);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .byline-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3f0a, #c0783a);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "DM Serif Display", serif;
+      font-size: 15px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .byline-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e1d8;
+    }
+    .byline-role {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+    .byline-date {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      background: rgba(10,14,28,0.95);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--danger);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+    .score-item { }
+    .score-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 4px;
+    }
+    .score-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f0ece3;
+      font-family: "JetBrains Mono", monospace;
+      line-height: 1;
+    }
+    .score-val.up { color: var(--success); }
+    .score-val.down { color: var(--danger); }
+    .score-change {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .score-change.up { color: var(--success); }
+    .score-change.down { color: var(--danger); }
+
+    /* ── BODY ── */
+    .body-copy {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-panel {
+      border-left: 3px solid var(--danger);
+      padding: 2px 0 2px 18px;
+      margin-bottom: 10px;
+    }
+    .section-panel-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--danger);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 0;
+    }
+
+    .body-copy p {
+      font-size: 16px;
+      line-height: 1.82;
+      color: rgba(240,236,227,0.88);
+      margin-bottom: 24px;
+    }
+
+    .body-copy h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #f0ece3;
+      margin: 44px 0 14px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 24px 28px;
+      background: rgba(249,115,115,0.06);
+      border-left: 4px solid var(--danger);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px !important;
+      line-height: 1.45 !important;
+      color: #f0ece3 !important;
+      margin: 0 0 10px !important;
+      font-style: italic;
+    }
+    .pull-quote cite {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── SPLIT TABLE ── */
+    .week-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 36px 0;
+    }
+    .split-col {
+      background: rgba(10,14,28,0.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .split-col-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 12px;
+    }
+    .split-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .split-col ul li {
+      font-size: 13px;
+      color: rgba(240,236,227,0.80);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.45;
+    }
+    .split-col ul li:last-child { border-bottom: none; }
+    .split-col.green .split-col-title { color: var(--success); }
+    .split-col.red .split-col-title { color: var(--danger); }
+    .split-col.green { border-color: rgba(74,222,128,0.2); }
+    .split-col.red { border-color: rgba(249,115,115,0.2); }
+
+    /* ── FOCUS BOX ── */
+    .focus-box {
+      background: rgba(244,193,93,0.07);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin: 36px 0;
+    }
+    .focus-box-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 10px;
+    }
+    .focus-box p {
+      font-size: 14px !important;
+      color: rgba(240,236,227,0.82) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.65 !important;
+    }
+
+    /* ── HUNTER'S CALL ── */
+    .hunters-call {
+      margin: 48px 0 0;
+      background: rgba(249,115,115,0.07);
+      border: 1px solid rgba(249,115,115,0.25);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+    }
+    .hunters-call-header {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--danger);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 12px;
+    }
+    .hunters-call p {
+      font-size: 14px !important;
+      margin-bottom: 8px !important;
+      color: rgba(240,236,227,0.85) !important;
+    }
+    .hunters-call p:last-child { margin-bottom: 0 !important; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      max-width: var(--max);
+      margin: 72px auto 0;
+      padding: 24px 20px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .disclaimer {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.65;
+      opacity: 0.7;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .footer-nav a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      transition: 0.14s;
+    }
+    .footer-nav a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .week-split { grid-template-columns: 1fr; }
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">FinTrend</a>
+    <a href="../archive.html" class="nav-link">← Archive</a>
+  </nav>
+
+  <div class="hero">
+    <div class="article-label">Friday Recap · April 3, 2026</div>
+
+    <h1>The Week That <em>Ate Itself</em></h1>
+
+    <p class="deck">Monday rallied. Wednesday crashed. Thursday whipsawed on an Oman headline. And Friday — Friday didn't trade at all. A holiday-shortened week that somehow packed five weeks of chaos into four sessions.</p>
+
+    <div class="byline-row">
+      <div class="byline-avatar">H</div>
+      <div>
+        <div class="byline-name">Hunter William Lang</div>
+        <div class="byline-role">Friday Recap · Markets Correspondent</div>
+      </div>
+      <div class="byline-date">Apr 3, 2026</div>
+    </div>
+  </div>
+
+  <div class="body-copy">
+
+    <div class="scoreboard">
+      <div class="score-item">
+        <div class="score-label">S&P 500</div>
+        <div class="score-val down">6,583</div>
+        <div class="score-change down">−0.5% wk</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Dow Jones</div>
+        <div class="score-val down">46,505</div>
+        <div class="score-change down">−0.3% wk</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Nasdaq</div>
+        <div class="score-val up">21,879</div>
+        <div class="score-change up">+0.2% wk</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">WTI Crude</div>
+        <div class="score-val down">$111.54</div>
+        <div class="score-change down">+11.4% Thu</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Brent</div>
+        <div class="score-val down">$109.03</div>
+        <div class="score-change down">+7.8% Thu</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">VIX</div>
+        <div class="score-val down">29.4</div>
+        <div class="score-change">Elevated</div>
+      </div>
+    </div>
+
+    <div class="section-panel">
+      <div class="section-panel-title">The Setup</div>
+    </div>
+
+    <p>Let me tell you how absurd this week was. On Tuesday, the S&P posted its best single day since May — up nearly 3% — because someone unnamed told Axios that ceasefire talks were "productive." By Thursday close, the index had given almost all of it back. The net result after four sessions of trading: down half a percent. Six points off a market that swings 200 points on a tweet.</p>
+
+    <p>That's not a market. That's a hostage situation with a Bloomberg terminal attached.</p>
+
+    <div class="section-panel">
+      <div class="section-panel-title">What Trump's Wednesday Speech Did to Thursday's Open</div>
+    </div>
+
+    <p>The week's story lives and dies in Trump's primetime address Wednesday night. He told the nation the war would continue "for at least another month." He threatened to hit Iranian infrastructure "extremely hard." The S&P futures were down 1.5% before the Thursday bell even rang. The Dow was down over 600 points at session lows. WTI crude ripped 11.4% — its biggest single-day jump in six years — to close at $111.54. That print hasn't been seen since June 2022.</p>
+
+    <p>Then Iran's deputy foreign minister mentioned Oman. Said his country would draft a new "navigation regime" for the Strait. Markets reversed everything in 40 minutes. By close, the S&P was up 0.11%. The Dow lost 61 points, roughly nothing. Nasdaq closed green. I've covered a lot of weird sessions. Thursday was something else entirely — a market that can go from "catastrophe priced" to "relief rally" on a translated quote from state media, then end the week effectively flat. That's not price discovery. That's noise dressed in a suit.</p>
+
+    <div class="pull-quote">
+      <p>"Moving forward, there will be no going back to the prewar status quo. Prices will be supported even after the war ends."</p>
+      <cite>— Matthew Bernstein, Rystad Energy</cite>
+    </div>
+
+    <div class="section-panel">
+      <div class="section-panel-title">The Oil Math That Doesn't Get Better</div>
+    </div>
+
+    <p>Strip out the politics for a second and look at the barrel math. TD Securities estimates nearly a billion barrels will be lost by month-end — up to 600 million crude, 350 million refined products. Rapidan Energy projects 630 million barrels lost through June even accounting for pipeline reroutes, emergency stock releases, and inventory drawdowns. The IEA coordinated the largest strategic reserve release on record. The U.S. temporarily lifted sanctions on some Russian and Iranian oil. None of it moved the needle. Brent is still $109. WTI closed at its highest print since June 2022.</p>
+
+    <p>Here's what most people aren't talking about: the physical-paper spread. Paper oil (what you see quoted on Bloomberg) has been trading below physical delivery prices, especially for Asian buyers. That gap tells you the real market is tighter than the headline number admits. Rystad's Bernstein put it plainly — even after the war ends, prices will stay elevated from new stockpiling demand, higher insurance costs, and a permanent geopolitical risk premium baked into every cargo that transits Hormuz.</p>
+
+    <div class="week-split">
+      <div class="split-col green">
+        <div class="split-col-title">Winners This Week</div>
+        <ul>
+          <li>Energy — XOM, CVX led all sectors again</li>
+          <li>Defense — LMT, RTX, NOC held bids</li>
+          <li>Gold & miners — GDX +4%+ Tuesday alone</li>
+          <li>U.S. LNG exporters — spot prices surging</li>
+          <li>Nasdaq Tech — AI bid returned Thursday</li>
+        </ul>
+      </div>
+      <div class="split-col red">
+        <div class="split-col-title">Losers This Week</div>
+        <ul>
+          <li>Consumer discretionary — worst S&P sector</li>
+          <li>Airlines — fuel + route cancellations</li>
+          <li>Shipping — Maersk Hormuz suspension</li>
+          <li>Tesla — down on EV demand + controversy</li>
+          <li>Rate-sensitive bonds — stagflation repricing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-panel">
+      <div class="section-panel-title">Jobs, the Asterisk</div>
+    </div>
+
+    <p>The March jobs report — 178,000 nonfarm payrolls added — was quietly solid. Better than the February catastrophe (−92K), better than consensus. The Conference Board consumer confidence print for March also beat, coming in at 91.8 against the 87.5 forecast. These are not recessionary numbers. Goldman Sachs has recession odds at 30%. Moody's is at 48.6%. I'll take the macro data over the forecast models right now, because the forecast models are trying to price in a war with six different possible endings.</p>
+
+    <p>But here's the thing about strong jobs data in a war-driven inflation environment: the Fed can't act on it. They're stuck. Rates stay put. The next meaningful macro data point is the March CPI on April 10, and it won't fully reflect the oil shock yet. The real inflation read — the one that matters — comes in May.</p>
+
+    <div class="focus-box">
+      <div class="focus-box-label">Good Friday Note</div>
+      <p>Markets were closed Friday, April 3. The Thursday session at April 2 was the week's final print. That means the next price discovery happens Monday morning — roughly 24 hours before Trump's "Power Plant Day" deadline hits at 8pm ET Tuesday. Think about that for a moment. The market gets one session to reprice whatever happens over the weekend before the next geopolitical cliff edge.</p>
+    </div>
+
+    <div class="section-panel">
+      <div class="section-panel-title">What the Chart Is Actually Telling You</div>
+    </div>
+
+    <p>The S&P is down roughly 6% from its late January all-time high. Tech's 50-day moving average crossed below the 200-day — a death cross — on Monday. The Nasdaq is on track for its fifth straight losing month, longest losing streak since 2002. The S&P finished Q1 as its worst quarter since 2022. None of that sounds like a floor.</p>
+
+    <p>And yet: the market hasn't had a capitulation day. Raymond James equity strategist Tavis McCourt flagged this over the weekend — five weeks of Hormuz closure, and still no washout session. His explanation: the early 2026 economic data was genuinely strong, and the oil futures curve's backwardation (near-month prices above far-month) is paradoxically soothing credit markets by signaling the disruption is priced as temporary.</p>
+
+    <p>That's a fragile foundation. It holds until it doesn't.</p>
+
+    <div class="hunters-call">
+      <div class="hunters-call-header">Hunter's Read · Friday Close</div>
+      <p>This week didn't resolve anything. It just created more variables. The ceasefire-or-escalation binary is still the only trade that matters, and it doesn't resolve in the data — it resolves in a Truth Social post or a missile launch.</p>
+      <p>Monday opens with futures trading whatever the weekend brought. Then we get one session before Trump's Tuesday 8pm deadline. If you're holding risk into that window without a hedge, you've convinced yourself you know something about Hormuz diplomacy that nobody else does.</p>
+      <p>The jobs number was good. The oil number is bad. The Fed is frozen. April 6 is the only variable that moves anything. Nothing else is a trade right now.</p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="footer-nav">
+      <a href="../archive.html">← All Articles</a>
+      <a href="2026-04-01-wednesday.html">Previous: Apr 1 Momentum</a>
+    </div>
+    <p class="disclaimer">This article is published for educational and informational purposes only. It does not constitute financial advice or a recommendation to buy, sell, or hold any security or financial instrument. Past performance is not indicative of future results. FinTrend News is an independent publication.</p>
+  </div>
+
+</body>
+</html>
