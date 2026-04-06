@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Night Before Everything Changes · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+  <style>
+    :root {
+      --bg: #040a14;
+      --text: #edf0f7;
+      --muted: #7a8499;
+      --border: rgba(100,120,180,0.15);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.09);
+      --blue: #7eb8f7;
+      --blue-soft: rgba(126,184,247,0.09);
+      --radius: 12px;
+      --max: 740px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(15,35,80,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 90% 80%, rgba(8,20,50,0.4) 0%, transparent 60%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.78;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: "DM Serif Display", serif;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    .nav-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 13px;
+      transition: 0.15s;
+    }
+    .nav-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max);
+      margin: 64px auto 0;
+      padding: 0 20px;
+    }
+
+    .article-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      border: 1px solid var(--border-gold);
+      padding: 4px 12px;
+      margin-bottom: 28px;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      color: #edf0f7;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .deck {
+      font-size: 17px;
+      color: rgba(237,240,247,0.70);
+      line-height: 1.62;
+      margin-bottom: 28px;
+      max-width: 630px;
+    }
+
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .byline-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0d2a5c, #2756a8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "DM Serif Display", serif;
+      font-size: 15px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .byline-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #dde3f0;
+    }
+    .byline-role {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+    .byline-date {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* ── CLOCK DISPLAY ── */
+    .countdown-block {
+      background: rgba(8,15,35,0.95);
+      border: 1px solid rgba(126,184,247,0.25);
+      border-top: 2px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      margin-bottom: 44px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+    .cd-item-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 6px;
+    }
+    .cd-item-val {
+      font-family: "DM Serif Display", serif;
+      font-size: 28px;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .cd-item-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* ── BODY ── */
+    .body-copy {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--blue);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(126,184,247,0.18);
+    }
+
+    .body-copy p {
+      font-size: 16px;
+      line-height: 1.84;
+      color: rgba(237,240,247,0.85);
+      margin-bottom: 24px;
+    }
+
+    .body-copy h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #edf0f7;
+      margin: 44px 0 14px;
+    }
+
+    /* ── SCENARIO CARDS ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 36px 0;
+    }
+    .scenario-card {
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      border: 1px solid var(--border);
+      background: rgba(8,12,28,0.95);
+    }
+    .sc-header {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 10px;
+    }
+    .sc-title {
+      font-family: "DM Serif Display", serif;
+      font-size: 17px;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .sc-body {
+      font-size: 12px;
+      color: rgba(237,240,247,0.72);
+      line-height: 1.6;
+    }
+    .scenario-card.bull { border-color: rgba(74,222,128,0.25); }
+    .scenario-card.bull .sc-header { color: #4ade80; }
+    .scenario-card.bull .sc-title { color: #a8f0c0; }
+    .scenario-card.base { border-color: rgba(244,193,93,0.25); }
+    .scenario-card.base .sc-header { color: var(--accent); }
+    .scenario-card.base .sc-title { color: #f4d68a; }
+    .scenario-card.bear { border-color: rgba(249,115,115,0.25); }
+    .scenario-card.bear .sc-header { color: #f97373; }
+    .scenario-card.bear .sc-title { color: #fca5a5; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 24px 28px;
+      background: var(--blue-soft);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 21px !important;
+      line-height: 1.48 !important;
+      color: #edf0f7 !important;
+      margin: 0 0 10px !important;
+      font-style: italic;
+    }
+    .pull-quote cite {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0;
+      font-size: 13px;
+    }
+    .data-table th {
+      text-align: left;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(100,120,180,0.08);
+      color: rgba(237,240,247,0.82);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table .up { color: #4ade80; }
+    .data-table .down { color: #f97373; }
+    .data-table .neutral { color: var(--accent); }
+
+    /* ── ARSHIA'S NOTE ── */
+    .arshia-note {
+      margin: 52px 0 0;
+      padding: 28px 28px 28px 32px;
+      background: rgba(126,184,247,0.05);
+      border: 1px solid rgba(126,184,247,0.2);
+      border-radius: var(--radius);
+      position: relative;
+    }
+    .arshia-note::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+    .arshia-note-header {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--blue);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 14px;
+    }
+    .arshia-note p {
+      font-size: 14px !important;
+      margin-bottom: 10px !important;
+      color: rgba(237,240,247,0.85) !important;
+      line-height: 1.72 !important;
+    }
+    .arshia-note p:last-child { margin-bottom: 0 !important; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      max-width: var(--max);
+      margin: 72px auto 0;
+      padding: 24px 20px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .disclaimer {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.65;
+      opacity: 0.65;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .footer-nav a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      transition: 0.14s;
+    }
+    .footer-nav a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .scenario-grid { grid-template-columns: 1fr; }
+      .countdown-block { grid-template-columns: 1fr; gap: 12px; text-align: left; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">FinTrend</a>
+    <a href="../archive.html" class="nav-link">← Archive</a>
+  </nav>
+
+  <div class="hero">
+    <div class="article-label">Sunday Macro · April 5, 2026</div>
+
+    <h1>The Night Before <em>Everything Changes</em></h1>
+
+    <p class="deck">In roughly 36 hours, Trump's "Power Plant Day" deadline expires. What the market does Monday — its one session before the clock runs out — will reveal more about where we actually are than six weeks of geopolitical commentary.</p>
+
+    <div class="byline-row">
+      <div class="byline-avatar">A</div>
+      <div>
+        <div class="byline-name">Arshia Morshedian</div>
+        <div class="byline-role">Sunday Macro Notes · Global Markets</div>
+      </div>
+      <div class="byline-date">Apr 5, 2026</div>
+    </div>
+  </div>
+
+  <div class="body-copy">
+
+    <div class="countdown-block">
+      <div>
+        <div class="cd-item-label">Deadline</div>
+        <div class="cd-item-val">Tue</div>
+        <div class="cd-item-sub">Apr 6 · 8pm ET</div>
+      </div>
+      <div>
+        <div class="cd-item-label">WTI Crude (Fri Close)</div>
+        <div class="cd-item-val">$111</div>
+        <div class="cd-item-sub">Highest since Jun 2022</div>
+      </div>
+      <div>
+        <div class="cd-item-label">Polymarket: S&P Up Mon</div>
+        <div class="cd-item-val">47%</div>
+        <div class="cd-item-sub">Near coin-flip</div>
+      </div>
+    </div>
+
+    <div class="section-label">Context · Where We Actually Stand</div>
+
+    <p>I want to be precise about what happens tomorrow, because precision is what this moment demands. The market gets one session — Monday, April 6 — to reprice whatever the weekend brought before Trump's "Power Plant Day" threat expires at 8pm Tuesday. That is not a normal backdrop for position-sizing. That is a single trading day standing between six weeks of accumulated damage and a binary geopolitical inflection point.</p>
+
+    <p>Let's establish what we know. Trump posted Saturday that Iran would be "living in Hell" if the Strait of Hormuz isn't opened. He set the deadline: Tuesday, 8:00 PM Eastern. He explicitly threatened Iran's power plants and bridges. An F-15E was shot down over Iran over the weekend — the crew was recovered — raising the temperature further. And yet: Pakistan is mediating. Iranian Foreign Minister Abbas Araghchi told reporters Tehran has "never refused" to engage in talks. Oman is involved. The ceasefire framework Axios reported last week — a potential 45-day pause — hasn't died.</p>
+
+    <p>This is the texture of every major diplomatic standoff: maximum public hostility, maximum private contact. The question is which channel is driving the actual outcome.</p>
+
+    <div class="pull-quote">
+      <p>"The next hurdle for this market is the next Trump deadline for a deal with Iran this Tuesday evening."</p>
+      <cite>— Tavis McCourt, Raymond James Institutional Equity Strategy</cite>
+    </div>
+
+    <div class="section-label">The Barrel Math Is Worsening, Quietly</div>
+
+    <p>Separate from the diplomacy — which I'll get to — there is a structural oil problem that doesn't resolve cleanly even in a ceasefire scenario. TD Securities puts the cumulative barrel loss at nearly a billion by month-end. Rapidan Energy's figure through June: 630 million barrels, net of pipeline reroutes and strategic releases. The IEA coordinated the largest emergency stock release on record. The U.S. temporarily lifted Russian and Iranian oil sanctions. Brent is still $109.</p>
+
+    <p>Rystad Energy put the key point in writing last week: there is no postwar status quo to return to. Freight insurance for Hormuz transits is permanently repriced. Stockpiling demand will surge after any ceasefire. And mid-April is when the arithmetic gets genuinely dire — the strategic reserves and sanctioned oil workarounds expire around April 19, Rapidan estimates. After that, the IEA's Papic projects the effective supply loss doubles from 4.5 million barrels per day to roughly 9 million. That math is on the table regardless of what Trump posts Tuesday night.</p>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Current</th>
+            <th>Pre-War Baseline</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Brent Crude</td>
+            <td>$109.03</td>
+            <td>~$73</td>
+            <td class="down">+49%</td>
+          </tr>
+          <tr>
+            <td>WTI Crude</td>
+            <td>$111.54</td>
+            <td>~$70</td>
+            <td class="down">+59%</td>
+          </tr>
+          <tr>
+            <td>U.S. Gas (avg)</td>
+            <td>$4.08</td>
+            <td>~$3.15</td>
+            <td class="down">+30%</td>
+          </tr>
+          <tr>
+            <td>S&P 500</td>
+            <td>6,583</td>
+            <td>~7,068 (Jan ATH)</td>
+            <td class="down">−6.9%</td>
+          </tr>
+          <tr>
+            <td>Goldman Recession Odds</td>
+            <td>30%</td>
+            <td>~10%</td>
+            <td class="down">Elevated</td>
+          </tr>
+          <tr>
+            <td>Moody's Recession Odds</td>
+            <td>48.6%</td>
+            <td>—</td>
+            <td class="down">Near-flip</td>
+          </tr>
+          <tr>
+            <td>VIX</td>
+            <td>~29</td>
+            <td>~14</td>
+            <td class="down">+107%</td>
+          </tr>
+          <tr>
+            <td>10-yr Treasury Yield</td>
+            <td>~4.46%</td>
+            <td>~4.1%</td>
+            <td class="neutral">Stagflation signal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label">Three Paths Into Monday's Open</div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bull">
+        <div class="sc-header">Bull · 25% Weight</div>
+        <div class="sc-title">Ceasefire Announced Before Bell</div>
+        <div class="sc-body">Oman framework finalizes over the weekend. Hormuz protocol announced. S&P gaps up 3–5%. WTI drops $15–20. Fed repricing accelerates — two cuts re-enter 2026 probability. Defense names correct hard, energy gives back gains. Tech leads the rip.</div>
+      </div>
+      <div class="scenario-card base">
+        <div class="sc-header">Base · 50% Weight</div>
+        <div class="sc-title">Talks Active, No Deal Yet</div>
+        <div class="sc-body">Weekend diplomacy extends the window. Trump softens rhetoric Monday morning. S&P opens flat to +0.5%. Oil holds $105–110. The market trades hope with a ceiling — same pattern it's run for six weeks. Volatility compresses slightly into the deadline, then spikes at 8pm Tuesday.</div>
+      </div>
+      <div class="scenario-card bear">
+        <div class="sc-header">Bear · 25% Weight</div>
+        <div class="sc-title">Escalation Over the Weekend</div>
+        <div class="sc-body">Additional Iranian strikes on Gulf infrastructure. Trump goes ahead with power plant strikes. S&P futures open down 2–3%. WTI breaks $120. Fed emergency language returns. A genuine capitulation session finally materializes — the one that's been missing for five weeks.</div>
+      </div>
+    </div>
+
+    <div class="section-label">The Fed's Silence Speaks</div>
+
+    <p>There has been no Fed communication in the past week that meaningfully changes anything. The dot plot from March showed one cut in 2026. Fed funds futures aren't pricing any cuts until mid-2027. Kevin Warsh's confirmation hearing is coming — Elizabeth Warren has already drawn a line — but that's weeks away. The institution is functionally frozen until the inflation data from the oil shock lands. The April 10 March CPI will be the first test, but it captures prices through March 31. The real war inflation impact doesn't show up until May's data.</p>
+
+    <p>What this means practically: the Fed cannot ride to the rescue here. If the bear scenario materializes Monday, Powell has no obvious move. The economy isn't in free fall — March payrolls were +178K — but wage gains won't offset $4 gas for long. The stagflation trap is real and the Fed is the one institution that's most handcuffed by it.</p>
+
+    <div class="section-label">What I'm Watching Monday Morning</div>
+
+    <p>Oil futures open Sunday night at 6pm ET. That's the first live read on weekend diplomacy. If Brent moves below $105 on any ceasefire signal, that's meaningful. If it holds above $110, the base case is intact. Watch the S&P futures open simultaneously — the correlation between the two has been near-perfect for six weeks. Any divergence (oil up, equities also up) would be telling you something unusual about positioning.</p>
+
+    <p>The second signal: Trump's Truth Social activity between now and Monday's open. His weekend cadence has been the best leading indicator of the session's direction all month. A combative post means risk-off. A post referencing "good conversations" means the Tuesday deadline softens.</p>
+
+    <p>Third: watch gold. It has been the cleanest flight-to-safety trade in this entire conflict, cleaner than Treasuries (which have sold off on stagflation fears). Gold miners ran 4% in a single session last week. If gold spikes Sunday night, read it as a genuine fear signal, not noise.</p>
+
+    <div class="arshia-note">
+      <div class="arshia-note-header">Arshia's Macro Note · Sunday April 5</div>
+      <p>I've written six of these Sunday macro notes since the war started. Each one has been, in some form, a version of the same argument: the market is waiting for a binary resolution it can't price because neither side has committed to a path. That remains true tonight. What's different about this Sunday is the clock.</p>
+      <p>The April 6 deadline is not like the prior deadlines — the March 22 ultimatum, the March 28 extension. Those had diplomatic buffer built in. This one carries explicit infrastructure threat language and a specific time: 8pm Eastern. That's not a negotiating opener. That's a countdown.</p>
+      <p>If you're a long-only institutional manager, you went into Good Friday underweight risk. The Polymarket crowd is at 47% for a Monday up-open — a coin flip. The smart money isn't calling this one either. We are genuinely in a zone of maximum uncertainty, which means the only rational posture is one that can survive either outcome. Position accordingly. The data will catch up eventually. Right now, the data is irrelevant.</p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="footer-nav">
+      <a href="../archive.html">← All Articles</a>
+      <a href="2026-04-03-friday.html">Previous: Apr 3 Recap</a>
+    </div>
+    <p class="disclaimer">This article is published for educational and informational purposes only. It does not constitute financial advice or a recommendation to buy, sell, or hold any security or financial instrument. Past performance is not indicative of future results. FinTrend News is an independent publication.</p>
+  </div>
+
+</body>
+</html>
