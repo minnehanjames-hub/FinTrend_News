@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>April 6 Is Here. Now What? · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+  <style>
+    :root {
+      --bg: #060a0f;
+      --text: #f2f4f0;
+      --muted: #7e8a82;
+      --border: rgba(130,160,120,0.15);
+      --border-gold: rgba(244,193,93,0.35);
+      --accent: #f4c15d;
+      --accent-soft: rgba(244,193,93,0.09);
+      --green: #4ade80;
+      --green-soft: rgba(74,222,128,0.08);
+      --danger: #f97373;
+      --radius: 12px;
+      --max: 740px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 70% 45% at 50% 0%, rgba(10,25,12,0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 0% 100%, rgba(5,15,8,0.5) 0%, transparent 55%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.76;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: "DM Serif Display", serif;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    .nav-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 13px;
+      transition: 0.15s;
+    }
+    .nav-link:hover { color: var(--accent); border-color: var(--border-gold); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max);
+      margin: 64px auto 0;
+      padding: 0 20px;
+    }
+
+    .article-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--green);
+      border: 1px solid rgba(74,222,128,0.35);
+      padding: 4px 12px;
+      margin-bottom: 28px;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      color: #f2f4f0;
+    }
+    h1 .date-word {
+      display: block;
+      font-size: 0.68em;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .deck {
+      font-size: 17px;
+      color: rgba(242,244,240,0.70);
+      line-height: 1.62;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .byline-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #163020, #2a5c38);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "DM Serif Display", serif;
+      font-size: 15px;
+      color: #c8f0d4;
+      flex-shrink: 0;
+    }
+    .byline-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #dde8df;
+    }
+    .byline-role {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.08em;
+    }
+    .byline-date {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* ── SITUATION STRIP ── */
+    .situation-strip {
+      background: rgba(5,12,6,0.95);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 18px;
+    }
+    .ss-item {}
+    .ss-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 4px;
+    }
+    .ss-val {
+      font-size: 17px;
+      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+      color: #f2f4f0;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .ss-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+    .ss-val.alert { color: var(--accent); }
+
+    /* ── BODY ── */
+    .body-copy {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .section-head::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(130,160,120,0.2);
+    }
+    .section-head-text {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      white-space: nowrap;
+    }
+
+    .body-copy p {
+      font-size: 16px;
+      line-height: 1.84;
+      color: rgba(242,244,240,0.86);
+      margin-bottom: 24px;
+    }
+
+    .body-copy h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 22px;
+      color: #f2f4f0;
+      margin: 44px 0 14px;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 24px 28px;
+      background: var(--green-soft);
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .pull-quote p {
+      font-family: "DM Serif Display", serif;
+      font-size: 21px !important;
+      line-height: 1.48 !important;
+      color: #f2f4f0 !important;
+      margin: 0 0 10px !important;
+      font-style: italic;
+    }
+    .pull-quote cite {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      margin: 36px 0;
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid rgba(74,222,128,0.2);
+    }
+    .tl-item {
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--bg);
+    }
+    .tl-time {
+      font-size: 10px;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tl-text {
+      font-size: 14px;
+      color: rgba(242,244,240,0.82);
+      line-height: 1.6;
+    }
+
+    /* ── FOCUS BOX ── */
+    .focus-box {
+      background: var(--accent-soft);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin: 36px 0;
+    }
+    .focus-box-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 10px;
+    }
+    .focus-box p {
+      font-size: 14px !important;
+      color: rgba(242,244,240,0.82) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.65 !important;
+    }
+
+    /* ── JAMES' CALL ── */
+    .james-call {
+      margin: 52px 0 0;
+      padding: 28px 26px;
+      background: rgba(5,12,6,0.95);
+      border: 1px solid rgba(74,222,128,0.22);
+      border-radius: var(--radius);
+      position: relative;
+    }
+    .jc-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--green);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 16px;
+    }
+    .jc-week-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .jc-item {}
+    .jc-item-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 4px;
+    }
+    .jc-item-val {
+      font-size: 13px;
+      color: rgba(242,244,240,0.88);
+      line-height: 1.5;
+    }
+    .james-call p {
+      font-size: 15px !important;
+      margin-bottom: 12px !important;
+      color: rgba(242,244,240,0.86) !important;
+      line-height: 1.75 !important;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .james-call p:last-child { margin-bottom: 0 !important; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      max-width: var(--max);
+      margin: 72px auto 0;
+      padding: 24px 20px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .disclaimer {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.65;
+      opacity: 0.65;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .footer-nav a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      transition: 0.14s;
+    }
+    .footer-nav a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      .jc-week-items { grid-template-columns: 1fr; }
+      .situation-strip { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">FinTrend</a>
+    <a href="../archive.html" class="nav-link">← Archive</a>
+  </nav>
+
+  <div class="hero">
+    <div class="article-label">Monday Outlook · April 6, 2026</div>
+
+    <h1>
+      <span class="date-word">April 6.</span>
+      The Day the Market Has Been Dreading Is Here
+    </h1>
+
+    <p class="deck">Six weeks of war, five losing weeks for the S&P, a thousand headlines about deadlines — and now we're inside the window. Tonight at 8pm ET, Trump's ultimatum expires. Today is the session that prices it.</p>
+
+    <div class="byline-row">
+      <div class="byline-avatar">J</div>
+      <div>
+        <div class="byline-name">James Thomas Minnehan</div>
+        <div class="byline-role">Monday Outlook · Editor</div>
+      </div>
+      <div class="byline-date">Apr 6, 2026</div>
+    </div>
+  </div>
+
+  <div class="body-copy">
+
+    <div class="situation-strip">
+      <div class="ss-item">
+        <div class="ss-label">S&P 500 Fri Close</div>
+        <div class="ss-val">6,583</div>
+        <div class="ss-sub">−6.9% from Jan ATH</div>
+      </div>
+      <div class="ss-item">
+        <div class="ss-label">WTI Crude</div>
+        <div class="ss-val alert">$111.54</div>
+        <div class="ss-sub">+59% from pre-war</div>
+      </div>
+      <div class="ss-item">
+        <div class="ss-label">Brent</div>
+        <div class="ss-val">$109.03</div>
+        <div class="ss-sub">Jun 2022 highs</div>
+      </div>
+      <div class="ss-item">
+        <div class="ss-label">Deadline Tonight</div>
+        <div class="ss-val alert">8pm ET</div>
+        <div class="ss-sub">Trump Iran ultimatum</div>
+      </div>
+      <div class="ss-item">
+        <div class="ss-label">Next Data</div>
+        <div class="ss-val">Apr 10</div>
+        <div class="ss-sub">March CPI</div>
+      </div>
+    </div>
+
+    <div class="section-head"><span class="section-head-text">The Setup</span></div>
+
+    <p>This is the note I've been building toward for six weeks. Every outlook since the war started has had some version of the same sentence: April 6 is the next inflection. Well, it's here. Markets open today with a clock running in the background — 8pm Eastern, the precise hour Trump set for his power plant and bridge ultimatum if the Strait of Hormuz remains closed. Traders get one full session to position before that clock hits zero.</p>
+
+    <p>Let me tell you what I think is actually happening, separate from the noise. The diplomatic channels are active. Axios reported over the weekend that U.S., Iran, and regional mediators were discussing a 45-day ceasefire framework. Iran's Foreign Minister told reporters Tehran has "never refused" to engage. Pakistan is mediating. Oman has been the backchannel. Trump held a press conference Monday morning. None of this looks like a side that has decided escalation is the only outcome.</p>
+
+    <p>That said, I wrote something similar about the March 22 deadline. And the March 28 extension. Each time, the deadline passed without the feared escalation — and each time, the market's relief lasted about two days. The pattern is exhausting and it's real. Don't confuse "no escalation tonight" with "this resolves this week."</p>
+
+    <div class="pull-quote">
+      <p>"I'm as surprised as anyone, but my best guess is very strong economic momentum and an oil curve that's backwardated — soothing credit and equity markets."</p>
+      <cite>— Tavis McCourt, Raymond James, written Sunday</cite>
+    </div>
+
+    <div class="section-head"><span class="section-head-text">Today's Timeline</span></div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">Pre-market · 6–9:30am ET</div>
+        <div class="tl-text">Watch oil futures. Brent below $105 on any overnight ceasefire signal is bullish for the open. WTI holding above $108 means the market is still pricing conflict premium into the session. Trump's Truth Social cadence in this window is the most reliable leading indicator of the day's direction.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Open · 9:30am ET</div>
+        <div class="tl-text">S&P futures were near coin-flip heading into Sunday night — Polymarket had Monday up-open at 47%. First 30 minutes will establish the session's character. If tech leads, it signals the market is looking past the deadline. If energy leads, it's still pricing escalation. If both fall, we're in the bear scenario.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Midday · 12–2pm ET</div>
+        <div class="tl-text">Any diplomatic headlines from Oman, Pakistan, or State Department briefings will hit in this window. The market has demonstrated it can reverse 1.5% moves in under an hour on a single translated quote. Stay close to live feeds in this session.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">Close / After-hours · 4–8pm ET</div>
+        <div class="tl-text">The session's close matters less than what happens between 4pm and 8pm ET. Futures will trade through the deadline. If the 8pm window passes with no new escalation announcement, expect a risk-on pop in futures. If Trump acts on the threat, the overnight will be severe.</div>
+      </div>
+    </div>
+
+    <div class="section-head"><span class="section-head-text">The Macro Frame That Holds Regardless</span></div>
+
+    <p>Whatever happens tonight, the structural damage from six weeks of Hormuz closure doesn't undo itself. The barrel math is the barrel math: nearly a billion barrels lost by month-end by TD Securities' count, strategic reserves expiring around April 19, and a physical oil market that's running tighter than the paper price suggests. Rystad said it cleanly last week — there is no postwar status quo to return to. That's not bearish, it's just factual.</p>
+
+    <p>The March CPI on April 10 will be the week's most important macro number regardless of how the geopolitical situation resolves. The oil shock doesn't fully appear in March data — gas prices hit $4 a gallon nationally right at month-end. The May report is the one that will shock. Between now and then, the Fed stays frozen. The dot plot showed one cut in 2026. Fed funds futures aren't pricing any relief until mid-2027. The only thing that changes that picture is either a dramatic oil price decline (requires Hormuz reopening) or an unexpected economic collapse (no sign yet — March jobs were +178K).</p>
+
+    <div class="focus-box">
+      <div class="focus-box-label">Key Levels to Watch</div>
+      <p>S&P support: 6,368 (March 27 low, a 7-month low). S&P resistance: 6,700 (pre-Trump-speech high from last week). WTI watch: $105 on the downside for any meaningful oil relief. $120 on the upside is the "things got worse" signal. VIX above 32 would be the first genuine fear read we've had — it hasn't breached that level yet despite five weeks of war.</p>
+    </div>
+
+    <div class="section-head"><span class="section-head-text">The Case for Staying Disciplined</span></div>
+
+    <p>I'm not going to tell you what's going to happen tonight. No one knows. What I will tell you is what the six weeks since the war started have consistently rewarded: not the bulls, not the bears, but the disciplined. The people who had energy exposure going into February 28 made money. The people who piled into defense off the first headlines made money. The people who bought the "ceasefire rumor" spikes and held through the reversals got hurt every time.</p>
+
+    <p>The market has refused to capitulate — Raymond James called it out on Sunday, five weeks of Hormuz closure and still no washout session. That cuts both ways. It means the downside hasn't fully cleared. It also means the resilience is real — strong Q1 economic data, AI spending holding, corporate margins not yet broken. The economy and the market are two different things, but in this case they're sending the same message: this is a war premium, not a recession signal. Not yet.</p>
+
+    <p>Tonight changes that calculus one way or another. Ceasefire or escalation, either outcome creates a cleaner picture than the limbo of the past six weeks. Clarity — even painful clarity — is what markets need to find a floor.</p>
+
+    <div class="james-call">
+      <div class="jc-label">Week-Ahead Calendar · April 6–10</div>
+      <div class="jc-week-items">
+        <div class="jc-item">
+          <div class="jc-item-label">Mon Apr 6</div>
+          <div class="jc-item-val">8pm ET: Trump deadline expires. The session that prices it.</div>
+        </div>
+        <div class="jc-item">
+          <div class="jc-item-label">Tue Apr 7</div>
+          <div class="jc-item-val">Post-deadline open. First full market reaction to whatever April 6 brings.</div>
+        </div>
+        <div class="jc-item">
+          <div class="jc-item-label">Wed Apr 8</div>
+          <div class="jc-item-val">Fed speakers. FOMC minutes from March meeting on tape. Watch tone.</div>
+        </div>
+        <div class="jc-item">
+          <div class="jc-item-label">Thu Apr 9</div>
+          <div class="jc-item-val">PCE (delayed from March 28). The inflation data point the Fed actually watches.</div>
+        </div>
+        <div class="jc-item">
+          <div class="jc-item-label">Fri Apr 10</div>
+          <div class="jc-item-val">March CPI. First hard read on war's inflation pass-through. Consensus: higher.</div>
+        </div>
+      </div>
+      <p>The single most important variable today is not on the economic calendar. It expires tonight at 8pm Eastern. Everything else this week — the PCE on Thursday, the CPI on Friday — is secondary to the question that gets answered in the next twelve hours. Stay disciplined. Stay informed. Don't confuse noise with signal. We'll have a read on the other side of the deadline by tomorrow morning.</p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="footer-nav">
+      <a href="../archive.html">← All Articles</a>
+      <a href="2026-04-05-sunday.html">Previous: Apr 5 Macro</a>
+    </div>
+    <p class="disclaimer">This article is published for educational and informational purposes only. It does not constitute financial advice or a recommendation to buy, sell, or hold any security or financial instrument. Past performance is not indicative of future results. FinTrend News is an independent publication.</p>
+  </div>
+
+</body>
+</html>
