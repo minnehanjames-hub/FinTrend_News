@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Deal That Wasn't — Friday, April 9, 2026 · FinTrend News</title>
+  <meta name="description" content="Oil crashed 17% on a ceasefire. Then it came right back. Hormuz is still blocked. The ceasefire lasted less than 24 hours before Iran accused three violations. Here's where markets stand — and what's actually at stake heading into next week." />
+  <meta name="author" content="Hunter William Lang" />
+  <meta property="og:title" content="The Deal That Wasn't" />
+  <meta property="og:description" content="Oil crashed 17% on a ceasefire. Then came right back. Hormuz is still blocked. Here's where markets stand heading into next week." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0d0d0f;
+      --surface: #131316;
+      --border: rgba(255,255,255,0.07);
+      --border-hi: rgba(244,193,93,0.22);
+      --gold: #f4c15d;
+      --gold-mid: rgba(244,193,93,0.10);
+      --text: #e7e2d6;
+      --text-mute: #9a9488;
+      --red: #e05c5c;
+      --green: #4caf88;
+      --blue: #60a5fa;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 740px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* NAV */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: var(--gold); text-decoration: none; letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 12px; color: var(--text-mute); text-decoration: none;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HEADER */
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red);
+      background: rgba(224,92,92,0.10);
+      border: 1px solid rgba(224,92,92,0.28);
+      border-radius: 999px; padding: 4px 12px; margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 5.5vw, 46px);
+      font-weight: 400; line-height: 1.18;
+      color: #fff; margin-bottom: 16px;
+    }
+    .deck {
+      font-size: 17px; line-height: 1.65;
+      color: var(--text-mute); margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 18px;
+    }
+    .meta {
+      font-size: 12px; color: var(--text-mute);
+      letter-spacing: 0.04em; margin-bottom: 36px;
+      padding-bottom: 22px; border-bottom: 1px solid var(--border);
+    }
+    .meta strong { color: var(--text); }
+
+    /* BODY */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; font-weight: 400; color: #fff;
+      margin: 40px 0 14px;
+    }
+    p { margin-bottom: 18px; color: var(--text); }
+    strong { color: #fff; font-weight: 600; }
+    em { color: var(--gold); font-style: normal; }
+
+    /* SCOREBOARD */
+    .scoreboard {
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .scoreboard-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px;
+    }
+    .score-item {}
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+    .score-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px; font-weight: 500; color: #fff;
+    }
+    .score-chg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; margin-top: 2px;
+    }
+    .up { color: var(--green); }
+    .dn { color: var(--red); }
+    .neu { color: var(--text-mute); }
+
+    /* CALLOUT PANELS */
+    .panel {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-mid);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 28px 0;
+    }
+    .panel.red {
+      border-left-color: var(--red);
+      background: rgba(224,92,92,0.07);
+    }
+    .panel.blue {
+      border-left-color: var(--blue);
+      background: rgba(96,165,250,0.07);
+    }
+    .panel-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .panel.red .panel-label { color: var(--red); }
+    .panel.blue .panel-label { color: var(--blue); }
+    .panel p { margin-bottom: 0; font-size: 14px; }
+
+    /* DATA TABLE */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 24px 0; font-size: 13px;
+    }
+    .data-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-mute);
+      padding: 8px 12px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:last-child { font-family: 'JetBrains Mono', monospace; }
+
+    /* DIVIDER */
+    .rule {
+      border: none; border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-mute);
+      line-height: 1.8;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: rgba(154,148,136,0.6);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">FinTrend News</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../archive.html">Archive</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <span class="badge">Friday Recap · April 9, 2026</span>
+  <h1>The Deal That Wasn't</h1>
+  <p class="deck">Oil crashed 17% on a ceasefire Tuesday night. By Thursday morning it was back above $100. The Strait of Hormuz is still effectively closed. Iran says three provisions were violated before the ink was dry. Here's what this week actually told us — and what you need to watch heading into next week.</p>
+  <div class="meta">
+    By <strong>Hunter William Lang</strong> · FinTrend News · Friday, April 9, 2026
+  </div>
+
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+    <div class="scoreboard-title">Week in Review · April 7–9, 2026</div>
+    <div class="scores">
+      <div class="score-item">
+        <div class="score-label">S&amp;P 500</div>
+        <div class="score-val">6,762</div>
+        <div class="score-chg dn">−0.3% Thu</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Dow Jones</div>
+        <div class="score-val">47,770</div>
+        <div class="score-chg dn">−0.3% Thu</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Nasdaq</div>
+        <div class="score-val">22,546</div>
+        <div class="score-chg dn">−0.4% Thu</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">WTI Crude</div>
+        <div class="score-val">$101</div>
+        <div class="score-chg dn">+7.3% Thu vs Wed close</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Gold</div>
+        <div class="score-val">$4,803</div>
+        <div class="score-chg up">+2.2% Wed</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">10Y Yield</div>
+        <div class="score-val">4.24%</div>
+        <div class="score-chg neu">−10bps Wed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>The Whipsaw Nobody Should Have Been Surprised By</h2>
+
+  <p>Tuesday night, Trump went from threatening to wipe out "a whole civilization" to declaring a two-week ceasefire, all within about two hours. Oil dropped 17% overnight. The Dow gained 1,325 points Wednesday — its best single session since April 2025. Markets exhaled. Futures surged. Airlines, cruise lines, semiconductors, anything that had been crushed by five weeks of a $100+ oil environment ripped higher. It felt like the trade was over.</p>
+
+  <p>It was not over.</p>
+
+  <p>By Thursday morning, <strong>WTI had clawed back above $101 a barrel</strong>, nearly recovering the entirety of Wednesday's crash. The reason: the Strait of Hormuz, which Tehran agreed to reopen as the central condition of the deal, was not open. Iran's IRGC confirmed that tanker traffic had been "suspended" following Israel's largest strikes on Lebanon since the war began — a coordinated 100-target bombardment in under ten minutes that killed over 250 people in Beirut during morning rush hour.</p>
+
+  <div class="panel red">
+    <div class="panel-label">The Core Dispute</div>
+    <p>Pakistan brokered a deal it said included Lebanon. Netanyahu said it didn't. Trump backed Netanyahu. Iran said three of its ten ceasefire conditions were violated on day one. The IRGC halted tanker traffic in response. As of Thursday, <strong>fewer than six ships have transited the strait since the ceasefire was announced</strong> — against a pre-war average of nine per day. Over 400 tankers remain anchored in the Persian Gulf.</p>
+  </div>
+
+  <p>The market's Wednesday reaction made sense emotionally. Five weeks of elevated oil, inflation risk, and geopolitical uncertainty, suddenly punctuated by a deal announcement. Of course the knee-jerk was to buy. But by Thursday the more measured read was reasserting itself: a 14-day pause mediated by Pakistan, with no agreement on Lebanon, no clarity on uranium enrichment, no mechanism to clear the tanker backlog overnight, and an Iran that publicly claimed victory and control of the strait even as it agreed to open it — that is not a resolution. It is a countdown clock.</p>
+
+  <!-- SECTION 2 -->
+  <h2>What the Oil Market Is Actually Pricing</h2>
+
+  <p>Here is the number that keeps getting lost in the ceasefire celebration: <strong>WTI is still up nearly 70% versus a year ago</strong>. The war started with oil at roughly $67 a barrel on February 27. It hit $119 at its peak. Wednesday's crash to $93 felt massive — and it was, technically the steepest single-day decline since April 2020 — but it still left crude well above any level that qualifies as normal for the U.S. economy.</p>
+
+  <p>The national average for regular gasoline hit $4.17 Thursday per AAA, essentially unchanged from before the ceasefire. Analysts say it could fall one to two cents per day if the strait genuinely reopens — but getting back below $3, where prices sat before the war, is likely months away, not weeks. The pipeline from Hormuz to a gas station in Indiana is long, and it doesn't reverse direction instantly just because Trump posts on Truth Social.</p>
+
+  <div class="scoreboard">
+    <div class="scoreboard-title">Oil: The Full Arc</div>
+    <div class="scores">
+      <div class="score-item">
+        <div class="score-label">Pre-War (Feb 27)</div>
+        <div class="score-val neu">$67</div>
+        <div class="score-chg neu">WTI/bbl</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">War Peak</div>
+        <div class="score-val dn">$119</div>
+        <div class="score-chg dn">+78% from baseline</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Post-Ceasefire</div>
+        <div class="score-val dn">$93</div>
+        <div class="score-chg dn">Wed close</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Thursday</div>
+        <div class="score-val dn">$101</div>
+        <div class="score-chg dn">+7.3% intraday</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The Rystad Energy call on Wednesday was blunt: prices dropped from $110 to $95, which is significant, but at $95 they're still pricing in substantial risk premium. If the ceasefire holds and the strait reopens meaningfully, the next floor is somewhere in the $75–$80 range. If talks collapse in Islamabad or Israel escalates further in Lebanon, the prior highs are very much back in play.</p>
+
+  <!-- SECTION 3 -->
+  <h2>The Fed's Impossible Position</h2>
+
+  <p>The FOMC minutes released Wednesday afternoon landed into a market already distracted by ceasefire euphoria, but they deserve serious attention. The minutes revealed that policymakers are now more inclined toward rate hikes — not cuts — as a response to the oil-driven inflation environment. Seven of nineteen participants currently see no rate cuts at all in 2026. The dot plot, updated at March's meeting, already showed just one cut this year. That number may shrink further depending on what tomorrow brings.</p>
+
+  <p>Tomorrow being the operative word. <strong>March CPI drops Friday morning at 8:30 a.m. ET.</strong> This is the first inflation print that fully captures the Iran war's energy shock — oil spiked sharply in March, gasoline hit $4 for the first time since 2022, and shipping costs exploded as carriers rerouted away from Hormuz. Bank of America is forecasting a 0.9% month-over-month jump in headline CPI driven by a 10.6% surge in energy prices. Core is expected to come in at 0.3% m/m, or roughly 3.1% annualized — still sticky, still above target.</p>
+
+  <div class="panel blue">
+    <div class="panel-label">CPI Preview: What Economists Expect</div>
+    <p>Headline CPI: <strong>+0.9% m/m</strong> (BofA estimate) driven by energy. Core CPI: <strong>+0.3% m/m</strong>, ~3.1% annualized. The Fed's preferred measure, core PCE for February, already printed at 3.0%. A hot CPI tomorrow cements the "higher for longer" scenario even if the strait reopens — because the energy damage to inflation is already baked into the base period.</p>
+  </div>
+
+  <p>The Fed's dilemma is structural at this point. A supply-driven inflation shock — which is exactly what a war-induced oil spike represents — does not respond well to rate hikes. Tightening into an oil shock crushes demand without fixing supply. But the Fed also cannot ignore a headline CPI print north of 4% annualized, which is a real possibility in tomorrow's report, without losing credibility. Fed Vice Chair Jefferson said this week that the "jolt in energy prices complicates the inflation outlook." That is a significant understatement of the bind they are in.</p>
+
+  <!-- SECTION 4 -->
+  <h2>What the Ceasefire's First 24 Hours Actually Told Us</h2>
+
+  <p>Strip away the noise and a few clear facts have emerged from the ceasefire's rocky debut.</p>
+
+  <p>First, Iran is not surrendering the Strait of Hormuz as a strategic asset. Even in agreeing to open it, Tehran inserted language about "coordination with Iran's Armed Forces" and "due consideration of technical limitations." The IRGC made clear it views Hormuz as remaining under Iranian control, and it demonstrated that willingness to close it again within hours. Iran charged some shipping companies over $1 million per tanker for safe passage in recent weeks. That is not a country prepared to hand over a strategic chokepoint unconditionally.</p>
+
+  <p>Second, the Lebanon question is a genuine fault line that neither side has resolved. Netanyahu made clear the ceasefire does not apply to Hezbollah. Trump backed him. Pakistan said it does. Iran said it does. Israel hit over 100 targets in Beirut the morning after the deal was announced. Hezbollah fired rockets into northern Israel overnight. The ground truth is that the ceasefire has two incompatible interpretations, and there is no mechanism to reconcile them before the Islamabad talks begin.</p>
+
+  <div class="panel">
+    <div class="panel-label">The Islamabad Variable</div>
+    <p>Talks are scheduled to begin in Islamabad as soon as Friday, April 10 — today — with Vance leading a U.S. delegation. Iran's ambassador to Pakistan briefly posted on social media that an Iranian delegation would arrive Thursday night, then deleted the post. Whether Iran shows up, what they bring to the table, and whether the Lebanon dispute is resolved before negotiations even start are the three questions that will define the next week of market behavior.</p>
+  </div>
+
+  <p>Third, and this is the one most relevant to investors: the market has gotten very good at trading these Trump deadlines. The relief rally Wednesday was sharp but it was also largely orderly — there was no sign of genuine short covering panic or a blowoff top. The S&P 500 pulled back Thursday, oil came back, gold stayed bid, and Treasury yields remained low. That is not the price action of a market that believes this is resolved. It is the price action of a market managing a fragile truce with one eye permanently on its exit.</p>
+
+  <!-- SECTION 5 -->
+  <h2>The Week's Winners, Losers, and What Changed</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Move</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Delta Air Lines (DAL)</td>
+        <td class="up">+12% Wed</td>
+        <td>Strong Q1 earnings + oil crash = massive margin relief</td>
+      </tr>
+      <tr>
+        <td>United Airlines (UAL)</td>
+        <td class="up">+9.5% Wed</td>
+        <td>Same trade — airlines most leveraged to oil price</td>
+      </tr>
+      <tr>
+        <td>Carnival (CCL)</td>
+        <td class="up">+10% Wed</td>
+        <td>War-beaten cruise stocks caught relief bid</td>
+      </tr>
+      <tr>
+        <td>Meta Platforms (META)</td>
+        <td class="up">+6.5% Wed</td>
+        <td>Muse Spark AI launch + broader tech risk-on</td>
+      </tr>
+      <tr>
+        <td>Broadcom (AVGO)</td>
+        <td class="up">+5% Wed</td>
+        <td>Google contract + Anthropic compute deal</td>
+      </tr>
+      <tr>
+        <td>Exxon Mobil (XOM)</td>
+        <td class="dn">−4.7% Wed</td>
+        <td>Energy sector sold off on oil price collapse</td>
+      </tr>
+      <tr>
+        <td>Chevron (CVX)</td>
+        <td class="dn">−4.3% Wed</td>
+        <td>Same — energy was the only sector in the red</td>
+      </tr>
+      <tr>
+        <td>Shell (SHEL)</td>
+        <td class="dn">−4% pre-bell Thu</td>
+        <td>Flagged oil trading windfall from war — now reversing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The sector rotation embedded in Wednesday's session was telling. Industrials gained 3.8%, materials 3.3%, tech 3.1%. Energy dropped 3.5% — the only sector in the red on a day the broader market surged nearly 3%. That is not accidental. The market is pricing a world where lower oil is good for everything except the companies that were benefiting from elevated oil. The question is whether that rotation holds if the ceasefire unravels.</p>
+
+  <hr class="rule" />
+
+  <!-- SECTION 6 -->
+  <h2>What Matters Next Week</h2>
+
+  <p>The calendar stacks up significantly. March CPI on Friday morning sets the tone before markets open, and a hot print will pressure any remaining rate cut expectations for the first half of the year. The Islamabad talks, if they proceed, will be the dominant geopolitical event — markets will trade every headline out of Pakistan the way they traded every Trump Truth Social post this week. Any signal that Iran is walking away or that the Lebanon dispute is scuttling negotiations will push oil back toward the war-era highs quickly.</p>
+
+  <p>Beyond that, earnings season gets going in earnest. JP Morgan, Wells Fargo, and Citi report next Friday, April 17. Bank earnings arriving into an environment of elevated oil, sticky inflation, and a Fed leaning hawkish will be a real test of whether the financial sector's resilience through the first half of the war has been justified. Watch guidance language closely — forward commentary about credit conditions, energy exposure, and loan demand will say more than the headline numbers.</p>
+
+  <div class="panel">
+    <div class="panel-label">The Honest Summary</div>
+    <p>A 14-day ceasefire that was violated within hours, over a dispute about whether Lebanon counts, with a strait that is still effectively closed, a tanker backlog that will take weeks to clear, a CPI print that will likely confirm the inflation damage is already baked in, and a Fed that is quietly leaning toward hikes rather than cuts. Wednesday's rally was real. The underlying problem is not solved. Position accordingly.</p>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>
+      <a href="../archive.html">← Back to Archive</a>
+    </p>
+    <p class="disclaimer">
+      Nothing in this article constitutes financial advice or a solicitation to buy or sell any security. Market data referenced is sourced from public market reports for the week of April 7–9, 2026. All figures are approximate and subject to revision. Always conduct your own due diligence before making investment decisions.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
