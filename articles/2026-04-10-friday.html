@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Friday Recap: CPI Relief, Oil at $98, and a Ceasefire Nobody Trusts · FinTrend News</title>
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050816;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.28);
+      --accent: #f4c15d;
+      --max: 740px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: radial-gradient(circle at top, rgba(17,24,39,0.72) 0, rgba(2,6,23,0.88) 45%, rgba(0,0,0,0.92) 100%), url("../assets/img/bg-candles.png");
+      background-size: cover; background-position: center; background-attachment: fixed;
+      color: var(--text); line-height: 1.6; min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    /* NAV */
+    .nav {
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,8,22,0.80); backdrop-filter: blur(8px);
+      padding: 14px 24px; display: flex; align-items: center; gap: 16px;
+      position: sticky; top: 0; z-index: 99;
+    }
+    .nav-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 16px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .nav-back {
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid var(--border);
+      padding: 5px 12px; transition: .15s;
+    }
+    .nav-back:hover { color: var(--accent); border-color: rgba(244,193,93,0.35); }
+    .nav-right { margin-left: auto; font-size: 10px; color: var(--muted); letter-spacing: .08em; }
+
+    /* ARTICLE */
+    .article-wrap { max-width: var(--max); margin: 0 auto; padding: 52px 24px 80px; }
+
+    .article-meta {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .meta-tag {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+      border: 1px solid rgba(244,193,93,0.25); padding: 3px 9px;
+    }
+    .meta-date { font-size: 11px; color: var(--muted); letter-spacing: .08em; }
+    .meta-sep { color: var(--border); }
+
+    .article-headline {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.1; font-weight: 700; margin-bottom: 16px;
+      letter-spacing: -.01em;
+    }
+    .article-headline em { font-style: italic; color: var(--accent); }
+
+    .article-deck {
+      font-size: 15px; color: #d1d5db; line-height: 1.75;
+      border-left: 2px solid rgba(244,193,93,0.35);
+      padding-left: 16px; margin-bottom: 36px;
+    }
+
+    .article-rule {
+      height: 1px; background: var(--border); margin: 32px 0;
+    }
+
+    .article-body p {
+      font-size: 15px; color: #d1d5db; line-height: 1.85;
+      margin-bottom: 22px;
+    }
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong {
+      color: var(--text); font-weight: 600;
+    }
+
+    .article-body h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 20px; font-weight: 700; color: var(--text);
+      margin: 36px 0 14px; letter-spacing: -.01em;
+    }
+
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      background: rgba(244,193,93,0.04);
+      margin: 28px 0;
+    }
+    .pull-quote p {
+      font-family: "Playfair Display", serif;
+      font-size: 18px; font-style: italic;
+      color: var(--text); line-height: 1.6; margin: 0 !important;
+    }
+
+    .key-points {
+      border: 1px solid var(--border);
+      background: rgba(10,16,36,0.70);
+      padding: 22px 24px; margin: 28px 0;
+    }
+    .key-points-title {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 14px;
+    }
+    .key-points ul { list-style: none; padding: 0; }
+    .key-points li {
+      font-size: 13px; color: #e5e7eb; padding: 8px 0;
+      border-bottom: 1px solid rgba(148,163,184,0.07);
+      display: flex; gap: 10px; align-items: flex-start; line-height: 1.6;
+    }
+    .key-points li:last-child { border-bottom: 0; }
+    .key-points li::before {
+      content: "→"; color: var(--accent);
+      font-size: 11px; flex-shrink: 0; margin-top: 2px;
+    }
+
+    .disclaimer {
+      margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+      font-size: 11px; color: rgba(148,163,184,0.45); line-height: 1.7;
+      letter-spacing: .04em;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 24px; text-align: center;
+      font-size: 11px; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-brand">FinTrend News</div>
+    <a href="../archive.html" class="nav-back">← Archive</a>
+    <a href="../index.html" class="nav-back">Home</a>
+    <div class="nav-right">Friday Edition · Apr 10, 2026</div>
+  </nav>
+
+  <div class="article-wrap">
+
+    <div class="article-meta">
+      <div class="meta-tag">Macro</div>
+      <div class="meta-tag">Friday Edition</div>
+      <span class="meta-sep">·</span>
+      <div class="meta-date">April 10, 2026</div>
+    </div>
+
+    <h1 class="article-headline">
+      Friday Recap: CPI Relief, Oil at $98,<br>and a Ceasefire <em>Nobody Trusts</em>
+    </h1>
+
+    <p class="article-deck">
+      Markets got what they needed this morning — and still couldn't decide what to do with it. Here's what actually changed today and what to watch going into next week.
+    </p>
+
+    <div class="article-rule"></div>
+
+    <div class="article-body">
+
+      <p>Markets got what they needed this morning — and still couldn't decide what to do with it.</p>
+
+      <p>The April CPI print came in at 3.8% headline and 2.8% core, both in line with expectations. No nasty surprise. No acceleration. In a normal year that would barely move the tape. In April 2026, with oil near $100 and a five-week Middle East conflict still simmering, it was enough to trigger a morning rally in the S&P and Nasdaq. The market's message was simple: the greatest fear right now isn't inflation — it's uncertainty. Remove the uncertainty, even slightly, and money comes back in.</p>
+
+      <div class="pull-quote">
+        <p>"The market's greatest fear right now isn't inflation — it's uncertainty. Remove the uncertainty, even slightly, and money comes back in."</p>
+      </div>
+
+      <p>But the relief didn't hold cleanly. By afternoon stocks were wavering as reports emerged that Trump is actively preparing military options if this weekend's Pakistan peace talks with Iran fall apart. The ceasefire that sent markets up 2.5% on Wednesday is fragile. Oil, which briefly dipped below $95, climbed back toward $98 as traders remembered that Iran is still controlling access to the Strait of Hormuz, ceasefire or not. The S&P settled around 6,813 — up fractionally on the week, but well off the session highs.</p>
+
+      <h2>Three Things That Actually Matter Next Week</h2>
+
+      <div class="key-points">
+        <div class="key-points-title">Key Catalysts · Week of April 13</div>
+        <ul>
+          <li><strong>Pakistan Peace Talks (this weekend)</strong> — First direct US-Iran dialogue since the ceasefire. A breakdown doesn't just mean oil spikes — the entire relief rally of the past week gets reversed in a single session. A breakthrough means oil cracks below $90 and rate-cut bets surge.</li>
+          <li><strong>Bank Earnings — JPM, WFC, BLK (Friday April 17)</strong> — Dimon's commentary on credit quality and consumer health is the most important data point of the quarter. If reserves are building, the recession trade is back on. If the quarter is clean, the S&P has room to run toward 7,000.</li>
+          <li><strong>Fed Speakers Throughout the Week</strong> — Core PCE is already running hot at 2.8%. With oil near $100 and CPI at 3.8%, the May cut that markets were pricing in six weeks ago has been pushed back. Every 10bps shift in the 2-year moves tech valuations by roughly 3%.</li>
+        </ul>
+      </div>
+
+      <h2>The Honest Positioning Call for the Weekend</h2>
+
+      <p>The S&P is at 6,813. We're up roughly 7% from the March lows. That's a significant bounce off levels that were pricing in real recession risk. The CPI data today removes one tail risk. But it doesn't remove oil at $98, it doesn't remove geopolitical binary risk this weekend, and it doesn't change the fact that corporate margins are getting squeezed from both sides — input costs up, consumer demand softening.</p>
+
+      <p>The right posture going into next week is not to chase this rally. Hold your defensive positions — TLT for duration, GLD for the flight-to-safety trade, LMT for the geopolitical hedge. Keep dry powder for a potential dip on Pakistan talks breakdown. And watch JPMorgan's earnings call closely. That's your real tell on where this economy actually is versus where the market thinks it is.</p>
+
+      <p>One email, every Friday. See you Monday.</p>
+
+      <p><em>— FinTrend News</em></p>
+
+      <div class="disclaimer">
+        All content is informational and educational only. Not financial advice. Not a registered investment adviser. Always consult a licensed financial professional before making investment decisions. Past performance does not guarantee future results.
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 FinTrend News · <a href="../archive.html">Archive</a> · <a href="../index.html">Home</a>
+  </footer>
+
+</body>
+</html>
