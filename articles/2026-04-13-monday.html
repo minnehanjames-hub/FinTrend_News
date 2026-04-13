@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Ceasefire Was a Lie | FinTrend News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0b0f1f;
+      --navy-mid: #131829;
+      --navy-card: #161c30;
+      --navy-border: #1e2640;
+      --gold: #f4c15d;
+      --gold-dim: #c9983a;
+      --text-primary: #e8eaf2;
+      --text-secondary: #8b93b0;
+      --text-muted: #5a6285;
+      --red: #e05252;
+      --green: #4cba7c;
+      --amber: #f0a04a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--navy);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1px solid var(--navy-border);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(11,15,31,0.96);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 64px 24px 48px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .tag-monday { background: rgba(244,193,93,0.15); color: var(--gold); border: 1px solid rgba(244,193,93,0.3); }
+    .tag-outlook { background: rgba(76,186,124,0.1); color: var(--green); border: 1px solid rgba(76,186,124,0.25); }
+    .tag-urgent { background: rgba(224,82,82,0.12); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+
+    .hero-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-deck {
+      font-size: 1.08rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 680px;
+      border-left: 3px solid var(--gold);
+      padding-left: 18px;
+      margin-bottom: 32px;
+    }
+
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--navy-border);
+    }
+    .byline-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e2640 0%, #2a3356 100%);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .byline-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .byline-title {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* SCOREBOARD */
+    .scoreboard-wrap {
+      background: var(--navy-card);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 28px 0;
+      margin-bottom: 52px;
+    }
+    .scoreboard-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .scoreboard-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .scoreboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1px;
+      background: var(--navy-border);
+      border: 1px solid var(--navy-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .score-cell {
+      background: var(--navy-card);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .score-name {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .score-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .score-chg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      margin-top: 3px;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .warn { color: var(--amber); }
+
+    /* ARTICLE BODY */
+    .article-body {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* SECTION PANELS */
+    .section-panel {
+      margin: 48px 0 32px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .panel-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+    .panel-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    p {
+      margin-bottom: 22px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      background: var(--navy-card);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+    .pull-quote blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.22rem;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      font-style: normal;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    /* FOCUS BOX */
+    .focus-box {
+      background: rgba(244,193,93,0.05);
+      border: 1px solid rgba(244,193,93,0.2);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+    .focus-box-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .focus-box p { margin-bottom: 8px; font-size: 0.92rem; }
+    .focus-box p:last-child { margin-bottom: 0; }
+
+    /* ALERT BOX */
+    .alert-box {
+      background: rgba(224,82,82,0.07);
+      border: 1px solid rgba(224,82,82,0.25);
+      border-radius: 8px;
+      padding: 22px 26px;
+      margin: 32px 0;
+    }
+    .alert-box-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .alert-box p { margin-bottom: 0; font-size: 0.92rem; }
+
+    /* SCENARIOS */
+    .scenarios {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 36px 0;
+    }
+    @media (max-width: 640px) { .scenarios { grid-template-columns: 1fr; } }
+    .scenario-card {
+      border-radius: 8px;
+      padding: 20px 20px;
+    }
+    .bull-card { background: rgba(76,186,124,0.08); border: 1px solid rgba(76,186,124,0.22); }
+    .base-card { background: rgba(244,193,93,0.06); border: 1px solid rgba(244,193,93,0.2); }
+    .bear-card { background: rgba(224,82,82,0.07); border: 1px solid rgba(224,82,82,0.22); }
+    .scenario-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 8px;
+    }
+    .bull-card .scenario-label { color: var(--green); }
+    .base-card .scenario-label { color: var(--gold); }
+    .bear-card .scenario-label { color: var(--red); }
+    .scenario-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .scenario-text { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.55; }
+
+    /* CATALYST TABLE */
+    .catalyst-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 0.875rem;
+    }
+    .catalyst-table thead th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .catalyst-table tbody tr {
+      border-bottom: 1px solid rgba(30,38,64,0.7);
+    }
+    .catalyst-table tbody tr:last-child { border-bottom: none; }
+    .catalyst-table td {
+      padding: 11px 14px;
+      color: var(--text-primary);
+      vertical-align: top;
+    }
+    .catalyst-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .catalyst-table td:nth-child(2) { font-weight: 500; }
+    .catalyst-table td:nth-child(3) { color: var(--text-secondary); font-size: 0.83rem; }
+    .impact-high { color: var(--red) !important; font-weight: 600; }
+    .impact-mid { color: var(--amber) !important; font-weight: 600; }
+
+    /* SECTOR TABLE */
+    .sector-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.875rem;
+    }
+    .sector-table thead th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--navy-border);
+      text-align: left;
+    }
+    .sector-table tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(30,38,64,0.5);
+    }
+    .sector-bar {
+      height: 5px;
+      border-radius: 3px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      margin-top: 56px;
+      padding: 24px 0 0;
+      border-top: 1px solid var(--navy-border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* TAGS */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 40px 0 24px;
+    }
+    .atag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(139,147,176,0.08);
+      border: 1px solid rgba(139,147,176,0.15);
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">FinTrend News</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../archive.html">Archive</a></li>
+      <li><a href="../premium.html">Premium</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="tag tag-monday">Monday Outlook</span>
+    <span class="tag tag-urgent">Breaking</span>
+    <span class="hero-date">April 13, 2026</span>
+  </div>
+  <h1>The Ceasefire Was <em>a Pause.</em><br>The Blockade Is the War.</h1>
+  <p class="hero-deck">Talks in Islamabad ended without a deal. Trump ordered a naval blockade of the Strait of Hormuz by 10 a.m. this morning. WTI surged back above $103. This week, markets must reckon with a conflict that refuses to resolve — and an earnings season that may be the only good news in sight.</p>
+  <div class="byline">
+    <div class="byline-avatar">JM</div>
+    <div>
+      <div class="byline-name">James Thomas Minnehan</div>
+      <div class="byline-title">Senior Markets Editor — FinTrend News</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCOREBOARD -->
+<div class="scoreboard-wrap">
+  <div class="scoreboard-inner">
+    <div class="scoreboard-label">Market Snapshot — Friday Close / Monday AM Futures</div>
+    <div class="scoreboard-grid">
+      <div class="score-cell">
+        <div class="score-name">S&P 500</div>
+        <div class="score-val">6,817</div>
+        <div class="score-chg down">–0.11% Mon</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">Nasdaq</div>
+        <div class="score-val">22,903</div>
+        <div class="score-chg up">+0.35% Mon</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">Dow Jones</div>
+        <div class="score-val">47,917</div>
+        <div class="score-chg down">–0.56% Mon</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">WTI Crude</div>
+        <div class="score-val">$103.6</div>
+        <div class="score-chg up warn">+7–9% Mon</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">Brent</div>
+        <div class="score-val">$102.8</div>
+        <div class="score-chg up warn">+7.4% Mon</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">10Y Yield</div>
+        <div class="score-val">4.20%</div>
+        <div class="score-chg down">Off 4.40% high</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">VIX</div>
+        <div class="score-val">19.23</div>
+        <div class="score-chg down">–22% post-ceasefire</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-name">DXY</div>
+        <div class="score-val">98.86</div>
+        <div class="score-chg up">+0.42% Mon</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+
+  <!-- SECTION 1: THE WEEKEND -->
+  <div class="section-panel">
+    <div class="panel-label">Situation Report</div>
+    <div class="panel-title">Twenty-One Hours. No Deal. A Blockade by Morning.</div>
+  </div>
+
+  <p>There was a moment late Saturday night in Islamabad when Pakistan's mediators thought they were close. American and Iranian negotiators had been in the same room for the first time since the 1979 revolution, grinding through 21 hours of talks at the Serena Hotel. Both sides said progress had been made on multiple issues. Then it all fell apart.</p>
+
+  <p>Vice President JD Vance emerged Sunday and delivered the verdict plainly: Iran "chose not to accept our terms." The sticking point, as it has always been, was nuclear. Washington demanded a full, verifiable end to uranium enrichment, dismantlement of enrichment facilities, and removal of over 400 kilograms of highly enriched uranium from Iranian soil. Tehran refused. Iran's Foreign Minister Abbas Araghchi framed it differently — the two sides were "inches from an Islamabad MoU" when the U.S. moved the goalposts and announced the blockade simultaneously with negotiations still underway.</p>
+
+  <p>What happened next moved fast. <strong>Trump posted on Truth Social shortly after midnight:</strong> the U.S. Navy would begin blockading ships entering or exiting the Strait of Hormuz effective Monday at 10 a.m. ET. CENTCOM clarified the scope: the blockade applies to ships bound to or from Iranian ports, not vessels transiting to non-Iranian destinations. The U.S. will also interdict ships that have paid tolls to Iran — which Tehran had been charging at over $1 million per vessel — and mine-clearing operations are underway.</p>
+
+  <div class="alert-box">
+    <div class="alert-box-title">Status as of Monday Morning</div>
+    <p>The two-week ceasefire technically remains in force until April 22, but its practical status is now deeply uncertain. Iran's military spokesman warned that warships nearing the Strait would "be met with a strong and decisive response." The WSJ reports Trump is also weighing a resumption of limited military strikes. The UK declined to join the blockade but said it is working with France on a separate multinational freedom-of-navigation mission. Australia signaled readiness to participate if called upon.</p>
+  </div>
+
+  <p>Oil's reaction said everything. WTI surged more than 7% in early Monday trading, climbing back above $103 per barrel — nearly fully reversing last week's ceasefire-driven selloff. The brief window of relief that sent markets roaring on April 8 has closed. We are back, structurally, to the same supply disruption that has defined this crisis since late February.</p>
+
+  <!-- SECTION 2: OIL -->
+  <div class="section-panel">
+    <div class="panel-label">Commodity Markets</div>
+    <div class="panel-title">The $100 Floor Is No Longer a Ceiling</div>
+  </div>
+
+  <p>When the ceasefire was announced on April 8, WTI fell 16.4% to $94.41 in a single session — its biggest one-day drop since April 2020. Brent shed 13.3% to settle at $94.75. The relief was enormous and, it turns out, premature. Even at those post-ceasefire levels, crude was still roughly $25–$30 above where it traded before the war began in late February.</p>
+
+  <p>The fundamental math hasn't changed. The Strait of Hormuz — through which roughly 20% of the world's oil and natural gas normally flows — remains effectively closed to commercial traffic. OPEC output dropped 7.9 million barrels per day in March due to the closure. Ras Laffan, the Qatari LNG complex that accounts for nearly 20% of global liquefied natural gas production, sustained damage that has reduced export capacity by an estimated 17%. That's infrastructure that won't recover overnight regardless of what happens diplomatically.</p>
+
+  <div class="pull-quote">
+    <blockquote>"If we have a blockade, we still have the problem of a shortage in the market of about 7 million barrels of crude, 4 million barrels of product not getting out. And we just added to that by making the Iranian barrels off the market."</blockquote>
+    <cite>— Karen Young, Senior Scholar, Columbia University Center on Global Energy Policy</cite>
+  </div>
+
+  <p>Goldman Sachs, in revised forecasts issued following the ceasefire, trimmed its Q2 Brent target to $90 per barrel — but included the caveat that prices could average above $100 for the full year if the strait remains closed for another month. Given this morning's blockade announcement, that scenario is now the base case, not a tail risk. The Chicago Fed's Austan Goolsbee said Monday that if oil remained at $90/barrel month after month, it would "start spilling over to other prices" — a direct warning that the Fed's ability to stay on hold is being tested in real time.</p>
+
+  <p>Saudi Arabia has attempted to cushion the blow, restoring full pumping capacity through its East-West pipeline to the Red Sea and bringing the Manifa field back online. But alternate routes cannot fully substitute for Hormuz volume. The market is running a structural deficit, and the U.S. blockade — regardless of its stated purpose of reopening the strait — adds a new layer of uncertainty to tanker routing and insurance.</p>
+
+  <!-- SECTION 3: EARNINGS -->
+  <div class="section-panel">
+    <div class="panel-label">Earnings Season</div>
+    <div class="panel-title">Goldman Just Showed Us What Good Looks Like. Now Watch Everyone Else.</div>
+  </div>
+
+  <p>Here is the paradox this market is living with: the macro backdrop is genuinely ugly, and earnings are coming in strong. Goldman Sachs kicked off Q1 reporting this morning with results that would be impressive in any environment. Net revenues hit $17.23 billion, up 14% year-over-year. Diluted EPS came in at $17.55, versus $14.12 a year ago — a 24% increase. Return on equity of 19.8% was among the best in years. Assets under supervision reached a record $3.65 trillion.</p>
+
+  <p>The standout driver was Goldman's equities desk, which posted record revenues on the back of institutional portfolio churn as investors repositioned around the Middle East conflict and AI-driven sector rotations. Investment banking fees climbed 48% year-over-year, driven by an M&A revival that began late in 2025. FICC revenues did decline 10% — rates and mortgage intermediation was softer — but commodities and currencies desks more than offset that with war-driven volatility.</p>
+
+  <div class="focus-box">
+    <div class="focus-box-title">What Goldman's CEO Said on the Call</div>
+    <p>CEO David Solomon: "The combined effects of fiscal stimulus in developed economies, ongoing AI-related capital investment, and a more balanced regulatory agenda in the U.S. are powerful forces. At the same time, the geopolitical landscape remains very complex, and the ultimate impact of higher energy prices on inflation and growth is yet to be determined."</p>
+    <p>On the conflict's duration risk: "If the resolution drags, that probably will be a headwind in some of these areas, particularly inflation trends, as we get further into Q2 and Q3. At the moment, M&A and capital markets have been pretty resilient, and the environment continues to be quite constructive."</p>
+  </div>
+
+  <p>That cautious optimism will be tested by the week ahead. JPMorgan, Wells Fargo, Citigroup, Morgan Stanley, and Bank of America all report Tuesday through Thursday. Netflix, BlackRock, and Johnson &amp; Johnson follow later in the week. The macro data calendar is equally loaded: March PPI drops Tuesday alongside JPMorgan earnings — that combination of producer inflation data and Dimon's commentary on consumer credit could set tone for the rest of the week. March CPI follows Wednesday. Empire State Manufacturing and NAHB Housing Market Index land Wednesday as well.</p>
+
+  <p>Investors will be listening for more than just headline beats. They want to know whether corporate America is actually starting to feel the oil shock in its cost structures, whether consumer credit quality is degrading, and — critically — whether managements are pulling forward guidance or simply saying "we'll see." Delta's CEO already flagged that the carrier will "meaningfully reduce" near-term capacity growth due to jet fuel costs. Expect that theme to echo across industrials and consumer discretionary reports in the weeks ahead.</p>
+
+  <!-- SECTOR PERFORMANCE TABLE -->
+  <div class="section-panel">
+    <div class="panel-label">Sector Lens</div>
+    <div class="panel-title">Who Wins When Oil Doesn't Go Down</div>
+  </div>
+
+  <table class="sector-table">
+    <thead>
+      <tr>
+        <th>Sector</th>
+        <th>YTD Performance</th>
+        <th>Outlook</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Energy (XLE)</strong></td>
+        <td><span style="color:var(--green)">+34%+ Q1</span></td>
+        <td><span style="color:var(--amber)">Elevated</span></td>
+        <td>XOM +42% YTD, CVX +37% YTD. Structurally supported by supply deficit, though blockade adds routing risk.</td>
+      </tr>
+      <tr>
+        <td><strong>Financials (XLF)</strong></td>
+        <td><span style="color:var(--red)">Off Jan highs</span></td>
+        <td><span style="color:var(--amber)">Watch</span></td>
+        <td>Trading desks thriving. GS confirmed. But credit quality and IB guidance will determine week's tone.</td>
+      </tr>
+      <tr>
+        <td><strong>Technology (XLK)</strong></td>
+        <td><span style="color:var(--red)">–5.5% from Oct high</span></td>
+        <td><span style="color:var(--text-secondary)">Neutral</span></td>
+        <td>Nasdaq is nearly flat since war began. AI capex continues. Valuation drag from oil-driven rate uncertainty.</td>
+      </tr>
+      <tr>
+        <td><strong>Industrials (XLI)</strong></td>
+        <td><span style="color:var(--red)">Under pressure</span></td>
+        <td><span style="color:var(--red)">Cautious</span></td>
+        <td>JB Hunt reports Thursday. Freight and logistics absorbing fuel cost headwinds directly.</td>
+      </tr>
+      <tr>
+        <td><strong>Consumer Disc. (XLY)</strong></td>
+        <td><span style="color:var(--red)">Lagging</span></td>
+        <td><span style="color:var(--red)">Cautious</span></td>
+        <td>Gas above $4/gallon nationally since the war started. Retail spending signals mixed.</td>
+      </tr>
+      <tr>
+        <td><strong>Defense (ITA)</strong></td>
+        <td><span style="color:var(--green)">Outperforming</span></td>
+        <td><span style="color:var(--green)">Constructive</span></td>
+        <td>Naval blockade escalation accelerates procurement cycles and contract flows for major primes.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SCENARIOS -->
+  <div class="section-panel">
+    <div class="panel-label">Scenario Framework</div>
+    <div class="panel-title">Three Paths From Here</div>
+  </div>
+
+  <div class="scenarios">
+    <div class="scenario-card bull-card">
+      <div class="scenario-label">Bull Case</div>
+      <div class="scenario-title">Blockade Forces Iran Back to the Table</div>
+      <div class="scenario-text">The Navy's mine-clearing operation succeeds in reopening passage. Iran accepts Vance's "final offer" framework within 10 days. Oil reverses toward $85. Earnings euphoria takes hold. S&P reclaims 7,000.</div>
+    </div>
+    <div class="scenario-card base-card">
+      <div class="scenario-label">Base Case</div>
+      <div class="scenario-title">Siege Diplomacy, Markets Range-Bound</div>
+      <div class="scenario-text">Blockade holds without active military exchange. Ceasefire limps to April 22. Talks resume under new framework. WTI oscillates $95–$110. Earnings provide a floor. S&P stays 6,600–6,900.</div>
+    </div>
+    <div class="scenario-card bear-card">
+      <div class="scenario-label">Bear Case</div>
+      <div class="scenario-title">Escalation Loop</div>
+      <div class="scenario-text">Iran retaliates against U.S. Navy assets or Gulf state infrastructure. China delivers air defense systems. Oil spikes above $115. CPI data this week confirms stagflation trajectory. Fed trapped. Risk-off accelerates.</div>
+    </div>
+  </div>
+
+  <!-- MACRO WATCH -->
+  <div class="section-panel">
+    <div class="panel-label">The Macro Problem</div>
+    <div class="panel-title">Stagflation Is Not Hypothetical Anymore</div>
+  </div>
+
+  <p>The U.S. economy grew just 0.7% annualized in Q4 2025, well below the 2.5% initial forecast. U.S. employers shed 92,000 jobs in February — a number that was supposed to be a gain of 50,000. Consumer sentiment has been deteriorating since the war started pushing gasoline above $4. National gas prices rose more than 40% since the conflict began.</p>
+
+  <p>Against that backdrop, March CPI data landing Wednesday carries genuine weight. The conflict began on February 28, which means a full month of elevated energy prices will be baked into the March print. Energy's contribution alone could push headline CPI well above what the Fed had penciled in for Q1. The FOMC minutes drop the same day — those minutes cover the March 18 meeting, where Powell's tone was already shifting toward elevated uncertainty.</p>
+
+  <p>The Fed is boxed. Core inflation was already sticky before the war added an energy shock. Rate cuts that were expected in the first half of 2026 have been effectively pushed off the table. The market is pricing two cuts for the full year; private forecasters are now debating whether even one happens. Meanwhile, the economy is softening — not collapsing, but clearly losing momentum. That is the classic stagflation setup, and every week the Strait stays closed makes the arithmetic worse.</p>
+
+  <div class="pull-quote">
+    <blockquote>"For now and into the end of 2026, we are looking at elevated oil prices for certain. The question is not if they remain high — it's how high, and for how long."</blockquote>
+    <cite>— Karen Young, Columbia Center on Global Energy Policy, April 13</cite>
+  </div>
+
+  <!-- WEEK AHEAD CATALYST CALENDAR -->
+  <div class="section-panel">
+    <div class="panel-label">Week-Ahead Calendar</div>
+    <div class="panel-title">What to Watch, Day by Day</div>
+  </div>
+
+  <table class="catalyst-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Why It Matters</th>
+        <th>Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mon Apr 13</td>
+        <td>Goldman Sachs Q1 Earnings; U.S. Naval Blockade Begins (10 a.m.)</td>
+        <td>Sets tone for bank earnings season; blockade is the live geopolitical risk all week</td>
+        <td class="impact-high">HIGH</td>
+      </tr>
+      <tr>
+        <td>Tue Apr 14</td>
+        <td>March PPI; JPMorgan, Citigroup, Wells Fargo, J&amp;J, BlackRock Q1</td>
+        <td>Producer prices will show energy pass-through; Dimon's consumer credit commentary is the key macro read</td>
+        <td class="impact-high">HIGH</td>
+      </tr>
+      <tr>
+        <td>Wed Apr 15</td>
+        <td>March CPI; FOMC Minutes (Mar 18 meeting); Morgan Stanley, BofA Q1</td>
+        <td>Full month of war-era energy prices hits headline CPI; Fed minutes frame the policy dilemma formally</td>
+        <td class="impact-high">HIGH</td>
+      </tr>
+      <tr>
+        <td>Thu Apr 16</td>
+        <td>Initial Claims; Philly Fed; Industrial Production; Netflix, PepsiCo Q1</td>
+        <td>Labor market health check; Netflix tests whether consumers are cutting discretionary spend</td>
+        <td class="impact-mid">MED</td>
+      </tr>
+      <tr>
+        <td>Fri Apr 17</td>
+        <td>Regional Bank Earnings (State Street, Truist, Fifth Third)</td>
+        <td>Regional credit quality and commercial real estate exposure — the canary in the coal mine</td>
+        <td class="impact-mid">MED</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- CLOSING -->
+  <div class="section-panel">
+    <div class="panel-label">Editor's View</div>
+    <div class="panel-title">Where Things Actually Stand</div>
+  </div>
+
+  <p>The market spent last week trading a ceasefire that was never what it appeared. The April 8 relief rally was real — the Dow had its best day in a year, European indices posted their best sessions since 2022, VIX fell 22% — but it was priced on the assumption that the Strait of Hormuz would reopen, oil would normalize, and diplomacy would gradually resolve the conflict. None of that happened. Iran began charging $1 million tolls per ship. Only four vessels passed through on the day of the ceasefire itself. The backlog of 187-plus tankers holding 172 million barrels inside the Gulf remained essentially in place.</p>
+
+  <p>Now we are in a structurally different phase. The Islamabad talks represented the highest-level U.S.-Iran engagement since 2015 — and they failed. The U.S. response is not another deadline or threat; it is the literal encirclement of Iran's primary source of economic leverage. That is not a negotiating position that reverses quickly. Investors who bought the ceasefire rally and held through the weekend have spent Monday morning giving much of it back.</p>
+
+  <p>The one genuine bright spot is earnings. Goldman's numbers this morning were not just good — they were record-setting in equities, driven precisely by the volatility that the geopolitical crisis generates. JPMorgan, Morgan Stanley, and others will likely show the same dynamic. Market turbulence has been a direct revenue driver for trading desks. The question is whether that tailwind can offset the macro headwinds that are only beginning to show up in the data — and whether managements are still willing to provide constructive forward guidance in an environment that has moved from "complex" to "actively escalating" over a single weekend.</p>
+
+  <p>This week is heavy. Navigate it carefully.</p>
+
+  <!-- TAGS -->
+  <div class="article-tags">
+    <span class="atag">Iran</span>
+    <span class="atag">Strait of Hormuz</span>
+    <span class="atag">Oil Markets</span>
+    <span class="atag">Earnings Season</span>
+    <span class="atag">Goldman Sachs</span>
+    <span class="atag">Fed Policy</span>
+    <span class="atag">Stagflation</span>
+    <span class="atag">Market Outlook</span>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> This article is published for educational and informational purposes only. FinTrend News and its contributors are not licensed financial advisors. Nothing in this publication constitutes investment advice, a solicitation to buy or sell any security, or a recommendation to take any specific financial action. All market data referenced reflects conditions at time of writing and may change. Readers should conduct their own research and consult a qualified financial professional before making any investment decisions.
+  </div>
+
+</div><!-- /article-body -->
+</body>
+</html>
