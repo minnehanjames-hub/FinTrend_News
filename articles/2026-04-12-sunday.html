@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Week That Almost Broke Everything — And Then Didn't · FinTrend News</title>
+  <meta name="description" content="The S&P gained 3.6% this week — but it wasn't a simple week. A ceasefire, oil's biggest single-day drop since 2020, a hot CPI print, and a Fed stuck in place. Here's what it all means for your money." />
+  <meta name="author" content="Arshia Morshedian" />
+
+  <meta property="og:title" content="The Week That Almost Broke Everything — And Then Didn't" />
+  <meta property="og:description" content="The S&P gained 3.6% this week — but it wasn't a simple week. A ceasefire, oil's biggest single-day drop since 2020, a hot CPI print, and a Fed stuck in place." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://fintrend.news/articles/2026-04-12-sunday.html" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:          #0b0f1f;
+      --bg-card:     rgba(13,19,38,0.95);
+      --bg-elevated: rgba(17,24,48,0.98);
+      --accent:      #f4c15d;
+      --accent-soft: rgba(244,193,93,0.12);
+      --accent-dim:  rgba(244,193,93,0.06);
+      --green:       #4ade80;
+      --green-soft:  rgba(74,222,128,0.10);
+      --red:         #f87171;
+      --red-soft:    rgba(248,113,113,0.10);
+      --blue:        #60a5fa;
+      --blue-soft:   rgba(96,165,250,0.10);
+      --text:        #eef0f6;
+      --muted:       #8892a4;
+      --border:      rgba(148,163,184,0.14);
+      --border-mid:  rgba(148,163,184,0.26);
+      --max:         740px;
+      --r:           10px;
+      --disp:        "DM Serif Display", Georgia, serif;
+      --mono:        "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(244,193,93,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 0% 100%, rgba(96,165,250,0.05) 0%, transparent 60%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.78;
+      min-height: 100vh;
+    }
+
+    /* ── PROGRESS ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #fb923c);
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11,15,31,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 22px; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HEADER ── */
+    .article-header {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 42px;
+    }
+    .header-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tag-pill {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .tag-sunday {
+      background: rgba(244,193,93,0.13);
+      color: var(--accent);
+      border: 1px solid rgba(244,193,93,0.28);
+    }
+    .tag-macro {
+      background: rgba(96,165,250,0.10);
+      color: var(--blue);
+      border: 1px solid rgba(96,165,250,0.22);
+    }
+    .header-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+    .article-hed {
+      font-family: var(--disp);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .article-hed em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .article-dek {
+      font-size: 17px;
+      color: #b0b8cc;
+      line-height: 1.68;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .byline-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: #0b0f1f;
+      flex-shrink: 0;
+    }
+    .byline-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .byline-role {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .byline-read {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── MARKET SNAPSHOT BAR ── */
+    .snapshot-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 600px) { .snapshot-bar { grid-template-columns: repeat(3, 1fr); } }
+    .snap-cell {
+      padding: 14px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .snap-cell:last-child { border-right: none; }
+    .snap-label {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .snap-val {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .snap-val.up   { color: var(--green); }
+    .snap-val.dn   { color: var(--red); }
+    .snap-val.neu  { color: var(--accent); }
+    .snap-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .snap-sub.up  { color: var(--green); }
+    .snap-sub.dn  { color: var(--red); }
+
+    /* ── PROSE ── */
+    .prose { max-width: 680px; }
+
+    .prose p {
+      font-size: 15.5px;
+      color: #c8d0e0;
+      line-height: 1.82;
+      margin-bottom: 22px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+
+    .section-panel {
+      border-left: 2px solid var(--accent);
+      padding: 3px 0 3px 18px;
+      margin: 36px 0 20px;
+    }
+    .section-panel-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .section-panel-title {
+      font-family: var(--disp);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border: 1px solid var(--border-mid);
+      border-radius: var(--r);
+      background: var(--bg-card);
+      padding: 20px 22px;
+      margin: 28px 0;
+    }
+    .callout.warn {
+      border-color: rgba(244,193,93,0.28);
+      background: rgba(244,193,93,0.05);
+    }
+    .callout.bear {
+      border-color: rgba(248,113,113,0.25);
+      background: rgba(248,113,113,0.05);
+    }
+    .callout.bull {
+      border-color: rgba(74,222,128,0.22);
+      background: rgba(74,222,128,0.05);
+    }
+    .callout-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .callout.warn .callout-label { color: var(--accent); }
+    .callout.bear .callout-label { color: var(--red); }
+    .callout.bull .callout-label { color: var(--green); }
+    .callout p {
+      font-size: 14px;
+      color: #b8c2d4;
+      line-height: 1.74;
+      margin: 0;
+    }
+
+    /* ── WEEK AHEAD TABLE ── */
+    .week-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin: 28px 0;
+      font-size: 13px;
+    }
+    .week-table th {
+      background: rgba(17,24,48,0.98);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-mid);
+    }
+    .week-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #c0c8da;
+      vertical-align: top;
+    }
+    .week-table tr:last-child td { border-bottom: none; }
+    .week-table tr:hover td { background: rgba(244,193,93,0.03); }
+    .week-table .day-col {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      width: 90px;
+    }
+    .week-table .event-name { font-weight: 500; color: var(--text); }
+    .week-table .event-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .importance-high {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(248,113,113,0.13);
+      color: var(--red);
+      border: 1px solid rgba(248,113,113,0.25);
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 8px;
+    }
+    .importance-med {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(244,193,93,0.10);
+      color: var(--accent);
+      border: 1px solid rgba(244,193,93,0.22);
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 8px;
+    }
+
+    /* ── DIVIDER ── */
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    /* ── CLOSING SIG ── */
+    .closing-sig {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      margin-top: 40px;
+    }
+    .closing-sig p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .closing-sig strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer-disc {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.55;
+      text-align: right;
+    }
+    @media (max-width: 560px) {
+      .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
+      .footer-disc { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">FinTrend<span> News</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/archive.html">Archive</a>
+      <a href="/premium.html">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="article-header">
+    <div class="header-kicker">
+      <span class="tag-pill tag-sunday">Sunday Macro Note</span>
+      <span class="tag-pill tag-macro">Week in Review</span>
+      <span class="header-date">April 12, 2026</span>
+    </div>
+
+    <h1 class="article-hed">The Week That Almost Broke Everything —<em> And Then Didn't</em></h1>
+
+    <p class="article-dek">The S&P gained 3.6% this week. That sounds fine. It wasn't a simple week. A ceasefire, oil's biggest single-day drop since 2020, a CPI print nobody wanted, and a Fed stuck between two bad options. Here's what actually happened — and what it means for your money going into next week.</p>
+
+    <div class="byline-row">
+      <div class="byline-avatar">AM</div>
+      <div>
+        <div class="byline-name">Arshia Morshedian</div>
+        <div class="byline-role">Sunday Macro · FinTrend News</div>
+      </div>
+      <div class="byline-read">8 min read</div>
+    </div>
+  </header>
+
+  <!-- SNAPSHOT BAR -->
+  <div class="snapshot-bar">
+    <div class="snap-cell">
+      <div class="snap-label">S&P 500</div>
+      <div class="snap-val up">6,782</div>
+      <div class="snap-sub up">+3.6% wk</div>
+    </div>
+    <div class="snap-cell">
+      <div class="snap-label">Nasdaq</div>
+      <div class="snap-val up">22,635</div>
+      <div class="snap-sub up">+4.7% wk</div>
+    </div>
+    <div class="snap-cell">
+      <div class="snap-label">WTI Crude</div>
+      <div class="snap-val dn">$94.41</div>
+      <div class="snap-sub dn">−16.4% Wed</div>
+    </div>
+    <div class="snap-cell">
+      <div class="snap-label">CPI (Mar)</div>
+      <div class="snap-val dn">3.3%</div>
+      <div class="snap-sub dn">+0.9% m/m</div>
+    </div>
+    <div class="snap-cell">
+      <div class="snap-label">VIX</div>
+      <div class="snap-val neu">↓ 22%</div>
+      <div class="snap-sub">Wed close</div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="prose">
+
+    <!-- SECTION 1 -->
+    <div class="section-panel">
+      <div class="section-panel-label">Week in Review</div>
+      <div class="section-panel-title">The Setup Coming In</div>
+    </div>
+
+    <p>Let's zoom out and think about what actually happened this week, because on the surface the numbers look fine. The S&P 500 ended up 3.6%. The Dow had its best single day in over a year. The Nasdaq gained nearly 5%. That sounds like a good week. It wasn't a simple one.</p>
+
+    <p>Coming into Monday, markets were tense. The S&P 500 had been sitting below its 200-day moving average, and crude oil was approaching $115 per barrel — all of it driven by the U.S.-Israel-Iran war that began in late February when the Strait of Hormuz was closed. The Strait is not a minor shipping lane. It normally handles about a fifth of the world's oil and liquified natural gas. Shutting it was like cutting off a global artery.</p>
+
+    <p>Tuesday was the inflection point. Trump had set an 8 p.m. ET deadline for Iran to reopen the Strait or face further military action. Markets were jittery all day. Then, barely an hour before that deadline, a ceasefire was announced.</p>
+
+    <!-- SECTION 2 -->
+    <div class="section-panel">
+      <div class="section-panel-label">The Pivot</div>
+      <div class="section-panel-title">Wednesday's Relief Rally</div>
+    </div>
+
+    <p>The Dow ripped 1,325 points on Wednesday — its best day since April 2025. The S&P surged 2.51%. The Nasdaq jumped 2.8%. WTI crude tumbled over 16% in a single session, its largest single-day decline since April 2020. The VIX dropped 22%. South Korea's Kospi gained nearly 7%. Japan's Nikkei had its best day since last April. In Europe, Germany's DAX soared over 5%.</p>
+
+    <p>This wasn't a U.S. story — it was a global repricing of geopolitical risk. When the Strait of Hormuz goes from closed to open-ish, every energy-importing economy exhales at once.</p>
+
+    <div class="callout bull">
+      <div class="callout-label">Relief Rally Context</div>
+      <p>The S&P 500 is now less than 1% below its pre-war level of 6,878. Stocks have recouped more than two-thirds of losses since fighting began in late February. Barclays noted the rebound was driven in part by a "powerful short squeeze" as bearish bets were unwound into the rally.</p>
+    </div>
+
+    <p>But by Thursday, the euphoria was already cracking. A round of Israeli strikes on Lebanon killed and injured hundreds, and Iran again closed the Strait of Hormuz in response. Oil climbed back toward $100. Futures dipped. The ceasefire lasted about 36 hours before its first major test.</p>
+
+    <!-- SECTION 3 -->
+    <div class="section-panel">
+      <div class="section-panel-label">The Macro Problem</div>
+      <div class="section-panel-title">Friday's CPI Print Changed Nothing — and Everything</div>
+    </div>
+
+    <p>Friday brought the CPI print that nobody wanted: headline inflation surged to 3.3% annually in March, with prices rising 0.9% from February — the largest monthly gain since 2022, driven almost entirely by the spike in gas prices from the war. That acceleration from February's 2.6% reading in a single month is not a small move. That's a structural jolt.</p>
+
+    <div class="callout warn">
+      <div class="callout-label">Inflation Watch</div>
+      <p>Core PCE — the Fed's preferred measure — had already been running hot before the war began, with a three-month annualized rate above 4%. The energy shock layered on top of that creates a dual problem: headline inflation is suddenly back above 3%, while underlying pressures were never fully resolved.</p>
+    </div>
+
+    <p>Stocks shrugged it off enough to still close the week in the green, but the message was clear: the inflation problem isn't solved. It was just temporarily imported from a military conflict — and now it's embedded in March's official data and will be in April's as well, regardless of how the ceasefire holds.</p>
+
+    <!-- SECTION 4 -->
+    <div class="section-panel">
+      <div class="section-panel-label">What This Means for You</div>
+      <div class="section-panel-title">The Funnel: From Hormuz to Your Grocery Receipt</div>
+    </div>
+
+    <p>Here's how this actually works when you trace it down through the economy. Start at the top: a war in the Middle East closes the world's most important oil shipping lane. Oil goes from $67 to over $115 in weeks. That flows directly into gas prices — Americans were paying well above $4 a gallon by late March. Higher gas prices hit transportation costs, which hit the price of everything shipped by truck, which is basically everything you buy. That's how a military event in the Persian Gulf ends up in your grocery receipt by April.</p>
+
+    <p>Now layer tariffs on top of that. Wall Street consensus estimates a 5–8% hit to aggregate S&P 500 earnings per share from tariffs covering more than 50 countries at rates up to 50%. That's not a rounding error — that's a structural compression on corporate profits that doesn't disappear when the ceasefire holds. Companies facing both energy cost inflation and import tariffs are being squeezed from both sides of the income statement simultaneously.</p>
+
+    <div class="callout bear">
+      <div class="callout-label">The Divergence Problem</div>
+      <p>Higher energy costs and tariffs are hitting lower-income households hardest, while higher-income households remain more insulated due to stronger balance sheets and greater exposure to financial assets. If you have a 401(k) that rode Wednesday's rally, you benefited this week. If you're spending a larger share of income on gas and groceries, this week felt nothing like a 3.6% gain.</p>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section-panel">
+      <div class="section-panel-label">The Fed</div>
+      <div class="section-panel-title">A Central Bank With No Good Options</div>
+    </div>
+
+    <p>The Fed is essentially a bystander right now. Coming into 2026, markets were pricing in one or two rate cuts. Then the Iran war began, oil spiked, and inflation expectations jumped. At the peak of the conflict, markets were pricing nearly even odds of a rate hike versus a cut — a whiplash few traders anticipated in January.</p>
+
+    <p>Now, with the ceasefire offering some relief, expectations for easing have started to rebuild. But the Fed's problem is structural: you cannot lower rates to fight a war-caused oil shock. Rate cuts don't produce more oil. They don't reopen the Strait of Hormuz. The Fed's tools are calibrated for demand-side inflation, and this is supply-side — driven by geopolitics, not by an overheated economy. So the central bank sits and waits, data-dependent and diplomacy-dependent in equal measure.</p>
+
+    <p>Market expectations now reflect a Fed on hold for most of 2026, with modest cuts possible in the back half of the year if oil prices continue to normalize and inflation starts to retreat. That's the base case. It rests entirely on the ceasefire holding.</p>
+
+    <!-- SECTION 6 -->
+    <div class="section-panel">
+      <div class="section-panel-label">Week Ahead</div>
+      <div class="section-panel-title">What to Watch April 13–17</div>
+    </div>
+
+    <p>The Islamabad diplomatic talks are the single most important variable heading into next week. A successful transition from the two-week ceasefire into a longer diplomatic framework could push equities to new record highs by late April. Any breakdown in negotiations, or a resumption of hostilities, brings the fear trade back hard — oil above $110, VIX spiking, growth names selling off sharply.</p>
+
+    <p>Beyond geopolitics, Q1 earnings season kicks off in earnest. The big banks report early in the week. Watch guidance more than actual numbers — what management says about tariff exposure and energy costs in their Q2 outlook will matter far more than what already happened in Q1. If you see banks and industrials guiding down on margins, that's the market's next catalyst lower. If guidance holds, the relief rally has legs.</p>
+
+    <table class="week-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Event</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="day-col">Mon Apr 13</td>
+          <td>
+            <div class="event-name">Islamabad Talks <span class="importance-high">High</span></div>
+            <div class="event-note">Weekend ceasefire talks results; market opens with this as key input</div>
+          </td>
+          <td>Oil direction, risk appetite for the week</td>
+        </tr>
+        <tr>
+          <td class="day-col">Tue Apr 14</td>
+          <td>
+            <div class="event-name">JPMorgan, Wells Fargo Earnings <span class="importance-high">High</span></div>
+            <div class="event-note">Q1 earnings season opener; big bank guidance on credit conditions</div>
+          </td>
+          <td>Loan demand, tariff exposure commentary, NIM trends</td>
+        </tr>
+        <tr>
+          <td class="day-col">Wed Apr 15</td>
+          <td>
+            <div class="event-name">Retail Sales (Mar) <span class="importance-high">High</span></div>
+            <div class="event-note">First hard data read on consumer behavior post-gas spike</div>
+          </td>
+          <td>Consumer resilience signal — key for growth vs. recession debate</td>
+        </tr>
+        <tr>
+          <td class="day-col">Thu Apr 16</td>
+          <td>
+            <div class="event-name">Initial Jobless Claims <span class="importance-med">Med</span></div>
+            <div class="event-note">Labor market pulse — any uptick from tariff layoffs?</div>
+          </td>
+          <td>Leading indicator for Fed policy path</td>
+        </tr>
+        <tr>
+          <td class="day-col">Thu Apr 16</td>
+          <td>
+            <div class="event-name">Goldman Sachs, Bank of America Earnings <span class="importance-med">Med</span></div>
+            <div class="event-note">Investment banking activity; M&A pipeline commentary</div>
+          </td>
+          <td>Deal activity as proxy for CEO confidence</td>
+        </tr>
+        <tr>
+          <td class="day-col">Fri Apr 17</td>
+          <td>
+            <div class="event-name">Housing Starts / Building Permits <span class="importance-med">Med</span></div>
+            <div class="event-note">Construction materials inflation from tariffs showing up?</div>
+          </td>
+          <td>Real estate sector signal, consumer wealth effect</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="article-divider" />
+
+    <!-- CLOSING -->
+    <p>The S&P 500 is less than 1% below its pre-war level. Stocks have made a call: this resolves. Oil hasn't made the same call — crude remains well above pre-conflict levels, pricing in persistent Strait of Hormuz risk. One of them is right. We'll have a clearer read by the middle of next week.</p>
+
+    <p>Stay selective. Don't get lured into chasing the rally before the Islamabad talks have a concrete outcome. If a deal materializes, there will be plenty of time to add risk. If it falls apart, you'll be glad you waited.</p>
+
+    <div class="closing-sig">
+      <p>Stay sharp. —&nbsp;<strong>Arshia Morshedian</strong><br>
+      <span style="font-family: var(--mono); font-size:10px; letter-spacing:.10em; text-transform:uppercase; color: var(--muted);">Sunday Macro · FinTrend News · April 12, 2026</span></p>
+    </div>
+
+  </div><!-- /prose -->
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">FinTrend News</a>
+    <p class="footer-disc">For educational and informational purposes only. Nothing published on FinTrend News constitutes financial advice or a solicitation to buy or sell any security. Always conduct your own research.</p>
+  </div>
+</footer>
+
+<script>
+  // Reading progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  });
+</script>
+
+</body>
+</html>
