@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Week the Strait Reopened — Friday Recap | FinTrend News</title>
+<meta name="description" content="Iran declared the Strait of Hormuz 'completely open' Friday, triggering the largest single-day oil crash since the war began and vaulting the S&P 500 past 7,100 to close the week at a record. Here's how every session led to it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f1f;
+    --bg-2:#0f1530;
+    --bg-3:#141b3a;
+    --ink:#eef1ff;
+    --ink-dim:#b8bfd9;
+    --ink-low:#7d85a8;
+    --gold:#f4c15d;
+    --gold-soft:#c99a42;
+    --line:rgba(244,193,93,0.18);
+    --line-soft:rgba(238,241,255,0.08);
+    --down:#ef6b6b;
+    --up:#5dd39e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65}
+  a{color:var(--gold);text-decoration:none}
+  a:hover{color:#ffd97c}
+
+  .wrap{max-width:860px;margin:0 auto;padding:32px 28px 120px}
+
+  /* Masthead */
+  .masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:44px}
+  .brand{font-family:'DM Serif Display',serif;font-size:24px;letter-spacing:-0.3px;color:var(--ink)}
+  .brand .dot{color:var(--gold)}
+  .nav{font-size:13px;color:var(--ink-low);font-weight:500;letter-spacing:0.4px;text-transform:uppercase}
+  .nav a{color:var(--ink-low);margin-left:22px}
+  .nav a:hover{color:var(--gold)}
+
+  /* Header */
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;padding:6px 12px;border:1px solid var(--line);border-radius:3px;background:rgba(244,193,93,0.04)}
+  .kicker::before{content:"";width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 10px var(--gold)}
+
+  h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:58px;line-height:1.08;letter-spacing:-1.2px;margin-bottom:22px}
+  h1 em{font-style:italic;color:var(--gold)}
+  .dek{font-size:20px;line-height:1.55;color:var(--ink-dim);margin-bottom:30px;font-weight:300;max-width:720px}
+
+  .byline{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);font-size:13px;color:var(--ink-low);margin-bottom:50px}
+  .byline .author{color:var(--ink);font-weight:500}
+  .byline .author span{color:var(--ink-low);font-weight:400;margin-left:6px}
+  .byline .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+
+  /* Body text */
+  .body p{font-size:17.5px;line-height:1.78;color:var(--ink-dim);margin-bottom:22px}
+  .body p.lead{font-size:19px;color:var(--ink);line-height:1.7}
+  .body p::first-letter{}
+  .body p.lead::first-letter{font-family:'DM Serif Display',serif;font-size:62px;float:left;line-height:0.9;margin:8px 10px -4px 0;color:var(--gold)}
+
+  .body h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:32px;color:var(--ink);margin:54px 0 18px;letter-spacing:-0.4px;line-height:1.2}
+  .body h3{font-family:'Inter',sans-serif;font-weight:600;font-size:18px;color:var(--gold);margin:32px 0 12px;letter-spacing:0.3px;text-transform:uppercase;font-size:13px}
+
+  .body em{color:var(--ink);font-style:italic}
+  .body strong{color:var(--ink);font-weight:600}
+
+  /* Scoreboard hero */
+  .scoreboard{margin:40px 0 50px;padding:32px;background:linear-gradient(180deg,var(--bg-2),var(--bg-3));border:1px solid var(--line);border-radius:4px;position:relative;overflow:hidden}
+  .scoreboard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .scoreboard-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+  .scoreboard-head h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;font-weight:500}
+  .scoreboard-head span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-low);letter-spacing:1px}
+  .scores{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .score-cell{display:flex;flex-direction:column;gap:4px}
+  .score-cell .label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-low);letter-spacing:1.2px;text-transform:uppercase}
+  .score-cell .value{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);letter-spacing:-0.4px}
+  .score-cell .delta{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+  .delta.up{color:var(--up)}
+  .delta.down{color:var(--down)}
+  .score-cell .sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-low);margin-top:2px}
+
+  /* Daily ledger */
+  .ledger{margin:40px 0;border:1px solid var(--line-soft);border-radius:4px;overflow:hidden}
+  .ledger-row{display:grid;grid-template-columns:110px 1fr 140px;gap:20px;padding:22px 24px;border-bottom:1px solid var(--line-soft);align-items:start}
+  .ledger-row:last-child{border-bottom:none}
+  .ledger-row:hover{background:rgba(244,193,93,0.02)}
+  .ledger-day{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;padding-top:4px;font-weight:500}
+  .ledger-body{font-size:15.5px;line-height:1.65;color:var(--ink-dim)}
+  .ledger-body strong{color:var(--ink);font-weight:600}
+  .ledger-close{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);text-align:right;padding-top:4px}
+  .ledger-close .lbl{display:block;color:var(--ink-low);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:3px;font-weight:500}
+
+  /* Pull quote */
+  .pull{margin:44px 0;padding:28px 34px;border-left:3px solid var(--gold);background:rgba(244,193,93,0.04)}
+  .pull p{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.35;color:var(--ink);font-style:italic;letter-spacing:-0.3px;margin:0}
+  .pull .attr{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-top:14px;display:block;font-style:normal}
+
+  /* Tables */
+  .data-tbl{width:100%;margin:32px 0;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:13px}
+  .data-tbl th{text-align:left;padding:12px 14px;color:var(--gold);font-weight:500;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;border-bottom:1px solid var(--line)}
+  .data-tbl td{padding:12px 14px;color:var(--ink-dim);border-bottom:1px solid var(--line-soft)}
+  .data-tbl td:first-child{color:var(--ink);font-weight:500}
+  .data-tbl td.num{text-align:right;color:var(--ink)}
+  .data-tbl td.up{color:var(--up)}
+  .data-tbl td.down{color:var(--down)}
+  .data-tbl tr:last-child td{border-bottom:none}
+  .data-tbl caption{text-align:left;font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-low);margin-top:10px;caption-side:bottom;font-style:italic;letter-spacing:0.2px}
+
+  /* Takeaway box */
+  .takeaway{margin:40px 0;padding:26px 30px;background:linear-gradient(135deg,rgba(244,193,93,0.06),rgba(244,193,93,0.02));border:1px solid var(--line);border-radius:4px}
+  .takeaway h5{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+  .takeaway p{font-size:16.5px;line-height:1.7;color:var(--ink);margin:0}
+
+  /* Disclaimer */
+  .disclaimer{margin-top:80px;padding:22px;border:1px dashed var(--line-soft);border-radius:4px;font-size:12.5px;color:var(--ink-low);line-height:1.65;font-family:'JetBrains Mono',monospace;letter-spacing:0.2px}
+  .disclaimer strong{color:var(--gold);font-weight:500}
+
+  /* Footer */
+  .footer{margin-top:48px;padding-top:30px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-low);font-family:'JetBrains Mono',monospace;letter-spacing:0.6px}
+  .footer .sig{color:var(--gold)}
+
+  @media (max-width:680px){
+    .wrap{padding:24px 20px 80px}
+    h1{font-size:40px;letter-spacing:-0.8px}
+    .dek{font-size:17px}
+    .body p{font-size:16px}
+    .scoreboard{padding:22px}
+    .scores{grid-template-columns:repeat(2,1fr);gap:18px}
+    .score-cell .value{font-size:22px}
+    .ledger-row{grid-template-columns:1fr;gap:8px;padding:18px 18px}
+    .ledger-close{text-align:left;padding-top:0}
+    .pull p{font-size:20px}
+    .data-tbl{font-size:11.5px}
+    .data-tbl th,.data-tbl td{padding:10px 8px}
+    .nav a{margin-left:14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">FinTrend<span class="dot">.</span>News</div>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+    </nav>
+  </header>
+
+  <span class="kicker">Friday Recap · Week of April 13</span>
+
+  <h1>The Week the <em>Strait Reopened</em> — and the Tape Rewrote Itself</h1>
+
+  <p class="dek">Five sessions. A blockade, a walkback, a handshake in Islamabad, an earnings parade, and finally on Friday, a single sentence out of Tehran that took 11% off crude and put the S&amp;P into the 7,000 era for the first time. Here is every leg of the move.</p>
+
+  <div class="byline">
+    <div class="author">Hunter William Lang <span>— Markets Correspondent</span></div>
+    <div class="meta">Friday · April 17, 2026 · 5:45 PM ET</div>
+  </div>
+
+  <div class="body">
+
+    <p class="lead">When Iran's foreign minister posted on X at 9:41 a.m. ET Friday that the Strait of Hormuz was <em>"completely open"</em> for commercial vessels during the Israel–Lebanon ceasefire, he ended — or at least paused — the most violent oil shock since 2022 in the span of a single trading session. WTI crude, which had been knocking on $95 Thursday and flirted with $105 at Monday's open, collapsed 11.4% to settle at $83.85. The S&amp;P 500, which entered the week still licking wounds from February's sell-off, closed at 7,126.06 — a fresh record high, a 4.5% weekly gain, and the first close above 7,000 in its history.</p>
+
+    <div class="scoreboard">
+      <div class="scoreboard-head">
+        <h4>Friday's Close · April 17, 2026</h4>
+        <span>Weekly performance in parentheses</span>
+      </div>
+      <div class="scores">
+        <div class="score-cell">
+          <div class="label">S&amp;P 500</div>
+          <div class="value">7,126.06</div>
+          <div class="delta up">+1.20% · +84.78</div>
+          <div class="sub">Week: +4.5% · Record</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">Nasdaq Composite</div>
+          <div class="value">24,468.48</div>
+          <div class="delta up">+1.52% · +365.78</div>
+          <div class="sub">Week: +6.8% · Record</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">Dow Jones</div>
+          <div class="value">49,447.43</div>
+          <div class="delta up">+1.79% · +868.71</div>
+          <div class="sub">Biggest day YTD</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">Russell 2000</div>
+          <div class="value">2,776.90</div>
+          <div class="delta up">+2.11% · +57.30</div>
+          <div class="sub">Third wk of gains</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">WTI Crude</div>
+          <div class="value">$83.85</div>
+          <div class="delta down">−11.4% · −$7.17</div>
+          <div class="sub">Low since Mar 10</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">10-Yr Treasury</div>
+          <div class="value">4.26%</div>
+          <div class="delta down">−3 bps</div>
+          <div class="sub">Lowest since Mar 18</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">VIX</div>
+          <div class="value">17.48</div>
+          <div class="delta down">−2.56%</div>
+          <div class="sub">Risk premium deflates</div>
+        </div>
+        <div class="score-cell">
+          <div class="label">Gold</div>
+          <div class="value">$4,849</div>
+          <div class="delta up">+0.85%</div>
+          <div class="sub">4th weekly gain</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The five-day ledger</h2>
+
+    <p>The week did not begin kindly. It began with a Pentagon press pool, a map of the Persian Gulf, and the unambiguous verb "blockade." By Wednesday, the story had already pivoted. By Friday, the story had inverted. What follows is the full sequence, session by session.</p>
+
+    <div class="ledger">
+
+      <div class="ledger-row">
+        <div class="ledger-day">Mon · Apr 13</div>
+        <div class="ledger-body">
+          <strong>Blockade trade.</strong> Weekend peace talks in Islamabad collapsed without a framework. The U.S. Navy stood up a formal blockade of Iranian ports in the Persian Gulf. WTI opened near $105; Brent touched $103 intraday. Equities softened on the supply-shock re-rating; defensives and large-cap energy caught a bid. VP Vance on Fox News: "<em>the ball is in the Iranian court</em>." The tape priced escalation.
+        </div>
+        <div class="ledger-close">
+          <span class="lbl">WTI Close</span>
+          ~$103.10
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-day">Tue · Apr 14</div>
+        <div class="ledger-body">
+          <strong>The first walkback.</strong> A White House official told CNBC further talks with Iran were under consideration. Crude reversed hard — WTI fell nearly 8% to $91.28, Brent settled at $94.79. Banks kicked off Q1 earnings in force: Citigroup's profit jumped 42% YoY to $5.8B with EPS of $3.06 crushing the $2.63 consensus, Wells Fargo beat EPS but missed on NII, JPMorgan guidance steady. BlackRock — on Monday — had already set the tone with AUM at a record $13.8 trillion, revenue up 27%.
+        </div>
+        <div class="ledger-close">
+          <span class="lbl">WTI Close</span>
+          $91.28
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-day">Wed · Apr 15</div>
+        <div class="ledger-body">
+          <strong>The record print.</strong> S&amp;P 500 settled at <strong>7,022.95</strong>, its first closing record since the Feb. 28 conflict began. Intraday high 7,026.24. The move was catalyzed by de-escalation hopes plus strong bank prints — Bank of America profits +17%, Morgan Stanley solid — and by analysts from FactSet reiterating that Q1 is on track for a sixth straight quarter of double-digit S&amp;P EPS growth (~13.2% expected). Allbirds, of all tickers, surged 582% after announcing a pivot to AI-compute infrastructure.
+        </div>
+        <div class="ledger-close">
+          <span class="lbl">S&amp;P Close</span>
+          7,022.95
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-day">Thu · Apr 16</div>
+        <div class="ledger-body">
+          <strong>Grind higher, with noise.</strong> The Nasdaq extended to a tenth consecutive gain. 10-year Treasury popped to 4.31% intraday as President Trump publicly renewed attacks on Fed Chair Powell; jobless claims came in at a soft 207,000, below expectations. After the bell, Netflix reported — and <em>sank</em> on guidance that underwhelmed versus the subscriber-growth setup created by its price hikes. Taiwan Semiconductor had already pre-announced 35% revenue growth. WTI climbed back above $93 on anxiety about the Strait's actual status.
+        </div>
+        <div class="ledger-close">
+          <span class="lbl">10-Yr Yield</span>
+          4.29%
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-day">Fri · Apr 17</div>
+        <div class="ledger-body">
+          <strong>The sentence heard across the pits.</strong> Iranian FM Araghchi: the Strait is <em>"completely open"</em> for commercial vessels on a coordinated route. WTI collapsed 11.4% to $83.85 — the largest one-day drop since the war began. Brent fell 9% to $90.38. Heating oil fell 10%; RBOB gasoline fell 5%. All four major U.S. equity indexes closed higher; three closed at records. Dow jumped 868 points. Russell 2000 added 2.1%. European bourses ripped — DAX +2.2%, CAC 40 +2.0%, Stoxx 600 +1.4%. 10-year yield slipped to 4.26%, its lowest since March 18. The Trump administration's stance: the naval blockade remains "in full force" until a comprehensive deal.
+        </div>
+        <div class="ledger-close">
+          <span class="lbl">S&amp;P Close</span>
+          7,126.06
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pull">
+      <p>"In line with the ceasefire in Lebanon, the passage for all commercial vessels through Strait of Hormuz is declared completely open for the remaining period of ceasefire."</p>
+      <span class="attr">— Seyed Abbas Araghchi · Iranian Foreign Minister · April 17, 2026</span>
+    </div>
+
+    <h2>What actually moved, and why</h2>
+
+    <p>Friday's rally was not uniform. The composition of the move matters as much as the magnitude, because it tells you <em>what</em> got de-risked and what did not. The winners were, in order: small caps, cyclicals, rate-sensitive growth, and then — improbably — the things that had been <em>winning</em> before. The losers were energy longs and inflation hedges.</p>
+
+    <table class="data-tbl">
+      <caption>Weekly moves · April 13 close to April 17 close. Data: CBOE, LSEG, EIA, CME, US Treasury.</caption>
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Apr 10 Close</th>
+          <th>Apr 17 Close</th>
+          <th>Weekly Δ</th>
+          <th>Driver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>S&amp;P 500</td><td class="num">6,820</td><td class="num">7,126.06</td><td class="num up">+4.5%</td><td>Hormuz de-risking · earnings beats</td></tr>
+        <tr><td>Nasdaq Composite</td><td class="num">22,910</td><td class="num">24,468.48</td><td class="num up">+6.8%</td><td>AI names recover · 10-day win streak</td></tr>
+        <tr><td>Russell 2000</td><td class="num">2,719</td><td class="num">2,776.90</td><td class="num up">+2.1%</td><td>Small-cap rate relief</td></tr>
+        <tr><td>WTI Crude</td><td class="num">$94.40</td><td class="num">$83.85</td><td class="num down">−11.2%</td><td>Strait reopened to vessels</td></tr>
+        <tr><td>Brent Crude</td><td class="num">$98.20</td><td class="num">$90.38</td><td class="num down">−8.0%</td><td>Freight / insurance premia compress</td></tr>
+        <tr><td>10-Yr Treasury</td><td class="num">4.31%</td><td class="num">4.26%</td><td class="num up">−5 bps</td><td>Inflation risk re-rating</td></tr>
+        <tr><td>Gold (spot)</td><td class="num">$4,810</td><td class="num">$4,849</td><td class="num up">+0.8%</td><td>Dollar soft, central-bank bid persists</td></tr>
+        <tr><td>Bitcoin</td><td class="num">$74,200</td><td class="num">$77,190</td><td class="num up">+4.0%</td><td>Risk-on; dollar dip</td></tr>
+        <tr><td>VIX</td><td class="num">19.8</td><td class="num">17.48</td><td class="num down">−11.7%</td><td>Geopolitical vol decay</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The oil crash was mechanical, not psychological</h3>
+    <p>Crude's 11% single-day move is rare outside recessions or OPEC shocks. Friday's had a specific plumbing story: ING estimated that roughly 13 million barrels per day of supply had been effectively disrupted under the blockade-plus-Strait-closure regime. The Araghchi statement did not suddenly produce new barrels — it reopened the <em>logistics</em> for barrels already sitting in the Gulf. Freight rates and insurance premia around Hormuz, which had blown out over March and April, came in immediately. Wholesale gasoline (RBOB) fell 5% on Friday. Heating oil — a proxy for jet fuel and part of the diesel complex — dropped 10%. The CPI passthrough is now deflationary relative to where futures curves were pricing on Monday.</p>
+
+    <h3>Yields fell, but not because the Fed got dovish</h3>
+    <p>The 10-year fell to 4.26%. That is a five-basis-point weekly move and the lowest print since March 18. It was <em>not</em> driven by Fed pricing — rate-cut odds barely budged on the week. It was driven by the inflation leg of the yield decomposition: if Hormuz stays open, the oil-pass-through spike dies, realized CPI in Q2 eases, and term-premium on long-dated Treasuries compresses. The 30-year fell to 4.88%. The 2-year was roughly unchanged at 3.71%. That's a curve that is telling you the shock was priced in inflation expectations, not in growth expectations.</p>
+
+    <h3>The small-cap tell</h3>
+    <p>Russell 2000 +2.1% Friday, finishing a third consecutive week higher, is the more important signal than the S&amp;P record. Small caps are the most levered to (a) domestic demand, (b) short-end rates, and (c) energy input costs. When small caps lead a de-risking rally, it means the market is pricing in <em>sustained</em> relief rather than a short-cover. That said, the Russell is still well below 2024 highs, and a single week's leadership doesn't undo the damage of the February–March drawdown.</p>
+
+    <h2>What could still go wrong</h2>
+
+    <p>The operative word in Araghchi's post was "coordinated route." Vessels must transit Hormuz on a path "already announced by Ports and Maritime Organisation of the Islamic Rep." Translation: Iran retains the ability to reroute, delay, or inspect traffic, and the "open" status is explicitly tied to the <em>remaining period</em> of the Israel–Lebanon ceasefire — a ceasefire with a stated 10-day window. President Trump's own Truth Social response thanked Iran <em>and</em> clarified the U.S. naval blockade of Iranian ports "will remain in full force" until a comprehensive agreement.</p>
+
+    <p>So the de-escalation is real, but it is conditional and finite. Three tripwires worth watching over the next two weeks:</p>
+
+    <p><strong>1. Ceasefire expiry.</strong> If the 10-day Lebanon window lapses without extension or upgrade to a framework agreement, the "open" designation can be rescinded as quickly as it was issued. The binary risk is live through the end of April.</p>
+
+    <p><strong>2. Blockade mechanics.</strong> Iran's oil exports through Hormuz have been tracking around 1.7 million bpd. If the U.S. Navy is physically preventing Iranian vessels from departing while simultaneously allowing third-country tankers to transit, the arrangement is an unstable equilibrium that Iran has historically not tolerated for long.</p>
+
+    <p><strong>3. Earnings guidance through the rest of April.</strong> This week's bank prints were clean. But Delta Air Lines already warned it would "meaningfully reduce" capacity growth on jet fuel costs. If the Q1 calls from transport, airlines, autos, and consumer discretionary show the March oil spike eating into guidance for Q2 and Q3, the current valuation re-rating looks stretched quickly.</p>
+
+    <div class="takeaway">
+      <h5>Lang's Weekly Lens</h5>
+      <p>A 4.5% week for the S&amp;P is not a routine week. The last time it happened was May 2025. The difference this time: the catalyst was a foreign minister's social media post, not an earnings surprise or a Fed pivot. Markets that rip on geopolitical sentences can give it all back on the next sentence. The fundamentals did improve — oil came down, yields came down, earnings were strong — but the <em>speed</em> of the repricing suggests positioning was more washed-out than investors had been willing to admit heading in.</p>
+    </div>
+
+    <h2>Headed into next week</h2>
+
+    <p>The FOMC meets April 28–29. Rate-cut probabilities remained roughly one-in-three for December as of mid-week; Friday's oil crash may nudge that up slightly, but not dramatically — the Fed's 2026 framework has consistently signaled that geopolitical supply shocks get "looked through." The next earnings test is Tesla, Alphabet, Microsoft, and Meta over the coming ten days. And the Strait of Hormuz will remain the single most watched piece of geography in the global economy until there is a framework deal in writing, not a Truth Social post.</p>
+
+    <p>On Sunday, Arshia's Macro Note will take apart the re-rating in long-dated yields and what the 10s–2s curve at +55 bps is actually saying about 2027 growth. For Monday, I'll hand the baton back to James with the week-ahead Outlook.</p>
+
+    <p style="margin-top:40px;font-family:'DM Serif Display',serif;font-style:italic;color:var(--gold);font-size:20px;text-align:center;letter-spacing:-0.3px">Seven thousand is a number. Holding it is a process.</p>
+
+    <div class="disclaimer">
+      <strong>EDITORIAL NOTE —</strong> FinTrend News is an independent financial journalism publication. Content on this site is educational and journalistic in nature. Nothing in this article constitutes investment advice, a recommendation to buy or sell any security, or a solicitation of any transaction. FinTrend News and its authors are not registered investment advisers. Readers should consult a licensed financial professional before making investment decisions.
+    </div>
+
+    <div class="footer">
+      <div>© 2026 FinTrend News · Week 16</div>
+      <div class="sig">— HWL</div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
