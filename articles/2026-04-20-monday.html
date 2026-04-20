@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Strait Closes. The Gavel Falls. | FinTrend News</title>
+  <meta name="description" content="Iran shut the Strait again overnight. Warsh faces the Senate at 10 a.m. Tesla, Boeing, and UnitedHealth all report Tuesday. This week writes the next chapter." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b0f1f;
+      --navy-mid: #131929;
+      --navy-card: #161d30;
+      --gold: #f4c15d;
+      --gold-dim: #c9964a;
+      --gold-faint: rgba(244,193,93,0.10);
+      --text: #e8e4d9;
+      --muted: #8a8fa8;
+      --border: rgba(244,193,93,0.18);
+      --red: #e05c5c;
+      --green: #4fbf91;
+      --max: 680px;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--navy-mid);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .masthead-nav { display: flex; gap: 20px; }
+    .masthead-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .masthead-nav a:hover { color: var(--gold); }
+
+    /* ── ARTICLE WRAP ── */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
+
+    /* ── KICKER ── */
+    .kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--gold-faint);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px 5px 10px;
+      margin-bottom: 22px;
+    }
+    .kicker-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .kicker-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.85rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    h1 em { color: var(--gold); font-style: italic; }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 1.12rem;
+      color: #b5b8cc;
+      line-height: 1.55;
+      margin-bottom: 26px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 38px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .byline-author { font-size: 0.88rem; color: var(--text); font-weight: 600; }
+    .byline-role { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── BODY ── */
+    .article-body p {
+      margin-bottom: 1.5em;
+    }
+
+    /* Drop cap */
+    .article-body > p:first-of-type::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.2em;
+      color: var(--gold);
+      float: left;
+      line-height: 0.82;
+      margin: 0.06em 0.1em 0 0;
+    }
+
+    /* ── H2 ── */
+    .article-body h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin: 2.4em 0 0.7em;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 32px 0;
+    }
+    @media (max-width: 480px) { .scoreboard { grid-template-columns: repeat(2, 1fr); } }
+    .score-cell {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 14px 12px;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 6px;
+    }
+    .score-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.18rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .score-change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+    .up { color: var(--green); }
+    .dn { color: var(--red); }
+
+    /* ── LEDGER ── */
+    .ledger { margin: 28px 0; }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 12px 0;
+      gap: 16px;
+    }
+    .ledger-row:first-child { border-top: 1px solid var(--border); }
+    .ledger-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-top: 2px;
+    }
+    .ledger-content { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 4px solid var(--gold);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 36px 0;
+      padding: 20px 22px;
+      background: var(--gold-faint);
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.22rem;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--text);
+      margin: 0 !important;
+    }
+
+    /* ── CALENDAR TABLE ── */
+    .cal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cal-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cal-row:last-child { border-bottom: none; }
+    .cal-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 13px 14px;
+      background: rgba(244,193,93,0.06);
+      border-right: 1px solid var(--border);
+    }
+    .cal-events {
+      padding: 10px 14px;
+      font-size: 0.83rem;
+      color: var(--text);
+    }
+    .cal-event { margin-bottom: 3px; }
+    .cal-event:last-child { margin-bottom: 0; }
+    .cal-highlight { color: var(--gold); font-weight: 600; }
+
+    /* ── WATCHLIST TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .data-table thead tr { border-bottom: 1px solid var(--gold-dim); }
+    .data-table th {
+      color: var(--gold);
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.66rem;
+    }
+    .data-table td {
+      padding: 9px 12px;
+      color: var(--text);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .data-table tbody tr:hover td { background: rgba(244,193,93,0.04); }
+    .td-muted { color: var(--muted); }
+    .td-warn { color: #e0a05c; }
+
+    /* ── TAKEAWAY ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(244,193,93,0.08) 0%, rgba(244,193,93,0.04) 100%);
+      border: 1px solid var(--gold-dim);
+      border-radius: 6px;
+      padding: 22px 24px;
+      margin: 40px 0 28px;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .takeaway p {
+      font-size: 0.93rem;
+      color: var(--text);
+      margin-bottom: 0.6em !important;
+    }
+    .takeaway p:last-child { margin-bottom: 0 !important; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed rgba(255,255,255,0.12);
+      margin-top: 40px;
+      padding-top: 20px;
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+    }
+    .footer-sig {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="masthead">
+  <a href="/" class="masthead-logo">FinTrend News</a>
+  <div class="masthead-nav">
+    <a href="/archive.html">Archive</a>
+    <a href="/premium.html">Premium</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="kicker-pill">
+    <div class="kicker-dot"></div>
+    <span class="kicker-text">Monday Outlook &nbsp;·&nbsp; April 20, 2026</span>
+  </div>
+
+  <h1>The Strait Closes. The <em>Gavel</em> Falls.</h1>
+
+  <p class="dek">Iran re-shut the Strait overnight. WTI spiked 7.8% before the open. Kevin Warsh sits in front of the Senate at 10 a.m. Tesla, UnitedHealth, and Boeing all report Tuesday. The market spent last week pricing peace. This week, peace has to prove it exists.</p>
+
+  <div class="byline-bar">
+    <div>
+      <div class="byline-author">James Thomas Minnehan</div>
+      <div class="byline-role">Senior Markets Editor</div>
+    </div>
+    <div class="byline-date">MON · APR 20, 2026</div>
+  </div>
+
+  <div class="article-body">
+
+    <p>Friday's close was as clean a bull-market print as this tape has produced in years: S&P 500 at 7,126, a new all-time high, the Nasdaq closing a 12-session winning streak that matched the longest since 1992. Brent crude had shed 9% in a single session after Iran declared the Strait of Hormuz open to commercial traffic. The VIX fell below 18. Every short was bleeding. It looked, in all the important visual ways, like a war coming to an end.</p>
+
+    <p>Then came Sunday. Iran seized a U.S.-flagged cargo vessel attempting to transit the blockade. Tehran announced the Strait was closed again. Second-round peace talks were called off. Trump, posting before midnight, threatened to destroy Iranian power plants and every bridge in the country if Washington's terms weren't met. By Sunday evening futures session, WTI had spiked 7.8%. The peace rally is now being tested by the reality it was supposed to be pricing.</p>
+
+    <p>This is the week that resolves the contradiction — or deepens it. Here's what matters, hour by hour.</p>
+
+    <div class="scoreboard">
+      <div class="score-cell">
+        <div class="score-label">S&P 500 · Fri ATH</div>
+        <div class="score-val">7,126</div>
+        <div class="score-change up">+12% off Mar 30 low</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">WTI · Sun Futures</div>
+        <div class="score-val">$90.38</div>
+        <div class="score-change dn">+7.8% overnight spike</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">S&P Mon Close</div>
+        <div class="score-val">7,109</div>
+        <div class="score-change dn">−0.24% · Streak snapped</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Nasdaq Mon Close</div>
+        <div class="score-val">24,404</div>
+        <div class="score-change dn">−0.26% · 13-day run ends</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Russell 2000 · Mon</div>
+        <div class="score-val">2,792</div>
+        <div class="score-change up">+0.58% · New ATH</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">VIX</div>
+        <div class="score-val">17.48</div>
+        <div class="score-change td-muted">Low; complacency risk</div>
+      </div>
+    </div>
+
+    <h2>Monday Confirmed the Wobble</h2>
+
+    <p>Monday's session was instructive in the way only a narrow miss can be. The S&P dropped a modest 0.24% to 7,109 — technically a break of the Nasdaq's 13-session win streak — but the internals told a more nuanced story. The Russell 2000 hit a new all-time closing record. Thirty-five S&P 500 names printed 52-week highs. Dell was upgraded to Buy by Melius Research with a $245 target. Ecolab gained nearly 1% on an analyst note pointing to potential margin upside as oil prices retreat.</p>
+
+    <p>What held the index back was the weight of Trump's Sunday threat and the Strait's re-closure hanging over the futures curve. As David Wagner at Aptus Capital put it Monday: "The war with Iran is now in the rearview mirror for the market." That confidence is exactly what makes the next 48 hours dangerous. When conviction is this high and a clean surprise arrives — a re-escalation, a failed Warsh hearing, a UnitedHealth guidance cut — the move is not gradual.</p>
+
+    <h2>Tuesday's Tripleheader: Warsh, Tesla, UNH</h2>
+
+    <p>Tuesday is the week's fulcrum. Three events, all before or during market hours, with overlapping implications.</p>
+
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-label">10 a.m. ET</div>
+        <div class="ledger-content"><strong>Kevin Warsh confirmation hearing, Senate Banking Committee.</strong> The market is watching for three things: his posture on rate cuts, his definition of Fed independence, and any signal on balance sheet reduction pace. His prepared remarks suggest he will thread the needle — acknowledging the Fed's independent mandate while not alienating the administration. The blocking vote is Tillis; unless DOJ drops the Powell probe, the committee likely splits 12-12. Watch for Tim Scott's framing language in opening remarks for any signal that the DOJ deal is closer than public statements suggest.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-label">Pre-mkt</div>
+        <div class="ledger-content"><strong>UnitedHealth (UNH).</strong> Down nearly 50% over the past year. 2026 revenue expected to fall for the first time in three decades. Insurance membership shrinkage already consensus. The question is whether management signals a floor — any credible pathway to stabilization — or delivers another guidance reset that takes the entire healthcare sector with it.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-label">After close</div>
+        <div class="ledger-content"><strong>Tesla (TSLA).</strong> The proxy read on consumer discretionary demand through the oil shock. If EV delivery demand held at $100+ WTI, that's a signal about consumer durability that matters well beyond the auto sector. If guidance suggests softness, the read-through to the broader consumer will hit discretionary broadly. Also: Boeing (BA) reports Tuesday — a key read on aerospace supply chain normalization.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-label">All day</div>
+        <div class="ledger-content"><strong>Strait of Hormuz posture.</strong> Iran's decision to re-close Sunday after Friday's opening is structurally ambiguous — could be a negotiating gambit ahead of talks, could be a genuine reversal. Any movement toward re-opening or toward a U.S.-Iran framework before Tuesday's open would be the most market-moving catalyst of the week, overriding every earnings print.</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>The market spent twelve sessions running toward peace. Peace took one Sunday night to remind it that running toward a rumor is not the same as arriving.</p>
+    </div>
+
+    <h2>The Warsh Equation: What's Actually at Stake</h2>
+
+    <p>Here's the version of the Warsh hearing that doesn't make the front pages: the hearing matters less for what Warsh says than for what happens to Powell's exit timeline. Powell's term ends May 15. He has said he will not step down until a successor is confirmed. If Tillis holds — and right now he is holding — Warsh cannot clear committee. Which means the Fed enters the summer with Powell still in the chair, rates on hold, and a stagflationary oil shock still working through the system.</p>
+
+    <p>That is actually the most stable scenario for bond markets in the near term, because it removes uncertainty about a pivot. But for equity multiples — currently trading at a forward P/E of 20.9× against a five-year average of 19.9× — the "no-cut" regime is a ceiling. The rally priced in Fed optionality. If that optionality doesn't materialize, multiple compression does the work that earnings cannot offset.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Reports</th>
+          <th>What to Watch</th>
+          <th>Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>UnitedHealth (UNH)</td>
+          <td class="td-muted">Tue Pre-mkt</td>
+          <td>Revenue floor signal; membership trend</td>
+          <td class="dn">High</td>
+        </tr>
+        <tr>
+          <td>Tesla (TSLA)</td>
+          <td class="td-muted">Tue After Close</td>
+          <td>Demand durability at $100+ oil</td>
+          <td class="td-warn">Medium</td>
+        </tr>
+        <tr>
+          <td>Boeing (BA)</td>
+          <td class="td-muted">Tue After Close</td>
+          <td>Supply chain normalization progress</td>
+          <td class="td-warn">Medium</td>
+        </tr>
+        <tr>
+          <td>IBM</td>
+          <td class="td-muted">Tue After Close</td>
+          <td>Enterprise AI spending durability</td>
+          <td class="up">Low</td>
+        </tr>
+        <tr>
+          <td>Texas Instruments (TXN)</td>
+          <td class="td-muted">Wed After Close</td>
+          <td>Global chip sector health read</td>
+          <td class="td-warn">Medium</td>
+        </tr>
+        <tr>
+          <td>Alphabet (GOOGL)</td>
+          <td class="td-muted">Thu After Close</td>
+          <td>Ad revenue vs. AI capex spend</td>
+          <td class="td-warn">Medium</td>
+        </tr>
+        <tr>
+          <td>Core PCE (Mar)</td>
+          <td class="td-muted">Fri 8:30 a.m.</td>
+          <td>Fed's inflation gauge; rate path signal</td>
+          <td class="dn">High</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>The Week-Ahead Calendar</h2>
+
+    <div class="cal-grid">
+      <div class="cal-row">
+        <div class="cal-day">MON<br>Apr 21</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-highlight">Halliburton (HAL)</span> · 3M (MMM) · GE Aerospace earnings</div>
+          <div class="cal-event">Iran-U.S. Strait posture develops overnight — watch pre-dawn headlines</div>
+        </div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-day">TUE<br>Apr 22</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-highlight">Warsh Senate Hearing · 10 a.m. ET</span> — rate path, independence, balance sheet</div>
+          <div class="cal-event"><span class="cal-highlight">UnitedHealth (UNH)</span> pre-market · <span class="cal-highlight">Tesla (TSLA) · Boeing (BA) · IBM</span> after close</div>
+          <div class="cal-event">Intuitive Surgical (ISRG) after close</div>
+        </div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-day">WED<br>Apr 23</div>
+        <div class="cal-events">
+          <div class="cal-event">ServiceNow (NOW) · Texas Instruments (TXN) after close</div>
+          <div class="cal-event">S&amp;P Global Flash PMI (Apr) · Existing Home Sales (Mar)</div>
+        </div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-day">THU<br>Apr 24</div>
+        <div class="cal-events">
+          <div class="cal-event">American Express (AXP) pre-mkt · <span class="cal-highlight">Alphabet (GOOGL)</span> after close</div>
+          <div class="cal-event">Weekly Jobless Claims · New Home Sales (Mar)</div>
+        </div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-day">FRI<br>Apr 25</div>
+        <div class="cal-events">
+          <div class="cal-event"><span class="cal-highlight">Core PCE (Mar) · 8:30 a.m. ET</span> — the week's highest-impact data print</div>
+          <div class="cal-event">Procter &amp; Gamble (PG) · Intel (INTC) earnings</div>
+          <div class="cal-event">UMich Consumer Sentiment (final, Apr)</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Number That Matters Most: 7,000</h2>
+
+    <p>Every technical strategist with a Bloomberg terminal has the same line drawn on the same chart right now. The S&P broke above 7,000 for the first time on April 15. It closed Monday at 7,109. The distance between current levels and the breakout point is less than 2%. In a headline-driven tape, that distance disappears in a single session.</p>
+
+    <p>The bull case requires 7,000 to hold as structural support. It requires the Warsh hearing to produce a credible nominee without destabilizing rate expectations. It requires UNH not to blow a hole in health sector positioning. And it requires Core PCE Friday to confirm that oil's retreat off the $103 highs is feeding into disinflationary momentum rather than simply masking a more persistent wage-and-services inflation underneath.</p>
+
+    <p>That is not an impossible ask. But it is a demanding one. The market priced the peace. Now the peace has to perform.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Week Ahead: Editor's Call</div>
+      <p>Volatility this week will be driven by sequence, not magnitude. The Strait development matters most — any definitive re-opening framework before Tuesday's open restores the bull narrative and sends the tape to new highs. Any further Iranian escalation puts the 7,000 level in play as support.</p>
+      <p>Warsh is the second-order risk. A hearing that goes sideways — either because he sounds too politically deferential on rates, or because Tillis publicly confirms he's a no-vote — removes the Fed optionality premium from equity multiples and matters more to the bond market than the stock market in the near term.</p>
+      <p>Earnings are the third leg. The beat rate is tracking above average, but the market is not rewarding beats — it's punishing misses. UNH, Tesla, and Alphabet are the three prints with the widest potential impact radius. Core PCE Friday is the week's final word: a print above 3% restarts the stagflation conversation from scratch.</p>
+    </div>
+
+    <div class="disclaimer">
+      FinTrend News and its contributors are not licensed financial advisors. Nothing in this publication constitutes investment advice, a solicitation to buy or sell any security, or a recommendation to take any specific financial action. All market data referenced reflects conditions at time of writing and may change. Readers should conduct their own research and consult a qualified financial professional before making any investment decisions.
+    </div>
+
+    <div class="article-footer">
+      <span class="footer-brand">FinTrend News</span>
+      <span class="footer-sig">// JAMES THOMAS MINNEHAN · MON APR 20 2026</span>
+    </div>
+
+  </div><!-- /article-body -->
+</div><!-- /article-wrap -->
+
+</body>
+</html>
