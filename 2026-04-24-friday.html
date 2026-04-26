@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Records in the Window. War in the Mirror. | FinTrend News</title>
+  <meta name="description" content="The S&P 500 closed at an all-time high Friday. WTI gained 13% on the week. The Strait is still shut. Five days of schizophrenic price action, one clear conclusion: this rally is real — and fragile." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b0f1f;
+      --navy-mid: #111827;
+      --gold: #f4c15d;
+      --gold-dim: rgba(244,193,93,0.15);
+      --gold-border: rgba(244,193,93,0.32);
+      --text: #e8e8e8;
+      --text-dim: #9ca3af;
+      --text-muted: #6b7280;
+      --rule: rgba(255,255,255,0.07);
+      --green: #4ade80;
+      --red: #f87171;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: rgba(11,15,31,0.97);
+      border-bottom: 1px solid var(--rule);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .masthead-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .masthead-nav { display: flex; gap: 22px; }
+    .masthead-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .masthead-nav a:hover { color: var(--gold); }
+
+    /* ── WRAP ── */
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ── KICKER ── */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(34px, 6vw, 54px);
+      line-height: 1.08;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    h1 em { color: var(--gold); font-style: italic; }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* ── BYLINE ── */
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 40px;
+    }
+    .byline-author { font-size: 13px; font-weight: 600; color: var(--text-dim); }
+    .byline-author span { color: var(--gold); }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── BODY ── */
+    .article-body p { margin-bottom: 22px; color: var(--text); }
+    .article-body p:first-of-type::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 72px;
+      line-height: 0.78;
+      float: left;
+      margin-right: 10px;
+      margin-top: 8px;
+      color: var(--gold);
+    }
+
+    /* ── SECTION HEAD ── */
+    .section-head {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 44px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-head::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .score-cell { background: var(--navy-mid); padding: 16px 18px; }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .score-val { font-family: 'JetBrains Mono', monospace; font-size: 19px; font-weight: 700; color: #fff; }
+    .score-val.up { color: var(--green); }
+    .score-val.down { color: var(--red); }
+    .score-delta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .score-delta.up { color: var(--green); }
+    .score-delta.down { color: var(--red); }
+
+    /* ── LEDGER ── */
+    .ledger { margin-bottom: 36px; }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .ledger-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      padding-top: 2px;
+    }
+    .ledger-content { font-size: 15px; line-height: 1.6; color: var(--text-dim); }
+    .ledger-content strong { color: var(--text); font-weight: 600; }
+
+    /* ── WINNERS / LOSERS TABLE ── */
+    .wl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .wl-panel {
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .wl-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .wl-header.winners { color: var(--green); background: rgba(74,222,128,0.06); }
+    .wl-header.losers { color: var(--red); background: rgba(248,113,113,0.06); }
+    .wl-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--rule);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .wl-row:last-child { border-bottom: none; }
+    .wl-ticker { color: var(--text); font-weight: 700; }
+    .wl-chg.up { color: var(--green); }
+    .wl-chg.down { color: var(--red); }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 4px solid var(--gold);
+      background: var(--gold-dim);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin: 36px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #fff;
+      font-style: italic;
+      margin-bottom: 10px !important;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 36px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .data-table th {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--rule);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--text-dim);
+    }
+    .data-table td:first-child { color: var(--text); font-weight: 700; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .up { color: var(--green) !important; }
+    .down { color: var(--red) !important; }
+
+    /* ── HUNTER'S READ ── */
+    .hunters-read {
+      background: var(--navy-mid);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 28px;
+      margin: 40px 0;
+      position: relative;
+    }
+    .hunters-read::before {
+      content: 'HUNTER\'S READ';
+      position: absolute;
+      top: -11px;
+      left: 20px;
+      background: var(--navy-mid);
+      padding: 0 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+    .hunters-read p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .hunters-read p:last-child { margin-bottom: 0; }
+    .hunters-read strong { color: var(--text); }
+
+    /* ── WEEK-AHEAD CALENDAR ── */
+    .calendar {
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+    .calendar-row:last-child { border-bottom: none; }
+    .cal-day {
+      background: rgba(244,193,93,0.04);
+      padding: 14px 16px;
+      border-right: 1px solid var(--rule);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cal-day span { color: var(--text-muted); font-weight: 400; font-size: 10px; margin-top: 2px; }
+    .cal-events { padding: 14px 18px; }
+    .cal-event { font-size: 14px; color: var(--text-dim); margin-bottom: 6px; line-height: 1.4; }
+    .cal-event:last-child { margin-bottom: 0; }
+    .cal-event strong { color: var(--text); font-weight: 600; }
+
+    /* ── TAKEAWAY ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(244,193,93,0.08) 0%, rgba(244,193,93,0.03) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .takeaway p { font-size: 16px; line-height: 1.7; color: var(--text-dim); margin-bottom: 12px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      margin-top: 56px;
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .footer-brand { color: var(--gold); font-weight: 700; letter-spacing: 0.12em; }
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 40px 18px 72px; }
+      .byline-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .scoreboard { grid-template-columns: 1fr 1fr; }
+      .ledger-row { grid-template-columns: 60px 1fr; }
+      .wl-grid { grid-template-columns: 1fr; }
+      .calendar-row { grid-template-columns: 70px 1fr; }
+      .masthead-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="masthead-brand" href="/">FINTREND NEWS</a>
+    <nav class="masthead-nav">
+      <a href="/archive.html">Archive</a>
+      <a href="/#premium">Premium</a>
+      <a href="/#about">About</a>
+    </nav>
+  </header>
+
+  <div class="article-wrap">
+
+    <div class="kicker">
+      <div class="kicker-dot"></div>
+      <span class="kicker-text">Friday Recap &nbsp;·&nbsp; April 24, 2026</span>
+    </div>
+
+    <h1>Records in the Window. <em>War</em> in the Mirror.</h1>
+
+    <p class="dek">The S&amp;P closed at 7,165 Friday — an all-time high. WTI gained 13% on the week. The Strait is still shut. Witkoff flies to Islamabad Saturday. This is where markets are when a war doesn't end but doesn't escalate either.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <span>Hunter William Lang</span> &nbsp;·&nbsp; Markets Correspondent</div>
+      <div class="byline-date">FRI APR 24 2026</div>
+    </div>
+
+    <div class="article-body">
+      <p>Five days. Two ship seizures. A ceasefire extension. A Tesla earnings beat. A ServiceNow subscription miss that named the blockade as the culprit. Witkoff and Kushner wheels-up to Islamabad Saturday morning to try what three weeks of shadow diplomacy couldn't accomplish. And through all of it — through the IRGC communiqués and the Truth Social posts and the Iranian foreign minister's tour of Muscat and Moscow — the S&amp;P 500 closed the week at yet another record high.</p>
+
+      <p>That's not irrational. That's a market that has done the math: Q1 earnings are running at 84% beat rate with 15.1% blended year-over-year growth. The AI capex cycle is accelerating faster than even the most bullish models projected. Tech sector is up 11% this month alone. Against that earnings torrent, even a shut Hormuz can't stop the bid — as long as the ceasefire holds and the strait stays at status quo rather than escalating to hot conflict.</p>
+
+      <p>The risk isn't the war going the same. The risk is the war going somewhere new.</p>
+    </div>
+
+    <!-- WEEKLY TAPE -->
+    <div class="section-head">Week-in-Review: Closing Tape</div>
+    <div class="scoreboard">
+      <div class="score-cell">
+        <div class="score-label">S&amp;P 500</div>
+        <div class="score-val up">7,165.08</div>
+        <div class="score-delta up">+0.80% Fri / ATH</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Nasdaq</div>
+        <div class="score-val up">24,836.60</div>
+        <div class="score-delta up">+1.63% Fri / ATH</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Dow Jones</div>
+        <div class="score-val down">49,230.71</div>
+        <div class="score-delta down">−0.16% Fri</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">WTI Crude</div>
+        <div class="score-val down">$94.40</div>
+        <div class="score-delta down">+13% on week</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Brent</div>
+        <div class="score-val down">$105.33</div>
+        <div class="score-delta down">+11.4% on week</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">10-Yr Yield</div>
+        <div class="score-val">4.31%</div>
+        <div class="score-delta">2-Yr: 3.78%</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">VIX</div>
+        <div class="score-val">18.71</div>
+        <div class="score-delta">−3.1% Fri. Complacent.</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Gold</div>
+        <div class="score-val up">$4,740.90</div>
+        <div class="score-delta up">+0.36% Fri</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Dollar (DXY)</div>
+        <div class="score-val">98.36</div>
+        <div class="score-delta">Modest strength</div>
+      </div>
+    </div>
+
+    <!-- DAY-BY-DAY -->
+    <div class="section-head">The Week Day by Day</div>
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-date">MON APR 20</div>
+        <div class="ledger-content">Cautious open after three-week rally. <strong>Geopolitical optimism fades</strong> as no formal Hormuz resolution materializes. Futures weak; equities open mixed. Asia-Pacific broadly lower on Iran drag. Nasdaq holds.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-date">TUE APR 21</div>
+        <div class="ledger-content"><strong>S&amp;P futures reverse sharply higher</strong> after Trump posts ceasefire extension on Truth Social, citing Iran's "seriously fractured" government and Pakistan's request to hold attacks. WTI $89 intraday. Warsh confirmation hearing watching list grows.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-date">WED APR 22</div>
+        <div class="ledger-content"><strong>Iran IRGC seizes two container ships</strong> pre-market. WTI jumps above $93. Brent clears $101. Markets open anyway — S&amp;P +1.05% to 7,137.90 (ATH). Tesla reports after close: EPS $0.41 vs $0.37 expected. Revenue $22.39B in-line. Pop 4%, then fades on $5B capex overage disclosure.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-date">THU APR 23</div>
+        <div class="ledger-content"><strong>Software sector punished.</strong> IBM −7.5% (maintained guidance, didn't raise). ServiceNow −13% (subscription miss; explicitly blamed Hormuz disruption on enterprise deals). S&amp;P dips 0.41% to 7,108.40. Nasdaq −0.89%. Meta confirms 10% workforce reduction — ~8,000 jobs — ahead of mega-cap earnings next week.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-date">FRI APR 24</div>
+        <div class="ledger-content"><strong>Recovery and records.</strong> Witkoff-Kushner Pakistan trip confirmed. Iran's Araghchi en route to Islamabad/Muscat/Moscow. Market reads it as progress. S&amp;P +0.80% to 7,165 (ATH). Nasdaq +1.63% to 24,836 (ATH). Crude eases to $94.40 (−1.5%) on talk hopes. VIX −3.1% to 18.71. <strong>Week 4 of consecutive market record highs.</strong></div>
+      </div>
+    </div>
+
+    <!-- WINNERS / LOSERS -->
+    <div class="section-head">Week's Winners &amp; Losers</div>
+    <div class="wl-grid">
+      <div class="wl-panel">
+        <div class="wl-header winners">▲ Winners</div>
+        <div class="wl-row"><span class="wl-ticker">TSLA</span><span class="wl-chg up">+6.8% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">GOOGL</span><span class="wl-chg up">+4.2% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">NVDA</span><span class="wl-chg up">+3.9% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">ARM</span><span class="wl-chg up">+3.1% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">XLE (Energy ETF)</span><span class="wl-chg up">+2.1% WTD</span></div>
+      </div>
+      <div class="wl-panel">
+        <div class="wl-header losers">▼ Losers</div>
+        <div class="wl-row"><span class="wl-ticker">NOW</span><span class="wl-chg down">−13.4% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">IBM</span><span class="wl-chg down">−7.5% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">META</span><span class="wl-chg down">−4.2% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">NFLX</span><span class="wl-chg down">−3.8% WTD</span></div>
+        <div class="wl-row"><span class="wl-ticker">XLV (Health Care)</span><span class="wl-chg down">−0.9% WTD</span></div>
+      </div>
+    </div>
+
+    <!-- PULL QUOTE -->
+    <div class="pull-quote">
+      <p>"We are facing the biggest energy security threat in history."</p>
+      <cite>— Fatih Birol, IEA Executive Director, Thursday</cite>
+    </div>
+
+    <div class="article-body">
+      <p>The IEA's Birol said that Thursday. The VIX closed at 18.71 Friday. One of those readings is wrong, or the market has simply decided that "biggest energy security threat in history" is already fully priced and the question now is duration, not magnitude. The IEA isn't wrong — 20 million barrels per day flowed through Hormuz before the war. Almost none flow now. Iraq's oil revenues collapsed more than 70% versus February. That's not a statistic the global economy absorbs without consequence.</p>
+
+      <p>What makes this week so instructive is where the earnings casualties showed up first. Not in energy. Not in airlines. In enterprise software. ServiceNow's subscription miss — driven by Middle East clients pulling enterprise IT contracts amid conflict uncertainty — is the canary. When geopolitical disruption starts hitting B2B software renewal rates, the damage is spreading from the obvious (energy, shipping) to the non-obvious (digital infrastructure). That's a different conversation than crude oil.</p>
+    </div>
+
+    <!-- EARNINGS SCORECARD -->
+    <div class="section-head">Q1 Earnings Week Scorecard</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>EPS Actual</th>
+          <th>EPS Est.</th>
+          <th>Beat?</th>
+          <th>Stock Reaction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TSLA</td>
+          <td>$0.41</td>
+          <td>$0.37</td>
+          <td class="up">Beat</td>
+          <td>+4% AH → faded</td>
+        </tr>
+        <tr>
+          <td>IBM</td>
+          <td>Beat top/bottom</td>
+          <td>—</td>
+          <td class="up">Beat</td>
+          <td class="down">−7.5% (guidance)</td>
+        </tr>
+        <tr>
+          <td>ServiceNow</td>
+          <td>Beat EPS/Rev</td>
+          <td>—</td>
+          <td class="up">Beat</td>
+          <td class="down">−13% (sub miss)</td>
+        </tr>
+        <tr>
+          <td>S&amp;P 500 (blended)</td>
+          <td>+15.1% YoY growth</td>
+          <td>—</td>
+          <td class="up">84% beat rate</td>
+          <td class="up">6th consec. dbl-digit Qtr</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- HUNTER'S READ -->
+    <div class="hunters-read">
+      <p><strong>The headline number is a record. The internals are more complicated.</strong> Dig one layer below the S&amp;P all-time high and you find 5 of 11 sectors closed the week lower. Small-caps outperformed both major indexes — that's not a typical momentum rally, that's a rotational one. Value beat growth modestly. International stocks traded lower even as U.S. equities hit records. That divergence — U.S. outperforming globally even as it runs an oil-dependent blockade war — says something about dollar flows and AI premium more than it says about the health of the global economy.</p>
+      <p><strong>The ServiceNow number is the week's most important data point that most people missed.</strong> Enterprise software missing on subscription revenue because clients in the Middle East conflict zone are pausing contracts is the first direct earnings evidence of the blockade's second-order effects. IBM maintained guidance — fine — but ServiceNow's management explicitly named the war. That's an entirely different category of company than an airline or a tanker operator. When conflict starts hitting cloud renewal rates in the enterprise, the addressable damage map gets a lot bigger.</p>
+      <p><strong>Weekend risk is elevated heading into Saturday's Pakistan talks.</strong> Either Witkoff gets a framework that signals strait reopening — bullish, oil dumps, bonds rally — or talks stall again and Monday opens with WTI retracing the week's dip back above $95. The ceasefire extension buys time. It does not buy resolution. That distinction matters more each week the blockade holds.</p>
+    </div>
+
+    <!-- WEEK-AHEAD CALENDAR -->
+    <div class="section-head">Week Ahead — Apr 27 to May 1</div>
+    <div class="calendar">
+      <div class="calendar-row">
+        <div class="cal-day">MON<span>Apr 27</span></div>
+        <div class="cal-events">
+          <div class="cal-event"><strong>Pakistan talks outcome</strong> — Witkoff/Kushner results leak over weekend. Market opens on this headline.</div>
+          <div class="cal-event"><strong>Bank of Japan policy meeting begins</strong> — Rate decision Wednesday. Yen sensitive.</div>
+        </div>
+      </div>
+      <div class="calendar-row">
+        <div class="cal-day">TUE<span>Apr 28</span></div>
+        <div class="cal-events">
+          <div class="cal-event"><strong>Consumer Confidence</strong> (Conference Board)</div>
+          <div class="cal-event"><strong>Alphabet (GOOGL), Amazon, Meta, Microsoft all report after close</strong> — Mega-cap earnings night. AI capex read will define the week's narrative.</div>
+        </div>
+      </div>
+      <div class="calendar-row">
+        <div class="cal-day">WED<span>Apr 29</span></div>
+        <div class="cal-events">
+          <div class="cal-event"><strong>Apple (AAPL) earnings after close</strong> — First earnings under post-Cook succession discussion. CEO transition commentary watched.</div>
+          <div class="cal-event"><strong>BOJ rate decision</strong></div>
+          <div class="cal-event"><strong>ADP Employment</strong></div>
+        </div>
+      </div>
+      <div class="calendar-row">
+        <div class="cal-day">THU<span>Apr 30</span></div>
+        <div class="cal-events">
+          <div class="cal-event"><strong>Q1 GDP Advance Estimate</strong> — First look at U.S. growth. Consensus sub-2%. Stagflation indicator if PCE is also hot.</div>
+          <div class="cal-event"><strong>Initial Jobless Claims</strong></div>
+          <div class="cal-event"><strong>PCE Price Index</strong> — The Fed's preferred inflation gauge. A hot print alongside soft GDP = stagflation headline risk.</div>
+        </div>
+      </div>
+      <div class="calendar-row">
+        <div class="cal-day">FRI<span>May 1</span></div>
+        <div class="cal-events">
+          <div class="cal-event"><strong>Nonfarm Payrolls</strong> — Labor market read in a stagflation context. Critically important for Fed path.</div>
+          <div class="cal-event"><strong>ISM Manufacturing PMI</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAKEAWAY -->
+    <div class="takeaway">
+      <div class="takeaway-label">⬡ Weekly Takeaway</div>
+      <p>This week was the market making its case. The case is: earnings are better than feared, AI capex is accelerating faster than modeled, and the ceasefire extension — however imperfect — keeps the worst tail risk (hot escalation) off the table. The S&amp;P doesn't lie about that. 7,165 is 7,165.</p>
+      <p>The counter-case is assembling quietly in the background. Oil gained 13% on the week — the most since early March. The IEA called it the largest energy security threat in history. An enterprise software company named the blockade as the reason its clients aren't renewing contracts. The yield curve is steepening on stagflation anxiety. PCE and GDP both drop Thursday. If they confirm what the commodity markets have been pricing — energy-driven inflation into slowing growth — the week-after-next changes the conversation fast.</p>
+      <p>Enjoy the records. Watch the Thursday data. And don't let VIX at 18 convince you this is a settled situation.</p>
+    </div>
+
+    <div class="disclaimer">
+      FinTrend News and its contributors are not licensed financial advisors. Nothing in this publication constitutes investment advice, a solicitation to buy or sell any security, or a recommendation to take any specific financial action. All market data referenced reflects conditions at the time of writing and may change materially. Readers should conduct their own research and consult a qualified financial professional before making any investment decision.
+    </div>
+
+    <div class="article-footer">
+      <span class="footer-brand">FinTrend News</span>
+      <span class="footer-sig">// HUNTER WILLIAM LANG · FRI APR 24 2026</span>
+    </div>
+
+  </div><!-- /article-wrap -->
+</body>
+</html>
