@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Talks Are Dead. The Week Ahead Is Loaded. | FinTrend News</title>
+  <meta name="description" content="Iran's FM left Islamabad before Witkoff landed. Trump scrapped the trip. WTI hovers near $95. And Thursday drops GDP, PCE, and the FOMC all in the same window. Arshia Morshedian's Sunday Macro Note, April 26."/>
+  <meta property="og:title" content="The Talks Are Dead. The Week Ahead Is Loaded."/>
+  <meta property="og:description" content="Iran's FM left Islamabad before Witkoff landed. Trump scrapped the trip. WTI hovers near $95. And Thursday drops GDP, PCE, and the FOMC all in the same window."/>
+  <meta property="og:type" content="article"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --gold: #f4c15d;
+      --gold-dim: rgba(244,193,93,0.15);
+      --gold-border: rgba(244,193,93,0.35);
+      --navy: #0b0f1f;
+      --panel: #111827;
+      --panel2: #161d30;
+      --muted: #7a8499;
+      --text: #e8eaf0;
+      --text-dim: #b0b8cc;
+      --mono: 'JetBrains Mono', monospace;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'Inter', sans-serif;
+      --red: #e05252;
+      --green: #52c07a;
+      --amber: #e8a444;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* PROGRESS BAR */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--gold); width: 0%; z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(11,15,31,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(244,193,93,0.12);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 12px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* PAGE */
+    .page { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+
+    /* KICKER */
+    .kicker-row { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+    .kicker-pill {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px;
+    }
+    .pill-sunday { background: rgba(82,112,192,0.18); color: #829ae0; border: 1px solid rgba(82,112,192,0.3); }
+    .pill-macro { background: rgba(244,193,93,0.1); color: var(--gold); border: 1px solid var(--gold-border); }
+    .kicker-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+
+    /* COUNTDOWN */
+    .countdown-block {
+      background: var(--panel);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .countdown-label {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--gold);
+    }
+    .countdown-items { display: flex; gap: 24px; flex-wrap: wrap; }
+    .countdown-item { text-align: center; }
+    .countdown-num {
+      font-family: var(--mono); font-size: 22px; font-weight: 600;
+      color: var(--gold); display: block; line-height: 1;
+    }
+    .countdown-unit {
+      font-family: var(--mono); font-size: 9px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); display: block; margin-top: 3px;
+    }
+    .countdown-divider { font-family: var(--mono); color: var(--muted); font-size: 18px; padding-top: 4px; }
+
+    /* HEADLINE */
+    h1 {
+      font-family: var(--serif); font-size: clamp(30px, 5vw, 42px);
+      line-height: 1.18; font-weight: 400;
+      color: var(--text); margin-bottom: 16px;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    /* DEK */
+    .dek {
+      font-family: var(--sans); font-size: 17px; font-weight: 300;
+      color: var(--text-dim); line-height: 1.6; margin-bottom: 24px;
+      border-left: 2px solid var(--gold-border); padding-left: 16px;
+    }
+
+    /* BYLINE */
+    .byline-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 0; margin-bottom: 40px; flex-wrap: wrap; gap: 8px;
+    }
+    .byline-author { font-size: 13px; color: var(--text-dim); }
+    .byline-author strong { color: var(--text); font-weight: 600; }
+    .byline-author span { color: var(--muted); font-size: 12px; }
+    .byline-date {
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .08em; color: var(--muted);
+    }
+
+    /* PROSE */
+    .prose p {
+      margin-bottom: 22px; font-size: 16px; color: var(--text-dim); line-height: 1.75;
+    }
+    .prose p:first-of-type::first-letter {
+      font-family: var(--serif); font-size: 68px; font-weight: 400;
+      color: var(--gold); float: left; line-height: .82;
+      margin: 4px 10px 0 0; padding: 0;
+    }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); margin: 44px 0 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--gold-border);
+    }
+
+    /* MARKET SNAPSHOT */
+    .snapshot-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 1px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px; overflow: hidden; margin-bottom: 36px;
+    }
+    .snap-cell {
+      background: var(--panel); padding: 14px 16px; text-align: center;
+    }
+    .snap-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
+    .snap-val { font-family: var(--mono); font-size: 16px; font-weight: 600; color: var(--text); display: block; }
+    .snap-chg { font-family: var(--mono); font-size: 10px; display: block; margin-top: 3px; }
+    .up { color: var(--green); }
+    .dn { color: var(--red); }
+    .flat { color: var(--muted); }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      margin: 36px 0; padding: 20px 24px;
+      background: var(--gold-dim);
+      border-radius: 0 4px 4px 0;
+    }
+    .pull-quote p {
+      font-family: var(--serif); font-size: 20px; font-weight: 400;
+      font-style: italic; color: var(--text); line-height: 1.5; margin: 0;
+    }
+    .pull-quote cite {
+      display: block; margin-top: 10px;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); font-style: normal;
+    }
+
+    /* DATA TABLE */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0 32px; font-size: 13px;
+    }
+    .data-table th {
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); text-align: left;
+      padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .data-table td {
+      padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-dim); vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .data-table .mono { font-family: var(--mono); font-size: 12px; }
+
+    /* SCENARIO GRID */
+    .scenario-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin: 20px 0 36px;
+    }
+    .scenario-card {
+      background: var(--panel); border-radius: 4px; padding: 18px 16px;
+      border-top: 3px solid transparent;
+    }
+    .scenario-card.bull { border-top-color: var(--green); }
+    .scenario-card.base { border-top-color: var(--amber); }
+    .scenario-card.bear { border-top-color: var(--red); }
+    .scenario-title {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .scenario-card.bull .scenario-title { color: var(--green); }
+    .scenario-card.base .scenario-title { color: var(--amber); }
+    .scenario-card.bear .scenario-title { color: var(--red); }
+    .scenario-prob {
+      font-family: var(--mono); font-size: 26px; font-weight: 600;
+      color: var(--text); display: block; line-height: 1; margin-bottom: 10px;
+    }
+    .scenario-desc {
+      font-size: 12px; color: var(--text-dim); line-height: 1.5;
+    }
+
+    /* WEEK AHEAD CALENDAR */
+    .calendar-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0 36px;
+      font-size: 13px;
+    }
+    .calendar-table th {
+      font-family: var(--mono); font-size: 9px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); text-align: left;
+      padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .calendar-table td {
+      padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-dim); vertical-align: top;
+    }
+    .calendar-table tr:last-child td { border-bottom: none; }
+    .imp-pill {
+      font-family: var(--mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 2px; display: inline-block;
+    }
+    .imp-high { background: rgba(224,82,82,0.15); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+    .imp-med { background: rgba(232,164,68,0.15); color: var(--amber); border: 1px solid rgba(232,164,68,0.3); }
+    .imp-low { background: rgba(122,132,153,0.15); color: var(--muted); border: 1px solid rgba(122,132,153,0.3); }
+
+    /* TAKEAWAY BOX */
+    .takeaway-box {
+      background: linear-gradient(135deg, rgba(244,193,93,0.08) 0%, rgba(244,193,93,0.03) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 4px; padding: 28px 28px 24px;
+      margin: 44px 0 36px;
+    }
+    .takeaway-box h3 {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .takeaway-box p {
+      font-size: 15px; color: var(--text-dim); line-height: 1.7; margin-bottom: 14px;
+    }
+    .takeaway-box p:last-child { margin-bottom: 0; }
+
+    /* CLOSING SIG */
+    .closing-sig {
+      margin-top: 52px; padding-top: 20px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+    }
+    .closing-sig p { font-size: 14px; color: var(--muted); }
+    .closing-sig strong { color: var(--text); }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      margin-top: 40px; padding: 16px 0;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+    }
+    .disclaimer p {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .04em; color: var(--muted);
+      line-height: 1.6; margin: 0;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 24px;
+    }
+    .footer-inner {
+      max-width: 680px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .footer-logo {
+      font-family: var(--mono); font-size: 12px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+    }
+    .footer-disc {
+      font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .scenario-grid { grid-template-columns: 1fr; }
+      .countdown-items { gap: 14px; }
+      .countdown-num { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">FinTrend News</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/archive.html">Archive</a>
+      <a href="/premium.html">Premium</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- KICKER -->
+  <div class="kicker-row">
+    <span class="kicker-pill pill-sunday">Sunday Macro</span>
+    <span class="kicker-dot"></span>
+    <span class="kicker-pill pill-macro">April 26, 2026</span>
+  </div>
+
+  <!-- COUNTDOWN: Days until key events -->
+  <div class="countdown-block">
+    <span class="countdown-label">Days Until&nbsp;→</span>
+    <div class="countdown-items">
+      <div class="countdown-item">
+        <span class="countdown-num">2</span>
+        <span class="countdown-unit">FOMC Vote</span>
+      </div>
+      <span class="countdown-divider">·</span>
+      <div class="countdown-item">
+        <span class="countdown-num">4</span>
+        <span class="countdown-unit">Q1 GDP</span>
+      </div>
+      <span class="countdown-divider">·</span>
+      <div class="countdown-item">
+        <span class="countdown-num">4</span>
+        <span class="countdown-unit">Core PCE</span>
+      </div>
+      <span class="countdown-divider">·</span>
+      <div class="countdown-item">
+        <span class="countdown-num">?</span>
+        <span class="countdown-unit">Strait Deal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <h1>The Talks Are Dead. The Week Ahead Is <em>Loaded.</em></h1>
+
+  <!-- DEK -->
+  <p class="dek">Iran's FM left Islamabad before Witkoff's plane was airborne. Trump killed the trip. WTI sits near $95. And Thursday, the economy puts everything on the table at once: Q1 GDP, Core PCE, and the FOMC statement — all in a four-hour window.</p>
+
+  <!-- BYLINE -->
+  <div class="byline-bar">
+    <div class="byline-author">
+      <strong>Arshia Morshedian</strong>
+      <span> — Sunday Macro, FinTrend News</span>
+    </div>
+    <div class="byline-date">SUN&nbsp;&nbsp;APR 26 · 2026</div>
+  </div>
+
+  <!-- MARKET SNAPSHOT -->
+  <div class="snapshot-grid">
+    <div class="snap-cell">
+      <span class="snap-label">S&P 500</span>
+      <span class="snap-val">7,138</span>
+      <span class="snap-chg up">+1.05% Wed</span>
+    </div>
+    <div class="snap-cell">
+      <span class="snap-label">Nasdaq</span>
+      <span class="snap-val">24,657</span>
+      <span class="snap-chg up">+1.64% Wed</span>
+    </div>
+    <div class="snap-cell">
+      <span class="snap-label">WTI Crude</span>
+      <span class="snap-val">$94.40</span>
+      <span class="snap-chg dn">−1.1% Fri</span>
+    </div>
+    <div class="snap-cell">
+      <span class="snap-label">10-yr Yield</span>
+      <span class="snap-val">4.25%</span>
+      <span class="snap-chg flat">+21 bps YTD</span>
+    </div>
+    <div class="snap-cell">
+      <span class="snap-label">Core PCE</span>
+      <span class="snap-val">2.7%</span>
+      <span class="snap-chg dn">Fed target: 2%</span>
+    </div>
+  </div>
+
+  <!-- PROSE -->
+  <div class="prose">
+
+    <p>Twice now, the market has priced in a deal that didn't exist. The April 8 ceasefire sent crude down 13% in a single week and the S&amp;P 500 back to all-time highs at 7,126. Then Iran seized container ships in the Strait mid-truce and WTI crawled back toward $95. The ceasefire extension on April 22 sent equities to fresh records at 7,138. Now the Islamabad talks have collapsed — Iran's foreign minister Abbas Araghchi departed Pakistan before U.S. envoys Witkoff and Kushner even boarded their plane, and Trump called off the trip entirely. The geopolitical reset the equity market believed it was getting does not exist.</p>
+
+    <p>What's striking is how little the market seems to care this morning. The S&amp;P is at an all-time high. Tech is up 11% in April alone. Eighty-eight percent of S&amp;P 500 reporters have beaten Q1 estimates, well ahead of the 10-year average of 76%. Corporate America, at least through the end of Q1, was not yet feeling the Strait's bite. That's the bull case in one line: earnings are holding, the war premium may already be fully priced into crude, and AI capex is accelerating regardless of what happens in Islamabad.</p>
+
+    <p>But here's what the equity market is getting wrong. The Strait is still closed to normal commercial traffic. Tanker captains are not running the gauntlet for margin. About 20 million barrels of oil and petroleum products moved through the Strait daily before the conflict. That flow has not resumed. Iran's Revolutionary Guard seized two more container ships mid-ceasefire this week. The Rapidan Energy president put it bluntly: Tehran believes it has the upper hand and is willing to absorb economic pain to maintain its chokehold. If that read is correct, the equity market is not pricing in a prolonged disruption — it is pricing in a resolution that no one in the negotiating room can actually deliver right now.</p>
+
+    <div class="pull-quote">
+      <p>"They are ready to eat grass for six months to keep their chokehold on this jugular — and they think they'll survive this conflict having taught a lesson."</p>
+      <cite>— Bob McNally, Rapidan Energy Group</cite>
+    </div>
+
+    <p>The IMF has the 2026 PCE inflation forecast at 2.9%. Core PCE entering the conflict was already at 2.7%, above the Fed's 2% target — meaning the Fed had not solved inflation, it had slowed it. Now oil is embedded as a sustained input cost rather than a spike. The March CPI all-items reading came in at 3.3% year-over-year; the energy component alone rose 10.9% in the month. When core PCE drops Thursday alongside GDP, it's expected to print around 3.1% annualized. That's not an inflation problem that disappears with a ceasefire.</p>
+
+  </div>
+
+  <!-- SECTION: DATA COMPARISON -->
+  <div class="section-label">Pre-War vs. Now: The Macro Shift</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Indicator</th>
+        <th>Pre-Conflict Baseline</th>
+        <th>Current Reading</th>
+        <th>Direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>WTI Crude Oil</td>
+        <td class="mono">~$68–72</td>
+        <td class="mono">$94.40</td>
+        <td class="mono up">+32% ↑</td>
+      </tr>
+      <tr>
+        <td>S&amp;P 500</td>
+        <td class="mono">6,845 (Jan 1)</td>
+        <td class="mono">7,138</td>
+        <td class="mono up">+4.3% ↑</td>
+      </tr>
+      <tr>
+        <td>Core PCE</td>
+        <td class="mono">2.7% (Jan)</td>
+        <td class="mono">~3.1% est.</td>
+        <td class="mono dn">Re-accelerating ↑</td>
+      </tr>
+      <tr>
+        <td>10-yr Treasury Yield</td>
+        <td class="mono">~4.04%</td>
+        <td class="mono">4.25%</td>
+        <td class="mono dn">+21 bps ↑</td>
+      </tr>
+      <tr>
+        <td>Fed Funds Rate</td>
+        <td class="mono">3.50–3.75%</td>
+        <td class="mono">3.50–3.75%</td>
+        <td class="mono flat">Unchanged →</td>
+      </tr>
+      <tr>
+        <td>CPI YoY (headline)</td>
+        <td class="mono">2.4% (Feb)</td>
+        <td class="mono">3.3% (Mar)</td>
+        <td class="mono dn">+90 bps ↑</td>
+      </tr>
+      <tr>
+        <td>Q4 2025 GDP</td>
+        <td class="mono">+0.5% (revised)</td>
+        <td class="mono">Q1 TBD Apr 30</td>
+        <td class="mono flat">Watch Thu ⬜</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose">
+    <p>The Fed meets Tuesday and Wednesday, with the statement and Powell press conference on April 29. No one expects a move — the funds rate stays at 3.50–3.75%. What matters is tone. The March meeting raised the core inflation forecast to 2.7% for 2026 and flagged Middle East conflict explicitly. By Thursday, the committee will have seen GDP and PCE simultaneously. If the GDP advance print is soft and core PCE is sticky, the Fed faces the exact policy trap it dreaded: growth slowing, inflation not. Higher-for-longer becomes less of a choice and more of a constraint.</p>
+
+    <p>The week's sequencing matters as much as the data itself. Consumer Confidence prints Tuesday morning before the Fed begins deliberating. Durable Goods drops Wednesday. Then Thursday, at 8:30 a.m. ET, GDP and PCE land at the same moment — and the market will have roughly four hours to digest both before the FOMC statement at 2:00 p.m. ET. That compression of information creates significant intraday volatility risk. Options positioning ahead of FOMC week suggests traders are bracing for it.</p>
+  </div>
+
+  <!-- SECTION: WEEK AHEAD CALENDAR -->
+  <div class="section-label">Week Ahead: April 28 – May 2</div>
+
+  <table class="calendar-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Event</th>
+        <th>Consensus</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">Tue Apr 28</td>
+        <td>CB Consumer Confidence (Apr)</td>
+        <td class="mono">~89.0</td>
+        <td><span class="imp-pill imp-med">Med</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Tue Apr 28</td>
+        <td>FOMC Meeting Begins</td>
+        <td class="mono">—</td>
+        <td><span class="imp-pill imp-high">High</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Wed Apr 29</td>
+        <td>Durable Goods Orders (Mar)</td>
+        <td class="mono">+0.4%</td>
+        <td><span class="imp-pill imp-med">Med</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Wed Apr 29</td>
+        <td>FOMC Statement + Powell Presser</td>
+        <td class="mono">Hold at 3.50–3.75%</td>
+        <td><span class="imp-pill imp-high">High</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Thu Apr 30</td>
+        <td>Q1 GDP Advance Estimate</td>
+        <td class="mono">~1.3% ann.</td>
+        <td><span class="imp-pill imp-high">High</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Thu Apr 30</td>
+        <td>Core PCE Price Index (Mar)</td>
+        <td class="mono">~3.1% ann.</td>
+        <td><span class="imp-pill imp-high">High</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Thu Apr 30</td>
+        <td>Employment Cost Index Q1</td>
+        <td class="mono">&lt;0.8% q/q</td>
+        <td><span class="imp-pill imp-high">High</span></td>
+      </tr>
+      <tr>
+        <td class="mono">Fri May 1</td>
+        <td>ISM Manufacturing PMI (Apr)</td>
+        <td class="mono">~48.5</td>
+        <td><span class="imp-pill imp-med">Med</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION: SCENARIOS -->
+  <div class="section-label">Three-Scenario Framework: Week of Apr 28</div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-title">Bull</div>
+      <span class="scenario-prob">20%</span>
+      <div class="scenario-desc">GDP surprises above 1.8%, Core PCE edges down to 2.9%, Fed signals a patient hold with a dovish lean. Strait talks restart through back channels. S&amp;P tests 7,200+.</div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-title">Base</div>
+      <span class="scenario-prob">55%</span>
+      <div class="scenario-desc">GDP prints 1.0–1.5%, Core PCE at 3.0–3.1%, Fed holds with hawkish tone citing inflation persistence. Oil stays $90–96. Equity range-bound near all-time highs with elevated vol.</div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-title">Bear</div>
+      <span class="scenario-prob">25%</span>
+      <div class="scenario-desc">GDP sub-1.0% or negative. Core PCE re-accelerates above 3.2%. ECI prints hot. Fed forced into stagflation language. Oil spikes on any Strait incident. S&amp;P pulls back to 6,800–6,900.</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>The bear case hinges on the Employment Cost Index, which many traders underweight relative to CPI and PCE. If Q1 ECI comes in above 0.8% quarter-over-quarter — arriving the same morning as GDP and PCE — it would be the data configuration most likely to push the Fed toward explicitly hawkish language. Structural wage pressure plus sticky energy inflation plus slowing growth is the policy nightmare. That combination doesn't just delay rate cuts — it reopens the question of whether the next move is a hike.</p>
+
+    <p>On the geopolitical front, the collapse of Islamabad talks creates a binary path. The ceasefire extension Trump signed still holds — technically. But the diplomatic architecture behind it is now hollow. Iran's position, per reporting from multiple sources close to the talks, was that it would consider moving enriched uranium to a third country and lifting shipping taxes in the Strait, but only if primary and secondary sanctions were lifted simultaneously. The U.S. side would not accept that sequencing. Without a credible diplomatic process, the ceasefire becomes an indefinite limbo: no active strikes, no reopened Strait, no resolution.</p>
+
+    <p>The macro bottom line heading into the week: the market got the earnings season it needed. Q1 corporate results, largely pre-conflict in their cost structure, cleared the bar with an unusual margin. The next test is whether the macro data confirms that the underlying economy is sturdy enough to absorb a prolonged oil shock and a Fed that cannot ease. Thursday will tell us more about 2026′s trajectory than any single earnings call.</p>
+  </div>
+
+  <!-- TAKEAWAY BOX -->
+  <div class="takeaway-box">
+    <h3>Arshia's Macro Read — April 26</h3>
+    <p>The equity market is trading a ceasefire that exists on paper and a deal that collapsed before it started. The S&amp;P at 7,138 prices in a relatively benign resolution. The bond market at 4.25% on the 10-year prices in prolonged inflation pressure. One of them is right. Thursday's data dump — GDP, PCE, ECI, and the FOMC in a single morning — is the most consequential macro window of the quarter.</p>
+    <p>Position accordingly. Reduce exposure to rate-sensitive duration. Energy names with domestic production leverage remain the most logical hedge if oil re-tests $100 on any geopolitical flare. Don't chase tech at 20.9x forward P/E if Thursday's data combo prints stagflationary — that's a valuation reset waiting for a catalyst. And watch the Employment Cost Index. It's the number most people aren't watching, and it may be the one that matters most.</p>
+  </div>
+
+  <!-- CLOSING SIG -->
+  <div class="closing-sig">
+    <p>Stay disciplined. —&nbsp;<strong>Arshia Morshedian</strong><br/>
+    <span style="font-family:var(--mono);font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);">Sunday Macro · FinTrend News · April 26, 2026</span></p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <p>For educational and informational purposes only. Nothing published on FinTrend News constitutes financial advice or a solicitation to buy or sell any security. Always conduct your own research and consult a licensed financial professional before making investment decisions.</p>
+  </div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">FinTrend News</a>
+    <p class="footer-disc">For educational and informational purposes only. Nothing published on FinTrend News constitutes financial advice. Always conduct your own research.</p>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  });
+</script>
+</body>
+</html>
