@@ -400,7 +400,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 .yc-svg{width:100%;height:100%}
 
 /* ============ NEW PANELS ============ */
-/* Chat */
 #chat-messages::-webkit-scrollbar{width:4px}
 #chat-messages::-webkit-scrollbar-track{background:transparent}
 #chat-messages::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px}
@@ -416,7 +415,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 @keyframes chatdot{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
 .chat-suggestion{padding:6px 12px;border:1px solid var(--bd);background:var(--s1);color:var(--m1);font-family:var(--mono);font-size:9px;letter-spacing:.10em;cursor:pointer;transition:.14s}
 .chat-suggestion:hover{border-color:var(--gbd);color:var(--gold)}
-/* Archive */
 .arch-card{background:var(--s1);border:1px solid var(--bd);border-left:3px solid transparent;padding:16px 18px;margin-bottom:1px;cursor:pointer;transition:.14s}
 .arch-card:hover{background:var(--s2);border-left-color:var(--gold)}
 .arch-card.risk-off{border-left-color:var(--rd)}
@@ -427,7 +425,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 .arch-summary{font-size:11px;color:var(--m1);line-height:1.6;margin-bottom:8px}
 .arch-tags{display:flex;gap:6px;flex-wrap:wrap}
 .arch-tag{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--bd);color:var(--m1)}
-/* Journal */
 .jrn-card{background:var(--s1);border:1px solid var(--bd);display:grid;grid-template-columns:80px 1fr auto;gap:0;margin-bottom:1px}
 @media(max-width:600px){.jrn-card{grid-template-columns:1fr}}
 .jrn-ticker-col{border-right:1px solid var(--bd);padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
@@ -444,7 +441,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 .jrn-price-k{color:var(--m1);font-size:8px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
 .jrn-del{padding:8px 12px;border:1px solid rgba(248,113,113,.2);color:rgba(248,113,113,.6);font-family:var(--mono);font-size:9px;background:none;cursor:pointer;margin:12px;align-self:center;transition:.14s}
 .jrn-del:hover{background:rgba(248,113,113,.08);color:var(--rd)}
-/* Performance */
 .perf-row{display:grid;grid-template-columns:100px 1fr 1fr 1fr 1fr 1fr;background:var(--bd);gap:1px}
 .perf-th{background:rgba(2,4,10,.5);padding:7px 10px;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--m1)}
 .perf-td{background:var(--s1);padding:8px 10px;font-family:var(--mono);font-size:11px;color:var(--m2)}
@@ -642,7 +638,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
       <div class="kl-head"><div class="kl-th">Asset</div><div class="kl-th">Support</div><div class="kl-th">Resistance</div><div class="kl-th">Recent Chg</div><div class="kl-th">Bias</div></div>
       <div id="kl-body"></div>
     </div>
-    <!-- ── TOOL GRID NAV ── -->
     <div class="sr" style="margin-top:18px;"><div class="sr-l">Quant Tools</div><div class="sr-line"></div></div>
     <div class="tgrid" style="margin-bottom:16px;">
       <div class="tcard" onclick="showQTool('bs')"><div class="tcard-icon">⬡</div><div class="tcard-name">Black-Scholes</div><div class="tcard-desc">Options pricing + full Greeks dashboard</div><div class="tcard-cta">Open Tool →</div></div>
@@ -654,8 +649,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
       <div class="tcard" onclick="showQTool('ef')"><div class="tcard-icon">◎</div><div class="tcard-name">Efficient Frontier</div><div class="tcard-desc">Markowitz portfolio optimizer</div><div class="tcard-cta">Open Tool →</div></div>
       <div class="tcard" onclick="showQTool('iv')"><div class="tcard-icon">⬦</div><div class="tcard-name">IV Rank Calculator</div><div class="tcard-desc">Implied volatility percentile + signals</div><div class="tcard-cta">Open Tool →</div></div>
     </div>
-
-    <!-- ── TOOL PANELS ── -->
     <div id="qt-container" style="display:none;">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
         <button onclick="hideQTool()" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--m1);border:1px solid var(--bd);padding:5px 11px;background:none;cursor:pointer;">← Back to Tools</button>
@@ -663,7 +656,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
       </div>
       <div id="qt-content" class="qb gb"></div>
     </div>
-
     <div class="disc" style="margin-top:16px;">All quantitative outputs are educational. Not financial advice. Models use simplified assumptions.</div>
   </div>
 </div>
@@ -969,8 +961,6 @@ if(klb) klb.innerHTML = klData.map(function(l){
 
 // ── MONTE CARLO ──
 var SCEN = {bear:{vol:45,ret:-30},recession:{vol:35,ret:-20},base:{vol:18,ret:2},recovery:{vol:20,ret:15},bull:{vol:22,ret:25}};
-
-// Ticker presets: [annualVol%, annualReturn%, typicalPrice, description]
 var TICKERS = {
   'SPY':[18,10,570,'S&P 500 ETF'],'QQQ':[22,12,470,'Nasdaq 100 ETF'],'IWM':[24,8,205,'Russell 2000 ETF'],
   'GLD':[14,8,310,'Gold ETF'],'TLT':[12,-2,95,'20yr Treasury ETF'],'XLE':[28,6,92,'Energy ETF'],
@@ -1056,7 +1046,6 @@ document.getElementById("mc-run").addEventListener("click",function(){
       '<span style="color:var(--am)">P(Loss)          </span>'+probLoss+'%\n'+
       '<span style="color:var(--gr)">P(Gain > 10%)    </span>'+probGain10+'%\n\n'+
       '<span style="color:var(--m1);font-size:9px;">Educational GBM model only. Not a forecast.</span>';
-    // chart
     var chart = document.getElementById("mc-chart");
     if(chart){
       var bins=50,mn=S[0],mx=S[sims-1],bs=(mx-mn)/bins;
@@ -1074,7 +1063,7 @@ document.getElementById("mc-run").addEventListener("click",function(){
   },20);
 });
 
-// ── SUPABASE DATA ──
+// ── SUPABASE RENDER FUNCTIONS ──
 function renderRegimeBars(macro){
   var rb = document.getElementById("rb-bars");
   var rs = document.getElementById("r-sum");
@@ -1168,7 +1157,6 @@ function renderIdeas(ideas){
       '<div class="ic-foot"><span class="ic-hz">'+esc((i.catalysts||"").split(";")[0])+'</span><span class="ic-st active">Active</span></div>'+
       '</div>';
   }).join("");
-  // also render ideas in deal tracker
   var dl=document.getElementById("dl-ideas");
   if(dl){
     dl.innerHTML=ideas.map(function(i){
@@ -1218,15 +1206,6 @@ function renderEdNote(briefing){
     '</div>';
 }
 
-function parseWeight(h){
-  if(h.weight!==undefined) return h.weight;
-  if(h.allocation!==undefined){
-    var v=parseFloat(h.allocation);
-    return v<=1?(v*100).toFixed(0)+"%":v+"%";
-  }
-  return "—";
-}
-
 function renderPortfolios(portfolios){
   var pg=document.getElementById("port-grid");
   if(!pg)return;
@@ -1234,7 +1213,6 @@ function renderPortfolios(portfolios){
   var models=["Cautious","Balanced","Aggressive"];
   var descs={Cautious:"Low risk. Capital preservation. Defensive-first.",Balanced:"Moderate exposure. Selective risk. Quality tilt.",Aggressive:"High conviction. Thematic bets. Active rotation."};
   var icons={Cautious:"◎",Balanced:"◑",Aggressive:"✦"};
-  // get latest per model
   var latest={};
   portfolios.forEach(function(p){
     if(!latest[p.model]||new Date(p.as_of)>new Date(latest[p.model].as_of)) latest[p.model]=p;
@@ -1246,7 +1224,6 @@ function renderPortfolios(portfolios){
     var isAgg=m==="Aggressive";
     var rows=h.slice(0,8).map(function(x){
       var tick=x.ticker||x.t||"";
-      var name=x.name||x.n||x.rationale||x.thesis||"";
       var wt=x.weight||x.allocation||x.w||x.pct||"";
       var wtNum=parseFloat(String(wt).replace(/[^0-9.]/g,""))||0;
       if(!String(wt).includes("%")&&wtNum>0)wt=wt+"%";
@@ -1353,8 +1330,7 @@ function renderRoundup(briefing,roundups){
   }
   var fItems=items.filter(function(i){return i.text;});
   if(!fItems.length){rl.innerHTML='<div class="ld">No roundup data available.</div>';return;}
-  var items=fItems;
-  rl.innerHTML=items.filter(function(i){return i.text;}).map(function(i){
+  rl.innerHTML=fItems.map(function(i){
     return '<div class="ri '+i.cls+'">'+
       '<div class="ri-tc"><div class="ri-tag">'+i.tag+'</div></div>'+
       '<div class="ri-b"><div class="ri-txt">'+esc(i.text)+'</div><div class="ri-src">via '+i.src+' · '+fmtShort(briefing.week_of)+'</div></div>'+
@@ -1377,7 +1353,7 @@ function renderTemplates(templates){
   }).join("");
 }
 
-// ── AUTH ──
+// ── AUTH + DYNAMIC DATA FETCH ──
 var sb=null, n=0;
 var poll=setInterval(function(){
   n++;
@@ -1400,46 +1376,57 @@ var poll=setInterval(function(){
         if(!ok){document.getElementById("gate").classList.add("show");return;}
         var em=document.getElementById("tb-email");
         if(em)em.textContent=user.email;
-        // fetch all data
-        var W="2026-04-07";
+
+        // ── STEP 1: fetch macro + briefing to get the live week_of ──
         Promise.all([
           sb.from("premium_macro_dashboard").select("*").order("week_of",{ascending:false}).limit(1),
           sb.from("premium_weekly_briefing").select("*").order("week_of",{ascending:false}).limit(1),
-          sb.from("premium_alerts").select("*").eq("week_of",W).order("urgency",{ascending:true}),
-          sb.from("premium_ideas").select("*").eq("week_of",W),
-          sb.from("premium_earnings_intel").select("*").eq("week_of",W).order("report_date"),
-          sb.from("premium_watchlist").select("*").eq("week_of",W),
-          sb.from("premium_sector_scorecards").select("*").eq("week_of",W),
-          sb.from("premium_model_portfolios").select("*").order("as_of",{ascending:false}),
-          sb.from("premium_templates").select("*").order("id"),
-          sb.from("premium_roundups").select("*").order("id",{ascending:false}).limit(1),
-        ]).then(function(results){
-          var macro=results[0].data&&results[0].data[0];
-          var briefing=results[1].data&&results[1].data[0];
-          var alerts=results[2].data||[];
-          var ideas=results[3].data||[];
-          var earnings=results[4].data||[];
-          var watches=results[5].data||[];
-          var scorecards=results[6].data||[];
-          var portfolios=results[7].data||[];
-          var templates=results[8].data||[];
-          var roundups=results[9]&&results[9].data||[];
-          renderMacroBar(macro);
-          renderThesis(briefing,macro);
-          renderSnap(macro);
-          renderIdeas(ideas);
-          renderAlerts(alerts);
-          renderEdNote(briefing);
-          renderPortfolios(portfolios);
-          renderSectors(scorecards);
-          renderEarnings(earnings);
-          renderWatchlist(watches);
-          renderRoundup(briefing,roundups);
-          renderTemplates(templates);
-          renderRegimeBars(macro);
+        ]).then(function(baseResults){
+          var macro=baseResults[0].data&&baseResults[0].data[0];
+          var briefing=baseResults[1].data&&baseResults[1].data[0];
+
+          // ── derive current week dynamically — never hardcoded ──
+          var W=(briefing&&briefing.week_of)||(macro&&macro.week_of)||"";
+
+          // ── STEP 2: fetch all week-specific tables using live week_of ──
+          Promise.all([
+            sb.from("premium_alerts").select("*").eq("week_of",W).order("urgency",{ascending:true}),
+            sb.from("premium_ideas").select("*").eq("week_of",W),
+            sb.from("premium_earnings_intel").select("*").eq("week_of",W).order("report_date"),
+            sb.from("premium_watchlist").select("*").eq("week_of",W),
+            sb.from("premium_sector_scorecards").select("*").eq("week_of",W),
+            sb.from("premium_model_portfolios").select("*").order("as_of",{ascending:false}),
+            sb.from("premium_templates").select("*").order("id"),
+            sb.from("premium_roundups").select("*").order("id",{ascending:false}).limit(1),
+          ]).then(function(results){
+            var alerts=results[0].data||[];
+            var ideas=results[1].data||[];
+            var earnings=results[2].data||[];
+            var watches=results[3].data||[];
+            var scorecards=results[4].data||[];
+            var portfolios=results[5].data||[];
+            var templates=results[6].data||[];
+            var roundups=results[7]&&results[7].data||[];
+            renderMacroBar(macro);
+            renderThesis(briefing,macro);
+            renderSnap(macro);
+            renderIdeas(ideas);
+            renderAlerts(alerts);
+            renderEdNote(briefing);
+            renderPortfolios(portfolios);
+            renderSectors(scorecards);
+            renderEarnings(earnings);
+            renderWatchlist(watches);
+            renderRoundup(briefing,roundups);
+            renderTemplates(templates);
+            renderRegimeBars(macro);
+          }).catch(function(err){
+            console.error("Data fetch error:",err);
+          });
         }).catch(function(err){
-          console.error("Data fetch error:",err);
+          console.error("Base fetch error:",err);
         });
+
       });
     });
   }
@@ -1456,8 +1443,6 @@ document.getElementById("tb-so").addEventListener("click",function(){
 // ── QUANT TOOLS ENGINE ──
 (function(){
   var tools = {
-
-    // ── 1. BLACK-SCHOLES + GREEKS ──
     bs: {
       title: "Black-Scholes Options Pricing",
       render: function(el){
@@ -1488,8 +1473,6 @@ document.getElementById("tb-so").addEventListener("click",function(){
           <div class="qt-out" id="bs-interp" style="display:none;"></div>`;
       }
     },
-
-    // ── 2. DCF CALCULATOR ──
     dcf: {
       title: "DCF Intrinsic Value Calculator",
       render: function(el){
@@ -1515,8 +1498,6 @@ document.getElementById("tb-so").addEventListener("click",function(){
           <div id="dcf-table" style="overflow-x:auto;"></div>`;
       }
     },
-
-    // ── 3. KELLY CRITERION ──
     kelly: {
       title: "Kelly Criterion Position Sizer",
       render: function(el){
@@ -1539,8 +1520,6 @@ document.getElementById("tb-so").addEventListener("click",function(){
           <div class="qt-out" id="ky-interp" style="display:none;"></div>`;
       }
     },
-
-    // ── 4. RISK RATIOS ──
     ratio: {
       title: "Risk-Adjusted Return Ratios",
       render: function(el){
@@ -1565,8 +1544,6 @@ document.getElementById("tb-so").addEventListener("click",function(){
           <div class="qt-out" id="ra-interp" style="display:none;"></div>`;
       }
     },
-
-    // ── 5. CORRELATION MATRIX ──
     corr: {
       title: "Asset Correlation Matrix",
       render: function(el){
@@ -1586,8 +1563,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
         renderCorrMatrix();
       }
     },
-
-    // ── 6. YIELD CURVE ──
     yc: {
       title: "US Treasury Yield Curve",
       render: function(el){
@@ -1608,8 +1583,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
         renderYieldCurve();
       }
     },
-
-    // ── 7. EFFICIENT FRONTIER ──
     ef: {
       title: "Markowitz Efficient Frontier",
       render: function(el){
@@ -1631,8 +1604,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
         renderEFInputs();
       }
     },
-
-    // ── 8. IV RANK ──
     iv: {
       title: "IV Rank Calculator",
       render: function(el){
@@ -1671,7 +1642,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("qt-container").style.display = "none";
   };
 
-  // ── MATH HELPERS ──
   function norm(x){
     var t=1/(1+0.2316419*Math.abs(x));
     var d=0.3989422820*Math.exp(-x*x/2);
@@ -1686,7 +1656,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     return "$"+fmt(v,0);
   }
 
-  // ── BLACK-SCHOLES ──
   window.runBS = function(){
     var S=+document.getElementById("bs-s").value;
     var K=+document.getElementById("bs-k").value;
@@ -1736,7 +1705,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       "Theta means:  losing $"+fmt(Math.abs(theta),4)+"/day from time decay";
   };
 
-  // ── DCF ──
   window.runDCF = function(){
     var fcf=+document.getElementById("dcf-fcf").value;
     var g1=+document.getElementById("dcf-g1").value/100;
@@ -1747,12 +1715,9 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     var debt=+document.getElementById("dcf-debt").value;
     if(wacc<=tg){alert("WACC must be greater than terminal growth rate.");return;}
     var pvFCF=0,cur=fcf;
-    var rows="";
     for(var y=1;y<=10;y++){
       cur*=(y<=5?1+g1:1+g2);
-      var pv=cur/Math.pow(1+wacc,y);
-      pvFCF+=pv;
-      rows+=`<tr><td class="qt-td label">Year ${y}</td><td class="qt-td">${fmtM(cur)}</td><td class="qt-td pos">${fmtM(pv)}</td><td class="qt-td">${fmt(pv/pvFCF*100,1)}%</td></tr>`;
+      pvFCF+=cur/Math.pow(1+wacc,y);
     }
     var tv=cur*(1+tg)/(wacc-tg);
     var pvTV=tv/Math.pow(1+wacc,10);
@@ -1764,7 +1729,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("dcf-pv").textContent=fmtM(pvFCF*1e6);
     document.getElementById("dcf-tv").textContent=fmtM(pvTV*1e6)+" ("+fmt(pvTV/(pvFCF+pvTV)*100,0)+"%)";
     document.getElementById("dcf-res").style.display="grid";
-    // Sensitivity table
     var waccs=[wacc-0.02,wacc-0.01,wacc,wacc+0.01,wacc+0.02];
     var tgs=[tg-0.01,tg,tg+0.01];
     var thead="<table class='qt-tbl' style='width:100%;border-collapse:separate;border-spacing:1px;'><thead><tr><th class='qt-th'>WACC \\ TGR</th>";
@@ -1789,7 +1753,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("dcf-table").innerHTML=thead+tbody+"</tbody></table><div style='font-family:var(--mono);font-size:9px;color:var(--m1);margin-top:6px;letter-spacing:.10em;'>SENSITIVITY TABLE — Intrinsic Value per Share across WACC and Terminal Growth Rate scenarios</div>";
   };
 
-  // ── KELLY ──
   window.runKelly = function(){
     var w=+document.getElementById("ky-w").value/100;
     var win=+document.getElementById("ky-win").value;
@@ -1809,7 +1772,7 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
        "Win Rate:      "+fmt(w*100,1)+"%\n"+
        "Win/Loss:      "+fmt(b,2)+"x reward/risk\n"+
        "Payoff Ratio:  "+fmt(b,2)+"\n"+
-       "Expected Value: $"+fmt(w*win-(1-w)*loss," per trade\n")+
+       "Expected Value: $"+fmt(w*win-(1-w)*loss)+" per trade\n"+
        "\nRecommendation: Use HALF Kelly ($"+fmt(half*port,0)+") for real trading.\n"+
        "Full Kelly is theoretically optimal but causes extreme drawdowns in practice.\n"+
        "Never risk more than 5% of portfolio on a single position regardless of Kelly output.";
@@ -1817,7 +1780,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("ky-interp").textContent=interp;
   };
 
-  // ── RATIOS ──
   window.runRatios = function(){
     var ret=+document.getElementById("ra-ret").value/100;
     var vol=+document.getElementById("ra-vol").value/100;
@@ -1852,7 +1814,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("ra-interp").textContent=interp;
   };
 
-  // ── CORRELATION MATRIX ──
   function renderCorrMatrix(){
     var assets=["SPY","QQQ","TLT","GLD","BTC","UUP","XLE","XLU"];
     var matrix=[
@@ -1865,7 +1826,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       [0.72, 0.68,-0.38, 0.28, 0.38,-0.52, 1.00, 0.22],
       [0.18, 0.14, 0.52, 0.22, 0.06,-0.18, 0.22, 1.00]
     ];
-    var cols=assets.length+1;
     var html="<div class='corr-grid' style='grid-template-columns:60px repeat("+assets.length+",1fr);'>";
     html+="<div class='corr-cell' style='background:var(--s1);'></div>";
     assets.forEach(function(a){html+="<div class='corr-cell' style='background:rgba(2,4,10,.5);font-family:var(--mono);font-size:9px;color:var(--gold);'>"+a+"</div>";});
@@ -1873,8 +1833,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       html+="<div class='corr-cell' style='background:rgba(2,4,10,.5);font-family:var(--mono);font-size:9px;color:var(--gold);'>"+a+"</div>";
       assets.forEach(function(b,j){
         var v=matrix[i][j];
-        var r=v>0?Math.round(v*30):0;
-        var g=v<0?Math.round(Math.abs(v)*30):0;
         var bg=i===j?"rgba(232,201,122,0.12)":"rgba("+(v>0?"52,211,153":"248,113,113")+","+fmt(Math.abs(v)*0.35,2)+")";
         var col=i===j?"var(--gold)":v>0.6?"var(--gr)":v<-0.6?"var(--rd)":"var(--m2)";
         html+="<div class='corr-cell' style='background:"+bg+";color:"+col+";font-family:var(--mono);font-size:10px;'>"+fmt(v,2)+"</div>";
@@ -1885,7 +1843,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     if(el)el.innerHTML=html;
   }
 
-  // ── YIELD CURVE ──
   function renderYieldCurve(){
     var tenors=["1M","3M","6M","1Y","2Y","3Y","5Y","7Y","10Y","20Y","30Y"];
     var current=[5.28,5.22,5.08,4.82,3.83,3.85,3.96,4.06,4.01,4.48,4.38];
@@ -1893,11 +1850,10 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     var svg=document.getElementById("yc-svg");
     if(!svg)return;
     var W=700,H=140,pad={l:36,r:10,t:12,b:28};
-    var minY=Math.min(...current,...yearAgo)-0.3;
-    var maxY=Math.max(...current,...yearAgo)+0.3;
+    var minY=Math.min.apply(null,current.concat(yearAgo))-0.3;
+    var maxY=Math.max.apply(null,current.concat(yearAgo))+0.3;
     function px(i){return pad.l+(W-pad.l-pad.r)*i/(tenors.length-1);}
     function py(v){return pad.t+(H-pad.t-pad.b)*(1-(v-minY)/(maxY-minY));}
-    // Grid lines
     var svgHtml="";
     [4,4.5,5].forEach(function(v){
       if(v>=minY&&v<=maxY){
@@ -1906,21 +1862,17 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
         svgHtml+="<text x='"+pad.l+"' y='"+(y-3)+"' font-size='8' fill='rgba(156,163,175,0.5)' font-family='monospace'>"+v.toFixed(1)+"%</text>";
       }
     });
-    // Year ago line
     var pathOld="M"+px(0)+","+py(yearAgo[0]);
     yearAgo.forEach(function(v,i){if(i>0)pathOld+=" L"+px(i)+","+py(v);});
     svgHtml+="<path d='"+pathOld+"' fill='none' stroke='rgba(107,114,128,0.5)' stroke-width='1.5' stroke-dasharray='4,3'/>";
-    // Current line
     var pathCur="M"+px(0)+","+py(current[0]);
     current.forEach(function(v,i){if(i>0)pathCur+=" L"+px(i)+","+py(v);});
     svgHtml+="<path d='"+pathCur+"' fill='none' stroke='#e8c97a' stroke-width='2'/>";
-    // Dots + labels
     current.forEach(function(v,i){
       svgHtml+="<circle cx='"+px(i)+"' cy='"+py(v)+"' r='3' fill='#e8c97a'/>";
       svgHtml+="<text x='"+px(i)+"' y='"+(H-8)+"' font-size='7' fill='rgba(156,163,175,0.6)' font-family='monospace' text-anchor='middle'>"+tenors[i]+"</text>";
     });
     svg.innerHTML=svgHtml;
-    // Table
     var tbl="<table class='qt-tbl' style='width:100%;'><thead><tr><th class='qt-th'>Tenor</th><th class='qt-th'>Current</th><th class='qt-th'>1Y Ago</th><th class='qt-th'>Change</th></tr></thead><tbody>";
     tenors.forEach(function(t,i){
       var chg=current[i]-yearAgo[i];
@@ -1929,17 +1881,15 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     });
     tbl+="</tbody></table>";
     document.getElementById("yc-table").innerHTML=tbl;
-    // Spread analysis
     var spread2_10=current[8]-current[4];
     var el=document.getElementById("yc-interp");
     if(el)el.textContent="CURVE ANALYSIS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"+
-      "2s10s Spread:    "+(spread2_10>0?"+":"")+fmt(spread2_10,2)+"% ("+( spread2_10<0?"INVERTED — historically precedes recession by 12-18 months":"Normal — no inversion signal"  )+")\n"+
+      "2s10s Spread:    "+(spread2_10>0?"+":"")+fmt(spread2_10,2)+"% ("+(spread2_10<0?"INVERTED — historically precedes recession by 12-18 months":"Normal — no inversion signal")+")\n"+
       "30Y Rate:        "+fmt(current[10],2)+"% vs 10Y "+fmt(current[8],2)+"% — Term premium "+(current[10]>current[8]?"present":"compressed")+"\n"+
       "Front End:       "+fmt(current[1],2)+"% (3M) — Fed anchored near "+fmt(current[1],2)+"%\n"+
       "YoY Shift:       Front end down sharply, back end more stable — pricing in cuts";
   }
 
-  // ── EFFICIENT FRONTIER ──
   var efAssets=[
     {name:"US Equities (SPY)",ret:7,vol:18},
     {name:"Bonds (TLT)",ret:4,vol:12},
@@ -1950,7 +1900,7 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     var html="";
     efAssets.forEach(function(a,i){
       html+="<div class='qt-grid' style='margin-bottom:6px;border:1px solid var(--bd);padding:10px;'>";
-      html+="<div class='qt-row'><div class='qt-lbl'>Asset "+( i+1)+" Name</div><input class='qt-inp' id='ef-n"+i+"' type='text' value='"+a.name+"'/></div>";
+      html+="<div class='qt-row'><div class='qt-lbl'>Asset "+(i+1)+" Name</div><input class='qt-inp' id='ef-n"+i+"' type='text' value='"+a.name+"'/></div>";
       html+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>";
       html+="<div class='qt-row'><div class='qt-lbl'>Exp. Return (%/yr)</div><input class='qt-inp' id='ef-r"+i+"' type='number' value='"+a.ret+"' step='0.1'/></div>";
       html+="<div class='qt-row'><div class='qt-lbl'>Volatility (%/yr)</div><input class='qt-inp' id='ef-v"+i+"' type='number' value='"+a.vol+"' step='0.1'/></div>";
@@ -1968,17 +1918,12 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
         vol:+document.getElementById("ef-v"+i).value/100
       });
     }
-    // Equal weight baseline
     var n=assets.length;
-    var eqRet=assets.reduce(function(s,a){return s+a.ret;},0)/n;
-    var eqVol=Math.sqrt(assets.reduce(function(s,a){return s+Math.pow(a.vol/n,2);},0))*1.2;
-    // Min variance: inverse-variance weighted
     var invVars=assets.map(function(a){return 1/(a.vol*a.vol);});
     var sumInv=invVars.reduce(function(s,v){return s+v;},0);
     var mvWeights=invVars.map(function(v){return v/sumInv;});
     var mvRet=assets.reduce(function(s,a,i){return s+mvWeights[i]*a.ret;},0);
     var mvVol=Math.sqrt(assets.reduce(function(s,a,i){return s+Math.pow(mvWeights[i]*a.vol,2);},0));
-    // Max Sharpe (simplified — max return/vol)
     var rf=0.0425;
     var sharpes=assets.map(function(a){return (a.ret-rf)/a.vol;});
     var sumSh=sharpes.reduce(function(s,v){return s+v;},0);
@@ -2000,7 +1945,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     document.getElementById("ef-weights").innerHTML=wHtml;
   };
 
-  // ── IV RANK ──
   window.runIV = function(){
     var cur=+document.getElementById("iv-cur").value;
     var hi=+document.getElementById("iv-hi").value;
@@ -2077,7 +2021,7 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     var svg=document.getElementById("perf-svg");if(!svg)return;
     var W=900,H=200,pad={l:40,r:10,t:10,b:30};
     var allNAVs=[];Object.values(models).forEach(function(rows){rows.forEach(function(r){allNAVs.push(r.nav);});});
-    var minN=Math.min(95,...allNAVs)-1,maxN=Math.max(105,...allNAVs)+1;
+    var minN=Math.min.apply(null,[95].concat(allNAVs))-1,maxN=Math.max.apply(null,[105].concat(allNAVs))+1;
     var weeks=(models["Cautious"]||[]).map(function(r){return r.week_of;});
     if(!weeks.length)return;
     function px(i){return pad.l+(W-pad.l-pad.r)*i/(weeks.length-1);}
@@ -2111,7 +2055,7 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       function pct(v){return (v>=0?"+":"")+v.toFixed(1)+"%";}function cls(v){return v>=0?"pos":"neg";}
       var spy=a.benchmark_return||0;
       var rets=[c.weekly_return||0,b.weekly_return||0,a.weekly_return||0];
-      var best=["Cautious","Balanced","Aggressive"][rets.indexOf(Math.max(...rets))];
+      var best=["Cautious","Balanced","Aggressive"][rets.indexOf(Math.max.apply(null,rets))];
       html+="<tr class='perf-row'><td class='perf-td gold'>"+w+"</td><td class='perf-td "+cls(c.weekly_return)+"'>"+pct(c.weekly_return||0)+"</td><td class='perf-td "+cls(b.weekly_return)+"'>"+pct(b.weekly_return||0)+"</td><td class='perf-td "+cls(a.weekly_return)+"'>"+pct(a.weekly_return||0)+"</td><td class='perf-td "+cls(spy)+"'>"+pct(spy)+"</td><td class='perf-td' style='color:var(--gold);'>"+best+"</td></tr>";
     });
     el.innerHTML=html+"</tbody>";
@@ -2138,13 +2082,13 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       archData=data||[];renderArchive(archData);
     }).catch(function(){
       var el=document.getElementById("arch-list");
-      if(el)el.innerHTML="<div style='padding:24px;font-family:var(--mono);font-size:11px;color:var(--m1);'>No archive data yet — will populate after first Friday automation run.</div>";
+      if(el)el.innerHTML="<div style='padding:24px;font-family:var(--mono);font-size:11px;color:var(--m1);'>No archive data yet.</div>";
     });
   }
 
   function renderArchive(data){
     var el=document.getElementById("arch-list");if(!el)return;
-    if(!data.length){el.innerHTML="<div style='padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--m1);'>No archive data yet. Check back after the first Friday automation run.</div>";return;}
+    if(!data.length){el.innerHTML="<div style='padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--m1);'>No archive data yet.</div>";return;}
     el.innerHTML=data.map(function(r){
       var regime=(r.regime||"").toLowerCase();
       var cls=regime.includes("off")?"risk-off":regime.includes("on")?"risk-on":"neutral";
@@ -2199,7 +2143,6 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
   var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
   var jrnLoaded=false;
   function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-
   function getToken(){return window._sbToken||SB_KEY;}
 
   function fetchJournal(){
