@@ -449,6 +449,33 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 /* FOOTER */
 .footer{padding:16px 22px;border-top:1px solid var(--bd);font-size:11px;color:rgba(107,114,128,.4);text-align:center;line-height:1.7;max-width:var(--max);margin:0 auto;position:relative;z-index:1}
 .footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+
+/* FLOATING AI CHAT WIDGET */
+.flt-ai-btn{position:fixed;right:22px;bottom:22px;z-index:10020;display:flex;align-items:center;gap:10px;padding:13px 18px;background:linear-gradient(135deg,var(--gold),#f5df9d);color:#050505;border:1px solid rgba(232,201,122,.55);box-shadow:0 18px 55px rgba(0,0,0,.55),0 0 34px rgba(232,201,122,.16);font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;transition:.18s ease;}
+.flt-ai-btn:hover{transform:translateY(-2px);box-shadow:0 22px 65px rgba(0,0,0,.62),0 0 42px rgba(232,201,122,.22);}
+.flt-ai-dot{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.25);background:rgba(0,0,0,.10);font-size:12px;}
+.flt-chat-panel{position:fixed;right:22px;bottom:82px;width:min(430px,calc(100vw - 28px));height:min(650px,calc(100vh - 110px));z-index:10019;background:rgba(13,16,24,.98);border:1px solid var(--gbd);box-shadow:0 24px 80px rgba(0,0,0,.68);display:none;flex-direction:column;overflow:hidden;backdrop-filter:blur(14px);}
+.flt-chat-panel.open{display:flex;}
+.flt-chat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bd);background:rgba(2,4,10,.45);}
+.flt-chat-title{display:flex;align-items:center;gap:10px;}
+.flt-chat-mark{width:30px;height:30px;border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;background:var(--gdim);}
+.flt-chat-k{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);line-height:1.2;}
+.flt-chat-h{font-family:var(--disp);font-size:14px;font-weight:800;letter-spacing:-.01em;line-height:1.15;}
+.flt-chat-close{width:30px;height:30px;border:1px solid var(--bd);color:var(--m1);font-size:18px;line-height:1;transition:.14s;}
+.flt-chat-close:hover{color:var(--ink);border-color:var(--bd2);}
+.flt-chat-body{flex:1;display:flex;flex-direction:column;min-height:0;}
+#chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
+.flt-chat-inputbar{border-top:1px solid var(--bd);padding:12px;display:flex;gap:8px;align-items:flex-end;background:rgba(2,4,10,.25);}
+#chat-input{flex:1;background:rgba(2,4,10,.65);border:1px solid var(--bd);color:var(--ink);padding:10px 11px;font-family:var(--body);font-size:13px;resize:none;height:46px;min-height:46px;max-height:115px;outline:none;line-height:1.5;}
+#chat-input:focus{border-color:var(--gbd);}
+#chat-send{padding:0 16px;height:46px;background:var(--gdim);border:1px solid var(--gbd);color:var(--gold);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:.14s;white-space:nowrap;}
+#chat-send:hover{background:rgba(232,201,122,.16);}
+#chat-send:disabled{opacity:.55;cursor:not-allowed;}
+.flt-chat-foot{font-family:var(--mono);font-size:8px;color:var(--m1);letter-spacing:.06em;padding:0 12px 10px;}
+.flt-chat-sugs{display:flex;gap:7px;flex-wrap:wrap;padding:0 12px 13px;max-height:72px;overflow:auto;}
+@media(max-width:560px){.flt-ai-btn{right:14px;bottom:14px;padding:12px 15px}.flt-chat-panel{right:14px;bottom:72px;width:calc(100vw - 28px);height:calc(100vh - 92px)}.flt-chat-sugs{display:none}}
+
 </style>
 </head>
 <body>
@@ -481,7 +508,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
     <button class="tnav" data-panel="roundup">Weekly Roundup</button>
     <button class="tnav" data-panel="journal">Trade Journal</button>
     <button class="tnav" data-panel="archive">Archive</button>
-    <button class="tnav" data-panel="chat" style="color:var(--gold);">✦ AI Chat</button>
   </nav>
   <div class="tb-right">
     <div class="tb-badge">✦ Premium</div>
@@ -784,30 +810,30 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
   </div>
 </div>
 
-<!-- AI CHAT -->
-<div class="panel" id="panel-chat">
-  <div class="wrap fade">
-    <div class="ph">
-      <div><div class="ph-k">Premium · AI Research Assistant</div><div class="ph-t">Ask anything. <em>Get market-grounded answers.</em></div></div>
-      <div class="ph-m">Powered by Claude · Grounded in this week's data</div>
+
+<!-- FLOATING AI CHAT -->
+<button class="flt-ai-btn" id="flt-chat-open" type="button" aria-label="Open FinTrend AI Assistant"><span class="flt-ai-dot">✦</span>Ask AI</button>
+<div class="flt-chat-panel" id="flt-chat-panel" role="dialog" aria-modal="false" aria-label="FinTrend AI Research Assistant">
+  <div class="flt-chat-head">
+    <div class="flt-chat-title">
+      <div class="flt-chat-mark">✦</div>
+      <div><div class="flt-chat-k">Premium AI</div><div class="flt-chat-h">Research Assistant</div></div>
     </div>
-    <div style="background:var(--s1);border:1px solid var(--gbd);border-radius:2px;display:flex;flex-direction:column;height:580px;">
-      <div id="chat-messages" style="flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;">
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <div style="width:28px;height:28px;border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0;">✦</div>
-          <div style="background:rgba(232,201,122,0.06);border:1px solid rgba(232,201,122,0.12);padding:12px 14px;font-size:13px;color:var(--m2);line-height:1.7;max-width:80%;">
-            Welcome to your FinTrend AI Research Assistant. I'm grounded in this week's market data — the current macro regime, thesis, alerts, trade ideas, and sector analysis. Ask me anything about markets, portfolio positioning, or the week's key themes.
-          </div>
-        </div>
-      </div>
-      <div style="border-top:1px solid var(--bd);padding:14px;display:flex;gap:10px;align-items:flex-end;">
-        <textarea id="chat-input" placeholder="Ask about markets, ideas, the macro regime, specific tickers…" style="flex:1;background:rgba(2,4,10,.6);border:1px solid var(--bd);color:var(--ink);padding:10px 12px;font-family:var(--body);font-size:13px;resize:none;height:48px;min-height:48px;max-height:120px;outline:none;transition:border .14s;line-height:1.5;" oninput="this.style.height='48px';this.style.height=Math.min(this.scrollHeight,120)+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
-        <button onclick="sendChat()" id="chat-send" style="padding:12px 20px;background:var(--gdim);border:1px solid var(--gbd);color:var(--gold);font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;flex-shrink:0;height:48px;transition:.14s;" onmouseover="this.style.background='rgba(232,201,122,.16)'" onmouseout="this.style.background='var(--gdim)'">Send →</button>
+    <button class="flt-chat-close" id="flt-chat-close" type="button" aria-label="Close chat">×</button>
+  </div>
+  <div class="flt-chat-body">
+    <div id="chat-messages">
+      <div class="chat-ai">
+        <div style="width:28px;height:28px;border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);flex-shrink:0;">✦</div>
+        <div class="chat-ai-bubble">Welcome to your FinTrend AI Research Assistant. I’m grounded in this week’s market data — macro regime, thesis, alerts, trade ideas, and sector analysis. Ask me anything.</div>
       </div>
     </div>
-    <div style="font-family:var(--mono);font-size:9px;color:var(--m1);margin-top:8px;letter-spacing:.08em;">Shift+Enter for new line · AI responses are educational only, not financial advice</div>
-    <div class="sr" style="margin-top:20px;"><div class="sr-l">Suggested Questions</div><div class="sr-line"></div></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;" id="chat-suggestions"></div>
+    <div class="flt-chat-inputbar">
+      <textarea id="chat-input" placeholder="Ask about markets, ideas, the macro regime…" oninput="this.style.height='46px';this.style.height=Math.min(this.scrollHeight,115)+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
+      <button id="chat-send" onclick="sendChat()" type="button">Send →</button>
+    </div>
+    <div class="flt-chat-foot">Shift+Enter for new line · Educational only, not financial advice</div>
+    <div class="flt-chat-sugs" id="chat-suggestions"></div>
   </div>
 </div>
 
@@ -823,7 +849,6 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
   <button class="mob-btn" data-panel="roundup"><span class="mi">⊟</span>Recap</button>
   <button class="mob-btn" data-panel="journal"><span class="mi">◧</span>Journal</button>
   <button class="mob-btn" data-panel="archive"><span class="mi">◫</span>Archive</button>
-  <button class="mob-btn" data-panel="chat"><span class="mi">✦</span>AI</button>
 </nav>
 
 <div class="footer">All content is educational and informational only. Not financial advice. Not a registered investment adviser.<br><a href="index.html">← Back to FinTrend News</a></div>
@@ -2223,14 +2248,14 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
 
   var suggestions=["What's our current macro regime and why?","Which trade idea has the strongest thesis this week?","What are the highest priority alerts right now?","How should I position given this regime?","Which sectors are you most bullish on?","Walk me through the earnings calendar this week","What's the conviction level on the core thesis?","Compare Cautious vs Aggressive positioning"];
 
-  function renderSuggestions(){
+  window.renderSuggestions=function renderSuggestions(){
     var el=document.getElementById("chat-suggestions");if(!el)return;
     el.innerHTML=suggestions.map(function(s){return "<button class='chat-suggestion' onclick='useSuggestion(this.textContent)'>"+esc(s)+"</button>";}).join("");
   }
 
   window.useSuggestion=function(s){var inp=document.getElementById("chat-input");if(inp){inp.value=s;sendChat();}};
 
-  async function loadChatContext(){
+  window.loadChatContext=async function loadChatContext(){
     try{
       var [r1,r2,r3,r4,r5]=await Promise.all([
         fetch(SB_URL+"/rest/v1/premium_macro_dashboard?select=*&order=week_of.desc&limit=1",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}}),
@@ -2302,12 +2327,30 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
     messages.scrollTop=messages.scrollHeight;
     sendBtn.disabled=false;sendBtn.textContent="Send →";
   };
-
-  var chatPanelLoaded=false;
-  document.querySelectorAll("[data-panel='chat']").forEach(function(b){
-    b.addEventListener("click",function(){if(!chatPanelLoaded){chatPanelLoaded=true;loadChatContext();renderSuggestions();}});
-  });
 })();
 </script>
+
+<script>
+(function(){
+  function initFloatingChat(){
+    var open=document.getElementById('flt-chat-open');
+    var close=document.getElementById('flt-chat-close');
+    var panel=document.getElementById('flt-chat-panel');
+    var loaded=false;
+    function openChat(){
+      if(!panel)return;
+      panel.classList.add('open');
+      if(!loaded){loaded=true;if(typeof loadChatContext==='function')loadChatContext();if(typeof renderSuggestions==='function')renderSuggestions();}
+      setTimeout(function(){var i=document.getElementById('chat-input');if(i)i.focus();},80);
+    }
+    function closeChat(){if(panel)panel.classList.remove('open');}
+    if(open)open.addEventListener('click',openChat);
+    if(close)close.addEventListener('click',closeChat);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeChat();});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initFloatingChat);else initFloatingChat();
+})();
+</script>
+
 </body>
 </html>
