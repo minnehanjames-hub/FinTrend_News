@@ -447,6 +447,10 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
 .perf-td.pos{color:var(--gr)}.perf-td.neg{color:var(--rd)}.perf-td.gold{color:var(--gold)}
 
 /* FOOTER */
+
+.empty-state{border:1px solid var(--bd);background:rgba(2,4,10,.35);padding:26px 20px;text-align:center;color:var(--m1);font-family:var(--mono);font-size:11px;line-height:1.7;grid-column:1/-1}
+.empty-state strong{display:block;color:var(--ink);font-family:var(--disp);font-size:15px;margin-bottom:6px}
+.empty-state .gold{color:var(--gold)}
 .footer{padding:16px 22px;border-top:1px solid var(--bd);font-size:11px;color:rgba(107,114,128,.4);text-align:center;line-height:1.7;max-width:var(--max);margin:0 auto;position:relative;z-index:1}
 .footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
@@ -753,7 +757,7 @@ input,select,textarea{font-family:inherit;pointer-events:auto;position:relative;
     </div>
     <div class="sr"><div class="sr-l">Weekly Returns Log</div><div class="sr-line"></div></div>
     <div style="overflow-x:auto;border:1px solid var(--bd);"><table style="width:100%;border-collapse:separate;border-spacing:1px;background:var(--bd);" id="perf-table"></table></div>
-    <div class="disc" style="margin-top:8px;">Model portfolio returns are simulated/illustrative. Not actual fund performance. Educational only.</div>
+    <div class="disc" style="margin-top:8px;">Model Portfolio / Educational Track Record. Performance is calculated only from published Supabase portfolio snapshots. Educational only, not financial advice. Past performance does not guarantee future results.</div>
   </div>
 </div>
 
@@ -1267,26 +1271,42 @@ function renderPortfolios(portfolios){
   }).join("");
 }
 
+function latestWeekRows(rows, field){
+  rows=Array.isArray(rows)?rows:[];
+  field=field||"week_of";
+  var latest="";
+  rows.forEach(function(r){if(r&&r[field]&&String(r[field])>String(latest))latest=String(r[field]);});
+  return latest?rows.filter(function(r){return String(r[field])===latest;}):[];
+}
+
 function renderSectors(scorecards){
   var sg=document.getElementById("scard-grid");
   var sd=document.getElementById("sector-date");
   if(!sg)return;
-  if(!scorecards||!scorecards.length){sg.innerHTML='<div class="ld">No sector data for this week.</div>';return;}
+  scorecards=latestWeekRows(scorecards,"week_of");
+  if(!scorecards.length){
+    if(sd)sd.textContent="Awaiting latest sector publication";
+    sg.innerHTML='<div class="empty-state"><strong>No sector scorecards published yet.</strong><span class="gold">This section will populate automatically</span> once real rows are added to <code>premium_sector_scorecards</code> in Supabase.</div>';
+    return;
+  }
   if(sd&&scorecards[0])sd.textContent="Week of "+fmtShort(scorecards[0].week_of);
   sg.innerHTML=scorecards.map(function(s){
-    var mc=s.momentum==="Bullish"?"bull":s.momentum==="Bearish"?"bear":"neu";
-    var vc=s.valuation==="Cheap"?"bull":s.valuation==="Stretched"?"bear":"neu";
-    var pc=s.positioning_bias==="Overweight"?"over":s.positioning_bias==="Underweight"?"under":"flat";
+    var momentum=s.momentum||s.momentum_signal||s.trend||"Neutral";
+    var valuation=s.valuation||s.valuation_signal||"Fair";
+    var bias=s.positioning_bias||s.positioning||s.weight||"Flat";
+    var mc=String(momentum).toLowerCase().includes("bull")?"bull":String(momentum).toLowerCase().includes("bear")?"bear":"neu";
+    var vc=String(valuation).toLowerCase().includes("cheap")?"bull":String(valuation).toLowerCase().includes("stretch")?"bear":"neu";
+    var pc=String(bias).toLowerCase().includes("over")?"over":String(bias).toLowerCase().includes("under")?"under":"flat";
     return '<div class="scard">'+
-      '<div class="scard-name">'+esc(s.sector)+'</div>'+
+      '<div class="scard-name">'+esc(s.sector||s.name||"Sector")+'</div>'+
       '<div class="scard-badges">'+
-        '<span class="sb '+mc+'">'+esc(s.momentum)+'</span>'+
-        '<span class="sb '+vc+'">'+esc(s.valuation)+'</span>'+
-        '<span class="sb '+pc+'">'+esc(s.positioning_bias)+'</span>'+
+        '<span class="sb '+mc+'">'+esc(momentum)+'</span>'+
+        '<span class="sb '+vc+'">'+esc(valuation)+'</span>'+
+        '<span class="sb '+pc+'">'+esc(bias)+'</span>'+
       '</div>'+
-      '<div class="scard-sum">'+esc(s.summary||"")+'</div>'+
-      (s.key_catalyst?'<div class="scard-cat">▲ '+esc(s.key_catalyst)+'</div>':'')+
-      (s.key_risk?'<div class="scard-risk">▼ '+esc(s.key_risk)+'</div>':'')+
+      '<div class="scard-sum">'+esc(s.summary||s.view||s.thesis||"")+'</div>'+
+      (s.key_catalyst||s.catalyst?'<div class="scard-cat">▲ '+esc(s.key_catalyst||s.catalyst)+'</div>':'')+
+      (s.key_risk||s.risk?'<div class="scard-risk">▼ '+esc(s.key_risk||s.risk)+'</div>':'')+
       '</div>';
   }).join("");
 }
@@ -1294,21 +1314,26 @@ function renderSectors(scorecards){
 function renderEarnings(earnings){
   var eg=document.getElementById("egrid");
   if(!eg)return;
-  if(!earnings||!earnings.length){eg.innerHTML='<div class="ld">No earnings data for this week.</div>';return;}
+  earnings=latestWeekRows(earnings,"week_of");
+  if(!earnings.length){
+    eg.innerHTML='<div class="empty-state"><strong>No earnings intel published yet.</strong><span class="gold">This section will populate automatically</span> once real rows are added to <code>premium_earnings_intel</code> in Supabase.</div>';
+    return;
+  }
   eg.innerHTML=earnings.map(function(e){
-    var lc=e.our_lean==="Beat Risk"?"l-beat":e.our_lean==="Miss Risk"?"l-miss":e.our_lean==="Volatile"?"l-vol":"l-line";
+    var lean=e.our_lean||e.lean||"In-Line";
+    var lc=lean==="Beat Risk"?"l-beat":lean==="Miss Risk"?"l-miss":lean==="Volatile"?"l-vol":"l-line";
     return '<div class="erow">'+
-      '<div class="el"><div class="etick">'+esc(e.ticker)+'</div><div class="edate">'+fmtShort(e.report_date)+'</div><div class="etime">'+esc(e.report_time||"")+'</div></div>'+
+      '<div class="el"><div class="etick">'+esc(e.ticker)+'</div><div class="edate">'+fmtShort(e.report_date||e.earnings_date||e.date)+'</div><div class="etime">'+esc(e.report_time||"")+'</div></div>'+
       '<div class="eb">'+
-        '<div class="eco">'+esc(e.company)+' <span style="font-size:10px;color:var(--m1);font-family:var(--mono);">'+esc(e.sector||"")+'</span></div>'+
-        '<div class="erat">'+esc((e.lean_rationale||"").substring(0,180))+'</div>'+
+        '<div class="eco">'+esc(e.company||e.name||e.ticker)+' <span style="font-size:10px;color:var(--m1);font-family:var(--mono);">'+esc(e.sector||"")+'</span></div>'+
+        '<div class="erat">'+esc((e.lean_rationale||e.rationale||e.setup||"").substring(0,220))+'</div>'+
         '<div class="estats">'+
-          '<div class="estat">EPS Est. <span>'+esc(e.street_eps_est||"—")+'</span></div>'+
-          '<div class="estat">Rev Est. <span>'+esc(e.street_rev_est||"—")+'</span></div>'+
+          '<div class="estat">EPS Est. <span>'+esc(e.street_eps_est||e.eps_estimate||"—")+'</span></div>'+
+          '<div class="estat">Rev Est. <span>'+esc(e.street_rev_est||e.revenue_estimate||"—")+'</span></div>'+
           '<div class="estat">Impl. Move <span>'+esc(e.implied_move||"—")+'</span></div>'+
         '</div>'+
       '</div>'+
-      '<div class="er"><div class="elean '+lc+'">'+esc(e.our_lean||"In-Line")+'</div><div class="emove">'+esc(e.implied_move||"")+'</div></div>'+
+      '<div class="er"><div class="elean '+lc+'">'+esc(lean)+'</div><div class="emove">'+esc(e.implied_move||"")+'</div></div>'+
       '</div>';
   }).join("");
 }
@@ -1417,9 +1442,9 @@ var poll=setInterval(function(){
           Promise.all([
             sb.from("premium_alerts").select("*").eq("week_of",W).order("urgency",{ascending:true}),
             sb.from("premium_ideas").select("*").eq("week_of",W),
-            sb.from("premium_earnings_intel").select("*").eq("week_of",W).order("report_date"),
+            sb.from("premium_earnings_intel").select("*").order("week_of",{ascending:false}).order("report_date",{ascending:true}).limit(80),
             sb.from("premium_watchlist").select("*").eq("week_of",W),
-            sb.from("premium_sector_scorecards").select("*").eq("week_of",W),
+            sb.from("premium_sector_scorecards").select("*").order("week_of",{ascending:false}).limit(80),
             sb.from("premium_model_portfolios").select("*").order("as_of",{ascending:false}),
             sb.from("premium_templates").select("*").order("id"),
             sb.from("premium_roundups").select("*").order("id",{ascending:false}).limit(1),
@@ -2007,89 +2032,104 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
 
 // ── PERFORMANCE PANEL ──
 (function(){
-  var SB_URL="https://dxmdyperxyydqdshazcp.supabase.co";
-  var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-
-  function fetchPerf(){
-    fetch(SB_URL+"/rest/v1/portfolio_performance?select=*&order=week_of.asc",{
-      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}
-    }).then(function(r){return r.json();}).then(function(data){
-      var models={"Cautious":[],"Balanced":[],"Aggressive":[]};
-      data.forEach(function(r){if(models[r.model])models[r.model].push({
-        week_of:r.week_of,
-        nav:parseFloat(r.nav)||100,
-        weekly_return:parseFloat(r.weekly_return)||0,
-        cumulative_return:parseFloat(r.cumulative_return)||0,
-        benchmark_return:parseFloat(r.benchmark_return)||0,
-      });});
-      renderPerfSummary(models);
-      renderPerfChart(models);
-      renderPerfTable(models);
-    });
+  function escP(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function pct(v){v=Number(v)||0;return (v>=0?"+":"")+v.toFixed(1)+"%";}
+  function cls(v){return (Number(v)||0)>=0?"pos":"neg";}
+  function emptyPerf(msg){
+    var summary=document.getElementById("perf-summary"), svg=document.getElementById("perf-svg"), table=document.getElementById("perf-table");
+    if(summary)summary.innerHTML='<div class="empty-state"><strong>Model portfolio tracking has not started yet.</strong>'+(msg||'Once the first real weekly portfolio snapshot is published in Supabase, this panel will automatically show NAV, weekly returns, cumulative returns, and S&amp;P 500 comparison.')+'</div>';
+    if(svg)svg.innerHTML="";
+    if(table)table.innerHTML="";
   }
-
+  function normalizeRows(data){
+    var out={"Cautious":[],"Balanced":[],"Aggressive":[],"S&P 500":[]};
+    (Array.isArray(data)?data:[]).forEach(function(r){
+      var name=String(r.model||r.portfolio_name||r.name||"").trim();
+      if(name.toLowerCase()==="sp500"||name.toLowerCase()==="s&p500"||name.toLowerCase()==="s&p 500")name="S&P 500";
+      if(!out[name])return;
+      var nav=Number(r.nav ?? r.portfolio_nav ?? r.model_nav ?? 100);
+      var weekly=Number(r.weekly_return ?? r.portfolio_weekly_return ?? 0);
+      var cumulative=Number(r.cumulative_return ?? r.portfolio_cumulative_return ?? (nav-100));
+      var spNav=Number(r.sp500_nav ?? r.benchmark_nav ?? 0);
+      var spWeekly=Number(r.sp500_weekly_return ?? r.benchmark_return ?? 0);
+      var spCum=Number(r.sp500_cumulative_return ?? r.benchmark_cumulative_return ?? 0);
+      out[name].push({week_of:r.week_of||r.as_of||r.date,nav:nav,weekly_return:weekly,cumulative_return:cumulative,sp500_nav:spNav,sp500_weekly_return:spWeekly,sp500_cumulative_return:spCum,notes:r.notes||""});
+    });
+    Object.keys(out).forEach(function(k){out[k].sort(function(a,b){return String(a.week_of).localeCompare(String(b.week_of));});});
+    if(!out["S&P 500"].length){
+      var source=["Balanced","Cautious","Aggressive"].map(function(k){return out[k];}).find(function(rows){return rows.some(function(r){return r.sp500_nav||r.sp500_weekly_return||r.sp500_cumulative_return;});});
+      if(source){
+        var nav=100;
+        out["S&P 500"]=source.map(function(r,i){
+          var wk=Number(r.sp500_weekly_return)||0;
+          if(r.sp500_nav)nav=Number(r.sp500_nav); else if(i>0)nav=nav*(1+wk/100);
+          return {week_of:r.week_of,nav:nav,weekly_return:wk,cumulative_return:Number(r.sp500_cumulative_return||nav-100)};
+        });
+      }
+    }
+    return out;
+  }
+  function fetchPerf(){
+    var client=(typeof sb!=="undefined"&&sb)||window.sb;
+    if(!client){emptyPerf("Supabase client is not ready yet.");return;}
+    client.from("portfolio_performance").select("*").order("week_of",{ascending:true}).then(function(res){
+      if(res.error){console.error("portfolio_performance error",res.error);emptyPerf("Portfolio performance table is not available yet or RLS is blocking reads.");return;}
+      var models=normalizeRows(res.data||[]);
+      var has=["Cautious","Balanced","Aggressive"].some(function(k){return models[k].length;});
+      if(!has){emptyPerf();return;}
+      renderPerfSummary(models);renderPerfChart(models);renderPerfTable(models);
+    }).catch(function(err){console.error(err);emptyPerf("Could not load performance data.");});
+  }
   function renderPerfSummary(models){
     var el=document.getElementById("perf-summary");if(!el)return;
-    var colors={"Cautious":"var(--gr)","Balanced":"var(--gold)","Aggressive":"var(--rd)"};
+    var colors={"Cautious":"var(--gr)","Balanced":"var(--gold)","Aggressive":"var(--rd)","S&P 500":"var(--m1)"};
     var html="";
-    Object.keys(models).forEach(function(m){
-      var rows=models[m];if(!rows.length)return;
-      var last=rows[rows.length-1];var cum=last.cumulative_return||0;var cls=cum>=0?"pos":"neg";
-      html+='<div class="fc"><div class="fc-name" style="color:'+colors[m]+'">'+m+'</div><div class="fc-val '+cls+'">'+(cum>=0?"+":"")+cum.toFixed(1)+'%</div><div class="fc-desc">NAV: '+last.nav.toFixed(2)+'</div></div>';
+    ["Cautious","Balanced","Aggressive","S&P 500"].forEach(function(m){
+      var rows=models[m]||[];if(!rows.length)return;
+      var last=rows[rows.length-1];var cum=Number(last.cumulative_return)||((Number(last.nav)||100)-100);
+      var weekly=Number(last.weekly_return)||0;
+      html+='<div class="fc"><div class="fc-name" style="color:'+colors[m]+'">'+m+'</div><div class="fc-val '+cls(cum)+'">'+pct(cum)+'</div><div class="fc-desc">NAV: '+(Number(last.nav)||100).toFixed(2)+' · Weekly: '+pct(weekly)+'</div></div>';
     });
-    var spy=(models["Aggressive"]||[]).reduce(function(s,r){return s+(r.benchmark_return||0);},0);
-    html+='<div class="fc"><div class="fc-name" style="color:var(--m1)">S&P 500</div><div class="fc-val '+(spy>=0?"pos":"neg")+'">'+(spy>=0?"+":"")+spy.toFixed(1)+'%</div><div class="fc-desc">Benchmark since Jan 2026</div></div>';
-    el.innerHTML=html;
+    el.innerHTML=html||'<div class="empty-state"><strong>No performance snapshots yet.</strong></div>';
   }
-
   function renderPerfChart(models){
     var svg=document.getElementById("perf-svg");if(!svg)return;
-    var W=900,H=200,pad={l:40,r:10,t:10,b:30};
-    var allNAVs=[];Object.values(models).forEach(function(rows){rows.forEach(function(r){allNAVs.push(r.nav);});});
-    var minN=Math.min.apply(null,[95].concat(allNAVs))-1,maxN=Math.max.apply(null,[105].concat(allNAVs))+1;
-    var weeks=(models["Cautious"]||[]).map(function(r){return r.week_of;});
-    if(!weeks.length)return;
-    function px(i){return pad.l+(W-pad.l-pad.r)*i/(weeks.length-1);}
+    var series=["Cautious","Balanced","Aggressive","S&P 500"].filter(function(k){return (models[k]||[]).length;});
+    if(!series.length){svg.innerHTML="";return;}
+    var W=900,H=200,pad={l:40,r:15,t:12,b:30};
+    var weeks=[];series.forEach(function(k){models[k].forEach(function(r){if(weeks.indexOf(r.week_of)<0)weeks.push(r.week_of);});});weeks.sort();
+    var all=[];series.forEach(function(k){models[k].forEach(function(r){all.push(Number(r.nav)||100);});});
+    var minN=Math.min.apply(null,[95].concat(all))-1,maxN=Math.max.apply(null,[105].concat(all))+1;
+    function px(i){return weeks.length<2?pad.l:(pad.l+(W-pad.l-pad.r)*i/(weeks.length-1));}
     function py(v){return pad.t+(H-pad.t-pad.b)*(1-(v-minN)/(maxN-minN));}
+    function xFor(w){return px(weeks.indexOf(w));}
     var html="";
-    var y100=py(100);
-    html+="<line x1='"+pad.l+"' y1='"+y100+"' x2='"+(W-pad.r)+"' y2='"+y100+"' stroke='rgba(255,255,255,0.06)' stroke-width='1' stroke-dasharray='4,3'/>";
-    html+="<text x='"+pad.l+"' y='"+(y100-3)+"' font-size='8' fill='rgba(156,163,175,0.4)' font-family='monospace'>100</text>";
-    var spyNav=100;var spyPath="M"+px(0)+","+py(spyNav);
-    (models["Aggressive"]||[]).forEach(function(r,i){if(i===0)return;spyNav+=r.benchmark_return||0;spyPath+=" L"+px(i)+","+py(spyNav);});
-    html+="<path d='"+spyPath+"' fill='none' stroke='rgba(107,114,128,0.5)' stroke-width='1.5' stroke-dasharray='4,3'/>";
-    var colors={"Cautious":"#34d399","Balanced":"#e8c97a","Aggressive":"#f87171"};
-    Object.keys(models).forEach(function(m){
-      var rows=models[m];if(!rows.length)return;
-      var path=rows.map(function(r,i){return (i===0?"M":"L")+px(i)+","+py(r.nav)+" ";}).join("");
-      html+="<path d='"+path+"' fill='none' stroke='"+colors[m]+"' stroke-width='2'/>";
-      var last=rows[rows.length-1];
-      html+="<circle cx='"+px(rows.length-1)+"' cy='"+py(last.nav)+"' r='3' fill='"+colors[m]+"'/>";
+    var y100=py(100);html+="<line x1='"+pad.l+"' y1='"+y100+"' x2='"+(W-pad.r)+"' y2='"+y100+"' stroke='rgba(255,255,255,0.08)' stroke-width='1' stroke-dasharray='4,3'/><text x='"+pad.l+"' y='"+(y100-3)+"' font-size='8' fill='rgba(156,163,175,0.45)' font-family='monospace'>100</text>";
+    var colors={"Cautious":"#34d399","Balanced":"#e8c97a","Aggressive":"#f87171","S&P 500":"rgba(156,163,175,.75)"};
+    series.forEach(function(m){
+      var rows=models[m];
+      var path=rows.map(function(r,i){return (i===0?"M":"L")+xFor(r.week_of)+","+py(Number(r.nav)||100);}).join(" ");
+      html+="<path d='"+path+"' fill='none' stroke='"+colors[m]+"' stroke-width='"+(m==="S&P 500"?"1.7":"2.2")+"' "+(m==="S&P 500"?"stroke-dasharray='5,4'":"")+"/>";
+      var last=rows[rows.length-1];html+="<circle cx='"+xFor(last.week_of)+"' cy='"+py(Number(last.nav)||100)+"' r='3' fill='"+colors[m]+"'/>";
     });
-    weeks.forEach(function(w,i){if(i%4===0)html+="<text x='"+px(i)+"' y='"+(H-6)+"' font-size='7' fill='rgba(156,163,175,0.4)' font-family='monospace' text-anchor='middle'>"+w.substring(5)+"</text>";});
+    weeks.forEach(function(w,i){if(i%Math.max(1,Math.ceil(weeks.length/8))===0)html+="<text x='"+px(i)+"' y='"+(H-6)+"' font-size='7' fill='rgba(156,163,175,0.45)' font-family='monospace' text-anchor='middle'>"+String(w).substring(5)+"</text>";});
     svg.innerHTML=html;
   }
-
   function renderPerfTable(models){
     var el=document.getElementById("perf-table");if(!el)return;
-    var weeks=(models["Cautious"]||[]).map(function(r){return r.week_of;});
+    var weeks=[];["Cautious","Balanced","Aggressive","S&P 500"].forEach(function(k){(models[k]||[]).forEach(function(r){if(weeks.indexOf(r.week_of)<0)weeks.push(r.week_of);});});weeks.sort();
+    function byWeek(k,w){return (models[k]||[]).find(function(r){return r.week_of===w;})||{};}
     var html="<thead><tr class='perf-row'><th class='perf-th'>Week</th><th class='perf-th'>Cautious</th><th class='perf-th'>Balanced</th><th class='perf-th'>Aggressive</th><th class='perf-th'>S&P 500</th><th class='perf-th'>Best</th></tr></thead><tbody>";
-    weeks.slice().reverse().forEach(function(w,ri){
-      var i=weeks.length-1-ri;
-      var c=models["Cautious"][i],b=models["Balanced"][i],a=models["Aggressive"][i];if(!c||!b||!a)return;
-      function pct(v){return (v>=0?"+":"")+v.toFixed(1)+"%";}function cls(v){return v>=0?"pos":"neg";}
-      var spy=a.benchmark_return||0;
-      var rets=[c.weekly_return||0,b.weekly_return||0,a.weekly_return||0];
-      var best=["Cautious","Balanced","Aggressive"][rets.indexOf(Math.max.apply(null,rets))];
-      html+="<tr class='perf-row'><td class='perf-td gold'>"+w+"</td><td class='perf-td "+cls(c.weekly_return)+"'>"+pct(c.weekly_return||0)+"</td><td class='perf-td "+cls(b.weekly_return)+"'>"+pct(b.weekly_return||0)+"</td><td class='perf-td "+cls(a.weekly_return)+"'>"+pct(a.weekly_return||0)+"</td><td class='perf-td "+cls(spy)+"'>"+pct(spy)+"</td><td class='perf-td' style='color:var(--gold);'>"+best+"</td></tr>";
+    weeks.slice().reverse().forEach(function(w){
+      var c=byWeek("Cautious",w),b=byWeek("Balanced",w),a=byWeek("Aggressive",w),sp=byWeek("S&P 500",w);
+      var vals=[Number(c.weekly_return),Number(b.weekly_return),Number(a.weekly_return)];
+      var names=["Cautious","Balanced","Aggressive"];var max=Math.max.apply(null,vals.filter(function(v){return !isNaN(v);}));var best=isFinite(max)?names[vals.indexOf(max)]:"—";
+      html+="<tr class='perf-row'><td class='perf-td gold'>"+escP(w)+"</td><td class='perf-td "+cls(c.weekly_return)+"'>"+pct(c.weekly_return)+"</td><td class='perf-td "+cls(b.weekly_return)+"'>"+pct(b.weekly_return)+"</td><td class='perf-td "+cls(a.weekly_return)+"'>"+pct(a.weekly_return)+"</td><td class='perf-td "+cls(sp.weekly_return)+"'>"+pct(sp.weekly_return)+"</td><td class='perf-td' style='color:var(--gold);'>"+best+"</td></tr>";
     });
     el.innerHTML=html+"</tbody>";
   }
-
   var perfLoaded=false;
-  document.querySelectorAll("[data-panel='performance']").forEach(function(b){
-    b.addEventListener("click",function(){if(!perfLoaded){perfLoaded=true;fetchPerf();}});
-  });
+  document.querySelectorAll("[data-panel='performance']").forEach(function(b){b.addEventListener("click",function(){if(!perfLoaded){perfLoaded=true;fetchPerf();}});});
 })();
 
 // ── ARCHIVE PANEL ──
@@ -2164,35 +2204,37 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
 
 // ── TRADE JOURNAL PANEL ──
 (function(){
-  var SB_URL="https://dxmdyperxyydqdshazcp.supabase.co";
-  var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
   var jrnLoaded=false;
   function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-  function getToken(){return window._sbToken||SB_KEY;}
-
-  function fetchJournal(){
-    fetch(SB_URL+"/rest/v1/trade_journal?select=*&order=created_at.desc",{
-      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+getToken()}
-    }).then(function(r){return r.json();}).then(function(data){
-      renderJournal(Array.isArray(data)?data:[]);
-    }).catch(function(){renderJournal([]);});
+  function client(){return (typeof sb!=="undefined"&&sb)||window.sb||null;}
+  async function currentUser(){var c=client();if(!c)return null;var r=await c.auth.getUser();return r&&r.data&&r.data.user;}
+  async function fetchJournal(){
+    var c=client();var el=document.getElementById("jrn-list");
+    if(!c){if(el)el.innerHTML='<div class="empty-state"><strong>Journal unavailable.</strong>Supabase is not ready yet.</div>';return;}
+    var user=await currentUser();
+    if(!user){if(el)el.innerHTML='<div class="empty-state"><strong>Sign in required.</strong>Your trade journal is private and tied to your account.</div>';return;}
+    var res=await c.from("trade_journal").select("*").eq("user_id",user.id).order("created_at",{ascending:false});
+    if(res.error){console.error("trade_journal error",res.error);if(el)el.innerHTML='<div class="empty-state"><strong>Trade journal is not connected yet.</strong>Check that the <code>trade_journal</code> table exists and RLS allows users to manage their own rows.</div>';return;}
+    renderJournal(Array.isArray(res.data)?res.data:[]);
   }
-
   function renderJournal(entries){
     var el=document.getElementById("jrn-list");if(!el)return;
-    if(!entries.length){el.innerHTML="<div style='padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--m1);'>No journal entries yet. Add your first trade above.</div>";return;}
+    if(!entries.length){el.innerHTML='<div class="empty-state"><strong>No journal entries yet.</strong>Add your first trade idea above. Entries are private to your signed-in account.</div>';return;}
     el.innerHTML=entries.map(function(e){
-      var rr=(e.entry_price&&e.target_price&&e.stop_price)?((e.target_price-e.entry_price)/Math.abs(e.entry_price-e.stop_price)).toFixed(1)+"R":"—";
+      var entry=Number(e.entry_price)||0,target=Number(e.target_price)||0,stop=Number(e.stop_price)||0;
+      var rr=(entry&&target&&stop)?((target-entry)/Math.abs(entry-stop)).toFixed(1)+"R":"—";
+      var size=e.position_size ?? e.position_size_pct ?? "";
       return "<div class='jrn-card'>"+
         "<div class='jrn-ticker-col'><div class='jrn-ticker'>"+esc(e.ticker||"")+"</div><div class='jrn-status "+esc(e.status||"watching")+"'>"+esc(e.status||"watching")+"</div></div>"+
         "<div class='jrn-body'>"+
-          "<div style='font-size:10px;color:var(--m1);font-family:var(--mono);margin-bottom:4px;'>"+esc(new Date(e.created_at).toLocaleDateString())+"</div>"+
-          (e.note?"<div class='jrn-note'>"+esc(e.note)+"</div>":"")+
+          "<div style='font-size:10px;color:var(--m1);font-family:var(--mono);margin-bottom:4px;'>"+esc(new Date(e.created_at||Date.now()).toLocaleDateString())+"</div>"+
+          (e.thesis?"<div class='jrn-note'>"+esc(e.thesis)+"</div>":"")+
+          (e.note||e.notes?"<div class='jrn-note'>"+esc(e.note||e.notes)+"</div>":"")+
           "<div class='jrn-prices'>"+
-            (e.entry_price?"<div class='jrn-price'><div class='jrn-price-k'>Entry</div>$"+e.entry_price+"</div>":"")+
-            (e.target_price?"<div class='jrn-price'><div class='jrn-price-k'>Target</div><span style='color:var(--gr);'>$"+e.target_price+"</span></div>":"")+
-            (e.stop_price?"<div class='jrn-price'><div class='jrn-price-k'>Stop</div><span style='color:var(--rd);'>$"+e.stop_price+"</span></div>":"")+
-            (e.position_size_pct?"<div class='jrn-price'><div class='jrn-price-k'>Size</div>"+e.position_size_pct+"%</div>":"")+
+            (entry?"<div class='jrn-price'><div class='jrn-price-k'>Entry</div>$"+entry+"</div>":"")+
+            (target?"<div class='jrn-price'><div class='jrn-price-k'>Target</div><span style='color:var(--gr);'>$"+target+"</span></div>":"")+
+            (stop?"<div class='jrn-price'><div class='jrn-price-k'>Stop</div><span style='color:var(--rd);'>$"+stop+"</span></div>":"")+
+            (size!==""?"<div class='jrn-price'><div class='jrn-price-k'>Size</div>"+esc(size)+"%</div>":"")+
             "<div class='jrn-price'><div class='jrn-price-k'>R/R</div>"+rr+"</div>"+
           "</div>"+
         "</div>"+
@@ -2200,43 +2242,34 @@ GLD / UUP:   -0.72  Strong negative — gold falls when dollar strengthens</div>
       "</div>";
     }).join("");
   }
-
-  window.addJournalEntry=function(){
+  window.addJournalEntry=async function(){
+    var c=client();var msg=document.getElementById("jrn-msg");
+    if(!c){msg.textContent="Supabase is not ready.";msg.style.color="var(--rd)";return;}
+    var user=await currentUser();
+    if(!user){msg.textContent="Please sign in first.";msg.style.color="var(--rd)";return;}
     var ticker=(document.getElementById("jrn-ticker").value||"").trim().toUpperCase();
-    var msg=document.getElementById("jrn-msg");
     if(!ticker){msg.textContent="Please enter a ticker.";msg.style.color="var(--rd)";return;}
-    var body={ticker:ticker,status:document.getElementById("jrn-status").value};
-    var entry=document.getElementById("jrn-entry").value;
-    var target=document.getElementById("jrn-target").value;
-    var stop=document.getElementById("jrn-stop").value;
-    var size=document.getElementById("jrn-size").value;
-    var note=document.getElementById("jrn-note").value;
+    var body={user_id:user.id,ticker:ticker,status:document.getElementById("jrn-status").value};
+    var entry=document.getElementById("jrn-entry").value,target=document.getElementById("jrn-target").value,stop=document.getElementById("jrn-stop").value,size=document.getElementById("jrn-size").value,note=document.getElementById("jrn-note").value;
     if(entry)body.entry_price=parseFloat(entry);
     if(target)body.target_price=parseFloat(target);
     if(stop)body.stop_price=parseFloat(stop);
-    if(size)body.position_size_pct=parseFloat(size);
-    if(note)body.note=note;
-    fetch(SB_URL+"/rest/v1/trade_journal",{
-      method:"POST",
-      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+getToken(),"Content-Type":"application/json","Prefer":"return=minimal"},
-      body:JSON.stringify(body)
-    }).then(function(r){
-      if(r.ok){msg.textContent="✓ Entry added!";msg.style.color="var(--gr)";document.getElementById("jrn-ticker").value="";document.getElementById("jrn-note").value="";fetchJournal();setTimeout(function(){msg.textContent="";},3000);}
-      else{msg.textContent="Error saving.";msg.style.color="var(--rd)";}
-    });
+    if(size)body.position_size=parseFloat(size);
+    if(note){body.thesis=note;body.notes=note;}
+    var res=await c.from("trade_journal").insert(body);
+    if(!res.error){
+      msg.textContent="✓ Entry added";msg.style.color="var(--gr)";
+      ["jrn-ticker","jrn-entry","jrn-target","jrn-stop","jrn-size","jrn-note"].forEach(function(id){var x=document.getElementById(id);if(x)x.value="";});
+      fetchJournal();setTimeout(function(){msg.textContent="";},3000);
+    } else {console.error(res.error);msg.textContent="Could not save. Check trade_journal columns/RLS.";msg.style.color="var(--rd)";}
   };
-
-  window.deleteJournal=function(id){
+  window.deleteJournal=async function(id){
     if(!confirm("Delete this entry?"))return;
-    fetch(SB_URL+"/rest/v1/trade_journal?id=eq."+id,{
-      method:"DELETE",
-      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+getToken()}
-    }).then(function(){fetchJournal();});
+    var c=client();var user=await currentUser();if(!c||!user)return;
+    await c.from("trade_journal").delete().eq("id",id).eq("user_id",user.id);
+    fetchJournal();
   };
-
-  document.querySelectorAll("[data-panel='journal']").forEach(function(b){
-    b.addEventListener("click",function(){if(!jrnLoaded){jrnLoaded=true;fetchJournal();}});
-  });
+  document.querySelectorAll("[data-panel='journal']").forEach(function(b){b.addEventListener("click",function(){if(!jrnLoaded){jrnLoaded=true;fetchJournal();}});});
 })();
 
 // ── AI CHAT PANEL ──
