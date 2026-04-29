@@ -254,6 +254,36 @@
     .riddle-text{font-size:13px;color:#d1d5db;line-height:1.7;border-left:2px solid rgba(244,193,93,0.30);padding-left:12px;margin-bottom:14px;font-style:italic;}
     .riddle-options{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
 
+    /* ASK AI WIDGET */
+    .ai-widget{position:fixed;right:calc(18px + env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:90000;display:none;font-family:"Inter",system-ui,sans-serif;}
+    body.ai-ready .ai-widget{display:block;}
+    .ai-fab{border:1px solid rgba(244,193,93,0.45);background:linear-gradient(135deg,#f4c15d,#f7d680);color:#050816;border-radius:999px;padding:12px 16px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;box-shadow:0 18px 40px rgba(0,0,0,0.45);cursor:pointer;display:flex;align-items:center;gap:9px;touch-action:manipulation;}
+    .ai-fab:hover{transform:translateY(-1px);}
+    .ai-fab-dot{width:8px;height:8px;border-radius:999px;background:#050816;box-shadow:0 0 0 4px rgba(5,8,22,0.14);}
+    .ai-panel{position:absolute;right:0;bottom:62px;width:min(380px,calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right)));max-height:min(620px,calc(100dvh - 112px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));display:none;flex-direction:column;border:1px solid rgba(244,193,93,0.28);background:rgba(15,23,42,0.98);box-shadow:0 24px 70px rgba(0,0,0,0.58);border-radius:18px;overflow:hidden;backdrop-filter:blur(12px);}
+    .ai-widget.open .ai-panel{display:flex;}
+    .ai-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 15px;border-bottom:1px solid rgba(148,163,184,0.20);background:rgba(2,6,23,0.42);}
+    .ai-panel-k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+    .ai-panel-title{font-family:"Playfair Display",serif;font-size:18px;line-height:1.15;margin-top:2px;}
+    .ai-panel-sub{font-size:11px;color:var(--muted);line-height:1.4;margin-top:3px;}
+    .ai-close{border:0;background:transparent;color:var(--muted);font-size:24px;line-height:1;cursor:pointer;padding:0 2px;}
+    .ai-close:hover{color:var(--accent);}
+    .ai-messages{flex:1;min-height:180px;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain;}
+    .ai-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;}
+    .ai-msg.bot{align-self:flex-start;background:rgba(2,6,23,0.62);border:1px solid rgba(148,163,184,0.18);color:#e5e7eb;border-bottom-left-radius:4px;}
+    .ai-msg.user{align-self:flex-end;background:rgba(244,193,93,0.14);border:1px solid rgba(244,193,93,0.30);color:#fff7ed;border-bottom-right-radius:4px;}
+    .ai-limit{padding:8px 14px;border-top:1px solid rgba(148,163,184,0.14);font-size:11px;color:var(--muted);background:rgba(2,6,23,0.28);}
+    .ai-composer{border-top:1px solid rgba(148,163,184,0.20);padding:10px;background:rgba(2,6,23,0.38);}
+    .ai-form{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;}
+    .ai-input{width:100%;min-height:42px;max-height:96px;resize:none;border:1px solid rgba(148,163,184,0.32);border-radius:12px;background:#020617;color:var(--text);font-size:13px;line-height:1.4;padding:10px 11px;outline:none;font-family:"Inter",system-ui,sans-serif;}
+    .ai-input:focus{border-color:rgba(244,193,93,0.55);}
+    .ai-send{height:42px;border:0;border-radius:12px;background:var(--accent);color:#000;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;padding:0 13px;cursor:pointer;}
+    .ai-send:disabled,.ai-input:disabled{opacity:.45;cursor:not-allowed;}
+    .ai-lock{display:none;margin-top:9px;border:1px solid rgba(244,193,93,0.28);background:rgba(244,193,93,0.06);padding:10px;border-radius:12px;font-size:12px;color:#e5e7eb;line-height:1.45;}
+    .ai-lock a{color:var(--accent);font-weight:800;text-decoration:underline;text-underline-offset:3px;}
+    .ai-composer.locked .ai-form{display:none;}
+    .ai-composer.locked .ai-lock{display:block;}
+
     /* MOBILE */
     @media(max-width:480px){
       .wrap{padding:0 12px 60px;}
@@ -287,6 +317,10 @@
       .nav-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;}
       .nav-bar::-webkit-scrollbar{display:none;}
       .nav-link{padding:12px 14px;font-size:10px;flex-shrink:0;}
+      .ai-widget{right:calc(12px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));}
+      .ai-panel{position:fixed;left:calc(12px + env(safe-area-inset-left));right:calc(12px + env(safe-area-inset-right));bottom:calc(72px + env(safe-area-inset-bottom));width:auto;max-height:calc(100dvh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom));border-radius:16px;}
+      .ai-messages{min-height:160px;}
+      .ai-fab{padding:11px 14px;margin-left:auto;}
     }
     @media(max-width:500px){
       .email-inputs,.top-email-inputs{flex-direction:column;}
@@ -305,11 +339,7 @@
   </div>
 
   <div class="ticker-bar">
-    <div class="tradingview-widget-container">
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"DJI","title":"Dow 30"},{"proName":"OANDA:EURUSD","title":"EURUSD"},{"proName":"COINBASE:BTCUSD","title":"BTCUSD"},{"proName":"OANDA:WTICOUSD","title":"WTI Crude"},{"proName":"OANDA:XAUUSD","title":"Gold"}],"colorTheme":"dark","isTransparent":true,"displayMode":"adaptive","locale":"en"}
-      </script>
-    </div>
+    <div class="tradingview-widget-container" id="tickerTape"></div>
   </div>
 
   <div class="wrap">
@@ -595,6 +625,33 @@
 
   <div class="modalBackdrop" id="premiumModal"><div class="modal" role="dialog" aria-modal="true"><button class="modalClose" id="closePremium">×</button><div class="modalK">FinTrend Premium</div><div class="modalH">Upgrade to Premium</div><div class="modalP">Unlock sector reports and the full members dashboard.</div><div class="row"><a class="btn btnPrimary" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" id="payLink">Go Premium</a><button class="btn btnGhost" id="closePremium2" type="button">Not now</button></div></div></div>
 
+  <!-- ASK AI WIDGET -->
+  <div class="ai-widget" id="aiWidget">
+    <button class="ai-fab" id="aiFab" type="button" aria-expanded="false" aria-controls="aiPanel"><span class="ai-fab-dot"></span><span>Ask AI</span></button>
+    <section class="ai-panel" id="aiPanel" aria-label="FinTrend AI assistant">
+      <div class="ai-panel-head">
+        <div>
+          <div class="ai-panel-k">FinTrend AI</div>
+          <div class="ai-panel-title">Ask AI</div>
+          <div class="ai-panel-sub">Market questions, plain-English answers. Educational only.</div>
+        </div>
+        <button class="ai-close" id="aiClose" type="button" aria-label="Close Ask AI">×</button>
+      </div>
+      <div class="ai-messages" id="aiMessages"></div>
+      <div class="ai-limit" id="aiLimit"></div>
+      <div class="ai-composer" id="aiComposer">
+        <form class="ai-form" id="aiForm">
+          <textarea class="ai-input" id="aiInput" rows="1" maxlength="500" placeholder="Ask about rates, SPX, gold, BTC..."></textarea>
+          <button class="ai-send" id="aiSend" type="submit">Ask</button>
+        </form>
+        <div class="ai-lock" id="aiLock">
+          You've used your 3 free AI messages. Unlock Premium for full access:
+          <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener">Upgrade to Premium →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script>
     document.getElementById("masthead-date").textContent = new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
 
@@ -704,15 +761,94 @@
       renderDay("mon");
       document.querySelectorAll(".day-tab").forEach(p=>{p.addEventListener("click",()=>{document.querySelectorAll(".day-tab").forEach(x=>x.classList.remove("active"));p.classList.add("active");renderDay(p.dataset.day);});});
 
-      function loadMiniSymbolOverview(targetId,symbol,height){const el=document.getElementById(targetId);if(!el)return;el.innerHTML="";const s=document.createElement("script");s.src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";s.async=true;s.text=JSON.stringify({symbol,width:"100%",height:height||200,locale:"en",dateRange:"3M",colorTheme:"dark",isTransparent:true,autosize:true});el.appendChild(s);}
-      function loadRot(symbol){document.querySelectorAll(".sb-tab").forEach(b=>b.classList.remove("active"));const t=document.querySelector(`.sb-tab[data-rot="${symbol}"]`);if(t)t.classList.add("active");loadMiniSymbolOverview("rotChart",symbol,200);}
-      loadRot("FOREXCOM:SPXUSD");
+      let tvWidgetsStarted=false;
+      let pendingRotSymbol="FOREXCOM:SPXUSD";
+      let pendingWatchSymbol="FOREXCOM:SPXUSD";
+      let watchTimer=null;
+
+      function injectTradingViewScript(targetId,src,config){
+        const el=document.getElementById(targetId);
+        if(!el)return;
+        const key=JSON.stringify({src,config});
+        if(el.dataset.tvKey===key&&(el.querySelector("iframe")||el.querySelector("script")))return;
+        el.dataset.tvKey=key;
+        el.innerHTML="";
+        const s=document.createElement("script");
+        s.type="text/javascript";
+        s.src=src;
+        s.async=true;
+        s.text=JSON.stringify(config);
+        el.appendChild(s);
+      }
+
+      function loadTickerTape(){
+        injectTradingViewScript("tickerTape","https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js",{
+          symbols:[
+            {proName:"FOREXCOM:SPXUSD",title:"S&P 500"},
+            {proName:"DJI",title:"Dow 30"},
+            {proName:"OANDA:EURUSD",title:"EURUSD"},
+            {proName:"COINBASE:BTCUSD",title:"BTCUSD"},
+            {proName:"OANDA:WTICOUSD",title:"WTI Crude"},
+            {proName:"OANDA:XAUUSD",title:"Gold"}
+          ],
+          colorTheme:"dark",
+          isTransparent:true,
+          displayMode:"adaptive",
+          locale:"en"
+        });
+      }
+
+      function loadMiniSymbolOverview(targetId,symbol,height){
+        injectTradingViewScript(targetId,"https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js",{
+          symbol,
+          width:"100%",
+          height:height||200,
+          locale:"en",
+          dateRange:"3M",
+          colorTheme:"dark",
+          isTransparent:true,
+          autosize:true
+        });
+      }
+
+      function loadRot(symbol){
+        pendingRotSymbol=symbol;
+        document.querySelectorAll(".sb-tab").forEach(b=>b.classList.remove("active"));
+        const t=document.querySelector(`.sb-tab[data-rot="${symbol}"]`);
+        if(t)t.classList.add("active");
+        if(!tvWidgetsStarted)return;
+        loadMiniSymbolOverview("rotChart",symbol,200);
+      }
+
+      function loadWatch(symbol){
+        pendingWatchSymbol=symbol;
+        if(watchTimer)clearTimeout(watchTimer);
+        if(watchFallback)watchFallback.style.display="none";
+        if(!tvWidgetsStarted)return;
+        loadMiniSymbolOverview("watchChart",symbol,280);
+        watchTimer=setTimeout(()=>{
+          const el=document.getElementById("watchChart");
+          if(!(el&&el.querySelector("iframe"))){
+            if(watchFallback)watchFallback.style.display="block";
+            if(watchOpenTV)watchOpenTV.href="https://www.tradingview.com/chart/?symbol="+encodeURIComponent(symbol);
+          }
+        },5000);
+      }
+
+      function startTradingViewWidgets(){
+        if(tvWidgetsStarted)return;
+        tvWidgetsStarted=true;
+        loadTickerTape();
+        loadRot(pendingRotSymbol);
+        loadWatch(pendingWatchSymbol);
+      }
+
+      document.addEventListener("fintrend:intro-complete",startTradingViewWidgets,{once:true});
+      window.addEventListener("load",()=>setTimeout(startTradingViewWidgets,4600));
+
       document.querySelectorAll(".sb-tab").forEach(btn=>{btn.addEventListener("click",()=>loadRot(btn.getAttribute("data-rot")));});
 
       const watchFallback=document.getElementById("watchFallback"),watchOpenTV=document.getElementById("watchOpenTV");
-      let watchTimer=null;
-      function loadWatch(symbol){if(watchTimer)clearTimeout(watchTimer);if(watchFallback)watchFallback.style.display="none";loadMiniSymbolOverview("watchChart",symbol,280);watchTimer=setTimeout(()=>{const el=document.getElementById("watchChart");if(!(el&&el.querySelector("iframe"))){if(watchFallback)watchFallback.style.display="block";if(watchOpenTV)watchOpenTV.href="https://www.tradingview.com/chart/?symbol="+encodeURIComponent(symbol);}},5000);}
-      loadWatch("FOREXCOM:SPXUSD");
       document.querySelectorAll(".watch-tab").forEach(btn=>{if(btn.hasAttribute("data-symbol")){btn.addEventListener("click",()=>{document.querySelectorAll(".watch-tab").forEach(b=>b.classList.remove("active"));btn.classList.add("active");loadWatch(btn.dataset.symbol);});}});
 
       const SUPABASE_URL="https://dxmdyperxyydqdshazcp.supabase.co";
@@ -783,6 +919,133 @@
       document.getElementById("riddle-next").addEventListener("click",()=>{rIdx++;renderRiddle();});renderRiddle();
     })();
 
+    // ── ASK AI WIDGET ──
+    (function(){
+      "use strict";
+      const AI_LIMIT=3;
+      const AI_USED_KEY="fintrend_ai_messages_used";
+      const AI_ENDPOINT="https://dxmdyperxyydqdshazcp.supabase.co/functions/v1/ask-ai";
+
+      const widget=document.getElementById("aiWidget");
+      const fab=document.getElementById("aiFab");
+      const close=document.getElementById("aiClose");
+      const messages=document.getElementById("aiMessages");
+      const form=document.getElementById("aiForm");
+      const input=document.getElementById("aiInput");
+      const send=document.getElementById("aiSend");
+      const composer=document.getElementById("aiComposer");
+      const limitText=document.getElementById("aiLimit");
+
+      function getUsed(){
+        const n=parseInt(localStorage.getItem(AI_USED_KEY)||"0",10);
+        return Number.isFinite(n)?Math.min(Math.max(n,0),AI_LIMIT):0;
+      }
+
+      function setUsed(n){
+        localStorage.setItem(AI_USED_KEY,String(Math.min(Math.max(n,0),AI_LIMIT)));
+      }
+
+      function addMessage(role,text){
+        const div=document.createElement("div");
+        div.className="ai-msg "+(role==="user"?"user":"bot");
+        div.textContent=text;
+        messages.appendChild(div);
+        messages.scrollTop=messages.scrollHeight;
+      }
+
+      function updateLimitUI(){
+        const used=getUsed();
+        const remaining=Math.max(0,AI_LIMIT-used);
+        limitText.textContent=remaining>0?`${remaining} free AI message${remaining===1?"":"s"} remaining.`:"Free AI limit reached.";
+        const locked=used>=AI_LIMIT;
+        composer.classList.toggle("locked",locked);
+        input.disabled=locked;
+        send.disabled=locked;
+      }
+
+      function openWidget(){
+        widget.classList.add("open");
+        fab.setAttribute("aria-expanded","true");
+        setTimeout(()=>{if(!input.disabled)input.focus();},80);
+      }
+
+      function closeWidget(){
+        widget.classList.remove("open");
+        fab.setAttribute("aria-expanded","false");
+      }
+
+      function gracefulFallback(){
+        return "FinTrend AI is temporarily unavailable, but here is the clean framework: identify the main driver, check the market reaction, mark the key level, then decide what would change the view. This is educational only, not financial advice.";
+      }
+
+      async function askBackend(question){
+        const controller=new AbortController();
+        const timer=setTimeout(()=>controller.abort(),12000);
+        try{
+          const res=await fetch(AI_ENDPOINT,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+              question,
+              source:"fintrend-news-index",
+              context:"FinTrend News market briefing assistant. Educational only, not financial advice."
+            }),
+            signal:controller.signal
+          });
+          clearTimeout(timer);
+          if(!res.ok)throw new Error("AI endpoint unavailable");
+          const contentType=res.headers.get("content-type")||"";
+          if(contentType.includes("application/json")){
+            const data=await res.json();
+            return data.reply||data.answer||data.message||gracefulFallback();
+          }
+          const text=(await res.text()).trim();
+          return text||gracefulFallback();
+        }catch(err){
+          clearTimeout(timer);
+          return gracefulFallback();
+        }
+      }
+
+      fab.addEventListener("click",()=>widget.classList.contains("open")?closeWidget():openWidget());
+      close.addEventListener("click",closeWidget);
+
+      input.addEventListener("input",()=>{
+        input.style.height="auto";
+        input.style.height=Math.min(input.scrollHeight,96)+"px";
+      });
+
+      form.addEventListener("submit",async(e)=>{
+        e.preventDefault();
+        if(getUsed()>=AI_LIMIT){updateLimitUI();return;}
+        const question=input.value.trim();
+        if(!question)return;
+        addMessage("user",question);
+        input.value="";
+        input.style.height="auto";
+        input.disabled=true;
+        send.disabled=true;
+        send.textContent="...";
+        const reply=await askBackend(question);
+        addMessage("bot",reply);
+        setUsed(getUsed()+1);
+        send.textContent="Ask";
+        updateLimitUI();
+        if(getUsed()<AI_LIMIT){
+          input.disabled=false;
+          send.disabled=false;
+          input.focus();
+        }
+      });
+
+      addMessage("bot","Ask me about market drivers, SPX, rates, gold, BTC, or how to read a move. You get 3 free AI messages in this browser.");
+      updateLimitUI();
+
+      document.addEventListener("fintrend:intro-complete",()=>document.body.classList.add("ai-ready"),{once:true});
+      window.addEventListener("load",()=>setTimeout(()=>document.body.classList.add("ai-ready"),4700));
+      window.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeWidget();});
+    })();
+
     // ── PAGE LOAD ANIMATION ──
     (function(){
       const cover=document.getElementById("page-cover"),coverLogo=document.getElementById("cover-logo"),coverName=document.getElementById("cover-name"),coverLine=document.getElementById("cover-line"),coverTag=document.getElementById("cover-tagline");
@@ -798,7 +1061,7 @@
       t(()=>{if(coverName)coverName.style.opacity="1";},380);
       t(()=>{if(coverLine)coverLine.style.width="220px";},600);
       t(()=>{if(coverTag)coverTag.style.opacity="1";},900);
-      t(()=>{if(cover){cover.style.transform="translateY(-100%)";cover.style.opacity="0";t(()=>{cover.style.display="none";},900);}},1800);
+      t(()=>{if(cover){cover.style.transform="translateY(-100%)";cover.style.opacity="0";t(()=>{cover.style.display="none";document.dispatchEvent(new Event("fintrend:intro-complete"));},900);}},1800);
       t(()=>{if(ticker)ticker.classList.add("anim-in");},2100);
       t(()=>{if(masthead)masthead.classList.add("anim-in");},2280);
       t(()=>{if(eyebrow){eyebrow.style.opacity="1";eyebrow.style.transform="translateY(0)";}},2420);
