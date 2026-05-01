@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Powell's Exit. The Data Hit. The Rally Held. | FinTrend News</title>
+  <meta name="description" content="Q1 GDP missed at 2.0%. PCE surged to 4.5% quarterly. The FOMC split 8-4 in Powell's final press conference as Chair. And yet the S&P 500 posted its best month since 2020. Here is every leg of the week." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0b0e17;
+      --ink2:   #111520;
+      --surface:#161b2e;
+      --border: rgba(255,255,255,0.07);
+      --gold:   #b8986a;
+      --gold2:  #d4b483;
+      --green:  #34d399;
+      --muted:  #6b7a99;
+      --body:   #c8cfe0;
+      --head:   #eef0f6;
+    }
+
+    html { font-size: 16px; }
+    body {
+      background: var(--ink);
+      color: var(--body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .masthead-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .masthead-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .masthead-nav {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .masthead-nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .masthead-nav a:hover { color: var(--head); }
+
+    /* ── ARTICLE WRAPPER ── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    /* ── KICKER ── */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── HEADLINE ── */
+    h1.headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 400;
+      color: var(--head);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    h1.headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 18px;
+      font-weight: 400;
+      color: #9ba8c4;
+      line-height: 1.65;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 18px;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 44px;
+    }
+    .byline-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--head);
+    }
+    .byline-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── BODY TEXT ── */
+    .article-body p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--body);
+      margin-bottom: 22px;
+    }
+
+    /* ── DROP CAP ── */
+    .article-body p.lead::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 72px;
+      font-weight: 400;
+      color: var(--gold);
+      float: left;
+      line-height: 0.78;
+      margin: 8px 12px 0 0;
+    }
+
+    /* ── SECTION HEADS ── */
+    .article-body h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--head);
+      margin: 44px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 36px 0;
+    }
+    .score-cell {
+      background: var(--ink2);
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .score-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--head);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .score-val.up   { color: var(--green); }
+    .score-val.down { color: #f87171; }
+    .score-val.flat { color: #fbbf24; }
+    .score-change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── LEDGER TABLE ── */
+    .ledger {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0;
+      font-size: 13px;
+    }
+    .ledger thead th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .ledger tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .ledger tbody tr:hover { background: rgba(255,255,255,0.02); }
+    .ledger tbody td {
+      padding: 13px 14px;
+      color: var(--body);
+      vertical-align: top;
+    }
+    .ledger tbody td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      width: 80px;
+    }
+    .ledger .td-bold {
+      font-weight: 600;
+      color: var(--head);
+    }
+    .tag-up   { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .tag-down { color: #f87171;      font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .tag-flat { color: #fbbf24;      font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border: 1px solid var(--gold);
+      border-left: 4px solid var(--gold);
+      padding: 24px 28px;
+      margin: 40px 0;
+      background: rgba(184,152,106,0.05);
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--gold2);
+      line-height: 1.55;
+      margin-bottom: 12px !important;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+    .data-table thead th {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--body);
+    }
+    .data-table tbody td:first-child { color: var(--head); font-weight: 500; }
+    .data-table .pos { color: var(--green); }
+    .data-table .neg { color: #f87171; }
+    .data-table .neu { color: #fbbf24; }
+
+    /* ── TAKEAWAY BOX ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(184,152,106,0.12) 0%, rgba(184,152,106,0.04) 100%);
+      border: 1px solid rgba(184,152,106,0.3);
+      border-left: 4px solid var(--gold);
+      padding: 28px 30px;
+      margin: 44px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .takeaway h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--head);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .takeaway ul {
+      list-style: none;
+      padding: 0;
+    }
+    .takeaway ul li {
+      font-size: 14px;
+      color: var(--body);
+      padding: 7px 0 7px 20px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.65;
+    }
+    .takeaway ul li:last-child { border-bottom: none; }
+    .takeaway ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed rgba(255,255,255,0.12);
+      margin-top: 56px;
+      padding-top: 22px;
+    }
+    .disclaimer p {
+      font-size: 11px !important;
+      color: var(--muted) !important;
+      line-height: 1.7 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 56px;
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-sig {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--head); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+      .masthead-nav { display: none; }
+      .article-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="https://fintrend.news" class="masthead-logo">FinTrend News</a>
+      <nav>
+        <ul class="masthead-nav">
+          <li><a href="https://fintrend.news">Home</a></li>
+          <li><a href="https://fintrend.news/archive.html">Archive</a></li>
+          <li><a href="https://fintrend.news/premium.html">Premium</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ARTICLE -->
+  <main class="article-wrap">
+
+    <!-- KICKER -->
+    <div class="kicker">
+      <span class="kicker-dot"></span>
+      Friday Recap &nbsp;·&nbsp; May 1, 2026
+    </div>
+
+    <!-- HEADLINE -->
+    <h1 class="headline">Powell's Exit. The Data Hit.<br>The Rally <em>Held.</em></h1>
+
+    <!-- DEK -->
+    <p class="dek">Q1 GDP missed. PCE surged to its hottest quarterly pace in years. The FOMC split 8-4 in Powell's final press conference as Chair. And yet the S&amp;P 500 closed April up 8.5% — its best month since 2020. Here is every leg of the week.</p>
+
+    <!-- BYLINE BAR -->
+    <div class="byline-bar">
+      <div>
+        <div class="byline-author">Hunter William Lang</div>
+        <div class="byline-role">Markets Correspondent, FinTrend News</div>
+      </div>
+      <div class="byline-date">FRI&nbsp;&nbsp;01 MAY 2026</div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <div class="article-body">
+
+      <p class="lead">The week began with seven central bank decisions on the docket and ended with the S&amp;P 500 printing a record close. In between: a Fed mutiny, an inflation shock embedded in a GDP miss, four Magnificent 7 earnings prints that split cleanly between monetizers and spenders, and oil pulling back from the edge. The market absorbed all of it. The question heading into May is whether it absorbed it correctly.</p>
+
+      <!-- SCOREBOARD -->
+      <div class="scoreboard">
+        <div class="score-cell">
+          <div class="score-label">S&amp;P 500</div>
+          <div class="score-val up">7,230</div>
+          <div class="score-change">April +8.5%</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-label">WTI Crude</div>
+          <div class="score-val flat">~$100</div>
+          <div class="score-change">↓ from $114 peak</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-label">Core PCE (YoY)</div>
+          <div class="score-val down">3.2%</div>
+          <div class="score-change">vs 3.0% prior</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-label">VIX</div>
+          <div class="score-val up">17.8</div>
+          <div class="score-change">vs 31 in late March</div>
+        </div>
+      </div>
+
+      <h2>The Fed Fractures on Powell's Way Out</h2>
+
+      <p>Wednesday's FOMC decision was the week's defining moment — and not because of the outcome. The committee held rates at 3.50–3.75%, as every futures market in the world predicted. What nobody had fully priced was the vote: 8-4, the most divided Fed decision in years. Three of the four dissenters weren't pushing for a cut. They wanted the easing bias removed from the statement entirely, signaling that they have no intention of handing Kevin Warsh a dovish runway when he takes the chair. The fourth dissenter pushed in the opposite direction.</p>
+
+      <p>Powell's final press conference was composed, deliberate, and revealing in what it didn't say. He declined to use the word "stagflation" — a word he's been careful to sidestep for months. He acknowledged the Middle East conflict as contributing to "a high level of uncertainty about the economic outlook" and said the committee would remain "attentive to risks to both sides of our dual mandate." Translation: they're not cutting, they're not hiking, and they're waiting for the data to force their hand. Warsh advanced out of the Senate Banking Committee that same morning. Powell congratulated him from the podium. The era ended in the room where it started.</p>
+
+      <div class="pull-quote">
+        <p>"Developments in the Middle East are contributing to a high level of uncertainty about the economic outlook, and we will remain attentive to risks to both sides of our dual mandate."</p>
+        <cite>— Jerome Powell, Final FOMC Press Conference as Chair, April 29, 2026</cite>
+      </div>
+
+      <h2>The GDP-PCE Double Header</h2>
+
+      <p>Thursday morning dropped four data points simultaneously at 8:30 AM ET — Q1 GDP advance, March PCE, Core PCE, and the Employment Cost Index. Markets had framed it for weeks as the macro event of the half-year. It lived up to the billing.</p>
+
+      <!-- DATA TABLE -->
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Actual</th>
+            <th>Consensus</th>
+            <th>Prior</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Q1 GDP (QoQ Ann.)</td>
+            <td class="neg">2.0%</td>
+            <td>2.3%</td>
+            <td>0.5%</td>
+            <td class="neg">Miss</td>
+          </tr>
+          <tr>
+            <td>PCE (QoQ Ann.)</td>
+            <td class="neg">4.5%</td>
+            <td>—</td>
+            <td>2.9%</td>
+            <td class="neg">Shock</td>
+          </tr>
+          <tr>
+            <td>Core PCE (QoQ Ann.)</td>
+            <td class="neg">4.3%</td>
+            <td>—</td>
+            <td>2.7%</td>
+            <td class="neg">Shock</td>
+          </tr>
+          <tr>
+            <td>PCE (YoY, March)</td>
+            <td class="neu">3.5%</td>
+            <td>3.5%</td>
+            <td>2.8%</td>
+            <td class="neu">In-line</td>
+          </tr>
+          <tr>
+            <td>Core PCE (YoY, March)</td>
+            <td class="neu">3.2%</td>
+            <td>3.2%</td>
+            <td>3.0%</td>
+            <td class="neu">In-line</td>
+          </tr>
+          <tr>
+            <td>Core PCE (MoM, March)</td>
+            <td class="neu">+0.3%</td>
+            <td>0.3%</td>
+            <td>0.4%</td>
+            <td class="pos">Slight ease</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The 2.0% GDP print is a genuine rebound from Q4's near-stall at 0.5% — but that low bar matters. Much of Q4's weakness was attributable to a 43-day federal government shutdown that cut federal payrolls and spending. Q1's bounce partly reflects that drag reversing, not a fresh acceleration in organic growth. Real final sales to private domestic purchasers — the cleanest gauge of underlying demand — grew 2.5%, up from 1.8% in Q4. That number is better than the headline.</p>
+
+      <p>The inflation story is harder to dismiss. Quarterly PCE at 4.5% is more than double the Fed's target and represents the sharpest quarterly acceleration in the price index in years. The headline-core gap — 4.5% PCE versus 4.3% core — tells you most of this came from energy. That matters for how you read it: the Strait of Hormuz closure drove a gasoline surge that registered as a $81.3 billion monthly increase in energy goods consumption in March alone, more than three times the next-largest spending category. If and when the Strait fully reopens, that impulse reverses. The question is how much the broader price level has been reprimed in the meantime.</p>
+
+      <h2>Earnings Split the Tape</h2>
+
+      <p>Four of the seven most valuable companies on Earth reported Wednesday night, the same evening as the FOMC decision. The outcomes could not have been more divergent.</p>
+
+      <!-- LEDGER -->
+      <table class="ledger">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Key Beat/Miss</th>
+            <th>Reaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MON APR 28</td>
+            <td class="td-bold" colspan="2">Earnings season ramps; seven central banks on deck</td>
+          </tr>
+          <tr>
+            <td>WED APR 29</td>
+            <td><span class="tag-flat">FOMC holds 8-4 at 3.50–3.75%</span> · Powell's final presser · Warsh clears Senate Banking Committee</td>
+            <td><span class="tag-down">SPX –0.2%</span> into close on hawkish dissent read</td>
+          </tr>
+          <tr>
+            <td>WED AFTER</td>
+            <td><span class="tag-up">GOOGL</span> EPS $5.11 vs $2.63 est · Cloud +63% · Backlog nearly doubled to $460B &nbsp;|&nbsp; <span class="tag-up">AMZN</span> AWS +28%, fastest in 15 qtrs &nbsp;|&nbsp; <span class="tag-down">META</span> Capex guide $125–$145B · Reality Labs –$4B &nbsp;|&nbsp; <span class="tag-down">MSFT</span> Soft revenue guide despite EPS beat</td>
+            <td>Mixed pre-market; GOOGL +9%, AMZN +3%, META –8%, MSFT –4%</td>
+          </tr>
+          <tr>
+            <td>THU APR 30</td>
+            <td>GDP 2.0% (miss 2.3%) · PCE QoQ 4.5% · Core PCE YoY 3.2% (in-line) · ECI · Jobless claims resilient &nbsp;|&nbsp; <span class="tag-up">AAPL</span> beats; iPhone services solid, China commentary cautious</td>
+            <td><span class="tag-up">SPX +1.0%</span> record close · All 11 sectors green · CAT +10%, LLY +9%</td>
+          </tr>
+          <tr>
+            <td>FRI MAY 1</td>
+            <td>ISM Manufacturing 10 AM · European markets closed (May Day) · WTI ~$100, holding pullback</td>
+            <td>Thin liquidity; S&amp;P futures fractionally higher into open</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The Alphabet print was the week's most significant single data point. EPS of $5.11 versus $2.63 expected is not a beat — it's a different planet. Google Cloud revenue up 63% with backlog nearly doubling to $460 billion signals that enterprise AI spending is hitting Google's infrastructure at a velocity that's outrunning even the most bullish models. Amazon's AWS print — 28% growth, the fastest in 15 quarters — confirmed the signal from the other side. When the two cloud hyperscalers accelerate simultaneously, the AI capex narrative has a real revenue foundation under it.</p>
+
+      <p>Meta and Microsoft told a different story. Meta's decision to raise its 2026 capital expenditure guidance to $125–$145 billion — with a $4 billion Reality Labs operating loss sitting alongside it — spooked investors who are still waiting for the monetization math to close. Microsoft's guidance softness was more modest, but the stock's reaction reflected a market that has priced in perfection for every name in the complex. The AI trade is bifurcating between companies that are being paid for AI now and companies that are building toward a future payoff on borrowed confidence.</p>
+
+      <h2>Oil Pulls Back. The Risk Premium Cools.</h2>
+
+      <p>WTI crude — which touched $114.58 at its April peak and sent Brent briefly above $130 — has pulled back to around $100 this week. The move is meaningful but not yet definitive. The Strait of Hormuz remains effectively closed; around 20% of global oil supply is still being rerouted or held. The pullback reflects a fading of the fear premium as markets adjusted to the new supply regime, not a resolution of the underlying constraint.</p>
+
+      <p>The broader macro implication is significant. Every $10 move in WTI maps to roughly 0.4 percentage points on inflation and negative 0.15 percentage points on GDP. A sustained move from $114 back toward $90 would take meaningful pressure off the PCE trajectory heading into Q2, giving Powell's successor more room to maneuver than the current data suggest. That is a big if. Iran-linked headlines have moved oil $8 in a session this quarter. Any fresh escalation resets the clock.</p>
+
+      <!-- TAKEAWAY -->
+      <div class="takeaway">
+        <div class="takeaway-label">&#9670; The FinTrend Takeaway</div>
+        <h3>The Rally Has a Thesis. Test It in May.</h3>
+        <ul>
+          <li>The FOMC's 8-4 split is the most important signal this week. Three hawks just told Warsh they won't give him an easy easing cycle. Rate cut expectations for 2026 are now less than one full cut priced. Equities have not repriced for that.</li>
+          <li>GDP's 2.0% miss matters less than the composition. Real final sales to private domestic purchasers at 2.5% is solid. The weakness was inventory and import distortions from tariff front-running — one-time, not structural.</li>
+          <li>PCE QoQ at 4.5% is the number to watch. If oil holds around $100 and the Strait incrementally reopens, Q2 PCE could decelerate sharply. If oil bounces back above $110, the next two prints get worse.</li>
+          <li>Alphabet and Amazon's earnings are not just company-level beats — they're data points on whether AI capital expenditure is producing real returns. At $460B in Google Cloud backlog, the answer for at least one hyperscaler is yes.</li>
+          <li>May 8 payrolls will be the first major macro event of the Warsh era. Watch his response to it more than the number itself.</li>
+        </ul>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer">
+        <p>FinTrend News publishes market analysis and financial commentary for educational and informational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security or financial instrument. All figures referenced are sourced from publicly available data. Past performance is not indicative of future results. Always consult a qualified financial professional before making investment decisions.</p>
+      </div>
+
+    </div><!-- /article-body -->
+
+    <!-- FOOTER -->
+    <footer class="article-footer">
+      <div class="footer-sig">&#9670; FinTrend News &nbsp;·&nbsp; fintrend.news</div>
+      <nav class="footer-links">
+        <a href="https://fintrend.news">Home</a>
+        <a href="https://fintrend.news/archive.html">Archive</a>
+        <a href="https://fintrend.news/premium.html">Premium ↗</a>
+      </nav>
+    </footer>
+
+  </main>
+
+</body>
+</html>
