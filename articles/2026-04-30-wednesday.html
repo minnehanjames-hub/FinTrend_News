@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Powell's Last Stand | FinTrend News</title>
+  <meta name="description" content="The Fed held at 3.50–3.75% in Powell's likely final meeting as chair. WTI crude topped $103. Four Mag Seven titans reported after the bell. Hunter Lang's Wednesday Momentum Check, April 29." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+  <style>
+    :root {
+      --bg:          #0b0f1f;
+      --bg-deep:     #0f1530;
+      --surface:     #131929;
+      --card:        #161d30;
+      --border:      #1e2840;
+      --border-hi:   rgba(244,193,93,0.25);
+      --gold:        #f4c15d;
+      --gold-dim:    #c9973a;
+      --gold-faint:  rgba(244,193,93,0.08);
+      --gold-faint2: rgba(244,193,93,0.14);
+      --ink:         #eef1ff;
+      --ink-dim:     #b8bfd9;
+      --ink-low:     #7d85a8;
+      --up:          #5dd39e;
+      --down:        #ef6b6b;
+      --white:       #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+      color: var(--ink-dim);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      text-align: center;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      color: var(--white);
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--gold); }
+    .masthead-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink-low);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      padding: 10px 24px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-low);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── ARTICLE WRAPPER ── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 24px 88px;
+    }
+
+    /* ── KICKER PILL ── */
+    .kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-faint2);
+      border: 1px solid var(--border-hi);
+      border-radius: 20px;
+      padding: 5px 15px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .kicker-pill::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.1rem, 5.5vw, 3rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink-dim);
+      line-height: 1.65;
+      margin-bottom: 26px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .byline-author {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .byline-author span { color: var(--gold); }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-low);
+    }
+
+    /* ── BODY PROSE ── */
+    .body-text p {
+      margin-bottom: 1.45em;
+      color: var(--ink-dim);
+      font-size: 0.98rem;
+      line-height: 1.78;
+    }
+
+    /* ── DROP CAP ── */
+    .drop-cap::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.4em;
+      line-height: 0.78;
+      float: left;
+      margin-right: 10px;
+      margin-top: 6px;
+      color: var(--gold);
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 36px 0;
+    }
+    .score-card {
+      background: var(--card);
+      padding: 18px 14px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .score-card:hover { background: var(--surface); }
+    .score-ticker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--ink-low);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .score-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--white);
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    .score-change {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+    .up   { color: var(--up); }
+    .dn   { color: var(--down); }
+    .flat { color: var(--ink-low); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin: 44px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── LEDGER ── */
+    .ledger {
+      margin: 0 0 36px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .ledger-header {
+      background: var(--gold-faint2);
+      padding: 10px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--border);
+    }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+    }
+    .ledger-row:last-child { border-bottom: none; }
+    .ledger-row:nth-child(even) { background: var(--surface); }
+    .ledger-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: var(--gold-dim);
+    }
+    .ledger-event {
+      font-size: 0.82rem;
+      color: var(--ink-dim);
+      line-height: 1.5;
+    }
+    .ledger-impact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 24px;
+      margin: 40px 0;
+      background: var(--gold-faint);
+      border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.18rem;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.5;
+      margin: 0 0 10px 0 !important;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-low);
+    }
+
+    /* ── WINNERS / LOSERS ── */
+    .wl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 0 0 36px;
+    }
+    .wl-panel {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .wl-header {
+      padding: 9px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .wl-header.win  { background: rgba(93,211,158,0.1); color: var(--up); }
+    .wl-header.lose { background: rgba(239,107,107,0.1); color: var(--down); }
+    .wl-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--card);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+    }
+    .wl-item .ticker { color: var(--white); font-weight: 700; }
+
+    /* ── DATA TABLE ── */
+    .data-table-wrap {
+      margin: 0 0 36px;
+      overflow-x: auto;
+    }
+    .data-table-wrap h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+    }
+    thead tr { background: var(--border); }
+    thead th {
+      padding: 9px 14px;
+      text-align: left;
+      font-size: 0.61rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-low);
+      font-weight: 500;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+    tbody tr:nth-child(even) { background: var(--surface); }
+    tbody td {
+      padding: 9px 14px;
+      color: var(--ink-dim);
+    }
+
+    /* ── HUNTER'S READ ── */
+    .hunters-read {
+      background: var(--card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 8px;
+      padding: 24px 26px;
+      margin: 40px 0;
+    }
+    .hunters-read-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hunters-read-label::before {
+      content: '▶';
+      font-size: 0.52rem;
+    }
+    .hunters-read p {
+      font-size: 0.93rem;
+      color: var(--ink-dim);
+      line-height: 1.72;
+      margin-bottom: 1em;
+    }
+    .hunters-read p:last-child { margin-bottom: 0; }
+
+    /* ── TAKEAWAY BOX ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(244,193,93,0.11) 0%, rgba(244,193,93,0.04) 100%);
+      border: 1px solid var(--border-hi);
+      border-radius: 8px;
+      padding: 24px 26px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .takeaway p {
+      font-size: 0.93rem;
+      color: var(--ink-dim);
+      line-height: 1.72;
+      margin-bottom: 1em;
+    }
+    .takeaway p:last-child { margin-bottom: 0; }
+    .takeaway strong { color: var(--gold); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      margin-top: 52px;
+      padding-top: 22px;
+      font-size: 0.72rem;
+      color: var(--ink-low);
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 30px 24px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .footer-sig {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-low);
+      letter-spacing: 0.1em;
+    }
+    .footer-sig span { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+      .wl-grid    { grid-template-columns: 1fr; }
+      .ledger-row { grid-template-columns: 80px 1fr; }
+      .ledger-impact { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend<span>.</span>News</a>
+    <div class="masthead-tagline">Markets · Macro · Intelligence</div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../index.html#premium">Premium</a>
+    <a href="../index.html#about">About</a>
+  </nav>
+
+  <!-- ARTICLE -->
+  <main class="article-wrap">
+
+    <div class="kicker-pill">Wednesday Momentum Check &mdash; April 29, 2026</div>
+
+    <h1>Powell's <em>Last Stand</em> and the Weight of Oil</h1>
+
+    <p class="dek">The Federal Reserve held rates at 3.50%–3.75% in what markets expect to be Jerome Powell's final meeting as chair. Simultaneously, four Magnificent Seven titans reported after the bell — as WTI crude barreled toward triple digits and Trump flatly rejected Iran's Strait of Hormuz overture.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <span>Hunter William Lang</span> &mdash; Markets Correspondent</div>
+      <div class="byline-date">WED 29 APR 2026</div>
+    </div>
+
+    <!-- SCOREBOARD -->
+    <div class="scoreboard">
+      <div class="score-card">
+        <div class="score-ticker">S&amp;P 500</div>
+        <div class="score-value">7,135.95</div>
+        <div class="score-change dn">▼ 0.04%</div>
+      </div>
+      <div class="score-card">
+        <div class="score-ticker">Nasdaq</div>
+        <div class="score-value">24,673.24</div>
+        <div class="score-change up">▲ 0.04%</div>
+      </div>
+      <div class="score-card">
+        <div class="score-ticker">Dow Jones</div>
+        <div class="score-value">48,861.81</div>
+        <div class="score-change dn">▼ 0.57%</div>
+      </div>
+      <div class="score-card">
+        <div class="score-ticker">WTI Crude</div>
+        <div class="score-value">~$103</div>
+        <div class="score-change dn">▲ 4-Yr High</div>
+      </div>
+      <div class="score-card">
+        <div class="score-ticker">Brent</div>
+        <div class="score-value">~$115</div>
+        <div class="score-change dn">▲ Intraday Spike</div>
+      </div>
+      <div class="score-card">
+        <div class="score-ticker">10Y Yield</div>
+        <div class="score-value">4.41%</div>
+        <div class="score-change dn">▲ +5 bps</div>
+      </div>
+    </div>
+
+    <!-- BODY OPEN -->
+    <div class="body-text">
+      <p class="drop-cap">Wednesday handed the tape three overlapping storylines, each capable of moving markets on its own. Instead they arrived together: a Fed hold telegraphed for weeks but newly charged with the symbolism of Powell's farewell; a blockade escalation that sent Brent crude briefly above $115 a barrel; and a slate of Mag Seven earnings — Alphabet, Amazon, Meta, and Microsoft — that collectively represent roughly a quarter of the S&amp;P 500 by market cap. The result was a session that looked tame on the surface and felt anything but underneath it.</p>
+
+      <p>The Dow bore the most visible damage, shedding 280 points for a fifth consecutive losing day. The S&amp;P 500 and Nasdaq effectively flatlined in the sub-tenth-of-a-percent range — a statistical draw that masked the intensity of the intraday swings. When three things this consequential collide in a single afternoon, the market's refusal to move violently in either direction is itself a statement.</p>
+    </div>
+
+    <!-- SESSION TIMELINE -->
+    <div class="section-label">Session Timeline</div>
+    <div class="ledger">
+      <div class="ledger-header">Key Catalysts — April 29, 2026</div>
+      <div class="ledger-row">
+        <div class="ledger-time">09:35 ET</div>
+        <div class="ledger-event">Open: S&amp;P –0.20%, Dow –0.27%, Nasdaq –0.41% — broad-based hesitation across all majors</div>
+        <div class="ledger-impact flat">Cautious</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">09:50 ET</div>
+        <div class="ledger-event">Senate Banking Committee advances Kevin Warsh Fed Chair nomination 13–11 along party lines; full Senate vote expected</div>
+        <div class="ledger-impact up">Nasdaq lifts</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">10:10 ET</div>
+        <div class="ledger-event">Visa jumps 10% after Q1 earnings beat; CEO cites resilient consumer spending despite macro headwinds</div>
+        <div class="ledger-impact up">Financials bid</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">12:30 ET</div>
+        <div class="ledger-event">Axios: Trump rejects Iran's Strait of Hormuz reopening proposal; extended blockade confirmed by aides</div>
+        <div class="ledger-impact dn">Oil spikes; equities fade</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">14:00 ET</div>
+        <div class="ledger-event">FOMC holds fed funds at 3.50%–3.75% — third consecutive pause; 10-year yield immediately jumps 5 bps to 4.41%</div>
+        <div class="ledger-impact dn">Rates pressure Dow</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">14:30 ET</div>
+        <div class="ledger-event">Powell final presser: "policy is well-positioned to respond" — no forward guidance pivot; says he will remain on the Board</div>
+        <div class="ledger-impact flat">Muted reaction</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">16:00 ET</div>
+        <div class="ledger-event">Close: DJIA –280 pts (5th losing day). S&amp;P flat. Nasdaq flat. Russell 2000 –1.15% — worst major index</div>
+        <div class="ledger-impact dn">Small-caps hit</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-time">After Bell</div>
+        <div class="ledger-event">Alphabet, Amazon, Meta, Microsoft all report Q1 — full market reaction to follow at Thursday's open</div>
+        <div class="ledger-impact flat">Pending</div>
+      </div>
+    </div>
+
+    <!-- FED SECTION -->
+    <div class="section-label">The Fed Chapter Closes</div>
+    <div class="body-text">
+      <p>In an environment where stubbornly elevated energy prices and a labor market losing momentum coexist, the FOMC found itself with nowhere comfortable to go. Holding rates at 3.50%–3.75% for a third straight meeting was the only defensible choice — cutting would risk igniting an inflationary spiral already running hot from oil, while raising would risk tipping a fragile growth picture into contraction. Powell named this position plainly: the Fed is watching, not acting.</p>
+
+      <p>What made Wednesday significant was the context surrounding that decision. The Senate Banking Committee's party-line Warsh confirmation — clearing the path to a likely May 15 installation as chair — turned a routine rate hold into a moment of institutional transition. Warsh is widely understood to lean more hawkish and is expected to bring a sharper focus on inflation credibility, which some traders read as ruling out any 2026 cuts. The 10-year yield's immediate five-basis-point jump to 4.41% said as much.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Any shift in tone on stagflation risk or on the path through year-end will move the curve more than the decision itself."</p>
+      <cite>— James "Rev Shark" DePorre, TheStreet Pro, April 29, 2026</cite>
+    </div>
+
+    <div class="body-text">
+      <p>The CME FedWatch tool reflects a market that has largely given up on 2026 cuts. Before the Iran conflict began in late February, two cuts were baked in. Today, a meaningful share of participants price no cuts at all. The Fed's own March dot plot put the median year-end rate at 3.4% — implying one 25bp reduction — but that median is increasingly an outlier view rather than a consensus.</p>
+    </div>
+
+    <!-- OIL SECTION -->
+    <div class="section-label">The Blockade Holds</div>
+    <div class="body-text">
+      <p>The oil story remains the session's most underappreciated driver. WTI crude topped $103 intraday as Brent briefly punched through $115 — four-year highs on both benchmarks. The WSJ reported that Trump has instructed aides to prepare for an extended blockade of Iranian ports; Axios followed with confirmation that the administration flatly rejected Tehran's offer to reopen the Strait in exchange for a ceasefire.</p>
+
+      <p>The structural math keeps compounding. OPEC+ holds roughly 3.5 million barrels per day of spare capacity, but the UAE's shock announcement Tuesday that it will exit OPEC effective May 1 adds cartel disintegration uncertainty on top of an existing supply shock. Saudi pipeline rerouting and IEA emergency releases provide partial offsets, but the Strait remains the structural bottleneck. California gasoline crossed $6 per gallon on Wednesday — up 30% since the U.S.-Israel operation commenced in late February. That real-economy transmission is what keeps the Fed boxed in and why the Russell 2000 dropped 1.15%: small caps don't have the margin buffers that Alphabet and Microsoft do. When California gas hits $6, it's the local hardware store that feels it first.</p>
+    </div>
+
+    <!-- WINNERS / LOSERS -->
+    <div class="section-label">Session Winners &amp; Losers</div>
+    <div class="wl-grid">
+      <div class="wl-panel">
+        <div class="wl-header win">▲ Winners</div>
+        <div class="wl-item"><span class="ticker">V</span><span class="up">+10.0%</span></div>
+        <div class="wl-item"><span class="ticker">SBUX</span><span class="up">PT ↑ $110</span></div>
+        <div class="wl-item"><span class="ticker">TMUS</span><span class="up">Raised Guide</span></div>
+        <div class="wl-item"><span class="ticker">UPS</span><span class="up">PT ↑ $118</span></div>
+        <div class="wl-item"><span class="ticker">KO</span><span class="up">PT ↑ $90</span></div>
+      </div>
+      <div class="wl-panel">
+        <div class="wl-header lose">▼ Losers</div>
+        <div class="wl-item"><span class="ticker">HOOD</span><span class="dn">Q1 Miss</span></div>
+        <div class="wl-item"><span class="ticker">GM</span><span class="dn">PT ↓ $102</span></div>
+        <div class="wl-item"><span class="ticker">SAVE</span><span class="dn">Restrct. Stalled</span></div>
+        <div class="wl-item"><span class="ticker">IWM</span><span class="dn">–1.15%</span></div>
+        <div class="wl-item"><span class="ticker">XLY</span><span class="dn">Oil Drag</span></div>
+      </div>
+    </div>
+
+    <!-- EARNINGS TABLE -->
+    <div class="section-label">After-Bell Earnings Watch</div>
+    <div class="data-table-wrap">
+      <h3>Mag Seven Q1 Reports — April 29 AH</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Ticker</th>
+            <th>Key Metric</th>
+            <th>2026 CapEx Guide</th>
+            <th>YTD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alphabet</td>
+            <td>GOOGL</td>
+            <td>Cloud revenue growth</td>
+            <td>Up to $190B</td>
+            <td class="up">+12%</td>
+          </tr>
+          <tr>
+            <td>Amazon</td>
+            <td>AMZN</td>
+            <td>AWS RPOs; FCF</td>
+            <td>$200B (est.)</td>
+            <td class="up">+13%</td>
+          </tr>
+          <tr>
+            <td>Meta Platforms</td>
+            <td>META</td>
+            <td>User growth; DAUs</td>
+            <td>Raised (AH)</td>
+            <td class="flat">Mixed</td>
+          </tr>
+          <tr>
+            <td>Microsoft</td>
+            <td>MSFT</td>
+            <td>Azure growth; memory costs</td>
+            <td>$190B</td>
+            <td class="dn">–12%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="body-text">
+      <p>The combined 2026 capital expenditure commitments from AI hyperscalers now approach $650 billion — a figure that is at once an extraordinary endorsement of AI infrastructure demand and an earnings overhang that markets are increasingly scrutinizing. AWS posted its fastest growth in 13 quarters (24%) last period; whether that run rate holds at this scale of investment will dominate Thursday's reaction.</p>
+    </div>
+
+    <!-- HUNTER'S READ -->
+    <div class="hunters-read">
+      <div class="hunters-read-label">Hunter's Read</div>
+      <p>Today exposed the market's fundamental tension: AI capex spending is so enormous it's become simultaneously a bull and bear case. The bulls see $650 billion in hyperscaler investment as proof of insatiable demand; the bears see it as a margin-compression engine that won't pay off until the end of the decade. Meta and Microsoft's after-hours selloffs on capex concerns validated the bear case tonight.</p>
+      <p>The more durable read here is oil. A triple-digit WTI print is not a spike to fade — it is a structural reset of the cost curve for every energy-intensive business in the S&amp;P 500. Industrials, airlines, chemicals, consumer staples: all repricing. The Russell 2000's –1.15% day tells you where the real-economy pain is landing. Small caps don't have the margin buffers that Microsoft and Alphabet do. When California gasoline hits $6, it's the local hardware store and the regional restaurant chain that feel it first.</p>
+      <p>Powell's era ends, Warsh's begins — and the new chair walks in carrying the most difficult dual-mandate math since the 1970s. That is not a backdrop for rate cuts. Position accordingly.</p>
+    </div>
+
+    <!-- MACRO TABLE -->
+    <div class="section-label">Macro Pulse</div>
+    <div class="data-table-wrap">
+      <h3>Key Indicators — April 29, 2026</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>Current</th>
+            <th>Prior</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fed Funds Rate</td>
+            <td>3.50–3.75%</td>
+            <td>3.50–3.75%</td>
+            <td class="flat">Hold — 3rd Pause</td>
+          </tr>
+          <tr>
+            <td>10Y Treasury Yield</td>
+            <td>4.41%</td>
+            <td>4.36%</td>
+            <td class="dn">▲ +5 bps</td>
+          </tr>
+          <tr>
+            <td>WTI Crude (intraday hi)</td>
+            <td>~$103 / bbl</td>
+            <td>~$99.77</td>
+            <td class="dn">▲ 4-yr High</td>
+          </tr>
+          <tr>
+            <td>Brent (intraday hi)</td>
+            <td>~$115 / bbl</td>
+            <td>~$111.50</td>
+            <td class="dn">▲ Elevated</td>
+          </tr>
+          <tr>
+            <td>CA Avg Gas Price</td>
+            <td>$6.01 / gal</td>
+            <td>~$4.62 pre-war</td>
+            <td class="dn">▲ +30% since Feb</td>
+          </tr>
+          <tr>
+            <td>Russell 2000</td>
+            <td>–1.15%</td>
+            <td>–1.26% Tue</td>
+            <td class="dn">5th Losing Day</td>
+          </tr>
+          <tr>
+            <td>Core Cap Goods Orders (Mar)</td>
+            <td>+3.3% MoM</td>
+            <td>+1.6%</td>
+            <td class="up">▲ Strongest since 2020</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TAKEAWAY -->
+    <div class="takeaway">
+      <div class="takeaway-label">&#9670; Wednesday's Core Takeaways</div>
+      <p><strong>Powell exits stage left.</strong> Wednesday marks the likely conclusion of Jerome Powell's tenure as Fed chair. The hold at 3.50%–3.75% was expected, but the Warsh confirmation vote and what it signals for the 2026 rate path is the real story. Markets are pricing an increasingly narrow window for any cut this year.</p>
+      <p><strong>Oil is not a temporary shock.</strong> The Strait remains effectively closed. Trump's blockade-extension posture and his rejection of Iran's reopening offer underscore that elevated crude is a policy choice, not a market anomaly. With Brent hitting $115 intraday and California gas at $6, the consumer transmission is accelerating.</p>
+      <p><strong>Mag Seven bifurcation is real.</strong> Not all hyperscalers are equal in this environment. Alphabet's cloud momentum and AWS's 24% growth pace represent structural demand. Meta's user growth concerns and Microsoft's memory cost headwinds represent structural risk. After-hours reactions showed the market distinguishing between the two — forcefully.</p>
+      <p><strong>Small caps are the canary.</strong> The Russell 2000's –1.15% print — its worst day in the current losing streak — is a leading indicator worth watching. Small-cap stress under higher-for-longer rates and $100+ oil is a liquidity warning sign that large-cap headlines tend to obscure.</p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> This article is for informational and educational purposes only. Nothing contained herein constitutes financial, investment, or legal advice. FinTrend News and its contributors do not hold positions in the securities mentioned unless disclosed separately. Past performance is not indicative of future results. All data sourced from publicly available market feeds and news reports as of market close April 29, 2026.
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-sig">
+      &copy; 2026 <span>FinTrend.News</span> &mdash; All rights reserved &mdash;
+      <span>Hunter William Lang</span> &mdash; Wednesday Momentum Check
+    </div>
+  </footer>
+
+</body>
+</html>
