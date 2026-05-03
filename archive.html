@@ -4,370 +4,92 @@
   <meta charset="UTF-8" />
   <title>Archive Calendar · FinTrend News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
-
   <style>
-    :root {
-      --bg: #050816;
-      --surface: rgba(10,16,36,0.92);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: rgba(148,163,184,0.18);
-      --border-gold: rgba(244,193,93,0.30);
-      --accent: #f4c15d;
-      --accent-soft: rgba(244,193,93,0.12);
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148,163,184,0.35);
-      --danger: #f97373;
-      --success: #4ade80;
-      --radius-lg: 16px;
-      --radius-xl: 22px;
-      --shadow-soft: 0 18px 45px rgba(15,23,42,0.8);
-      --max-width: 980px;
+    :root{--bg:#050816;--surface:rgba(10,16,36,0.92);--text:#f9fafb;--muted:#9ca3af;--border:rgba(148,163,184,0.18);--border-gold:rgba(244,193,93,0.30);--accent:#f4c15d;--accent-soft:rgba(244,193,93,0.12);--text-muted:#9ca3af;--border-subtle:rgba(148,163,184,0.35);--danger:#f97373;--success:#4ade80;--radius-lg:16px;--radius-xl:22px;--shadow-soft:0 18px 45px rgba(15,23,42,0.8);--max-width:980px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:radial-gradient(circle at top,#111827 0,#020617 45%,#000 100%);color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.7;min-height:100vh;overflow-x:hidden;}
+    a{color:inherit;text-decoration:none;}
+    .page{max-width:var(--max-width);margin:32px auto 40px;padding:0 16px 32px;}
+    .back-link{font-size:12px;color:var(--text-muted);display:inline-flex;align-items:center;gap:6px;margin-bottom:28px;border:1px solid var(--border);padding:6px 14px;transition:.15s;}
+    .back-link:hover{color:var(--accent);border-color:var(--border-gold);}
+    .title-block{margin-bottom:12px;}
+    .kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-muted);margin-bottom:4px;font-family:"JetBrains Mono",monospace;}
+    h1{font-family:"Playfair Display",serif;font-size:28px;line-height:1.2;margin-bottom:6px;}
+    h1 span{background:linear-gradient(135deg,#fef3c7,#fbbf24,#fb923c);-webkit-background-clip:text;color:transparent;}
+    .subtitle{font-size:13px;color:var(--text-muted);max-width:640px;}
+    .month-nav{display:flex;align-items:center;gap:10px;margin:14px 0 10px;}
+    .month-nav-link{font-size:12px;color:var(--text-muted);padding:6px 12px;border:1px solid var(--border-subtle);background:rgba(15,23,42,0.9);transition:0.18s ease;cursor:pointer;user-select:none;font-family:inherit;}
+    .month-nav-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
+    .month-label{font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:var(--text-muted);text-align:center;flex:1;user-select:none;font-family:"JetBrains Mono",monospace;}
+    .month-dots{display:flex;justify-content:center;gap:8px;margin:8px 0 0;}
+    .month-dot{width:9px;height:9px;border-radius:999px;border:1px solid rgba(148,163,184,0.45);background:rgba(2,6,23,0.45);cursor:pointer;transition:0.18s ease;}
+    .month-dot:hover{transform:translateY(-1px);border-color:rgba(244,193,93,0.55);}
+    .month-dot.active{background:rgba(244,193,93,0.85);border-color:rgba(244,193,93,0.75);box-shadow:0 0 0 4px rgba(244,193,93,0.12);}
+    .calendar-wrapper{margin-top:10px;background:rgba(15,23,42,0.96);border-radius:var(--radius-xl);border:1px solid var(--border-subtle);box-shadow:var(--shadow-soft);padding:18px 16px 20px;overflow:hidden;}
+    .month-wheel{position:relative;overflow:hidden;touch-action:pan-y;}
+    .month-track{display:flex;width:100%;transform:translateX(0);transition:transform 0.35s ease;will-change:transform;}
+    .month-slide{min-width:100%;padding:0;}
+    .slide-kicker{font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-muted);margin-bottom:10px;padding:0 2px;font-family:"JetBrains Mono",monospace;}
+    .slide-kicker strong{color:#e5e7eb;letter-spacing:0.12em;font-weight:600;}
+    .calendar-header{display:grid;grid-template-columns:0.9fr repeat(4,1fr);gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-muted);border-bottom:1px solid rgba(148,163,184,0.15);padding-bottom:6px;margin-bottom:6px;}
+    .calendar-header div{text-align:center;}
+    .calendar-header .week-col-label{text-align:left;}
+    .calendar-row{display:grid;grid-template-columns:0.9fr repeat(4,1fr);gap:8px;margin-bottom:10px;align-items:stretch;}
+    .week-label{font-size:10px;letter-spacing:.08em;color:var(--text-muted);padding-top:4px;font-family:"JetBrains Mono",monospace;}
+    .day-cell{border-radius:var(--radius-lg);border:1px solid rgba(31,41,55,0.95);background:rgba(15,23,42,0.94);padding:8px 9px;font-size:12px;display:flex;flex-direction:column;justify-content:space-between;min-height:70px;transition:0.18s ease;}
+    .day-cell.has-note:hover{border-color:var(--accent);background:radial-gradient(circle at top left,var(--accent-soft),rgba(15,23,42,0.96));transform:translateY(-1px);}
+    .day-cell.latest{border-color:rgba(244,193,93,0.45);background:radial-gradient(circle at top left,rgba(244,193,93,0.10),rgba(15,23,42,0.96));}
+    .day-cell.latest .day-link{color:var(--accent);}
+    .day-label{font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-muted);margin-bottom:2px;}
+    .day-date{font-size:11px;color:var(--text-muted);margin-bottom:4px;font-family:"JetBrains Mono",monospace;}
+    .new-badge{display:inline-block;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;padding:1px 6px;border-radius:4px;background:rgba(244,193,93,0.18);color:var(--accent);border:1px solid rgba(244,193,93,0.35);margin-left:5px;vertical-align:middle;}
+    .tag-pill{display:inline-flex;align-items:center;gap:4px;padding:1px 7px;border-radius:999px;border:1px solid rgba(148,163,184,0.5);font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--text-muted);margin-bottom:3px;}
+    .tag-monday{border-color:var(--success);color:var(--success);}
+    .tag-wednesday{border-color:#60a5fa;color:#60a5fa;}
+    .tag-friday{border-color:var(--danger);color:var(--danger);}
+    .tag-sunday{border-color:var(--accent);color:var(--accent);}
+    .day-link{font-size:12px;color:#e5e7eb;font-weight:500;line-height:1.35;display:block;margin-top:2px;transition:color .14s;}
+    .day-link:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+    .day-meta{font-size:11px;color:var(--text-muted);margin-top:3px;line-height:1.4;}
+    .empty-note{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:8px;opacity:.45;}
+    @media(max-width:720px){
+      .calendar-header{display:none;}
+      .calendar-row{grid-template-columns:1fr;gap:6px;}
+      .week-label{font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);padding:8px 0 2px;border-top:1px solid rgba(148,163,184,0.15);margin-top:4px;}
+      .week-label:first-child{border-top:none;}
+      .day-cell{min-height:60px;display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:start;padding:10px 11px;}
+      .day-cell>div:first-child{display:contents;}
+      .day-cell .day-label,.day-cell .day-date{grid-column:1;}
+      .day-cell .day-label{font-size:9px;white-space:nowrap;margin-bottom:1px;}
+      .day-cell .day-date{font-size:13px;font-weight:600;color:#e5e7eb;margin-bottom:0;}
+      .tag-pill{grid-column:2;margin-bottom:2px;}
+      .day-link{grid-column:2;font-size:13px;line-height:1.35;}
+      .day-meta{grid-column:2;font-size:11px;}
+      .empty-note{grid-column:2;font-size:11px;margin-top:0;}
     }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
-      color: var(--text);
-      font-family: "Inter", system-ui, sans-serif;
-      line-height: 1.7;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      max-width: var(--max-width);
-      margin: 32px auto 40px;
-      padding: 0 16px 32px;
-    }
-
-    .back-link {
-      font-size: 12px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 28px;
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      transition: .15s;
-    }
-    .back-link:hover { color: var(--accent); border-color: var(--border-gold); }
-
-    .title-block { margin-bottom: 12px; }
-
-    .kicker {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-    h1 span {
-      background: linear-gradient(135deg, #fef3c7, #fbbf24, #fb923c);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      max-width: 640px;
-    }
-
-    .month-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 14px 0 10px;
-    }
-    .month-nav-link {
-      font-size: 12px;
-      color: var(--text-muted);
-      padding: 6px 12px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(15,23,42,0.9);
-      transition: 0.18s ease;
-      cursor: pointer;
-      user-select: none;
-      font-family: inherit;
-    }
-    .month-nav-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .month-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      text-align: center;
-      flex: 1;
-      user-select: none;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .month-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin: 8px 0 0;
-    }
-    .month-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.45);
-      background: rgba(2,6,23,0.45);
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-    .month-dot:hover { transform: translateY(-1px); border-color: rgba(244,193,93,0.55); }
-    .month-dot.active {
-      background: rgba(244,193,93,0.85);
-      border-color: rgba(244,193,93,0.75);
-      box-shadow: 0 0 0 4px rgba(244,193,93,0.12);
-    }
-
-    .calendar-wrapper {
-      margin-top: 10px;
-      background: rgba(15,23,42,0.96);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 18px 16px 20px;
-      overflow: hidden;
-    }
-
-    .month-wheel { position: relative; overflow: hidden; touch-action: pan-y; }
-    .month-track {
-      display: flex;
-      width: 100%;
-      transform: translateX(0);
-      transition: transform 0.35s ease;
-      will-change: transform;
-    }
-    .month-slide { min-width: 100%; padding: 0; }
-
-    .slide-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      padding: 0 2px;
-      font-family: "JetBrains Mono", monospace;
-    }
-    .slide-kicker strong { color: #e5e7eb; letter-spacing: 0.12em; font-weight: 600; }
-
-    .calendar-header {
-      display: grid;
-      grid-template-columns: 0.9fr repeat(4, 1fr);
-      gap: 8px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      border-bottom: 1px solid rgba(148,163,184,0.15);
-      padding-bottom: 6px;
-      margin-bottom: 6px;
-    }
-    .calendar-header div { text-align: center; }
-    .calendar-header .week-col-label { text-align: left; }
-
-    .calendar-row {
-      display: grid;
-      grid-template-columns: 0.9fr repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 10px;
-      align-items: stretch;
-    }
-
-    .week-label {
-      font-size: 10px;
-      letter-spacing: .08em;
-      color: var(--text-muted);
-      padding-top: 4px;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .day-cell {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(31,41,55,0.95);
-      background: rgba(15,23,42,0.94);
-      padding: 8px 9px;
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 70px;
-      transition: 0.18s ease;
-    }
-    .day-cell.has-note:hover {
-      border-color: var(--accent);
-      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15,23,42,0.96));
-      transform: translateY(-1px);
-    }
-    .day-cell.latest {
-      border-color: rgba(244,193,93,0.45);
-      background: radial-gradient(circle at top left, rgba(244,193,93,0.10), rgba(15,23,42,0.96));
-    }
-    .day-cell.latest .day-link { color: var(--accent); }
-
-    .day-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-    .day-date {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .new-badge {
-      display: inline-block;
-      font-size: 8px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      padding: 1px 6px;
-      border-radius: 4px;
-      background: rgba(244,193,93,0.18);
-      color: var(--accent);
-      border: 1px solid rgba(244,193,93,0.35);
-      margin-left: 5px;
-      vertical-align: middle;
-    }
-
-    .tag-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 1px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-    .tag-monday    { border-color: var(--success); color: var(--success); }
-    .tag-wednesday { border-color: #60a5fa; color: #60a5fa; }
-    .tag-friday    { border-color: var(--danger); color: var(--danger); }
-    .tag-sunday    { border-color: var(--accent); color: var(--accent); }
-
-    .day-link {
-      font-size: 12px;
-      color: #e5e7eb;
-      font-weight: 500;
-      line-height: 1.35;
-      display: block;
-      margin-top: 2px;
-      transition: color .14s;
-    }
-    .day-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-
-    .day-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 3px;
-      line-height: 1.4;
-    }
-    .empty-note {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-top: 8px;
-      opacity: .45;
-    }
-
-    @media (max-width: 720px) {
-      .calendar-header { display: none; }
-      .calendar-row { grid-template-columns: 1fr; gap: 6px; }
-      .week-label {
-        font-weight: 600; font-size: 11px; text-transform: uppercase;
-        letter-spacing: 0.12em; color: var(--accent);
-        padding: 8px 0 2px;
-        border-top: 1px solid rgba(148,163,184,0.15);
-        margin-top: 4px;
-      }
-      .week-label:first-child { border-top: none; }
-      .day-cell {
-        min-height: 60px;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 0 10px;
-        align-items: start;
-        padding: 10px 11px;
-      }
-      .day-cell > div:first-child { display: contents; }
-      .day-cell .day-label, .day-cell .day-date { grid-column: 1; }
-      .day-cell .day-label { font-size: 9px; white-space: nowrap; margin-bottom: 1px; }
-      .day-cell .day-date { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 0; }
-      .tag-pill { grid-column: 2; margin-bottom: 2px; }
-      .day-link { grid-column: 2; font-size: 13px; line-height: 1.35; }
-      .day-meta { grid-column: 2; font-size: 11px; }
-      .empty-note { grid-column: 2; font-size: 11px; margin-top: 0; }
-    }
-
-    .disclaimer {
-      margin-top: 20px;
-      font-size: 11px;
-      color: var(--text-muted);
-      max-width: 640px;
-      opacity: .6;
-      line-height: 1.6;
-    }
+    .disclaimer{margin-top:20px;font-size:11px;color:var(--text-muted);max-width:640px;opacity:.6;line-height:1.6;}
   </style>
 </head>
-
 <body>
   <div class="page">
-
-    <a href="index.html" class="back-link">
-      <span>←</span>
-      <span>Back to FinTrend News</span>
-    </a>
-
+    <a href="index.html" class="back-link"><span>&#8592;</span><span>Back to FinTrend News</span></a>
     <div class="title-block">
       <div class="kicker">Archive / Calendar</div>
       <h1><span>FinTrend</span> Article Calendar</h1>
       <p class="subtitle">Monthly wheel view of Monday outlooks, Wednesday momentum checks, Friday recaps, and Sunday macro notes. Tap through months to find any note fast.</p>
     </div>
-
     <div class="month-nav">
-      <button class="month-nav-link" id="month-prev" type="button">← Prev</button>
+      <button class="month-nav-link" id="month-prev" type="button">&#8592; Prev</button>
       <div class="month-label" id="month-label">April 2026</div>
-      <button class="month-nav-link" id="month-next" type="button">Next →</button>
+      <button class="month-nav-link" id="month-next" type="button">Next &#8594;</button>
     </div>
     <div class="month-dots" id="month-dots" aria-label="Month dots"></div>
-
     <div class="calendar-wrapper">
       <div class="month-wheel" id="month-wheel">
         <div class="month-track" id="month-track">
@@ -401,204 +123,97 @@
                   <span class="tag-pill tag-wednesday">Momentum</span>
                   <a href="articles/2026-04-29-wednesday.html" class="day-link">Powell's Last Stand and the Weight of Oil</a>
                 </div>
-                <div class="day-meta">Fed holds 3.50–3.75% in Powell's likely final meeting; WTI tops $103; Brent $115 intraday; Alphabet, Amazon, Meta, Microsoft all report AH.</div>
+                <div class="day-meta">Fed holds 3.50&#8211;3.75% in Powell's likely final meeting; WTI tops $103; Brent $115 intraday; Alphabet, Amazon, Meta, Microsoft all report AH.</div>
               </div>
 
-              <div class="day-cell has-note latest">
+              <!-- MAY 1 FRIDAY &#8212; no longer latest, New badge removed -->
+              <div class="day-cell has-note">
                 <div>
                   <div class="day-label">Friday</div>
                   <div class="day-date">May 1</div>
                   <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/2026-05-01-friday.html" class="day-link">Powell's Exit. The Data Hit. The Rally Held. <span class="new-badge">New</span></a>
+                  <a href="articles/2026-05-01-friday.html" class="day-link">Powell's Exit. The Data Hit. The Rally Held.</a>
                 </div>
                 <div class="day-meta">Q1 GDP 2.0% miss; PCE QoQ 4.5% shock; FOMC splits 8-4 in Powell's final presser; Alphabet +63% Cloud; S&amp;P closes April up 8.5%, best month since 2020.</div>
               </div>
 
-              <div class="day-cell">
+              <!-- MAY 3 SUNDAY &#8212; NOW LATEST -->
+              <div class="day-cell has-note latest">
                 <div>
                   <div class="day-label">Sunday</div>
                   <div class="day-date">May 3</div>
+                  <span class="tag-pill tag-sunday">Sunday Macro</span>
+                  <a href="articles/2026-05-03-sunday.html" class="day-link">The Chair Is Gone. The Problem Remains. <span class="new-badge">New</span></a>
                 </div>
-                <div class="empty-note">Not yet published</div>
+                <div class="day-meta">FOMC splits 8-4 &#8212; most divided since 1992. PCE 3.5% near three-year high. Warsh inherits a fractured committee, a closed Strait, and Powell still voting at the table.</div>
               </div>
             </div>
 
             <!-- WEEK OF APR 20 -->
             <div class="calendar-row">
               <div class="week-label">Week of Apr 20</div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Monday</div>
-                  <div class="day-date">Apr 20</div>
-                  <span class="tag-pill tag-monday">Monday Outlook</span>
-                  <a href="articles/2026-04-20-monday.html" class="day-link">The Strait Closes. The Gavel Falls.</a>
-                </div>
-                <div class="day-meta">Iran re-shuts Strait overnight; WTI +7.8%; Warsh hearing Tue 10am ET; Tesla, UNH &amp; Boeing all report; Core PCE Friday.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Wednesday</div>
-                  <div class="day-date">Apr 22</div>
-                  <span class="tag-pill tag-wednesday">Momentum</span>
-                  <a href="articles/2026-04-22-wednesday.html" class="day-link">The Ceasefire Holds. The Strait Doesn't.</a>
-                </div>
-                <div class="day-meta">Trump extends ceasefire; Iran seizes two ships anyway; S&amp;P ATH 7,137; Tesla EPS beat $0.41; WTI +3% to $92.96.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Friday</div>
-                  <div class="day-date">Apr 24</div>
-                  <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/2026-04-24-friday.html" class="day-link">Records in the Window. War in the Mirror.</a>
-                </div>
-                <div class="day-meta">S&amp;P 7,165 ATH; Nasdaq 24,836 ATH; WTI +13% wk to $94.40; ServiceNow −13% (named Hormuz); Witkoff to Islamabad Saturday.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Sunday</div>
-                  <div class="day-date">Apr 26</div>
-                  <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-04-26-sunday.html" class="day-link">The Talks Are Dead. The Week Ahead Is Loaded.</a>
-                </div>
-                <div class="day-meta">Islamabad collapses — Araghchi leaves before Witkoff lands; WTI $94.40; FOMC + Q1 GDP + Core PCE all land Thursday in a 4-hour window.</div>
-              </div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Apr 20</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-04-20-monday.html" class="day-link">The Strait Closes. The Gavel Falls.</a></div><div class="day-meta">Iran re-shuts Strait overnight; WTI +7.8%; Warsh hearing Tue 10am ET; Tesla, UNH &amp; Boeing all report; Core PCE Friday.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Apr 22</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-04-22-wednesday.html" class="day-link">The Ceasefire Holds. The Strait Doesn't.</a></div><div class="day-meta">Trump extends ceasefire; Iran seizes two ships anyway; S&amp;P ATH 7,137; Tesla EPS beat $0.41; WTI +3% to $92.96.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Apr 24</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-04-24-friday.html" class="day-link">Records in the Window. War in the Mirror.</a></div><div class="day-meta">S&amp;P 7,165 ATH; Nasdaq 24,836 ATH; WTI +13% wk to $94.40; ServiceNow &#8722;13% (named Hormuz); Witkoff to Islamabad Saturday.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Apr 26</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-04-26-sunday.html" class="day-link">The Talks Are Dead. The Week Ahead Is Loaded.</a></div><div class="day-meta">Islamabad collapses &#8212; Araghchi leaves before Witkoff lands; WTI $94.40; FOMC + Q1 GDP + Core PCE all land Thursday in a 4-hour window.</div></div>
             </div>
 
             <!-- WEEK OF APR 13 -->
             <div class="calendar-row">
               <div class="week-label">Week of Apr 13</div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Monday</div>
-                  <div class="day-date">Apr 13</div>
-                  <span class="tag-pill tag-monday">Monday Outlook</span>
-                  <a href="articles/2026-04-13-monday.html" class="day-link">The Ceasefire Was a Pause. The Blockade Is the War.</a>
-                </div>
-                <div class="day-meta">Islamabad talks collapse after 21 hrs; U.S. naval blockade begins 10am ET; WTI +7% to $103; Goldman Q1 beats; CPI &amp; bank earnings all week.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Wednesday</div>
-                  <div class="day-date">Apr 15</div>
-                  <span class="tag-pill tag-wednesday">Momentum</span>
-                  <a href="articles/2026-04-15-wednesday.html" class="day-link">Wednesday Momentum Check — April 15</a>
-                </div>
-                <div class="empty-note">Published this week</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Friday</div>
-                  <div class="day-date">Apr 17</div>
-                  <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/2026-04-17-friday.html" class="day-link">The Week the Strait Reopened — and the Tape Rewrote Itself</a>
-                </div>
-                <div class="day-meta">Iran declares Strait "completely open"; WTI −11.4% to $83.85 (biggest drop since war began); S&amp;P 7,126 record, +4.5% wk; Nasdaq +6.8% wk; 10-yr 4.26%; VIX 17.48.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Sunday</div>
-                  <div class="day-date">Apr 19</div>
-                  <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-04-19-sunday.html" class="day-link">The Rally Believes a War That Isn't Over</a>
-                </div>
-                <div class="day-meta">S&amp;P 7,126 ATH vs. Strait re-closed Sunday; Warsh hearing Tue; packed earnings week ahead; PCE Friday is the structural test.</div>
-              </div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Apr 13</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-04-13-monday.html" class="day-link">The Ceasefire Was a Pause. The Blockade Is the War.</a></div><div class="day-meta">Islamabad talks collapse after 21 hrs; U.S. naval blockade begins 10am ET; WTI +7% to $103; Goldman Q1 beats; CPI &amp; bank earnings all week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Apr 15</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-04-15-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; April 15</a></div><div class="empty-note">Published this week</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Apr 17</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-04-17-friday.html" class="day-link">The Week the Strait Reopened &#8212; and the Tape Rewrote Itself</a></div><div class="day-meta">Iran declares Strait "completely open"; WTI &#8722;11.4% to $83.85 (biggest drop since war began); S&amp;P 7,126 record, +4.5% wk; Nasdaq +6.8% wk; 10-yr 4.26%; VIX 17.48.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Apr 19</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-04-19-sunday.html" class="day-link">The Rally Believes a War That Isn't Over</a></div><div class="day-meta">S&amp;P 7,126 ATH vs. Strait re-closed Sunday; Warsh hearing Tue; packed earnings week ahead; PCE Friday is the structural test.</div></div>
             </div>
 
             <!-- WEEK OF APR 6 -->
             <div class="calendar-row">
               <div class="week-label">Week of Apr 6</div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Monday</div>
-                  <div class="day-date">Apr 6</div>
-                  <span class="tag-pill tag-monday">Monday Outlook</span>
-                  <a href="articles/2026-04-06-monday.html" class="day-link">April 6 Is Here. Now What?</a>
-                </div>
-                <div class="day-meta">8pm ET deadline; S&P 6,583; WTI $111; one session to price the binary; PCE Apr 9, CPI Apr 10.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Wednesday</div>
-                  <div class="day-date">Apr 8</div>
-                  <span class="tag-pill tag-wednesday">Momentum</span>
-                  <a href="articles/2026-04-08-wednesday.html" class="day-link">The Relief Trade Is Real. The Hard Part Starts Now.</a>
-                </div>
-                <div class="day-meta">Ceasefire confirmed; WTI −16% to ~$95; S&P futures +2.7%; 172M bbl tanker backlog; Delta earnings; PCE Thu; banks Fri.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Friday</div>
-                  <div class="day-date">Apr 10</div>
-                  <span class="tag-pill tag-friday">Friday Recap</span>
-                  <a href="articles/friday-recap-april-10-2026.html" class="day-link">Friday Recap: CPI Relief, Oil at $98, and a Ceasefire Nobody Trusts</a>
-                </div>
-                <div class="day-meta">CPI 3.8% in-line; S&amp;P 6,813; oil holds $98; Pakistan talks this weekend; JPM earnings next Friday is the real tell.</div>
-              </div>
-
-              <div class="day-cell has-note">
-                <div>
-                  <div class="day-label">Sunday</div>
-                  <div class="day-date">Apr 12</div>
-                  <span class="tag-pill tag-sunday">Sunday Macro</span>
-                  <a href="articles/2026-04-12-sunday.html" class="day-link">The Week That Almost Broke Everything — And Then Didn't</a>
-                </div>
-                <div class="day-meta">S&P +3.6% wk; WTI −16% Wed to $94; CPI 3.3% hottest since 2022; Fed on hold; Islamabad talks &amp; bank earnings next week.</div>
-              </div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Apr 6</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-04-06-monday.html" class="day-link">April 6 Is Here. Now What?</a></div><div class="day-meta">8pm ET deadline; S&amp;P 6,583; WTI $111; one session to price the binary; PCE Apr 9, CPI Apr 10.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Apr 8</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-04-08-wednesday.html" class="day-link">The Relief Trade Is Real. The Hard Part Starts Now.</a></div><div class="day-meta">Ceasefire confirmed; WTI &#8722;16% to ~$95; S&amp;P futures +2.7%; 172M bbl tanker backlog; Delta earnings; PCE Thu; banks Fri.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Apr 10</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/friday-recap-april-10-2026.html" class="day-link">Friday Recap: CPI Relief, Oil at $98, and a Ceasefire Nobody Trusts</a></div><div class="day-meta">CPI 3.8% in-line; S&amp;P 6,813; oil holds $98; Pakistan talks this weekend; JPM earnings next Friday is the real tell.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Apr 12</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-04-12-sunday.html" class="day-link">The Week That Almost Broke Everything &#8212; And Then Didn't</a></div><div class="day-meta">S&amp;P +3.6% wk; WTI &#8722;16% Wed to $94; CPI 3.3% hottest since 2022; Fed on hold; Islamabad talks &amp; bank earnings next week.</div></div>
             </div>
           </section>
 
           <!-- MARCH 2026 -->
           <section class="month-slide" data-month="March 2026">
             <div class="slide-kicker"><strong>March 2026</strong></div>
-            <div class="calendar-header">
-              <div class="week-col-label">Week</div>
-              <div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div>
-            </div>
+            <div class="calendar-header"><div class="week-col-label">Week</div><div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div></div>
             <div class="calendar-row">
               <div class="week-label">Week of Mar 30</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 30</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-30-monday.html" class="day-link">The Last Week of Q1 Has One Question</a></div><div class="day-meta">S&P at 7-month low; Dow in correction; April 6 Iran deadline 8 days out; Q1 ends Tuesday; payrolls Friday.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 30</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-30-monday.html" class="day-link">The Last Week of Q1 Has One Question</a></div><div class="day-meta">S&amp;P at 7-month low; Dow in correction; April 6 Iran deadline 8 days out; Q1 ends Tuesday; payrolls Friday.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Apr 1</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-04-01-wednesday.html" class="day-link">Five Days to the Deadline: Markets Are Not Ready for April 6</a></div><div class="day-meta">S&amp;P at 7-month low; Brent $107; Hormuz at trickle; Fed on hold; April 6 binary window closing; March CPI the next pivot.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Apr 3</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-04-03-friday.html" class="day-link">The Week That Ate Itself</a></div><div class="day-meta">S&P −0.5% wk; WTI +11.4% Thursday to $111.54; Trump speech crashed then Iran/Oman rescued markets; Good Friday close; 8pm Tuesday deadline next.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Apr 3</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-04-03-friday.html" class="day-link">The Week That Ate Itself</a></div><div class="day-meta">S&amp;P &#8722;0.5% wk; WTI +11.4% Thursday to $111.54; Trump speech crashed then Iran/Oman rescued markets; Good Friday close; 8pm Tuesday deadline next.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Apr 5</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-04-05-sunday.html" class="day-link">The Night Before Everything Changes</a></div><div class="day-meta">36 hrs to 8pm deadline; WTI $111; Polymarket 47% up-open; F-15E shot down; Pakistan/Oman talks active; Goldman 30%, Moody's 48.6% recession odds.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Mar 23</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 23</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-23-monday.html" class="day-link">The Deadline That Moved</a></div><div class="day-meta">Trump extends 48-hr ultimatum 5 days after "very good conversations"; oil off $114 highs near $113; S&P stabilizes near 6,500; PCE Friday is the data anchor.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 25</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-25-wednesday.html" class="day-link">The Deal or the Delay</a></div><div class="day-meta">Monday's rally half-erased; Brent back above $101; 15-point U.S. framework to Tehran; IGV −23% YTD; PCE Friday is the week's real event.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 27</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-27-friday.html" class="day-link">Five Weeks Down, No Deal in Sight</a></div><div class="day-meta">S&P 6,368 — 7-month low; Dow enters correction; Brent $110+; Israel hits Iran nuclear sites; PCE rescheduled to Apr 9; April 6 deadline looms.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 29</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-29-sunday.html" class="day-link">The April 6 Threshold</a></div><div class="day-meta">Iran rejects U.S. 15-point framework, submits counter; Saudi air base hit again; two paths — ceasefire rally or Apr 6 escalation; April 9 PCE is secondary anchor.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 23</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-23-monday.html" class="day-link">The Deadline That Moved</a></div><div class="day-meta">Trump extends 48-hr ultimatum 5 days after "very good conversations"; oil off $114 highs near $113; S&amp;P stabilizes near 6,500; PCE Friday is the data anchor.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 25</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-25-wednesday.html" class="day-link">The Deal or the Delay</a></div><div class="day-meta">Monday's rally half-erased; Brent back above $101; 15-point U.S. framework to Tehran; IGV &#8722;23% YTD; PCE Friday is the week's real event.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 27</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-27-friday.html" class="day-link">Five Weeks Down, No Deal in Sight</a></div><div class="day-meta">S&amp;P 6,368 &#8212; 7-month low; Dow enters correction; Brent $110+; Israel hits Iran nuclear sites; PCE rescheduled to Apr 9; April 6 deadline looms.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 29</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-29-sunday.html" class="day-link">The April 6 Threshold</a></div><div class="day-meta">Iran rejects U.S. 15-point framework, submits counter; Saudi air base hit again; two paths &#8212; ceasefire rally or Apr 6 escalation; April 9 PCE is secondary anchor.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Mar 16</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 16</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-16-monday.html" class="day-link">FOMC Week Opens With No Easy Answers</a></div><div class="day-meta">S&P at 2026 lows above 200-DMA; Nvidia GTC keynote; Dollar Tree earnings; VIX 27+; Wednesday FOMC is the only event that matters.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 18</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-18-wednesday.html" class="day-link">Powell Didn't Blink. The Market Did.</a></div><div class="day-meta">PPI +0.7% vs +0.3% est.; Fed holds 11-1; dot plot: 1 cut; Powell "not as much progress as hoped"; Dow −768 pts at lows; S&P breaks 200-DMA.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 20</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-20-friday.html" class="day-link">Four Weeks Down, No Floor Found</a></div><div class="day-meta">S&P 6,506 — 6-mo low; Brent $112.19 (+9% wk); Iraq force majeure; Kuwait refineries struck; Russell 2000 in correction; $24.78B equity fund outflows.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 22</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-22-sunday.html" class="day-link">Trump's 48-Hour Ultimatum and What Comes Next</a></div><div class="day-meta">Trump threatens to obliterate Iranian power plants; Iran threatens Gulf mines; Nikkei −3.5%, Kospi −4.9%; IEA: worst energy crisis since 1970s.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 16</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-16-monday.html" class="day-link">FOMC Week Opens With No Easy Answers</a></div><div class="day-meta">S&amp;P at 2026 lows above 200-DMA; Nvidia GTC keynote; Dollar Tree earnings; VIX 27+; Wednesday FOMC is the only event that matters.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 18</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-18-wednesday.html" class="day-link">Powell Didn't Blink. The Market Did.</a></div><div class="day-meta">PPI +0.7% vs +0.3% est.; Fed holds 11-1; dot plot: 1 cut; Powell "not as much progress as hoped"; Dow &#8722;768 pts at lows; S&amp;P breaks 200-DMA.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 20</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-20-friday.html" class="day-link">Four Weeks Down, No Floor Found</a></div><div class="day-meta">S&amp;P 6,506 &#8212; 6-mo low; Brent $112.19 (+9% wk); Iraq force majeure; Kuwait refineries struck; Russell 2000 in correction; $24.78B equity fund outflows.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 22</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-22-sunday.html" class="day-link">Trump's 48-Hour Ultimatum and What Comes Next</a></div><div class="day-meta">Trump threatens to obliterate Iranian power plants; Iran threatens Gulf mines; Nikkei &#8722;3.5%, Kospi &#8722;4.9%; IEA: worst energy crisis since 1970s.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Mar 9</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 9</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-09-monday.html" class="day-link">Oil at $100, Payrolls in the Ditch — This Week Doesn't Let You Breathe</a></div><div class="day-meta">S&amp;P futures −1.6%; WTI breaks $100; CPI Wednesday; stagflation trap tightens; cautious/defensive bias.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 9</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-09-monday.html" class="day-link">Oil at $100, Payrolls in the Ditch &#8212; This Week Doesn't Let You Breathe</a></div><div class="day-meta">S&amp;P futures &#8722;1.6%; WTI breaks $100; CPI Wednesday; stagflation trap tightens; cautious/defensive bias.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 11</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-11-wednesday.html" class="day-link">CPI Checked the Box. The Strait Didn't.</a></div><div class="day-meta">CPI 2.4% in-line; Oracle +14% on $553B backlog; IEA 400M barrel release; Nasdaq leads, Dow lags; stagflation lag risk intact.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 13</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-13-friday.html" class="day-link">The Stagflation Signal</a></div><div class="day-meta">S&P 6,632 — 2026 low; WTI $98.71; GDP revised to 0.7%; NFP −92K; VIX 27+; 1970s comparisons flood research notes; FOMC week ahead.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 13</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-13-friday.html" class="day-link">The Stagflation Signal</a></div><div class="day-meta">S&amp;P 6,632 &#8212; 2026 low; WTI $98.71; GDP revised to 0.7%; NFP &#8722;92K; VIX 27+; 1970s comparisons flood research notes; FOMC week ahead.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 15</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-15-sunday.html" class="day-link">The Fed's Impossible Calculus</a></div><div class="day-meta">Powell's dual-mandate bind; bond market voting stagflation; oil as master variable; FOMC dot plot scenarios; full week-ahead calendar.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Mar 2</div>
               <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Mar 2</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-03-02-monday.html" class="day-link">War Premium Meets Jobs Week</a></div><div class="day-meta">U.S.-Israel strikes on Iran; Brent +8%; defense bid; NFP Friday is the anchor event.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 4</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-04-wednesday.html" class="day-link">Wednesday Momentum Check — March 4</a></div><div class="day-meta">Midweek tape check; tariff escalation + jobs data reaction; sector rotation update.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 6</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-06-friday.html" class="day-link">War, Oil, and a Jobs Report That Stings</a></div><div class="day-meta">WTI +28% on week; NFP −92K; stagflation trap tightens; defense &amp; software lead.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Mar 4</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-03-04-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; March 4</a></div><div class="day-meta">Midweek tape check; tariff escalation + jobs data reaction; sector rotation update.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Mar 6</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-03-06-friday.html" class="day-link">War, Oil, and a Jobs Report That Stings</a></div><div class="day-meta">WTI +28% on week; NFP &#8722;92K; stagflation trap tightens; defense &amp; software lead.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 8</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-08-sunday.html" class="day-link">Fire in the Gulf: What This Week's Markets Are Really Telling You</a></div><div class="day-meta">Oil +12%; bad jobs print; CPI Wednesday; Oracle &amp; Adobe earnings; cautious/selective bias.</div></div>
             </div>
           </section>
@@ -612,28 +227,28 @@
               <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 23</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-23-monday.html" class="day-link">The Tariff Clock Starts Tomorrow</a></div><div class="day-meta">Section 122 at 15% kicks in Tuesday; Nvidia Wednesday; SOTU Tuesday night; PPI Friday.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 25</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-25-wednesday.html" class="day-link">The Verdict on AI Demand Lives or Dies Tonight</a></div><div class="day-meta">Nvidia Q4 earnings after close; S&amp;P futures +0.14%; tariff narrative stabilizes post-SOTU.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 27</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-27-friday.html" class="day-link">Inflation Shock Closes Out February</a></div><div class="day-meta">PPI beats hard; Nvidia extends slide; S&amp;P 500 posts worst February in 11 months.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 1</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-01-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — March 1</a></div><div class="day-meta">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Mar 1</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-03-01-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; March 1</a></div><div class="day-meta">Iran strike weekend; war premium into Jobs Week; ceasefire framework still in motion.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Feb 16</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 16</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-16-monday.html" class="day-link">AI Anxiety Reloads Risk-Off — February 16</a></div><div class="day-meta">Tech selling resumes; Fed minutes tomorrow; Nvidia Feb 25 is the line.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 18</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-18-wednesday.html" class="day-link">Minutes, Nvidia, and the Weight of 6,900 — February 18</a></div><div class="day-meta">Fed minutes at 2pm ET; tech bids up on Meta-Nvidia deal; PCE Friday is the real test.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 16</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-16-monday.html" class="day-link">AI Anxiety Reloads Risk-Off &#8212; February 16</a></div><div class="day-meta">Tech selling resumes; Fed minutes tomorrow; Nvidia Feb 25 is the line.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 18</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-18-wednesday.html" class="day-link">Minutes, Nvidia, and the Weight of 6,900 &#8212; February 18</a></div><div class="day-meta">Fed minutes at 2pm ET; tech bids up on Meta-Nvidia deal; PCE Friday is the real test.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 20</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-20-friday.html" class="day-link">A Short Week That Packed a Full Year's Worth of Drama</a></div><div class="day-meta">Supreme Court strikes IEEPA tariffs; GDP misses at 1.4%; Walmart K-shaped consumer; Blue Owl gates private credit fund.</div></div>
               <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 22</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-22-sunday.html" class="day-link">The Court Ruled. The War Continues.</a></div><div class="day-meta">SCOTUS killed IEEPA; Trump pivoted to Section 122 at 15%; GDP 1.4%; PCE hot; Nvidia Wednesday is the referendum.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Feb 9</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 9</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-09-monday.html" class="day-link">Monday Market Outlook — February 9</a></div><div class="day-meta">Kickoff note for the week.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 11</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-11-wednesday.html" class="day-link">Wednesday Momentum Check — February 11</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 13</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-13-friday.html" class="day-link">Friday Market Recap — February 13</a></div><div class="day-meta">CPI cools; front-end yields ease; equities rotate away from duration.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 15</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-15-sunday.html" class="day-link">Sunday Weekly Recap — February 15</a></div><div class="day-meta">Week recap: rate-cut repricing, defensive leadership, gold up, oil heavy.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 9</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-09-monday.html" class="day-link">Monday Market Outlook &#8212; February 9</a></div><div class="day-meta">Kickoff note for the week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 11</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-11-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; February 11</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 13</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-13-friday.html" class="day-link">Friday Market Recap &#8212; February 13</a></div><div class="day-meta">CPI cools; front-end yields ease; equities rotate away from duration.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 15</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-15-sunday.html" class="day-link">Sunday Weekly Recap &#8212; February 15</a></div><div class="day-meta">Week recap: rate-cut repricing, defensive leadership, gold up, oil heavy.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Feb 1</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 2</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-02-monday.html" class="day-link">Monday Market Outlook — February 2</a></div><div class="day-meta">Kickoff note for the week.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 4</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-04-wednesday.html" class="day-link">Wednesday Momentum Check — February 4</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 6</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-06-friday.html" class="day-link">Friday Market Recap — February 6</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 8</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-08-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — February 8</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Feb 2</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-02-02-monday.html" class="day-link">Monday Market Outlook &#8212; February 2</a></div><div class="day-meta">Kickoff note for the week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Feb 4</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-02-04-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; February 4</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Feb 6</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-02-06-friday.html" class="day-link">Friday Market Recap &#8212; February 6</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 8</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-08-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; February 8</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
             </div>
           </section>
 
@@ -643,31 +258,31 @@
             <div class="calendar-header"><div class="week-col-label">Week</div><div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div></div>
             <div class="calendar-row">
               <div class="week-label">Week of Jan 26</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 26</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-26-monday.html" class="day-link">Monday Market Outlook — January 26</a></div><div class="day-meta">Central bank + earnings collision: watch yields and guidance tone.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 28</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-28-wednesday.html" class="day-link">Wednesday Momentum — January 28</a></div><div class="day-meta">Rotation + earnings reactions: momentum turns more selective.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 30</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-30-friday.html" class="day-link">Friday Weekly Recap — January 30</a></div><div class="day-meta">Earnings digestion week: rates as referee, leadership more selective.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 1</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-01-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — February 1</a></div><div class="day-meta">Macro framing into early-February positioning.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 26</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-26-monday.html" class="day-link">Monday Market Outlook &#8212; January 26</a></div><div class="day-meta">Central bank + earnings collision: watch yields and guidance tone.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 28</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-28-wednesday.html" class="day-link">Wednesday Momentum &#8212; January 28</a></div><div class="day-meta">Rotation + earnings reactions: momentum turns more selective.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 30</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-30-friday.html" class="day-link">Friday Weekly Recap &#8212; January 30</a></div><div class="day-meta">Earnings digestion week: rates as referee, leadership more selective.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Feb 1</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-02-01-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; February 1</a></div><div class="day-meta">Macro framing into early-February positioning.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Jan 19</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 19</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-19-monday.html" class="day-link">Monday Market Outlook — January 19</a></div><div class="day-meta">MLK Day closure: repricing risk when cash reopens; headlines + earnings.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 21</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-21-wednesday.html" class="day-link">Wednesday Momentum — January 21</a></div><div class="day-meta">Rotation + earnings reactions: momentum turns more selective.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 23</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-26-friday.html" class="day-link">Friday Weekly Recap — January 23</a></div><div class="day-meta">Earnings digestion week: rates as referee, leadership more selective.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 25</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-25-sunday.html" class="day-link">Sunday MacroNote — January 25</a></div><div class="day-meta">Macro framing into a Fed + peak earnings week: reactions, not predictions.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 19</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-19-monday.html" class="day-link">Monday Market Outlook &#8212; January 19</a></div><div class="day-meta">MLK Day closure: repricing risk when cash reopens; headlines + earnings.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 21</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-21-wednesday.html" class="day-link">Wednesday Momentum &#8212; January 21</a></div><div class="day-meta">Rotation + earnings reactions: momentum turns more selective.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 23</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-26-friday.html" class="day-link">Friday Weekly Recap &#8212; January 23</a></div><div class="day-meta">Earnings digestion week: rates as referee, leadership more selective.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 25</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-25-sunday.html" class="day-link">Sunday MacroNote &#8212; January 25</a></div><div class="day-meta">Macro framing into a Fed + peak earnings week: reactions, not predictions.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Jan 12</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 12</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-12-monday.html" class="day-link">Monday Market Outlook — January 12</a></div><div class="day-meta">First real test week: catalysts return and breadth becomes the tell.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 14</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-14-wednesday.html" class="day-link">Wednesday Momentum — January 14</a></div><div class="day-meta">Breadth as the lie detector; Beige Book as a sentiment check.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 16</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-16-friday.html" class="day-link">Friday Weekly Recap — January 16</a></div><div class="day-meta">Choppy tape with rotation under the hood as earnings begin.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 18</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-18-sunday.html" class="day-link">Sunday MacroNote — January 18</a></div><div class="day-meta">Macro + earnings overlap: watching the variables that move the tape.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 12</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-12-monday.html" class="day-link">Monday Market Outlook &#8212; January 12</a></div><div class="day-meta">First real test week: catalysts return and breadth becomes the tell.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 14</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-14-wednesday.html" class="day-link">Wednesday Momentum &#8212; January 14</a></div><div class="day-meta">Breadth as the lie detector; Beige Book as a sentiment check.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 16</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-16-friday.html" class="day-link">Friday Weekly Recap &#8212; January 16</a></div><div class="day-meta">Choppy tape with rotation under the hood as earnings begin.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 18</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-18-sunday.html" class="day-link">Sunday MacroNote &#8212; January 18</a></div><div class="day-meta">Macro + earnings overlap: watching the variables that move the tape.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Jan 5</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 5</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-05-monday.html" class="day-link">Monday Market Outlook — January 5</a></div><div class="day-meta">First full week of 2026: liquidity returns, structure matters.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 7</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-07-wednesday.html" class="day-link">Wednesday Momentum — January 7</a></div><div class="day-meta">Breadth vs. concentration check as January volume returns.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 9</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-09-friday.html" class="day-link">Friday Weekly Recap — January 9</a></div><div class="day-meta">January reset: narrative meets schedule as catalysts return.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 11</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-11-sunday.html" class="day-link">Sunday MacroNote — January 11</a></div><div class="day-meta">Week-ahead macro framing: earnings + inflation + policy expectations.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Jan 5</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2026-01-05-monday.html" class="day-link">Monday Market Outlook &#8212; January 5</a></div><div class="day-meta">First full week of 2026: liquidity returns, structure matters.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Jan 7</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2026-01-07-wednesday.html" class="day-link">Wednesday Momentum &#8212; January 7</a></div><div class="day-meta">Breadth vs. concentration check as January volume returns.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 9</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-09-friday.html" class="day-link">Friday Weekly Recap &#8212; January 9</a></div><div class="day-meta">January reset: narrative meets schedule as catalysts return.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 11</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-11-sunday.html" class="day-link">Sunday MacroNote &#8212; January 11</a></div><div class="day-meta">Week-ahead macro framing: earnings + inflation + policy expectations.</div></div>
             </div>
           </section>
 
@@ -677,38 +292,38 @@
             <div class="calendar-header"><div class="week-col-label">Week</div><div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div></div>
             <div class="calendar-row">
               <div class="week-label">Week of Dec 29</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 29</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-29-monday.html" class="day-link">Monday Market Outlook — December 29</a></div><div class="day-meta">Year-end positioning into the first week of 2026.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 31</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-31-wednesday.html" class="day-link">Wednesday Momentum — December 31</a></div><div class="day-meta">Year-end momentum snapshot.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 2</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-02-friday.html" class="day-link">Friday Weekly Recap — January 2</a></div><div class="day-meta">First recap of 2026.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 4</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-04-sunday.html" class="day-link">Sunday MacroNote — January 4</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 29</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-29-monday.html" class="day-link">Monday Market Outlook &#8212; December 29</a></div><div class="day-meta">Year-end positioning into the first week of 2026.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 31</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-31-wednesday.html" class="day-link">Wednesday Momentum &#8212; December 31</a></div><div class="day-meta">Year-end momentum snapshot.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Jan 2</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2026-01-02-friday.html" class="day-link">Friday Weekly Recap &#8212; January 2</a></div><div class="day-meta">First recap of 2026.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Jan 4</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2026-01-04-sunday.html" class="day-link">Sunday MacroNote &#8212; January 4</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Dec 22</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 22</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-22-monday.html" class="day-link">Monday Market Outlook — December 22</a></div><div class="day-meta">Holiday-shortened setup: liquidity, rates, year-end positioning.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 24</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-24-wednesday.html" class="day-link">Wednesday Momentum — December 24</a></div><div class="day-meta">Holiday tape momentum check.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 26</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-26-friday.html" class="day-link">Friday Weekly Recap — December 26</a></div><div class="day-meta">Year-end recap framing.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 28</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-28-sunday.html" class="day-link">Sunday MacroNote — December 28</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 22</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-22-monday.html" class="day-link">Monday Market Outlook &#8212; December 22</a></div><div class="day-meta">Holiday-shortened setup: liquidity, rates, year-end positioning.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 24</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-24-wednesday.html" class="day-link">Wednesday Momentum &#8212; December 24</a></div><div class="day-meta">Holiday tape momentum check.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 26</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-26-friday.html" class="day-link">Friday Weekly Recap &#8212; December 26</a></div><div class="day-meta">Year-end recap framing.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 28</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-28-sunday.html" class="day-link">Sunday MacroNote &#8212; December 28</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Dec 15</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 15</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-15-monday.html" class="day-link">Monday Market Outlook — December 15</a></div><div class="day-meta">Kickoff note for the week.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 17</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-17-wednesday.html" class="day-link">Wednesday Momentum Check — December 17</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 19</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-19-friday.html" class="day-link">Friday Recap — December 19</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 21</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-21-sunday.html" class="day-link">Sunday Macro — December 21</a></div><div class="day-meta">Sunday macro note &amp; positioning for next week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 15</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-15-monday.html" class="day-link">Monday Market Outlook &#8212; December 15</a></div><div class="day-meta">Kickoff note for the week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 17</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-17-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; December 17</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 19</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-19-friday.html" class="day-link">Friday Recap &#8212; December 19</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 21</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-21-sunday.html" class="day-link">Sunday Macro &#8212; December 21</a></div><div class="day-meta">Sunday macro note &amp; positioning for next week.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Dec 8</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 8</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-08-monday.html" class="day-link">Monday Market Outlook — December 8</a></div><div class="day-meta">Kickoff note for the week.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 10</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-10-wednesday.html" class="day-link">Wednesday Momentum Check — December 10</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 12</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-12-friday.html" class="day-link">Friday Market Recap — Risk Reprices, Rates Lead, and Breadth Thins</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 14</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-14-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — December 14</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 8</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-08-monday.html" class="day-link">Monday Market Outlook &#8212; December 8</a></div><div class="day-meta">Kickoff note for the week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 10</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-10-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; December 10</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 12</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-12-friday.html" class="day-link">Friday Market Recap &#8212; Risk Reprices, Rates Lead, and Breadth Thins</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 14</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-14-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; December 14</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Dec 1</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 1</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-01-monday.html" class="day-link">Monday Market Outlook — December 1</a></div><div class="day-meta">December seasonality, Fed messaging, and soft-landing odds.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 3</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-03-wednesday.html" class="day-link">Wednesday Momentum Check — December 3</a></div><div class="day-meta">Post-holiday follow-through and real-volume test of the rally.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 5</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-05-friday.html" class="day-link">Friday Market Recap — Higher-for-Longer Pricing, Risk Holds the Bid</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 7</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-07-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — December 7</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Dec 1</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-12-01-monday.html" class="day-link">Monday Market Outlook &#8212; December 1</a></div><div class="day-meta">December seasonality, Fed messaging, and soft-landing odds.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Dec 3</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-12-03-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; December 3</a></div><div class="day-meta">Post-holiday follow-through and real-volume test of the rally.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Dec 5</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-12-05-friday.html" class="day-link">Friday Market Recap &#8212; Higher-for-Longer Pricing, Risk Holds the Bid</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Dec 7</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-12-07-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; December 7</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
             </div>
           </section>
 
@@ -718,24 +333,24 @@
             <div class="calendar-header"><div class="week-col-label">Week</div><div>Monday</div><div>Wednesday</div><div>Friday</div><div>Sunday</div></div>
             <div class="calendar-row">
               <div class="week-label">Week of Nov 24</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 24</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-24-monday.html" class="day-link">Monday Market Outlook — November 24</a></div><div class="day-meta">Holiday-week setup: liquidity, seasonality, Fed uncertainty.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 26</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-26-wednesday.html" class="day-link">Wednesday Momentum Check — November 26</a></div><div class="day-meta">Post-earnings tape and pre-holiday flows.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 28</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-28-friday.html" class="day-link">Friday Market Recap — Thin Holiday Tape and a Market Still Leaning Long Risk</a></div><div class="day-meta">Post-Thanksgiving recap: flows, sectors, and positioning.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 30</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-30-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — November 30</a></div><div class="day-meta">Month-end macro wrap and positioning into December.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 24</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-24-monday.html" class="day-link">Monday Market Outlook &#8212; November 24</a></div><div class="day-meta">Holiday-week setup: liquidity, seasonality, Fed uncertainty.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 26</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-26-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; November 26</a></div><div class="day-meta">Post-earnings tape and pre-holiday flows.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 28</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-28-friday.html" class="day-link">Friday Market Recap &#8212; Thin Holiday Tape and a Market Still Leaning Long Risk</a></div><div class="day-meta">Post-Thanksgiving recap: flows, sectors, and positioning.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 30</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-30-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; November 30</a></div><div class="day-meta">Month-end macro wrap and positioning into December.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Nov 16</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 17</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-17-monday.html" class="day-link">Monday Market Outlook — November 16</a></div><div class="day-meta">Second Monday outlook in the series.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 19</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-19-wednesday.html" class="day-link">Wednesday Momentum Check — November 19</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 21</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-21-friday.html" class="day-link">Friday Market Recap — Futures Fade, Fed Speak Steady, Tech Pauses</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 23</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-23-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — November 23</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 17</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-17-monday.html" class="day-link">Monday Market Outlook &#8212; November 16</a></div><div class="day-meta">Second Monday outlook in the series.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 19</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-19-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; November 19</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 21</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-21-friday.html" class="day-link">Friday Market Recap &#8212; Futures Fade, Fed Speak Steady, Tech Pauses</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 23</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-23-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; November 23</a></div><div class="day-meta">Big-picture themes &amp; positioning for the week ahead.</div></div>
             </div>
             <div class="calendar-row">
               <div class="week-label">Week of Nov 10</div>
-              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 10</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-10-monday.html" class="day-link">Monday Market Outlook — November 10</a></div><div class="day-meta">Kickoff note for the week.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 12</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-12-wednesday.html" class="day-link">Wednesday Momentum Check — November 12</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 14</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-14-friday.html" class="day-link">Friday Market Recap — Rates Stabilize, Oil Slips, Markets Drift</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
-              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 16</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-16-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note — November 16</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Monday</div><div class="day-date">Nov 10</div><span class="tag-pill tag-monday">Monday Outlook</span><a href="articles/2025-11-10-monday.html" class="day-link">Monday Market Outlook &#8212; November 10</a></div><div class="day-meta">Kickoff note for the week.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Wednesday</div><div class="day-date">Nov 12</div><span class="tag-pill tag-wednesday">Momentum</span><a href="articles/2025-11-12-wednesday.html" class="day-link">Wednesday Momentum Check &#8212; November 12</a></div><div class="day-meta">Midweek tape &amp; sector rotation.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Friday</div><div class="day-date">Nov 14</div><span class="tag-pill tag-friday">Friday Recap</span><a href="articles/2025-11-14-friday.html" class="day-link">Friday Market Recap &#8212; Rates Stabilize, Oil Slips, Markets Drift</a></div><div class="day-meta">End-of-week equity &amp; macro wrap.</div></div>
+              <div class="day-cell has-note"><div><div class="day-label">Sunday</div><div class="day-date">Nov 16</div><span class="tag-pill tag-sunday">Sunday Macro</span><a href="articles/2025-11-16-sunday.html" class="day-link">Sunday Macro &amp; Positioning Note &#8212; November 16</a></div><div class="day-meta">Big-picture themes &amp; positioning for next week.</div></div>
             </div>
           </section>
 
@@ -746,63 +361,29 @@
     <p class="disclaimer">
       This calendar is for reference and education only. Each note reflects views at the time of writing and is not financial advice or a recommendation to buy or sell any security or instrument.
     </p>
-
   </div>
 
   <script>
   (function(){
     "use strict";
-    const track    = document.getElementById("month-track");
-    const wheel    = document.getElementById("month-wheel");
-    const prevBtn  = document.getElementById("month-prev");
-    const nextBtn  = document.getElementById("month-next");
-    const label    = document.getElementById("month-label");
-    const dotsWrap = document.getElementById("month-dots");
-    const slides = Array.from(document.querySelectorAll(".month-slide"));
-    const months = slides.map(s => s.getAttribute("data-month") || "Month");
-    let idx = 0;
-    function renderDots() {
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = "";
-      months.forEach((m, i) => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "month-dot";
-        b.setAttribute("aria-label", "Go to " + m);
-        b.addEventListener("click", () => setMonth(i));
-        dotsWrap.appendChild(b);
-      });
-    }
-    function setMonth(i) {
-      idx = ((i % slides.length) + slides.length) % slides.length;
-      if (track)    track.style.transform = "translateX(" + (-idx * 100) + "%)";
-      if (label)    label.textContent = months[idx];
-      if (dotsWrap) Array.from(dotsWrap.children).forEach((d, di) => d.classList.toggle("active", di === idx));
-    }
-    if (prevBtn) prevBtn.addEventListener("click", () => setMonth(idx - 1));
-    if (nextBtn) nextBtn.addEventListener("click", () => setMonth(idx + 1));
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft")  setMonth(idx - 1);
-      if (e.key === "ArrowRight") setMonth(idx + 1);
-    });
-    (function initSwipe() {
-      if (!wheel) return;
-      let startX = 0, startY = 0, tracking = false;
-      wheel.addEventListener("pointerdown",   (e) => { tracking = true; startX = e.clientX; startY = e.clientY; });
-      wheel.addEventListener("pointerup",     (e) => {
-        if (!tracking) return;
-        tracking = false;
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-        setMonth(dx < 0 ? idx + 1 : idx - 1);
-      });
-      wheel.addEventListener("pointercancel", () => { tracking = false; });
-    })();
+    const track=document.getElementById("month-track");
+    const wheel=document.getElementById("month-wheel");
+    const prevBtn=document.getElementById("month-prev");
+    const nextBtn=document.getElementById("month-next");
+    const label=document.getElementById("month-label");
+    const dotsWrap=document.getElementById("month-dots");
+    const slides=Array.from(document.querySelectorAll(".month-slide"));
+    const months=slides.map(s=>s.getAttribute("data-month")||"Month");
+    let idx=0;
+    function renderDots(){if(!dotsWrap)return;dotsWrap.innerHTML="";months.forEach((m,i)=>{const b=document.createElement("button");b.type="button";b.className="month-dot";b.setAttribute("aria-label","Go to "+m);b.addEventListener("click",()=>setMonth(i));dotsWrap.appendChild(b);});}
+    function setMonth(i){idx=((i%slides.length)+slides.length)%slides.length;if(track)track.style.transform="translateX("+(-idx*100)+"%)";if(label)label.textContent=months[idx];if(dotsWrap)Array.from(dotsWrap.children).forEach((d,di)=>d.classList.toggle("active",di===idx));}
+    if(prevBtn)prevBtn.addEventListener("click",()=>setMonth(idx-1));
+    if(nextBtn)nextBtn.addEventListener("click",()=>setMonth(idx+1));
+    window.addEventListener("keydown",(e)=>{if(e.key==="ArrowLeft")setMonth(idx-1);if(e.key==="ArrowRight")setMonth(idx+1);});
+    (function initSwipe(){if(!wheel)return;let startX=0,startY=0,tracking=false;wheel.addEventListener("pointerdown",(e)=>{tracking=true;startX=e.clientX;startY=e.clientY;});wheel.addEventListener("pointerup",(e)=>{if(!tracking)return;tracking=false;const dx=e.clientX-startX;const dy=e.clientY-startY;if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy))return;setMonth(dx<0?idx+1:idx-1);});wheel.addEventListener("pointercancel",()=>{tracking=false;});})();
     renderDots();
     setMonth(0);
   })();
   </script>
-
 </body>
 </html>
