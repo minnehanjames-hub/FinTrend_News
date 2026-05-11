@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Six Straight Weeks. One Deal That Isn't. | FinTrend News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f1f;
+    --bg2: #0f1530;
+    --gold: #f4c15d;
+    --brass: #b8986a;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --border: rgba(244,193,93,0.18);
+    --max: 680px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; }
+  body { background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%); min-height: 100vh; }
+
+  .masthead { border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  nav { display: flex; gap: 20px; }
+  nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+  nav a:hover { color: var(--gold); }
+
+  .wrapper { max-width: var(--max); margin: 0 auto; padding: 56px 24px 80px; }
+
+  .kicker { display: inline-flex; align-items: center; gap: 8px; background: rgba(244,193,93,0.08); border: 1px solid rgba(244,193,93,0.25); border-radius: 2px; padding: 6px 12px; margin-bottom: 28px; }
+  .kicker-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .kicker-text { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; }
+
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.9rem, 6vw, 2.85rem); line-height: 1.12; color: var(--ink); margin-bottom: 20px; }
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .dek { font-size: 1.05rem; color: var(--ink-dim); line-height: 1.65; margin-bottom: 28px; border-left: 2px solid var(--gold); padding-left: 16px; }
+
+  .byline { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 44px; }
+  .byline-author { font-size: 0.82rem; color: var(--ink-dim); }
+  .byline-author strong { color: var(--ink); }
+  .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); letter-spacing: 0.06em; }
+
+  .lead { margin-bottom: 32px; }
+  .lead p:first-child::first-letter { font-family: 'DM Serif Display', serif; font-size: 4.2rem; line-height: 0.82; float: left; color: var(--gold); margin-right: 8px; margin-top: 6px; }
+  .lead p { font-size: 1.05rem; color: var(--ink); line-height: 1.78; }
+
+  h2 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin: 44px 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+  /* SCOREBOARD */
+  .scoreboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 40px; }
+  .score-cell { background: rgba(15,21,48,0.8); padding: 16px 14px; }
+  .score-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ink-low); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .score-val { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .score-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 600; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .neutral { color: var(--ink-low); }
+
+  /* LEDGER */
+  .ledger { border: 1px solid var(--border); margin-bottom: 40px; }
+  .ledger-row { display: grid; grid-template-columns: 80px 1fr 90px; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .ledger-row:last-child { border-bottom: none; }
+  .ledger-day { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 12px; background: rgba(244,193,93,0.04); border-right: 1px solid var(--border); display: flex; align-items: flex-start; padding-top: 16px; }
+  .ledger-body { padding: 14px 16px; font-size: 0.85rem; color: var(--ink-dim); line-height: 1.6; }
+  .ledger-close { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 14px 12px; text-align: right; border-left: 1px solid var(--border); display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; padding-top: 16px; gap: 3px; }
+  .close-val { color: var(--ink); font-weight: 600; font-size: 0.75rem; }
+  .close-chg { font-size: 0.65rem; }
+
+  /* SECTOR TABLE */
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; }
+  .data-table th { background: rgba(244,193,93,0.08); color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--ink-dim); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:last-child, .data-table th:last-child { text-align: right; }
+
+  .prose p { font-size: 1.0rem; color: var(--ink-dim); line-height: 1.8; margin-bottom: 20px; }
+  .prose p strong { color: var(--ink); font-weight: 600; }
+
+  .pull { border-left: 3px solid var(--gold); padding: 16px 20px; margin: 36px 0; background: rgba(244,193,93,0.04); }
+  .pull p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.15rem; color: var(--ink); line-height: 1.55; margin: 0 0 10px; }
+  .pull-attr { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* TRIPWIRES */
+  .tripwires { border: 1px solid var(--border); margin-bottom: 40px; }
+  .tripwire-row { border-bottom: 1px solid var(--border); padding: 18px 20px; display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: flex-start; }
+  .tripwire-row:last-child { border-bottom: none; }
+  .tripwire-num { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); font-weight: 600; padding-top: 2px; }
+  .tripwire-body { font-size: 0.88rem; color: var(--ink-dim); line-height: 1.65; }
+  .tripwire-body strong { color: var(--ink); }
+
+  .takeaway { background: linear-gradient(135deg, rgba(244,193,93,0.12) 0%, rgba(184,152,106,0.06) 100%); border: 1px solid rgba(244,193,93,0.3); padding: 28px 28px; margin: 44px 0 36px; }
+  .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+  .takeaway p { font-size: 0.92rem; color: var(--ink); line-height: 1.7; margin-bottom: 10px; }
+  .takeaway p:last-child { margin-bottom: 0; }
+
+  .disclaimer { border-top: 1px dashed var(--border); padding-top: 24px; margin-top: 44px; }
+  .disclaimer p { font-size: 0.75rem; color: var(--ink-low); line-height: 1.7; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; margin-top: 60px; }
+  .footer-sig { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; }
+  .footer-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ink-low); margin-top: 4px; }
+
+  @media (max-width: 680px) {
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    .ledger-row { grid-template-columns: 60px 1fr; }
+    .ledger-close { display: none; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a href="/" class="brand">FinTrend News</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/archive.html">Archive</a>
+    <a href="/premium.html">Premium</a>
+  </nav>
+</header>
+
+<div class="wrapper">
+
+  <div class="kicker">
+    <span class="kicker-dot"></span>
+    <span class="kicker-text">Friday Recap &nbsp;·&nbsp; Week of May 4, 2026</span>
+  </div>
+
+  <h1>Six Straight Weeks. One Deal<br><em>That Isn't.</em></h1>
+
+  <p class="dek">The S&P 500 posted its longest win streak since 2024. April NFP doubled expectations. Brent settled near $100. And the Iran peace deal that everyone priced on Wednesday remains unsigned heading into the weekend.</p>
+
+  <div class="byline">
+    <div class="byline-author">By <strong>Hunter William Lang</strong> — Markets Correspondent</div>
+    <div class="byline-date">Friday, 08 May 2026</div>
+  </div>
+
+  <div class="lead">
+    <p>Six consecutive weeks of gains on the S&P 500 — the longest winning streak since 2024. A jobs number that doubled Wall Street's expectations. Record closes on both the S&P and Nasdaq. And yet, sitting here Friday evening, the Strait of Hormuz is still effectively closed, Brent crude has stabilized near $100 rather than resolved at $75, and the 14-point memorandum of understanding that sent markets to records Wednesday remains nothing more than a document under review in Tehran. This week's tape rewarded optimists. Whether that optimism is warranted is the only question that matters into next week.</p>
+  </div>
+
+  <h2>Weekly Scorecard</h2>
+  <div class="scoreboard">
+    <div class="score-cell">
+      <div class="score-label">S&P 500</div>
+      <div class="score-val">7,399</div>
+      <div class="score-delta up">+2.3% WTD</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Nasdaq</div>
+      <div class="score-val">26,247</div>
+      <div class="score-delta up">+4.5% WTD</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Dow</div>
+      <div class="score-val">49,609</div>
+      <div class="score-delta up">+0.2% WTD</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Brent Crude</div>
+      <div class="score-val">~$100</div>
+      <div class="score-delta down">−7% WTD</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">WTI</div>
+      <div class="score-val">~$93</div>
+      <div class="score-delta down">−8% WTD</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">VIX</div>
+      <div class="score-val">17.19</div>
+      <div class="score-delta neutral">low, complacent</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Gold</div>
+      <div class="score-val">$4,705</div>
+      <div class="score-delta down">−0.5% Fri</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Bitcoin</div>
+      <div class="score-val">$82,227</div>
+      <div class="score-delta up">+1.95%</div>
+    </div>
+  </div>
+
+  <h2>Day-by-Day Ledger</h2>
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="ledger-day">Mon<br>May 4</div>
+      <div class="ledger-body">Markets digest Powell's final FOMC week and drone strikes near Fujairah. Iran conflict headlines keep bid tone muted. Outlook piece sets the week's framework: Warsh confirmation and NFP as the two binary events.</div>
+      <div class="ledger-close"><span class="close-val">~7,200</span><span class="close-chg neutral">mixed</span></div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Tue<br>May 5</div>
+      <div class="ledger-body">Solid earnings from consumer-facing names — Uber, DoorDash — confirm high-income resilience. ADP private payrolls rise 109,000, highest in 15 months. S&P posts gains. Oil still elevated near $116 as no ceasefire progress emerges. Lower-income households cutting gas consumption per NY Fed research.</div>
+      <div class="ledger-close"><span class="close-val">7,257</span><span class="close-chg up">+0.5%</span></div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Wed<br>May 6</div>
+      <div class="ledger-body">Axios reports U.S. and Iran near deal on 14-point MOU. Oil craters 7–9%. S&P and Nasdaq tag new all-time highs. AMD surges 18.6% on $1.37 EPS beat — Lisa Su revises AI CPU market to $120B by decade-end. Disney +5% on streaming and parks beat. Trump's afternoon statement: deal "not certain." Oil claws back to $95.</div>
+      <div class="ledger-close"><span class="close-val">7,365</span><span class="close-chg up">+1.46%</span></div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Thu<br>May 7</div>
+      <div class="ledger-body">AMD extends gains, Goldman raises target to $250. S&P holds near record as Iran reportedly reviews MOU. Skirmishes reported in Persian Gulf; Trump dismisses them as unimportant. JPMorgan warns demand destruction is coming as supply buffers erode. Super Micro Computer surges ~15% on Q4 guidance beat.</div>
+      <div class="ledger-close"><span class="close-val">7,337</span><span class="close-chg up">+0.17%</span></div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Fri<br>May 8</div>
+      <div class="ledger-body">April NFP: +115,000 vs. +60,000 expected — second straight six-figure report. Unemployment holds at 4.3%. Wages +0.2% MoM, softer than expected. Nasdaq surges 1.71% on Micron (+38% weekly) and Sandisk (+31%) memory rally. CoreWeave drops 7% pre-market on soft Q2 guidance. Cloudflare −14% on job cuts despite solid earnings. Oil edges up on new Gulf skirmish reports.</div>
+      <div class="ledger-close"><span class="close-val">7,399</span><span class="close-chg up">+0.84%</span></div>
+    </div>
+  </div>
+
+  <h2>NFP Breakdown</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Metric</th><th>April Actual</th><th>Estimate</th><th>March Revised</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Nonfarm Payrolls</td><td class="up">+115,000</td><td>+60,000</td><td>+185,000</td></tr>
+      <tr><td>Unemployment Rate</td><td>4.3%</td><td>4.3%</td><td>4.3%</td></tr>
+      <tr><td>Avg. Hourly Earnings MoM</td><td>+0.2%</td><td>+0.3%</td><td>+0.2%</td></tr>
+      <tr><td>Labor Force Participation</td><td>61.8%</td><td>—</td><td>61.9%</td></tr>
+      <tr><td>Part-Time for Econ. Reasons</td><td class="down">Rising</td><td>—</td><td>Rising</td></tr>
+    </tbody>
+  </table>
+
+  <div class="prose">
+    <p>The April payroll beat is real, but it requires context. Healthcare and transportation drove the gains. Information sector employment dropped 13,000 — a category that likely reflects AI displacement more than anything else. Labor force participation slipped again, now 70 basis points below a year ago. The "low hire, low fire" climate is intact, but the quality of job creation is deteriorating at the margins. Schwab's Kevin Gordon noted the labor force has been "rolling over since November."</p>
+    <p><strong>The wage softness matters for CPI.</strong> Average hourly earnings rising only 0.2% month-over-month removes some wage-push inflation pressure, but with gasoline up 21.2% in March alone, the April CPI print due Tuesday will be dominated by energy — not wages. Warsh's first week as Fed chair, if confirmed, arrives with an inflation print that could challenge any pivot narrative before he's even found his office.</p>
+  </div>
+
+  <div class="pull">
+    <p>"The market is trading valuations that don't indicate the risk we see out there. It's a tale of AI spend and the ripple effects — powering an economy that, without that spending and optimism, is probably pretty lackluster."</p>
+    <span class="pull-attr">Portfolio manager, CNBC interview — Friday, May 8</span>
+  </div>
+
+  <h2>Weekly Sector Performance</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Sector</th><th>Week Performance</th><th>Driver</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Information Tech</td><td class="up">+5.8%</td><td>AMD, SMCI, memory stocks</td></tr>
+      <tr><td>Communication Services</td><td class="up">+3.4%</td><td>Earnings beats across streamers</td></tr>
+      <tr><td>Industrials</td><td class="up">+2.9%</td><td>War-related supply chain demand</td></tr>
+      <tr><td>Materials</td><td class="up">+2.1%</td><td>Gold, base metals resilience</td></tr>
+      <tr><td>Consumer Disc.</td><td class="up">+1.8%</td><td>High-income consumer strength</td></tr>
+      <tr><td>Healthcare</td><td class="up">+1.2%</td><td>Steady; Gilead disappointed</td></tr>
+      <tr><td>Financials</td><td class="up">+0.7%</td><td>Warsh rate-cut hopes</td></tr>
+      <tr><td>Energy</td><td class="down">−4.5%</td><td>Peace rumors, oil selloff</td></tr>
+      <tr><td>Utilities</td><td class="down">−1.3%</td><td>Rate proxy selling</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Q1 Earnings Season Scorecard</h2>
+  <div class="prose">
+    <p>With 89% of S&P 500 companies having reported, the Q1 2026 earnings season is historic. <strong>84% have beaten EPS estimates</strong> — the highest beat rate since Q2 2021. The average positive surprise is 18.2% above consensus, far above the 5-year average of 7.3%. Revenue growth is running at 11.3% year-over-year, the highest since Q2 2022, with all eleven sectors positive. FactSet projects full-year 2026 earnings growth of 21% on a forward P/E of 21x — stretched but defensible given the earnings velocity.</p>
+    <p>The AI infrastructure bifurcation is the season's defining narrative. NVIDIA (reports May 20) is now carrying the weight of all these upward revisions. AMD's beat raised the floor; a NVIDIA miss would crack it. Hyperscaler capex guidance from GOOGL, AMZN, MSFT, and META already points to multi-year compute commitments stretching into 2027. The question isn't whether the AI build-out is happening — it's whether that spending is translating into revenue at a pace that justifies 21x earnings multiples on the index.</p>
+  </div>
+
+  <h2>Three Tripwires for Next Week</h2>
+  <div class="tripwires">
+    <div class="tripwire-row">
+      <div class="tripwire-num">01</div>
+      <div class="tripwire-body"><strong>Tuesday April CPI.</strong> March headline CPI was 3.3% year-over-year, driven by a 21.2% MoM gasoline surge. April energy prices remained elevated — the national average gas price hit $4.30/gallon this week. Consensus expects headline CPI above 3.5% YoY. A print above 3.8% would force a hawkish reassessment of the Warsh-era rate path and could reverse the week's gains in a single session. A soft print — even marginally below 3.3% — would be the green light for the next S&P leg.</div>
+    </div>
+    <div class="tripwire-row">
+      <div class="tripwire-num">02</div>
+      <div class="tripwire-body"><strong>Warsh Confirmation Vote.</strong> The full Senate is expected to vote this week with Powell's chair term expiring May 15. Warsh has the votes on paper — but the partisan nature of his Banking Committee approval (first fully party-line vote in modern history) means any Democratic defection scenario is precisely zero, and even one Republican holdout creates procedural complications. Markets have priced a smooth transition. A delay extends the caretaker ambiguity.</div>
+    </div>
+    <div class="tripwire-row">
+      <div class="tripwire-num">03</div>
+      <div class="tripwire-body"><strong>Iran MOU Developments.</strong> The 14-point memorandum is still unsigned. Brent has stabilized near $100 — pricing in partial optimism. If Iran formally rejects the framework over the weekend, Brent re-tests $110–$115 at Sunday's open. If they signal progress, oil could drop another 5–8%. The Trump-Xi summit May 14–15 adds a second geopolitical variable: any U.S.-China friction over Iran policy reshapes the diplomatic picture further.</div>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">The Week's Read</div>
+    <p><strong>The six-week win streak is built on a foundation that is partially real and partially hoped-for.</strong> The real part: Q1 earnings are the strongest in four years, the AI infrastructure supercycle is intact, and the labor market is holding up better than the pessimists projected. The hoped-for part: a Iran peace deal that would release roughly $20/barrel of geopolitical premium from crude.</p>
+    <p><strong>Next week delivers the three events that resolve the hope/reality gap.</strong> CPI tells you whether the oil shock has passed through to core prices. The Warsh vote tells you whether the Fed has a clear leader. The MOU tells you whether the oil market rerates structurally lower or resumes its war premium. All three land before Friday's close.</p>
+    <p><strong>VIX at 17.19 is telling you the market doesn't expect chaos.</strong> It may be right. But with three binary events stacked in five trading days, the asymmetry of risk is underpriced. Position accordingly.</p>
+  </div>
+
+  <div class="disclaimer">
+    <p>FinTrend News publishes for informational purposes only. Nothing in this article constitutes investment advice or a solicitation to buy or sell any security. All market data reflects intraday or closing prices as of market close May 8, 2026, and may not be current. Consult a licensed financial professional before making investment decisions.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-sig">FinTrend News · fintrend.news</div>
+  <div class="footer-sub">Friday Recap · Hunter William Lang · 08 May 2026</div>
+</footer>
+
+</body>
+</html>
