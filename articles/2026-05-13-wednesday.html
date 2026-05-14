@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The New Chair Inherits a Fire | FinTrend News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0b0f1f;
+      --gold:   #f4c15d;
+      --brass:  #b8986a;
+      --ink:    #d4d8e8;
+      --muted:  #7a8099;
+      --card:   #111628;
+      --border: #1e2540;
+      --green:  #4caf82;
+      --red:    #e05b5b;
+      --max:    680px;
+    }
+
+    body {
+      background: var(--navy);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--ink); }
+
+    /* ── NAV ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      gap: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── ARTICLE WRAPPER ── */
+    .article {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── KICKER ── */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,193,93,0.1);
+      border: 1px solid rgba(244,193,93,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .kicker::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    h1 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 40px;
+      font-size: 0.83rem;
+    }
+    .byline-author { color: var(--gold); font-weight: 600; }
+    .byline-role   { color: var(--muted); margin-left: 6px; }
+    .byline-date   {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── BODY TEXT ── */
+    .article p {
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+
+    /* ── DROP CAP ── */
+    .drop-cap::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.2em;
+      line-height: 0.8;
+      float: left;
+      margin: 6px 10px -4px 0;
+      color: var(--gold);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: #fff;
+      margin: 44px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 32px 0 14px;
+    }
+
+    /* ── SCOREBOARD GRID ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 28px 0;
+    }
+    .score-cell {
+      background: var(--card);
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .score-delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+    .up   { color: var(--green); }
+    .down { color: var(--red);   }
+    .flat { color: var(--muted); }
+
+    /* ── SECTOR SNAPSHOT ── */
+    .sector-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 28px 0;
+    }
+    .sector-block table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .sector-block thead th {
+      background: #0d1225;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .sector-block tbody tr {
+      border-bottom: 1px solid rgba(30,37,64,0.6);
+    }
+    .sector-block tbody tr:last-child { border-bottom: none; }
+    .sector-block tbody td {
+      padding: 10px 14px;
+      color: var(--ink);
+    }
+    .sector-block tbody td:first-child { color: #fff; font-weight: 600; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin: 36px 0;
+      background: rgba(244,193,93,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 8px !important;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      font-style: normal;
+    }
+
+    /* ── SCENARIO GRID ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    @media (max-width: 540px) { .scenario-grid { grid-template-columns: 1fr; } }
+    .scenario-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 16px;
+    }
+    .scenario-card.bull { border-top: 3px solid var(--green); }
+    .scenario-card.base { border-top: 3px solid var(--gold);  }
+    .scenario-card.bear { border-top: 3px solid var(--red);   }
+    .scenario-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scenario-card.bull .scenario-label { color: var(--green); }
+    .scenario-card.base .scenario-label { color: var(--gold);  }
+    .scenario-card.bear .scenario-label { color: var(--red);   }
+    .scenario-card h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.0rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .scenario-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── WEEK-AHEAD CALENDAR ── */
+    .calendar-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 28px 0;
+    }
+    .calendar-block table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .calendar-block thead th {
+      background: #0d1225;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .calendar-block tbody tr {
+      border-bottom: 1px solid rgba(30,37,64,0.6);
+    }
+    .calendar-block tbody tr:last-child { border-bottom: none; }
+    .calendar-block tbody td {
+      padding: 9px 14px;
+      color: var(--ink);
+    }
+    .calendar-block tbody td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .calendar-block tbody td.event-label { color: #fff; font-weight: 500; }
+    .calendar-block tbody td.heat-high   { color: var(--red);   font-weight: 600; }
+    .calendar-block tbody td.heat-med    { color: var(--gold);  font-weight: 500; }
+    .calendar-block tbody td.heat-low    { color: var(--muted); }
+
+    /* ── TRIPWIRES ── */
+    .tripwire-list {
+      list-style: none;
+      margin: 20px 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tripwire-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .tripwire-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      background: rgba(244,193,93,0.12);
+      border: 1px solid rgba(244,193,93,0.25);
+      border-radius: 4px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .tripwire-list li p {
+      margin-bottom: 0 !important;
+      font-size: 0.9rem;
+    }
+
+    /* ── TAKEAWAY BOX ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(244,193,93,0.12) 0%, rgba(244,193,93,0.04) 100%);
+      border: 1px solid rgba(244,193,93,0.3);
+      border-radius: 8px;
+      padding: 28px 28px;
+      margin: 40px 0 32px;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .takeaway p {
+      color: #e8ecf8;
+      font-size: 0.95rem;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      padding-top: 24px;
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 40px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    footer .sig { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a class="masthead-logo" href="/index.html">FinTrend<span> News</span></a>
+  <a class="masthead-logo" href="/index.html" style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; color:var(--muted); text-decoration:none; letter-spacing:0.06em;">fintrend.news</a>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="/index.html">Home</a>
+  <a href="/archive.html">Archive</a>
+  <a href="/premium.html">Premium</a>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article">
+
+  <div class="kicker">Wednesday Momentum Check &nbsp;·&nbsp; May 13, 2026</div>
+
+  <h1>The New Chair <em>Inherits</em> a Fire</h1>
+
+  <p class="dek">
+    Kevin Warsh is confirmed 54–45 into one of the most hostile monetary environments in a generation. PPI prints 6%. The 30-year clears 5% for the first time since 2007. Brent holds above $108. And somehow — impossibly — the Nasdaq closes at a record high.
+  </p>
+
+  <div class="byline-bar">
+    <div>
+      <span class="byline-author">Hunter William Lang</span>
+      <span class="byline-role">— Markets Correspondent</span>
+    </div>
+    <div class="byline-date">WED · MAY 13 · 2026</div>
+  </div>
+
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+    <div class="score-cell">
+      <div class="score-label">S&amp;P 500</div>
+      <div class="score-value">5,871</div>
+      <div class="score-delta up">+0.30%</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Nasdaq</div>
+      <div class="score-value">19,060</div>
+      <div class="score-delta up">+1.21% ◂ Record</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Dow</div>
+      <div class="score-value">41,740</div>
+      <div class="score-delta down">−0.14%</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Russell 2K</div>
+      <div class="score-value">2,844</div>
+      <div class="score-delta up">+0.07%</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Brent Crude</div>
+      <div class="score-value">$108.10</div>
+      <div class="score-delta flat">~flat</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">30Y Yield</div>
+      <div class="score-value">5.05%</div>
+      <div class="score-delta down">▲ 2007 high</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">10Y Yield</div>
+      <div class="score-value">4.46%</div>
+      <div class="score-delta down">▲ elevated</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Gold</div>
+      <div class="score-value">$4,720</div>
+      <div class="score-delta down">−0.5%</div>
+    </div>
+  </div>
+
+  <!-- LEAD -->
+  <p class="drop-cap">
+    Three things happened on Wednesday that, in any ordinary market era, would have each commanded a week's worth of headlines on their own. The Senate confirmed Kevin Warsh as Federal Reserve chair — the closest vote in the modern central banking era. The April Producer Price Index printed 6% year-over-year, the hottest wholesale inflation read since 2022. And a $25 billion auction of 30-year Treasuries cleared at 5.046%, a level not seen since 2007 — the year the housing crisis first began to show its teeth. Markets processed all three and sent the Nasdaq to a record close.
+  </p>
+
+  <p>
+    That is not a normal reaction. It is the market telling you something specific: tech earnings are growing fast enough, and AI investment cycles are large enough, that a significant subset of institutional money has decided to look past inflation readings it cannot control, past a Fed transition it cannot predict, and past an oil shock rooted in a Strait it cannot reopen. Whether that logic holds is the question every investor should be sitting with tonight.
+  </p>
+
+  <p>
+    This is the Wednesday Momentum Check. We will do what we always do — look at the data, name the divergences, and build a framework for what to watch next.
+  </p>
+
+  <!-- THE INFLATION DOUBLE-HIT -->
+  <h2>The Inflation Double-Hit</h2>
+
+  <p>
+    Context first, for readers who may have missed Tuesday's piece: April CPI landed at 3.8% year-over-year on May 12, up from 3.3% in March and the highest reading since May 2023. Real average hourly wages fell 0.5% for the month. Consumers are now losing ground to prices for the first time in three years. The Iran war — now in its eleventh week — has done what economists warned it would: it has transmitted oil-shock inflation into nearly every cost category.
+  </p>
+
+  <p>
+    Wednesday's PPI data confirmed that the pressure is not limited to the consumer side. Wholesale prices rose 1.4% month-over-month in April — roughly triple the 0.5% consensus estimate, and the largest single-month gain since March 2022. The annual rate moved from 4% to 6%. Core PPI, stripping out food and energy, came in at 5.2% annually, well ahead of the 4.3% forecast.
+  </p>
+
+  <div class="pull-quote">
+    <p>"Both CPI and PPI inflation are now officially at 3-plus year highs. Odds of rate hikes are rising."</p>
+    <cite>— Kobeissi Letter, May 13 2026</cite>
+  </div>
+
+  <p>
+    The headline driver was energy. A 7.8% jump in final demand energy accounted for a significant share of the goods component, with gasoline alone surging 15.6% — accounting for roughly 40% of the total monthly move. But here is what the headline number is hiding: services drove nearly 60% of the monthly gain. That is the stickier, harder-to-reverse piece. Trade services margins jumped 2.7%; truck freight, chemicals wholesaling, and legal services all moved higher. Services inflation of this magnitude is not an oil story. It is a wage and contract story — and those do not reverse when the Strait reopens.
+  </p>
+
+  <p>
+    The Fed's policy rate currently sits in the 3.5%–3.75% range. Before Wednesday's print, markets had already priced out meaningful odds of a 2026 cut. By mid-afternoon, market-implied probability of at least one rate <em>hike</em> before year-end had climbed to approximately 39% — a meaningful shift in just 48 hours. Goldman Sachs pushed its next-cut call to December 2026. The Atlanta Fed's GDPNow tracker is pointing to 3.7% Q2 GDP growth, which means the Fed faces the classic stagflation bind: raising rates would choke an economy that is still producing, but holding steady means tolerating inflation that is eating workers' real income.
+  </p>
+
+  <!-- SECTOR SNAPSHOT -->
+  <h2>Sector Snapshot</h2>
+  <p>Wednesday's session was not a broad rally. It was a targeted one, and the anatomy of which sectors led versus lagged is telling.</p>
+
+  <div class="sector-block">
+    <table>
+      <thead>
+        <tr>
+          <th>Sector</th>
+          <th>Direction</th>
+          <th>Notable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Technology</td>
+          <td class="up">Strong ↑</td>
+          <td>Semis +3%; AI delegation to China lifted NVDA, TSLA, AAPL</td>
+        </tr>
+        <tr>
+          <td>Health Care</td>
+          <td class="up">Moderate ↑</td>
+          <td>Defensive bid alongside tech; J&amp;J +2.73%</td>
+        </tr>
+        <tr>
+          <td>Industrials</td>
+          <td class="up">Moderate ↑</td>
+          <td>3M +2.56%; infrastructure demand narrative intact</td>
+        </tr>
+        <tr>
+          <td>Energy</td>
+          <td class="flat">Mixed</td>
+          <td>Brent steady ~$108; IEA warns supply gap through October</td>
+        </tr>
+        <tr>
+          <td>Financials</td>
+          <td class="down">Weak ↓</td>
+          <td>Salesforce −2.81%; rate uncertainty dampens NIM outlook</td>
+        </tr>
+        <tr>
+          <td>Utilities</td>
+          <td class="down">Weak ↓</td>
+          <td>Rate-sensitive; 30Y yield at 5.05% pressures long-duration</td>
+        </tr>
+        <tr>
+          <td>Consumer Disc.</td>
+          <td class="down">Weak ↓</td>
+          <td>Home Depot −2.52%; real wage erosion dampens spending thesis</td>
+        </tr>
+        <tr>
+          <td>Comm. Services</td>
+          <td class="down">Weak ↓</td>
+          <td>Doximity −19% on guidance miss; pulled Nasdaq-100 vs Composite</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The divergence within the Nasdaq tells the most important story of the session. The broader Composite (+1.21%) outperformed the Nasdaq-100 (+1.06%) — a rare inversion suggesting that this was not purely a mega-cap AI trade. It was wider. The Russell 2000 managed a marginal green close after spending much of the session red, and the equal-weighted breadth within the index leaned toward declines. Of the Russell's 2,000 holdings, only 678 advanced. Technology, health care, and industrials drove the gains; utilities, financials, and cyclicals absorbed the selling.
+  </p>
+
+  <p>
+    The Dow's slight decline is equally instructive. Its makeup — dominated by consumer, financial, and legacy industrial names — is more exposed to the real-economy pass-through of sticky inflation. The Dow is telling you a different story than the Nasdaq. Both are correct, just about different things.
+  </p>
+
+  <!-- WARSH: THE CONFIRMATION -->
+  <h2>Warsh: The Chair Arrives</h2>
+
+  <p>
+    At 2:54 p.m. EDT, the Senate voted 54–45 to confirm Kevin Warsh as the 11th chair of the Federal Reserve in the modern era — the narrowest margin for a Fed chair confirmation in history, and the most partisan. Only Pennsylvania Democrat John Fetterman crossed the aisle. Jerome Powell's term ends Friday. Warsh's first FOMC meeting as chair is scheduled for June 16–17.
+  </p>
+
+  <p>
+    Warsh is 56, a Stanford lecturer, former Morgan Stanley banker, and Fed governor from 2006 to 2011 — the same period that included the subprime meltdown, the Lehman collapse, and the first rounds of quantitative easing that Warsh himself later criticized as going too far. He arrives having called for "regime change" at the central bank, having advocated for reforms to the Fed's communication strategy, and having signaled that he believes rates can move lower. He does so at a moment when inflation is at a three-year high, when a 39% rate-hike probability has just materialized in futures markets, and when a 30-year bond just cleared 5% for the first time since 2007.
+  </p>
+
+  <div class="pull-quote">
+    <p>"Warsh confirmed by 54-45 — the most controversial leadership transition at the US central bank in decades and a test of its political independence."</p>
+    <cite>— Bloomberg, May 13 2026</cite>
+  </div>
+
+  <p>
+    The political expectations are clear. President Trump has been explicit: he wants lower rates. Warsh has said he believes there is room for them. But the data environment he is walking into makes that promise nearly impossible to keep in the near term without inflicting serious credibility damage on an institution that — whatever one thinks of its recent tenure — remains the backbone of global dollar confidence. Boston Fed President Susan Collins captured the institutional tension succinctly: inflation above target for over five years has reduced her patience, and a "slightly restrictive" stance must be maintained for some time.
+  </p>
+
+  <p>
+    Powell stays on as a Fed governor for two more years, in an unusual arrangement. That means the voice of the Powell era — which guided the Fed through COVID stimulus, the 2022 inflation surge, and the tightening cycle — remains in the room during Warsh's early meetings. The June 16–17 meeting will be the first real signal.
+  </p>
+
+  <!-- BOND MARKET -->
+  <h2>The Bond Market's Message</h2>
+
+  <p>
+    The $25 billion 30-year auction cleared at a high yield of 5.046%. That is the first time since 2007 that investors have locked in a 5% yield on the long bond. The bid-to-cover ratio indicated middling demand — not a disaster, but not robust. Earlier in the week, 3-year and 10-year auctions also tailed, meaning buyers demanded more yield than where the market was pricing immediately before the auction.
+  </p>
+
+  <p>
+    Three consecutive tailed auctions in one week is a signal worth taking seriously. It means the marginal buyer of U.S. government debt is demanding compensation that the pre-auction market was not offering. That is a pressure signal on sovereign creditworthiness in a fragile macro moment. Deutsche Bank's Steven Zeng noted that the 5% level could attract pension funds and long-duration buyers who have been waiting for exactly this entry point — but that their participation is contingent on believing inflation won't move structurally higher from here.
+  </p>
+
+  <p>
+    The 10-year yield closed around 4.46%, putting the 30-year–10-year spread at approximately 59 basis points — a curve that continues to bear-steepen, reflecting markets pricing in longer-duration inflation risk rather than near-term growth concern. That is exactly the opposite of the inverted yield curve that preceded the 2022–2023 slowdown, and it carries different implications: inflation expectations are being priced out into the long end of the curve, not recession fears into the short end.
+  </p>
+
+  <!-- OIL & GEOPOLITICS -->
+  <h2>Oil at $108 and the China Variable</h2>
+
+  <p>
+    Brent crude steadied near $108 per barrel on Wednesday, trimming earlier gains after a sharp three-session rally driven by the International Energy Agency's warning that global observed oil inventories fell at a record pace — approximately 4 million barrels per day — during March and April. The IEA's Oil Market Report was explicit: even if the Strait of Hormuz reopens in the next month, the global market will remain severely undersupplied through October. Saudi Aramco's CEO stated Monday that normalization could take until 2027 if the blockade persists beyond mid-June.
+  </p>
+
+  <p>
+    The week's geopolitical hinge is President Trump's visit to China to meet President Xi Jinping. Trump has said he plans a "long talk" about Iran, but publicly downplayed the need for Beijing's help. China remains the largest importer of Iranian crude; Beijing has strategic interest in reopening Hormuz as much as Washington does, but from a position of relative energy advantage while the blockade persists. The market read of the China talks is cautiously optimistic but not expecting breakthroughs. Geopolitical risk analyst Henry Wilkinson of Dragonfly put it plainly: Trump may ask Xi to press Iran to accept U.S. terms during their bilateral.
+  </p>
+
+  <p>
+    Iran's posture remains the wildcard. Tehran has so far rejected the U.S. framework — a senior Iranian official called for reparations, and Trump publicly labeled their counteroffer "garbage." A 14-point memorandum of understanding was reportedly close as of last week, but no deal has been announced. Meanwhile, Iranian export shipments have seen their first sustained interruption since the conflict began, and Asian refiners — including Japan — are actively seeking alternatives to Persian Gulf supply. The supply displacement is real, and it is not fully priced in.
+  </p>
+
+  <!-- SCENARIO GRID -->
+  <h2>Scenarios Into the Back Half of May</h2>
+  <p>Three paths from here, each with distinct market implications.</p>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-label">Bull Case</div>
+      <h4>Deal in Beijing</h4>
+      <p>Trump-Xi meeting produces a framework that China uses to press Iran. Hormuz path clears. Brent drops toward $85. CPI trajectory reverses. Warsh's first meeting becomes a rate-cut setup. S&amp;P 500 challenges 6,000.</p>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-label">Base Case</div>
+      <h4>Frozen Conflict</h4>
+      <p>Talks produce no resolution. Strait remains partially impeded. Brent holds $100–$115. May CPI breaks above 4%. Warsh holds rates at June meeting but signals no cuts through 2026. Equity volatility picks up, breadth narrows further.</p>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-label">Bear Case</div>
+      <h4>Re-escalation</h4>
+      <p>Diplomatic breakdown leads to fresh Iranian strikes or expanded naval conflict. Brent tests $130+. PPI heads toward 8%. Rate-hike probability surges past 60%. Credit spreads widen. Tech's record closes reverse violently.</p>
+    </div>
+  </div>
+
+  <!-- TRIPWIRES -->
+  <h2>Three Forward Tripwires</h2>
+  <ul class="tripwire-list">
+    <li>
+      <span class="tripwire-num">01</span>
+      <p><strong style="color:#fff;">Trump-Xi Communiqué.</strong> Watch not just whether Iran is mentioned but the language around oil flow commitments. Any reference to Hormuz transit rights or China reducing Iranian imports is a buy signal for broader risk. Silence on Iran is the market's base case.</p>
+    </li>
+    <li>
+      <span class="tripwire-num">02</span>
+      <span>
+        <p><strong style="color:#fff;">May CPI (June release).</strong> Ben Ayers at Nationwide and other economists are already revising May CPI toward 4%+. If that materializes, the 39% rate-hike probability becomes 60%+ and the S&amp;P's fragile breadth — already masking concentrated mega-cap strength — faces a genuine test. The date to mark is mid-June.</p>
+      </span>
+    </li>
+    <li>
+      <span class="tripwire-num">03</span>
+      <p><strong style="color:#fff;">Warsh's First Signal.</strong> The June 16–17 FOMC meeting is the new chair's public debut. Markets will parse every word of his statement and press conference for signals on regime change, balance sheet management, and whether he will defer to the inflation data or to political pressure. His tone on that day will set the risk-asset trajectory for Q3.</p>
+    </li>
+  </ul>
+
+  <!-- WEEK AHEAD -->
+  <h2>Rest of Week — Key Dates</h2>
+
+  <div class="calendar-block">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Watch</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Thu May 14</td>
+          <td class="event-label">Trump–Xi bilateral meeting, Beijing</td>
+          <td class="heat-high">High — Iran/oil language</td>
+        </tr>
+        <tr>
+          <td>Thu May 14</td>
+          <td class="event-label">Weekly jobless claims</td>
+          <td class="heat-med">Med — labor resilience signal</td>
+        </tr>
+        <tr>
+          <td>Fri May 15</td>
+          <td class="event-label">Powell's final day as Fed Chair</td>
+          <td class="heat-high">High — any parting remarks</td>
+        </tr>
+        <tr>
+          <td>Fri May 15</td>
+          <td class="event-label">Retail sales (April)</td>
+          <td class="heat-high">High — consumer absorption of oil shock</td>
+        </tr>
+        <tr>
+          <td>Fri May 15</td>
+          <td class="event-label">30Y bond settlement date</td>
+          <td class="heat-low">Low — bookkeeping on $25B auction</td>
+        </tr>
+        <tr>
+          <td>Fri May 15</td>
+          <td class="event-label">University of Michigan consumer sentiment</td>
+          <td class="heat-med">Med — inflation expectations component key</td>
+        </tr>
+        <tr>
+          <td>Mon May 18</td>
+          <td class="event-label">Warsh officially assumes Fed chair role</td>
+          <td class="heat-high">High — watch any public remarks</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TAKEAWAY -->
+  <div class="takeaway">
+    <div class="takeaway-label">The Momentum Check Bottom Line</div>
+    <p>
+      Wednesday was a day of compounding contradictions. Inflation is accelerating at both the consumer and producer level. The long bond just repriced to its highest yield since before the financial crisis. The incoming Fed chair faces a structural inflation problem that his public statements suggest he wants to cure with cuts that the data will not yet allow. And yet: the Nasdaq closed at a record. The Philly Semiconductor Index is up 47% over the past month. S&amp;P 500 earnings estimates for 2026 now stand at 18.6% growth — higher than anyone forecast in January.
+    </p>
+    <p style="margin-top:14px;">
+      The market is making a bet. That bet is that AI earnings can outrun oil-driven stagflation, that Warsh will eventually thread the needle, and that Trump's Beijing trip is the beginning of a Hormuz off-ramp. It may be right. But three consecutive tailed Treasury auctions, a 39% rate-hike probability, and IEA inventory data pointing to undersupply through October are not the footprints of a resolved situation. Watch the tripwires. They will tell you before the tape does.
+    </p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <p>
+      <strong>Disclaimer:</strong> FinTrend News publishes market analysis and financial commentary for informational purposes only. Nothing in this article constitutes investment advice, a recommendation to buy or sell any security, or an offer to engage in any investment activity. All data and market levels referenced reflect conditions as of Wednesday, May 13, 2026 and may not reflect current market prices. Readers should conduct their own research and consult a licensed financial advisor before making any investment decisions. Past market performance is not indicative of future results.
+    </p>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 FinTrend News</span>
+  <span class="sig">— H.W.L. / Markets Desk</span>
+</footer>
+
+</body>
+</html>
