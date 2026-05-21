@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wednesday Momentum Check — May 20 · FinTrend News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NVIDIA drops $81.6 billion. SpaceX files the largest IPO in history. Oil slides on deal-premium hope while the 10-year holds at 4.62%. Two narratives. One tape. Wednesday knows which one wins." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b0f1f;
+      --navy-mid: #111827;
+      --navy-light: #1a2235;
+      --gold: #f4c15d;
+      --gold-dim: #b8986a;
+      --gold-faint: rgba(244,193,93,0.08);
+      --text: #e8e4d9;
+      --text-dim: #9ca3af;
+      --text-muted: #6b7280;
+      --red: #f87171;
+      --green: #4ade80;
+      --border: rgba(244,193,93,0.18);
+      --max: 680px;
+    }
+
+    html { background: var(--navy); color: var(--text); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--navy);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--text); }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── ARTICLE WRAPPER ── */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── KICKER ── */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-faint);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .kicker::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 1.08rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .byline-author {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .byline-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── BODY COPY ── */
+    p {
+      margin-bottom: 1.4em;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.78;
+    }
+
+    /* ── DROP CAP ── */
+    .lead::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.2em;
+      line-height: 0.82;
+      float: left;
+      margin-right: 8px;
+      margin-top: 4px;
+      color: var(--gold);
+    }
+
+    /* ── SECTION HEADING ── */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--text);
+      font-weight: 400;
+      margin: 40px 0 16px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SECTOR SNAPSHOT BLOCK ── */
+    .sector-snap {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+    .sector-snap-title {
+      background: var(--gold-faint);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .sector-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+    .sector-table th {
+      padding: 10px 18px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .sector-table th:not(:first-child) { text-align: right; }
+    .sector-table td {
+      padding: 9px 18px;
+      border-bottom: 1px solid rgba(244,193,93,0.07);
+      color: var(--text);
+    }
+    .sector-table td:not(:first-child) { text-align: right; }
+    .sector-table tr:last-child td { border-bottom: none; }
+    .up { color: var(--green); }
+    .dn { color: var(--red); }
+    .neu { color: var(--text-muted); }
+    .sector-table td:first-child { color: var(--text-dim); font-weight: 500; }
+
+    /* ── SCENARIO GRID ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 32px 0;
+    }
+    @media (max-width: 560px) { .scenario-grid { grid-template-columns: 1fr; } }
+    .scenario-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 16px;
+    }
+    .scenario-card.bull { border-top: 3px solid var(--green); }
+    .scenario-card.base { border-top: 3px solid var(--gold); }
+    .scenario-card.bear { border-top: 3px solid var(--red); }
+    .scenario-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scenario-card.bull .scenario-label { color: var(--green); }
+    .scenario-card.base .scenario-label { color: var(--gold); }
+    .scenario-card.bear .scenario-label { color: var(--red); }
+    .scenario-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .scenario-body {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-faint);
+      padding: 20px 22px;
+      margin: 36px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── WEEK-AHEAD CALENDAR ── */
+    .cal-block {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+    .cal-title {
+      background: var(--gold-faint);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cal-row {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(244,193,93,0.07);
+      align-items: stretch;
+    }
+    .cal-row:last-child { border-bottom: none; }
+    .cal-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      padding: 12px 18px;
+      min-width: 90px;
+      border-right: 1px solid rgba(244,193,93,0.12);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 14px;
+    }
+    .cal-events {
+      padding: 12px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cal-event {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+    .cal-event strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .cal-hot { color: var(--gold); }
+
+    /* ── TAKEAWAY BOX ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(244,193,93,0.12) 0%, rgba(244,193,93,0.04) 100%);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 24px 24px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .takeaway p {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.8em;
+      line-height: 1.7;
+    }
+    .takeaway p:last-child { margin-bottom: 0; }
+
+    /* ── STAT PILL ROW ── */
+    .stat-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 28px 0;
+    }
+    .stat-pill {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 16px;
+      flex: 1;
+      min-width: 120px;
+    }
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .stat-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── DATA BLOCK ── */
+    .data-block {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 20px;
+      margin: 28px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+    .data-block-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(244,193,93,0.07);
+      color: var(--text-dim);
+      font-size: 0.81rem;
+    }
+    .data-row:last-child { border-bottom: none; }
+    .data-row span:last-child { font-weight: 700; color: var(--text); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      margin-top: 48px;
+      padding-top: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+    footer .sig { color: var(--gold); font-weight: 700; margin-top: 6px; display: block; }
+
+    @media (max-width: 480px) {
+      nav { display: none; }
+      h1 { font-size: 1.75rem; }
+      .scenario-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a href="/" class="masthead-logo">FinTrend<span> News</span></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/archive.html">Archive</a>
+    <a href="/premium.html">Premium</a>
+  </nav>
+</header>
+
+<!-- ARTICLE -->
+<main class="article-wrap">
+
+  <div class="kicker">Wednesday Momentum Check · May 20, 2026</div>
+
+  <h1>Two Rockets. One Strait.<br><em>Both Pointing Up.</em></h1>
+
+  <p class="dek">NVIDIA just delivered $81.6 billion in quarterly revenue. SpaceX filed for history's largest IPO. Oil is cracking on ceasefire hope. And the 10-year Treasury is sitting at 4.62%, quietly threatening to ruin the party. The tape is pricing in two incompatible futures simultaneously — and that cannot hold.</p>
+
+  <div class="byline-bar">
+    <div>
+      <div class="byline-author">Hunter William Lang</div>
+      <div class="byline-role">Markets Correspondent, FinTrend News</div>
+    </div>
+    <div class="byline-date">WED · MAY 20, 2026</div>
+  </div>
+
+  <!-- STAT ROW -->
+  <div class="stat-row">
+    <div class="stat-pill">
+      <div class="stat-label">S&P 500</div>
+      <div class="stat-value up">+0.81%</div>
+      <div class="stat-sub">~7,410 level</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-label">Nasdaq</div>
+      <div class="stat-value up">+1.17%</div>
+      <div class="stat-sub">NVDA-led</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-label">Brent Crude</div>
+      <div class="stat-value dn">~$105</div>
+      <div class="stat-sub">–5%+ prior session</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-label">10Y Treasury</div>
+      <div class="stat-value neu">4.62%</div>
+      <div class="stat-sub">FOMC minutes hawkish</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <p class="lead">Wednesday was the kind of day that reminds you markets don't wait for clarity. While the White House insists it is in the "final stages" of negotiations with Tehran and satellite imagery shows three supertankers threading the Strait of Hormuz for the first time in weeks, the AI economy is staging a rally that has nothing to do with the Persian Gulf at all. The result is a tape that looks bullish on the surface and profoundly uncertain underneath.</p>
+
+  <p>Let's start with the headline that has every institutional desk recalibrating its models tonight.</p>
+
+  <h2>NVIDIA: The Machine That Won't Stop</h2>
+
+  <p>After the bell on Wednesday, NVIDIA reported Q1 fiscal 2027 results that were, by any reasonable standard, staggering. Revenue came in at $81.6 billion, up 85% year-over-year and 20% sequentially. The street was looking for $79.2 billion. Data Center revenue — now the company's overwhelming core — hit $75.2 billion, up 92% from a year ago and 21% sequentially, driven by the ramp of Blackwell 300 products and continued demand for InfiniBand and NVLink networking infrastructure. Non-GAAP EPS landed at $1.87 against a $1.78 estimate. Net income for the quarter was $58.3 billion.</p>
+
+  <div class="data-block">
+    <div class="data-block-title">NVIDIA Q1 FY2027 · Key Metrics</div>
+    <div class="data-row"><span>Revenue</span><span class="up">$81.6B (+85% YoY)</span></div>
+    <div class="data-row"><span>Data Center Revenue</span><span class="up">$75.2B (+92% YoY)</span></div>
+    <div class="data-row"><span>Gross Margin (non-GAAP)</span><span class="up">75.0%</span></div>
+    <div class="data-row"><span>Non-GAAP EPS</span><span class="up">$1.87 vs. $1.78 est.</span></div>
+    <div class="data-row"><span>Net Income</span><span class="up">$58.3B</span></div>
+    <div class="data-row"><span>New Buyback Authorization</span><span>$80.0B</span></div>
+    <div class="data-row"><span>Quarterly Dividend</span><span class="up">$0.25 (from $0.01)</span></div>
+  </div>
+
+  <p>That dividend raise deserves its own sentence. NVIDIA just went from paying one cent per share to twenty-five cents. That is not the behavior of a company bracing for a demand cliff. It is the behavior of a company that has looked at its order book and concluded the next several quarters are secured. The $80 billion buyback authorization on top of that is Jensen Huang sending a very deliberate signal to any short-seller still standing: be patient.</p>
+
+  <p>The one asterisk in the report — and the market noticed, sending shares flat in extended hours — was guidance that excluded China revenue from its Q2 outlook, citing ongoing uncertainty around export controls as Trump-era chip restrictions remain in legal gray territory. In a quarter where absolute numbers are this large, that carve-out feels manageable. But it is a live variable worth tracking. China represented meaningful incremental upside in prior cycles. Its absence from guidance implies either conservative messaging or genuine exposure to further restriction.</p>
+
+  <div class="pull-quote">
+    <p>"The AI infrastructure build-out is no longer a forecast. It is a revenue line. NVIDIA just posted net income of $58 billion in a single quarter. The semiconductor industry as we knew it no longer exists."</p>
+  </div>
+
+  <h2>SpaceX Files. The Largest IPO in History Is Now Real.</h2>
+
+  <p>If NVIDIA wasn't enough for one Wednesday, SpaceX formally filed its S-1 prospectus with the SEC on May 20, 2026 — nearly 300 pages setting out its financials and ambitions to list on the Nasdaq under ticker <strong>SPCX</strong> at a valuation of approximately $1.75 trillion. This is, on paper, the largest IPO ever attempted.</p>
+
+  <p>Here is what the filing reveals for the first time in public: Starlink — the satellite connectivity segment — drove $11.4 billion in revenue in 2025 with adjusted EBITDA of $7.2 billion. The subscriber count stood at 10.3 million as of Q1 2026, roughly double from a year prior. The space launch segment contributed another $4.1 billion in 2025. And then there is the AI segment, where SpaceX (which absorbed xAI in an all-stock merger earlier this year) is spending at a pace that would make most CFOs pale: $12.7 billion in R&D in 2025 alone, with $7.7 billion in just Q1 2026. The company claims a total addressable market of $28.5 trillion — $26.5 trillion of which it attributes to AI and orbital data centers.</p>
+
+  <div class="data-block">
+    <div class="data-block-title">SpaceX S-1 · Financial Snapshot</div>
+    <div class="data-row"><span>Target Valuation</span><span>~$1.75 Trillion</span></div>
+    <div class="data-row"><span>Ticker / Exchange</span><span>SPCX / Nasdaq</span></div>
+    <div class="data-row"><span>Starlink Revenue (2025)</span><span class="up">$11.4B</span></div>
+    <div class="data-row"><span>Starlink EBITDA (2025)</span><span class="up">$7.2B</span></div>
+    <div class="data-row"><span>Starlink Subscribers (Q1 2026)</span><span>10.3M</span></div>
+    <div class="data-row"><span>Space Segment Revenue (2025)</span><span>$4.1B</span></div>
+    <div class="data-row"><span>AI R&amp;D Spend (2025)</span><span class="dn">$12.7B</span></div>
+    <div class="data-row"><span>Claimed TAM</span><span>$28.5T</span></div>
+  </div>
+
+  <p>The filing creates an immediate analytical puzzle: Starlink's economics are well-understood and clearly profitable. The space launch business is healthy. But xAI — the entity Elon Musk merged into SpaceX earlier this year — was burning approximately $1 billion per month at the time of the deal. The combined entity's AI segment is spending more on R&D than many Fortune 500 companies generate in total revenue. That is either the boldest capital allocation in corporate history or a liability that early SpaceX shareholders absorb on behalf of a moonshot that won't pay off for a decade. The S-1 is transparent about the losses. It is less transparent about when they stop.</p>
+
+  <p>The practical market implication: a successful SPCX listing at anything near $1.75 trillion reshapes passive index construction, compresses available capital for competing issuers, and gives Elon Musk two separate trillion-dollar publicly listed companies simultaneously. Watch for the roadshow timing — the 15-day pre-roadshow disclosure window is now running.</p>
+
+  <h2>The Strait: Three Tankers, One Tweet, and a 5% Oil Drop</h2>
+
+  <p>Oil's story on Wednesday was the inverse of equities: a relief trade. Brent steadied above $105 after tumbling more than 5% in the prior session — the drop triggered when President Trump stated publicly that the United States was in the "final stages" of negotiations with Iran. Tehran, for its part, confirmed it was evaluating Washington's latest draft response to its 14-point proposal. Three supertankers were tracked by satellite passing through the Strait of Hormuz, providing the first visible evidence that partial traffic resumption may be underway.</p>
+
+  <p>The "deal premium" in oil has been substantial — and it is now partially unwinding. To understand the magnitude: Brent was trading below $70 before the Iran conflict escalated in late February. At its peak, dated Brent touched above $140. The current $105 level represents a significant compression of the war risk premium, but it is still 50% above pre-conflict prices. Wood Mackenzie has modeled a scenario where a full reopening brings Brent to approximately $80 by year-end 2026. That would represent meaningful disinflation relief — but it comes with a structural lag. Refining capacity that was idled doesn't restart overnight, and the supply chain disruptions across nine nations affect more than tanker transit.</p>
+
+  <p>The critical constraint on the trade: Iran's Supreme Leader has separately issued a directive stating that the country's near-weapons-grade uranium should not be transferred abroad — which directly contradicts one of Washington's core demands. Diplomatic optimism and nuclear hardball are coexisting. The Hormuz trade is not resolved; it is pricing in hope. There is a material difference.</p>
+
+  <h2>Fixed Income: 4.62% and FOMC Minutes That Matter</h2>
+
+  <p>The 10-year Treasury note closed Wednesday at 4.62%, continuing to press against levels that historically generate equity multiple compression. The move was accompanied by the release of the latest FOMC meeting minutes, which showed a majority of policymakers believe additional rate hikes may be warranted if inflation remains persistently above the 2% target. Markets are currently pricing approximately a 40% probability of a 25 basis point hike at the December meeting — a non-trivial tail risk that has been systematically underpriced by equity bulls all spring.</p>
+
+  <p>The dynamic is worth naming explicitly: equities are rallying on AI earnings and geopolitical hope. Bonds are pricing in structurally higher inflation from an oil shock that hasn't fully resolved. Both cannot be correct simultaneously at these levels. When one of them blinks, it tends to be fast.</p>
+
+  <!-- SECTOR SNAPSHOT -->
+  <div class="sector-snap">
+    <div class="sector-snap-title">Wednesday Sector Snapshot · May 20, 2026</div>
+    <table class="sector-table">
+      <thead>
+        <tr>
+          <th>Sector</th>
+          <th>Day</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Technology / Semis</td><td class="up">+1.8%</td><td class="up">NVDA earnings lift</td></tr>
+        <tr><td>Airlines / Travel</td><td class="up">+8–10%</td><td class="up">Oil drop, Hormuz hope</td></tr>
+        <tr><td>Energy</td><td class="dn">–2.1%</td><td class="dn">Brent –5%+ prior session</td></tr>
+        <tr><td>Financials</td><td class="up">+0.6%</td><td class="neu">Steeper curve mild tailwind</td></tr>
+        <tr><td>Industrials</td><td class="up">+0.9%</td><td class="neu">Logistics recovery play</td></tr>
+        <tr><td>Consumer Discretionary</td><td class="dn">–0.3%</td><td class="neu">Rate sensitivity persists</td></tr>
+        <tr><td>Utilities</td><td class="dn">–0.5%</td><td class="dn">Yield competition</td></tr>
+        <tr><td>Healthcare</td><td class="neu">flat</td><td class="neu">No catalyst</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The Scenario Grid: Where Does This Week Resolve?</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-label">Bull Case</div>
+      <div class="scenario-title">Deal Closes, AI Accelerates</div>
+      <p class="scenario-body">Iran-US framework signed by end of May. Brent retreats to $85–90. NVDA's after-hours beat fuels a broad tech rotation. SpaceX IPO roadshow launches at $1.75T. 10Y rallies toward 4.3% on disinflation signal. S&P pushes toward 7,600.</p>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-label">Base Case</div>
+      <div class="scenario-title">Hope Without Resolution</div>
+      <p class="scenario-body">Talks drag through June. Brent oscillates $100–110. NVDA lifts semis but broader market chops. Treasury yields stay sticky at 4.5–4.7%. S&P holds 7,200–7,450 range. Volatility compresses on low conviction.</p>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-label">Bear Case</div>
+      <div class="scenario-title">Uranium Demand Kills the Deal</div>
+      <p class="scenario-body">Iran's uranium hardline collapses negotiations. Brent spikes back above $115. FOMC December hike repriced to 70%+. 10Y tests 5.0%. Equity multiple compression re-engages. S&P retraces to 6,800–7,000.</p>
+    </div>
+  </div>
+
+  <!-- WEEK AHEAD CALENDAR -->
+  <div class="cal-block">
+    <div class="cal-title">Week Ahead · May 21–23, 2026</div>
+    <div class="cal-row">
+      <div class="cal-day">THU<br>MAY 21</div>
+      <div class="cal-events">
+        <div class="cal-event"><strong>Initial Jobless Claims</strong> — Leading indicator of labor market softening</div>
+        <div class="cal-event"><strong>Philadelphia Fed Manufacturing Index</strong> — Regional activity read</div>
+        <div class="cal-event cal-hot"><strong>Starship Test Flight #12</strong> — SpaceX suborbital; coincides with IPO week optics</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-day">FRI<br>MAY 22</div>
+      <div class="cal-events">
+        <div class="cal-event"><strong>PCE Price Index (April)</strong> — The Fed's preferred inflation gauge; critical for December hike repricing</div>
+        <div class="cal-event"><strong>University of Michigan Consumer Sentiment (final)</strong></div>
+        <div class="cal-event cal-hot"><strong>Iran-US Talks: Next 72 Hours</strong> — Washington's draft response being evaluated by Tehran now</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-day">WKD</div>
+      <div class="cal-events">
+        <div class="cal-event"><strong>G7 Finance Ministers Communiqué</strong> — Energy market stabilization language to watch</div>
+        <div class="cal-event"><strong>OPEC+ informal consultations</strong> — Output response to Hormuz partial reopening</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAKEAWAY -->
+  <div class="takeaway">
+    <div class="takeaway-label">The FinTrend Read · Wednesday Wrap</div>
+    <p>Wednesday was a master class in narrative collision. NVIDIA's earnings are real — $81.6 billion in revenue is not a rumor, it is a filing. SpaceX's IPO is real — the S-1 is public, the ticker is chosen, the roadshow clock is running. The oil drop is real — three tankers made it through the Strait. But Iran's Supreme Leader's uranium directive is also real. The FOMC minutes are also real. The 4.62% 10-year is also real.</p>
+    <p>The market is currently paying full prices for two mutually exclusive scenarios: a geopolitical resolution that deflates inflation and a continued AI build-out that justifies 21x forward earnings. History suggests you don't often get both. Friday's PCE print is the next forcing function. If April core inflation comes in hot — as it likely will, given the lag effects of $110-plus Brent for the past six weeks — the December rate hike probability spikes and this week's rally faces its first real test.</p>
+    <p>Watch the 10-year. It is the one instrument that doesn't have a narrative. It only has a price.</p>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>DISCLAIMER:</strong> FinTrend News is published for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation to buy or sell any security, or a recommendation of any kind. Past performance is not indicative of future results. All data sourced from publicly available information as of market close May 20, 2026. Always conduct your own due diligence.
+  </div>
+
+</main>
+
+<footer>
+  © 2026 FinTrend News · fintrend.news
+  <span class="sig">— H.W.L. / Markets Correspondent</span>
+</footer>
+
+</body>
+</html>
