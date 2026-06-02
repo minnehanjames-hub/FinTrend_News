@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nine Weeks. Dow 51,000. The Best May in Years. | FinTrend News</title>
+  <meta name="description" content="The S&P 500 locks in its ninth consecutive weekly gain — the longest streak since 2023. The Dow crosses 51,000. Nasdaq finishes May up 8%. And a 60-day Iran ceasefire MOU sends oil toward $90. The full weekly recap." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f; --bg-end: #0f1530;
+      --gold: #b8986a; --gold-dim: rgba(184,152,106,0.12); --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e; --down: #ef6b6b; --warn: #f0a500;
+      --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04); --surface-2: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%); background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.75; min-height: 100vh; }
+    .masthead { border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(11,15,31,0.92); backdrop-filter: blur(12px); z-index: 100; }
+    .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--gold); }
+    .article-outer { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 20px; padding: 5px 14px; margin-bottom: 22px; }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .dek { font-size: 1.1rem; font-weight: 300; color: var(--ink-dim); line-height: 1.6; margin-bottom: 28px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .byline-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; margin-bottom: 40px; }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); letter-spacing: 0.04em; }
+    .lead-para::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.8rem; line-height: 0.82; float: left; margin-right: 8px; margin-top: 6px; color: var(--gold); }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+    .scoreboard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin: 36px 0; }
+    .scoreboard-title { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
+    .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .score-item { text-align: center; }
+    .score-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .score-value { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); line-height: 1.1; }
+    .score-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; margin-top: 2px; }
+    .up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); } .neutral { color: var(--ink-low); }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.45rem; color: var(--ink); margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .ledger { margin: 20px 0 36px; }
+    .ledger-row { display: grid; grid-template-columns: 100px 1fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .ledger-row:last-child { border-bottom: none; }
+    .ledger-day { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; padding-top: 2px; }
+    .ledger-content { font-size: 0.92rem; color: var(--ink-dim); line-height: 1.7; }
+    .ledger-content strong { color: var(--ink); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+    .data-table th { text-align: left; color: var(--ink-low); letter-spacing: 0.07em; text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 500; }
+    .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-dim); }
+    .data-table td:first-child { color: var(--ink); font-weight: 500; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 20px 24px; margin: 36px 0; background: var(--gold-dim); border-radius: 0 8px 8px 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); margin: 0 0 8px; line-height: 1.5; }
+    .pull-quote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%); border: 1px solid var(--gold-border); border-radius: 10px; padding: 28px; margin: 40px 0; }
+    .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+    .disclaimer { border-top: 1px dashed var(--border); margin-top: 56px; padding-top: 20px; font-size: 0.75rem; color: var(--ink-low); line-height: 1.6; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); letter-spacing: 0.06em; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links"><a href="../archive.html">Archive</a><a href="../premium.html">Premium</a></nav>
+  </header>
+
+  <main class="article-outer">
+    <div class="kicker"><div class="kicker-dot"></div><span>Friday Recap &nbsp;·&nbsp; May 29, 2026</span></div>
+
+    <h1>Nine Weeks. Dow 51,000. <em>The Best May in Years.</em></h1>
+
+    <p class="dek">The S&P 500 locks in its ninth consecutive weekly gain — the longest since 2023. The Dow crosses 51,000 for the first time in its history. Nasdaq closes May up 8%. And US-Iran negotiators arrive at a 60-day ceasefire MOU that sends oil toward $90 and lifts the entire risk complex. May 2026 ends with a full month's worth of history.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>Hunter William Lang</strong> &nbsp;·&nbsp; Markets Correspondent</div>
+      <div class="byline-date">FRI 29 MAY 2026 &nbsp;|&nbsp; CLOSE OF TRADING</div>
+    </div>
+
+    <p class="lead-para">The final trading day of May 2026 did what May 2026 has done relentlessly: it went up. The Dow Jones Industrial Average crossed 51,000 for the first time in its 130-year history, closing at 51,032.46. The S&P 500 set yet another all-time record close at 7,580.06, completing its ninth consecutive weekly gain — the longest winning run since late 2023. The Nasdaq closed May with an 8% monthly gain, its best calendar month of 2026 by a wide margin. And threading through Friday's tape was a geopolitical development that, if it holds, has the potential to change the macro narrative for the entire summer: US and Iranian negotiators reportedly arrived at a 60-day memorandum of understanding extending the ceasefire. Trump entered the White House Situation Room Friday morning for a final determination meeting — and ended it without a formal announcement, a decision that the market absorbed with surprising composure, choosing to price the framework's existence over the absence of Trump's public signature.</p>
+
+    <div class="scoreboard">
+      <div class="scoreboard-title">// Week of May 25–29, 2026 &nbsp;·&nbsp; Final Closes</div>
+      <div class="score-grid">
+        <div class="score-item"><div class="score-label">S&P 500</div><div class="score-value">7,580</div><div class="score-delta up">▲ +1.4% wk &nbsp;·&nbsp; +5.2% May &nbsp;·&nbsp; 9-wk streak</div></div>
+        <div class="score-item"><div class="score-label">Nasdaq</div><div class="score-value">26,972</div><div class="score-delta up">▲ +8% May — best month 2026</div></div>
+        <div class="score-item"><div class="score-label">Dow Jones</div><div class="score-value">51,032</div><div class="score-delta up">▲ First-ever 51K close</div></div>
+        <div class="score-item"><div class="score-label">WTI Crude</div><div class="score-value">~$90</div><div class="score-delta down">▼ Iran MOU; Brent −19% from Apr highs</div></div>
+        <div class="score-item"><div class="score-label">10Y Treasury</div><div class="score-value">4.44%</div><div class="score-delta neutral">≈ Stable on wk</div></div>
+        <div class="score-item"><div class="score-label">Russell 2000</div><div class="score-value">2,919</div><div class="score-delta down">▼ −0.60% Fri; small-caps lag</div></div>
+      </div>
+    </div>
+
+    <h2>The Week, Day by Day</h2>
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-day">Mon May 25</div>
+        <div class="ledger-content"><strong>US markets closed — Memorial Day.</strong> Oil dipped below $100 on ceasefire optimism. CME futures indicated positive overnight sentiment. Iran negotiators continued working through the weekend.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Tue May 26</div>
+        <div class="ledger-content">Markets reopened with immediate strength. <strong>S&P 500 hit a fresh all-time intraday high</strong>, gaining 0.61% to 7,519. Nasdaq surged 1.19%. <strong>Micron (MU) jumped 19%</strong>, crossing $1 trillion in market cap on AI memory demand. The Dow lagged, slipping 0.23% as defensive rotation offset tech leadership.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Wed May 28</div>
+        <div class="ledger-content"><strong>The data day:</strong> April PCE printed 3.8% headline (highest since May 2023), core PCE 3.3% in-line. Q1 GDP revised down to 1.6%. Markets shrugged the macro data and rallied on <strong>Dell's 33% after-hours surge</strong> (record AI server quarter, $43.8B revenue, +88% YoY) and <strong>Snowflake's enterprise software beat</strong>. S&P and Nasdaq both hit record closes.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Thu May 29</div>
+        <div class="ledger-content"><strong>Snowflake's beat lifted the entire software sector</strong>. Salesforce, Microsoft, Palantir, CrowdStrike, and ServiceNow all climbed on the read-through that enterprise AI spending is expanding, not contracting. <strong>Trump posted on Truth Social</strong> that he was meeting advisers in the Situation Room to make a "final determination" on an Iran peace deal. Oil fell sharply on the news. Stocks rallied to fresh highs.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Fri May 29</div>
+        <div class="ledger-content"><strong>Dow crossed 51,000 for the first time in history</strong>, closing at 51,032.46. <strong>S&P 500 closed at 7,580 — ninth consecutive weekly gain.</strong> Iran ceasefire 60-day MOU was reported; Trump ended his Situation Room meeting without formal announcement but markets priced the framework. Nasdaq closed May +8%. The month of May 2026 ends as the strongest for technology equities this year.</div>
+      </div>
+    </div>
+
+    <h2>Iran: The 60-Day MOU and What It Means</h2>
+
+    <p>The most consequential development of the week was not a data release or an earnings report. US and Iranian negotiators reportedly arrived at a 60-day memorandum of understanding to extend the ceasefire — a framework that, if formalized and enacted, would be the most substantive diplomatic progress since the conflict began in February. The terms circulating through press briefings include a nuclear talks timeline, a commitment to not resuming large-scale hostilities, and — critically for energy markets — language around Hormuz traffic normalization.</p>
+
+    <p>Brent crude posted its worst monthly performance since the COVID-19 pandemic in May, declining nearly 19% from its April highs as the ceasefire optimism took hold progressively through the month. WTI crude approached $90 by Friday's close. The energy sector finished the week down nearly 4%, the only major S&P sector in the red — a direct reflection of oil's decline.</p>
+
+    <div class="pull-quote">
+      <p>"The real bet you have to make is that we're coming to a resolution on Iran, slowly but surely, in the next two to three weeks. The market is already pricing that bet — at increasingly elevated levels."</p>
+      <cite>— Wayve Capital's Williams, via CNBC &nbsp;·&nbsp; May 29, 2026</cite>
+    </div>
+
+    <p>The critical caveat: Trump ended his Situation Room meeting without a formal announcement. The MOU is a negotiated framework, not a signed deal. The pattern of this conflict has been two steps forward, one step back — and sporadic Iranian missile activity late in the week underscored that the fragility of the arrangement is real. Markets are not pricing a done deal; they're pricing a higher probability of a done deal. Those are meaningfully different risk profiles when oil is the variable connecting diplomatic progress to inflation, bond yields, and the Fed's policy path.</p>
+
+    <h2>May 2026: The Month in Full</h2>
+
+    <table class="data-table">
+      <thead><tr><th>Benchmark</th><th>May Return</th><th>YTD 2026</th><th>From Apr 9 Low</th></tr></thead>
+      <tbody>
+        <tr><td>S&P 500</td><td class="up">+5.2%</td><td class="up">+~10%</td><td class="up">+~20%</td></tr>
+        <tr><td>Nasdaq Composite</td><td class="up">+8.0%</td><td class="up">Leading indices</td><td class="up">AI-driven</td></tr>
+        <tr><td>Dow Jones Industrial</td><td class="up">Record 51K</td><td class="up">+~8%</td><td class="up">+~18%</td></tr>
+        <tr><td>Russell 2000</td><td class="neutral">Lagging</td><td class="neutral">Below mega-cap</td><td class="neutral">Underperformer</td></tr>
+        <tr><td>Brent Crude</td><td class="down">−19% from Apr highs</td><td class="down">Still +vs Jan</td><td class="down">Sharp reversal</td></tr>
+        <tr><td>WTI Crude</td><td class="down">~$90 from $115</td><td class="down">Ceasefire drag</td><td class="down">Energy −4% wk</td></tr>
+        <tr><td>10Y Treasury Yield</td><td class="neutral">~4.4%</td><td class="warn">Well above Jan low</td><td class="neutral">Sticky</td></tr>
+      </tbody>
+    </table>
+
+    <h2>85% of S&P 500 Beating Estimates — By a Lot</h2>
+
+    <p>The earnings season backdrop that has supported this nine-week rally deserves a precise quantification. As of Friday, approximately 85% of S&P 500 companies that have reported Q1 2026 earnings beat analyst estimates — well ahead of the five-year historical average of 78%. More striking: companies are beating profit forecasts by an aggregate 16.7%, more than double the historical average earnings surprise of 7.3%. This is not a typical earnings season. It is an earnings season where the AI infrastructure cycle has generated a category of revenue growth — NVIDIA at +85%, Dell at +88%, data center-adjacent names broadly — that the pre-season consensus models did not fully capture.</p>
+
+    <p>That earnings backdrop is the fundamental justification for the market's nine-week resilience against a macro headwind that includes 3.8% headline PCE, 4.4% 10-year yields, and a consumer sector clearly under pressure. You can disagree with the multiple at which those earnings trade; you cannot argue the earnings aren't real.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">// Weekly Recap Takeaway</div>
+      <p>Nine consecutive weeks of S&P 500 gains. Dow above 51,000. Nasdaq up 8% in May. These are not minor data points — they represent a sustained repricing of risk upward on the back of AI earnings momentum and the progressive unwinding of the geopolitical risk premium embedded in oil since February.</p>
+      <p>The Iran 60-day MOU is the single most important market variable heading into June. If Trump formalizes it next week, oil continues lower, headline PCE begins to moderate, and Warsh gets a cleaner path to patience. If it collapses, oil reclaims $100+ and the entire summer inflation calculus resets.</p>
+      <p>Entering June, the S&P 500 is 10.2% higher than when the Iran war began in February. The market has absorbed a shooting war, an oil shock, a leadership change at the Fed, and 3.8% inflation — and still posted nine straight weekly gains. Respect the tape. But understand that the deal that hasn't been signed yet is the one the rally is currently pricing.</p>
+    </div>
+
+    <div class="disclaimer"><strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal.</div>
+  </main>
+
+  <footer><span>FinTrend News</span> &nbsp;·&nbsp; Friday Recap &nbsp;·&nbsp; May 29, 2026 &nbsp;·&nbsp; markets@fintrend.news</footer>
+</body>
+</html>
