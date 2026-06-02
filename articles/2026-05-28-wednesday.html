@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inflation Holds, Growth Slips, and Dell Goes Parabolic | FinTrend News</title>
+  <meta name="description" content="April PCE hits 3.8% — highest since May 2023. GDP revised down to 1.6%. Dell surges 33% on an AI server blowout. Snowflake kills the SAASpocalypse narrative. Wednesday's full momentum check." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f; --bg-end: #0f1530;
+      --gold: #b8986a; --gold-dim: rgba(184,152,106,0.12); --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e; --down: #ef6b6b; --warn: #f0a500;
+      --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04); --surface-2: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%); background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.75; min-height: 100vh; }
+    .masthead { border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(11,15,31,0.92); backdrop-filter: blur(12px); z-index: 100; }
+    .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .article-outer { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 20px; padding: 5px 14px; margin-bottom: 22px; }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .dek { font-size: 1.1rem; font-weight: 300; color: var(--ink-dim); line-height: 1.6; margin-bottom: 28px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .byline-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; margin-bottom: 40px; }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); letter-spacing: 0.04em; }
+    .lead-para::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.8rem; line-height: 0.82; float: left; margin-right: 8px; margin-top: 6px; color: var(--gold); }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+    .scoreboard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin: 36px 0; }
+    .scoreboard-title { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
+    .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .score-item { text-align: center; }
+    .score-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .score-value { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); line-height: 1.1; }
+    .score-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; margin-top: 2px; }
+    .up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); } .neutral { color: var(--ink-low); }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.45rem; color: var(--ink); margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+    .data-table th { text-align: left; color: var(--ink-low); letter-spacing: 0.07em; text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); font-weight: 500; }
+    .data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-dim); }
+    .data-table td:first-child { color: var(--ink); font-weight: 500; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 20px 24px; margin: 36px 0; background: var(--gold-dim); border-radius: 0 8px 8px 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); margin: 0 0 8px; line-height: 1.5; }
+    .pull-quote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .momentum-tracker { margin: 32px 0; display: flex; flex-direction: column; gap: 2px; }
+    .momentum-row { display: grid; grid-template-columns: 140px 1fr 80px; align-items: center; gap: 16px; padding: 10px 14px; background: var(--surface); border-radius: 4px; }
+    .momentum-row:first-child { border-radius: 8px 8px 4px 4px; } .momentum-row:last-child { border-radius: 4px 4px 8px 8px; }
+    .momentum-ticker { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink); font-weight: 500; }
+    .momentum-desc { font-size: 0.82rem; color: var(--ink-dim); }
+    .momentum-move { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-align: right; font-weight: 500; }
+    .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%); border: 1px solid var(--gold-border); border-radius: 10px; padding: 28px; margin: 40px 0; }
+    .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+    .disclaimer { border-top: 1px dashed var(--border); margin-top: 56px; padding-top: 20px; font-size: 0.75rem; color: var(--ink-low); line-height: 1.6; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); letter-spacing: 0.06em; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links"><a href="../archive.html">Archive</a><a href="../premium.html">Premium</a></nav>
+  </header>
+
+  <main class="article-outer">
+    <div class="kicker"><div class="kicker-dot"></div><span>Wednesday Momentum Check &nbsp;·&nbsp; May 28, 2026</span></div>
+
+    <h1>Inflation Holds, Growth Slips, and Dell <em>Goes Parabolic</em></h1>
+
+    <p class="dek">April PCE prints at 3.8% — the highest since May 2023. GDP is revised down to 1.6%. Dell surges 33% on a record AI server quarter. Snowflake kills the enterprise software collapse narrative. Four data points that pulled in four different directions — here's what actually matters.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>Hunter William Lang</strong> &nbsp;·&nbsp; Markets Correspondent</div>
+      <div class="byline-date">WED 28 MAY 2026 &nbsp;|&nbsp; 10:00 ET</div>
+    </div>
+
+    <p class="lead-para">Wednesday arrived with more consequential data than most full weeks produce. At 8:30 a.m. Eastern, the Bureau of Economic Analysis released two simultaneous reports: the April Personal Consumption Expenditures price index — the Federal Reserve's preferred inflation gauge — and the second estimate of Q1 2026 GDP. Both landed before the opening bell. By 4:05 p.m., Dell Technologies and Snowflake had reported earnings after the close that would reprice their respective sectors before the next morning's open. It was the kind of day where four different story lines demanded the same analytical attention at the same time, and traders who simplified the narrative to any single number missed the full picture.</p>
+
+    <div class="scoreboard">
+      <div class="scoreboard-title">// Wednesday Close &nbsp;·&nbsp; May 28, 2026</div>
+      <div class="score-grid">
+        <div class="score-item"><div class="score-label">S&P 500</div><div class="score-value">7,519</div><div class="score-delta up">▲ +0.61% — Record</div></div>
+        <div class="score-item"><div class="score-label">Nasdaq</div><div class="score-value">26,656</div><div class="score-delta up">▲ +1.19% — Record</div></div>
+        <div class="score-item"><div class="score-label">Dow Jones</div><div class="score-value">50,461</div><div class="score-delta down">▼ −0.23%</div></div>
+        <div class="score-item"><div class="score-label">Headline PCE (Apr)</div><div class="score-value">3.8%</div><div class="score-delta warn">▲ Highest since May 2023</div></div>
+        <div class="score-item"><div class="score-label">Core PCE (Apr YoY)</div><div class="score-value">3.3%</div><div class="score-delta warn">▲ In-line with est.</div></div>
+        <div class="score-item"><div class="score-label">Q1 GDP (2nd Est.)</div><div class="score-value">1.6%</div><div class="score-delta down">▼ Revised from 2.0%</div></div>
+      </div>
+    </div>
+
+    <h2>PCE: The Number Warsh Didn't Want</h2>
+
+    <p>The April PCE report confirmed what the energy price shock has been signaling for weeks: inflation is moving in the wrong direction. Headline PCE rose 0.4% month-over-month in April — below the 0.5% forecast, but still enough to push the year-over-year rate from 3.5% to 3.8%, the highest reading since May 2023. The monthly deceleration relative to March's 0.7% print was the one piece of moderating news in an otherwise uncomfortable release.</p>
+
+    <p>Core PCE — stripping out food and energy — came in at 0.2% month-over-month, missing the 0.3% consensus but holding at 3.3% year-over-year, matching estimates and rising from March's 3.2%. The softer monthly core print could be read as the beginning of a deceleration in underlying price pressures, but with energy continuing to drive headline inflation well above the 2% target, a 0.2% monthly core reading provides limited comfort. The Strait of Hormuz disruption's full pass-through into consumer prices is still working its way through the pipeline — energy CPI, grocery prices, and transportation costs all feed into future PCE readings with lags measured in weeks to months.</p>
+
+    <div class="pull-quote">
+      <p>"The monthly deceleration in core prices is a data point, not a trend. Warsh needs several consecutive months of this before the Fed can credibly signal a pivot."</p>
+      <cite>— FinTrend News analysis &nbsp;·&nbsp; May 28, 2026</cite>
+    </div>
+
+    <p>For Kevin Warsh, in his first week as Fed Chair, the April PCE report presents a difficult communications problem. The headline acceleration to 3.8% keeps the rate hike probability discussion alive — markets are currently pricing roughly a 60% chance of a December 2026 hike. But the softer monthly core reading gives Warsh room to frame the data as "elevated but decelerating" without sounding either hawkish enough to frighten markets or dovish enough to trigger an inflation credibility loss. Expect his first public remarks on this data to lean heavily on the phrase "data-dependent." The June 16-17 FOMC meeting, which will be his first press conference as Chair, is now six weeks away.</p>
+
+    <h2>GDP: Growth Slips, But Doesn't Collapse</h2>
+
+    <p>The Q1 2026 GDP second estimate revised the initial 2.0% reading down to 1.6% annualized. That is a meaningful downgrade — 40 basis points in a single revision is not noise — but it is not the recession signal some feared. Q4 2025 GDP came in at 0.5%, so the revision to 1.6% still represents a meaningful sequential acceleration. The economy grew faster in Q1 than in Q4, even after the revision.</p>
+
+    <p>The growth slowdown embedded in the 1.6% reading reflects a consumer sector that has been absorbing simultaneous shocks: oil above $100 for most of the quarter, elevated grocery and food prices, and a labor market that is generating nominal wage gains of roughly 3% against a real inflation rate well above that. Consumer spending held, but the savings rate data embedded in the PCE release — declining as households draw down buffers to maintain spending levels — is a warning signal about the durability of that spending into Q2 and Q3.</p>
+
+    <table class="data-table">
+      <thead><tr><th>Indicator</th><th>April Actual</th><th>Prior Month</th><th>Consensus Est.</th></tr></thead>
+      <tbody>
+        <tr><td>Headline PCE (YoY)</td><td class="warn">3.8%</td><td>3.5%</td><td>3.8%</td></tr>
+        <tr><td>Headline PCE (MoM)</td><td>+0.4%</td><td>+0.7%</td><td>+0.5%</td></tr>
+        <tr><td>Core PCE (YoY)</td><td class="warn">3.3%</td><td>3.2%</td><td>3.3%</td></tr>
+        <tr><td>Core PCE (MoM)</td><td>+0.2%</td><td>+0.3%</td><td>+0.3%</td></tr>
+        <tr><td>Q1 GDP (2nd Est.)</td><td class="down">1.6%</td><td>0.5% (Q4)</td><td>2.0%</td></tr>
+        <tr><td>Personal Savings Rate</td><td class="down">Declining</td><td>Above avg.</td><td>Stable</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Dell: Best Day on Record, +33%</h2>
+
+    <p>Dell Technologies reported fiscal Q1 FY2027 results after Wednesday's close that were, by any reasonable measure, the most impressive single-quarter performance in the company's history as a public AI infrastructure company. Revenue came in at $43.8 billion — up 88% year-over-year. EPS of $5.24 represented a 282% increase from the same period last year. The Infrastructure Solutions Group, which houses Dell's server and storage business and is the division that sells directly into the AI data center buildout, drove the entire beat.</p>
+
+    <p>The stock surged 33% in after-hours trading — its best single-session performance on record — carrying AI-adjacent hardware names with it in a sympathy wave that extended to storage companies, networking equipment makers, and power infrastructure suppliers. The message from Dell's results is the same one NVIDIA delivered a week earlier: the hyperscaler and enterprise AI capex cycle is not softening. It is accelerating. These two data points, taken together, make it very difficult to argue that the AI infrastructure investment thesis is built on speculative momentum rather than real orders and real revenue.</p>
+
+    <h2>Snowflake: No SAASpocalypse Today</h2>
+
+    <p>Snowflake's quarterly results, also released Wednesday after the close, answered one of the software sector's most anxious questions: is AI spending coming at the expense of enterprise software budgets? The answer, at least from Snowflake's data, is emphatically no. The company reported results that exceeded estimates across revenue, margins, and guidance, and specifically called out AI-native workloads as an accelerating driver of its data platform consumption. The software sector's fear — an "AI-induced SAASpocalypse," in the shorthand that had been circulating on buy-side desks — was not confirmed by these numbers. Enterprise customers are buying more data infrastructure, not less, as AI deployment scales.</p>
+
+    <h2>Today's Momentum Movers</h2>
+    <div class="momentum-tracker">
+      <div class="momentum-row"><div class="momentum-ticker">DELL</div><div class="momentum-desc">Record Q1 FY2027 — $43.8B rev (+88% YoY), EPS +282%, AI server demand exploding</div><div class="momentum-move up">AH +33%</div></div>
+      <div class="momentum-row"><div class="momentum-ticker">SNOW</div><div class="momentum-desc">Beat across rev/margins/guide; AI workloads accelerating on data platform</div><div class="momentum-move up">AH Strong</div></div>
+      <div class="momentum-row"><div class="momentum-ticker">Headline PCE</div><div class="momentum-desc">3.8% YoY — highest since May 2023; energy shock still feeding through</div><div class="momentum-move warn">3.8%</div></div>
+      <div class="momentum-row"><div class="momentum-ticker">Core PCE</div><div class="momentum-desc">3.3% YoY in-line; 0.2% MoM below est. — slight deceleration in underlying prices</div><div class="momentum-move neutral">3.3%</div></div>
+      <div class="momentum-row"><div class="momentum-ticker">GDP Q1 Rev.</div><div class="momentum-desc">Revised to 1.6% from 2.0% — growth slowing but no recessionary collapse</div><div class="momentum-move down">1.6%</div></div>
+      <div class="momentum-row"><div class="momentum-ticker">Micron (MU)</div><div class="momentum-desc">Jumped 19%, crossed $1T market cap on AI memory demand and analyst upgrades</div><div class="momentum-move up">+19%</div></div>
+    </div>
+
+    <h2>Reading the Day: The Four Signals Together</h2>
+
+    <p>The market's reaction to Wednesday's four major data points tells you something about where investor attention is currently weighted. The S&P 500 hit a record close at 7,519. The Nasdaq hit a record close at 26,656. The data that drove those records was Dell's 33% after-hours surge and Snowflake's software beat — the AI earnings narrative — not the PCE data or the GDP revision. The market has, at least for now, decided that AI earnings momentum outweighs macro headwinds. That is a coherent position when earnings are beating by 16.7% on aggregate — more than double the five-year average surprise rate — but it is a position that requires the inflation data to stay within a range that doesn't force Warsh into a hike.</p>
+
+    <p>The softer monthly core PCE reading is the one thread that prevents the inflation data from triggering a repricing. If next month's PCE shows another 0.2% monthly core print, or better, the bond market can begin pricing a path where inflation peaks in the mid-3s and gradually works lower through H2 2026. If core PCE snaps back to 0.3% or 0.4% monthly — which the energy pipeline makes possible — the December hike probability moves above 80% and the equity multiple conversation changes materially.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">// Wednesday Momentum Takeaway</div>
+      <p>The PCE data is the most important number of the day even though it's getting the least attention. Headline at 3.8% is uncomfortable; core at 3.3% with a 0.2% monthly print is the one moderating data point Warsh can use to maintain a patient posture. Watch whether next month reconfirms that deceleration.</p>
+      <p>Dell's 33% surge is an extraordinary single-session move for a $50+ billion market cap company. It confirms that AI infrastructure demand is real, durable, and accelerating. Combined with NVIDIA's $81.6B quarter last week, the capex cycle data now leaves little room for the "AI spending bubble" bears.</p>
+      <p>The GDP revision to 1.6% and the declining savings rate are the two quiet warning flags embedded in today's data. An economy growing at 1.6% with inflation at 3.8% and savings being drawn down is running on fumes at the consumer level. The AI capex story insulates the index; it does not insulate Main Street.</p>
+    </div>
+
+    <div class="disclaimer"><strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal.</div>
+  </main>
+
+  <footer><span>FinTrend News</span> &nbsp;·&nbsp; Wednesday Momentum Check &nbsp;·&nbsp; May 28, 2026 &nbsp;·&nbsp; markets@fintrend.news</footer>
+</body>
+</html>
