@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Weekend That Decides the Summer | FinTrend News</title>
+  <meta name="description" content="Markets are closed for Memorial Day. Iran negotiations are not. Kevin Warsh's first full week as Fed Chair begins Tuesday. And the April PCE on Friday could change everything. The week ahead — before it starts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f;
+      --bg-end: #0f1530;
+      --gold: #b8986a;
+      --gold-dim: rgba(184,152,106,0.12);
+      --gold-mid: rgba(184,152,106,0.28);
+      --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e;
+      --down: #ef6b6b;
+      --ink: #eef1ff;
+      --ink-dim: #b8bfd9;
+      --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(11,15,31,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-low);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .article-outer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+    }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .dek {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 40px;
+    }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-low);
+      letter-spacing: 0.04em;
+    }
+
+    .lead-para::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.8rem;
+      line-height: 0.82;
+      float: left;
+      margin-right: 8px;
+      margin-top: 6px;
+      color: var(--gold);
+    }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+
+    /* ── MORNING BRIEF STRIP ── */
+    .brief-strip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 0 0 36px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .brief-item { text-align: center; }
+    .brief-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .brief-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+    .brief-delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      margin-top: 2px;
+    }
+    .up { color: var(--up); }
+    .down { color: var(--down); }
+    .warn { color: #f0a500; }
+    .neutral { color: var(--ink-low); }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 36px 0;
+      background: var(--gold-dim);
+      border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── SCENARIO GRID ── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 28px 0 36px;
+    }
+    .scenario-card {
+      border-radius: 8px;
+      padding: 18px 16px;
+      border: 1px solid var(--border);
+    }
+    .scenario-bull { background: rgba(93,211,158,0.07); border-color: rgba(93,211,158,0.25); }
+    .scenario-base { background: rgba(184,152,106,0.07); border-color: var(--gold-border); }
+    .scenario-bear { background: rgba(239,107,107,0.07); border-color: rgba(239,107,107,0.25); }
+    .scenario-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scenario-bull .scenario-label { color: var(--up); }
+    .scenario-base .scenario-label { color: var(--gold); }
+    .scenario-bear .scenario-label { color: var(--down); }
+    .scenario-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .scenario-desc {
+      font-size: 0.78rem;
+      color: var(--ink-dim);
+      line-height: 1.65;
+    }
+
+    /* ── WEEK AHEAD EVENTS ── */
+    .events-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 32px;
+    }
+    .events-table th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .events-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-dim);
+      font-size: 0.85rem;
+    }
+    .events-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .events-table td strong { color: var(--ink); }
+    .events-table tr:last-child td { border-bottom: none; }
+    .imp-high { color: var(--down); font-weight: 600; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .imp-med { color: #f0a500; font-weight: 500; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .imp-low { color: var(--up); font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .data-table th {
+      text-align: left;
+      color: var(--ink-low);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-dim);
+    }
+    .data-table td:first-child { color: var(--ink); font-weight: 500; }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .takeaway {
+      background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      margin-top: 56px;
+      padding-top: 20px;
+      font-size: 0.75rem;
+      color: var(--ink-low);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-low);
+      letter-spacing: 0.06em;
+    }
+    footer span { color: var(--gold); }
+
+    .holiday-banner {
+      background: rgba(184,152,106,0.08);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-bottom: 36px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links">
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+    </nav>
+  </header>
+
+  <main class="article-outer">
+
+    <div class="kicker">
+      <div class="kicker-dot"></div>
+      <span>Monday Outlook &nbsp;·&nbsp; May 25, 2026 &nbsp;·&nbsp; Memorial Day</span>
+    </div>
+
+    <h1>The Weekend That <em>Decides the Summer</em></h1>
+
+    <p class="dek">US equity markets are closed today in observance of Memorial Day. Iran negotiations are not. Kevin Warsh begins his first full working week as Fed Chair on Tuesday. And April PCE on Friday could reset the entire interest rate conversation before June begins.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>James Thomas Minnehan</strong> &nbsp;·&nbsp; Senior Markets Editor</div>
+      <div class="byline-date">MON 25 MAY 2026 &nbsp;·&nbsp; MEMORIAL DAY OUTLOOK</div>
+    </div>
+
+    <!-- HOLIDAY BANNER -->
+    <div class="holiday-banner">
+      ⚑ &nbsp; US Equity &amp; Bond Markets Closed — Memorial Day &nbsp;·&nbsp; CME Futures Trading Resumes 5:00 PM CT &nbsp; ⚑
+    </div>
+
+    <!-- MORNING BRIEF STRIP -->
+    <div class="brief-strip">
+      <div class="brief-item">
+        <div class="brief-label">S&P 500 (Fri Close)</div>
+        <div class="brief-value">7,473</div>
+        <div class="brief-delta up">8-wk win streak</div>
+      </div>
+      <div class="brief-item">
+        <div class="brief-label">WTI Crude</div>
+        <div class="brief-value">~$96</div>
+        <div class="brief-delta warn">Sub-$100 · talks ongoing</div>
+      </div>
+      <div class="brief-item">
+        <div class="brief-label">10Y Yield (Fri)</div>
+        <div class="brief-value">4.44%</div>
+        <div class="brief-delta neutral">Holding above 4.4%</div>
+      </div>
+      <div class="brief-item">
+        <div class="brief-label">Headline PCE (Mar)</div>
+        <div class="brief-value">4.0%</div>
+        <div class="brief-delta down">Apr data: Friday</div>
+      </div>
+    </div>
+
+    <p class="lead-para">Holiday Mondays have a particular quality in financial markets — a forced pause that usually arrives at exactly the wrong time. Markets are closed, but the world is not. Iranian negotiators and American intermediaries are working through Memorial Day weekend, trying to close the gap on a ceasefire framework that would, if successful, reopen the Strait of Hormuz and begin unwinding the most consequential energy supply shock in more than a decade. At pump stations across the country, the cost of a holiday weekend tank of gas — up 28% from a year ago — is a daily reminder that the resolution of that geopolitical situation is not an abstraction. It is $4.50 per gallon. It is 40% higher tomatoes. It is $11 more for a pack of hot dogs than last Memorial Day. Whatever gets negotiated or doesn't this weekend lands on Kevin Warsh's desk Tuesday morning, when he officially begins his first full week as Chairman of the Federal Reserve.</p>
+
+    <!-- IRAN OVER THE WEEKEND -->
+    <h2>What's Happening While Markets Are Closed</h2>
+
+    <p>The most consequential market variable this weekend is playing out in Islamabad and in back-channel communications between US and Iranian intermediaries. The framework heading into the long weekend: President Trump described negotiations as resolving "with no rush" on Sunday — language that struck a slightly different tone than the "final stages" phrasing that moved oil lower on Tuesday and Wednesday. Trump simultaneously noted that global oil prices had dipped below $100, calling it a positive development while stopping short of declaring any formal breakthrough.</p>
+
+    <p>The specific points of contention that remain unresolved center on Iran's uranium enrichment program. Reuters reported last Tuesday that Iran's supreme leader had directed that enriched uranium stay within the country — a position incompatible with the US negotiating framework, which requires some form of international supervision or removal of stockpiles as a condition for sanctions relief and Hormuz normalization. That gap, if unresolved, means the ceasefire framework can address the immediate military conflict without resolving the underlying proliferation dispute that keeps structural pressure on the Strait.</p>
+
+    <p>For markets, the overnight oil price action on CME futures (which resume trading at 5:00 PM CT on Monday) will be the first real-time read on whether the weekend produced progress. A move below $93–94 would signal traders pricing a breakthrough. A move back above $100 would signal the opposite. Tuesday's equity open will price in whatever happened between Friday's close and Monday night — with no ability to hedge in between.</p>
+
+    <div class="pull-quote">
+      <p>"Gas is up 28%. Flights are up 21%. Coffee is up 18%. Hot dogs cost 11% more than last Memorial Day. This is the inflation backdrop that Kevin Warsh inherits — not in a spreadsheet, but at the pump."</p>
+      <cite>— FinTrend News &nbsp;·&nbsp; Memorial Day 2026 Inflation Snapshot</cite>
+    </div>
+
+    <!-- WARSH'S FIRST WEEK -->
+    <h2>Warsh's Mandate: The Numbers on the Desk</h2>
+
+    <p>Kevin Warsh's first full week as Fed Chairman begins Tuesday, May 26. The briefing materials waiting for him are not comfortable reading. Headline PCE inflation is running at 4.0% year-over-year as of the March reading — the highest since May 2023. Core PCE is at 3.0%. Both measures sit materially above the Fed's 2% mandate, and both have been moving in the wrong direction as the energy price shock from the Hormuz disruption feeds through consumer prices with its characteristic two-to-three month lag. April PCE data, due Friday May 30, is the most important economic release of the week — potentially of the month.</p>
+
+    <p>Markets are currently pricing approximately 60% probability of a 25-basis-point rate hike at the December 2026 FOMC meeting — not a cut, a hike. That is a dramatic shift from January, when the rate cut conversation dominated. The 10-year Treasury yield at 4.44% and the 30-year at approximately 5.1% encode a bond market that is not giving the Fed credit for any near-term inflation resolution. Warsh takes the chair into a situation where his most likely first move — if data forces his hand — would be a hike, not a cut. That is precisely the opposite of what his installation was presumed to portend when the administration began lobbying for a Powell successor who would be more amenable to lower rates.</p>
+
+    <p>The institutional challenge for Warsh is this: he built his public reputation as an inflation hawk. He cannot now arrive as Chair and look the other way while PCE runs at 4%. But the consumer is already hurting — sentiment at 49.8, real wages negative, the holiday weekend sticker shock documented above. Tightening further into that consumer environment, at the instruction of a White House that wants lower rates, while the bond market charges a 5.1% 30-year yield, is the triple constraint that defines his first months in the role.</p>
+
+    <!-- WEEK AHEAD CALENDAR -->
+    <h2>The Week Ahead: Full Calendar</h2>
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Importance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mon May 25</td>
+          <td><strong>Memorial Day</strong> — US Markets Closed</td>
+          <td class="imp-low">Holiday; overnight oil futures key</td>
+        </tr>
+        <tr>
+          <td>Tue May 26</td>
+          <td><strong>Markets Reopen</strong> · Consumer Confidence (May) · S&amp;P Case-Shiller Home Prices (Mar)</td>
+          <td class="imp-med">Medium — sentiment reading under inflation pressure; gap-up/down risk from weekend Iran headlines</td>
+        </tr>
+        <tr>
+          <td>Wed May 28</td>
+          <td><strong>Q1 GDP Second Estimate</strong> · <strong>Marvell Technology Earnings (MRVL)</strong> · Salesforce preview</td>
+          <td class="imp-high">High — GDP revision defines stagflation narrative; MRVL = AI custom chip barometer</td>
+        </tr>
+        <tr>
+          <td>Thu May 29</td>
+          <td><strong>Jobless Claims</strong> · New Home Sales (Apr) · <strong>Salesforce Earnings (CRM)</strong> · Costco Earnings</td>
+          <td class="imp-med">Medium — labor market check; CRM enterprise AI spend signal; Costco consumer health read</td>
+        </tr>
+        <tr>
+          <td>Fri May 30</td>
+          <td><strong>April Core PCE Inflation</strong> — Warsh's First Data Test &nbsp;·&nbsp; Personal Income &amp; Spending</td>
+          <td class="imp-high">Critical — consensus ~3.3%. Above 3.5% triggers rate hike repricing. Below 3.0% opens relief rally.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- NVDA / AI CARRY SECTION -->
+    <h2>The AI Earnings Carry: How Long Does It Last?</h2>
+
+    <p>The eight consecutive weeks of S&P 500 gains heading into Memorial Day have been built primarily on AI earnings momentum — NVIDIA's $81.6 billion quarter, Dell's 30% earnings surge, the broader infrastructure spending narrative that continues to validate elevated multiples for technology companies despite a macro backdrop that, in almost any other sector, would be read as bearish. That earnings carry will be tested this week in a different segment of the AI value chain: Marvell Technology on Wednesday and Salesforce on Thursday.</p>
+
+    <p>Marvell is the most important of the two as a pure-play AI indicator. The stock has rallied 176% from its 2026 low and is hovering near all-time highs on the strength of custom AI chip revenue — the business of designing application-specific integrated circuits for hyperscaler data centers that want to reduce their dependence on NVIDIA's general-purpose GPU architecture. If Marvell's earnings confirm that hyperscaler AI capex is spreading from NVIDIA ASICs into custom silicon at the pace the stock's valuation implies, the AI infrastructure narrative gets a meaningful corroboration. If Marvell's guidance disappoints, the question becomes whether NVIDIA's dominance is cannibalizing adjacent AI chip opportunities rather than expanding the overall market.</p>
+
+    <p>Salesforce, meanwhile, provides a different signal: enterprise software spending at the AI adoption layer. The question is whether Fortune 500 companies are actually deploying AI tools at a pace that justifies Salesforce's AI-integrated product suite expansion, or whether AI "adoption" at the enterprise level is still in the pilot-program phase that generates demo revenue but not durable contract expansion. That distinction matters for the broader AI investment thesis.</p>
+
+    <!-- SCENARIO PLANNING -->
+    <h2>Three Scenarios for the Week Ahead</h2>
+    <div class="scenario-grid">
+      <div class="scenario-card scenario-bull">
+        <div class="scenario-label">Bull Case</div>
+        <div class="scenario-title">Iran Deal + Soft PCE</div>
+        <div class="scenario-desc">Ceasefire announced over weekend. Oil drops to $85–90. April PCE prints at 2.9–3.0%. Warsh signals patience. S&P 500 tests 7,600+. Rate hike odds collapse. 10Y yield moves toward 4.1%.</div>
+      </div>
+      <div class="scenario-card scenario-base">
+        <div class="scenario-label">Base Case</div>
+        <div class="scenario-title">Talks Ongoing, PCE In-Line</div>
+        <div class="scenario-desc">No ceasefire deal, but talks continue. Oil stays $93–99. PCE prints at 3.2–3.4%. Warsh defers. Markets absorb data with modest volatility. S&P 500 range-bound 7,350–7,550. 10Y holds 4.3–4.5%.</div>
+      </div>
+      <div class="scenario-card scenario-bear">
+        <div class="scenario-label">Bear Case</div>
+        <div class="scenario-title">Talks Collapse + Hot PCE</div>
+        <div class="scenario-desc">Weekend negotiations break down. Oil spikes back above $108. April PCE prints 3.6%+. Warsh faces pressure to signal hike. S&P 500 tests 7,200. 10Y yield moves toward 4.75–4.9%. Risk-off rotation.</div>
+      </div>
+    </div>
+
+    <!-- AI CAPEX CHECK TABLE -->
+    <h2>Key Earnings to Watch: AI Spend Confirmation</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Reports</th>
+          <th>What to Watch</th>
+          <th>AI Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Marvell Technology</td>
+          <td>Wed 5/28</td>
+          <td>Custom ASIC rev, hyperscaler contracts</td>
+          <td class="up">High — custom chip barometer</td>
+        </tr>
+        <tr>
+          <td>Salesforce</td>
+          <td>Thu 5/29</td>
+          <td>Agentforce ARR, AI contract expansion</td>
+          <td class="warn">Medium — enterprise adoption read</td>
+        </tr>
+        <tr>
+          <td>Costco</td>
+          <td>Thu 5/29</td>
+          <td>Comp sales, consumer spending durability</td>
+          <td class="neutral">Consumer health check</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- INFLATION AT THE PUMP SECTION -->
+    <h2>What $4.50 Gas Means for the Macro Calculus</h2>
+
+    <p>This Memorial Day weekend, the average national gasoline price is tracking near $4.50 per gallon — a level that, in prior cycles, has reliably begun to function as a consumer tax heavy enough to pull discretionary spending lower. At these prices, the 28% year-over-year increase in gas costs represents an annualized transfer of several hundred dollars per household from discretionary spending to energy costs. That is not a macro abstraction — it shows up in restaurant same-store sales, in airline load factors, in consumer sentiment readings, and eventually in the retail earnings reports that will populate the June calendar.</p>
+
+    <p>The irony of the current market moment is that the sectors most insulated from this consumer squeeze — mega-cap AI technology, data center infrastructure, semiconductor capital equipment — are also the sectors with the most market capitalization and therefore the most influence on index-level performance. The S&P 500's eight consecutive winning weeks are real, and so is the consumer pain. They coexist because one is measuring large-cap earnings momentum and the other is measuring household cash flow. Both are true simultaneously, which is why the University of Michigan consumer sentiment reading at 49.8 — a level historically associated with recession — does not prevent the S&P 500 from trading at 7,473.</p>
+
+    <!-- TAKEAWAY -->
+    <div class="takeaway">
+      <div class="takeaway-label">// Monday Outlook: Three Things to Watch This Week</div>
+      <p><strong>Oil overnight Monday:</strong> The CME futures open at 5:00 PM CT on Memorial Day is the first live market read on what happened in Iran negotiations over the weekend. Watch the $93 and $100 levels as key inflection points.</p>
+      <p><strong>Marvell Technology Wednesday:</strong> The most important earnings report of the week for understanding whether AI infrastructure capex is broadening beyond NVIDIA or concentrating further. Guidance tone matters more than the headline beat-or-miss.</p>
+      <p><strong>April Core PCE Friday:</strong> This is Warsh's first major data test as Fed Chair. Consensus is approximately 3.3%. A print above 3.5% — which the energy price surge of April makes plausible — would force the rate hike conversation back into the center of the market's field of vision before June has even started. This is the number that could change the entire summer outlook in a single morning.</p>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. US markets are closed today, May 25, 2026, in observance of Memorial Day. Investing involves risk, including the possible loss of principal. Always consult a qualified financial professional before making investment decisions.
+    </div>
+
+  </main>
+
+  <footer>
+    <span>FinTrend News</span> &nbsp;·&nbsp; Monday Outlook &nbsp;·&nbsp; May 25, 2026 — Memorial Day &nbsp;·&nbsp; markets@fintrend.news
+  </footer>
+
+</body>
+</html>
