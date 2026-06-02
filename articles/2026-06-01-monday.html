@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>June Starts. The Streak Gets Tested. | FinTrend News</title>
+  <meta name="description" content="Nine straight winning weeks going into June. Iran's MOU still unsigned. The May jobs report lands Friday. Warsh speaks for the first time as Chair. SpaceX roadshow kicks off in one week. The full June 1 outlook." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f; --bg-end: #0f1530;
+      --gold: #b8986a; --gold-dim: rgba(184,152,106,0.12); --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e; --down: #ef6b6b; --warn: #f0a500;
+      --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04); --surface-2: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%); background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.75; min-height: 100vh; }
+    .masthead { border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(11,15,31,0.92); backdrop-filter: blur(12px); z-index: 100; }
+    .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--gold); }
+    .article-outer { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 20px; padding: 5px 14px; margin-bottom: 22px; }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .dek { font-size: 1.1rem; font-weight: 300; color: var(--ink-dim); line-height: 1.6; margin-bottom: 28px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .byline-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; margin-bottom: 40px; }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); letter-spacing: 0.04em; }
+    .lead-para::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.8rem; line-height: 0.82; float: left; margin-right: 8px; margin-top: 6px; color: var(--gold); }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+    .brief-strip { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 0 0 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .brief-item { text-align: center; }
+    .brief-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .brief-value { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); }
+    .brief-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; margin-top: 2px; }
+    .up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); } .neutral { color: var(--ink-low); }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.45rem; color: var(--ink); margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 20px 24px; margin: 36px 0; background: var(--gold-dim); border-radius: 0 8px 8px 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); margin: 0 0 8px; line-height: 1.5; }
+    .pull-quote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 36px; }
+    .scenario-card { border-radius: 8px; padding: 18px 16px; border: 1px solid var(--border); }
+    .scenario-bull { background: rgba(93,211,158,0.07); border-color: rgba(93,211,158,0.25); }
+    .scenario-base { background: rgba(184,152,106,0.07); border-color: var(--gold-border); }
+    .scenario-bear { background: rgba(239,107,107,0.07); border-color: rgba(239,107,107,0.25); }
+    .scenario-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .scenario-bull .scenario-label { color: var(--up); }
+    .scenario-base .scenario-label { color: var(--gold); }
+    .scenario-bear .scenario-label { color: var(--down); }
+    .scenario-title { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+    .scenario-desc { font-size: 0.78rem; color: var(--ink-dim); line-height: 1.65; }
+    .events-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; }
+    .events-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    .events-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-dim); font-size: 0.85rem; }
+    .events-table td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); white-space: nowrap; }
+    .events-table td strong { color: var(--ink); }
+    .events-table tr:last-child td { border-bottom: none; }
+    .imp-high { color: var(--down); font-weight: 600; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .imp-med { color: var(--warn); font-weight: 500; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%); border: 1px solid var(--gold-border); border-radius: 10px; padding: 28px; margin: 40px 0; }
+    .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+    .disclaimer { border-top: 1px dashed var(--border); margin-top: 56px; padding-top: 20px; font-size: 0.75rem; color: var(--ink-low); line-height: 1.6; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); letter-spacing: 0.06em; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links"><a href="../archive.html">Archive</a><a href="../premium.html">Premium</a></nav>
+  </header>
+
+  <main class="article-outer">
+    <div class="kicker"><div class="kicker-dot"></div><span>Monday Outlook &nbsp;·&nbsp; June 1, 2026</span></div>
+
+    <h1>June Starts. <em>The Streak Gets Tested.</em></h1>
+
+    <p class="dek">Nine straight weekly wins entering the new month. Iran's 60-day MOU still unsigned — and overnight US airstrikes on Iranian radar sites complicate the picture. The May jobs report lands Friday. Warsh steps to the mic. SpaceX kicks off its roadshow in eight days. June 2026 is the month where the rally earns its next leg — or gives back its first.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>James Thomas Minnehan</strong> &nbsp;·&nbsp; Senior Markets Editor</div>
+      <div class="byline-date">MON 01 JUN 2026 &nbsp;|&nbsp; MORNING OUTLOOK</div>
+    </div>
+
+    <div class="brief-strip">
+      <div class="brief-item"><div class="brief-label">S&P 500 (Fri)</div><div class="brief-value">7,580</div><div class="brief-delta up">Record · 9-wk streak</div></div>
+      <div class="brief-item"><div class="brief-label">WTI Crude</div><div class="brief-value">~$94</div><div class="brief-delta down">▲ +3% overnight — Iran strikes</div></div>
+      <div class="brief-item"><div class="brief-label">10Y Yield</div><div class="brief-value">4.44%</div><div class="brief-delta neutral">Holding above 4.4%</div></div>
+      <div class="brief-item"><div class="brief-label">NFP (This Friday)</div><div class="brief-value">May</div><div class="brief-delta warn">Jobs report — rate hike pivot risk</div></div>
+    </div>
+
+    <p class="lead-para">June 1 opens with a familiar dissonance. Markets closed Friday at all-time records — S&P 500 at 7,580, Dow above 51,000, Nasdaq up 8% for May — priced on the optimism of a 60-day Iran ceasefire memorandum of understanding that the president of the United States had not yet formally authorized when the closing bell rang. Over the weekend, US forces struck Iranian radar and drone sites, Brent crude rose roughly 3% on the open, and the careful edifice of diplomatic progress that powered last week's rally encountered its next test before the first Monday session of June had even fully opened. This is the pattern. It is not new. What is new is the context: nine consecutive weekly gains, a streak that has absorbed every setback and emerged higher, now entering a month that brings the most consequential economic data of the year, the largest IPO in US history, and the Federal Reserve Chairman's first formal press conference in the role.</p>
+
+    <h2>The Iran Overnight: Back to the Two-Step</h2>
+
+    <p>The weekend was not quiet. US forces conducted strikes on Iranian radar and drone sites — a continuation of the measured military posture the administration has maintained since the ceasefire, designed to impose costs without triggering the full resumption of hostilities. Brent crude rose approximately 3% on Monday's open to near $94 per barrel, reversing part of last week's dramatic decline. The pattern is becoming mechanically predictable: diplomatic signals compress the oil risk premium, military escalation rebuilds it, and neither side has yet delivered the resolution that would allow the risk premium to structurally unwind.</p>
+
+    <p>The critical question for today's session is how deeply the market discounts this overnight reversal. The prevailing view among equity strategists — and the view the nine-week streak implicitly embodies — is that we are "closer to the off-ramp than the on-ramp," as one portfolio manager framed it last week. The market is not pricing a full ceasefire; it is pricing a higher probability of one than existed two months ago. A 3% overnight crude bounce on military activity does not necessarily invalidate that probabilistic framework. But it does remind everyone that the diplomatic progress is not yet locked in, and that the oil-inflation-Fed chain of causation can reprice quickly when headlines shift.</p>
+
+    <div class="pull-quote">
+      <p>"For energy prices to go above where we were at the peak, the conflict would have to escalate materially beyond what we saw in the first weeks. That remains the tail risk, not the base case."</p>
+      <cite>— Tim Holland, Orion Capital &nbsp;·&nbsp; CNBC, June 2026</cite>
+    </div>
+
+    <h2>The May Jobs Report: Friday's Rate-Defining Number</h2>
+
+    <p>The most important piece of US economic data this week is not an inflation number — it's a labor market number. The May nonfarm payrolls report, due Friday June 5, arrives at a particularly consequential moment: it is the first jobs report under Warsh's tenure, and its reading will materially shape the inflation narrative heading into the June 16-17 FOMC meeting where Warsh gives his first press conference as Chair.</p>
+
+    <p>The labor market's behavior over the past two months has been a critical source of resilience for equity markets. An economy growing at 1.6% with 3.8% inflation could be in serious trouble if the labor market were softening simultaneously. It hasn't been. Wage growth running around 3% is below inflation, yes — creating negative real wages for most workers — but it reflects a labor market that is holding, not cracking. That distinction matters for the Fed, because a cracking labor market would give Warsh cover to pivot toward cuts even against elevated inflation. A holding labor market forces him to confront the inflation data on its own terms.</p>
+
+    <p>The two-sided risk in the jobs report is worth naming explicitly. A strong payrolls print — say, above 200,000 — combined with sticky wages keeps the December rate hike probability elevated and potentially pushes it higher. That is bearish for bond duration and puts pressure on high-multiple technology names. A weak jobs print — below 150,000 or with rising unemployment — introduces the stagflation scenario more directly: slow growth, high inflation, deteriorating employment. Neither outcome is unambiguously bullish. The narrow soft landing involves a Goldilocks read somewhere in the 160–190,000 range with moderating wages, and that is what the market is implicitly hoping for.</p>
+
+    <h2>Week Ahead: Full Calendar</h2>
+    <table class="events-table">
+      <thead><tr><th>Date</th><th>Event</th><th>Importance</th></tr></thead>
+      <tbody>
+        <tr><td>Mon Jun 1</td><td><strong>ISM Manufacturing PMI (May)</strong> · Markets reopen with Iran overnight</td><td class="imp-med">Manufacturing health check; oil move overnight adds geopolitical context from open</td></tr>
+        <tr><td>Tue Jun 2</td><td><strong>JOLTS Job Openings (Apr)</strong> · <strong>Factory Orders</strong> · Warsh potential public remarks</td><td class="imp-med">Labor market leading indicator; openings vs. hiring gap = policy signal</td></tr>
+        <tr><td>Wed Jun 3</td><td><strong>ISM Services PMI (May)</strong> · <strong>ADP Employment Change</strong></td><td class="imp-med">ADP is a preview of Friday's NFP; services PMI tracks the consumer-facing economy</td></tr>
+        <tr><td>Thu Jun 4</td><td><strong>Jobless Claims</strong> · Trade Balance (Apr)</td><td class="imp-med">Weekly claims trend; trade data may show tariff/war effects on import flows</td></tr>
+        <tr><td>Fri Jun 5</td><td><strong>May Nonfarm Payrolls (NFP) — The Week's Defining Release</strong></td><td class="imp-high">Critical. Below 150K = stagflation signal. 160–190K = Goldilocks. Above 220K = rate hike pressure. Wages equally important.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>June's Historical Caution Flag</h2>
+
+    <p>One fact about June that belongs in the framing: it is historically the weakest month for equities in midterm election-year cycles. That seasonal pattern doesn't override fundamental data — nothing does — but it provides context for why consolidation after nine straight winning weeks would be entirely normal rather than alarming. A 3-5% pullback from Friday's record close would leave the S&P 500 somewhere around 7,200–7,350, comfortably within the range of the recent rally and still above all major moving averages. It would not be a bear market signal. It would be a market digesting nine weeks of gains and a set of data releases that carry genuine two-sided risk.</p>
+
+    <p>The earnings season tailwind — 85% beat rate, 16.7% average earnings surprise — remains the fundamental anchor. About 85% of S&P 500 companies have now reported Q1 2026 results, and the aggregate picture is an earnings season that delivered at roughly twice the historical average rate of positive surprise. That does not evaporate with a jobs miss or a crude bounce. It is a stock of fundamental information that supports the market at a higher level than it would otherwise occupy. The question is not whether the earnings story changes this week; it's whether the macro data adds pressure to multiples at a moment when a seasonal weak period and nine weeks of prior gains create natural conditions for profit-taking.</p>
+
+    <h2>SpaceX Roadshow: Eight Days Away</h2>
+
+    <p>The SpaceX IPO roadshow is scheduled to begin June 8 — one week from today. The largest capital raise in American market history, targeting $75 billion at a $1.75–$2 trillion valuation, will begin formally presenting to institutional investors in seven days. Morgan Stanley and Goldman Sachs lead the book. Schwab, Fidelity, Robinhood, and Etrade are in the selling group for retail allocation. The roadshow's reception will be the first real test of whether institutional demand exists at the valuation range the S-1 implies — and it will arrive at a moment when the equity market is simultaneously at all-time highs (favorable for IPO appetite) and facing a week of data risk (unfavorable for adding large new positions before knowing the jobs number).</p>
+
+    <h2>Three Scenarios for the Week</h2>
+    <div class="scenario-grid">
+      <div class="scenario-card scenario-bull">
+        <div class="scenario-label">Bull Case</div>
+        <div class="scenario-title">Iran Formalizes MOU + Goldilocks NFP</div>
+        <div class="scenario-desc">Trump signs the 60-day ceasefire extension. Oil drops back below $90. NFP prints 170K with moderating wages. S&P 500 extends streak toward 7,650+. 10-wk winning run becomes conversation.</div>
+      </div>
+      <div class="scenario-card scenario-base">
+        <div class="scenario-label">Base Case</div>
+        <div class="scenario-title">Iran Muddle + In-Line NFP</div>
+        <div class="scenario-desc">Talks continue, no formal deal. Crude volatile $90–$97. NFP 160–200K. Market consolidates, S&P 500 range-bound 7,450–7,600. Streak extends narrowly or snaps with modest loss.</div>
+      </div>
+      <div class="scenario-card scenario-bear">
+        <div class="scenario-label">Bear Case</div>
+        <div class="scenario-title">Iran Escalation + Hot Jobs + Wage Spike</div>
+        <div class="scenario-desc">Military exchanges escalate beyond radar strikes. Oil back above $100. NFP &gt;220K with wages +3.5%+. December hike odds surge to 80%+. S&P 500 pulls back 3–5% to 7,200–7,350. Streak snaps.</div>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-label">// Monday Outlook: Three Things to Watch This Week</div>
+      <p><strong>Overnight oil and Iran response:</strong> The 3% crude bounce on weekend strikes is the first test of the market's ceasefire pricing. If equities open broadly lower and hold those losses through Monday's session, it suggests the market is beginning to discount the MOU's fragility. If the dip is bought within the first hour, the buy-the-dip structure of the nine-week rally remains intact.</p>
+      <p><strong>Wednesday ADP employment:</strong> The private payroll estimate from ADP will be the week's early labor market signal before Friday's official NFP. A weak ADP read below 150K would put the market on defense before the official data arrives. A strong read above 200K puts the rate hike narrative back at the front of the queue.</p>
+      <p><strong>Friday May NFP — the week's defining number:</strong> This is the data point that will most directly shape Warsh's June 17 press conference and the FOMC's dot plot revision. The range between a market-friendly 170K and a market-hostile 220K+ is what the week's entire risk is being priced around. Position sizes and hedges will be managed against this Friday print all week long.</p>
+    </div>
+
+    <div class="disclaimer"><strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal. Always consult a qualified financial professional before making investment decisions.</div>
+  </main>
+
+  <footer><span>FinTrend News</span> &nbsp;·&nbsp; Monday Outlook &nbsp;·&nbsp; June 1, 2026 &nbsp;·&nbsp; markets@fintrend.news</footer>
+</body>
+</html>
