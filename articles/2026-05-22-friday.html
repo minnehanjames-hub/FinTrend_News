@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eight Weeks and a New Fed Chair | FinTrend News</title>
+  <meta name="description" content="The S&P 500 posts its eighth consecutive weekly gain. Kevin Warsh takes the oath at the White House. Dell surges 30%. And Iran peace talks put oil below $97. The week in full." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f;
+      --bg-end: #0f1530;
+      --gold: #b8986a;
+      --gold-dim: rgba(184,152,106,0.12);
+      --gold-mid: rgba(184,152,106,0.28);
+      --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e;
+      --down: #ef6b6b;
+      --ink: #eef1ff;
+      --ink-dim: #b8bfd9;
+      --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(11,15,31,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-low);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .article-outer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+    }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .dek {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 40px;
+    }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-low);
+      letter-spacing: 0.04em;
+    }
+
+    .lead-para::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.8rem;
+      line-height: 0.82;
+      float: left;
+      margin-right: 8px;
+      margin-top: 6px;
+      color: var(--gold);
+    }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 36px 0;
+    }
+    .scoreboard-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .score-item { text-align: center; }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .score-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .score-delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      margin-top: 2px;
+    }
+    .up { color: var(--up); }
+    .down { color: var(--down); }
+    .neutral { color: var(--ink-low); }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── LEDGER ── */
+    .ledger { margin: 20px 0 36px; }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ledger-row:last-child { border-bottom: none; }
+    .ledger-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+    .ledger-content { font-size: 0.92rem; color: var(--ink-dim); line-height: 1.7; }
+    .ledger-content strong { color: var(--ink); }
+
+    /* ── WEEKLY MOVES TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .data-table th {
+      text-align: left;
+      color: var(--ink-low);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-dim);
+    }
+    .data-table td:first-child { color: var(--ink); font-weight: 500; }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 36px 0;
+      background: var(--gold-dim);
+      border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .takeaway {
+      background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      margin-top: 56px;
+      padding-top: 20px;
+      font-size: 0.75rem;
+      color: var(--ink-low);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-low);
+      letter-spacing: 0.06em;
+    }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links">
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+    </nav>
+  </header>
+
+  <main class="article-outer">
+
+    <div class="kicker">
+      <div class="kicker-dot"></div>
+      <span>Friday Recap &nbsp;·&nbsp; May 22, 2026</span>
+    </div>
+
+    <h1>Eight Weeks and a <em>New Fed Chair</em></h1>
+
+    <p class="dek">The S&P 500 posts its eighth consecutive weekly gain. Kevin Warsh is sworn in at the White House. Dell surges 30% in a single session. Iran peace talks put oil below $100. A week that moved fast and left several important questions open.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>Hunter William Lang</strong> &nbsp;·&nbsp; Markets Correspondent</div>
+      <div class="byline-date">FRI 22 MAY 2026 &nbsp;|&nbsp; CLOSE OF TRADING</div>
+    </div>
+
+    <p class="lead-para">There was a moment on Friday morning, roughly 10 a.m. Eastern, when the East Room of the White House and the floor of the New York Stock Exchange were both hosting ceremonies that will shape the next several years of American financial markets. In the East Room, Kevin Warsh took the oath as Chairman of the Federal Reserve — the first Fed chair sworn in at the White House since Alan Greenspan in 1987, a historical footnote that captured, in miniature, the current administration's unambiguous posture toward the central bank it spent two years lobbying to reshape. On the trading floor and across terminals, Dell Technologies was up nearly 30% on the strength of an earnings report that hit after Thursday's close, pulling every AI-adjacent hardware name with it in a sympathy wave that eventually carried the Dow to yet another record close. The S&P 500 closed the week at 7,473, notching its eighth consecutive weekly gain and its seventh consecutive winning session.</p>
+
+    <!-- FINAL SCOREBOARD -->
+    <div class="scoreboard">
+      <div class="scoreboard-title">// Week of May 18–22, 2026 &nbsp;·&nbsp; Final Close</div>
+      <div class="score-grid">
+        <div class="score-item">
+          <div class="score-label">S&P 500</div>
+          <div class="score-value">7,473</div>
+          <div class="score-delta up">▲ Week +0.8% &nbsp;·&nbsp; 8 straight</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Nasdaq</div>
+          <div class="score-value">26,344</div>
+          <div class="score-delta up">▲ +0.19% Fri</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Dow Jones</div>
+          <div class="score-value">50,580</div>
+          <div class="score-delta up">▲ Record Close</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">WTI Crude</div>
+          <div class="score-value">$96.xx</div>
+          <div class="score-delta down">▼ Sub-$100 on talks</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">10Y Treasury</div>
+          <div class="score-value">4.44%</div>
+          <div class="score-delta neutral">≈ −1.2 bps on wk</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">VIX</div>
+          <div class="score-value">~17</div>
+          <div class="score-delta neutral">Complacency zone</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY-BY-DAY LEDGER -->
+    <h2>The Week, Day by Day</h2>
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-day">Mon May 18</div>
+        <div class="ledger-content">The week opened under pressure. <strong>Nasdaq and S&P 500 declined</strong> as the 10-year Treasury yield pushed to its highest level in a year and investors grew anxious ahead of NVIDIA's earnings report scheduled for Wednesday. The 30-year yield briefly crossed 5.197%. Kevin Warsh's confirmation as Fed Chair on a 54-45 Senate vote — anticipated but consequential — did little to settle bond market nerves on the day.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Tue May 20</div>
+        <div class="ledger-content">Stocks fell further Tuesday as crude spiked on a Reuters report that Iran's supreme leader had directed enriched uranium to stay in-country — a diplomatic complication that immediately repriced oil and refueled inflation fears. The S&P 500 dropped 0.7% to 7,353. The 10-year yield hit 4.687%. Market focus narrowed sharply toward the after-close NVIDIA print.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Wed May 20</div>
+        <div class="ledger-content">The two most consequential market documents of the week dropped on the same session. <strong>NVIDIA reported $81.6 billion in Q1 FY2027 revenue</strong> — up 85% year-over-year — with a 25x quarterly dividend hike and Q2 guidance of $91 billion. Hours earlier, <strong>SpaceX filed its public S-1</strong>, targeting a $1.75–$2 trillion IPO valuation. The Dow closed at a record 50,285. NVDA dipped 1.5% after hours on a classic buy-the-rumor exhale. <strong>SoftBank surged 20%</strong> in Tokyo on NVIDIA sympathy.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Thu May 21</div>
+        <div class="ledger-content">Thursday consolidated the week's gains. The Dow, S&P 500, and Nasdaq all closed at <strong>fresh all-time highs</strong>. Oil continued lower on Iran ceasefire optimism. <strong>Dell Technologies reported after the bell</strong> with results that blew past estimates — revenue, margins, and guidance all ahead — setting up Friday's dramatic move.</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">Fri May 22</div>
+        <div class="ledger-content"><strong>Dell surged nearly 30%</strong>, carrying AI hardware peers with it. <strong>Kevin Warsh was sworn in as Fed Chair at the White House</strong> — a ceremony Trump opened by saying he wanted Warsh to "just do your own thing." Secretary of State Rubio met with Pakistani Foreign Minister Dar as Pakistan continued to mediate indirect U.S.–Iran talks. The S&P 500 closed at 7,473, completing its <strong>eighth straight weekly gain</strong> and seventh consecutive positive session.</div>
+      </div>
+    </div>
+
+    <!-- WARSH SECTION -->
+    <h2>Warsh Takes the Oath</h2>
+
+    <p>Kevin Warsh is now the Chairman of the Federal Reserve, sworn in at 10 a.m. Friday morning in the East Room of the White House. The setting was itself a statement. No Fed chair has been sworn in at the White House since Alan Greenspan in 1987. President Trump opened the ceremony by telling Warsh to "be totally independent" — while simultaneously standing at the podium for an administration that has spent two years publicly criticizing the central bank's interest rate decisions and orchestrating the nomination of a successor who has been more publicly sympathetic to lower rates than Powell ever was.</p>
+
+    <div class="pull-quote">
+      <p>"I want Kevin to be totally independent. Don't look at me, don't look at anybody."</p>
+      <cite>— President Donald Trump &nbsp;·&nbsp; Warsh Swearing-In Ceremony, May 22, 2026</cite>
+    </div>
+
+    <p>The market's reaction to Warsh's installation has been more measured than either bulls or bears anticipated. There was no "Warsh rally" on the day of his Senate confirmation, and there hasn't been a dramatic repricing of rate cut expectations on the day of his swearing-in either. The reason is straightforward: Warsh now takes the chair at a moment when headline PCE sits at 4% year-over-year and core PCE is running at 3%, both materially above the Fed's 2% mandate. He built his entire public career criticizing the Fed for falling behind on inflation. He cannot arrive as Chairman and pivot dovishly while the data reads the way it does. Markets appear to understand this, which is why the 10-year yield remains in the 4.4–4.5% range rather than collapsing on the assumption of imminent cuts.</p>
+
+    <p>What Warsh's arrival does change is the communication style and the institutional tone. He is a more market-attentive Fed chair than Powell in his later years — someone who will be watching the tape as well as the data. Whether that makes him more or less predictable remains the central question for rate markets as the summer unfolds.</p>
+
+    <!-- WEEKLY PERFORMERS TABLE -->
+    <h2>Week's Notable Movers</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ticker</th>
+          <th>Weekly Move</th>
+          <th>Driver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dell Technologies</td>
+          <td>DELL</td>
+          <td class="up">+~40%</td>
+          <td>AI server earnings blowout</td>
+        </tr>
+        <tr>
+          <td>SoftBank Group</td>
+          <td>TYO:9984</td>
+          <td class="up">+~32%</td>
+          <td>NVDA sympathy, AI infrastructure</td>
+        </tr>
+        <tr>
+          <td>NVIDIA</td>
+          <td>NVDA</td>
+          <td class="up">Strong wk</td>
+          <td>$81.6B Q1, $91B Q2 guide, 25x div</td>
+        </tr>
+        <tr>
+          <td>Quantum Names (RGTI, QBTS)</td>
+          <td>Mixed</td>
+          <td class="up">Multi-day surge</td>
+          <td>Speculative next-gen compute bids</td>
+        </tr>
+        <tr>
+          <td>WTI Crude Oil</td>
+          <td>CL1</td>
+          <td class="down">Sub-$100</td>
+          <td>Iran ceasefire optimism</td>
+        </tr>
+        <tr>
+          <td>Russell 2000</td>
+          <td>RUT</td>
+          <td class="down">−0.60% Fri</td>
+          <td>Small-caps lagging mega-cap AI</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- IRAN/OIL SECTION -->
+    <h2>Oil and Diplomacy: Sub-$100 and Still Moving</h2>
+
+    <p>For the first time since the Strait of Hormuz disruption began, WTI crude spent meaningful time below $100 per barrel this week. The driver was a combination of genuine diplomatic progress — Pakistan brokering indirect talks, Secretary Rubio engaged in Islamabad on Friday — and Trump's "final stages" language on Tuesday that gave traders permission to begin unwinding the conflict premium embedded in crude prices since March.</p>
+
+    <p>The significance of oil below $100 for financial markets should not be understated. At $110–$115, the oil shock becomes a direct input into everything: CPI, PCE, airline margins, trucking costs, consumer discretionary spending. Below $100, those pressures moderate. They don't disappear — gasoline prices at the pump this Memorial Day weekend are still running 28% above year-ago levels — but they begin to turn, and turning commodity prices are what give the Fed the optionality to pause rather than hike.</p>
+
+    <p>The complication is that the uranium directive headline on Tuesday reminded everyone how quickly the diplomatic backdrop can reverse. Markets are not yet pricing a full ceasefire — they're pricing a higher probability of one. That's different. If talks collapse over the weekend, oil is back above $100 before the Monday open.</p>
+
+    <!-- WARSH/MACRO OUTLOOK -->
+    <h2>What Warsh Inherits: The Numbers</h2>
+
+    <p>It is worth being precise about the macroeconomic environment Kevin Warsh steps into. Headline PCE inflation is running at 4% year-over-year. Core PCE is at 3%. The University of Michigan consumer sentiment index fell to 49.8 in April — deep in recessionary territory. Wage growth is running at approximately 3%, meaning real wages are negative against current price levels. Gasoline is up 28% from a year ago. Beef is up 16%. The 30-year Treasury yield is near 5.1%. Markets are pricing roughly a 60% probability of a rate hike at the December 2026 meeting — not a cut.</p>
+
+    <p>This is the classic stagflation configuration: growth slowing, prices not. The equity market's eight consecutive weekly gains tell one story; the bond market's refusal to rally tells another. Both can be right simultaneously — equities can rally on earnings momentum while bonds price an inflation problem that equities are temporarily ignoring. The question is which one breaks first, and that question now lands on Warsh's desk with his first morning briefing on Monday.</p>
+
+    <!-- TAKEAWAY -->
+    <div class="takeaway">
+      <div class="takeaway-label">// Weekly Recap Takeaway</div>
+      <p>Eight consecutive weeks of S&P 500 gains is a resilience data point that would have seemed implausible in March. The AI earnings machine — NVIDIA, Dell, the broader infrastructure buildout — is providing real, quantitative justification for elevated equity multiples in a way that the "vibe recession" narrative cannot simply override.</p>
+      <p>Kevin Warsh now runs the Federal Reserve. His first real test comes with the PCE data due next Friday, May 30. If core PCE prints above 3.3% with Warsh newly in the chair, the market will be watching for his first signals on whether he leans toward the data or toward the political environment that installed him.</p>
+      <p>Oil below $100 is the single most important near-term macro variable. If Iranian diplomacy holds over the Memorial Day weekend and crude stays beneath that psychological threshold into next week, the inflation calculus begins to soften at the margins — not enough to change the Fed's posture immediately, but enough to shift the trajectory of summer rate expectations.</p>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal. Always consult a qualified financial professional before making investment decisions.
+    </div>
+
+  </main>
+
+  <footer>
+    <span>FinTrend News</span> &nbsp;·&nbsp; Friday Recap &nbsp;·&nbsp; May 22, 2026 &nbsp;·&nbsp; markets@fintrend.news
+  </footer>
+
+</body>
+</html>
