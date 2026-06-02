@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Chair Arrives. The Problem Didn't Leave. | FinTrend News</title>
+  <meta name="description" content="Kevin Warsh swears in as Fed Chair into the hardest inflation backdrop in a generation. Oil is below $100 — but not from strength. And the SpaceX S-1 is really a bet on something that doesn't exist yet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f;
+      --bg-end: #0f1530;
+      --gold: #b8986a;
+      --gold-dim: rgba(184,152,106,0.12);
+      --gold-mid: rgba(184,152,106,0.28);
+      --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e;
+      --down: #ef6b6b;
+      --ink: #eef1ff;
+      --ink-dim: #b8bfd9;
+      --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(11,15,31,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-low);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .article-outer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+    }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .dek {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    .byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 40px;
+    }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-low);
+      letter-spacing: 0.04em;
+    }
+
+    .lead-para::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.8rem;
+      line-height: 0.82;
+      float: left;
+      margin-right: 8px;
+      margin-top: 6px;
+      color: var(--gold);
+    }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+
+    /* ── MACRO DASHBOARD ── */
+    .macro-dashboard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 36px 0;
+    }
+    .macro-dashboard-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .macro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .macro-item {
+      padding: 14px;
+      background: var(--surface-2);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .macro-item-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .macro-item-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .macro-item-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      margin-top: 4px;
+    }
+    .up { color: var(--up); }
+    .down { color: var(--down); }
+    .warn { color: #f0a500; }
+    .neutral { color: var(--ink-low); }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin: 40px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 36px 0;
+      background: var(--gold-dim);
+      border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── REGIME BOX ── */
+    .regime-box {
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 32px 0;
+      background: rgba(184,152,106,0.06);
+    }
+    .regime-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .regime-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .regime-desc {
+      font-size: 0.9rem;
+      color: var(--ink-dim);
+      line-height: 1.7;
+    }
+
+    /* ── WEEK AHEAD EVENTS ── */
+    .events-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 32px;
+      font-size: 0.85rem;
+    }
+    .events-table th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .events-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-dim);
+      font-size: 0.85rem;
+    }
+    .events-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .events-table td strong { color: var(--ink); }
+    .events-table tr:last-child td { border-bottom: none; }
+    .high { color: var(--down); font-weight: 600; }
+    .medium { color: #f0a500; font-weight: 500; }
+    .low { color: var(--up); }
+
+    .takeaway {
+      background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      margin-top: 56px;
+      padding-top: 20px;
+      font-size: 0.75rem;
+      color: var(--ink-low);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-low);
+      letter-spacing: 0.06em;
+    }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links">
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+    </nav>
+  </header>
+
+  <main class="article-outer">
+
+    <div class="kicker">
+      <div class="kicker-dot"></div>
+      <span>Sunday Macro Note &nbsp;·&nbsp; May 24, 2026</span>
+    </div>
+
+    <h1>The Chair Arrives. The Problem <em>Didn't Leave.</em></h1>
+
+    <p class="dek">Kevin Warsh takes the chair into the hardest inflation backdrop of a generation. Oil is below $100 — but not from strength. And the SpaceX S-1 is really a bet on something that doesn't exist yet. Three macro themes that will define the next quarter.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>Arshia Morshedian</strong> &nbsp;·&nbsp; Macro &amp; Global Markets</div>
+      <div class="byline-date">SUN 24 MAY 2026 &nbsp;|&nbsp; MORNING EDITION</div>
+    </div>
+
+    <p class="lead-para">The ceremony on Friday morning was a piece of theater worth reading carefully. Kevin Warsh — former Fed Governor, former Morgan Stanley managing director, former everything that makes for an orthodox central banker — stood in the East Room of the White House and took an oath administered in a room that every previous Fed chair since Greenspan avoided like a constitutional contagion. The location was not incidental. It was the culmination of a two-year administrative project to install a central banker close enough to this White House to be reachable. Whether Warsh uses that proximity to protect the Fed's independence or whether it eventually erodes it is the most important institutional question in American financial markets for the next four years — and it starts getting answered this week, when the April PCE data drops on Friday and tells Warsh, and the market, whether the inflation he is inheriting is improving or getting worse.</p>
+
+    <!-- MACRO DASHBOARD -->
+    <div class="macro-dashboard">
+      <div class="macro-dashboard-title">// Current Macro Regime &nbsp;·&nbsp; As of May 24, 2026</div>
+      <div class="macro-grid">
+        <div class="macro-item">
+          <div class="macro-item-label">Headline PCE (Mar)</div>
+          <div class="macro-item-value warn">4.0%</div>
+          <div class="macro-item-sub warn">▲ Highest since May 2023</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">Core PCE (Mar)</div>
+          <div class="macro-item-value warn">3.0%</div>
+          <div class="macro-item-sub warn">▲ Above Fed 2% target</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">10Y Treasury</div>
+          <div class="macro-item-value">4.44%</div>
+          <div class="macro-item-sub neutral">≈ Near cycle highs</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">30Y Treasury</div>
+          <div class="macro-item-value warn">~5.10%</div>
+          <div class="macro-item-sub warn">▲ Fiscal concern premia</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">WTI Crude</div>
+          <div class="macro-item-value">~$96</div>
+          <div class="macro-item-sub down">▼ Below $100 on Iran talks</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">UMich Sentiment</div>
+          <div class="macro-item-value down">49.8</div>
+          <div class="macro-item-sub down">▼ Recessionary territory</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">Wage Growth</div>
+          <div class="macro-item-value">~3.0%</div>
+          <div class="macro-item-sub down">▼ Real wages negative</div>
+        </div>
+        <div class="macro-item">
+          <div class="macro-item-label">S&P 500 (8-wk streak)</div>
+          <div class="macro-item-value up">7,473</div>
+          <div class="macro-item-sub up">▲ AI earnings carrying tape</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WARSH SECTION -->
+    <h2>What Warsh Actually Inherits</h2>
+
+    <p>The headline PCE number Warsh walks into — 4.0% year-over-year as of the March reading, with core PCE at 3.0% — is not a mild overshoot. It is a full percentage point above the Fed's 2% target on the headline measure, and 50 basis points above on core. Those numbers arrived against a backdrop of the 30-year Treasury yield near 5.1%, which tells you that bond markets are not pricing a near-term return to the inflation target. They are pricing a world in which the Fed's preferred measure stays elevated long enough to keep long-duration rates high.</p>
+
+    <p>Warsh's public record on inflation is unambiguous. He was one of the earliest and most vocal critics of the Fed's post-COVID response — the argument that the central bank kept monetary accommodation too easy for too long and permitted inflation to become entrenched in a way that required the painful 2022–2023 tightening cycle to eventually contain. He cannot now arrive as Chair and, in his first months, signal willingness to accept structurally higher inflation just because oil prices are temporarily softening or because the White House has views on the appropriate level of borrowing costs.</p>
+
+    <div class="pull-quote">
+      <p>"The inflation rebound leaves the Federal Reserve facing a brutal policy reality. Markets spent months convincing themselves rate cuts were inevitable. The data is destroying that argument."</p>
+      <cite>— Nigel Green, deVere Group &nbsp;·&nbsp; on April PCE, May 28, 2026</cite>
+    </div>
+
+    <p>What makes Warsh's position genuinely difficult — and what the ceremony's White House setting underscored — is the political environment he is navigating. The administration that installed him has been publicly vocal about wanting lower interest rates. Consumer sentiment has collapsed to 49.8 by the University of Michigan's measure. Gas is up 28% from a year ago. The squeeze is real and politically visible. The Fed cannot respond to real consumer pain by tightening further, but it also cannot pretend that the inflation data doesn't exist without destroying the credibility that anchors the entire treasury market. Warsh must thread a needle that has a very small hole.</p>
+
+    <!-- OIL SECTION -->
+    <h2>Oil Below $100: What the Price Is Actually Saying</h2>
+
+    <p>The move in crude oil over the past week deserves a more careful reading than it is typically getting. WTI spent meaningful time below $100 for the first time since the Strait of Hormuz disruption began reshaping energy flows in March. The immediate narrative credits Iranian diplomatic progress — Pakistan's mediation, Trump's "final stages" language, Rubio's Islamabad meetings. That is partially right.</p>
+
+    <p>But it is worth separating two different sources of oil price pressure. The first is the supply shock: tankers cannot transit the Strait without significant risk, insurance costs have made the route economically problematic for many operators, and the volume of oil moving through one of the world's most critical chokepoints has been materially reduced since the conflict began. That is a genuine supply constraint, and it does not disappear because Trump says negotiations are in their final stages. The second is the risk premium: the speculative bid embedded in crude by traders pricing the possibility that the conflict escalates further. That premium is what is unwinding as diplomatic language improves.</p>
+
+    <p>The distinction matters because the two components have different persistence profiles. The risk premium can evaporate quickly when diplomatic signals improve — as it did this week. The supply constraint unwinds only when Hormuz is formally reopened, shipping routes are re-established, tanker operators feel comfortable transiting, and the months of accumulated supply disruption are worked through. Even a full ceasefire, signed and enacted, does not make oil drop to $75 overnight. The structural disruption to supply chain routing has a longer tail than the headline "deal" price move will suggest.</p>
+
+    <p>At a macro level, this means that even a positive Iran ceasefire outcome next week leaves headline inflation elevated for several months beyond the announcement. Energy prices feed through consumer prices with a lag. The Fed knows this. Warsh knows this. The question is whether markets — currently taking some comfort from oil's move below $100 — are pricing that lag accurately or whether there is a false-dawn risk embedded in the current equity rally.</p>
+
+    <!-- SPACEX MACRO SECTION -->
+    <h2>SpaceX as a Macro Signal</h2>
+
+    <p>The S-1 that dropped Wednesday is worth analyzing not just as an investment opportunity but as a signal about where the economy's animal spirits currently reside. The SpaceX offering, at $1.75–$2 trillion, would be the largest public offering in U.S. history. The demand that will fill that book — from sovereign wealth funds, pension managers, hedge funds, and now retail platforms — is capital that has to come from somewhere.</p>
+
+    <p>The S-1's financial structure tells a specific story. Space and Starlink are the businesses generating revenue today. The xAI AI segment is the business that carries roughly 90% of the forward valuation, and it is currently burning billions per quarter. In 2024, SpaceX was profitable at $791 million net income. After the xAI merger, the combined entity posted a $4.94 billion net loss in 2025 and a $4.28 billion single-quarter loss in Q1 2026. This is not a company in financial distress — it is a company making a deliberate choice to sacrifice near-term profitability for a very large addressable market bet. But investors putting capital into this offering are not buying the rocket company they may think they're buying. They are buying a very large, very expensive option on agentic AI at planetary scale.</p>
+
+    <div class="regime-box">
+      <div class="regime-label">// Current Market Regime</div>
+      <div class="regime-title">Transitional — Stagflationary Overhang with AI-Driven Equity Support</div>
+      <div class="regime-desc">The economy presents a bifurcated face: consumer sentiment at recessionary levels, real wages negative, and energy prices elevated — while equity markets post eight consecutive weekly gains driven by AI earnings momentum that is real and quantifiable. The regime cannot remain bifurcated indefinitely. Either inflation breaks lower (oil ceasefire + supply normalization) and the consumer data recovers, or the equity earnings narrative eventually has to reckon with a consumer that has stopped spending. The PCE print on Friday May 30 is the first major data point under Warsh's watch that will tell us which way the resolution is bending.</div>
+    </div>
+
+    <p>What the SpaceX IPO signals macro-strategically is that the financial system's risk appetite — despite the inflation data, despite elevated yields, despite consumer pessimism — remains concentrated in transformative technology bets. NVIDIA at $81.6 billion in quarterly revenue. SpaceX at a $2 trillion IPO. Dell surging 30% in a session on AI server demand. These are not the market behaviors of an economy genuinely worried about stagflation. They are the behaviors of a market where one portion of the economy — large-cap AI infrastructure — is experiencing a capex-driven supercycle that is temporarily insulating equity markets from the consumer-level squeeze playing out simultaneously. How long that insulation holds is the governing question of the next two quarters.</p>
+
+    <!-- WEEK AHEAD EVENTS -->
+    <h2>The Week Ahead: What to Watch</h2>
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Significance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mon May 25</td>
+          <td><strong>Memorial Day</strong> — US Markets Closed</td>
+          <td class="neutral">Holiday; oil headlines overnight matter</td>
+        </tr>
+        <tr>
+          <td>Tue May 26</td>
+          <td><strong>Consumer Confidence (May)</strong> · <strong>Home Prices (Mar)</strong> · Markets Reopen</td>
+          <td class="medium">Sentiment data under pressure from gas/food inflation</td>
+        </tr>
+        <tr>
+          <td>Wed May 28</td>
+          <td><strong>GDP Revision (Q1 2026)</strong> · <strong>Marvell Technology Earnings</strong></td>
+          <td class="high">GDP revision could confirm or deny stagflation narrative; MRVL = AI infrastructure proxy</td>
+        </tr>
+        <tr>
+          <td>Thu May 29</td>
+          <td><strong>Jobless Claims</strong> · <strong>New Home Sales (Apr)</strong> · <strong>Salesforce Earnings</strong></td>
+          <td class="medium">Labor market resilience check; enterprise AI spend signal via CRM</td>
+        </tr>
+        <tr>
+          <td>Fri May 30</td>
+          <td><strong>Core PCE Inflation (Apr)</strong> — Warsh's First Major Test</td>
+          <td class="high">Most important data release of the week. April core PCE consensus ~3.3%. A print above 3.5% triggers rate hike repricing.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- POSITIONING NOTE -->
+    <h2>Positioning for the Week Ahead</h2>
+
+    <p>The Memorial Day weekend creates an informational gap that is worth thinking about carefully. US markets are closed Monday. Iran negotiations are not. Oil can move significantly over a holiday weekend without the circuit breaker of US equity market reactions providing any price discovery. Traders who hold crude-adjacent positions into the long weekend are accepting weekend geopolitical risk without the ability to react until Tuesday's open.</p>
+
+    <p>The AI earnings momentum — NVIDIA, Dell, and now the SpaceX IPO roadshow preparation beginning in two weeks — provides a genuine fundamental underpinning for technology equity prices that should not be dismissed. The risk to that narrative is not that AI spending stops; it is that the consumer and rate environment eventually constrains the multiple at which those earnings can trade. NVIDIA at 35x forward earnings is defensible if rates stay at 4.4% and growth holds. NVIDIA at 35x forward earnings is harder to defend at 5.5% rates.</p>
+
+    <p>The PCE print on Friday May 30 is the variable that matters most for the subsequent two weeks of trading. If core PCE comes in at 3.3% — in line with consensus — Warsh can frame his first weeks as steady-state, the market breathes, and the Iran ceasefire narrative can continue to hold the oil discount in place. If core PCE prints at 3.5% or above — which the April energy surge makes plausible — the "rate hike is back on the table" conversation moves from background noise to front-page market risk, and the equity multiple justification becomes substantially harder to maintain.</p>
+
+    <!-- TAKEAWAY -->
+    <div class="takeaway">
+      <div class="takeaway-label">// Sunday Macro Positioning Note</div>
+      <p>Warsh inherits an inflation problem, not an inflation victory lap. The East Room ceremony was a political moment; the April PCE data on Friday May 30 is the first economic moment. The two don't necessarily align.</p>
+      <p>Oil below $100 is the risk premium unwinding, not the supply constraint resolving. Even a signed ceasefire leaves months of supply chain disruption to work through before inflation meaningfully moderates. Do not price the ceasefire as though energy CPI is about to normalize to 2%.</p>
+      <p>The SpaceX IPO is the largest capital allocation decision in modern market history being executed against a consumer backdrop of collapsing sentiment and negative real wages. That tension — between the AI supercycle and the consumer squeeze — is not resolved. It is the central macro fault line of the next two quarters. Watch PCE on Friday and oil headlines over the weekend. Both will arrive before Monday morning.</p>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal. Always consult a qualified financial professional before making investment decisions.
+    </div>
+
+  </main>
+
+  <footer>
+    <span>FinTrend News</span> &nbsp;·&nbsp; Sunday Macro Note &nbsp;·&nbsp; May 24, 2026 &nbsp;·&nbsp; markets@fintrend.news
+  </footer>
+
+</body>
+</html>
