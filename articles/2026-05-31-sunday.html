@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Deal Not Yet Signed. The Summer Not Yet Safe. | FinTrend News</title>
+  <meta name="description" content="A 60-day Iran ceasefire MOU exists on paper. Trump hasn't signed it. Hormuz hasn't reopened. And June brings Warsh's first FOMC, SpaceX's IPO roadshow, and a jobs report that could redefine the rate path. The macro view going into summer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #0b0f1f; --bg-end: #0f1530;
+      --gold: #b8986a; --gold-dim: rgba(184,152,106,0.12); --gold-border: rgba(184,152,106,0.35);
+      --up: #5dd39e; --down: #ef6b6b; --warn: #f0a500;
+      --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04); --surface-2: rgba(255,255,255,0.07); --border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%); background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.75; min-height: 100vh; }
+    .masthead { border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(11,15,31,0.92); backdrop-filter: blur(12px); z-index: 100; }
+    .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+    .masthead-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--gold); }
+    .article-outer { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 20px; padding: 5px 14px; margin-bottom: 22px; }
+    .kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; color: var(--ink); margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .dek { font-size: 1.1rem; font-weight: 300; color: var(--ink-dim); line-height: 1.6; margin-bottom: 28px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .byline-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; margin-bottom: 40px; }
+    .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+    .byline-author strong { color: var(--ink); font-weight: 600; }
+    .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); letter-spacing: 0.04em; }
+    .lead-para::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.8rem; line-height: 0.82; float: left; margin-right: 8px; margin-top: 6px; color: var(--gold); }
+    .lead-para { font-size: 1.05rem; line-height: 1.8; margin-bottom: 28px; }
+    p { font-size: 1rem; line-height: 1.8; color: var(--ink); margin-bottom: 22px; }
+    .macro-dashboard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin: 36px 0; }
+    .macro-dashboard-title { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
+    .macro-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .macro-item { padding: 14px; background: var(--surface-2); border-radius: 6px; border: 1px solid var(--border); }
+    .macro-item-label { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .macro-item-value { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); line-height: 1.1; }
+    .macro-item-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; margin-top: 4px; }
+    .up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); } .neutral { color: var(--ink-low); }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.45rem; color: var(--ink); margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 20px 24px; margin: 36px 0; background: var(--gold-dim); border-radius: 0 8px 8px 0; }
+    .pull-quote p { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); margin: 0 0 8px; line-height: 1.5; }
+    .pull-quote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .events-table { width: 100%; border-collapse: collapse; margin: 20px 0 32px; }
+    .events-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    .events-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-dim); font-size: 0.85rem; }
+    .events-table td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); white-space: nowrap; }
+    .events-table td strong { color: var(--ink); }
+    .events-table tr:last-child td { border-bottom: none; }
+    .imp-high { color: var(--down); font-weight: 600; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .imp-med { color: var(--warn); font-weight: 500; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .imp-low { color: var(--up); font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; }
+    .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.1) 0%, rgba(184,152,106,0.04) 100%); border: 1px solid var(--gold-border); border-radius: 10px; padding: 28px; margin: 40px 0; }
+    .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+    .takeaway p { font-size: 0.97rem; color: var(--ink-dim); margin-bottom: 10px; }
+    .takeaway p:last-child { margin-bottom: 0; }
+    .disclaimer { border-top: 1px dashed var(--border); margin-top: 56px; padding-top: 20px; font-size: 0.75rem; color: var(--ink-low); line-height: 1.6; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); letter-spacing: 0.06em; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="masthead-logo" href="../index.html">FinTrend <span>News</span></a>
+    <nav class="nav-links"><a href="../archive.html">Archive</a><a href="../premium.html">Premium</a></nav>
+  </header>
+
+  <main class="article-outer">
+    <div class="kicker"><div class="kicker-dot"></div><span>Sunday Macro Note &nbsp;·&nbsp; May 31, 2026</span></div>
+
+    <h1>The Deal Not Yet Signed. <em>The Summer Not Yet Safe.</em></h1>
+
+    <p class="dek">A 60-day Iran ceasefire MOU exists on paper. Trump hasn't signed it. Hormuz hasn't reopened. June brings Warsh's first FOMC press conference, the SpaceX IPO roadshow, a jobs report that could rewrite the rate path, and a streak that statistically cannot go on forever. The macro positioning note for summer.</p>
+
+    <div class="byline-bar">
+      <div class="byline-author">By <strong>Arshia Morshedian</strong> &nbsp;·&nbsp; Macro &amp; Global Markets</div>
+      <div class="byline-date">SUN 31 MAY 2026 &nbsp;|&nbsp; MORNING EDITION</div>
+    </div>
+
+    <p class="lead-para">Nine consecutive weekly gains. The S&P 500 up 10% since the Iran war began. Dow above 51,000 for the first time in its history. Brent crude down nearly 19% from its April highs. Headline PCE at 3.8% — still well above target, but with a softer monthly core print providing a thin thread of disinflation hope. And sitting at the center of all of it: a 60-day memorandum of understanding between US and Iranian negotiators that has moved oil markets without yet receiving the signature that would make it binding. This is the macro landscape at the close of May 2026 — simultaneously the most optimistic it has looked since February and the most contingent, since the entire repricing rests on a deal that the president has not yet publicly confirmed. June will tell us whether the rally was prescient or premature.</p>
+
+    <div class="macro-dashboard">
+      <div class="macro-dashboard-title">// Macro Regime — End of May 2026</div>
+      <div class="macro-grid">
+        <div class="macro-item"><div class="macro-item-label">S&P 500 (May close)</div><div class="macro-item-value up">7,580</div><div class="macro-item-sub up">▲ 9-wk streak · +5.2% May · +10.2% since war began</div></div>
+        <div class="macro-item"><div class="macro-item-label">Headline PCE (Apr)</div><div class="macro-item-value warn">3.8%</div><div class="macro-item-sub warn">▲ Highest since May 2023</div></div>
+        <div class="macro-item"><div class="macro-item-label">Core PCE (Apr)</div><div class="macro-item-value warn">3.3%</div><div class="macro-item-sub neutral">0.2% MoM — slight decel</div></div>
+        <div class="macro-item"><div class="macro-item-label">WTI Crude</div><div class="macro-item-value">~$90</div><div class="macro-item-sub down">▼ −19% from Apr highs on Iran MOU</div></div>
+        <div class="macro-item"><div class="macro-item-label">10Y Treasury</div><div class="macro-item-value">4.44%</div><div class="macro-item-sub neutral">Sticky — market not pricing cuts</div></div>
+        <div class="macro-item"><div class="macro-item-label">Dec 2026 Rate Hike Odds</div><div class="macro-item-value warn">~60%</div><div class="macro-item-sub warn">▲ Hike — not a cut — priced in</div></div>
+        <div class="macro-item"><div class="macro-item-label">Q1 GDP (Rev.)</div><div class="macro-item-value">1.6%</div><div class="macro-item-sub down">▼ Revised from 2.0%</div></div>
+        <div class="macro-item"><div class="macro-item-label">Earnings Beat Rate</div><div class="macro-item-value up">85%</div><div class="macro-item-sub up">▲ 16.7% avg surprise — 2× historical</div></div>
+      </div>
+    </div>
+
+    <h2>The MOU: What It Is and What It Isn't</h2>
+
+    <p>The 60-day memorandum of understanding that US and Iranian negotiators arrived at late last week is a framework document, not a peace treaty. It establishes a ceasefire extension period, creates a timeline for nuclear talks, and — according to the reporting — includes language around Hormuz traffic normalization. What it does not do, as of Sunday morning, is carry the formal presidential authorization that would convert it from a negotiated draft into a binding political commitment. Trump entered the White House Situation Room on Friday to make a "final determination" and exited without making a public announcement. The market processed this ambiguity by pricing the framework's existence, not its absence — a rational decision given the deal's reported contents, but one that creates significant asymmetric risk.</p>
+
+    <p>The fragility of the arrangement is real. Sporadic Iranian missile activity continued even as negotiators were exchanging MOU drafts late in the week. Iran's uranium stockpile position — the supreme leader's directive that enriched uranium stay in-country — remains the central unresolved issue in any comprehensive settlement. A 60-day ceasefire extension buys time for those talks; it does not resolve them. If the next 60 days produce meaningful nuclear negotiations, oil could continue lower toward $80–85 and headline inflation begins a genuine downtrend. If they collapse, the full conflict premium returns with months of diplomatic credibility spent.</p>
+
+    <div class="pull-quote">
+      <p>"It's sort of two steps forward, one step back with the US and Iran. But clearly the market is not expecting a re-acceleration of hostilities to where we were in the first weeks of the conflict. We're still closer to the off-ramp than the on-ramp."</p>
+      <cite>— Tim Holland, Orion Capital &nbsp;·&nbsp; via CNBC, May 2026</cite>
+    </div>
+
+    <h2>June's Macro Calendar: Four Tests in Four Weeks</h2>
+
+    <p>June 2026 is unusually dense with events that carry direct implications for Fed policy, equity valuations, and the geopolitical risk premium embedded in energy prices. The sequencing matters: each week's data arrives before the next week's, creating a cumulative picture that will either confirm or contradict the market's current optimistic positioning by the time the month ends.</p>
+
+    <table class="events-table">
+      <thead><tr><th>Date</th><th>Event</th><th>Market Significance</th></tr></thead>
+      <tbody>
+        <tr><td>Jun 2–5</td><td><strong>ISM Manufacturing (Mon) · JOLTS (Tue) · May Jobs Report / NFP (Fri)</strong></td><td class="imp-high">Critical — NFP is the single most important economic release of June. Strong jobs = rate hike pressure. Weak jobs = stagflation concern. Both are bad in different ways.</td></tr>
+        <tr><td>Jun 8</td><td><strong>SpaceX IPO Roadshow Begins</strong></td><td class="imp-med">Largest IPO roadshow in history. $75B raise target. Capital allocation implications for the broader market as institutional books are built.</td></tr>
+        <tr><td>Jun 10</td><td><strong>May CPI</strong></td><td class="imp-high">Second consecutive major inflation print under Warsh. If energy pass-through moderates, bull case strengthens. If headline re-accelerates toward 4.5%, hike odds surge.</td></tr>
+        <tr><td>Jun 16–17</td><td><strong>FOMC Meeting — Warsh's First Press Conference as Chair</strong></td><td class="imp-high">The defining moment of the month. Markets will parse every word of Warsh's statement for signals on whether he's a hold, a hike, or a pivot. The dot plot will be updated.</td></tr>
+        <tr><td>Jun 18–30</td><td><strong>SpaceX IPO Pricing and Trading (est.)</strong></td><td class="imp-med">Largest IPO in US history. Market absorption of $75B in new supply. Potential sentiment catalyst if oversubscribed; risk if institutional demand disappoints.</td></tr>
+        <tr><td>Jun 25</td><td><strong>May PCE</strong></td><td class="imp-med">Final major inflation read of the month. Context for Warsh's first post-FOMC statements.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Warsh's June: The Communications Tightrope</h2>
+
+    <p>Kevin Warsh's June 17 press conference is the macro event horizon of the next three weeks. He will arrive at it with April PCE at 3.8%, May CPI data in hand, an Iran situation that is either resolving or re-escalating, and a market that has gained nine consecutive weeks partially on the hope that his installation signals a lower-rate future. The institutional challenge is that all three of those inputs pull in different directions.</p>
+
+    <p>If Iran formalizes the MOU and oil trades toward $85, May CPI may print moderately enough that Warsh can frame the June meeting as a hold with patience. That is the bull case. If oil bounces back above $100 on a diplomatic breakdown, May CPI prints at 4.5%+ headline, and Warsh faces his first press conference with inflation accelerating — his opening statement will define the next six months of Fed credibility. He built his public brand on inflation hawkishness. Allowing a perception of political accommodation to settle in during his first month would do lasting damage to the institution he now leads.</p>
+
+    <p>The bond market's current posture — 10-year yield at 4.44%, December hike probability at 60%, no cuts priced this year — suggests that fixed income investors are not giving Warsh the benefit of the dovish doubt. Equity markets have been more generous. That gap between the two asset classes cannot persist indefinitely; either bonds move to price cuts (a bull case for equities) or equities adjust to price the rate reality bonds are already encoding (a correction scenario).</p>
+
+    <h2>SpaceX: The Market's Largest Allocation Decision</h2>
+
+    <p>The SpaceX IPO roadshow begins June 8, with pricing expected in the June 18-30 window. At $75 billion in expected raise size, this is the largest capital allocation decision the US equity market will have made in its history. The institutional book-building process that begins Monday will determine whether demand exists at a $1.75–$2 trillion valuation for a company that is simultaneously a proven aerospace business, a satellite internet cash machine, and a loss-making AI operation that has transformed the entity's income statement from profitable to cash-burning.</p>
+
+    <p>The macro read-through of the SpaceX IPO timing is worth noting. The offering is being launched into a market at all-time highs, with AI sentiment running hot, at a moment when retail investors have been explicitly included in the selling group. These are the conditions under which issuers maximize proceeds. They are also the conditions that historically produce the most demanding subsequent performance expectations. The SPCX lockup expiry in December 2026 will be the next inflection point for understanding whether the IPO was priced for perfection or for growth.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">// Sunday Macro Positioning: June Framework</div>
+      <p>The Iran MOU is the hinge variable for June. If Trump formalizes it in the next week, oil drops toward $85, Warsh gets cleaner disinflation data for his June 17 press conference, and the rally extends. If it collapses, the entire inflation-energy-Fed narrative resets in a single session.</p>
+      <p>Warsh's June 17 press conference is the institutional moment of the month. The market is pricing him as a hold. The data — 3.8% headline PCE, 3.3% core, 60% December hike probability — does not give him room to sound dovish without risking credibility. Watch his opening statement and the dot plot revision very carefully.</p>
+      <p>June is historically the weakest month for equities in midterm election years. After nine consecutive weekly gains, the mathematical reversion risk is real even if the fundamental backdrop doesn't deteriorate. Consolidation is not capitulation. A 3-5% pullback on profit-taking would be entirely consistent with the underlying earnings story — and would set up the second-half entry point for the investors who stayed sidelined through May's relentless rally.</p>
+    </div>
+
+    <div class="disclaimer"><strong>Disclaimer:</strong> FinTrend News publishes market commentary for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. All market data referenced reflects conditions at time of writing and may have changed. Investing involves risk, including the possible loss of principal.</div>
+  </main>
+
+  <footer><span>FinTrend News</span> &nbsp;·&nbsp; Sunday Macro Note &nbsp;·&nbsp; May 31, 2026 &nbsp;·&nbsp; markets@fintrend.news</footer>
+</body>
+</html>
