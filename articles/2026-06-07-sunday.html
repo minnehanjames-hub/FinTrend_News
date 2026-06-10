@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday Macro Note: The Stagflation Math Doesn't Lie | FinTrend News</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+  :root {
+    --gold: #b8986a;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --bg-card: rgba(255,255,255,0.04);
+    --border: rgba(184,152,106,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+  .masthead { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 20px; border-bottom: 1px solid var(--border); }
+  .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: 0.02em; }
+  .masthead-logo span { color: var(--ink-dim); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; gap: 20px; }
+  nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+  .kicker { display: inline-flex; align-items: center; gap: 6px; margin: 36px 0 14px; background: rgba(184,152,106,0.1); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; }
+  .kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 2.1rem; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .dek { font-size: 1.05rem; color: var(--ink-dim); line-height: 1.6; margin-bottom: 20px; }
+  .byline { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+  .byline-author strong { color: var(--ink); }
+  .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); }
+  .lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; color: var(--gold); float: left; line-height: 0.85; margin: 4px 10px 0 0; }
+  p { margin-bottom: 20px; color: var(--ink-dim); }
+  p strong { color: var(--ink); }
+  .scoreboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 32px 0; }
+  .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  blockquote { border-left: 3px solid var(--gold); padding: 16px 20px; margin: 32px 0; background: rgba(184,152,106,0.06); border-radius: 0 8px 8px 0; }
+  blockquote p { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); font-style: italic; margin: 0; }
+  blockquote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); display: block; margin-top: 8px; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+  .data-table th { color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.65rem; padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--ink-dim); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.12), rgba(184,152,106,0.04)); border: 1px solid var(--gold); border-radius: 12px; padding: 24px; margin: 36px 0; }
+  .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink-dim); margin: 0; }
+  .takeaway p:not(:last-child) { margin-bottom: 12px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); margin: 36px 0 14px; }
+  .disclaimer { border-top: 1px dashed var(--border); margin-top: 48px; padding-top: 20px; }
+  .disclaimer p { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); line-height: 1.6; margin: 0; }
+  footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-sig { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+  .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-align: right; }
+  @media (max-width: 520px) { h1 { font-size: 1.65rem; } .scoreboard { grid-template-columns: repeat(2, 1fr); } nav { gap: 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="masthead-logo">FinTrend News<span>Markets &amp; Macro Intelligence</span></div>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/articles/archive.html">Archive</a>
+      <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00">Premium</a>
+    </nav>
+  </div>
+
+  <div class="kicker"><div class="kicker-dot"></div><span>Sunday Macro Note · June 7, 2026</span></div>
+
+  <h1>The Stagflation <em>Math</em> Doesn't Lie</h1>
+  <p class="dek">Strong jobs. Sticky inflation. An unsigned ceasefire. A new Fed chair with no track record. What the week's wreckage actually means for the macro regime — and what comes next.</p>
+
+  <div class="byline">
+    <div class="byline-author"><strong>Arshia Morshedian</strong> — Macro &amp; Global Markets</div>
+    <div class="byline-date">SUN 07 JUN 2026 · 8:00 AM EDT</div>
+  </div>
+
+  <p class="lead">Beneath the noise of a four-percent Nasdaq drop and a trillion-dollar semiconductor wipeout lies a more durable story. The United States economy is currently running three simultaneous conditions that don't belong in the same sentence: a labor market that added 172,000 jobs in May against an 85,000 estimate, a personal consumption expenditures index stuck at 3.8%, and a GDP growth rate that the Atlanta Fed has been tracking north of 3% annualized in Q2 despite the 1.6% first-quarter print. Growth is real. Inflation is real. And the Federal Reserve has its hands tied at 3.50–3.75% with a brand new chair who has yet to give his first post-meeting press conference. That is the macro backdrop walking into June 16.</p>
+
+  <div class="scoreboard">
+    <div class="stat-card">
+      <div class="stat-label">PCE (Apr)</div>
+      <div class="stat-val">3.8%</div>
+      <div class="stat-delta down">Above 2% target</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Q1 GDP</div>
+      <div class="stat-val">1.6%</div>
+      <div class="stat-delta">Ann. revised</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Q2 GDPNow</div>
+      <div class="stat-val">~3.0%</div>
+      <div class="stat-delta up">Atlanta Fed est.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Fed Funds</div>
+      <div class="stat-val">3.50–3.75%</div>
+      <div class="stat-delta">3 consec. holds</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">May NFP</div>
+      <div class="stat-val">+172K</div>
+      <div class="stat-delta up">vs 85K est.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Unemployment</div>
+      <div class="stat-val">4.3%</div>
+      <div class="stat-delta">Unchanged</div>
+    </div>
+  </div>
+
+  <h2>The Regime Has Shifted</h2>
+
+  <p>The post-pandemic macro regime is over. We are not in a disinflation glide path. We are not in a rate-cut cycle. We are in a period where growth is surprising to the upside and inflation is not cooperating with the storyline the market priced in at the start of the year. The 60-day MOU framework between the U.S. and Iran — which was meant to unlock Hormuz shipping and pull energy prices down from their 2026 highs — remains unsigned. Brent crude was near $98 at the end of last week. That is an oil price that, absent a clean diplomatic resolution, translates directly into headline CPI pressure through the summer.</p>
+
+  <p>The conventional playbook for this setup is stagflation hedging: commodities, TIPS, short-duration fixed income, real assets. The unconventional reality is that this cycle has an AI-driven productivity narrative running alongside it that doesn't fully fit the stagflation box. Nvidia's ecosystem, Marvell's datacenters, SpaceX's Starlink — these are genuine productive investments. But they don't cut your gas bill in June.</p>
+
+  <blockquote>
+    <p>"The Fed can't cut into 3.8% PCE. And it can't hike with a new chair who hasn't yet established consensus. The base case is paralysis. Markets hate paralysis."</p>
+    <cite>— Sunday Macro Note analysis</cite>
+  </blockquote>
+
+  <h2>Warsh: The Known Unknowns</h2>
+
+  <p>Kevin Warsh was sworn in on May 22. The FOMC has held rates steady at 3.50–3.75% across three consecutive meetings — January, March, and April — under the Powell transition. The April meeting already showed fault lines: three dissenting members voted to remove the easing bias from the statement, signaling they are not inclined to cut. Warsh's first press conference on June 17 will be watched with the kind of intensity usually reserved for inaugural Fed chairs in turbulent environments.</p>
+
+  <p>J.P. Morgan Wealth Management's current base case: hold for all of 2026, potential 25-basis-point hike in Q3 2027 if inflation doesn't cooperate. That is a significant reshaping of the rate path from where markets were positioned six months ago. The dot plot and summary of economic projections released alongside the June 17 decision will be the first real signal of where Warsh wants to take the committee's collective messaging.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Meeting</th><th>Decision</th><th>Context</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Jan 2026</td><td>Hold 3.50–3.75%</td><td>Powell chair; easing bias retained</td></tr>
+      <tr><td>Mar 2026</td><td>Hold 3.50–3.75%</td><td>Warsh confirmation pending</td></tr>
+      <tr><td>Apr 2026</td><td>Hold 3.50–3.75%</td><td>3 dissenters; wanted easing bias removed</td></tr>
+      <tr><td>Jun 16–17</td><td>Hold expected (89%)</td><td>Warsh's first press conference; dot plot key</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The Hormuz Variable</h2>
+
+  <p>The Strait of Hormuz remains the most underappreciated macro variable in global markets. Before the conflict began in late February, roughly 20% of global energy supply transited the strait. The 60-day MOU framework from late May was designed to change that. It hasn't, yet. The MOU was never formally signed. U.S. and Iranian forces traded fire twice in the first days of June. Brent is near $98. Every $10 increase in sustained Brent crude translates to approximately 0.3–0.4 percentage points of headline CPI over a 12-month lag — a rough historical rule of thumb that applies here.</p>
+
+  <p>If Wednesday's May CPI print comes in hot — consensus is watching for core CPI around 3.5% year-over-year — the pressure on Warsh to tighten his tone, even without a rate move, becomes overwhelming. If it comes in soft, the market gets a daylong rally before remembering that oil is still near $98 and the next CPI follows in July.</p>
+
+  <h2>The Week Ahead: Three Tests</h2>
+
+  <p>Monday and Tuesday are positioning days. The real action starts Wednesday with May CPI. Thursday, the SpaceX roadshow closes and SPCX pricing is confirmed for Friday's Nasdaq debut. The FOMC convenes June 16–17. Three distinct catalysts, all carrying the potential to reset the narrative that's been building since the Broadcom miss.</p>
+
+  <p>The constructive case: CPI surprises to the downside, Warsh strikes a neutral tone on June 17 rather than hawkish, and SpaceX's debut draws institutional capital that lifts the broader tape. The bear case: hot CPI plus a hawkish dot plot plus a choppy SpaceX debut in a tech-averse tape. The realistic case: something messy in between, with the market repricing through volatility before finding the next trend.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">// Macro Framework</div>
+    <p>The stagflation arithmetic is the dominant macro regime right now, not the AI bull market. They coexist, but they pull in different directions. Inflation at 3.8% PCE, oil near $98, a labor market that just printed 172K — none of that is a rate-cut environment. Warsh's first week of real power arrives June 16. How he frames the data will set the tone for the second half of 2026.</p>
+    <p>Watch Wednesday's CPI. It's the most important data point between now and the FOMC decision. Everything else is noise.</p>
+  </div>
+
+  <div class="disclaimer">
+    <p>DISCLAIMER: FinTrend News is published for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. Past performance is not indicative of future results. Always conduct your own research and consult a licensed financial advisor before making investment decisions.</p>
+  </div>
+
+  <footer>
+    <div class="footer-sig">// FinTrend News</div>
+    <div class="footer-meta">fintrend.news<br>© 2026 FinTrend News. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>
