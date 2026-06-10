@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum Check: Chips Crack, SpaceX Prices, Oil Spikes | FinTrend News</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+  :root {
+    --gold: #b8986a;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --bg-card: rgba(255,255,255,0.04);
+    --border: rgba(184,152,106,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Masthead */
+  .masthead { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 20px; border-bottom: 1px solid var(--border); }
+  .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: 0.02em; }
+  .masthead-logo span { color: var(--ink-dim); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; gap: 20px; }
+  nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+
+  /* Kicker */
+  .kicker { display: inline-flex; align-items: center; gap: 6px; margin: 36px 0 14px; background: rgba(184,152,106,0.1); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; }
+  .kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  h1 { font-family: 'DM Serif Display', serif; font-size: 2.1rem; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .dek { font-size: 1.05rem; color: var(--ink-dim); line-height: 1.6; margin-bottom: 20px; }
+
+  /* Byline */
+  .byline { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+  .byline-author strong { color: var(--ink); }
+  .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); }
+
+  /* Drop cap */
+  .lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; color: var(--gold); float: left; line-height: 0.85; margin: 4px 10px 0 0; }
+
+  p { margin-bottom: 20px; color: var(--ink-dim); }
+  p strong { color: var(--ink); }
+
+  /* Scoreboard */
+  .scoreboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 32px 0; }
+  .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+
+  /* Ledger */
+  .ledger { margin: 32px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .ledger-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 18px; border-bottom: 1px solid var(--border); }
+  .ledger-row:last-child { border-bottom: none; }
+  .ledger-day { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); min-width: 80px; }
+  .ledger-note { font-size: 0.88rem; color: var(--ink-dim); flex: 1; padding: 0 12px; }
+  .ledger-val { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-align: right; }
+
+  /* Pull quote */
+  blockquote { border-left: 3px solid var(--gold); padding: 16px 20px; margin: 32px 0; background: rgba(184,152,106,0.06); border-radius: 0 8px 8px 0; }
+  blockquote p { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); font-style: italic; margin: 0; }
+  blockquote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); display: block; margin-top: 8px; }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+  .data-table th { color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.65rem; padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--ink-dim); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* Takeaway */
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.12), rgba(184,152,106,0.04)); border: 1px solid var(--gold); border-radius: 12px; padding: 24px; margin: 36px 0; }
+  .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink-dim); margin: 0; }
+  .takeaway p:not(:last-child) { margin-bottom: 12px; }
+
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); margin: 36px 0 14px; }
+
+  /* Disclaimer */
+  .disclaimer { border-top: 1px dashed var(--border); margin-top: 48px; padding-top: 20px; }
+  .disclaimer p { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); line-height: 1.6; margin: 0; }
+
+  /* Footer */
+  footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-sig { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+  .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-align: right; }
+
+  @media (max-width: 520px) {
+    h1 { font-size: 1.65rem; }
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    nav { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="masthead-logo">
+      FinTrend News
+      <span>Markets &amp; Macro Intelligence</span>
+    </div>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/articles/archive.html">Archive</a>
+      <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00">Premium</a>
+    </nav>
+  </div>
+
+  <div class="kicker"><div class="kicker-dot"></div><span>Wednesday Momentum Check · June 3, 2026</span></div>
+
+  <h1>Chips <em>Crack</em>, SpaceX Prices, Oil Spikes</h1>
+  <p class="dek">Broadcom's AI guidance miss drags the Nasdaq lower. SpaceX locks in $135 a share for the largest IPO in history. And oil is back near $97 as Iran tensions refuse to die.</p>
+
+  <div class="byline">
+    <div class="byline-author"><strong>Hunter William Lang</strong> — Markets Correspondent</div>
+    <div class="byline-date">WED 03 JUN 2026 · 4:15 PM EDT</div>
+  </div>
+
+  <p class="lead">The week had barely started before the chip sector handed the market its first real test of June. After Broadcom reported fiscal Q2 results Tuesday evening that technically beat on revenue and non-GAAP EPS, the real story was in the guidance: Q3 AI chip sales of $16 billion versus the $17.2 billion analysts had priced in. No raise to full-year AI forecasts. The sell-the-news reaction was swift and punishing — Broadcom shares fell more than 14% in premarket trading and dragged the Philadelphia Semiconductor Index with it.</p>
+
+  <div class="scoreboard">
+    <div class="stat-card">
+      <div class="stat-label">S&amp;P 500</div>
+      <div class="stat-val">7,527</div>
+      <div class="stat-delta down">▼ 0.71%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Nasdaq</div>
+      <div class="stat-val">26,423</div>
+      <div class="stat-delta down">▼ 0.89%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Dow Jones</div>
+      <div class="stat-val">50,993</div>
+      <div class="stat-delta down">▼ 0.86%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">WTI Crude</div>
+      <div class="stat-val">$96.80</div>
+      <div class="stat-delta up">▲ 2.1%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">10-Yr Yield</div>
+      <div class="stat-val">4.52%</div>
+      <div class="stat-delta down">▼ 2 bps</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Gold</div>
+      <div class="stat-val">$4,487</div>
+      <div class="stat-delta up">▲ 0.6%</div>
+    </div>
+  </div>
+
+  <h2>The AVGO Overhang</h2>
+
+  <p>Broadcom's Q2 print — <strong>$22.19 billion in revenue</strong> against a $22.13 billion consensus, non-GAAP EPS of $2.44 versus $2.39 expected — would have been celebrated in a different tape. But the market wasn't paying for what happened; it was paying for what comes next. AI chip sales guidance of $16 billion in Q3 fell $1.2 billion short of the Street's model, and the company's deliberate choice not to raise its full-year AI semiconductor forecast read as a yellow light, not a green one. CrowdStrike fell 11% on rising expenses alongside in-line guidance, adding pressure to software names.</p>
+
+  <p>The broader message from the AVGO reaction is uncomfortable: the AI trade has been priced to perfection. Any guidance that isn't aggressive enough to justify the multiples gets punished. That dynamic does not disappear overnight.</p>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="ledger-day">AVGO</div>
+      <div class="ledger-note">Q2 beat on revenue/EPS; Q3 AI guidance $1.2B short of consensus</div>
+      <div class="ledger-val down">▼ 14%</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">CRWD</div>
+      <div class="ledger-note">In-line guidance; rising expense base weighed on sentiment</div>
+      <div class="ledger-val down">▼ 11%</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">NVDA</div>
+      <div class="ledger-note">Sympathetic selloff despite no fundamental news</div>
+      <div class="ledger-val down">▼ 3.2%</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">MRVL</div>
+      <div class="ledger-note">Jensen Huang cited Marvell as "the next trillion-dollar company"</div>
+      <div class="ledger-val up">▲ 12.1%</div>
+    </div>
+  </div>
+
+  <h2>SpaceX Sets the Price</h2>
+
+  <p>While chips were selling off, Elon Musk's SpaceX made its IPO concrete. An amended S-1 filed Wednesday with the SEC confirmed a <strong>fixed price of $135 per share</strong>, 555.6 million Class A shares, and a targeted raise of $75 billion — the largest IPO in history. The implied valuation of roughly $1.77 trillion would place SpaceX above Tesla (currently ~$1.6T) and make it the seventh-largest U.S. company by market cap on arrival. The roadshow kicks off Thursday. Pricing is expected June 11, debut on Nasdaq under ticker <strong>SPCX</strong> on June 12.</p>
+
+  <blockquote>
+    <p>"This is not a company that needs the money. It's a company that decided it was time to let the public into the trade."</p>
+    <cite>— Markets commentary, Wednesday session</cite>
+  </blockquote>
+
+  <p>Goldman Sachs leads the deal, with Morgan Stanley, BofA, Citi, and JPMorgan in the bookrunning syndicate. Musk will retain over 82% voting control after the offering. The xAI-SpaceX merger completed in February adds an AI angle to what was already a space and satellite story. The $135 fixed price — unusual for an IPO of this scale, which typically uses a range — signals confidence, or at minimum a desire to project confidence.</p>
+
+  <h2>Oil and the Hormuz Premium</h2>
+
+  <p>The other thread running through Wednesday's session was energy. WTI crude climbed back toward $97 as conflicting reports circulated about the status of the 60-day MOU framework between the U.S. and Iran. The ceasefire — announced in principle in late May — has never been fully signed, and Thursday's ADP private payrolls print of <strong>+122,000</strong> (above the 117,000 consensus) added a layer of inflation concern: stronger labor, stickier wages, less room for the Fed to move.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Asset</th><th>Level</th><th>Chg</th><th>Note</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>WTI Crude</td><td>$96.80</td><td class="up">+2.1%</td><td>Iran diplomatic uncertainty</td></tr>
+      <tr><td>Brent</td><td>$98.30</td><td class="up">+1.9%</td><td>Hormuz risk premium intact</td></tr>
+      <tr><td>10-Yr UST</td><td>4.52%</td><td class="down">-2 bps</td><td>Flight-to-quality muted</td></tr>
+      <tr><td>VIX</td><td>18.4</td><td class="up">+1.8 pts</td><td>Fear gauge ticking up</td></tr>
+      <tr><td>DXY</td><td>103.7</td><td class="up">+0.3%</td><td>Dollar firm on rate hold path</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What to Watch Tomorrow</h2>
+
+  <p>Thursday morning brings continued fallout from the AVGO miss, with AMD and Intel expected to face sympathy pressure at the open. The SpaceX roadshow formally begins, and institutional desks will be marking positions ahead of Friday's May jobs report. The consensus for NFP is around 85,000 — a number that already seems conservative given Wednesday's ADP beat. A materially stronger print would reset rate expectations and add volatility to an already nervous tape.</p>
+
+  <p>The Warsh Fed meets June 16–17. Every data point between now and then is a tile in the mosaic his first press conference will have to address.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">// Momentum Read</div>
+    <p>The Broadcom miss exposed the fragility underneath the AI trade's confidence. When the best guidance in the sector isn't enough, valuations are the problem. SpaceX's $1.77T debut will demand index capital at scale — the timing, the week of a semi selloff and an NFP print, is not ideal. Oil's refusal to fall cleanly keeps the stagflation arithmetic alive for June's FOMC.</p>
+    <p>This is a market that still wants to go higher. But it just got reminded that wanting and deserving are different things.</p>
+  </div>
+
+  <div class="disclaimer">
+    <p>DISCLAIMER: FinTrend News is published for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. Past performance is not indicative of future results. Always conduct your own research and consult a licensed financial advisor before making investment decisions. FinTrend News does not hold positions in any securities mentioned at time of publication.</p>
+  </div>
+
+  <footer>
+    <div class="footer-sig">// FinTrend News</div>
+    <div class="footer-meta">fintrend.news<br>© 2026 FinTrend News. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>
