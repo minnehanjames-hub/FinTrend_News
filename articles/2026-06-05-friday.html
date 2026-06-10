@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friday Recap: Nasdaq Drops 4%, $1T Wiped, NFP Shocks | FinTrend News</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+  :root {
+    --gold: #b8986a;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --bg-card: rgba(255,255,255,0.04);
+    --border: rgba(184,152,106,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+  .masthead { display: flex; justify-content: space-between; align-items: center; padding: 24px 0 20px; border-bottom: 1px solid var(--border); }
+  .masthead-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: 0.02em; }
+  .masthead-logo span { color: var(--ink-dim); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; display: block; letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; gap: 20px; }
+  nav a { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-low); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+  .kicker { display: inline-flex; align-items: center; gap: 6px; margin: 36px 0 14px; background: rgba(184,152,106,0.1); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; }
+  .kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .kicker span { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 2.1rem; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .dek { font-size: 1.05rem; color: var(--ink-dim); line-height: 1.6; margin-bottom: 20px; }
+  .byline { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .byline-author { font-size: 0.85rem; color: var(--ink-dim); }
+  .byline-author strong { color: var(--ink); }
+  .byline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-low); }
+  .lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; color: var(--gold); float: left; line-height: 0.85; margin: 4px 10px 0 0; }
+  p { margin-bottom: 20px; color: var(--ink-dim); }
+  p strong { color: var(--ink); }
+  .scoreboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 32px 0; }
+  .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .ledger { margin: 32px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .ledger-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 18px; border-bottom: 1px solid var(--border); }
+  .ledger-row:last-child { border-bottom: none; }
+  .ledger-day { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); min-width: 80px; }
+  .ledger-note { font-size: 0.88rem; color: var(--ink-dim); flex: 1; padding: 0 12px; }
+  .ledger-val { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-align: right; }
+  blockquote { border-left: 3px solid var(--gold); padding: 16px 20px; margin: 32px 0; background: rgba(184,152,106,0.06); border-radius: 0 8px 8px 0; }
+  blockquote p { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); font-style: italic; margin: 0; }
+  blockquote cite { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); display: block; margin-top: 8px; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+  .data-table th { color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.65rem; padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--ink-dim); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.12), rgba(184,152,106,0.04)); border: 1px solid var(--gold); border-radius: 12px; padding: 24px; margin: 36px 0; }
+  .takeaway-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink-dim); margin: 0; }
+  .takeaway p:not(:last-child) { margin-bottom: 12px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); margin: 36px 0 14px; }
+  .disclaimer { border-top: 1px dashed var(--border); margin-top: 48px; padding-top: 20px; }
+  .disclaimer p { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); line-height: 1.6; margin: 0; }
+  footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-sig { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold); }
+  .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-low); text-align: right; }
+  @media (max-width: 520px) { h1 { font-size: 1.65rem; } .scoreboard { grid-template-columns: repeat(2, 1fr); } nav { gap: 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="masthead-logo">FinTrend News<span>Markets &amp; Macro Intelligence</span></div>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/articles/archive.html">Archive</a>
+      <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00">Premium</a>
+    </nav>
+  </div>
+
+  <div class="kicker"><div class="kicker-dot"></div><span>Friday Recap · June 5, 2026</span></div>
+
+  <h1>Nasdaq Drops <em>Four Percent</em>, NFP Blows Past 172K</h1>
+  <p class="dek">The chip selloff became a rout. A trillion dollars in market cap evaporated across the semiconductor sector in two sessions. Then the jobs report arrived and complicated everything.</p>
+
+  <div class="byline">
+    <div class="byline-author"><strong>Hunter William Lang</strong> — Markets Correspondent</div>
+    <div class="byline-date">FRI 05 JUN 2026 · 5:30 PM EDT</div>
+  </div>
+
+  <p class="lead">There are weeks that pass quietly. This was not one of them. What began as a Broadcom guidance disappointment on Tuesday night escalated by Friday into the worst two-session wipeout for the Nasdaq since April 2025. The Philadelphia Semiconductor Index shed roughly 8% across the week. And then, just as the dust was settling, the Bureau of Labor Statistics delivered a May jobs report that scrambled every narrative about where the economy — and the Fed — is headed.</p>
+
+  <div class="scoreboard">
+    <div class="stat-card">
+      <div class="stat-label">S&amp;P 500</div>
+      <div class="stat-val">7,383</div>
+      <div class="stat-delta down">▼ 2.64% Fri</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Nasdaq</div>
+      <div class="stat-val">25,709</div>
+      <div class="stat-delta down">▼ 4.18% Fri</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Dow Jones</div>
+      <div class="stat-val">50,867</div>
+      <div class="stat-delta down">▼ 1.35% Fri</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">WTI Crude</div>
+      <div class="stat-val">$94.50</div>
+      <div class="stat-delta down">▼ 2.4% Fri</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">NFP May</div>
+      <div class="stat-val">+172K</div>
+      <div class="stat-delta up">vs 85K est.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Unemployment</div>
+      <div class="stat-val">4.3%</div>
+      <div class="stat-delta">Unchanged</div>
+    </div>
+  </div>
+
+  <h2>The Selloff in Full</h2>
+
+  <p>Thursday's session started with Broadcom shares already down on Wednesday's miss. Then the full weight of the guidance narrative hit. AMD and Intel fell sharply in sympathy. By Friday's close, Nvidia had shed more than 3% on the week. The Nasdaq's 4.18% Friday decline was its worst single-day performance since April 2025. The S&amp;P 500 dropped 2.64%, closing at 7,383. The Dow fell 695 points to 50,867. South Korea's Kospi plunged 5.54%; Samsung and SK Hynix dropped 6.4% and 9.92% respectively as the selloff metastasized globally overnight.</p>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="ledger-day">Mon–Tue</div>
+      <div class="ledger-note">S&P 500 near all-time highs; AVGO reports after close Tue</div>
+      <div class="ledger-val up">Positive</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Wed</div>
+      <div class="ledger-note">AVGO -14%; CRWD -11%; Nasdaq -0.89%; SpaceX prices at $135</div>
+      <div class="ledger-val down">Risk-off</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Thu</div>
+      <div class="ledger-note">Semi contagion spreads; AMD, INTC slide; WTI edges down to $95</div>
+      <div class="ledger-val down">Deteriorating</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Fri AM</div>
+      <div class="ledger-note">NFP +172K vs 85K est; unemployment holds 4.3%</div>
+      <div class="ledger-val">Mixed signal</div>
+    </div>
+    <div class="ledger-row">
+      <div class="ledger-day">Fri Close</div>
+      <div class="ledger-note">Nasdaq -4.18%; S&P -2.64%; Dow -1.35%; worst Nasdaq day since Apr '25</div>
+      <div class="ledger-val down">▼ Rout</div>
+    </div>
+  </div>
+
+  <h2>The Jobs Report Paradox</h2>
+
+  <p>The May employment situation summary dropped at 8:30 AM Friday and immediately complicated the rate narrative. Nonfarm payrolls increased by <strong>172,000</strong> — more than double the 85,000 consensus. March was revised up to 214,000 from 185,000. April revised up to 179,000 from 115,000. Combined, that's 93,000 more jobs than previously reported. The unemployment rate held at 4.3%, labor force participation was steady at 61.8%, and average hourly earnings rose 0.2% month-over-month.</p>
+
+  <p>Several economists flagged the upcoming FIFA World Cup as a partial explanation — leisure and hospitality accounted for 70,000 of the 172,000 gains, with food and drink establishments alone contributing 48,000. The World Cup kicks off in the U.S. on June 11, a day before SpaceX's Nasdaq debut. Either way, the headline number matters: a strong jobs print at 4.3% unemployment with PCE already running at 3.8% is not a Fed-cutting environment. Warsh's first press conference on June 17 just got harder.</p>
+
+  <blockquote>
+    <p>"The upside surprise was highly concentrated. But the Fed doesn't get to exclude the headline. 172K is 172K."</p>
+    <cite>— Market commentary, Friday session</cite>
+  </blockquote>
+
+  <h2>Sector Damage Report</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Ticker</th><th>Close</th><th>Wk Chg</th><th>Driver</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AVGO</td><td>—</td><td class="down">▼ ~22%</td><td>AI guidance miss; sell-the-news</td></tr>
+      <tr><td>NVDA</td><td>—</td><td class="down">▼ ~5%</td><td>Sympathy selloff; no new news</td></tr>
+      <tr><td>AMD</td><td>—</td><td class="down">▼ ~7%</td><td>Sector contagion; valuation concerns</td></tr>
+      <tr><td>MRVL</td><td>—</td><td class="up">▲ +12%</td><td>Jensen "next trillion-dollar company"</td></tr>
+      <tr><td>SMCI</td><td>—</td><td class="down">▼ ~10%</td><td>$7B equity financing dilution concerns</td></tr>
+      <tr><td>Energy (XLE)</td><td>—</td><td class="up">▲ +1.2%</td><td>Oil elevated; rotation from tech</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What the Week Proved</h2>
+
+  <p>The nine-week S&amp;P winning streak that carried into June was always fragile in one specific way: it was priced for perfection in AI. The moment the best guidance wasn't good enough — Broadcom's AI beat with conservative forward numbers — the air came out. The question now is whether this is a healthy correction or the first chapter of something larger. The SpaceX IPO next Thursday, the FOMC on June 16–17, and May CPI (due Wednesday the 10th) are the next three pivot points.</p>
+
+  <p>Marvell's performance this week was the one clean signal: the market isn't abandoning AI, it's repricing the leadership. Jensen Huang's endorsement moved a stock 12% in a week when the rest of the sector was underwater. That's not a market in panic — it's a market discriminating.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">// Weekly Recap</div>
+    <p>The week of June 2–5 will be remembered as the moment the AI trade's first real valuation stress test arrived. Nasdaq -4.18% on Friday. A trillion dollars in chip market cap erased in two sessions. And a 172K NFP print that extinguishes any near-term Fed relief narrative just before Warsh's inaugural press conference.</p>
+    <p>The setup for next week: May CPI Wednesday, SpaceX IPO Thursday, FOMC on the 16th. The market needs something clean. It isn't getting it yet.</p>
+  </div>
+
+  <div class="disclaimer">
+    <p>DISCLAIMER: FinTrend News is published for informational and educational purposes only. Nothing in this article constitutes investment advice, a solicitation, or a recommendation to buy or sell any security. Past performance is not indicative of future results. Always conduct your own research and consult a licensed financial advisor before making investment decisions.</p>
+  </div>
+
+  <footer>
+    <div class="footer-sig">// FinTrend News</div>
+    <div class="footer-meta">fintrend.news<br>© 2026 FinTrend News. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>
