@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Week the Sky Went Public | FinTrend News</title>
+  <meta name="description" content="SpaceX debuted at $161. Oil dipped toward $84 on peace hopes. CPI came in at 4.2% — a three-year high. And Warsh's first FOMC is four days away. Here's every move from a week that changed the market's skyline." />
+  <meta name="author" content="Hunter William Lang" />
+  <meta property="og:title" content="The Week the Sky Went Public" />
+  <meta property="og:description" content="SpaceX debuted at $161. CPI hit 4.2%. Oil fell on peace talks. Warsh's first FOMC is days away." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSK5YVPJBR');
+  </script>
+
+  <style>
+    :root {
+      --gold: #b8986a;
+      --gold-light: #d4b483;
+      --up: #5dd39e;
+      --down: #ef6b6b;
+      --ink: #eef1ff;
+      --ink-dim: #b8bfd9;
+      --ink-low: #7d85a8;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .masthead-nav {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .masthead-nav a {
+      color: var(--ink-dim);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .masthead-nav a:hover { color: var(--gold); }
+
+    /* ── ARTICLE SHELL ── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── KICKER ── */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(184,152,106,0.12);
+      border: 1px solid rgba(184,152,106,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .kicker::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── HEADLINE ── */
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── DEK ── */
+    .dek {
+      font-size: 1.05rem;
+      color: var(--ink-dim);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* ── BYLINE BAR ── */
+    .byline-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-bottom: 36px;
+    }
+    .byline-author {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .byline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-low);
+    }
+
+    /* ── BODY TEXT ── */
+    .body-text p {
+      color: var(--ink-dim);
+      margin-bottom: 20px;
+      font-size: 0.97rem;
+    }
+
+    /* ── DROP CAP ── */
+    .drop-cap::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4.2rem;
+      float: left;
+      line-height: 0.78;
+      margin-right: 10px;
+      margin-top: 6px;
+      color: var(--gold);
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-head {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 40px 0 16px;
+      border-bottom: 1px solid rgba(184,152,106,0.2);
+      padding-bottom: 8px;
+    }
+
+    /* ── SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .score-cell {
+      background: var(--surface);
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink-low);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .score-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .score-delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+    }
+    .up { color: var(--up); }
+    .down { color: var(--down); }
+    .flat { color: var(--ink-low); }
+
+    /* ── LEDGER ── */
+    .ledger {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .ledger-row:last-child { border-bottom: none; }
+    .ledger-day {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .ledger-desc {
+      font-size: 0.82rem;
+      color: var(--ink-dim);
+    }
+    .ledger-move {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .data-table th {
+      background: rgba(184,152,106,0.1);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 9px 14px;
+      color: var(--ink-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin: 36px 0;
+      background: rgba(184,152,106,0.06);
+      border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.18rem;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 10px !important;
+    }
+    .pull-quote cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── TAKEAWAY BOX ── */
+    .takeaway {
+      background: linear-gradient(135deg, rgba(184,152,106,0.15) 0%, rgba(184,152,106,0.05) 100%);
+      border: 1px solid rgba(184,152,106,0.35);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin: 40px 0 32px;
+    }
+    .takeaway-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .takeaway ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .takeaway li {
+      font-size: 0.88rem;
+      color: var(--ink-dim);
+      padding-left: 20px;
+      position: relative;
+    }
+    .takeaway li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      border-top: 1px dashed var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+    }
+    .disclaimer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-low);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-sig {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+    }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-low);
+    }
+
+    /* ── PREMIUM NAV LINK ── */
+    .premium-link {
+      background: linear-gradient(135deg, rgba(184,152,106,0.2), rgba(184,152,106,0.05));
+      border: 1px solid rgba(184,152,106,0.4);
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .premium-link span {
+      font-size: 0.82rem;
+      color: var(--ink-dim);
+    }
+    .premium-link a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--gold);
+      padding: 5px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .premium-link a:hover { background: rgba(184,152,106,0.15); }
+
+    @media (max-width: 500px) {
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+      .ledger-row { grid-template-columns: 80px 1fr auto; }
+      .masthead-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <a href="/index.html" class="masthead-logo">FinTrend News</a>
+    <nav>
+      <ul class="masthead-nav">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/archive.html">Archive</a></li>
+        <li><a href="https://buy.stripe.com/yourlink" target="_blank">Premium ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ARTICLE -->
+  <main class="article-wrap">
+
+    <div class="kicker">Friday Recap · June 13, 2026</div>
+
+    <h1>The Week the <em>Sky</em> Went Public</h1>
+
+    <p class="dek">SpaceX closed at $160.95 on its Nasdaq debut — the largest IPO in history. Oil slipped toward $84 on peace-deal optimism. May CPI printed 4.2% year-over-year. And Kevin Warsh sits down for his first FOMC in four days. Here's every session.</p>
+
+    <div class="byline-bar">
+      <span class="byline-author">Hunter William Lang · Markets Correspondent</span>
+      <span class="byline-date">FRI 13 JUN 2026</span>
+    </div>
+
+    <!-- WEEKLY SCOREBOARD -->
+    <p class="section-head">Weekly Scorecard</p>
+    <div class="scoreboard">
+      <div class="score-cell">
+        <span class="score-label">S&P 500</span>
+        <span class="score-value up">7,431.46</span>
+        <span class="score-delta up">+0.65% W/W</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-label">Nasdaq</span>
+        <span class="score-value up">25,888.84</span>
+        <span class="score-delta up">+0.70% W/W</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-label">Dow</span>
+        <span class="score-value up">51,202.26</span>
+        <span class="score-delta up">+0.66% W/W</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-label">Russell 2000</span>
+        <span class="score-value up">2,943.99</span>
+        <span class="score-delta up">+0.79% W/W</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-label">WTI Crude</span>
+        <span class="score-value down">$84.88</span>
+        <span class="score-delta down">–5.8% W/W</span>
+      </div>
+      <div class="score-cell">
+        <span class="score-label">VIX</span>
+        <span class="score-value up">17.68</span>
+        <span class="score-delta up">–9.05% W/W</span>
+      </div>
+    </div>
+
+    <!-- LEAD -->
+    <div class="body-text">
+      <p class="drop-cap">This was the week markets had to hold two contradictory truths in their heads at once. The first: inflation remains a problem, with May CPI clocking 4.2% — a three-year high driven almost entirely by a 23.5% year-over-year spike in energy costs. The second: an Iran deal might actually arrive. WTI crude fell roughly 6% on the week as negotiators signaled the most concrete progress since the ceasefire framework collapsed in early June. The collision of those two currents — sticky headline inflation priced into the bond market, but the oil-shock component possibly about to deflate — is exactly the puzzle Warsh walks into on Monday.</p>
+
+      <p>Then there was SpaceX. The $75 billion IPO — the largest in history — landed on Friday like a controlled Falcon 9 burn: precise, enormous, and impossible to ignore. SPCX opened at $150, briefly cleared $175 intraday, and closed at $160.95, up 19.2% from its $135 offer price. Elon Musk became, briefly, the world's first acknowledged trillionaire. The market did not need to choose between the geopolitical macro and the tech narrative this week — it got both, at the same time, in the same five sessions.</p>
+    </div>
+
+    <!-- DAY-BY-DAY LEDGER -->
+    <p class="section-head">The Tape · Mon–Fri</p>
+    <div class="ledger">
+      <div class="ledger-row">
+        <span class="ledger-day">MON JUN 9</span>
+        <span class="ledger-desc">Semis stage partial recovery after Friday's chip rout — SMH +6% intraday. Trump hints at fresh Iran strikes; S&P reverses gains midday. Nasdaq closes mixed.</span>
+        <span class="ledger-move flat">S&P –0.26%</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-day">TUE JUN 10</span>
+        <span class="ledger-desc">U.S. launches new strikes on southern Iran after market close on Monday. May CPI lands at 4.2% YoY — a three-year high. Nasdaq sheds 1.98%. Dow drops ~900 pts. Oil spikes intraday.</span>
+        <span class="ledger-move down">Nasdaq –1.98%</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-day">WED JUN 11</span>
+        <span class="ledger-desc">Trump calls off evening strikes; signals deal is close. VIX drops nearly 12% on session. Oracle earnings mixed after-hours. S&P turns positive on peace optimism. Gold and silver pull back modestly.</span>
+        <span class="ledger-move up">S&P +1.28%</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-day">THU JUN 12</span>
+        <span class="ledger-desc">SpaceX prices IPO at $135 overnight. SPCX opens day's trading at $150. Both sides confirm deal text finalized; WTI crude falls toward $89. Russell 2000 outperforms as small caps price in Hormuz reopening.</span>
+        <span class="ledger-move up">S&P +0.50%</span>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-day">FRI JUN 13</span>
+        <span class="ledger-desc">SPCX closes at $160.95, +19.2% on debut. Oil falls 2% to ~$85 on deal optimism. S&P extends gains. Markets head into the weekend with a positive tone ahead of Warsh's first FOMC Jun 16–17.</span>
+        <span class="ledger-move up">S&P +0.50%</span>
+      </div>
+    </div>
+
+    <!-- CPI BREAKDOWN -->
+    <p class="section-head">May CPI · The Data Block</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Result</th>
+          <th>Estimate</th>
+          <th>Prior</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CPI YoY</td>
+          <td class="up">+4.2%</td>
+          <td>+4.2%</td>
+          <td>+3.9%</td>
+          <td class="down">3-yr High</td>
+        </tr>
+        <tr>
+          <td>CPI MoM</td>
+          <td class="down">+0.5%</td>
+          <td>+0.3%</td>
+          <td>+0.6%</td>
+          <td class="down">Hot</td>
+        </tr>
+        <tr>
+          <td>Core CPI YoY</td>
+          <td>+2.9%</td>
+          <td>+3.0%</td>
+          <td>+2.8%</td>
+          <td class="flat">In Line</td>
+        </tr>
+        <tr>
+          <td>Core CPI MoM</td>
+          <td class="up">+0.2%</td>
+          <td>+0.2%</td>
+          <td>+0.4%</td>
+          <td class="up">Soft</td>
+        </tr>
+        <tr>
+          <td>Energy YoY</td>
+          <td class="down">+23.5%</td>
+          <td>—</td>
+          <td>+19.1%</td>
+          <td class="down">War Driven</td>
+        </tr>
+        <tr>
+          <td>Gasoline MoM</td>
+          <td class="down">+7.0%</td>
+          <td>—</td>
+          <td>+5.2%</td>
+          <td class="down">40% vs Jan</td>
+        </tr>
+        <tr>
+          <td>Food MoM</td>
+          <td class="up">+0.2%</td>
+          <td>—</td>
+          <td>+0.3%</td>
+          <td class="up">Cooling</td>
+        </tr>
+        <tr>
+          <td>Shelter YoY</td>
+          <td>+3.4%</td>
+          <td>—</td>
+          <td>+3.8%</td>
+          <td class="up">Easing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="body-text">
+      <p>The headline number looks alarming until you strip it apart. Core CPI at 2.9% year-over-year actually suggests that domestically-driven inflation is behaving — shelter decelerated, food was tame, transportation services fell 0.6% on the month. What's running hot is almost entirely the energy component, which means May's 4.2% print is less a structural inflation story than a Strait of Hormuz story in disguise. If the Iran deal closes and oil normalizes, June CPI could undershoot meaningfully.</p>
+
+      <p>That is the setup Warsh inherits. He can read the data the same way everyone else can: the war premium is in the headline, not the core. But with energy still embedded in every supply chain input cost — freight, manufacturing, ag — the Fed cannot simply wave it away. EY's economists put it directly: risks of higher and more persistent inflation remain salient with every day that passes without Hormuz normalizing.</p>
+    </div>
+
+    <!-- PULL QUOTE -->
+    <div class="pull-quote">
+      <p>"SpaceX going public is an important moment for the broader tech sector in our view as this AI Revolution and data takes this next step forward."</p>
+      <cite>— Dan Ives, Wedbush Securities · June 13, 2026</cite>
+    </div>
+
+    <!-- SPACEX IPO SECTION -->
+    <p class="section-head">SpaceX · The Largest IPO in History</p>
+    <div class="body-text">
+      <p>The numbers are large enough to require context. SpaceX raised $75 billion at $135 per share — a fixed price, not a range, which itself was unusual. At $135, the company was valued at $1.77 trillion. By the open on Friday, it was worth more than $2 trillion. By intraday peak it briefly cleared $2.25 trillion. It closed at a $2.1 trillion market cap — above Tesla's ~$1.5 trillion, above every U.S. company except the top handful of mega-caps.</p>
+
+      <p>The company that went public is no longer just a rocket manufacturer. SpaceX's February acquisition of xAI folded in Grok's AI models, xAI's data centers, and the X social network. The prospectus disclosed $41.3 billion in cumulative losses since 2002 — a figure that would sink any industrial company but is treated as an R&D ledger by a market that prices Starlink's recurring revenue and the Starship platform's long-duration optionality. Wedbush's Dan Ives framed it as a watershed for the AI infrastructure cycle. Goldman Sachs led the deal. The underwriting syndicate included Morgan Stanley, Bank of America, Citi, and JPMorgan.</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>SPCX · IPO Snapshot</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>IPO Price</td><td>$135.00</td></tr>
+        <tr><td>Open (Jun 12)</td><td>$150.00</td></tr>
+        <tr><td>Intraday High</td><td>$176.52</td></tr>
+        <tr><td>Close (Jun 12)</td><td class="up">$160.95 (+19.2%)</td></tr>
+        <tr><td>Total Raised</td><td>$75B</td></tr>
+        <tr><td>Implied Mkt Cap (IPO)</td><td>$1.77T</td></tr>
+        <tr><td>Musk Voting Control</td><td>&gt;82%</td></tr>
+        <tr><td>Lead Banker</td><td>Goldman Sachs</td></tr>
+      </tbody>
+    </table>
+
+    <!-- IRAN / OIL SECTION -->
+    <p class="section-head">Iran & Hormuz · Where Things Stand</p>
+    <div class="body-text">
+      <p>The week's geopolitical arc ran from strikes to signatures. Monday and Tuesday brought fresh U.S. strikes on southern Iran — described by officials as the most serious ceasefire breakdown yet. Then Wednesday flipped the script: Trump called off evening strikes, and markets did the math quickly. VIX fell nearly 12% in a single session. By Thursday, both U.S. and Iranian negotiators — with Pakistani mediation — confirmed they had agreed on the final text of a draft peace deal.</p>
+
+      <p>The memorandum of understanding, as reported Friday, would reopen the Strait of Hormuz immediately without tolls and restore prewar shipping within approximately 30 days. WTI crude fell toward $84–85 on the week, down from above $90 as recently as Tuesday. Brent tracked lower to the $87 range. The catch: neither side has signed. Israel is pressing the U.S. to prevent unfreezing Iranian assets. Iran's Foreign Minister described terms that appear to differ from the U.S. version. The U.S. military shot down two Iranian drones targeting Hormuz vessels as recently as Thursday night.</p>
+
+      <p>The deal is close. It is not done.</p>
+    </div>
+
+    <!-- WHAT'S NEXT -->
+    <p class="section-head">What's Next · Jun 16–17 FOMC Tripwires</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Date</th>
+          <th>Market Expectation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Warsh's 1st FOMC Meeting</td><td>Jun 16–17</td><td>Hold at 4.25–4.50%</td></tr>
+        <tr><td>FOMC Statement Tone</td><td>Jun 17 2pm ET</td><td>Two-sided reaction function signaled</td></tr>
+        <tr><td>Warsh Press Conference</td><td>Jun 17 2:30pm ET</td><td>Watching for hawkish tilt on inflation</td></tr>
+        <tr><td>Iran Deal Signing</td><td>Days away (unconfirmed)</td><td>Oil –10–15% on close; CPI tailwind</td></tr>
+        <tr><td>SPCX 2nd-Day Trading</td><td>Jun 16</td><td>Elevated volatility expected</td></tr>
+        <tr><td>June CPI (Jun release)</td><td>Jul 14</td><td>Forecast below 4.2% if energy eases</td></tr>
+      </tbody>
+    </table>
+
+    <!-- TAKEAWAY BOX -->
+    <div class="takeaway">
+      <div class="takeaway-label">Hunter's Read · 4 Things That Matter</div>
+      <ul>
+        <li>The Iran deal is the Fed's real variable. If oil normalizes before the July 14 CPI print, Warsh gets cover to hold rates without sounding behind the curve. If it doesn't, the two-sided reaction function becomes a one-sided problem.</li>
+        <li>May CPI's 4.2% headline is the wrong number to anchor on. Strip energy, and core at 2.9% suggests the domestic inflation story is behaving. The war premium is in the data — not the economy.</li>
+        <li>SpaceX's debut resets IPO price discovery for AI-adjacent names. If SPCX holds above $140 through next week, expect OpenAI and Anthropic timeline speculation to accelerate materially.</li>
+        <li>Small caps outperformed this week. The Russell 2000 +0.79% beat the S&P by 14 bps — a tell that rate-sensitive and oil-sensitive sectors priced in Hormuz reopening faster than the headline indices. Watch for rotation continuation if a deal closes.</li>
+      </ul>
+    </div>
+
+    <!-- PREMIUM TEASER -->
+    <div class="premium-link">
+      <span>Premium: Warsh FOMC playbook, SPCX valuation breakdown, and Hormuz reopening trade scenarios →</span>
+      <a href="https://buy.stripe.com/yourlink" target="_blank">Unlock →</a>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <p>FinTrend News publishes financial market analysis for educational and informational purposes only. Nothing in this article constitutes investment advice or a solicitation to buy or sell any security. All figures cited are sourced from publicly available data as of June 13, 2026. Past performance is not indicative of future results. Consult a licensed financial professional before making investment decisions.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span class="footer-sig">FinTrend News · fintrend.news</span>
+      <span class="footer-copy">© 2026 FinTrend News. All rights reserved.</span>
+    </div>
+
+  </main>
+</body>
+</html>
