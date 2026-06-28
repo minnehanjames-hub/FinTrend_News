@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Disinflation Summer | FinTrend News</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);background-attachment:fixed;color:#eef1ff;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+a{color:#b8986a;text-decoration:none}a:hover{text-decoration:underline}
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid rgba(184,152,106,.18);background:rgba(11,15,31,.72);backdrop-filter:blur(10px);position:sticky;top:0;z-index:99}
+.site-nav .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;letter-spacing:.02em;color:#eef1ff}
+.site-nav .logo span{color:#b8986a}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#b8bfd9;font-weight:500}
+.nav-links a:hover{color:#b8986a;text-decoration:none}
+.nav-cta{background:linear-gradient(135deg,#b8986a,#d4b483);color:#0b0f1f!important;padding:7px 18px;border-radius:4px;font-size:.78rem;letter-spacing:.06em;font-weight:700;text-transform:uppercase}
+.article-wrap{max-width:760px;margin:0 auto;padding:60px 24px 80px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#b8986a;margin-bottom:20px}
+.kicker::before{content:'';width:7px;height:7px;border-radius:50%;background:#b8986a;display:inline-block}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3rem);line-height:1.18;color:#eef1ff;margin-bottom:18px}
+h1 em{color:#b8986a;font-style:italic}
+.dek{font-size:1.15rem;color:#b8bfd9;font-weight:300;line-height:1.6;margin-bottom:28px}
+.byline-bar{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(184,152,106,.25);border-bottom:1px solid rgba(184,152,106,.25);padding:12px 0;margin-bottom:36px}
+.byline-authors{font-size:.82rem;color:#7d85a8}
+.byline-authors strong{color:#b8bfd9}
+.byline-date{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#7d85a8}
+.article-body p{margin-bottom:22px;color:#eef1ff;font-size:1rem;line-height:1.75}
+.article-body h2{font-family:'DM Serif Display',serif;font-size:1.45rem;color:#eef1ff;margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(184,152,106,.2)}
+.drop-cap::first-letter{font-family:'DM Serif Display',serif;font-size:4rem;line-height:.78;float:left;margin:6px 10px 0 0;color:#b8986a}
+.scoreboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:36px 0}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(184,152,106,.15);border-radius:8px;padding:16px;text-align:center}
+.score-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#7d85a8;margin-bottom:6px}
+.score-val{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#eef1ff}
+.score-delta{font-family:'JetBrains Mono',monospace;font-size:.75rem;margin-top:4px}
+.up{color:#5dd39e}.down{color:#ef6b6b}.flat{color:#b8bfd9}
+.pull-quote{border-left:3px solid #b8986a;padding:18px 24px;margin:36px 0;background:rgba(184,152,106,.06);border-radius:0 6px 6px 0}
+.pull-quote p{font-family:'DM Serif Display',serif;font-size:1.2rem;font-style:italic;color:#eef1ff;margin-bottom:0;line-height:1.5}
+.pull-quote cite{display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#7d85a8;margin-top:10px;font-style:normal;letter-spacing:.06em}
+.data-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'JetBrains Mono',monospace;font-size:.82rem}
+.data-table th{text-align:left;padding:9px 12px;border-bottom:1px solid rgba(184,152,106,.3);color:#b8986a;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.data-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:#b8bfd9}
+.data-table tr:hover td{background:rgba(255,255,255,.03)}
+.takeaway{background:linear-gradient(135deg,rgba(184,152,106,.12),rgba(184,152,106,.05));border:1px solid rgba(184,152,106,.35);border-radius:10px;padding:28px;margin:40px 0}
+.takeaway-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#b8986a;margin-bottom:12px}
+.takeaway p{color:#eef1ff;margin-bottom:14px}
+.takeaway p:last-child{margin-bottom:0}
+.disclaimer{border-top:1px dashed rgba(184,152,106,.2);margin-top:48px;padding-top:20px;font-size:.75rem;color:#7d85a8;line-height:1.6}
+.site-footer{border-top:1px solid rgba(184,152,106,.15);padding:30px 40px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#7d85a8;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,31,.5)}
+.footer-sig{color:#b8986a}
+@media(max-width:680px){.site-nav{padding:14px 18px}.nav-links{display:none}.article-wrap{padding:36px 18px 60px}.site-footer{flex-direction:column;gap:10px;text-align:center;padding:22px 18px}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="logo">Fin<span>Trend</span> News</div>
+  <div class="nav-links">
+    <a href="/">Markets</a><a href="/macro">Macro</a><a href="/archive.html">Archive</a>
+    <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+<div class="article-wrap">
+  <div class="kicker">Sunday Macro Note &nbsp;·&nbsp; June 28, 2026</div>
+  <h1>The <em>Disinflation</em><br>Summer</h1>
+  <p class="dek">Oil is below $70 for the first time since January. Core PCE printed at the cycle peak. GDP is stronger than feared. The Warsh Fed holds its line. The inflation arc that began with the Iran war is bending back — but the market must navigate AI cost pressures, a SPCX shakeout, and NFP next week before it can confirm the summer thesis.</p>
+  <div class="byline-bar">
+    <div class="byline-authors">By <strong>Arshia Morshedian</strong> &mdash; Macro &amp; Global Markets</div>
+    <div class="byline-date">SUN 28 JUN 2026 &nbsp;·&nbsp; 07:00 ET</div>
+  </div>
+  <div class="article-body">
+    <p class="drop-cap">The macro picture entering July is the clearest it has been since the Iran war began in February — and paradoxically, that clarity is what makes the next few months so treacherous to navigate. The disinflation thesis is now well-established: the Strait of Hormuz is open, oil is below $70, gas is at $3.90 and falling, and May's core PCE at 3.4% is almost certainly the peak of the energy-shock inflation cycle. What is less established is the timeline from peak to resolution — and what the market does while it waits. The June data won't arrive until mid-July. July's won't come until August. The Fed's September meeting is the first live decision point. Between now and then, markets must contend with AI cost pressures that are beginning to show up in corporate pricing, a SpaceX stock in free-fall from its all-time high, and an NFP print on July 3 that will set the tone for the July 4 holiday week.</p>
+    <div class="scoreboard">
+      <div class="score-card"><div class="score-label">S&amp;P 500</div><div class="score-val">7,354</div><div class="score-delta down">Off recent highs</div></div>
+      <div class="score-card"><div class="score-label">WTI Crude</div><div class="score-val">$69.23</div><div class="score-delta up">−$40+ from peak</div></div>
+      <div class="score-card"><div class="score-label">Core PCE — May</div><div class="score-val">3.4%</div><div class="score-delta flat">Likely cycle peak</div></div>
+      <div class="score-card"><div class="score-label">Q1 GDP Final</div><div class="score-val">2.1%</div><div class="score-delta up">Revised up from 1.6%</div></div>
+      <div class="score-card"><div class="score-label">SPCX</div><div class="score-val">~$154</div><div class="score-delta down">−32% from ATH</div></div>
+      <div class="score-card"><div class="score-label">Gold</div><div class="score-val">$4,096</div><div class="score-delta up">+1.2% Fri</div></div>
+    </div>
+    <h2>The Inflation Arc: Where We Are and Where It Goes</h2>
+    <p>The 2026 inflation spike had a clear cause and a clear cure. The cause: the Iran war's disruption of the Strait of Hormuz from February through June added roughly 1.5 percentage points to CPI and PCE each month through the energy component alone. The cure: the MOU signed June 18, the naval blockade ended, Hormuz traffic resuming, and WTI falling from its 2026 peak of roughly $110+ down through $100, $90, $80, and now below $70. At current oil prices, Edward Jones estimates the energy contribution to CPI will moderate from the full 1.5 points in May to roughly one percentage point in July and continue fading through fall.</p>
+    <p>The mathematics of that trajectory are straightforward. If energy stops adding to inflation and core continues at its current 3.3–3.4% pace, headline CPI should fall from 4.2% toward 3.0–3.5% by August or September. If core also moderates — and services inflation ex-energy has shown no signs of reacceleration — the path toward the Fed's 2% target becomes visible, even if distant. This is why Morgan Stanley's Ellen Zentner used the phrase "hold for quite some time, until conditions allow for a cut." The trajectory is toward easing, not hiking. It is just slow.</p>
+    <div class="pull-quote">
+      <p>"Rising energy prices have been a key driver of surging U.S. inflation this year. The good news is that the drop in oil should reverse a good portion of this spike in coming months."</p>
+      <cite>— Edward Jones Weekly Market Commentary, June 22, 2026</cite>
+    </div>
+    <h2>The AI Cost Problem That Didn't Go Away</h2>
+    <p>One of the week's most underappreciated developments was the decision by both Apple and Microsoft to announce price increases on consumer hardware and software products, citing higher AI component costs. Apple raised prices on its computers and iPads. Microsoft raised Xbox pricing. These are the first visible pass-throughs of AI infrastructure inflation to consumer prices — and they represent a structural inflation headwind that exists entirely separately from the energy shock.</p>
+    <p>Kevin Gordon at Schwab flagged this dynamic explicitly on social media this week, noting that CPI software prices have risen at a 59% annualized pace over the past six months. The AI buildout is not just an investment story — it is an input cost story. Data center construction, GPU procurement, energy consumption for compute, and now component pricing in consumer devices: these costs are beginning to show up in the price index in ways that have nothing to do with the Strait of Hormuz. If core PCE's monthly acceleration from 0.24% to 0.37% in May was partly driven by this dynamic rather than pure energy pass-through, the Fed's path becomes more complicated than a simple Hormuz-reversal thesis would suggest.</p>
+    <h2>SPCX: The Post-IPO Anatomy of a Shakeout</h2>
+    <table class="data-table">
+      <thead><tr><th>Date</th><th>Event</th><th>SPCX Price</th><th>From IPO</th></tr></thead>
+      <tbody>
+        <tr><td>Jun 12</td><td>IPO Day</td><td>$135 → $161</td><td class="up">+19%</td></tr>
+        <tr><td>Jun 15</td><td>All-Time High (intraday)</td><td>$225.64</td><td class="up">+67%</td></tr>
+        <tr><td>Jun 16</td><td>Fed hawkish shock</td><td>~$189</td><td class="up">+40%</td></tr>
+        <tr><td>Jun 22</td><td>−16.4% single session</td><td>~$150</td><td class="flat">+11%</td></tr>
+        <tr><td>Jun 26</td><td>Russell 1000 inclusion</td><td>~$154</td><td class="up">+14%</td></tr>
+        <tr><td>Aug 6</td><td>First earnings report</td><td>TBD</td><td class="flat">Next catalyst</td></tr>
+        <tr><td>Dec 2026</td><td>180-day lockup expiry</td><td>TBD</td><td class="down">Supply risk</td></tr>
+      </tbody>
+    </table>
+    <p>SpaceX's addition to the Russell 1000 after Friday's close is the next structural buying catalyst — passive funds tracking the index must purchase shares regardless of price. With only 4% of the company's market cap in free float, each wave of forced passive buying creates outsized price effects. Friday's 1.5%+ midday gain ahead of the inclusion reflects traders front-running that dynamic. But the shakeout from $225 to $154 in under two weeks has exposed the risk of momentum-driven positioning in a low-float name: the same mechanics that drove the stock to its all-time high can work violently in reverse when sentiment shifts. The first earnings report on August 6 is the next fundamental anchor. Until then, SPCX is a sentiment and supply/demand vehicle more than a valuation one.</p>
+    <h2>The Global Macro Picture Heading Into July</h2>
+    <p>The international backdrop for July is more constructive than it has been in months. Europe's energy cost relief from lower oil is translating into improved economic sentiment across the continent. The ECB, which held at 2.75% in June, is now widely expected to resume easing in Q3 as the Hormuz peace dividend filters through. Japan's challenge — managing a rate normalization cycle against an energy-driven wholesale inflation backdrop — eases as WTI falls below $70, reducing import costs for an economy that buys most of its energy on global markets. China, as the world's largest oil importer, is the quiet structural winner of the peace deal: lower energy input costs are a meaningful tailwind for an industrial economy still working through a domestic demand soft patch.</p>
+    <p>The dollar's strength — up more than 2.5% in June to multi-year highs above 101 on the DXY — is the one complicating factor. A strong dollar tightens financial conditions for emerging market borrowers and creates headwinds for U.S. multinationals reporting Q2 earnings. It also reflects the market's repricing of the Fed's hawkishness. If the disinflation thesis plays out as expected — oil at $65–$70 through the summer, CPI rolling over toward 3% by August — dollar strength should fade as September hike odds retrace. That dollar reversal, when it comes, is the catalyst for the next leg of the emerging market trade and a relief valve for S&P 500 earnings estimates.</p>
+    <div class="takeaway">
+      <div class="takeaway-label">Macro Note — The Summer Thesis</div>
+      <p>The disinflation summer is not a guarantee — it is a thesis with clear conditions and clear risks. The conditions: Hormuz stays open, oil remains below $75, June and July CPI confirm the energy reversal, core PCE monthly increments moderate back toward 0.2%, and services inflation stays contained. If those conditions hold, the Fed's September meeting is a hold, the dot plot's nine hike projections become a cautionary artifact of a different data regime, and the market can begin pricing the first cuts of the Warsh era sometime in Q1 2027.</p>
+      <p>The risks are specific and countable. A Hormuz disruption — even a temporary one from a splinter faction or maritime incident — would immediately reverse the oil decline and delay the inflation reversal by months. AI cost inflation embedding itself in core services at a pace that keeps the monthly PCE increment above 0.3% would prevent the annual rate from rolling over even as energy fades. And a labor market that remains too firm — NFP north of 200K on July 3 with strong wage growth — would give the committee its second rationale for a September move even in the presence of easing energy prices.</p>
+      <p>The next four weeks are a data vacuum by design: July 4 closes markets, the summer calendar is light, and the first major test arrives when June CPI lands in mid-July. Use the quiet to think clearly about what you own and why. The thesis is sound. The conditions are not yet confirmed. That distinction will matter enormously by the time September arrives.</p>
+    </div>
+  </div>
+  <div class="disclaimer">This article is for informational purposes only and does not constitute financial advice. All market data reflects conditions at time of writing. Past performance is not indicative of future results. FinTrend News is an independent financial publication. Consult a licensed financial professional before making investment decisions.</div>
+</div>
+<footer class="site-footer">
+  <div>&copy; 2026 FinTrend News &mdash; All rights reserved</div>
+  <div class="footer-sig">FT // Macro Intelligence</div>
+</footer>
+</body>
+</html>
