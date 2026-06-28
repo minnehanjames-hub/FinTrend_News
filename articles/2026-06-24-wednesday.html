@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Micron Saves the Week | FinTrend News</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KSK5YVPJBR');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);background-attachment:fixed;color:#eef1ff;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+a{color:#b8986a;text-decoration:none}a:hover{text-decoration:underline}
+.site-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid rgba(184,152,106,.18);background:rgba(11,15,31,.72);backdrop-filter:blur(10px);position:sticky;top:0;z-index:99}
+.site-nav .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;letter-spacing:.02em;color:#eef1ff}
+.site-nav .logo span{color:#b8986a}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#b8bfd9;font-weight:500}
+.nav-links a:hover{color:#b8986a;text-decoration:none}
+.nav-cta{background:linear-gradient(135deg,#b8986a,#d4b483);color:#0b0f1f!important;padding:7px 18px;border-radius:4px;font-size:.78rem;letter-spacing:.06em;font-weight:700;text-transform:uppercase}
+.article-wrap{max-width:760px;margin:0 auto;padding:60px 24px 80px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#b8986a;margin-bottom:20px}
+.kicker::before{content:'';width:7px;height:7px;border-radius:50%;background:#b8986a;display:inline-block}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3rem);line-height:1.18;color:#eef1ff;margin-bottom:18px}
+h1 em{color:#b8986a;font-style:italic}
+.dek{font-size:1.15rem;color:#b8bfd9;font-weight:300;line-height:1.6;margin-bottom:28px}
+.byline-bar{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(184,152,106,.25);border-bottom:1px solid rgba(184,152,106,.25);padding:12px 0;margin-bottom:36px}
+.byline-authors{font-size:.82rem;color:#7d85a8}
+.byline-authors strong{color:#b8bfd9}
+.byline-date{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#7d85a8}
+.article-body p{margin-bottom:22px;color:#eef1ff;font-size:1rem;line-height:1.75}
+.article-body h2{font-family:'DM Serif Display',serif;font-size:1.45rem;color:#eef1ff;margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(184,152,106,.2)}
+.drop-cap::first-letter{font-family:'DM Serif Display',serif;font-size:4rem;line-height:.78;float:left;margin:6px 10px 0 0;color:#b8986a}
+.scoreboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:36px 0}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(184,152,106,.15);border-radius:8px;padding:16px;text-align:center}
+.score-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#7d85a8;margin-bottom:6px}
+.score-val{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#eef1ff}
+.score-delta{font-family:'JetBrains Mono',monospace;font-size:.75rem;margin-top:4px}
+.up{color:#5dd39e}.down{color:#ef6b6b}.flat{color:#b8bfd9}
+.ledger{margin:28px 0}
+.ledger-row{display:grid;grid-template-columns:80px 1fr auto;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.ledger-day{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#7d85a8;padding-top:2px}
+.ledger-body{font-size:.92rem;color:#eef1ff;line-height:1.5}
+.ledger-move{font-family:'JetBrains Mono',monospace;font-size:.8rem;text-align:right;white-space:nowrap}
+.pull-quote{border-left:3px solid #b8986a;padding:18px 24px;margin:36px 0;background:rgba(184,152,106,.06);border-radius:0 6px 6px 0}
+.pull-quote p{font-family:'DM Serif Display',serif;font-size:1.2rem;font-style:italic;color:#eef1ff;margin-bottom:0;line-height:1.5}
+.pull-quote cite{display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#7d85a8;margin-top:10px;font-style:normal;letter-spacing:.06em}
+.data-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'JetBrains Mono',monospace;font-size:.82rem}
+.data-table th{text-align:left;padding:9px 12px;border-bottom:1px solid rgba(184,152,106,.3);color:#b8986a;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.data-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:#b8bfd9}
+.data-table tr:hover td{background:rgba(255,255,255,.03)}
+.takeaway{background:linear-gradient(135deg,rgba(184,152,106,.12),rgba(184,152,106,.05));border:1px solid rgba(184,152,106,.35);border-radius:10px;padding:28px;margin:40px 0}
+.takeaway-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#b8986a;margin-bottom:12px}
+.takeaway p{color:#eef1ff;margin-bottom:0}
+.disclaimer{border-top:1px dashed rgba(184,152,106,.2);margin-top:48px;padding-top:20px;font-size:.75rem;color:#7d85a8;line-height:1.6}
+.site-footer{border-top:1px solid rgba(184,152,106,.15);padding:30px 40px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#7d85a8;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,31,.5)}
+.footer-sig{color:#b8986a}
+@media(max-width:680px){.site-nav{padding:14px 18px}.nav-links{display:none}.article-wrap{padding:36px 18px 60px}.ledger-row{grid-template-columns:60px 1fr auto}.site-footer{flex-direction:column;gap:10px;text-align:center;padding:22px 18px}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="logo">Fin<span>Trend</span> News</div>
+  <div class="nav-links">
+    <a href="/">Markets</a><a href="/macro">Macro</a><a href="/archive.html">Archive</a>
+    <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+<div class="article-wrap">
+  <div class="kicker">Wednesday Momentum Check &nbsp;·&nbsp; June 24, 2026</div>
+  <h1>Micron <em>Saves</em><br>the Week</h1>
+  <p class="dek">After Monday's brutal chip selloff and Tuesday's continued tech slide, Micron delivered a blowout beat-and-raise after Wednesday's close. Nasdaq futures surged 2.3% overnight. PCE and GDP land tomorrow morning. The AI trade was being written off. It just wrote back.</p>
+  <div class="byline-bar">
+    <div class="byline-authors">By <strong>Hunter William Lang</strong></div>
+    <div class="byline-date">WED 24 JUN 2026 &nbsp;·&nbsp; 06:30 ET</div>
+  </div>
+  <div class="article-body">
+    <p class="drop-cap">Coming into this week, the question was whether the AI trade had fundamental footing or was sitting on froth after a 300%+ YTD run in chip names. Monday answered that the froth was real — a brutal, concentrated selloff in mega-cap tech and semiconductors that shaved more than $600 billion off SpaceX in three sessions and sent South Korea's KOSPI down nearly 10% overnight. Tuesday extended the damage. Then Micron reported after Wednesday's close, and the answer came back: the fundamentals are real too. The memory giant delivered a massive beat-and-raise — expected EPS of $20.83, expected revenue of $35.75 billion — and Nasdaq futures surged 2.3% in the overnight session. Qualcomm reinforced the signal with aggressive long-term AI data center targets in its own late-session commentary. The week that looked like the AI trade's unraveling became the week that validated it — at least for now. PCE data tomorrow morning will determine whether the macro confirms the micro.</p>
+    <div class="scoreboard">
+      <div class="score-card"><div class="score-label">S&amp;P 500 — Wed</div><div class="score-val">7,358</div><div class="score-delta up">+0.7% Wed</div></div>
+      <div class="score-card"><div class="score-label">Nasdaq — Wed</div><div class="score-val">25,476</div><div class="score-delta up">Recovering</div></div>
+      <div class="score-card"><div class="score-label">MU After Hours</div><div class="score-val">Blowout</div><div class="score-delta up">Beat &amp; Raise</div></div>
+      <div class="score-card"><div class="score-label">NDX Futures</div><div class="score-val">+2.3%</div><div class="score-delta up">Overnight surge</div></div>
+      <div class="score-card"><div class="score-label">10-Yr Yield</div><div class="score-val">4.398%</div><div class="score-delta up">Off 4.5% high</div></div>
+      <div class="score-card"><div class="score-label">SPCX</div><div class="score-val">$153.60</div><div class="score-delta down">−1.6% Wed</div></div>
+    </div>
+    <h2>The Week, Day by Day</h2>
+    <div class="ledger">
+      <div class="ledger-row">
+        <div class="ledger-day">MON<br>Jun 22</div>
+        <div class="ledger-body">Brutal return from the Juneteenth long weekend. SPCX −16.4%, its worst single session since listing. South Korea's KOSPI −9.99% on chip sector regulatory concerns. Micron −10.25%, Qualcomm −8.59%, Arm −8.41%. SpaceX shed ~$400 billion in a single day — second-largest single-stock loss in history after Nvidia's ~$590B drop. The broader S&P fell 1.6% but breadth held — consumer staples rose 1.7%, and advancing shares led declining ones on the NYSE. SpaceX bond offering reportedly met skeptical buyers.</div>
+        <div class="ledger-move"><span class="down">SPX −1.6%</span><br><span class="down">NDX −2.4%</span></div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">TUE<br>Jun 23</div>
+        <div class="ledger-body">Tech selling continued. Bank of America published a note flagging elevated September hike risk, adding to bond yield pressure. Ten-year yield climbed to ~4.51%, its highest since early 2026. IBM +4% after JPMorgan upgrade to overweight. Oracle −2% after disclosing 21,000 job cuts (13% of workforce) over the past year. Qualcomm −6% on M&A report: Bloomberg cited advanced talks to acquire AI software company Modular for ~$4B. Wendy's +23.7% on meme-stock momentum. VIX hit 19.49 (+13%). SPCX attempted bounce but remained below $150 — its day-one opening price.</div>
+        <div class="ledger-move"><span class="down">SPX cont.</span><br><span class="down">Semis led down</span></div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-day">WED<br>Jun 24</div>
+        <div class="ledger-body">Markets stabilized as yields and oil eased. S&P +0.7%, Nasdaq recovered to 25,476. Ten-year yield retreated from near 4.5% to 4.398%. Wendy's +23.7% again on continued retail enthusiasm. Sunrun +22%, Builders FirstSource +9.7%. Then after the bell: Micron delivered blowout results. Qualcomm outlined aggressive AI data center targets. Nasdaq futures surged 2.3% overnight. PCE data and Q1 GDP final due Thursday morning.</div>
+        <div class="ledger-move"><span class="up">SPX +0.7%</span><br><span class="up">NDX +~1.5%</span></div>
+      </div>
+    </div>
+    <div class="pull-quote">
+      <p>"Tuesday's meltdown in technology shares looks less like a broad deterioration in fundamentals and more like froth coming out of crowded AI and semiconductor positioning."</p>
+      <cite>— Schwab Market Update, June 24, 2026</cite>
+    </div>
+    <h2>Micron's Result: What It Means for the AI Trade</h2>
+    <table class="data-table">
+      <thead><tr><th>Metric</th><th>Estimate</th><th>Actual</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr><td>EPS</td><td>$20.83</td><td>Beat</td><td class="up">Demand robust</td></tr>
+        <tr><td>Revenue</td><td>$35.75B</td><td>Beat</td><td class="up">AI buildout accelerating</td></tr>
+        <tr><td>Guidance</td><td>In-line est.</td><td>Raised</td><td class="up">Management confidence</td></tr>
+        <tr><td>MU YTD gain</td><td>—</td><td>~+370%</td><td class="flat">Still elevated bar</td></tr>
+        <tr><td>Overnight NDX futures</td><td>—</td><td>+2.3%</td><td class="up">Sector re-rating</td></tr>
+      </tbody>
+    </table>
+    <p>Micron's beat-and-raise answers the fundamental question the sell-off raised: is AI hardware demand real or priced in? The answer, per the world's largest memory chipmaker, is that demand is not only real but accelerating. Data center memory requirements for AI training and inference are growing faster than Micron's prior guidance anticipated. The result also validates the broader semi trade — Sandisk, Western Digital, and Seagate all recovered in premarket. Qualcomm's aggressive long-term AI data center commentary added a second data point to the same thesis. The crowded positioning that drove Monday's selloff has partially unwound; the fundamentals that justified the positioning remain intact.</p>
+    <h2>What PCE Tomorrow Decides</h2>
+    <p>Thursday morning brings the week's most consequential data point for monetary policy: May core PCE, the Fed's preferred inflation gauge. The Cleveland Fed's nowcast model projects it at 3.3% — unchanged from April. A print at 3.0% or below resets the narrative toward disinflation and takes September hike odds back below 50%. A print at 3.4% or above validates the hawkish dot plot, extends the two-year yield's march toward 4.25%+, and puts September back on the table as a live meeting. May Q1 GDP final and durable goods data land simultaneously, offering a composite read on the economy's trajectory at the precise moment the market is trying to determine whether the Fed needs to tighten into it. The combination of Micron's results tonight and PCE tomorrow morning makes Thursday the most data-dense trading session in weeks.</p>
+    <div class="takeaway">
+      <div class="takeaway-label">Momentum Check — Mid-Week Read</div>
+      <p>The week arrived as a stress test for the AI trade and is departing with a partial answer: the fundamentals are still there. Micron's blowout results reignite enthusiasm in semiconductor stocks after Monday's brutal positioning unwind. Qualcomm's AI data center targets add a second brick to the same foundation. What the week has not yet resolved is the macro overlay — whether Warsh's hawkish dot plot reflects data that will force action, or whether the Hormuz peace dividend and softening energy prices will deliver the disinflation that keeps the committee on hold. PCE tomorrow morning is the arbiter. The next 12 hours will tell us whether the AI trade and the macro environment can coexist — or whether one of them needs to give.</p>
+    </div>
+  </div>
+  <div class="disclaimer">This article is for informational purposes only and does not constitute financial advice. All market data reflects conditions at time of writing. Past performance is not indicative of future results. FinTrend News is an independent financial publication. Consult a licensed financial professional before making investment decisions.</div>
+</div>
+<footer class="site-footer">
+  <div>&copy; 2026 FinTrend News &mdash; All rights reserved</div>
+  <div class="footer-sig">FT // Markets Intelligence</div>
+</footer>
+</body>
+</html>
