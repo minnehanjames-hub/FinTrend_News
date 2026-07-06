@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Rotation Survives the Calendar Flip | FinTrend News</title>
+<meta name="description" content="Momentum Check: Q3 opens with the best first half since 2021 already banked, a rotation out of semiconductors into Dow blue chips, a soft ADP print, and Warsh staying silent at Sintra.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg1: #0b0f1f; --bg2: #0f1530;
+    --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+    --gold: #b8986a; --gold-soft: rgba(184,152,106,0.35);
+    --up: #5dd39e; --down: #ef6b6b;
+    --card: rgba(255,255,255,0.03); --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+    background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.65; min-height: 100vh;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: 'DM Serif Display', serif; }
+
+  header.masthead { display:flex; align-items:center; justify-content:space-between; max-width: 880px; margin: 0 auto; padding: 28px 24px 20px; border-bottom: 1px solid var(--card-border); }
+  .logo { font-family:'DM Serif Display', serif; font-size:1.35rem; letter-spacing:0.5px; }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav a { margin-left: 22px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+
+  main { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .kicker { display:inline-flex; align-items:center; gap:8px; background: rgba(184,152,106,0.1); border: 1px solid var(--gold-soft); border-radius: 999px; padding: 6px 14px; margin-bottom: 22px; font-family:'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+  .kicker .dot { width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; }
+
+  h1.headline { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.6rem; line-height: 1.18; margin: 0 0 18px; color: var(--ink); }
+  h1.headline em { color: var(--gold); font-style: italic; }
+
+  .dek { font-size: 1.15rem; color: var(--ink-dim); font-weight: 400; margin: 0 0 28px; max-width: 68ch; }
+
+  .byline-bar { display:flex; justify-content:space-between; align-items:center; padding: 14px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); margin-bottom: 34px; font-size: 0.85rem; }
+  .byline-bar .author { color: var(--ink); font-weight: 600; }
+  .byline-bar .role { color: var(--ink-low); font-weight: 400; }
+  .byline-bar .date { font-family:'JetBrains Mono', monospace; color: var(--ink-low); font-size:0.78rem; letter-spacing:0.04em; }
+
+  p.lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; float: left; line-height: 0.8; padding-right: 10px; padding-top: 6px; color: var(--gold); }
+  p { color: var(--ink-dim); font-size: 1.04rem; margin: 0 0 20px; }
+  h2 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--ink); font-size: 1.5rem; margin: 42px 0 16px; }
+
+  .scoreboard { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 36px; }
+  .stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 14px; }
+  .stat .label { font-family:'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .stat .value { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat .delta { font-family:'JetBrains Mono', monospace; font-size: 0.82rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+
+  .ledger { margin: 28px 0; border-top: 1px solid var(--card-border); }
+  .ledger-row { display:grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .ledger-row .day { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.85rem; padding-top: 2px; }
+  .ledger-row .desc { color: var(--ink-dim); font-size: 0.96rem; }
+  .ledger-row .desc strong { color: var(--ink); font-weight: 600; }
+
+  blockquote.pullquote { border-left: 3px solid var(--gold); padding: 6px 0 6px 22px; margin: 34px 0; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.3rem; color: var(--ink); }
+  blockquote.pullquote cite { display:block; margin-top: 10px; font-family:'JetBrains Mono', monospace; font-style: normal; font-size: 0.75rem; color: var(--ink-low); }
+
+  table.datatable { width: 100%; border-collapse: collapse; margin: 24px 0; font-family:'JetBrains Mono', monospace; font-size: 0.85rem; }
+  table.datatable th { text-align:left; color: var(--ink-low); font-weight: 500; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.06em; padding: 10px 12px; border-bottom: 1px solid var(--card-border); }
+  table.datatable td { padding: 11px 12px; border-bottom: 1px solid var(--card-border); color: var(--ink-dim); }
+  table.datatable tr:last-child td { border-bottom: none; }
+
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.16), rgba(184,152,106,0.03)); border: 1px solid var(--gold-soft); border-radius: 14px; padding: 24px 26px; margin: 38px 0; }
+  .takeaway .label { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink); margin: 0; font-size: 1.02rem; }
+
+  .disclaimer { border: 1px dashed var(--card-border); border-radius: 10px; padding: 16px 18px; margin: 40px 0 20px; font-size: 0.82rem; color: var(--ink-low); }
+
+  footer { max-width: 880px; margin: 0 auto; padding: 30px 24px 60px; border-top: 1px solid var(--card-border); font-family:'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-low); display:flex; justify-content: space-between; align-items:center; }
+  footer .sig { color: var(--gold); }
+
+  @media (max-width: 680px) {
+    h1.headline { font-size: 1.9rem; }
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    .ledger-row { grid-template-columns: 84px 1fr; }
+    footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+    nav a { margin-left: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="logo">FinTrend<span> News</span></div>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../premium.html">Premium</a>
+    <a href="../archive.html">Archive</a>
+  </nav>
+</header>
+
+<main>
+  <div class="kicker"><span class="dot"></span>Momentum Check · July 1, 2026</div>
+
+  <h1 class="headline">The Great Rotation Survives the Calendar <em>Flip</em></h1>
+  <p class="dek">The best first half since 1991 for small caps is already banked. Q3 opened with money leaving semiconductors for Dow blue chips, a soft ADP print, and a Fed chair who said nothing at all in Sintra.</p>
+
+  <div class="byline-bar">
+    <div><span class="author">Hunter William Lang</span> <span class="role">— Markets Correspondent</span></div>
+    <div class="date">WED · JUL 1, 2026</div>
+  </div>
+
+  <p class="lead">Tuesday closed the books on a first half that will be studied for years, and Wednesday immediately started asking whether any of it can continue. The Dow gained 0.26% Tuesday to a record 52,319.20, wrapping a first half up 8.9% — its best since 2021. The S&amp;P 500 rose 9.6% over the same stretch. The Nasdaq did better than both at north of 12%. And the Russell 2000, the small-cap index that spent years as the market's forgotten child, gained roughly 22% in the first six months of the year, its best first half since 1991. Then Wednesday arrived, the new quarter opened, and the money that built those numbers started visibly moving somewhere else.</p>
+
+  <div class="scoreboard">
+    <div class="stat">
+      <div class="label">S&amp;P 500</div>
+      <div class="value">7,483.23</div>
+      <div class="delta down">-0.22%</div>
+    </div>
+    <div class="stat">
+      <div class="label">Nasdaq</div>
+      <div class="value">26,040.03</div>
+      <div class="delta down">-0.66%</div>
+    </div>
+    <div class="stat">
+      <div class="label">Dow (H1)</div>
+      <div class="value">+8.9%</div>
+      <div class="delta up">Best since 2021</div>
+    </div>
+    <div class="stat">
+      <div class="label">Russell 2000 (H1)</div>
+      <div class="value">+22%</div>
+      <div class="delta up">Best since 1991</div>
+    </div>
+  </div>
+
+  <h2>What the First Half Actually Built</h2>
+  <p>The headline indices tell only part of the story. The real engine of the first half was semiconductors, and specifically memory. The VanEck Semiconductor ETF (SMH) gained roughly 82% year-to-date through the end of June; the iShares Semiconductor ETF (SOXX) rose closer to 94% in the second quarter alone — the largest quarterly gain either fund has ever recorded. Micron Technology, this publication's pick of the quarter after its blowout earnings in late June, is up more than 240% since April. Sandisk has done even better, up over 750% year-to-date on the memory shortage narrative tied to AI infrastructure buildout. None of that happened by accident — it happened because the AI capex cycle needed physical memory and there wasn't enough of it, and the stocks that make it re-rated accordingly.</p>
+
+  <p>Wednesday is where that trade started to crack, at least in the short term. Micron fell more than 10% in the session despite its year-to-date gain remaining north of 260%, and Sandisk shed a similar amount overnight. Nvidia and Broadcom slipped roughly 1% and 2% respectively. "The 'Great Rotation' trade persists into the third quarter as the blue boring names of the Dow Jones Industrials continue to attract inflows directly from recent profit taking money from tech stocks," Jeff Kilburg, founder and CEO of KKM Financial, told CNBC. He called it healthy — evidence of broadening breadth in a bull market now in its fourth year. That's one read. The other is simpler: a sector that tripled in a quarter was always going to see someone take the other side of the trade the moment the calendar turned, and July 1 was as good a day as any.</p>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="day">TUE</div>
+      <div class="desc"><strong>H1 closes.</strong> Dow +8.9%, S&amp;P +9.6%, Nasdaq +12%+, Russell 2000 +22% — the small-cap benchmark's best first half since 1991. SMH +82% YTD; SOXX +94% for Q2 alone.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">WED</div>
+      <div class="desc"><strong>Q3 opens with a rotation, not a rally.</strong> Micron and Sandisk both fall more than 10%; Dow and financials/communications hold up while semis lead the Nasdaq lower. ADP prints a miss. Warsh speaks at Sintra and says essentially nothing.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">THU</div>
+      <div class="desc"><strong>June nonfarm payrolls</strong> — released a day early given Friday's market closure. The week's real verdict on whether the labor cooling shown in ADP is a broader trend or a one-off.</div>
+    </div>
+  </div>
+
+  <h2>ADP Confirms the Cooling, Warsh Confirms Nothing</h2>
+  <p>Private-sector employment rose by 98,000 in June according to ADP, down from an unrevised 122,000 in May and below expectations — the third straight month of deceleration in the private payroll data. It's not a collapse, but it is a trend, and it lines up with a broader labor-market narrative that has shifted meaningfully since Warsh took the gavel: participation is softening, hiring is cooling, and the "steady" labor market the Fed described as recently as June is looking less steady by the report.</p>
+
+  <p>Warsh, for his part, gave the market nothing to work with. Speaking Wednesday at the European Central Bank's Forum on Central Banking in Sintra, Portugal — alongside ECB President Christine Lagarde, Bank of England Governor Andrew Bailey, and Bank of Canada Governor Tiff Macklem — the Fed chair offered no signal on the U.S. policy path, according to CNBC. It was his first public appearance since his post-meeting press conference two weeks earlier, and his first speaking engagement since being confirmed in May. Stocks fell in early Wednesday trading specifically because the market was waiting on those remarks and got silence instead. That silence is a policy choice, not an accident — Warsh has been explicit since his first meeting that he does not intend to offer forward guidance, and Sintra was the first real test of whether he'd hold that line in a public, multilateral setting. He did.</p>
+
+  <blockquote class="pullquote">
+    "This is extremely healthy and underscores the broadening breadth of equities for this continued bull market in its fourth year."
+    <cite>— Jeff Kilburg, KKM Financial, on the rotation out of semiconductors and into the Dow</cite>
+  </blockquote>
+
+  <h2>The Setup Into Thursday</h2>
+  <table class="datatable">
+    <thead>
+      <tr><th>Signal</th><th>Reading</th><th>Implication</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ADP Private Payrolls (Jun)</td><td>+98,000</td><td>Third straight month of deceleration; sets a cautious bar into Thursday's NFP</td></tr>
+      <tr><td>Warsh at Sintra</td><td>No policy signal</td><td>Confirms the no-forward-guidance posture holds even on the international stage</td></tr>
+      <tr><td>SMH / SOXX (H1)</td><td>+82% / +94%</td><td>The size of the move is exactly why the profit-taking on July 1 was this sharp</td></tr>
+      <tr><td>Dow vs. Nasdaq (Q3 Day 1)</td><td>Diverging</td><td>Rotation into value/blue-chip names at the direct expense of memory and equipment names</td></tr>
+    </tbody>
+  </table>
+
+  <div class="takeaway">
+    <div class="label">The Takeaway</div>
+    <p>The first half was a semiconductor story wearing a broad-market costume — strip out memory and equipment names and the index-level gains look far more ordinary. Wednesday's rotation doesn't kill that story, but it does say the market is no longer willing to pay any price for it, and it's doing that rotating precisely on a day when the Fed chair had every opportunity to calm nerves and chose silence instead. Thursday's jobs number now carries the full weight of confirming or denying the labor-cooling thesis ADP just put on the table.</p>
+  </div>
+
+  <div class="disclaimer">
+    This article is for informational and educational purposes only and does not constitute financial advice. FinTrend News is not a registered investment adviser. Data reflects intraday and closing levels reported as of publication and is subject to revision. Always consult a licensed financial professional before making investment decisions.
+  </div>
+</main>
+
+<footer>
+  <div>&copy; 2026 FinTrend News. All rights reserved.</div>
+  <div class="sig">fintrend.news</div>
+</footer>
+
+</body>
+</html>
