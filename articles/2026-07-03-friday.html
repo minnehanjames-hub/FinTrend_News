@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markets Are Closed. The Week Already Told You Everything. | FinTrend News</title>
+<meta name="description" content="Friday Recap: A holiday-shortened week ends with markets closed, but Thursday delivered a jobs-report shock, a Dow record, and the worst chip-stock carnage since April.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg1: #0b0f1f; --bg2: #0f1530;
+    --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+    --gold: #b8986a; --gold-soft: rgba(184,152,106,0.35);
+    --up: #5dd39e; --down: #ef6b6b;
+    --card: rgba(255,255,255,0.03); --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+    background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.65; min-height: 100vh;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: 'DM Serif Display', serif; }
+
+  header.masthead { display:flex; align-items:center; justify-content:space-between; max-width: 880px; margin: 0 auto; padding: 28px 24px 20px; border-bottom: 1px solid var(--card-border); }
+  .logo { font-family:'DM Serif Display', serif; font-size:1.35rem; letter-spacing:0.5px; }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav a { margin-left: 22px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+
+  main { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .kicker { display:inline-flex; align-items:center; gap:8px; background: rgba(184,152,106,0.1); border: 1px solid var(--gold-soft); border-radius: 999px; padding: 6px 14px; margin-bottom: 22px; font-family:'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+  .kicker .dot { width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; }
+
+  h1.headline { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.6rem; line-height: 1.18; margin: 0 0 18px; color: var(--ink); }
+  h1.headline em { color: var(--gold); font-style: italic; }
+
+  .dek { font-size: 1.15rem; color: var(--ink-dim); font-weight: 400; margin: 0 0 28px; max-width: 68ch; }
+
+  .byline-bar { display:flex; justify-content:space-between; align-items:center; padding: 14px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); margin-bottom: 34px; font-size: 0.85rem; }
+  .byline-bar .author { color: var(--ink); font-weight: 600; }
+  .byline-bar .role { color: var(--ink-low); font-weight: 400; }
+  .byline-bar .date { font-family:'JetBrains Mono', monospace; color: var(--ink-low); font-size:0.78rem; letter-spacing:0.04em; }
+
+  p.lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; float: left; line-height: 0.8; padding-right: 10px; padding-top: 6px; color: var(--gold); }
+  p { color: var(--ink-dim); font-size: 1.04rem; margin: 0 0 20px; }
+  h2 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--ink); font-size: 1.5rem; margin: 42px 0 16px; }
+
+  .scoreboard { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 36px; }
+  .stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 14px; }
+  .stat .label { font-family:'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .stat .value { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat .delta { font-family:'JetBrains Mono', monospace; font-size: 0.82rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+
+  .ledger { margin: 28px 0; border-top: 1px solid var(--card-border); }
+  .ledger-row { display:grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .ledger-row .day { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.85rem; padding-top: 2px; }
+  .ledger-row .desc { color: var(--ink-dim); font-size: 0.96rem; }
+  .ledger-row .desc strong { color: var(--ink); font-weight: 600; }
+
+  blockquote.pullquote { border-left: 3px solid var(--gold); padding: 6px 0 6px 22px; margin: 34px 0; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.3rem; color: var(--ink); }
+  blockquote.pullquote cite { display:block; margin-top: 10px; font-family:'JetBrains Mono', monospace; font-style: normal; font-size: 0.75rem; color: var(--ink-low); }
+
+  table.datatable { width: 100%; border-collapse: collapse; margin: 24px 0; font-family:'JetBrains Mono', monospace; font-size: 0.85rem; }
+  table.datatable th { text-align:left; color: var(--ink-low); font-weight: 500; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.06em; padding: 10px 12px; border-bottom: 1px solid var(--card-border); }
+  table.datatable td { padding: 11px 12px; border-bottom: 1px solid var(--card-border); color: var(--ink-dim); }
+  table.datatable tr:last-child td { border-bottom: none; }
+  td.up { color: var(--up); } td.down { color: var(--down); }
+
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.16), rgba(184,152,106,0.03)); border: 1px solid var(--gold-soft); border-radius: 14px; padding: 24px 26px; margin: 38px 0; }
+  .takeaway .label { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink); margin: 0; font-size: 1.02rem; }
+
+  .disclaimer { border: 1px dashed var(--card-border); border-radius: 10px; padding: 16px 18px; margin: 40px 0 20px; font-size: 0.82rem; color: var(--ink-low); }
+
+  footer { max-width: 880px; margin: 0 auto; padding: 30px 24px 60px; border-top: 1px solid var(--card-border); font-family:'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-low); display:flex; justify-content: space-between; align-items:center; }
+  footer .sig { color: var(--gold); }
+
+  @media (max-width: 680px) {
+    h1.headline { font-size: 1.9rem; }
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    .ledger-row { grid-template-columns: 84px 1fr; }
+    footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+    nav a { margin-left: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="logo">FinTrend<span> News</span></div>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../premium.html">Premium</a>
+    <a href="../archive.html">Archive</a>
+  </nav>
+</header>
+
+<main>
+  <div class="kicker"><span class="dot"></span>Friday Recap · July 3, 2026</div>
+
+  <h1 class="headline">Markets Are Closed. The Week Already Told You <em>Everything</em>.</h1>
+  <p class="dek">No trading today for Independence Day, but Thursday did the work of an entire week: a jobs-report miss, a Dow record built on bad news, and the sharpest chip-stock unwind since April.</p>
+
+  <div class="byline-bar">
+    <div><span class="author">Hunter William Lang</span> <span class="role">— Markets Correspondent</span></div>
+    <div class="date">FRI · JUL 3, 2026 — MARKETS CLOSED</div>
+  </div>
+
+  <p class="lead">There is no session to recap today — the NYSE and Nasdaq are closed for Independence Day, along with the bond market, which also closed early at 2 p.m. Thursday. But calling this a quiet week would be dishonest. Thursday alone delivered a nonfarm payrolls miss large enough to reshape rate-hike odds, a Dow Jones Industrial Average record built entirely on the market cheering weak economic data, and a semiconductor unwind sharp enough to erase two weeks of memory-stock euphoria in forty-eight hours. The holiday just means Wall Street has three days to sit with all of it before Monday's reopen — the same Monday, notably, that Tehran's airspace closes completely for Ayatollah Khamenei's funeral procession.</p>
+
+  <div class="scoreboard">
+    <div class="stat">
+      <div class="label">Dow (Thu close)</div>
+      <div class="value">52,900.07</div>
+      <div class="delta up">+1.14% — record</div>
+    </div>
+    <div class="stat">
+      <div class="label">S&amp;P 500 (Thu)</div>
+      <div class="value">7,483.24</div>
+      <div class="delta up">+0.01%</div>
+    </div>
+    <div class="stat">
+      <div class="label">Nasdaq (Thu)</div>
+      <div class="value">25,832.67</div>
+      <div class="delta down">-0.80%</div>
+    </div>
+    <div class="stat">
+      <div class="label">June NFP</div>
+      <div class="value">57,000</div>
+      <div class="delta down">vs. ~115K est.</div>
+    </div>
+  </div>
+
+  <h2>The Jobs Report That Moved Everything</h2>
+  <p>June nonfarm payrolls rose by just 57,000, according to Thursday's Bureau of Labor Statistics release, well short of the roughly 115,000 economists expected and a sharp deceleration from May's downwardly revised 129,000. April and May were both cut on revision — April down 31,000 to 148,000, May down 43,000 to 129,000 — a combined 74,000 fewer jobs than originally reported. The unemployment rate ticked down to 4.2%, but for the wrong reason: labor force participation fell 0.3 percentage point to 61.5%, the lowest level since March 2021, meaning the improvement came from people leaving the workforce rather than finding jobs. Leisure and hospitality shed 61,000 positions, the single largest drag, while professional and business services, social assistance, and health care carried what gains there were. Wage growth held up fine — average hourly earnings rose 3.5% year-over-year, in line with estimates and slightly above May's 3.4%.</p>
+
+  <p>The market's reaction told you which side of the mandate traders think Warsh's Fed is watching most closely right now. "For the Fed, this number is fine," Thomas Simons, senior economist at Jefferies, wrote in a note. "The pace of job growth is plenty strong enough to maintain a steady unemployment rate and average hourly earnings are solid, but not accelerating. There is no imperative on their part to do anything with rates immediately, and the softening in the pace of job growth suggests that rate hikes are very unlikely to be necessary this year." Traders agreed with the framing quickly: a potential September hike came off the table in futures pricing within minutes of the release, though probability weight shifted toward a possible move later in the year rather than disappearing outright. The dollar weakened on the print, and money rotated toward defensives.</p>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="day">WED</div>
+      <div class="desc"><strong>Chip carnage begins.</strong> Micron and Sandisk both fall more than 10% as Q3 profit-taking hits the year's best-performing sector. SpaceX drops 7.9% on FAA prohibited-investment-list news.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">THU</div>
+      <div class="desc"><strong>Weak jobs, record Dow.</strong> June NFP misses badly at 57K; Dow jumps 594.83 points (+1.14%) to a record 52,900.07 on rate-relief hopes while the Nasdaq falls 0.8% as the semiconductor selloff extends to equipment names.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">FRI</div>
+      <div class="desc"><strong>Markets closed</strong> for Independence Day. Iran's Khamenei funeral processions begin, running through July 9 across Tehran, Qom, Mashhad, Najaf, and Karbala.</div>
+    </div>
+  </div>
+
+  <h2>The Chip Selloff Had a Name: Equipment</h2>
+  <p>If Wednesday's decline was about profit-taking in memory names, Thursday's was about something more specific — capital-expenditure fear rippling through the semiconductor equipment makers. Teradyne fell 13.6%, KLA dropped 11.5%, Lam Research slid 10.2%, and Applied Materials lost 7.35%, as analysts flagged slowing wafer-fab-equipment orders. Smaller equipment names were hit even harder — Axcelis fell nearly 19% and Vicor lost more than 19% on the same fear. Micron, this publication's standout pick of the prior week, fell another 5.5% Thursday and was tracking toward a decline of more than 12% for the holiday-shortened week alone, despite still sitting on a year-to-date gain north of 260%. The Roundhill Memory ETF (DRAM) — a fund that had nearly tripled since its April launch — was on pace to end the week down almost 15%.</p>
+
+  <p>Not everything in tech went the same direction. Netflix jumped roughly 5% Thursday afternoon in an otherwise unremarkable session for the stock, tracking a 5.6% gain for the week, though the specific catalyst wasn't immediately clear. Rivian surged nearly 13% to $19.38 after raising its full-year delivery guidance to a range of 65,000 to 70,000 vehicles, up from a prior 62,000-to-67,000 estimate, citing stronger-than-expected second-quarter EV demand. And Microsoft rose 1.5% after unveiling Microsoft Frontier Company, a $2.5 billion initiative that will embed roughly 6,000 employees directly with clients as forward-deployed AI engineers — a structural bet that implementation, not just model access, is where the next leg of enterprise AI spending goes.</p>
+
+  <blockquote class="pullquote">
+    "The pace of job growth is plenty strong enough to maintain a steady unemployment rate and average hourly earnings are solid, but not accelerating. There is no imperative on their part to do anything with rates immediately."
+    <cite>— Thomas Simons, senior economist, Jefferies, on the June jobs report</cite>
+  </blockquote>
+
+  <h2>Week in Numbers</h2>
+  <table class="datatable">
+    <thead>
+      <tr><th>Name / Metric</th><th>Move</th><th>Context</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Teradyne</td><td class="down">-13.6%</td><td>Semi-equipment capex fears, Thursday</td></tr>
+      <tr><td>KLA Corp</td><td class="down">-11.5%</td><td>Same wafer-fab-equipment order concerns</td></tr>
+      <tr><td>Micron (week)</td><td class="down">~-12%</td><td>Still +260% year-to-date</td></tr>
+      <tr><td>Rivian</td><td class="up">+13.0%</td><td>Raised FY26 delivery guidance to 65K–70K units</td></tr>
+      <tr><td>SpaceX (SPCX)</td><td class="down">-7.9%</td><td>Added to FAA's internal prohibited-investment list</td></tr>
+      <tr><td>Dow Jones</td><td class="up">+1.14%</td><td>Record close, driven by rate-relief rotation into blue chips</td></tr>
+    </tbody>
+  </table>
+
+  <div class="takeaway">
+    <div class="label">The Takeaway</div>
+    <p>This was a week where good news for rate-cut hopes and bad news for the labor market were the same headline. A weak jobs report sent the Dow to a record while gutting the chip trade that carried the first half of the year. Nothing here is resolved — Warsh has three weeks until the July 28–29 FOMC meeting to decide whether 57,000 jobs is a blip or a trend, and markets reopen Monday into a week where Iran's airspace is closed for a funeral and the Strait of Hormuz risk premium hasn't actually gone away.</p>
+  </div>
+
+  <div class="disclaimer">
+    This article is for informational and educational purposes only and does not constitute financial advice. FinTrend News is not a registered investment adviser. Data reflects intraday and closing levels reported as of publication and is subject to revision. Always consult a licensed financial professional before making investment decisions.
+  </div>
+</main>
+
+<footer>
+  <div>&copy; 2026 FinTrend News. All rights reserved.</div>
+  <div class="sig">fintrend.news</div>
+</footer>
+
+</body>
+</html>
