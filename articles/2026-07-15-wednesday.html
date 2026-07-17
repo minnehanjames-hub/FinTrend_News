@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One CPI Print, Two Victory Laps | FinTrend News</title>
+<meta name="description" content="Momentum Check: June CPI cools to 3.0% on collapsing gasoline while core runs hot at 0.3% — a split print that let both sides of the Fed's deadlock claim vindication and left the record tape standing.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg1: #0b0f1f; --bg2: #0f1530;
+    --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+    --gold: #b8986a; --border-hi: rgba(184,152,106,0.4);
+    --up: #5dd39e; --down: #ef6b6b;
+    --card: rgba(255,255,255,0.03); --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+    background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.65; min-height: 100vh;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  header.masthead { display:flex; align-items:center; justify-content:space-between; max-width: 880px; margin: 0 auto; padding: 28px 24px 20px; border-bottom: 1px solid var(--card-border); }
+  .logo { font-family:'DM Serif Display', serif; font-size:1.35rem; letter-spacing:0.5px; }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav a { margin-left: 22px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing:0.08em; }
+  nav a:hover { color: var(--gold); }
+
+  .article-wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .kicker-pill { display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--gold); margin-bottom:24px; border:1px solid var(--border-hi); padding:6px 14px; border-radius:20px; }
+  .kicker-pill::before { content:''; width:7px; height:7px; border-radius:50%; background: var(--gold); display:inline-block; }
+
+  h1 { font-family:'DM Serif Display', serif; font-size:2.4rem; line-height:1.2; margin-bottom:18px; }
+  h1 em { color: var(--gold); font-style: italic; }
+
+  .dek { font-size:1.05rem; color: var(--ink-dim); margin-bottom:28px; line-height:1.6; }
+
+  .byline-bar { display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--card-border); border-bottom:1px solid var(--card-border); padding:14px 0; margin-bottom:36px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color: var(--ink-low); }
+  .byline-bar strong { color: var(--ink); }
+
+  .lead p:first-of-type::first-letter {
+    font-family:'DM Serif Display', serif; font-size:4rem; color: var(--gold);
+    float:left; line-height:0.8; padding-right:10px; padding-top:6px;
+  }
+  p { margin-bottom:1.3em; font-size:0.98rem; color: var(--ink-dim); }
+  h2 { font-family:'DM Serif Display', serif; font-size:1.5rem; color: var(--ink); margin:44px 0 18px; }
+
+  .scoreboard { display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin:32px 0; }
+  .stat-cell { background: var(--card); border:1px solid var(--card-border); border-radius:8px; padding:16px 14px; }
+  .stat-label { font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--ink-low); margin-bottom:8px; }
+  .stat-value { font-family:'DM Serif Display', serif; font-size:1.35rem; color: var(--ink); margin-bottom:4px; }
+  .stat-delta { font-family:'JetBrains Mono', monospace; font-size:0.78rem; }
+  .stat-delta.up { color: var(--up); }
+  .stat-delta.down { color: var(--down); }
+
+  .ledger { margin:32px 0; }
+  .ledger-row { display:grid; grid-template-columns: 100px 1fr 110px; gap:16px; padding:14px 0; border-bottom:1px solid var(--card-border); align-items:start; }
+  .ledger-day { font-family:'JetBrains Mono', monospace; font-size:0.75rem; color: var(--gold); text-transform:uppercase; letter-spacing:0.08em; }
+  .ledger-body { font-size:0.92rem; color: var(--ink-dim); }
+  .ledger-impact { font-family:'JetBrains Mono', monospace; font-size:0.78rem; text-align:right; }
+
+  .pull-quote { border-left:3px solid var(--gold); padding:6px 24px; margin:36px 0; font-family:'DM Serif Display', serif; font-style:italic; font-size:1.2rem; color: var(--ink); }
+  .pull-quote cite { display:block; margin-top:10px; font-family:'JetBrains Mono', monospace; font-style:normal; font-size:0.72rem; color: var(--ink-low); }
+
+  table.data-table { width:100%; border-collapse:collapse; margin:28px 0; font-family:'JetBrains Mono', monospace; font-size:0.82rem; }
+  table.data-table th { text-align:left; color: var(--gold); text-transform:uppercase; letter-spacing:0.08em; font-size:0.68rem; padding:10px 8px; border-bottom:1px solid var(--border-hi); }
+  table.data-table td { padding:10px 8px; border-bottom:1px solid var(--card-border); color: var(--ink-dim); }
+  td.up { color: var(--up); }
+  td.down { color: var(--down); }
+
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.10) 0%, rgba(184,152,106,0.04) 100%); border:1px solid var(--border-hi); border-radius:8px; padding:24px 26px; margin:40px 0; }
+  .takeaway-label { font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color: var(--gold); margin-bottom:14px; }
+  .takeaway p { font-size:0.93rem; color: var(--ink-dim); line-height:1.72; margin-bottom:1em; }
+  .takeaway p:last-child { margin-bottom:0; }
+  .takeaway strong { color: var(--gold); }
+
+  .disclaimer { border-top:1px dashed var(--card-border); margin-top:52px; padding-top:22px; font-size:0.72rem; color: var(--ink-low); line-height:1.65; }
+
+  footer { border-top:1px solid var(--card-border); padding:30px 24px; text-align:center; margin-top:64px; }
+  .footer-sig { font-family:'JetBrains Mono', monospace; font-size:0.68rem; color: var(--ink-low); letter-spacing:0.1em; }
+  .footer-sig span { color: var(--gold); }
+
+  @media (max-width:680px) {
+    .scoreboard { grid-template-columns: repeat(2,1fr); }
+    .ledger-row { grid-template-columns: 80px 1fr; }
+    .ledger-impact { display:none; }
+    h1 { font-size:1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="logo" href="https://fintrend.news">FinTrend<span>.</span>News</a>
+  <nav>
+    <a href="https://fintrend.news/archive.html">Archive</a>
+    <a href="https://fintrend.news/premium.html">Premium</a>
+  </nav>
+</header>
+
+<main class="article-wrap">
+
+  <div class="kicker-pill">Momentum Check &mdash; July 15, 2026</div>
+
+  <h1>One CPI Print, <em>Two Victory Laps</em></h1>
+
+  <p class="dek">June headline inflation cools to 3.0% as gasoline collapses &mdash; but core runs hot at 0.3% on the month, handing the doves their headline, the hawks their footnote, and the July FOMC exactly the stalemate it walked in with.</p>
+
+  <div class="byline-bar">
+    <span><strong>Hunter William Lang</strong> &middot; FinTrend News</span>
+    <span class="mono">Wednesday Momentum Check &middot; July 15, 2026</span>
+  </div>
+
+  <div class="lead">
+    <p>The number everyone waited three weeks for arrived at 8:30 this morning and managed to settle nothing. June CPI rose 0.1% on the month, dragging the year-over-year rate down to 3.0% from May's 3.4% &mdash; the sharpest deceleration since the conflict began and the first official confirmation that the oil shock is unwinding in the price data, not just at the pump. Futures spiked on the headline. Then traders read the table. Core CPI rose 0.3% against expectations of 0.2%, holding the annual core rate at 3.1%, with shelter refusing to decelerate and services ex-housing posting their firmest monthly gain since March. Within ninety minutes, both camps on Warsh's committee had what they came for &mdash; and the market spent the rest of the session deciding whose print it actually was.</p>
+  </div>
+
+  <p>The verdict, by the close, was a grudging draw that leaned dovish. The S&amp;P 500 finished up 0.21% at 7,648 &mdash; a fresh record by the thinnest of margins &mdash; after trading down as much as 0.6% mid-morning. The Nasdaq added 0.4% to 26,010. The Dow slipped 0.1% to 53,640 as Tuesday's bank-driven surge digested. The more honest scoreboard was the Treasury curve: the two-year yield fell six basis points to 3.76% as cut odds firmed, while the ten-year rose four to 4.36% on the sticky-core read. A steepener on CPI day is the bond market's way of saying the headline and the core are telling two different stories, and it believes both.</p>
+
+  <h2>Inside the Print: Gasoline Did All the Work</h2>
+
+  <p>Strip the report to its components and the disinflation is real but narrow. The gasoline index fell 4.1% in June &mdash; the direct pass-through of a month in which WTI averaged the high-$60s against May's triple-digit hangover &mdash; and energy overall subtracted enough from the monthly figure to account for essentially the entire headline undershoot. Food was flat. But shelter rose 0.34%, breaking three straight months of deceleration, and the services categories the Fed's hawks watch most closely &mdash; insurance, transportation services, recreation &mdash; all firmed. Buried in the goods detail was the first trace of what this desk flagged Sunday: household furnishings and apparel, both import-heavy and freight-sensitive, posted their largest combined monthly gain since February, consistent with rerouted-shipping costs beginning to leak into shelf prices.</p>
+
+  <div class="scoreboard">
+    <div class="stat-cell">
+      <div class="stat-label">June CPI (Y/Y)</div>
+      <div class="stat-value">3.0%</div>
+      <div class="stat-delta up">vs. 3.4% May, 3.1% Est.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Core CPI (M/M)</div>
+      <div class="stat-value">+0.3%</div>
+      <div class="stat-delta down">vs. +0.2% Est.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">S&amp;P 500</div>
+      <div class="stat-value">7,648</div>
+      <div class="stat-delta up">+0.21%, Record</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">2-Yr Treasury</div>
+      <div class="stat-value">3.76%</div>
+      <div class="stat-delta up">-6 bps</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">10-Yr Treasury</div>
+      <div class="stat-value">4.36%</div>
+      <div class="stat-delta down">+4 bps</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Gasoline Index</div>
+      <div class="stat-value">-4.1%</div>
+      <div class="stat-delta up">June M/M</div>
+    </div>
+  </div>
+
+  <h2>The Banks Keep Delivering the Subtext</h2>
+
+  <p>Wednesday's earnings slate reinforced Tuesday's opening argument. Goldman Sachs posted the day's blowout, with markets revenue up sharply on a quarter tailor-made for its trading franchise &mdash; an oil shock, a Treasury repricing, and the SPCX debut all landing inside thirteen weeks. Bank of America was steadier, beating modestly, but extended the theme JPMorgan and Citigroup established a day earlier: card spending growth slowed through the quarter, and every large lender is now adding to consumer credit reserves. No one used the word deterioration. Everyone described the same shape &mdash; a consumer easing off the accelerator in exactly the window the payroll and participation data said they would. The banks, reporting on the quarter just ended, are effectively confirming the labor data in real time.</p>
+
+  <div class="pull-quote">
+    "The doves got the headline, the hawks got the core, and the toll clock in the Gulf got another week older. Nobody left this print with less conviction than they walked in with."
+    <cite>&mdash; FinTrend News Desk</cite>
+  </div>
+
+  <h2>Movers</h2>
+
+  <table class="data-table">
+    <tr><th>Ticker</th><th>Wednesday Move</th><th>Note</th></tr>
+    <tr><td>Goldman Sachs (GS)</td><td class="up">+3.6%</td><td>Markets revenue blowout on shock-quarter volatility</td></tr>
+    <tr><td>Bank of America (BAC)</td><td class="up">+1.1%</td><td>Modest beat; reserve build echoes peers</td></tr>
+    <tr><td>SPCX</td><td class="up">+1.8% ($158.10)</td><td>Third straight gain; riding the risk-on tape</td></tr>
+    <tr><td>SMH (Semis ETF)</td><td class="up">+0.9%</td><td>Rebound holds a fourth session</td></tr>
+    <tr><td>XLE (Energy)</td><td class="down">-1.3%</td><td>Crude softens as CPI confirms shock unwind</td></tr>
+  </table>
+
+  <h2>What It Means for July 28&ndash;29</h2>
+
+  <p>Rate markets closed the day pricing roughly 55% odds of a hold at the July meeting, a little over 30% for a quarter-point cut, and the residual for a hike &mdash; a distribution that moved toward the doves without surrendering the stalemate. The honest read is that this print retired the hike case faster than it advanced the cut case: with headline inflation at 3.0% and falling, hiking into a 57,000-payroll economy becomes very hard to defend at the table. But a 0.3% core month gives the committee's patient wing every reason to wait for July's data before moving. The likeliest outcome of the deadlock was always a hold that both sides describe differently. Wednesday made that outcome more likely, not less. Thursday's retail sales report is the next witness &mdash; and overnight, China's Q2 GDP landed at 4.7%, right on consensus, keeping the global demand picture stable enough to stay out of the argument.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">The Takeaway</div>
+    <p><strong>The disinflation summer is now in the official data.</strong> Headline CPI at 3.0% &mdash; down four-tenths in a month &mdash; is the thesis's first hard validation. But it was almost entirely a gasoline story.</p>
+    <p><strong>Core at 0.3% keeps the Fed on hold, not on offense.</strong> The print likely killed the July hike case while deferring the cut case &mdash; a hold on July 28&ndash;29 that both camps claim is now the base case.</p>
+    <p><strong>Watch the freight leak.</strong> Import-heavy goods categories just posted their firmest month since February. If rerouted-shipping costs are entering shelf prices, the core problem gets harder in the fall &mdash; toll or no toll.</p>
+  </div>
+
+  <div class="disclaimer">
+    This article is for informational and educational purposes only and does not constitute financial advice. FinTrend News is not a registered investment adviser. Data reflects intraday and closing levels reported as of publication and is subject to revision. Always consult a licensed financial professional before making investment decisions.
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-sig">&copy; 2026 FinTrend News &middot; <span>fintrend.news</span></div>
+</footer>
+
+</body>
+</html>
