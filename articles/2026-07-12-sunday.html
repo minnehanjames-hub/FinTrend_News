@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Number Can Break a Nine–Nine Tie | FinTrend News</title>
+<meta name="description" content="Macro Note: Wednesday's June CPI is the first hard inflation reading since the oil shock began unwinding — and the single data point most likely to break the Fed's 9-9 deadlock before July 28.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg1: #0b0f1f; --bg2: #0f1530;
+    --ink: #eef1ff; --ink-dim: #b8bfd9; --ink-low: #7d85a8;
+    --gold: #b8986a; --gold-soft: rgba(184,152,106,0.35);
+    --up: #5dd39e; --down: #ef6b6b;
+    --card: rgba(255,255,255,0.03); --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%);
+    background-attachment: fixed; color: var(--ink); font-family: 'Inter', sans-serif; line-height: 1.65; min-height: 100vh;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: 'DM Serif Display', serif; }
+
+  header.masthead { display:flex; align-items:center; justify-content:space-between; max-width: 880px; margin: 0 auto; padding: 28px 24px 20px; border-bottom: 1px solid var(--card-border); }
+  .logo { font-family:'DM Serif Display', serif; font-size:1.35rem; letter-spacing:0.5px; }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav a { margin-left: 22px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  nav a:hover { color: var(--gold); }
+
+  main { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .kicker { display:inline-flex; align-items:center; gap:8px; background: rgba(184,152,106,0.1); border: 1px solid var(--gold-soft); border-radius: 999px; padding: 6px 14px; margin-bottom: 22px; font-family:'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+  .kicker .dot { width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; }
+
+  h1.headline { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 2.6rem; line-height: 1.18; margin: 0 0 18px; color: var(--ink); }
+  h1.headline em { color: var(--gold); font-style: italic; }
+
+  .dek { font-size: 1.15rem; color: var(--ink-dim); font-weight: 400; margin: 0 0 28px; max-width: 68ch; }
+
+  .byline-bar { display:flex; justify-content:space-between; align-items:center; padding: 14px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); margin-bottom: 34px; font-size: 0.85rem; }
+  .byline-bar .author { color: var(--ink); font-weight: 600; }
+  .byline-bar .role { color: var(--ink-low); font-weight: 400; }
+  .byline-bar .date { font-family:'JetBrains Mono', monospace; color: var(--ink-low); font-size:0.78rem; letter-spacing:0.04em; }
+
+  p.lead::first-letter { font-family: 'DM Serif Display', serif; font-size: 3.6rem; float: left; line-height: 0.8; padding-right: 10px; padding-top: 6px; color: var(--gold); }
+  p { color: var(--ink-dim); font-size: 1.04rem; margin: 0 0 20px; }
+  h2 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--ink); font-size: 1.5rem; margin: 42px 0 16px; }
+
+  .scoreboard { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 36px; }
+  .stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 14px; }
+  .stat .label { font-family:'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-low); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .stat .value { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
+  .stat .delta { font-family:'JetBrains Mono', monospace; font-size: 0.82rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+
+  .ledger { margin: 28px 0; border-top: 1px solid var(--card-border); }
+  .ledger-row { display:grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .ledger-row .day { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.85rem; padding-top: 2px; }
+  .ledger-row .desc { color: var(--ink-dim); font-size: 0.96rem; }
+  .ledger-row .desc strong { color: var(--ink); font-weight: 600; }
+
+  blockquote.pullquote { border-left: 3px solid var(--gold); padding: 6px 0 6px 22px; margin: 34px 0; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.3rem; color: var(--ink); }
+  blockquote.pullquote cite { display:block; margin-top: 10px; font-family:'JetBrains Mono', monospace; font-style: normal; font-size: 0.75rem; color: var(--ink-low); }
+
+  table.datatable { width: 100%; border-collapse: collapse; margin: 24px 0; font-family:'JetBrains Mono', monospace; font-size: 0.85rem; }
+  table.datatable th { text-align:left; color: var(--ink-low); font-weight: 500; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.06em; padding: 10px 12px; border-bottom: 1px solid var(--card-border); }
+  table.datatable td { padding: 11px 12px; border-bottom: 1px solid var(--card-border); color: var(--ink-dim); }
+  table.datatable tr:last-child td { border-bottom: none; }
+
+  .takeaway { background: linear-gradient(135deg, rgba(184,152,106,0.16), rgba(184,152,106,0.03)); border: 1px solid var(--gold-soft); border-radius: 14px; padding: 24px 26px; margin: 38px 0; }
+  .takeaway .label { font-family:'JetBrains Mono', monospace; color: var(--gold); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .takeaway p { color: var(--ink); margin: 0; font-size: 1.02rem; }
+
+  .disclaimer { border: 1px dashed var(--card-border); border-radius: 10px; padding: 16px 18px; margin: 40px 0 20px; font-size: 0.82rem; color: var(--ink-low); }
+
+  footer { max-width: 880px; margin: 0 auto; padding: 30px 24px 60px; border-top: 1px solid var(--card-border); font-family:'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-low); display:flex; justify-content: space-between; align-items:center; }
+  footer .sig { color: var(--gold); }
+
+  @media (max-width: 680px) {
+    h1.headline { font-size: 1.9rem; }
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    .ledger-row { grid-template-columns: 84px 1fr; }
+    footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+    nav a { margin-left: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="logo" href="https://fintrend.news">FinTrend<span>.</span>News</a>
+  <nav>
+    <a href="https://fintrend.news">Home</a>
+    <a href="https://fintrend.news/premium.html">Premium</a>
+    <a href="https://fintrend.news/archive.html">Archive</a>
+  </nav>
+</header>
+
+<main>
+  <div class="kicker"><span class="dot"></span>Macro Note &middot; July 12, 2026</div>
+
+  <h1 class="headline">One Number Can Break a <em>Nine&ndash;Nine Tie</em></h1>
+  <p class="dek">Wednesday's June CPI is the first hard inflation reading since the oil shock began unwinding in earnest &mdash; and the single data point most likely to break the Fed's deadlock before July 28. The math favors the doves. The composition may not.</p>
+
+  <div class="byline-bar">
+    <div><span class="author">Arshia Morshedian</span> <span class="role">&mdash; Macro &amp; Global Markets</span></div>
+    <div class="date">SUN &middot; JUL 12, 2026</div>
+  </div>
+
+  <p class="lead">Every committee split resolves eventually, and it rarely resolves through argument. It resolves through data &mdash; one print that makes one side's position untenable in front of the other eighteen people at the table. Warsh's Fed enters this week split roughly nine-nine between members preserving the option of a hike and members opening the door to a cut, a division the June minutes made public and last week's Doha signals did nothing to settle. Wednesday morning at 8:30 ET, the Bureau of Labor Statistics hands both camps the number they have been waiting for: June CPI, the first inflation reading to fully capture a month in which WTI spent most of its time below $70 rather than above $100. If the disinflation-summer thesis is real, this is the report where it has to start showing up in the official data. If it doesn't, the hawks walk into July 28&ndash;29 with the only ammunition they need.</p>
+
+  <div class="scoreboard">
+    <div class="stat">
+      <div class="label">May CPI (Y/Y)</div>
+      <div class="value">3.4%</div>
+      <div class="delta down">Peak oil pass-through</div>
+    </div>
+    <div class="stat">
+      <div class="label">June CPI Consensus</div>
+      <div class="value">3.1%</div>
+      <div class="delta up">First decel since spring</div>
+    </div>
+    <div class="stat">
+      <div class="label">Core CPI Est.</div>
+      <div class="value">3.0%</div>
+      <div class="delta">The real battleground</div>
+    </div>
+    <div class="stat">
+      <div class="label">WTI Crude</div>
+      <div class="value">$68.20</div>
+      <div class="delta down">-38% from wartime peak</div>
+    </div>
+  </div>
+
+  <h2>The Arithmetic of a Retreating Shock</h2>
+  <p>The case for a soft headline print is mostly mechanical. May's 3.4% year-over-year reading captured the tail end of the spring spike &mdash; gasoline averages that still reflected crude's run above $100 and the panic-pricing of the early Hormuz disruption. June's monthly average for WTI sat in the high-$60s to low-$70s, which feeds through to a gasoline index that most desks expect fell between 3% and 5% on the month. Energy is a small weight in the index, but a move that size is enough to drag headline CPI meaningfully lower on its own, before anything else in the basket does any work. That is why consensus has coalesced near 3.1% year-over-year with a monthly gain of just 0.1% &mdash; the softest sequential reading since before the conflict began.</p>
+
+  <p>The complication is everything that isn't gasoline. Shelter has been decelerating for over a year, but slowly, and it remains the largest single contributor to core. Services ex-housing have been sticky in the low-3s. And this cycle has introduced a category of inflation risk that did not exist a year ago: transit-cost pass-through. Tanker insurance premiums for Gulf routings remain multiples of their pre-conflict levels even after halving from the peak, and container rates on Asia-Europe lanes rerouted around chokepoints have stayed elevated all quarter. None of that shows up cleanly in a single CPI line item &mdash; it leaks into goods prices with a lag measured in months. The June report is early to capture it. The hawks on the committee will argue that is precisely the problem with declaring victory in July.</p>
+
+  <div class="ledger">
+    <div class="ledger-row">
+      <div class="day">INFLATION</div>
+      <div class="desc"><strong>The headline should cool; the core decides everything.</strong> A 3.1% headline with core at 3.0% or below validates the disinflation summer. Core at 3.2% with firm services hands the hawks their counterargument.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">POLICY</div>
+      <div class="desc"><strong>A 9&ndash;9 committee has no margin for interpretation.</strong> With no forward guidance and a chair who has declined to signal, Wednesday's print does the communicating the Fed won't. Markets currently price July 28&ndash;29 as a genuine three-way coin flip.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">EARNINGS</div>
+      <div class="desc"><strong>The banks report first, and they know things the data doesn't.</strong> JPMorgan, Citigroup, and Wells Fargo kick off Q2 season Tuesday. Trading desks had a volatility windfall; the tell is credit &mdash; card delinquencies and reserve builds are a real-time read on the consumer the payroll data says is retreating.</div>
+    </div>
+    <div class="ledger-row">
+      <div class="day">GEOPOLITICS</div>
+      <div class="desc"><strong>Doha is gesturing, not meeting.</strong> Friday's state-media language about renewed engagement came with no date. The 60-day toll-free window from the June MOU lapses in mid-August; every week without a session at the table shortens the runway to reprice Hormuz transit.</div>
+    </div>
+  </div>
+
+  <h2>What the Banks Will Tell Us Before the Fed Decides</h2>
+  <p>It is easy to treat this week's earnings calendar as a sideshow to CPI. It isn't. The large banks close their books on a quarter that contained an oil shock, a record-setting equity melt-up, a historic IPO, and the sharpest single-week Treasury repricing of the year &mdash; conditions that are almost custom-built for trading revenue. The prints themselves will likely be strong. The information is in the guidance. If Jamie Dimon's successors-in-waiting and their peers across the Street start guiding net interest income lower and building card-loss reserves, that is the credit market's version of the participation-rate story from the June jobs report: a consumer stepping back rather than stumbling. The Fed reads those calls too.</p>
+
+  <p>Abroad, the same convergence question is playing out with different inputs. China releases second-quarter GDP Wednesday, with consensus near 4.7% &mdash; a number that would confirm Beijing's stimulus is stabilizing rather than reaccelerating growth, keeping a lid on the global demand side of the oil equation. Europe's energy complex has normalized faster than its inflation data has, leaving the ECB comfortably ahead of the Fed in its easing cycle and the euro grinding higher against a dollar that can't decide what its own central bank does next. The dollar's indecision is the global expression of the FOMC's nine-nine split; both resolve the same way, on the same Wednesday morning.</p>
+
+  <blockquote class="pullquote">
+    "The committee doesn't need to agree about the future. It needs one number about the past that neither side can argue with."
+    <cite>&mdash; FinTrend News Macro Desk</cite>
+  </blockquote>
+
+  <h2>The Tiebreaker Matrix</h2>
+  <table class="datatable">
+    <tr><th>Wednesday's Print</th><th>Likely FOMC Read</th><th>Market Reaction Risk</th></tr>
+    <tr><td>Headline &le;3.1%, Core &le;3.0%</td><td>Doves gain the floor; cut talk enters the statement debate</td><td class="up">Melt-up extends, curve steepens</td></tr>
+    <tr><td>Headline cools, Core firm at 3.1&ndash;3.2%</td><td>Stalemate holds; hold-and-wait consensus by default</td><td>Choppy, both camps claim it</td></tr>
+    <tr><td>Headline &ge;3.3% on services</td><td>Hawks re-arm; hike option stays live into September</td><td class="down">Yields jump, record tape wobbles</td></tr>
+  </table>
+
+  <h2>The Uncomfortable Scenario Nobody Is Positioned For</h2>
+  <p>The consensus trade assumes the middle row of that table is the worst realistic outcome &mdash; a split print, a stalemated Fed, a market that shrugs and keeps rising. The scenario worth stress-testing is the one where the data and the geopolitics diverge at the same time: a soft CPI on Wednesday morning that vindicates the doves, followed within weeks by a toll-window expiry in August that puts a per-vessel fee on a fifth of the world's seaborne oil. That sequence would hand the Fed a genuinely new problem &mdash; easing into a supply-side inflation event it can see coming on the calendar. It is the kind of trap a committee with forward guidance could talk its way around in advance. This one has chosen not to have that tool. Wednesday breaks the tie on the past. August will test whether anyone was watching the future.</p>
+
+  <div class="takeaway">
+    <div class="label">The Bottom Line</div>
+    <p>June CPI is the most consequential data release between now and the July 28&ndash;29 meeting, because it is the only one a nine-nine committee cannot interpret away. The arithmetic favors a cooler headline; the risk lives in core services and in a toll clock in the Gulf that keeps running whether or not the disinflation summer is validated on Wednesday morning.</p>
+  </div>
+
+  <div class="disclaimer">
+    This article is for informational and educational purposes only and does not constitute financial advice. FinTrend News is not a registered investment adviser. Data reflects levels and estimates as of publication and is subject to revision. Always consult a licensed financial professional before making investment decisions.
+  </div>
+</main>
+
+<footer>
+  <div>&copy; 2026 FinTrend News</div>
+  <div class="sig">fintrend.news</div>
+</footer>
+
+</body>
+</html>
