@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When the Receipts Came Due | FinTrend News</title>
+<meta name="description" content="Mag-7 lost ~$800B Thursday as AI capex flipped from signal to drag. S&P finished the week -0.6%. FOMC ahead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+  :root {
+    --gold: #b8986a;
+    --gold-bright: #f4c15d;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --rule: rgba(184,152,106,0.22);
+    --panel: rgba(255,255,255,0.03);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 26px; }
+
+  /* masthead */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0 16px;
+    margin-bottom: 44px;
+  }
+  .masthead-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 26px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  .brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.32rem; letter-spacing: 0.01em; color: var(--ink);
+    text-decoration: none; white-space: nowrap;
+  }
+  .brand span { color: var(--gold); }
+  .nav {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .nav a { color: var(--ink-low); text-decoration: none; transition: color .18s; }
+  .nav a:hover { color: var(--gold); }
+
+  /* kicker */
+  .kicker {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--rule); border-radius: 100px;
+    padding: 6px 15px 6px 12px; margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .kicker::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex: 0 0 6px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400; font-size: 3.05rem; line-height: 1.12;
+    margin: 0 0 20px; letter-spacing: -0.012em;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .dek {
+    font-size: 1.14rem; line-height: 1.62; color: var(--ink-dim);
+    font-weight: 300; margin: 0 0 30px; max-width: 44em;
+  }
+
+  /* byline */
+  .byline {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 13px 0; margin-bottom: 42px;
+  }
+  .byline .who { font-size: 0.84rem; color: var(--ink-dim); }
+  .byline .who strong { color: var(--ink); font-weight: 600; }
+  .byline .who span { color: var(--ink-low); }
+  .byline .when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-low);
+  }
+
+  p { margin: 0 0 22px; font-size: 1.045rem; }
+  .lead::first-letter {
+    font-family: 'DM Serif Display', Georgia, serif;
+    float: left; font-size: 3.9rem; line-height: 0.84;
+    padding: 6px 12px 0 0; color: var(--gold);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400; font-size: 1.72rem; line-height: 1.25;
+    margin: 46px 0 16px; letter-spacing: -0.005em;
+  }
+  h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase;
+    color: var(--gold); margin: 36px 0 14px; font-weight: 500;
+  }
+  a.inline { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  strong { font-weight: 600; color: #fff; }
+
+  /* scoreboard */
+  .scoreboard {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule); margin: 34px 0 40px;
+  }
+  .stat { background: #0d1225; padding: 17px 15px; }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-low); margin-bottom: 7px;
+  }
+  .stat .value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.35rem; line-height: 1.1; margin-bottom: 4px;
+  }
+  .stat .chg { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .flat { color: var(--ink-low); }
+
+  /* ledger */
+  .ledger { margin: 34px 0 40px; border-top: 1px solid var(--rule); }
+  .row {
+    display: grid; grid-template-columns: 96px 1fr;
+    gap: 20px; padding: 17px 0; border-bottom: 1px solid var(--rule);
+  }
+  .row .day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--gold); padding-top: 4px;
+  }
+  .row .what { font-size: 0.965rem; color: var(--ink-dim); }
+  .row .what b { color: var(--ink); font-weight: 600; }
+
+  /* pull quote */
+  .pull {
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 26px; margin: 40px 0;
+  }
+  .pull p {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.46rem; line-height: 1.38; color: var(--ink); margin: 0 0 10px;
+  }
+  .pull cite {
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-low);
+  }
+
+  /* data table */
+  table {
+    width: 100%; border-collapse: collapse; margin: 32px 0 38px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.79rem;
+  }
+  caption {
+    text-align: left; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-low); padding-bottom: 11px;
+  }
+  th {
+    text-align: left; font-weight: 500; font-size: 0.6rem;
+    letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold);
+    border-bottom: 1px solid var(--rule); padding: 0 10px 9px 0;
+  }
+  td { padding: 10px 10px 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--ink-dim); }
+  td:first-child { color: var(--ink); }
+  td.num, th.num { text-align: right; padding-right: 0; }
+
+  /* takeaway */
+  .takeaway {
+    background: linear-gradient(135deg, rgba(184,152,106,0.13) 0%, rgba(184,152,106,0.03) 100%);
+    border: 1px solid var(--rule); padding: 26px 28px; margin: 44px 0 36px;
+  }
+  .takeaway h3 { margin: 0 0 13px; }
+  .takeaway p:last-child { margin-bottom: 0; }
+  .takeaway ul { margin: 0; padding-left: 19px; }
+  .takeaway li { margin-bottom: 10px; color: var(--ink-dim); font-size: 1.01rem; }
+  .takeaway li:last-child { margin-bottom: 0; }
+  .takeaway li b { color: var(--ink); font-weight: 600; }
+
+  /* disclaimer + footer */
+  .disclaimer {
+    border: 1px dashed var(--rule); padding: 17px 20px; margin: 44px 0 0;
+    font-size: 0.8rem; line-height: 1.62; color: var(--ink-low);
+  }
+  footer {
+    border-top: 1px solid var(--rule); margin-top: 52px; padding: 26px 0 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-low);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  footer .sig { color: var(--gold); }
+  footer a { color: var(--ink-low); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 680px) {
+    .wrap, .masthead-inner { padding: 0 19px; }
+    h1 { font-size: 2.18rem; }
+    h2 { font-size: 1.42rem; }
+    .dek { font-size: 1.04rem; }
+    .lead::first-letter { font-size: 3.1rem; }
+    .row { grid-template-columns: 1fr; gap: 5px; }
+    .pull p { font-size: 1.2rem; }
+    .pull { padding-left: 18px; }
+    .nav { gap: 13px; }
+    table { font-size: 0.72rem; }
+    .takeaway { padding: 21px 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="../index.html">FinTrend<span>.</span></a>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</div>
+
+<article class="wrap">
+
+  <div class="kicker">Friday Recap</div>
+
+  <h1>When the Receipts Came <em>Due</em></h1>
+
+  <p class="dek">The Magnificent Seven shed $800 billion on Thursday &mdash; not on a miss, but on a promise to keep spending. Friday steadied the tape without settling the argument. The Fed meets into it Wednesday.</p>
+
+  <div class="byline">
+    <div class="who"><strong>Hunter William Lang</strong> <span>&middot; Markets Correspondent</span></div>
+    <div class="when">Friday, July 24, 2026</div>
+  </div>
+
+  <p class="lead">On Thursday the seven largest companies in the American stock market lost
+  roughly $800 billion of value in a single session, and the cause was not a miss. It was a promise. The
+  hyperscalers told investors they intend to spend more, for longer, on artificial intelligence &mdash; and
+  investors, for the first time in this cycle, treated that as bad news.</p>
+
+  <p>Friday steadied the tape without resolving the argument. The S&amp;P 500 closed essentially flat at
+  7,411.98, up 0.05%, as a 3.5% jump in Apple and a pullback in oil offset another leg down in chips. The
+  Nasdaq Composite fell 0.64% to 24,975.82; the Dow gained 235.60 points, or 0.46%, to 51,947.25. It was the
+  second straight losing week for the S&amp;P and the first back-to-back weekly decline for the Nasdaq since
+  late March.</p>
+  <div class="scoreboard">
+    <div class="stat"><div class="label">S&amp;P 500</div><div class="value">7,411.98</div><div class="chg down">&minus;0.6% wk</div></div>
+    <div class="stat"><div class="label">Nasdaq Comp</div><div class="value">24,975.82</div><div class="chg down">&minus;2.8% wk</div></div>
+    <div class="stat"><div class="label">Dow Jones</div><div class="value">51,947.25</div><div class="chg down">&minus;0.4% wk</div></div>
+    <div class="stat"><div class="label">Brent Crude</div><div class="value">~$98</div><div class="chg up">off the $100 high</div></div>
+    <div class="stat"><div class="label">10-Yr Yield</div><div class="value">4.691%</div><div class="chg down">May-war highs</div></div>
+    <div class="stat"><div class="label">VIX</div><div class="value">18.70</div><div class="chg down">+12.4% Thu</div></div>
+  </div>
+  <h2>The night the receipts came due</h2>
+
+  <p>We framed last Sunday's note around a single question: how quickly can the hyperscalers show the
+  receipts? Wednesday night they answered, and the answer was not yet &mdash; keep paying.</p>
+
+  <p>Alphabet raised its 2026 capital-expenditure forecast to a range of $195&ndash;205 billion, up from the
+  $180&ndash;190 billion it had guided previously and well beyond the $180 billion figure it set at the start
+  of the year. The quarter itself was strong &mdash; Google Cloud revenue jumped 82% to $24.8 billion, one of
+  Alphabet's best growth quarters in five years &mdash; but the stock fell 7% on Thursday anyway. Janus
+  Henderson's Alison Porter called Alphabet a barometer for the entire AI wave. On Thursday the barometer read
+  storm.</p>
+
+  <p>Tesla was worse. The company missed on second-quarter profit, saw margins slide and free cash flow turn
+  negative, and watched operating expenses grow faster than revenue &mdash; all while committing to what Elon
+  Musk called a massive capex year. Shares fell roughly 14.5%. Both companies posted negative free cash flow
+  for the quarter, the detail that ties the two selloffs together.</p>
+  <div class="pull">
+    <p>The reports were mostly good. The reactions were mostly negative, because the spending will continue for years and no one will yet say when it pays back.</p>
+    <cite>The capex verdict</cite>
+  </div>
+  <p>This is the mechanical shift worth naming. For three years the market rewarded AI capital
+  expenditure as evidence of ambition. This week it began pricing that same spending as a drag on near-term
+  free cash flow with an uncertain payback &mdash; a cost, not a signal. Nothing about the businesses changed
+  between Tuesday and Thursday. The market's willingness to fund the buildout on faith did.</p>
+
+  <h2>Oil wrote the other half</h2>
+
+  <p>Thursday's selloff had a second author. Crude spiked above $100 after Yemen's Houthi militants claimed
+  attacks on two Saudi tankers in the Red Sea, raising the specter of a widening conflict beyond the Strait of
+  Hormuz. The 10-year Treasury yield pushed to 4.691% as traders added to bets that persistent
+  energy-driven inflation could force the Fed's hand.</p>
+
+  <p>Friday reversed part of it. Brent slipped back below $100 &mdash; toward the $98 area &mdash; after
+  President Trump said Iranian funds held by the United States should cover future damage to ships and cargo,
+  and crude proved able to keep traversing Middle East routes despite the hostilities. The retreat in energy
+  eased pressure on Treasuries just days ahead of the Fed decision, and let equities stabilize.</p>
+
+  <h2>The week, day by day</h2>
+  <div class="ledger">
+    <div class="row"><div class="day">Monday</div><div class="what">Chip recovery overwhelmed by oil and yields; energy leads. S&amp;P &minus;0.19% to 7,443.28</div></div>
+    <div class="row"><div class="day">Tuesday</div><div class="what">Earnings lift sentiment; Middle East tension caps gains ahead of Big Tech</div></div>
+    <div class="row"><div class="day">Wednesday</div><div class="what">S&amp;P &minus;0.14% to 7,498.96; Brent $94.07. <b>Alphabet and Tesla report after the close</b></div></div>
+    <div class="row"><div class="day">Thursday</div><div class="what"><b>Mag-7 sheds ~$800B</b>; S&amp;P &minus;1.21% to 7,408.30, Nasdaq &minus;2.15%. Brent tops $100 on Red Sea tanker attacks</div></div>
+    <div class="row"><div class="day">Friday</div><div class="what">Apple +3.5%, oil eases; S&amp;P +0.05% to 7,411.98. Intel &minus;7.9% <em>despite</em> a blowout beat</div></div>
+  </div>
+  <h2>Intel beats and falls anyway</h2>
+
+  <p>The single cleanest illustration of the week's mood was Intel. The company reported its strongest
+  revenue growth in fifteen years at $16.13 billion, ahead of the $14.42 billion consensus, and roughly
+  doubled the earnings estimate at $0.42 per share against $0.21. CEO Lip-Bu Tan pointed to a $100 billion
+  custom AI-chip opportunity. The stock rose almost 5% pre-market &mdash; and closed down 7.9%.</p>
+
+  <p>When the best chip revenue print in a decade-and-a-half cannot hold a bid, the market is not trading this
+  quarter's numbers. It is repricing how much it is willing to pay for the whole complex. Intel now joins TSMC,
+  which beat and fell 4% the prior week, as evidence that beats are not the problem. Multiples are.</p>
+  <table>
+    <caption>Q2 2026 &mdash; the week's marquee reports</caption>
+    <thead><tr>
+      <th>Company</th>
+      <th class="num">Result</th>
+      <th class="num">Stock</th>
+      <th class="num">Why</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td>Alphabet</td>
+      <td class="num">Cloud +82%, rev beat</td>
+      <td class="num">&minus;7%</td>
+      <td class="num">2026 capex raised to $195&ndash;205B</td>
+    </tr>
+    <tr>
+      <td>Tesla</td>
+      <td class="num">Profit miss, FCF negative</td>
+      <td class="num">&minus;14.5%</td>
+      <td class="num">Margins slide, opex &gt; revenue</td>
+    </tr>
+    <tr>
+      <td>Intel</td>
+      <td class="num">Best rev growth in 15 yrs</td>
+      <td class="num">&minus;7.9%</td>
+      <td class="num">Capex weighed vs. the beat</td>
+    </tr>
+    <tr>
+      <td>Apple</td>
+      <td class="num">&mdash;</td>
+      <td class="num">+3.5%</td>
+      <td class="num">Fri haven bid; reports next week</td>
+    </tr>
+    </tbody>
+  </table>
+  <h2>Two more things that will matter next week</h2>
+
+  <p>Overnight into Friday, a new set of U.S. tariffs took effect. The Section 301 measures, which the
+  administration hopes will better survive legal challenge, impose rates of 10% to 12.5% on top trading
+  partners including the European Union, United Kingdom, China, India, Japan and Canada, replacing the
+  temporary 10% global tariff that expired Friday. Some energy products were exempted, an acknowledgment of the
+  oil problem already in train. This is a fresh, non-energy inflation input arriving at the worst possible
+  moment for a central bank meeting next week.</p>
+
+  <p>And a sentiment flag: Bank of America's Bull &amp; Bear Indicator hit its highest reading since 2021 &mdash;
+  a strong sell signal that has historically preceded selloffs, reflecting extreme bullishness across fund
+  flows, hedge-fund positioning and breadth. That it is flashing now, during a two-week decline, is the kind of
+  divergence that rewards caution.</p>
+
+  <h2>Into the Fed</h2>
+
+  <p>The FOMC meets Tuesday and Wednesday. Markets price roughly a 70% probability of no change, per CME
+  FedWatch. As Wells Fargo's Brian Rehling put it, the Fed is expected to hold while remaining focused on
+  inflation and is not ready to declare victory. The June CPI relief that opened this month has been complicated
+  by crude near triple digits and a fresh tariff schedule. Next week also brings Microsoft, Meta and Apple
+  &mdash; the capex debate that defined this week gets three more referenda.</p>
+  <div class="takeaway">
+    <h3>The week in four lines</h3>
+    <ul>
+      <li><b>The AI trade changed character.</b> Capex flipped from a bullish signal to a free-cash-flow drag. That re-rating, not any single report, is the story.</li>
+      <li><b>Beats stopped working.</b> Alphabet, Intel and TSMC all beat and all fell. When good numbers can't hold a bid, the market is repricing the multiple.</li>
+      <li><b>Oil is still steering.</b> Thursday's spike above $100 and Friday's retreat below it moved the tape more than most of the earnings did.</li>
+      <li><b>The Fed meets into a harder setup.</b> Crude near $100 plus fresh 10&ndash;12.5% tariffs undercut June's disinflation story right before Wednesday's decision.</li>
+    </ul>
+  </div>
+
+
+  <div class="disclaimer">
+    <strong>Disclaimer.</strong> FinTrend News publishes market commentary and analysis for informational
+    purposes only. Nothing here is investment, legal, or tax advice, and no content should be read as a
+    recommendation to buy or sell any security. Market data is sourced from public reporting as of
+    publication and may be revised. Past performance does not indicate future results. Consult a licensed
+    financial professional before acting on anything you read here.
+  </div>
+
+  <footer>
+    <div>&copy; 2026 FinTrend News &middot; <a href="../archive.html">Full Archive</a></div>
+    <div class="sig">HWL / FinTrend News</div>
+  </footer>
+
+</article>
+
+</body>
+</html>
