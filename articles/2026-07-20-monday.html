@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twelve Trillion Dollars of Answers | FinTrend News</title>
+<meta name="description" content="A $12.55 trillion earnings week with the Fed in blackout. Alphabet and Tesla report Wednesday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+  :root {
+    --gold: #b8986a;
+    --gold-bright: #f4c15d;
+    --up: #5dd39e;
+    --down: #ef6b6b;
+    --ink: #eef1ff;
+    --ink-dim: #b8bfd9;
+    --ink-low: #7d85a8;
+    --rule: rgba(184,152,106,0.22);
+    --panel: rgba(255,255,255,0.03);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: linear-gradient(160deg, #0b0f1f 0%, #0f1530 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 26px; }
+
+  /* masthead */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0 16px;
+    margin-bottom: 44px;
+  }
+  .masthead-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 26px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  .brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.32rem; letter-spacing: 0.01em; color: var(--ink);
+    text-decoration: none; white-space: nowrap;
+  }
+  .brand span { color: var(--gold); }
+  .nav {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .nav a { color: var(--ink-low); text-decoration: none; transition: color .18s; }
+  .nav a:hover { color: var(--gold); }
+
+  /* kicker */
+  .kicker {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--rule); border-radius: 100px;
+    padding: 6px 15px 6px 12px; margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .kicker::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex: 0 0 6px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400; font-size: 3.05rem; line-height: 1.12;
+    margin: 0 0 20px; letter-spacing: -0.012em;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .dek {
+    font-size: 1.14rem; line-height: 1.62; color: var(--ink-dim);
+    font-weight: 300; margin: 0 0 30px; max-width: 44em;
+  }
+
+  /* byline */
+  .byline {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 13px 0; margin-bottom: 42px;
+  }
+  .byline .who { font-size: 0.84rem; color: var(--ink-dim); }
+  .byline .who strong { color: var(--ink); font-weight: 600; }
+  .byline .who span { color: var(--ink-low); }
+  .byline .when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-low);
+  }
+
+  p { margin: 0 0 22px; font-size: 1.045rem; }
+  .lead::first-letter {
+    font-family: 'DM Serif Display', Georgia, serif;
+    float: left; font-size: 3.9rem; line-height: 0.84;
+    padding: 6px 12px 0 0; color: var(--gold);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400; font-size: 1.72rem; line-height: 1.25;
+    margin: 46px 0 16px; letter-spacing: -0.005em;
+  }
+  h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase;
+    color: var(--gold); margin: 36px 0 14px; font-weight: 500;
+  }
+  a.inline { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  strong { font-weight: 600; color: #fff; }
+
+  /* scoreboard */
+  .scoreboard {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule); margin: 34px 0 40px;
+  }
+  .stat { background: #0d1225; padding: 17px 15px; }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-low); margin-bottom: 7px;
+  }
+  .stat .value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.35rem; line-height: 1.1; margin-bottom: 4px;
+  }
+  .stat .chg { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .flat { color: var(--ink-low); }
+
+  /* ledger */
+  .ledger { margin: 34px 0 40px; border-top: 1px solid var(--rule); }
+  .row {
+    display: grid; grid-template-columns: 96px 1fr;
+    gap: 20px; padding: 17px 0; border-bottom: 1px solid var(--rule);
+  }
+  .row .day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--gold); padding-top: 4px;
+  }
+  .row .what { font-size: 0.965rem; color: var(--ink-dim); }
+  .row .what b { color: var(--ink); font-weight: 600; }
+
+  /* pull quote */
+  .pull {
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 26px; margin: 40px 0;
+  }
+  .pull p {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.46rem; line-height: 1.38; color: var(--ink); margin: 0 0 10px;
+  }
+  .pull cite {
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 0.63rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-low);
+  }
+
+  /* data table */
+  table {
+    width: 100%; border-collapse: collapse; margin: 32px 0 38px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.79rem;
+  }
+  caption {
+    text-align: left; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-low); padding-bottom: 11px;
+  }
+  th {
+    text-align: left; font-weight: 500; font-size: 0.6rem;
+    letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold);
+    border-bottom: 1px solid var(--rule); padding: 0 10px 9px 0;
+  }
+  td { padding: 10px 10px 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--ink-dim); }
+  td:first-child { color: var(--ink); }
+  td.num, th.num { text-align: right; padding-right: 0; }
+
+  /* takeaway */
+  .takeaway {
+    background: linear-gradient(135deg, rgba(184,152,106,0.13) 0%, rgba(184,152,106,0.03) 100%);
+    border: 1px solid var(--rule); padding: 26px 28px; margin: 44px 0 36px;
+  }
+  .takeaway h3 { margin: 0 0 13px; }
+  .takeaway p:last-child { margin-bottom: 0; }
+  .takeaway ul { margin: 0; padding-left: 19px; }
+  .takeaway li { margin-bottom: 10px; color: var(--ink-dim); font-size: 1.01rem; }
+  .takeaway li:last-child { margin-bottom: 0; }
+  .takeaway li b { color: var(--ink); font-weight: 600; }
+
+  /* disclaimer + footer */
+  .disclaimer {
+    border: 1px dashed var(--rule); padding: 17px 20px; margin: 44px 0 0;
+    font-size: 0.8rem; line-height: 1.62; color: var(--ink-low);
+  }
+  footer {
+    border-top: 1px solid var(--rule); margin-top: 52px; padding: 26px 0 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-low);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  footer .sig { color: var(--gold); }
+  footer a { color: var(--ink-low); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 680px) {
+    .wrap, .masthead-inner { padding: 0 19px; }
+    h1 { font-size: 2.18rem; }
+    h2 { font-size: 1.42rem; }
+    .dek { font-size: 1.04rem; }
+    .lead::first-letter { font-size: 3.1rem; }
+    .row { grid-template-columns: 1fr; gap: 5px; }
+    .pull p { font-size: 1.2rem; }
+    .pull { padding-left: 18px; }
+    .nav { gap: 13px; }
+    table { font-size: 0.72rem; }
+    .takeaway { padding: 21px 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="../index.html">FinTrend<span>.</span></a>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="../archive.html">Archive</a>
+      <a href="../premium.html">Premium</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</div>
+
+<article class="wrap">
+
+  <div class="kicker">Monday Outlook</div>
+
+  <h1>Twelve Trillion Dollars of <em>Answers</em></h1>
+
+  <p class="dek">Thirty S&amp;P 500 companies worth a combined $12.55 trillion report this week. The Fed is silent, the data calendar is empty, and oil isn't cooperating. Everything hinges on Wednesday night.</p>
+
+  <div class="byline">
+    <div class="who"><strong>James Thomas Minnehan</strong> <span>&middot; Senior Markets Editor</span></div>
+    <div class="when">Monday, July 20, 2026</div>
+  </div>
+
+  <p class="lead">On Wednesday, thirty companies in the S&amp;P 500 worth a combined $12.55
+  trillion report second-quarter results. On Thursday, 153 companies report. The Federal Reserve is in
+  blackout. The economic calendar is close to empty. For one week, earnings are the only thing setting
+  prices.</p>
+
+  <p>That is a rare and slightly uncomfortable configuration.</p>
+  <div class="scoreboard">
+    <div class="stat"><div class="label">S&amp;P 500</div><div class="value">7,443.28</div><div class="chg down">&minus;0.19%</div></div>
+    <div class="stat"><div class="label">Nasdaq Comp</div><div class="value">25,508.07</div><div class="chg down">&minus;0.05%</div></div>
+    <div class="stat"><div class="label">Dow Jones</div><div class="value">51,839.26</div><div class="chg down">&minus;0.59%</div></div>
+    <div class="stat"><div class="label">Apple</div><div class="value">&mdash;</div><div class="chg down">&minus;2.0%</div></div>
+    <div class="stat"><div class="label">Best sector</div><div class="value">Energy</div><div class="chg up">XLE</div></div>
+  </div>
+  <h2>Monday's session</h2>
+
+  <p>Stocks erased early gains. The S&amp;P 500 fell 0.19% to 7,443.28, the Nasdaq Composite slipped 0.05%
+  to 25,508.07, and the Dow Jones Industrial Average dropped 307.16 points, or 0.59%, to 51,839.26, dragged
+  by a more than 2% decline in Apple.</p>
+
+  <p>The pattern of the day was instructive: an early recovery in semiconductors was overwhelmed by a bounce
+  in crude and a spike in Treasury yields. Energy was the clear winner in the S&amp;P 500, technology managed
+  modest gains, and the defensive complex &mdash; health care, utilities, REITs and staples &mdash; gave back
+  recent gains.</p>
+
+  <p>The United States completed its ninth consecutive day of strikes on Iran overnight. Sentiment improved by
+  midmorning in London after Iranian Foreign Ministry spokesman Esmail Baghaei raised hopes of a diplomatic
+  settlement &mdash; a reminder of how thin the diplomatic premium currently is, when a single sentence from a
+  spokesman is enough to move a global tape.</p>
+
+  <p>European markets were subdued: France's CAC 40 fell 0.11%, Germany's DAX slipped 0.16%, the FTSE 100 lost
+  0.3%, and Italy's FTSE MIB hovered just below flat.</p>
+  <div class="pull">
+    <p>July has been a painful month for AI and momentum investors. The infrastructure trade has unwound roughly 20% from its highs, and strong results from Samsung, ASML and TSMC have not stopped it.</p>
+    <cite>The month so far</cite>
+  </div>
+  <h2>Intel keeps cutting</h2>
+
+  <p>Intel is planning a further round of layoffs as part of what the company describes as a broader strategy.
+  More than 5,000 U.S. employees have been affected so far, concentrated in California and Oregon with
+  additional cuts in Arizona and Texas. A company spokesperson said the data center group is aligning its
+  organisation to ensure the right roles and skills are in place. Intel reports on Thursday.</p>
+
+  <h2>The week's structure</h2>
+  <table>
+    <caption>July 20&ndash;24 calendar</caption>
+    <thead><tr>
+      <th>Day</th>
+      <th class="num">What lands</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td>Monday</td>
+      <td class="num">Leading Indicators (June); Halliburton, 3M, KeyCorp, General Motors, Danaher, Northrop Grumman</td>
+    </tr>
+    <tr>
+      <td>Wednesday</td>
+      <td class="num"><b>Alphabet, Tesla</b>, IBM, ServiceNow, Texas Instruments, AT&amp;T, Philip Morris, CME, GE Vernova</td>
+    </tr>
+    <tr>
+      <td>Thursday</td>
+      <td class="num">ECB decision; Intel, T-Mobile, RTX, Union Pacific, Thermo Fisher, Newmont, Nasdaq Inc.</td>
+    </tr>
+    <tr>
+      <td>Thursday 8:30</td>
+      <td class="num">GDP, PCE, personal income, consumer spending, jobless claims</td>
+    </tr>
+    </tbody>
+  </table>
+  <p>The European Central Bank meets Thursday. Having hiked at its prior meeting, consensus
+  strongly favours a hold.</p>
+
+  <p>Then the FOMC on July 28&ndash;29, with the committee already in its blackout period. No change in rates
+  is expected. Following a CPI print at 3.5% and a June payrolls figure of 57,000, the case for holding is
+  stronger than it has been all year &mdash; and the interest is entirely in whether the language softens from
+  June's hawkish dot plot.</p>
+  <div class="takeaway">
+    <h3>What to watch</h3>
+    <ul>
+      <li><b>Wednesday night is the week.</b> Alphabet's cloud growth and capex guidance are the two numbers that determine whether the semiconductor drawdown is a reset or the start of something worse.</li>
+      <li><b>Energy leadership is a warning, not a rally.</b> XLE topping the board while defensives sell off reflects the oil bid, not risk appetite.</li>
+      <li><b>Yields are doing damage quietly.</b> A spike in the long end alongside $90-handle crude squeezes margins from both directions, and small caps feel it first.</li>
+      <li><b>No Fed, no data.</b> With both in blackout, single earnings reports will carry more index-level weight than they normally would.</li>
+    </ul>
+  </div>
+
+
+  <div class="disclaimer">
+    <strong>Disclaimer.</strong> FinTrend News publishes market commentary and analysis for informational
+    purposes only. Nothing here is investment, legal, or tax advice, and no content should be read as a
+    recommendation to buy or sell any security. Market data is sourced from public reporting as of
+    publication and may be revised. Past performance does not indicate future results. Consult a licensed
+    financial professional before acting on anything you read here.
+  </div>
+
+  <footer>
+    <div>&copy; 2026 FinTrend News &middot; <a href="../archive.html">Full Archive</a></div>
+    <div class="sig">JTM / FinTrend News</div>
+  </footer>
+
+</article>
+
+</body>
+</html>
