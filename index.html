@@ -98,6 +98,7 @@
     .brief-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;padding:11px 14px;border-right:1px solid rgba(148,163,184,0.10);background:rgba(2,6,23,0.20);display:flex;align-items:center;}
     .brief-text{font-size:13px;color:#e5e7eb;padding:11px 16px;line-height:1.5;}
     .brief-footer{padding:7px 16px;font-size:10px;color:rgba(148,163,184,0.40);background:rgba(2,6,23,0.30);border-top:1px solid var(--border);letter-spacing:.06em;}
+    a.brief-row:hover .brief-text span:first-child{color:var(--accent);}
 
     .lead-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
     .lead-note{font-size:11px;color:var(--muted);margin-top:8px;}
@@ -408,16 +409,28 @@
         <div class="lead-kicker">Market Intelligence</div>
         <h2 class="lead-headline">A <em>market brief</em> built<br>for fast decisions.</h2>
         <p class="lead-deck">Clear drivers. Implications. Levels. No long story — just what matters and what changes the view. Published four times a week across one consistent framework.</p>
-        <div class="brief-table">
+        <div class="brief-table" id="latestBriefings">
           <div class="brief-table-head">
-            <div class="brief-table-title">Briefing Format — Illustrative</div>
-            <div class="brief-table-meta">Not financial advice</div>
+            <div class="brief-table-title">Latest Briefings</div>
+            <div class="brief-table-meta">Updated continuously</div>
           </div>
-          <div class="brief-row"><div class="brief-tag">Driver</div><div class="brief-text">Inflation surprise shifts rate expectations; yield curve repricing underway.</div></div>
-          <div class="brief-row"><div class="brief-tag">Bias</div><div class="brief-text">Short-term risk-off while yields find a level. Dollar strength capping equity upside.</div></div>
-          <div class="brief-row"><div class="brief-tag">Key Levels</div><div class="brief-text">Watch SPX 5,400 support. Break changes the near-term bias entirely.</div></div>
-          <div class="brief-row"><div class="brief-tag">Catalyst</div><div class="brief-text">Fed commentary Wednesday. Core PCE Friday. Either moves the tape.</div></div>
-          <div class="brief-footer">Educational content only · All articles free to read</div>
+          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-27-monday.html">
+            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Mon · Jul 27</div>
+            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">Oil Breaks, Chips Break Too</span><span style="color:#9ca3af;font-size:12px;">Brent fell 11% on the US–Iran pause and the Dow rose, but Nvidia dropped 5% into the Fed and Big Tech week.</span></div>
+          </a>
+          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-26-sunday.html">
+            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Sun · Jul 26</div>
+            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">The Pause and the Print</span><span style="color:#9ca3af;font-size:12px;">A weekend pause could unwind the oil premium just as the FOMC, Big Tech earnings and Core PCE all land.</span></div>
+          </a>
+          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-24-friday.html">
+            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Fri · Jul 24</div>
+            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">When the Receipts Came Due</span><span style="color:#9ca3af;font-size:12px;">The Mag 7 shed ~$800B Thursday — not on a miss but on a promise to keep spending on AI. The S&P finished the week −0.6%.</span></div>
+          </a>
+          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-22-wednesday.html">
+            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Wed · Jul 22</div>
+            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">Oil Takes the Wheel</span><span style="color:#9ca3af;font-size:12px;">Brent settled at $94.07 — a six-week high — on the 11th round of US strikes, and the 10-year retested May highs.</span></div>
+          </a>
+          <div class="brief-footer">Educational content only · <a href="archive.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:2px;">Full archive →</a></div>
         </div>
         <div class="lead-cta">
           <button class="btn btnPrimary" id="cta-create-2" style="padding:10px 22px;font-size:12px;">Create Free Account</button>
@@ -583,26 +596,21 @@
       </div>
     </div>
 
-    <!-- BOTTOM EMAIL STRIP -->
+    <!-- BOTTOM EXPLORE STRIP -->
     <div class="email-strip reveal" style="margin-top:20px;">
       <div class="email-strip-copy">
-        <h4>Get the weekly recap, free.</h4>
-        <p>One email every Friday. No noise. <a href="#" id="openGiveaway2" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Create an account</a> to be eligible for free Premium giveaways.</p>
+        <h4>Four briefings a week. One framework.</h4>
+        <p>The free Friday email sign-up is at the top of the page. Browse everything published so far, or open the members dashboard.</p>
       </div>
-      <div class="email-strip-form">
-        <form id="bottomEmailForm" onsubmit="handleEmailSub(event,'bottom')">
-          <div class="email-inputs">
-            <input class="email-in" type="email" placeholder="Your email address" required />
-            <button class="btn btnPrimary" type="submit" style="border-radius:0;padding:10px 18px;font-size:11px;white-space:nowrap;">Subscribe</button>
-          </div>
-        </form>
-        <div class="email-note">No account needed to subscribe · Unsubscribe anytime</div>
+      <div class="email-strip-form" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse the Archive →</a>
+        <a class="btn btnGhost" href="premium.html" style="padding:10px 18px;font-size:12px;">Premium Dashboard →</a>
       </div>
     </div>
 
     <footer>
       <p style="max-width:760px;margin:0 auto 8px;"><strong>Disclaimer:</strong> Informational + educational only. Not financial advice. Not a registered investment adviser.</p>
-      <p style="margin-top:10px;">© 2026 FinTrend News · <a href="archive.html">Archive</a></p>
+      <p style="margin-top:10px;">Est. 2025 · © 2026 FinTrend News · <a href="archive.html">Archive</a></p>
       <p style="margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="#" id="openTos" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Terms of Service</a>
         <a href="#" id="openRefund" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Refund Policy</a>
@@ -663,7 +671,6 @@
     document.getElementById("closeGiveaway2").addEventListener("click", closeGiveaway);
     giveawayModal.addEventListener("click", e => { if(e.target === giveawayModal) closeGiveaway(); });
     document.getElementById("openGiveaway").addEventListener("click", e => { e.preventDefault(); openGiveaway(); });
-    document.getElementById("openGiveaway2").addEventListener("click", e => { e.preventDefault(); openGiveaway(); });
     document.getElementById("giveawaySignupBtn").addEventListener("click", () => {
       closeGiveaway();
       // open the auth modal in signup mode
@@ -937,12 +944,16 @@
       const limitText=document.getElementById("aiLimit");
 
       function getUsed(){
-        const n=parseInt(localStorage.getItem(AI_USED_KEY)||"0",10);
-        return Number.isFinite(n)?Math.min(Math.max(n,0),AI_LIMIT):0;
+        try{
+          const n=parseInt(localStorage.getItem(AI_USED_KEY)||"0",10);
+          return Number.isFinite(n)?Math.min(Math.max(n,0),AI_LIMIT):0;
+        }catch(e){return 0;}
       }
 
       function setUsed(n){
-        localStorage.setItem(AI_USED_KEY,String(Math.min(Math.max(n,0),AI_LIMIT)));
+        try{
+          localStorage.setItem(AI_USED_KEY,String(Math.min(Math.max(n,0),AI_LIMIT)));
+        }catch(e){}
       }
 
       function addMessage(role,text){
@@ -1075,6 +1086,32 @@
       const revealEls=document.querySelectorAll(".reveal");
       const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target);}});},{threshold:0.08});
       revealEls.forEach(el=>observer.observe(el));
+    })();
+
+    // ── LATEST BRIEFINGS — auto-refresh from Supabase (falls back to hardcoded list) ──
+    (function(){
+      "use strict";
+      var box=document.getElementById("latestBriefings");
+      if(!box)return;
+      var URL="https://dxmdyperxyydqdshazcp.supabase.co/rest/v1/free_articles";
+      var KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
+      function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+      function dayLabel(iso){try{var d=new Date(iso);if(isNaN(d))return "";return d.toLocaleDateString("en-US",{weekday:"short"})+" · "+d.toLocaleDateString("en-US",{month:"short",day:"numeric"});}catch(e){return "";}}
+      fetch(URL+"?select=title,excerpt,url,published_at&order=published_at.desc&limit=4",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
+        .then(function(r){return r.ok?r.json():null;})
+        .then(function(rows){
+          if(!Array.isArray(rows)||!rows.length)return; // keep hardcoded fallback
+          var head='<div class="brief-table-head"><div class="brief-table-title">Latest Briefings</div><div class="brief-table-meta">Updated continuously</div></div>';
+          var body=rows.map(function(a){
+            return '<a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="'+esc(a.url)+'">'
+              +'<div class="brief-tag" style="align-items:flex-start;line-height:1.3;">'+esc(dayLabel(a.published_at))+'</div>'
+              +'<div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">'+esc(a.title)+'</span>'
+              +'<span style="color:#9ca3af;font-size:12px;">'+esc(a.excerpt)+'</span></div></a>';
+          }).join("");
+          var foot='<div class="brief-footer">Educational content only · <a href="archive.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:2px;">Full archive →</a></div>';
+          box.innerHTML=head+body+foot;
+        })
+        .catch(function(){/* keep hardcoded fallback */});
     })();
   </script>
 </body>
