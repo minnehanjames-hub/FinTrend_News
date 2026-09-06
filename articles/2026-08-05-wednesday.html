@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Record Belongs to the Dow Now — FinTrend News</title>
+<meta name="description" content="The Dow set a record on Aug 5 while the Nasdaq fell, as market leadership rotated ahead of the July jobs report.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#b8986a; --up:#5dd39e; --down:#ef6b6b;
+    --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+    --line:rgba(184,152,106,.22);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; color:var(--ink);
+    background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+    background-attachment:fixed;
+    font-family:'Inter',system-ui,sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 26px;}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line); }
+  .masthead .wrap{display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:18px; flex-wrap:wrap; gap:12px;}
+  .brand{font-family:'DM Serif Display',serif; font-size:1.55rem; letter-spacing:.5px;
+    text-decoration:none; color:var(--ink);}
+  .brand span{color:var(--gold);}
+  nav.top{display:flex; gap:20px; font-family:'JetBrains Mono',monospace;
+    font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;}
+  nav.top a{color:var(--ink-low); text-decoration:none; transition:color .15s;}
+  nav.top a:hover{color:var(--gold);}
+  nav.top a.sub{color:var(--gold);}
+
+  /* article head */
+  article{padding:46px 0 20px;}
+  .kicker{display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--line); border-radius:100px; padding:6px 14px;}
+  .kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+  h1{font-family:'DM Serif Display',serif; font-weight:400;
+    font-size:2.7rem; line-height:1.1; margin:22px 0 0; letter-spacing:-.01em;}
+  h1 em{font-style:italic; color:var(--gold);}
+  .dek{font-size:1.16rem; color:var(--ink-dim); margin:18px 0 0; line-height:1.55;}
+  .byline{display:flex; align-items:center; justify-content:space-between;
+    margin:26px 0 8px; padding:14px 0; border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line); flex-wrap:wrap; gap:8px;}
+  .byline .who{font-size:.95rem; color:var(--ink);}
+  .byline .who b{color:var(--gold); font-weight:600;}
+  .byline .who .role{color:var(--ink-low); font-size:.82rem; display:block; margin-top:2px;}
+  .byline .when{font-family:'JetBrains Mono',monospace; font-size:.78rem;
+    letter-spacing:.1em; color:var(--ink-low); text-transform:uppercase;}
+
+  /* body */
+  .body{margin-top:30px;}
+  .body p{margin:0 0 20px; font-size:1.06rem;}
+  .body p.lead::first-letter{
+    font-family:'DM Serif Display',serif; float:left; font-size:3.6rem;
+    line-height:.82; padding:6px 12px 0 0; color:var(--gold);}
+  .body h2{font-family:'DM Serif Display',serif; font-weight:400; font-size:1.6rem;
+    margin:40px 0 16px; letter-spacing:-.01em;}
+
+  /* scoreboard */
+  .scoreboard{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; margin:30px 0;}
+  .scoreboard .cell{background:rgba(11,15,31,.6); padding:16px 14px;}
+  .scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+  .scoreboard .val{font-family:'DM Serif Display',serif; font-size:1.35rem;
+    margin-top:6px;}
+  .scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.8rem;
+    margin-top:3px;}
+  .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+  /* ledger */
+  .ledger{border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    margin:26px 0;}
+  .ledger .row{display:grid; grid-template-columns:92px 1fr auto;
+    gap:14px; align-items:center; padding:14px 16px;
+    border-bottom:1px solid var(--line);}
+  .ledger .row:last-child{border-bottom:none;}
+  .ledger .day{font-family:'JetBrains Mono',monospace; font-size:.74rem;
+    letter-spacing:.08em; color:var(--gold); text-transform:uppercase;}
+  .ledger .note{font-size:.95rem; color:var(--ink-dim);}
+  .ledger .num{font-family:'JetBrains Mono',monospace; font-size:.86rem;
+    text-align:right; white-space:nowrap;}
+  .ledger .num .d{display:block; font-size:.74rem;}
+
+  /* pull quote */
+  .pull{border-left:3px solid var(--gold); padding:6px 0 6px 22px;
+    margin:34px 0; font-family:'DM Serif Display',serif; font-style:italic;
+    font-size:1.5rem; line-height:1.35; color:var(--ink);}
+  .pull .attrib{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace;
+    font-style:normal; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-low);}
+
+  /* data table */
+  .tbl-title{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low);
+    margin:30px 0 10px;}
+  table.data{width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace;
+    font-size:.84rem; margin-bottom:8px;}
+  table.data th{text-align:left; color:var(--ink-low); font-weight:500;
+    font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+    padding:10px 12px; border-bottom:1px solid var(--line);}
+  table.data th.r,table.data td.r{text-align:right;}
+  table.data td{padding:11px 12px; border-bottom:1px solid rgba(184,152,106,.1);
+    color:var(--ink-dim);}
+  table.data tr:last-child td{border-bottom:none;}
+  table.data td.name{color:var(--ink); font-family:'Inter',sans-serif;}
+
+  /* takeaway */
+  .takeaway{margin:38px 0; padding:24px 26px; border-radius:14px;
+    background:linear-gradient(135deg,rgba(184,152,106,.16),rgba(184,152,106,.04));
+    border:1px solid var(--line);}
+  .takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .takeaway p{margin:0; font-size:1.04rem; color:var(--ink);}
+
+  /* disclaimer + footer */
+  .disclaimer{margin:40px 0 0; padding:16px 18px; border:1px dashed var(--line);
+    border-radius:10px; font-size:.82rem; color:var(--ink-low); line-height:1.6;}
+  footer{border-top:1px solid var(--line); margin-top:40px;}
+  footer .wrap{padding:26px 26px 40px; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em;
+    color:var(--ink-low);}
+  footer .sig{color:var(--gold);}
+  footer a{color:var(--ink-low); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+
+  @media(max-width:680px){
+    h1{font-size:2.05rem;}
+    .dek{font-size:1.05rem;}
+    nav.top{display:none;}
+    .scoreboard{grid-template-columns:repeat(2,1fr);}
+    .ledger .row{grid-template-columns:70px 1fr auto; gap:10px;}
+    .pull{font-size:1.25rem;}
+    article{padding-top:34px;}
+  }
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="../index.html">Fin<span>Trend</span> News</a>
+  <nav class="top">
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" class="sub">Subscribe</a>
+  </nav>
+</div></header>
+<div class="wrap"><article>
+<div class="kicker"><span class="dot"></span>Momentum Check</div><h1>The Record Belongs to the <em>Dow</em> Now</h1><p class="dek">Wall Street is still parked at all-time highs — but Wednesday made clear the market is no longer moving as one. The Dow printed a fresh record while the Nasdaq slid, a leadership shuffle worth watching two days before the jobs report.</p><div class="byline"><div class="who"><b>Hunter William Lang</b><span class="role">Markets — Momentum Check</span></div><div class="when">Wed · Aug 5, 2026</div></div><div class="body"><p class="lead">There is a version of a strong market that looks calm on the surface and busy underneath, and that is the tape traders got Wednesday. The Dow Jones Industrial Average pushed to another closing record at 54,349.12, up 263 points, even as the S&amp;P 500 eased 0.2% to 7,723.55 and the Nasdaq Composite gave back 0.8% to 26,363.44. Nothing broke. But for the second session running, the averages disagreed about which way to go — and that disagreement is the story.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&P 500</div><div class="val">7,723.55</div><div class="chg down">-0.17%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">26,363.44</div><div class="chg down">-0.83%</div></div><div class="cell"><div class="lbl">Dow</div><div class="val">54,349.12</div><div class="chg up">+0.49% ▲</div></div><div class="cell"><div class="lbl">Russell 2000</div><div class="val">3,019.19</div><div class="chg down">-0.59%</div></div></div><p>The S&amp;P slipped from the all-time high it set only a day earlier, when it cleared 7,736 for its first record in two months. That is not weakness so much as rotation: money is stepping out of the biggest technology names and into the industrial, financial and health-care shares that dominate the price-weighted Dow. The result is a benchmark at records and a Nasdaq that, even after August's rebound, still sits a hair below its early-June peak.</p><h2>Under the hood: capex is the new dividing line</h2><p>The clearest tell Wednesday came from SpaceX, which sank after signaling a larger artificial-intelligence spending program. Investors have spent much of the summer rewarding AI ambition; this week they started asking what it costs. When the market punishes a build-out announcement instead of cheering it, that is a momentum signal — the crowd is beginning to separate the companies that spend from the companies that earn.</p><p>The counterweight was Walt Disney, which climbed after quarterly results beat expectations, helped by a strong box office led by “Toy Story 5.” Old-economy cash flow got bid; speculative capex got sold. That is the same rotation showing up at the single-stock level.</p><div class="tbl-title">Wednesday's tell — two sides of the rotation</div><table class="data"><thead><tr><th>Name</th><th>Read</th><th class="r">Direction</th></tr></thead><tbody><tr><td class="name">SpaceX</td><td class="">Larger AI capex plan</td><td class="r down">Sold</td></tr><tr><td class="name">Walt Disney</td><td class="">Earnings beat, “Toy Story 5”</td><td class="r up">Bought</td></tr><tr><td class="name">Mega-cap tech</td><td class="">Leadership handing off</td><td class="r down">Softer</td></tr><tr><td class="name">Dow cyclicals</td><td class="">Fresh index record</td><td class="r up">Firmer</td></tr></tbody></table><h2>The quiet leader nobody's talking about</h2><p>Look past the headline averages and the real momentum story of 2026 is lower down the cap scale. The Russell 2000 is up more than 21% year to date, well ahead of the S&amp;P's roughly 13% and the Nasdaq's 13% — and it has led despite Wednesday's small pullback. Small caps tend to lead when investors believe policy is about to get easier and the economy is holding together. Whether that conviction survives contact with Friday's data is the question that matters.</p><blockquote class="pull">A market that makes new highs while its leadership quietly changes hands is not tired. It is turning.<span class="attrib">Momentum Check</span></blockquote><h2>Oil, still holding the whole board hostage</h2><p>The macro backdrop stayed unusually still. Brent crude held near $79 a barrel, little changed, and Treasury yields eased as traders leaned on the possibility of a deal to reopen the Strait of Hormuz. Treasury Secretary Scott Bessent has floated an agreement within days, and Iran and Oman are said to be in the final stages of drafting terms. That single headline — oil's on-ramp back to normal — is doing more to set the tone across stocks and bonds right now than any earnings line.</p><div class="takeaway"><div class="t">The momentum read</div><p>Records intact, leadership rotating from mega-cap tech into cyclicals and small caps, and capex discipline emerging as the market's new filter. It is a healthier setup than a narrow melt-up — but it is fragile. Friday's July payrolls print, and any Hormuz headline before it, can settle the argument in a single session.</p></div></div>  <div class="disclaimer">
+    FinTrend News is an independent markets publication. Nothing here is investment,
+    legal, or tax advice, and it is not a recommendation to buy or sell any security.
+    Figures are drawn from public market data as of the date of publication and may be
+    revised. Do your own research and consult a licensed professional before investing.
+  </div>
+</article></div>
+<footer><div class="wrap">
+  <span>© 2026 FinTrend News</span>
+  <span class="sig">— HWL</span>
+  <span><a href="../archive.html">Full archive →</a></span>
+</div></footer>
+</body>
+</html>
