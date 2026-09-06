@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wall Street's Record, Main Street's Retreat — FinTrend News</title>
+<meta name="description" content="A widening divergence between record markets and a retreating consumer, with AI capex holding up growth.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#b8986a; --up:#5dd39e; --down:#ef6b6b;
+    --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+    --line:rgba(184,152,106,.22);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; color:var(--ink);
+    background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+    background-attachment:fixed;
+    font-family:'Inter',system-ui,sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 26px;}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line); }
+  .masthead .wrap{display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:18px; flex-wrap:wrap; gap:12px;}
+  .brand{font-family:'DM Serif Display',serif; font-size:1.55rem; letter-spacing:.5px;
+    text-decoration:none; color:var(--ink);}
+  .brand span{color:var(--gold);}
+  nav.top{display:flex; gap:20px; font-family:'JetBrains Mono',monospace;
+    font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;}
+  nav.top a{color:var(--ink-low); text-decoration:none; transition:color .15s;}
+  nav.top a:hover{color:var(--gold);}
+  nav.top a.sub{color:var(--gold);}
+
+  /* article head */
+  article{padding:46px 0 20px;}
+  .kicker{display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--line); border-radius:100px; padding:6px 14px;}
+  .kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+  h1{font-family:'DM Serif Display',serif; font-weight:400;
+    font-size:2.7rem; line-height:1.1; margin:22px 0 0; letter-spacing:-.01em;}
+  h1 em{font-style:italic; color:var(--gold);}
+  .dek{font-size:1.16rem; color:var(--ink-dim); margin:18px 0 0; line-height:1.55;}
+  .byline{display:flex; align-items:center; justify-content:space-between;
+    margin:26px 0 8px; padding:14px 0; border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line); flex-wrap:wrap; gap:8px;}
+  .byline .who{font-size:.95rem; color:var(--ink);}
+  .byline .who b{color:var(--gold); font-weight:600;}
+  .byline .who .role{color:var(--ink-low); font-size:.82rem; display:block; margin-top:2px;}
+  .byline .when{font-family:'JetBrains Mono',monospace; font-size:.78rem;
+    letter-spacing:.1em; color:var(--ink-low); text-transform:uppercase;}
+
+  /* body */
+  .body{margin-top:30px;}
+  .body p{margin:0 0 20px; font-size:1.06rem;}
+  .body p.lead::first-letter{
+    font-family:'DM Serif Display',serif; float:left; font-size:3.6rem;
+    line-height:.82; padding:6px 12px 0 0; color:var(--gold);}
+  .body h2{font-family:'DM Serif Display',serif; font-weight:400; font-size:1.6rem;
+    margin:40px 0 16px; letter-spacing:-.01em;}
+
+  /* scoreboard */
+  .scoreboard{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; margin:30px 0;}
+  .scoreboard .cell{background:rgba(11,15,31,.6); padding:16px 14px;}
+  .scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+  .scoreboard .val{font-family:'DM Serif Display',serif; font-size:1.35rem;
+    margin-top:6px;}
+  .scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.8rem;
+    margin-top:3px;}
+  .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+  /* ledger */
+  .ledger{border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    margin:26px 0;}
+  .ledger .row{display:grid; grid-template-columns:92px 1fr auto;
+    gap:14px; align-items:center; padding:14px 16px;
+    border-bottom:1px solid var(--line);}
+  .ledger .row:last-child{border-bottom:none;}
+  .ledger .day{font-family:'JetBrains Mono',monospace; font-size:.74rem;
+    letter-spacing:.08em; color:var(--gold); text-transform:uppercase;}
+  .ledger .note{font-size:.95rem; color:var(--ink-dim);}
+  .ledger .num{font-family:'JetBrains Mono',monospace; font-size:.86rem;
+    text-align:right; white-space:nowrap;}
+  .ledger .num .d{display:block; font-size:.74rem;}
+
+  /* pull quote */
+  .pull{border-left:3px solid var(--gold); padding:6px 0 6px 22px;
+    margin:34px 0; font-family:'DM Serif Display',serif; font-style:italic;
+    font-size:1.5rem; line-height:1.35; color:var(--ink);}
+  .pull .attrib{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace;
+    font-style:normal; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-low);}
+
+  /* data table */
+  .tbl-title{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low);
+    margin:30px 0 10px;}
+  table.data{width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace;
+    font-size:.84rem; margin-bottom:8px;}
+  table.data th{text-align:left; color:var(--ink-low); font-weight:500;
+    font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+    padding:10px 12px; border-bottom:1px solid var(--line);}
+  table.data th.r,table.data td.r{text-align:right;}
+  table.data td{padding:11px 12px; border-bottom:1px solid rgba(184,152,106,.1);
+    color:var(--ink-dim);}
+  table.data tr:last-child td{border-bottom:none;}
+  table.data td.name{color:var(--ink); font-family:'Inter',sans-serif;}
+
+  /* takeaway */
+  .takeaway{margin:38px 0; padding:24px 26px; border-radius:14px;
+    background:linear-gradient(135deg,rgba(184,152,106,.16),rgba(184,152,106,.04));
+    border:1px solid var(--line);}
+  .takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .takeaway p{margin:0; font-size:1.04rem; color:var(--ink);}
+
+  /* disclaimer + footer */
+  .disclaimer{margin:40px 0 0; padding:16px 18px; border:1px dashed var(--line);
+    border-radius:10px; font-size:.82rem; color:var(--ink-low); line-height:1.6;}
+  footer{border-top:1px solid var(--line); margin-top:40px;}
+  footer .wrap{padding:26px 26px 40px; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em;
+    color:var(--ink-low);}
+  footer .sig{color:var(--gold);}
+  footer a{color:var(--ink-low); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+
+  @media(max-width:680px){
+    h1{font-size:2.05rem;}
+    .dek{font-size:1.05rem;}
+    nav.top{display:none;}
+    .scoreboard{grid-template-columns:repeat(2,1fr);}
+    .ledger .row{grid-template-columns:70px 1fr auto; gap:10px;}
+    .pull{font-size:1.25rem;}
+    article{padding-top:34px;}
+  }
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="../index.html">Fin<span>Trend</span> News</a>
+  <nav class="top">
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" class="sub">Subscribe</a>
+  </nav>
+</div></header>
+<div class="wrap"><article>
+<div class="kicker"><span class="dot"></span>The Sunday Macro Note</div><h1>Wall Street's Record, Main Street's <em>Retreat</em></h1><p class="dek">The indices sit at all-time highs. The consumer who is supposed to power the economy underneath them is quietly pulling back. That gap — and the AI capex boom papering over it — is the real macro story of the summer.</p><div class="byline"><div class="who"><b>Arshia Morshedian</b><span class="role">Macro — The Sunday Macro Note</span></div><div class="when">Sun · Aug 16, 2026</div></div><div class="body"><p class="lead">There are two economies in the data right now, and they are drifting apart. One lives on the stock ticker, where the S&amp;P 500 spent the week making records. The other lives at the checkout counter, where July retail sales fell 0.6% and consumer confidence just dropped to 51.0 — a level that, in any other year, would read as a recession warning. The distance between those two pictures is the most important thing in markets this Sunday.</p><h2>The consumer is telling on itself</h2><p>The details are worse than the headline. Sentiment slid from 55.2 to 51.0 in a single month. Year-ahead inflation expectations rose to 4.3% — far above the 3.4% that prevailed before the Iran war. And in the survey's most quietly alarming line, just 8% of consumers expect their income to outpace inflation over the coming year. That is not a confident household. It is one bracing for its purchasing power to keep eroding, and starting to spend accordingly.</p><p>Set that against a headline CPI still running at 3.4% — cooler than June, but nowhere near the Fed's 2% target — and you have the outline of a stagflation-lite problem: softening demand and sticky prices at the same time. It is the least comfortable backdrop a central bank can face, because the two halves of its mandate point in opposite directions.</p><div class="tbl-title">The divergence, in numbers</div><table class="data"><thead><tr><th>Indicator</th><th>Latest</th><th>Signal</th></tr></thead><tbody><tr><td class="name">S&P 500</td><td class="">~7,786 (record wk)</td><td class="">Wall Street at all-time highs</td></tr><tr><td class="name">Retail sales (Jul)</td><td class="">-0.6%</td><td class="">Consumer pulling back</td></tr><tr><td class="name">UMich sentiment</td><td class="">51.0 (from 55.2)</td><td class="">Confidence deteriorating</td></tr><tr><td class="name">1-yr inflation exp.</td><td class="">4.3%</td><td class="">Households bracing for higher prices</td></tr><tr><td class="name">Headline CPI</td><td class="">3.4% y/y</td><td class="">Cooling, but above target</td></tr></tbody></table><h2>The wall holding it all up</h2><p>So what is keeping growth — and the market — aloft while the consumer retrenches? Increasingly, one answer: artificial-intelligence capital spending. The hyperscalers have issued more than $200 billion of investment-grade debt in 2026 alone, and AI-related financing now accounts for close to 40% of all long-duration high-grade corporate bond supply, by Apollo's estimate — with room, the firm reckons, for as much as $2 trillion more. That building boom is a genuine pillar of demand. It is also a concentrated one.</p><blockquote class="pull">When one theme funds itself with $200 billion of new debt and holds up an entire economy, the question isn't whether it's real. It's what happens if it pauses.<span class="attrib">The Sunday Macro Note</span></blockquote><p>This is the vulnerability beneath the record. Corporate AI spending is doing work the consumer used to do, and it is being financed with an extraordinary wave of long-dated borrowing — borrowing that competes directly with the U.S. Treasury for the same pool of duration-hungry buyers. That competition is already showing up at the long end of the curve, where yields have been grinding toward multi-decade highs. If the consumer keeps fading, the capex pillar has to hold. And if that pillar's financing gets more expensive, the whole structure gets harder to support.</p><div class="takeaway"><div class="t">What we're watching</div><p>The gap between a record market and a retreating consumer, and whether AI capex can keep bridging it. Watch the long end of the Treasury curve for the first sign of strain — it is where the consumer's weakness and the capex boom's financing needs collide. That collision, not the next CPI print, is the risk that matters most.</p></div></div>  <div class="disclaimer">
+    FinTrend News is an independent markets publication. Nothing here is investment,
+    legal, or tax advice, and it is not a recommendation to buy or sell any security.
+    Figures are drawn from public market data as of the date of publication and may be
+    revised. Do your own research and consult a licensed professional before investing.
+  </div>
+</article></div>
+<footer><div class="wrap">
+  <span>© 2026 FinTrend News</span>
+  <span class="sig">— AM</span>
+  <span><a href="../archive.html">Full archive →</a></span>
+</div></footer>
+</body>
+</html>
