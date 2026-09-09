@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Last Word Before the Fed — FinTrend News</title>
+<meta name="description" content="A holiday-shortened week brings PPI and CPI — the final inflation reads before next week's Fed decision.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#b8986a; --up:#5dd39e; --down:#ef6b6b;
+    --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+    --line:rgba(184,152,106,.22);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; color:var(--ink);
+    background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+    background-attachment:fixed;
+    font-family:'Inter',system-ui,sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 26px;}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line); }
+  .masthead .wrap{display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:18px; flex-wrap:wrap; gap:12px;}
+  .brand{font-family:'DM Serif Display',serif; font-size:1.55rem; letter-spacing:.5px;
+    text-decoration:none; color:var(--ink);}
+  .brand span{color:var(--gold);}
+  nav.top{display:flex; gap:20px; font-family:'JetBrains Mono',monospace;
+    font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;}
+  nav.top a{color:var(--ink-low); text-decoration:none; transition:color .15s;}
+  nav.top a:hover{color:var(--gold);}
+  nav.top a.sub{color:var(--gold);}
+
+  /* article head */
+  article{padding:46px 0 20px;}
+  .kicker{display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--line); border-radius:100px; padding:6px 14px;}
+  .kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+  h1{font-family:'DM Serif Display',serif; font-weight:400;
+    font-size:2.7rem; line-height:1.1; margin:22px 0 0; letter-spacing:-.01em;}
+  h1 em{font-style:italic; color:var(--gold);}
+  .dek{font-size:1.16rem; color:var(--ink-dim); margin:18px 0 0; line-height:1.55;}
+  .byline{display:flex; align-items:center; justify-content:space-between;
+    margin:26px 0 8px; padding:14px 0; border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line); flex-wrap:wrap; gap:8px;}
+  .byline .who{font-size:.95rem; color:var(--ink);}
+  .byline .who b{color:var(--gold); font-weight:600;}
+  .byline .who .role{color:var(--ink-low); font-size:.82rem; display:block; margin-top:2px;}
+  .byline .when{font-family:'JetBrains Mono',monospace; font-size:.78rem;
+    letter-spacing:.1em; color:var(--ink-low); text-transform:uppercase;}
+
+  /* body */
+  .body{margin-top:30px;}
+  .body p{margin:0 0 20px; font-size:1.06rem;}
+  .body p.lead::first-letter{
+    font-family:'DM Serif Display',serif; float:left; font-size:3.6rem;
+    line-height:.82; padding:6px 12px 0 0; color:var(--gold);}
+  .body h2{font-family:'DM Serif Display',serif; font-weight:400; font-size:1.6rem;
+    margin:40px 0 16px; letter-spacing:-.01em;}
+
+  /* scoreboard */
+  .scoreboard{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; margin:30px 0;}
+  .scoreboard .cell{background:rgba(11,15,31,.6); padding:16px 14px;}
+  .scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+  .scoreboard .val{font-family:'DM Serif Display',serif; font-size:1.35rem;
+    margin-top:6px;}
+  .scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.8rem;
+    margin-top:3px;}
+  .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+  /* ledger */
+  .ledger{border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    margin:26px 0;}
+  .ledger .row{display:grid; grid-template-columns:92px 1fr auto;
+    gap:14px; align-items:center; padding:14px 16px;
+    border-bottom:1px solid var(--line);}
+  .ledger .row:last-child{border-bottom:none;}
+  .ledger .day{font-family:'JetBrains Mono',monospace; font-size:.74rem;
+    letter-spacing:.08em; color:var(--gold); text-transform:uppercase;}
+  .ledger .note{font-size:.95rem; color:var(--ink-dim);}
+  .ledger .num{font-family:'JetBrains Mono',monospace; font-size:.86rem;
+    text-align:right; white-space:nowrap;}
+  .ledger .num .d{display:block; font-size:.74rem;}
+
+  /* pull quote */
+  .pull{border-left:3px solid var(--gold); padding:6px 0 6px 22px;
+    margin:34px 0; font-family:'DM Serif Display',serif; font-style:italic;
+    font-size:1.5rem; line-height:1.35; color:var(--ink);}
+  .pull .attrib{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace;
+    font-style:normal; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-low);}
+
+  /* data table */
+  .tbl-title{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low);
+    margin:30px 0 10px;}
+  table.data{width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace;
+    font-size:.84rem; margin-bottom:8px;}
+  table.data th{text-align:left; color:var(--ink-low); font-weight:500;
+    font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+    padding:10px 12px; border-bottom:1px solid var(--line);}
+  table.data th.r,table.data td.r{text-align:right;}
+  table.data td{padding:11px 12px; border-bottom:1px solid rgba(184,152,106,.1);
+    color:var(--ink-dim);}
+  table.data tr:last-child td{border-bottom:none;}
+  table.data td.name{color:var(--ink); font-family:'Inter',sans-serif;}
+
+  /* takeaway */
+  .takeaway{margin:38px 0; padding:24px 26px; border-radius:14px;
+    background:linear-gradient(135deg,rgba(184,152,106,.16),rgba(184,152,106,.04));
+    border:1px solid var(--line);}
+  .takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.7rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .takeaway p{margin:0; font-size:1.04rem; color:var(--ink);}
+
+  /* disclaimer + footer */
+  .disclaimer{margin:40px 0 0; padding:16px 18px; border:1px dashed var(--line);
+    border-radius:10px; font-size:.82rem; color:var(--ink-low); line-height:1.6;}
+  footer{border-top:1px solid var(--line); margin-top:40px;}
+  footer .wrap{padding:26px 26px 40px; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em;
+    color:var(--ink-low);}
+  footer .sig{color:var(--gold);}
+  footer a{color:var(--ink-low); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+
+  @media(max-width:680px){
+    h1{font-size:2.05rem;}
+    .dek{font-size:1.05rem;}
+    nav.top{display:none;}
+    .scoreboard{grid-template-columns:repeat(2,1fr);}
+    .ledger .row{grid-template-columns:70px 1fr auto; gap:10px;}
+    .pull{font-size:1.25rem;}
+    article{padding-top:34px;}
+  }
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="../index.html">Fin<span>Trend</span> News</a>
+  <nav class="top">
+    <a href="../index.html">Home</a>
+    <a href="../archive.html">Archive</a>
+    <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" class="sub">Subscribe</a>
+  </nav>
+</div></header>
+<div class="wrap"><article>
+<div class="kicker"><span class="dot"></span>The Monday Outlook</div><h1>The Last Word Before the <em>Fed</em></h1><p class="dek">Markets are dark for Labor Day, but the quiet is a setup, not a rest. This holiday-shortened week delivers the last two inflation readings the Fed will see before it decides — and after Friday's hot jobs report and a weekend of fresh Iran strikes, a rate hike is no longer the tail risk. It's the base case.</p><div class="byline"><div class="who"><b>James Thomas Minnehan</b><span class="role">Markets — The Monday Outlook</span></div><div class="when">Mon · Sep 7, 2026</div></div><div class="body"><p class="lead">There is no opening bell on Monday — U.S. markets are closed for Labor Day — but this may be the most consequential quiet week of the autumn. Over the next four sessions the government releases the final two inflation reports the Federal Reserve will see before it meets next week, and it does so with Wall Street already braced for something it hasn't done all cycle: raise interest rates. Coming off Friday's blowout jobs report and a weekend of renewed strikes between the U.S. and Iran, the setup could hardly be tenser.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&P 500</div><div class="val">7,718.60</div><div class="chg flat">Fri close</div></div><div class="cell"><div class="lbl">2-yr Yield</div><div class="val">4.37%</div><div class="chg down">▲ since Jan '25</div></div><div class="cell"><div class="lbl">Brent crude</div><div class="val">~$97</div><div class="chg up">▲ Iran</div></div><div class="cell"><div class="lbl">Sept hike odds</div><div class="val">~58%</div><div class="chg down">▲ base case</div></div></div><div class="tbl-title">The week ahead</div><table class="data"><thead><tr><th>When</th><th>Event</th><th>Why it matters</th></tr></thead><tbody><tr><td class="name">Thu 9/10</td><td class="">August PPI</td><td class="">First of two inflation reads; oil adds upside risk.</td></tr><tr><td class="name">Fri 9/11</td><td class="">August CPI</td><td class="">The last inflation print before the Fed meets.</td></tr><tr><td class="name">Next week</td><td class="">FOMC decision</td><td class="">A hike has gone from tail risk to the market's base case.</td></tr></tbody></table><h2>Why these two prints matter more than usual</h2><p>The arithmetic changed on Friday. August payrolls came in at 162,000 — roughly triple expectations — and the prior two months were revised higher, erasing the July weakness that had let the market dream of a patient Fed. Layered on Kevin Warsh's hawkish Jackson Hole keynote, that report pushed the odds of a September hike to about 58%, with some measures higher; Deutsche Bank now calls a hike the “most likely” outcome of the meeting. In that light, Thursday's PPI and Friday's CPI are not routine data. They are the last chance for inflation to talk the Fed out of a move. A hot print seals it; only a clearly soft one reopens the debate.</p><h2>The oil problem won't wait</h2><p>The wildcard is energy, and it is moving the wrong way. The U.S. and Iran traded fresh strikes over the weekend, and crude has climbed back toward $100 a barrel, with Brent near $97 and rising. Tehran has threatened to establish a maritime exclusion zone across the Persian Gulf in response to what it calls U.S. “economic warfare.” Higher energy feeds directly into the very inflation figures landing Thursday and Friday — and into the Fed's calculus a week later. It is the one variable neither the data nor the central bank controls, and right now it is pulling toward a hike.</p><blockquote class="pull">The Fed spent the year waiting for permission to cut. This week's data may instead hand it a reason to hike.<span class="attrib">The Monday Outlook</span></blockquote><h2>The setup</h2><p>Treat this as a two-act week. The first act is the data — inflation Thursday and Friday. The second is the Fed, the week after. With a hike now the base case, the burden of proof has flipped: it is on the numbers to argue the Fed out of moving, not the other way around. Watch the 2-year yield, at 4.37% its highest since January 2025, and watch Brent. If both keep climbing through the prints, next week's decision will be all but written before the committee sits down.</p><div class="takeaway"><div class="t">The outlook</div><p>A deceptively quiet holiday open before the year's most consequential data-and-Fed stretch. PPI Thursday and CPI Friday are the last word before the decision, and oil is the swing factor. With the hike case hardening, the risk-reward favors caution into the prints — let the data set the tone rather than front-running it.</p></div></div>  <div class="disclaimer">
+    FinTrend News is an independent markets publication. Nothing here is investment,
+    legal, or tax advice, and it is not a recommendation to buy or sell any security.
+    Figures are drawn from public market data as of the date of publication and may be
+    revised. Do your own research and consult a licensed professional before investing.
+  </div>
+</article></div>
+<footer><div class="wrap">
+  <span>© 2026 FinTrend News</span>
+  <span class="sig">— JTM</span>
+  <span><a href="../archive.html">Full archive →</a></span>
+</div></footer>
+</body>
+</html>
