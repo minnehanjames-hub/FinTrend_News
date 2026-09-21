@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: Narrowing Into the Decision — FinTrend News</title>
+<meta name="description" content="Hours before the Fed's call, the market's internals are flashing caution: leadership has thinned, the chips have broken down, and breadth is quietly deteriorating beneath a headline index that looks calmer than it is.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: <em>Narrowing</em> Into the Decision</h1>
+  <p class="dek">Hours before the Fed&rsquo;s call, the market&rsquo;s internals are flashing caution &mdash; leadership has thinned, the chips have broken down, and breadth is quietly deteriorating beneath a headline index that looks calmer than it is.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · SEP 16 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">In a few hours the Federal Reserve will almost certainly raise interest rates for the first time in three years, and the commentary will focus entirely on that. But momentum &mdash; the actual force under the tape &mdash; had already made its statement before the FOMC said a word. Over the past two sessions the market has quietly narrowed: a shrinking group of stocks doing the lifting, a broken chip complex, and a headline S&amp;P that masks how much erosion is happening beneath it.</p><p>That is the job of a momentum check &mdash; to look past the index print at whether the market is being carried by many stocks or a few, and whether the leaders are still leading. Right now the answer is uncomfortable, and it sets a fragile stage for whatever Chair Warsh delivers this afternoon.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&P 500 (Tue)</div><div class="val">7,585.73</div><div class="chg down">−0.5%</div></div><div class="cell"><div class="lbl">Dow (Tue)</div><div class="val">52,093.11</div><div class="chg down">−0.6%</div></div><div class="cell"><div class="lbl">Nasdaq (Tue)</div><div class="val">25,981.57</div><div class="chg down">−0.8%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">≈ 5.00%</div><div class="chg down">3-yr high</div></div></div><h2>Leadership has thinned</h2><p>The clearest momentum signal is what happened to the generals. Semiconductors led this bull market on the way up; this week they led on the way down. Monday&rsquo;s AI-safety scare took the Philadelphia Semiconductor Index down nearly 6% &mdash; its worst session since July &mdash; and the group has not repaired the damage since. When the strongest trend in the market breaks its footing, momentum investors take notice regardless of what the Fed does, because it removes the engine that powered every prior rally.</p><div class="ledger"><div class="row"><div class="day">Fri 9/11</div><div class="detail">The bounce — CPI in line, oil eases. Momentum looks like it's turning up.</div><div class="mv up">S&P +0.9%</div></div><div class="row"><div class="day">Mon 9/14</div><div class="detail">AI-safety rout. Chips crater, but cyber/software cushion the index.</div><div class="mv down">S&P −0.5%</div></div><div class="row"><div class="day">Tue 9/15</div><div class="detail">Follow-through selling as oil and yields press; no dip-buyers step up.</div><div class="mv down">S&P −0.5%</div></div><div class="row"><div class="day">Wed 9/16</div><div class="detail">Fed decision at 2:00 p.m. ET. Market coils; direction deferred.</div><div class="mv flat">pending</div></div></div><p>One green Friday, then two red days that erased it. That is the definition of failed momentum &mdash; a rally that could not extend past a single session. The dip that would normally be bought is instead being sold, and the absence of buyers on Tuesday is the more telling half of the story.</p><h2>Breadth is worse than the index</h2><p>Here is the sleight of hand in this week&rsquo;s tape: the Nasdaq has held up better than the chips inside it because money rotated into cybersecurity and software rather than leaving the market entirely. That is genuinely constructive &mdash; a rotation has a floor a liquidation does not. But it also means the index is being propped by a defensive huddle, not by broad participation. The Russell 2000, the purest read on breadth and rate sensitivity, has been the weakest major all week. When small caps lag this consistently, momentum is narrowing whatever the headline says.</p><div class="pullquote">A single green day surrounded by red is not a trend reversal &mdash; it is a market testing whether anyone still wants to buy the dip. This week, twice, the answer was no.<span class="src">FinTrend Momentum Desk</span></div><h2>What good momentum would look like after 2 p.m.</h2><p>Because the decision lands mid-session, the honest momentum call is conditional. A constructive outcome would be the index reclaiming ground on <em>expanding</em> breadth &mdash; small caps and semis participating, not just software holding the line. A poor outcome would be a knee-jerk pop that fades into the close on narrow participation, the classic &ldquo;sell-the-relief&rdquo; pattern. The level to respect on the S&amp;P is its 50-day moving average; the chips have already lost theirs, and if the broad index follows, the technical picture turns from &ldquo;pullback&rdquo; to something that needs watching.</p><table class="dtable"><thead><tr><th>Momentum signal</th><th class="r">Reading</th></tr></thead><tbody><tr><td>Leadership (semis)</td><td class="mono r down">Broken</td></tr><tr><td>Breadth (small caps)</td><td class="mono r down">Lagging</td></tr><tr><td>Dip-buying</td><td class="mono r down">Absent 2 days</td></tr><tr><td>Rotation (cyber/software)</td><td class="mono r up">Intact — the floor</td></tr><tr><td>Volatility</td><td class="mono r flat">Coiled pre-Fed</td></tr></tbody></table><div class="takeaway"><div class="t">The momentum read</div><p>Beneath a composed-looking index, momentum has narrowed hard into the Fed decision: chip leadership is broken, breadth is thin, and buyers went missing on two straight down days. The one thing holding it together is a rotation into cyber and software &mdash; a floor, not an engine. Watch the reaction after 2 p.m. for <em>breadth</em>, not just the print: a bounce that fades on narrow participation would confirm the loss of momentum; a broad reclaim would argue the pullback has run its course.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
