@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oil Blinks, and Wall Street Finally Exhales — FinTrend News</title>
+<meta name="description" content="A four-day slide broke Friday after an in-line August CPI and a 3% drop in Brent gave a jittery, rate-anxious market its first green session of the week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Friday Recap · Week of Sep 8</div>
+  <h1>Oil Blinks, and Wall Street Finally <em>Exhales</em></h1>
+  <p class="dek">A four-day slide broke Friday after an in-line August CPI and a 3% drop in Brent gave a jittery, rate-anxious market its first green session of the week.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">FRI · SEP 11 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">For four straight sessions the tape had one instruction: sell into every rally the moment crude ticked higher. Friday, that reflex finally met its match. A cooler-than-feared read on Brent and an August inflation print that landed exactly where economists expected handed the <strong>S&amp;P 500</strong> its first up day of the week, a 0.9% bounce that clawed back a chunk of the damage but left the index down for the week all the same.</p><p>It was the kind of close that says more about nerves than conviction. Stocks did not rip higher because anything got resolved &mdash; the war with Iran still clogs the Strait of Hormuz, the 10-year Treasury yield is still parked near levels last seen in 2023, and the Federal Reserve still meets next week with a live hike on the table. What changed Friday was simply the absence of a fresh shock. In this market, that counts as a win.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&P 500</div><div class="val">7,656.98</div><div class="chg up">+0.9%</div></div><div class="cell"><div class="lbl">Dow</div><div class="val">52,573.29</div><div class="chg up">+1.0%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">26,333.04</div><div class="chg up">+1.0%</div></div><div class="cell"><div class="lbl">Russell 2000</div><div class="val">2,903.94</div><div class="chg up">+0.4%</div></div></div><h2>How the week actually traded</h2><p>The scoreboard above is Friday's snapshot; the story is the four red days that came before it. Crude did the driving all week, and the bond market amplified every move &mdash; each leg higher in oil pushed the 10-year yield up and cut into the valuations of the long-duration tech names that have led this bull market. Here is the day-by-day.</p><div class="ledger"><div class="row"><div class="day">Tue 9/08</div><div class="detail">Selling builds as Brent grinds higher on Hormuz supply fears; yields creep up.</div><div class="mv down">S&P −0.3%</div></div><div class="row"><div class="day">Wed 9/09</div><div class="detail">Broad risk-off; Europe lower, Russell 2000 −1.3% as small caps take the brunt.</div><div class="mv down">S&P −0.5%</div></div><div class="row"><div class="day">Thu 9/10</div><div class="detail">Fourth straight loss. Brent tops $108, 10-yr yield leaps to 4.95% — highest since 2023.</div><div class="mv down">S&P −0.6%</div></div><div class="row"><div class="day">Fri 9/11</div><div class="detail">Streak snaps. August CPI in line, Brent falls ~3%, and the market exhales.</div><div class="mv up">S&P +0.9%</div></div></div><p>For the week the S&amp;P still finished down about 0.8% and the Dow shed roughly 1.6% &mdash; Friday's rebound repaired the mood, not the ledger. The tell was in the internals: the Russell 2000, the most rate-sensitive corner of the market, lagged on the way down and only limped back 0.4% on Friday. When small caps can't rally hard on a green day, it usually means the bond market is still the one holding the leash.</p><h2>The inflation print that mattered</h2><p>Friday morning's August <strong>Consumer Price Index</strong> was the week's main event, and it threaded the needle. Headline prices rose 0.4% on the month &mdash; hotter than July's 0.1%, but bang in line with the 3.4% year-over-year consensus. Gasoline did the heavy lifting, up 3.9% and accounting for more than a third of the monthly increase, a direct fingerprint of the oil shock. The reassuring part sat underneath: core CPI, stripping out food and energy, cooled to 2.4% annually, its lowest since March 2021.</p><table class="dtable"><thead><tr><th>August CPI</th><th class="r">Reading</th><th class="r">Signal</th></tr></thead><tbody><tr><td>Headline MoM</td><td class="mono r">+0.4%</td><td class="r flat">In line</td></tr><tr><td>Headline YoY</td><td class="mono r">3.4%</td><td class="r flat">Steady</td></tr><tr><td>Core MoM</td><td class="mono r">+0.3%</td><td class="r flat">In line</td></tr><tr><td>Core YoY</td><td class="mono r">2.4%</td><td class="r up">Cooling</td></tr><tr><td>Gasoline MoM</td><td class="mono r">+3.9%</td><td class="r down">Hot</td></tr></tbody></table><p>The paradox for the Fed is right there in the table. The underlying trend is improving, but energy is dragging the headline the wrong way, and energy is precisely the variable a central bank cannot fix with interest rates. That is why an in-line report did nothing to talk the market out of a rate hike &mdash; if anything, bond traders leaned further into it, pricing higher odds that Chair Warsh and the FOMC move next week.</p><div class="pullquote">An in-line inflation report was enough to stop the bleeding. It was not enough to change a single mind about what the Fed does next.<span class="src">FinTrend Markets Desk</span></div><h2>What we're watching into next week</h2><p>Everything now funnels toward the September 15&ndash;16 FOMC meeting. Coming out of Jackson Hole, futures had already flipped to pricing a high probability of the first rate increase since 2023 &mdash; a stunning reversal from the cuts markets expected earlier in the year. Friday's data didn't disturb that setup. Watch three things: whether Brent can hold below $105 or spikes again on any Hormuz headline, whether the 10-year yield breaches 5.00% (it flirted with it Thursday), and whether Big Tech can absorb higher rates without cracking.</p><p>The bigger picture keeps the bulls honest. Even after a rough week, the S&amp;P sits only about 2% below its June record and is still up roughly 12% on the year. This is not a market in trouble &mdash; it is a market re-pricing for a world where inflation is stickier and growth is faster than the soft-landing script called for. That re-pricing is uncomfortable, but it is orderly. Next week we find out whether the Fed agrees.</p><div class="takeaway"><div class="t">The bottom line</div><p>Friday's rebound was relief, not resolution. Oil eased and CPI behaved, snapping a four-day slide &mdash; but the S&amp;P still lost ground on the week, small caps stayed heavy, and the 10-year yield remains coiled near 5%. With the Fed's first hike in three years now the base case, the setup into September 15&ndash;16 is binary: this is a market waiting to be told how much higher rates are going.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
