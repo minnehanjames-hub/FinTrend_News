@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Shocks, One Week: The Fed and the Frontier — FinTrend News</title>
+<meta name="description" content="As Wall Street braces for the first rate hike in three years, the people building artificial intelligence spent the weekend asking the market to slow down. Both stories are really about the same thing: the price of going too fast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Sunday Macro Note</div>
+  <h1>Two Shocks, One Week: The Fed and the <em>Frontier</em></h1>
+  <p class="dek">As Wall Street braces for the first rate hike in three years, the people building artificial intelligence spent the weekend asking the market to slow down. Both stories are really about the same thing &mdash; the price of going too fast.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">AM</div>
+      <div>
+        <div class="name">Arshia Morshedian</div>
+        <div class="role">Macro Strategist</div>
+      </div>
+    </div>
+    <div class="date">SUN · SEP 13 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">The most important macro document of the week was not written by an economist. On Saturday, Anthropic chief executive Dario Amodei published an essay titled &ldquo;We Must Pace the Frontier,&rdquo; arguing that the artificial-intelligence industry should deliberately slow the development of its most powerful models. Within hours, OpenAI&rsquo;s Sam Altman and SpaceX&rsquo;s Elon Musk had lent their weight to the idea. By Sunday night, equity futures pointed lower and a market already bracing for the Federal Reserve had a second front to worry about.</p><p>It is tempting to file these as two separate stories &mdash; one about monetary policy, one about Silicon Valley. They are not. Both are, at bottom, arguments about the cost of moving too fast: the Fed worried that an economy running hot will let inflation calcify, and the AI labs worried that a technology compounding on itself will outrun the guardrails meant to contain it. This week the market has to price both.</p><h2>The Fed's problem is oil it cannot drill</h2><p>Start with Wednesday&rsquo;s main event. When the FOMC convenes Monday and Tuesday and delivers its decision on the 16th, it is overwhelmingly expected to raise the target range by a quarter point &mdash; the first increase since 2023. That is a remarkable place to be. As recently as this spring, the debate was about how many times the Fed would <em>cut</em>. What flipped the script was not a runaway consumer; it was a barrel of crude.</p><p>The war with Iran and the disruption to the Strait of Hormuz have kept Brent camped near $105 and briefly above $108 last week. That flows straight into the headline inflation figures &mdash; August gasoline prices rose 3.9% and drove more than a third of the monthly CPI increase. The cruel irony for Chair Warsh is that an oil shock is the one inflation source interest rates cannot address. Rate hikes cannot re-open a shipping lane. What they <em>can</em> do is keep expectations anchored so that a supply shock does not become a wage-price spiral &mdash; and that, more than the oil itself, is what the Fed is defending.</p><div class="pullquote">You cannot drill for oil with a federal funds rate. But you can convince the world that you will not let a supply shock become a spiral &mdash; and that is the entire point of hiking into one.<span class="src">FinTrend Macro Desk</span></div><h2>The frontier's problem is a growth engine questioning itself</h2><p>Now the second shock. For two years, the AI build-out has been the single most powerful force in this market &mdash; the reason the Nasdaq outran everything, the reason a handful of chip and data-center names carried the indices to record after record. So when the industry&rsquo;s own leaders publicly argue for a slowdown, the market hears something specific: the demand curve for chips, power and data centers that everyone extrapolated to infinity might have a governor on it after all.</p><p>Amodei&rsquo;s essay laid out a three-part plan and committed Anthropic to the first step &mdash; granting third-party evaluators permanent, employee-level access to its models. He cited risks running from cyberattacks to biological weapons to &ldquo;serious economic disruption.&rdquo; Altman, separately, said OpenAI would not pursue an IPO this year, calling it an &ldquo;ill-advised&rdquo; moment given the safety debate. For an investor, the through-line is uncomfortable: the companies with the best view of AI&rsquo;s trajectory are counseling caution, and one of the most anticipated public offerings just got shelved.</p><table class="dtable"><thead><tr><th>This week's two-front setup</th><th class="r">The fast variable</th><th class="r">The slow variable</th></tr></thead><tbody><tr><td>The Fed</td><td class="mono r">Oil-driven CPI</td><td class="r">Anchored expectations</td></tr><tr><td>The Frontier</td><td class="mono r">AI capability</td><td class="r">Safety guardrails</td></tr><tr><td>The market's fear</td><td class="mono r down">Rates go higher</td><td class="r down">AI capex slows</td></tr></tbody></table><h2>Where the two stories meet</h2><p>Here is why this matters for a portfolio rather than a philosophy seminar. Both shocks push in the same direction for the same cohort of stocks. Higher-for-longer rates compress the valuations of long-duration growth names &mdash; the very AI leaders that a development slowdown would also threaten on the demand side. Rates and narrative are, for once, pointing the same way. That is what makes this week genuinely different from the garden-variety &ldquo;Fed week&rdquo; jitters of the past two years.</p><p>The counterweight is that none of this has broken the real economy. Growth is firm, the August jobs report came in stronger than expected, and credit is not seizing. A market can absorb a rate hike and a narrative wobble at the same time if the underlying earnings machine keeps running. The question this week answers is whether investors treat the Fed&rsquo;s move as the end of a tightening scare or the start of one &mdash; and whether they read the AI industry&rsquo;s introspection as prudent risk management or the first crack in the story that carried this market.</p><div class="takeaway"><div class="t">The macro read</div><p>Two slowdown arguments land in the same week: the Fed slowing the economy to defend against an oil-driven inflation shock, and the AI labs asking to slow the technology to defend against themselves. Both threaten the same long-duration growth cohort, and for once rates and narrative point the same direction. The base case remains a 25bp hike Wednesday. The risk is that the market decides both slowdowns have further to run.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— AM</div>
+  </footer>
+</div>
+</body>
+</html>
