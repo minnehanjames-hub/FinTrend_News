@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Record Week for Tech, a 2007 High for Yields — FinTrend News</title>
+<meta name="description" content="The Nasdaq gained 2.1% and set two records; the S&amp;P closed within a hair of its August peak. But a five-year-high business survey sent the 10-year to its highest level since 2007, October hike odds jumped, and fewer stocks joined the party than the indexes suggest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Friday Recap · Week of Sep 21</div>
+  <h1>A Record Week for Tech, a <em>2007 High</em> for Yields</h1>
+  <p class="dek">The Nasdaq gained 2.1% and set two records; the S&amp;P closed within a hair of its August peak. But a five-year-high business survey sent the 10-year to its highest level since 2007, October hike odds jumped, and fewer stocks joined the party than the indexes suggest.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">FRI · SEP 25 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">If you only read the scoreboard, this was a very good week. The S&amp;P 500 rose 1.2% to 7,743.41 and finished within about 0.7% of its August record. The Nasdaq gained 2.1%, setting back-to-back records early in the week as the chip trade came roaring back. Even the Dow, the laggard of the Fed week, eked out a gain on Friday&rsquo;s 479-point rally.</p><p>But the more consequential number of the week was not an equity index. It was the 10-year Treasury yield, which climbed from roughly 4.95% on Monday to around 5.18% by Friday &mdash; its highest level since 2007 &mdash; after a business survey showed the U.S. economy running hotter than at any point in five years. Stocks spent the back half of the week trying to reconcile the two. They mostly succeeded. The question for next week is how long they can keep doing it.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,743.41</div><div class="chg up">wk +1.2%</div></div><div class="cell"><div class="lbl">Dow</div><div class="val">51,828.62</div><div class="chg up">wk +0.3%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">27,068.72</div><div class="chg up">wk +2.1%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">≈ 5.18%</div><div class="chg down">highest since 2007</div></div></div><h2>The week, day by day</h2><p>Two strong days, two days absorbing a bond-market shock, and a Friday bounce. The spread between the indexes is the story: the tech-heavy Nasdaq gained nearly twice what the S&amp;P did, while the rate-sensitive Russell 2000 fell 0.8%.</p><div class="ledger"><div class="row"><div class="day">Mon 9/21</div><div class="detail">Iran-talk hopes sink oil. Chips explode &mdash; AMD briefly $1T, Arm +17%, Meta +11% on Muse. Nasdaq record.</div><div class="mv up">S&amp;P +1.5%</div></div><div class="row"><div class="day">Tue 9/22</div><div class="detail">Oil falls a fifth day. Nasdaq notches a second record; VIX lowest since December.</div><div class="mv flat">S&amp;P 0.0%</div></div><div class="row"><div class="day">Wed 9/23</div><div class="detail">Flash PMI at a five-year high; 10-yr jumps ~15 bp to 5.11%. Iran rebuffs U.S. at the UN; oil rebounds.</div><div class="mv down">S&amp;P −0.8%</div></div><div class="row"><div class="day">Thu 9/24</div><div class="detail">Fed&rsquo;s Williams sees another hike as reasonable; October odds jump. Treasury buyback falls short.</div><div class="mv flat">S&amp;P flat</div></div><div class="row"><div class="day">Fri 9/25</div><div class="detail">Oil eases. Microsoft +3.7% on Copilot relaunch, Costco +2.9% on earnings. Dow +479.</div><div class="mv up">S&amp;P +0.5%</div></div></div><h2>Monday: the chip trade comes back</h2><p>The week opened with a geopolitical tailwind. President Trump signaled openness to meeting Iran&rsquo;s leadership around the UN General Assembly, crude fell 4.5%, and the market reached straight for the AI complex. The Philadelphia Semiconductor Index jumped 4.3%. AMD rose 10% and briefly crossed $1 trillion in market value; Intel added 12% and Arm 17%. Meta had its best day since April 2025, up 11.4%, after unveiling its Muse AI agent. The Nasdaq closed at a record and did it again Tuesday. In the span of two sessions, the semiconductor leadership that broke on the AI-safety scare a week earlier was fully back.</p><h2>Wednesday: the economy runs too hot</h2><p>Then the data turned the tape. S&amp;P Global&rsquo;s flash composite PMI jumped to 58.4 from 56.0 &mdash; far above the roughly 55 expected and the fastest expansion in more than five years &mdash; with input costs rising at their steepest pace in about four years. For a Fed that has just started hiking, that is the wrong kind of strength. The 10-year yield surged about 15 basis points to 5.11%, the 30-year hit its highest since 2004, and the S&amp;P fell 0.8%. Iran&rsquo;s President Pezeshkian used his UN address to reject U.S. pressure, reversing some of the week&rsquo;s oil relief. Under the surface the damage was broader: online-travel names Expedia and Airbnb sank more than 7% after Meta showed off AI travel booking, Alphabet fell 3.5%, and payroll processor Paychex lost 7%.</p><table class="dtable"><thead><tr><th>Index</th><th class="r">Close</th><th class="r">Week</th><th class="r">YTD</th></tr></thead><tbody><tr><td>S&amp;P 500</td><td class="mono r">7,743.41</td><td class="mono r up">+1.2%</td><td class="mono r up">+13.1%</td></tr><tr><td>Dow Jones</td><td class="mono r">51,828.62</td><td class="mono r up">+0.3%</td><td class="mono r up">+7.8%</td></tr><tr><td>Nasdaq Composite</td><td class="mono r">27,068.72</td><td class="mono r up">+2.1%</td><td class="mono r up">+16.5%</td></tr><tr><td>Russell 2000</td><td class="mono r">2,837.55</td><td class="mono r down">−0.8%</td><td class="mono r up">+14.3%</td></tr></tbody></table><h2>Thursday: the Fed leans in, and the Treasury can&rsquo;t lean back</h2><p>New York Fed President John Williams, speaking in London, said another rate increase before year-end was a reasonable expectation, while declining to commit to timing now that the Fed has dropped forward guidance. The market did not need more. CME FedWatch odds of a hike at the Oct. 27&ndash;28 meeting jumped to roughly 77% from about 53% a day earlier, before settling near two-in-three by Friday. The same day, the Treasury&rsquo;s buyback of 20- and 30-year bonds took in only about $4.1 billion against the $6 billion it had planned &mdash; a reminder that the government&rsquo;s tools for capping long-end yields are limited. The 30-year mortgage rate climbed to 7.03%, its highest since January 2025.</p><div class="pullquote">Stocks spent the week proving they could set records with a 5% ten-year. What they haven&rsquo;t proven is that they can do it with a 5.2% ten-year and a Fed that keeps saying &lsquo;more.&rsquo;<span class="src">FinTrend Markets Desk</span></div><h2>Friday: a relief bid, and the data behind it</h2><p>Friday&rsquo;s rally leaned on cooler oil &mdash; Brent ended roughly 12% below its Sept. 15 peak &mdash; and on two strong single-stock stories: Microsoft rose 3.7% after relaunching Copilot, and Costco gained 2.9% after reporting comparable sales up 9.4%. The data told a split story. Core capital-goods orders, the best proxy for business investment, jumped to a record in August. But the University of Michigan&rsquo;s final September sentiment reading came in at 48.1, near historic lows, with one-year inflation expectations climbing to 4.6%. Businesses are spending; households are worried about prices. Both halves of that sentence keep yields high.</p><p>On trade, President Xi&rsquo;s Washington visit ended with the bilateral truce extended by two months and a White House fact sheet outlining tariff relief on about $30 billion of goods in each direction, Chinese purchases of U.S. coal in 2027 and 2028, and a new U.S.&ndash;China dialogue on advanced AI. Rare earths and chip export controls remain unresolved. Constructive, but not market-moving.</p><h2>The bottom line</h2><p>The indexes had a strong week; the market had a narrower one. On Thursday, 331 NYSE stocks hit 52-week lows against just 17 new highs &mdash; the widest such gap on record going back to 2010 with the S&amp;P this close to a peak &mdash; and the equal-weight S&amp;P closed at its lowest level since June. A handful of AI and mega-cap names are doing the lifting while the rate-sensitive majority absorbs the 2007-high yields. That combination can grind higher for a while. It cannot shrug off a hot inflation print. Next week brings exactly that test: August PCE on Wednesday and the September jobs report on Friday.</p><div class="takeaway"><div class="t">The bottom line</div><p>The S&amp;P rose 1.2% and the Nasdaq 2.1%, with tech setting records and the S&amp;P finishing within about 0.7% of its August high. But the week&rsquo;s defining move was in bonds: a five-year-high PMI pushed the 10-year to around 5.18%, the highest since 2007, and lifted October hike odds to roughly two-in-three. Breadth is historically poor for a market this close to a record. Leaders are strong, the majority is not, and next week&rsquo;s PCE and payrolls decide which one the bond market listens to.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
