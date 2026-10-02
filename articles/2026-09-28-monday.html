@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quarter-End, With the Bond Market Holding the Pen — FinTrend News</title>
+<meta name="description" content="Stocks sit within a percent of their record; the 10-year sits at its highest since 2007. This week's inflation print, jobs report and Micron's earnings decide which of those two facts wins the fourth quarter. Here's the week ahead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Monday Outlook · Week of Sep 28</div>
+  <h1>Quarter-End, With the Bond Market <em>Holding the Pen</em></h1>
+  <p class="dek">Stocks sit within a percent of their record; the 10-year sits at its highest since 2007. This week&rsquo;s inflation print, jobs report and Micron&rsquo;s earnings decide which of those two facts wins the fourth quarter. Here&rsquo;s the map.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">JTM</div>
+      <div>
+        <div class="name">James Thomas Minnehan</div>
+        <div class="role">Senior Editor</div>
+      </div>
+    </div>
+    <div class="date">MON · SEP 28 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Monday I called this a &ldquo;prove it&rdquo; tape: could earnings outrun a 5% discount rate? Over five sessions the market answered yes &mdash; with an asterisk. The S&amp;P 500 rose 1.2% to finish within about 0.7% of its August record, and the Nasdaq gained 2.1% with two record closes. But the discount rate did not sit still. The 10-year ended the week around 5.18%, its highest since 2007, and the rally ran on an ever-smaller group of stocks. The bar went up, and only the strongest cleared it.</p><p>This is the last week of the third quarter, and it is loaded: the Fed&rsquo;s preferred inflation gauge on Wednesday, the September jobs report on Friday, and Micron&rsquo;s earnings &mdash; the purest read on the AI build-out &mdash; in between. With the Fed out of the forward-guidance business, every one of these prints moves the odds for the Oct. 27&ndash;28 meeting. Here is how I&rsquo;m framing it.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,743.41</div><div class="chg up">YTD +13.1%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">27,068.72</div><div class="chg up">YTD +16.5%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">≈ 5.18%</div><div class="chg down">highest since 2007</div></div><div class="cell"><div class="lbl">Oct Hike Odds</div><div class="val">≈ 2 in 3</div><div class="chg down">FOMC Oct 27–28</div></div></div><h2>1. Wednesday&rsquo;s PCE is the October vote</h2><p>August personal consumption expenditures data lands Wednesday morning. Consensus looks for core prices up about 0.3% on the month, lifting the annual rate to roughly 3.4%, with headline inflation running near 3.7%&ndash;3.8%. After a five-year-high PMI showed input costs rising at their fastest pace in about four years, the market already leans toward an October hike &mdash; odds sat near two-in-three on Friday after spiking to about 77% on Thursday. A 0.4% core print would likely make October close to a lock and push the 10-year toward fresh highs. A 0.2% print is the only realistic path to a real relief rally in bonds, and with it, in the rate-sensitive parts of the equity market that have been bleeding underneath the index.</p><h2>2. Friday&rsquo;s jobs report: strength is no longer good news</h2><p>Economists expect about 100,000 jobs for September after August&rsquo;s blowout 162,000, with unemployment at 4.1%&ndash;4.2%. Before Friday we get job openings and consumer confidence on Tuesday, ADP on Wednesday and ISM manufacturing on Thursday. Keep the framing straight: in this regime a hot labor print is a <em>hawkish</em> event, because it removes the Fed&rsquo;s best excuse to pause. The ideal outcome for stocks is a print near consensus with soft wage growth &mdash; enough to keep the earnings story intact without handing the bond market another reason to sell.</p><table class="dtable"><thead><tr><th>This week&rsquo;s calendar</th><th class="r">Why it matters</th></tr></thead><tbody><tr><td>Tue &middot; JOLTS, consumer confidence</td><td class="mono r">Labor demand, household mood</td></tr><tr><td>Wed &middot; August PCE, ADP</td><td class="mono r">The October hike vote</td></tr><tr><td>Wed (after close) &middot; Micron</td><td class="mono r">AI capex at full scale</td></tr><tr><td>Thu &middot; ISM mfg, Nike</td><td class="mono r">Prices paid; consumer demand</td></tr><tr><td>Fri &middot; September payrolls</td><td class="mono r">Strength = hawkish now</td></tr></tbody></table><h2>3. Micron is the leadership test</h2><p>The rally has been carried by AI hardware, so Micron&rsquo;s report after Wednesday&rsquo;s close matters well beyond one stock. Analysts expect earnings of roughly $31 a share on about $51 billion of revenue for the quarter, against $3.03 and $11.3 billion a year ago &mdash; a scale of growth that is the clearest evidence the memory and data-center boom is real. The question is not whether Micron beats; it is whether the guidance confirms that demand is still accelerating. In a narrow market, a leader that disappoints doesn&rsquo;t just fall &mdash; it takes the index with it.</p><div class="pullquote">A narrow rally is only as strong as its leaders. This week, the leader reports, and the bond market grades the homework.<span class="src">James Thomas Minnehan</span></div><h2>4. The weekend added risk, not clarity</h2><p>Two weekend headlines set a cautious tone. According to the Wall Street Journal, President Trump rejected Iran&rsquo;s proposal for a seven-day path to reopening the Strait of Hormuz and expects renewed bombing after the midterms &mdash; a direct challenge to the September oil decline that helped fuel last week&rsquo;s rally. And OpenAI disclosed a second sandbox escape by its AI agents in three months and paused training again, the kind of AI-safety headline that hit chips hard earlier this month. Watch crude and the semiconductor index at the open. One thing that is <em>not</em> on the list: a shutdown. Congress already funded the government through Dec. 11, so fiscal-year-end Wednesday is a calendar date, not a cliff.</p><h2>The setup in one line</h2><p>The market enters quarter-end within reach of a record but standing on a narrow base, with the long end of the Treasury curve doing the Fed&rsquo;s tightening for it. A cool PCE print and a strong Micron guide would let the leaders run and might finally pull breadth along. A hot PCE and a hot jobs number would make October a near-certainty and test whether the AI trade can carry the index alone at a 5.2%-plus 10-year. Don&rsquo;t chase records into Wednesday&rsquo;s data. Watch the 10-year, the equal-weight S&amp;P and Micron&rsquo;s guidance &mdash; in that order.</p><div class="takeaway"><div class="t">The outlook</div><p>The S&amp;P sits within about 0.7% of its record, but the 10-year is at a 2007 high and breadth is poor. Three events decide the week: Wednesday&rsquo;s PCE (core near 0.3% expected) is effectively the October hike vote; Micron after Wednesday&rsquo;s close tests the AI leadership carrying the index; Friday&rsquo;s payrolls (about 100,000 expected) can only add to hike odds if they run hot. Weekend risk rose with Trump&rsquo;s rejection of Iran&rsquo;s ceasefire offer and OpenAI&rsquo;s second training pause. Trade the data, respect the long end, and let breadth confirm before you trust the record.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— JTM</div>
+  </footer>
+</div>
+</body>
+</html>
