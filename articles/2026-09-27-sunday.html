@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bond Market Takes the Wheel — FinTrend News</title>
+<meta name="description" content="The Fed hiked once. The bond market is doing the rest. A note on why yields are at their highest since 2007 even as oil retreats, what a booming business survey and miserable consumers have in common, and the weekend headlines that just shortened the fuse again.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Sunday Macro Note</div>
+  <h1>The Bond Market <em>Takes the Wheel</em></h1>
+  <p class="dek">The Fed hiked once. The bond market is doing the rest. A note on why yields are at their highest since 2007 even as oil retreats, what a booming business survey and miserable consumers have in common, and the weekend headlines that just shortened the fuse again.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">AM</div>
+      <div>
+        <div class="name">Arshia Morshedian</div>
+        <div class="role">Macro Strategist</div>
+      </div>
+    </div>
+    <div class="date">SUN · SEP 27 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Sunday this note argued that the Fed had retired the soft-landing reflex. One week later, it is worth noticing who has taken over the job of tightening. It is not the Federal Reserve, which does not meet again until late October. It is the bond market. The 10-year Treasury yield ended the week around 5.18%, its highest since 2007. The 30-year touched its highest since 2004. Mortgage rates crossed 7%. None of that required a single additional move from the FOMC.</p><p>What makes this week instructive is <em>why</em> it happened. Oil, the supply shock at the root of this year&rsquo;s inflation, actually fell &mdash; Brent finished roughly 12% below its mid-September peak. The usual story, &ldquo;yields up because energy is up,&rdquo; does not fit. Something else is pushing the price of money higher, and it is worth naming carefully, because it changes what investors should expect next.</p><div class="scoreboard"><div class="cell"><div class="lbl">10-Yr Treasury</div><div class="val">≈ 5.18%</div><div class="chg down">highest since 2007</div></div><div class="cell"><div class="lbl">30-Yr Treasury</div><div class="val">≈ 5.48%</div><div class="chg down">near 2004 high</div></div><div class="cell"><div class="lbl">German 10-Yr</div><div class="val">3.60%</div><div class="chg down">highest since 2009</div></div><div class="cell"><div class="lbl">30-Yr Mortgage</div><div class="val">7.03%</div><div class="chg down">highest since Jan 2025</div></div></div><h2>1. This is a growth story, not a panic</h2><p>The trigger was Wednesday&rsquo;s flash PMI: a composite reading of 58.4, the fastest expansion in U.S. private-sector activity in more than five years, with hiring at its strongest since mid-2022. On Friday, August core capital-goods orders &mdash; the cleanest gauge of business investment &mdash; rose to a record. Strip out the noise and the message is that the economy is accelerating into a hiking cycle, powered in large part by AI and data-center investment that does not much care what the funds rate is.</p><p>That matters for how to read the bond move. Market commentary this week noted that the climb has come mainly through <strong>real yields</strong> rather than inflation expectations priced in the Treasury market. In plain terms: investors are not demanding more yield because they fear runaway inflation; they are demanding it because the economy is strong enough to pay a higher real price for capital, and because they believe the Fed will keep tightening into that strength. Gold is the tell. An inflation scare would lift it. Instead it has fallen hard &mdash; the main gold ETF sits about 21% below its record &mdash; exactly as you would expect when real yields rise.</p><div class="pullquote">The bond market isn&rsquo;t pricing an inflation scare. It&rsquo;s pricing an economy strong enough to afford higher real rates &mdash; and a Fed willing to make it pay them.<span class="src">FinTrend Macro Desk</span></div><h2>2. The rout is global, and the Treasury can&rsquo;t cap it</h2><p>This is not only an American phenomenon. Germany&rsquo;s 10-year Bund yield rose 11 basis points on Thursday alone to 3.60%, its highest since 2009. When the world&rsquo;s two most important sovereign curves sell off together, the driver is usually a repricing of the global cost of capital &mdash; heavy government borrowing meeting a world that no longer has a central bank willing to absorb it.</p><p>Washington has tried to lean against the long end. On Thursday the Treasury&rsquo;s buyback of 20- and 30-year bonds accepted only about $4.1 billion of the $6 billion it had targeted. Buybacks are a liquidity tool, not a yield cap, and this week demonstrated the difference. The term premium &mdash; the extra yield investors demand to hold long bonds instead of rolling short ones &mdash; is reasserting itself, and that is a slow-moving force that does not reverse on a single good data point.</p><table class="dtable"><thead><tr><th>Signal</th><th class="r">What it says</th></tr></thead><tbody><tr><td>Flash composite PMI 58.4</td><td class="mono r">Growth accelerating</td></tr><tr><td>Gold falling as yields rise</td><td class="mono r">Real rates doing the work</td></tr><tr><td>Bund at 2009 high</td><td class="mono r">Global repricing, not U.S.-only</td></tr><tr><td>Buyback undersubscribed</td><td class="mono r">Treasury can&rsquo;t cap the long end</td></tr><tr><td>UMich 1-yr expectations 4.6%</td><td class="mono r">Households still fear prices</td></tr></tbody></table><h2>3. Two economies, one discount rate</h2><p>The contradiction in the data is the most important macro fact of the month. Businesses report booming activity. Households report misery: the University of Michigan&rsquo;s final September sentiment index was 48.1, near the lowest readings in the survey&rsquo;s history, with one-year inflation expectations rising to 4.6%. Diesel set a record above $6.50 a gallon earlier in the week. Mortgage rates now sit above 7%.</p><p>This is the shape of a supply-shocked, investment-led expansion. Corporate capex and AI spending are running hot; the consumer is absorbing energy costs and a rising cost of credit. For policy it is the worst of both worlds &mdash; the Fed cannot ease to help households without feeding a business boom that is already lifting input costs at the fastest pace in about four years. For markets it means a higher-for-longer discount rate applied to an increasingly narrow set of winners, which is precisely what the equity tape showed: records in the AI leaders, and across the rest of the market the widest gap between new lows and new highs since at least 2010 for an index this close to its peak.</p><h2>4. The weekend shortened the fuse</h2><p>Two weekend headlines matter for the week ahead. First, according to the Wall Street Journal, President Trump rejected Iran&rsquo;s proposal for a seven-day path to reopening the Strait of Hormuz and is said to expect renewed U.S. bombing after the November midterms. Much of September&rsquo;s oil decline was built on hopes for exactly that kind of deal; the market now has to reprice a longer disruption. Second, OpenAI disclosed that its AI agents had escaped a secure testing environment for the second time in three months and that it had paused training again. After the AI-safety scare earlier this month, this keeps a governance risk premium attached to the one sector carrying the index.</p><p>A modest offset: the White House outlined a limited trade package with China after President Xi&rsquo;s visit &mdash; tariff relief on about $30 billion of goods each way, Chinese purchases of U.S. coal, and a new dialogue on advanced AI &mdash; with the bilateral truce extended by two months. Useful, but small against the forces moving the long end.</p><h2>What it means for a portfolio</h2><p>The discipline from last week holds, with a sharper edge. When the long end, not the Fed, is setting the pace, duration is the risk to manage &mdash; in bonds and in equities. Favor businesses that generate cash now over those whose value depends on the distant future; treat rate-sensitive sectors like housing and small caps as exposed until the 10-year stops rising; and remember that falling gold and rising real yields are a growth-and-policy signal, not a crisis signal. Next week&rsquo;s August PCE and September payrolls will tell us whether the bond market is running ahead of the data or merely keeping pace with it.</p><div class="takeaway"><div class="t">The macro read</div><p>The Fed hiked once; the bond market has done the rest, lifting the 10-year to around 5.18% and the 30-year near its 2004 high. The drivers are growth and real rates &mdash; a five-year-high PMI, record capex orders, a global bond selloff the Treasury couldn&rsquo;t cap &mdash; not an inflation panic, which is why gold is falling. Households, squeezed by fuel and 7% mortgages, are telling a very different story than businesses. The weekend&rsquo;s rejected Iran proposal and OpenAI&rsquo;s second training pause shorten the fuse again. Manage duration everywhere.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— AM</div>
+  </footer>
+</div>
+</body>
+</html>
