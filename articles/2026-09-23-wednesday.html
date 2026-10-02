@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: Records on a Narrow Bridge — FinTrend News</title>
+<meta name="description" content="The Nasdaq has closed at a record two days running and the fear gauge is at its lowest since December. Underneath, more stocks are making new lows than new highs — and this morning's red-hot business survey just sent the 10-year back above 5%.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: Records on a <em>Narrow</em> Bridge</h1>
+  <p class="dek">The Nasdaq has closed at a record two days running and the fear gauge is at its lowest since December. Underneath, more stocks are making new lows than new highs &mdash; and this morning&rsquo;s red-hot business survey just sent the 10-year back above 5%.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · SEP 23 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">A week ago this column described a market narrowing into the Fed decision. The Fed hiked, the market survived, and on Monday the tape did something that looked like the opposite of narrowing: the Nasdaq jumped 2.3% to a record close, the chip index ripped more than 4%, and AMD briefly became a trillion-dollar company. On Tuesday the Nasdaq set another record. By the headline numbers, momentum is back.</p><p>A momentum check exists to ask the next question &mdash; <strong>how many stocks are actually carrying it?</strong> &mdash; and the answer this week is the same uncomfortable one, only more extreme. The index is being lifted by a handful of very large names while the rest of the market quietly bleeds. And this morning the one force that can break a narrow rally fastest, the bond market, woke back up.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500 (Tue)</div><div class="val">7,764.64</div><div class="chg flat">flat · wk +1.5%</div></div><div class="cell"><div class="lbl">Nasdaq (Tue)</div><div class="val">27,244.28</div><div class="chg up">+0.4% · record</div></div><div class="cell"><div class="lbl">10-Yr Yield (Tue)</div><div class="val">4.97%</div><div class="chg down">back above 5% today</div></div><div class="cell"><div class="lbl">VIX (Tue)</div><div class="val">14.21</div><div class="chg up">lowest since Dec</div></div></div><h2>The generals came back</h2><p>The rally had a clear trigger and a clear leader. On Monday President Trump signaled openness to meeting Iran&rsquo;s leadership around the UN General Assembly, and oil &mdash; which had peaked near $106 a barrel on Sept. 15 &mdash; fell another 4.5%. Lower crude means a lower inflation threat, and the market did what it has done all year with good inflation news: it bought the AI complex. The Philadelphia Semiconductor Index rose 4.3%. AMD gained 10% and touched a $1 trillion market value for the first time. Intel jumped 12% and Arm 17%. Meta, meanwhile, posted its best day since April 2025, up 11.4%, after unveiling a new AI agent called Muse that the market read as fresh demand for compute.</p><p>Tuesday followed through more quietly. Oil fell for a fifth straight session as Saudi Arabia restarted its East-West pipeline and Tehran hinted at reopening Hormuz. The Nasdaq added 0.4% to another record, the chip fund SMH closed at its highest level since July, and the VIX slid to 14.21, its lowest close since Dec. 29. Last week&rsquo;s broken leadership &mdash; the semis that lost nearly 6% on the AI-safety scare &mdash; has been repaired in two sessions.</p><div class="ledger"><div class="row"><div class="day">Fri 9/18</div><div class="detail">Triple witching. Fed hike digested; S&amp;P ends the week near flat.</div><div class="mv up">S&amp;P +0.2%</div></div><div class="row"><div class="day">Mon 9/21</div><div class="detail">Iran-talk hopes sink oil. SOX +4.3%, AMD briefly $1T, Meta +11%. Nasdaq record.</div><div class="mv up">S&amp;P +1.5%</div></div><div class="row"><div class="day">Tue 9/22</div><div class="detail">Oil down a fifth day. Nasdaq notches a second record; S&amp;P stalls.</div><div class="mv flat">S&amp;P 0.0%</div></div><div class="row"><div class="day">Wed 9/23</div><div class="detail">Flash PMI at a five-year high. 10-yr pushes back through 5%.</div><div class="mv flat">pending</div></div></div><h2>The bridge is getting narrower</h2><p>Here is the part the record headlines leave out. On Monday, the day the S&amp;P 500 gained 1.5%, the <em>equal-weight</em> S&amp;P &mdash; the same 500 stocks, each counted the same &mdash; rose just 0.2%. On the New York Stock Exchange, 127 stocks hit new 52-week lows against only 20 new highs. That is an unusual reading on a big up day, and it did not repair on Tuesday: 97 new lows against 21 new highs, even with the Nasdaq at a record.</p><p>When the index rises and the number of stocks making new lows rises with it, the rally is being carried across a narrow bridge &mdash; a few mega-caps doing the walking for everyone. That can persist for a while, especially when the leaders have real earnings behind them, as the chip names do. But it leaves the market fragile in a specific way: it only takes a wobble in the handful of leaders to take the whole index with it, because there is very little underneath to catch the fall.</p><div class="pullquote">A record built by a few stocks while hundreds make new lows is not a broad advance. It is a crowded bridge &mdash; sturdy until the leaders stumble.<span class="src">FinTrend Momentum Desk</span></div><table class="dtable"><thead><tr><th>Momentum signal</th><th class="r">Reading</th></tr></thead><tbody><tr><td>Leadership (semis)</td><td class="mono r up">Re-ignited &mdash; SOX +4.3% Mon</td></tr><tr><td>Concentration</td><td class="mono r down">Extreme &mdash; equal-weight lagging</td></tr><tr><td>Breadth (NYSE highs vs. lows)</td><td class="mono r down">Negative &mdash; 21 vs. 97 Tue</td></tr><tr><td>Volatility</td><td class="mono r">Complacent &mdash; VIX 14.21</td></tr><tr><td>Rates</td><td class="mono r down">The threat &mdash; 10-yr back over 5%</td></tr></tbody></table><h2>This morning, the economy ran too hot</h2><p>At 9:45 a.m. Eastern, S&amp;P Global&rsquo;s flash PMI landed and it was not close. The composite index jumped to <strong>58.4</strong> from 56.0, against roughly 55 expected &mdash; the fastest pace of private-sector growth in more than five years. Services rose to 58.7; manufacturing to 57.0 against a 53.6 forecast. Firms are hiring at a rate not seen since mid-2022. And the inflation tail is the problem: input costs are rising at their steepest pace in about four years, driven by fuel and transport.</p><p>For a market that just watched the Fed hike and print a dot plot pointing higher, a booming economy with rising costs is not good news. It is an argument for another hike. The 10-year Treasury, which had eased to about 4.97% on Tuesday, is pushing back above 5% this morning, and gold is selling off as real yields climb. This is exactly the setup that punishes a narrow, long-duration-led rally: the leaders are the stocks most sensitive to the discount rate.</p><h2>What to watch into the close</h2><p>The test is simple. If the index can absorb a 5%-plus 10-year with the chips holding most of Monday&rsquo;s gains, the leadership is genuine and the narrow bridge can carry more traffic. If the semis give back their rally and small caps &mdash; the Russell 2000 has the weakest balance sheets and the most floating-rate debt &mdash; lead the decline, then the last two days were a relief bounce in a market whose internals never healed. Watch the equal-weight S&amp;P and the new-lows count, not the Nasdaq print.</p><div class="takeaway"><div class="t">The momentum read</div><p>On the surface momentum has returned: the Nasdaq set back-to-back records, the chip leadership that broke last week has been rebuilt, and the VIX sits at a nine-month low. Underneath, breadth is worse than it was before the Fed &mdash; equal-weight lagging badly and new lows outnumbering new highs even on record days. This morning&rsquo;s five-year-high PMI and hot input costs just pushed the 10-year back above 5%, the one force that can tip a narrow, rate-sensitive rally. Respect the leaders, but trust breadth: until more stocks join, this is a rally on a narrow bridge.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
