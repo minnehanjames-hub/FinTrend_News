@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: The Record That Keeps Slipping Away — FinTrend News</title>
+<meta name="description" content="Friday the S&amp;P stood within a whisker of its high. Two sessions later it is nearly a percent further away, new lows are swamping new highs for a fourth straight week, and cash is piling into T-bills. This morning's cooler inflation print is the first real chance to change that.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: The Record That <em>Keeps Slipping</em> Away</h1>
+  <p class="dek">Friday the S&amp;P stood within a whisker of its high. Two sessions later it is nearly a percent further away, new lows are swamping new highs for a fourth straight week, and cash is piling into T-bills. This morning&rsquo;s cooler inflation print is the first real chance to change that.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · SEP 30 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">A week ago this column described a market setting records on a narrow bridge. On Friday the bridge nearly reached the other side: the S&amp;P 500 closed about 0.7% below its August record with a week of gains behind it. Then the bond market leaned on it again. Over Monday and Tuesday the index gave back 0.9%, the 10-year Treasury pushed to fresh 19-year highs above 5.2%, and the record that looked a session away is now nearly 2% off.</p><p>The pattern is the momentum story of September in miniature. Every approach to the high has been met by selling, and every pullback has come with the same internal warning: far more stocks breaking down than breaking out. This morning brought the first data point in weeks that cuts the other way. Whether momentum can use it is the question for quarter-end.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500 (Tue)</div><div class="val">7,670.84</div><div class="chg down">−0.2% · 2-day −0.9%</div></div><div class="cell"><div class="lbl">Nasdaq (Tue)</div><div class="val">26,797.54</div><div class="chg down">−0.1%</div></div><div class="cell"><div class="lbl">Russell 2000 (Tue)</div><div class="val">2,807.92</div><div class="chg down">−0.4%</div></div><div class="cell"><div class="lbl">10-Yr Yield (Tue)</div><div class="val">≈ 5.25%</div><div class="chg down">19-yr high</div></div></div><h2>Two days, one culprit</h2><p>Monday did the damage. The 10-year rose about 6 basis points to roughly 5.24%, its highest since 2007, and the Nasdaq fell 0.9% as the weekend&rsquo;s headlines &mdash; OpenAI&rsquo;s second sandbox escape and training pause, and reports that President Trump had rejected Iran&rsquo;s ceasefire offer &mdash; hit the AI leaders that had carried last week. Gold dropped about 3.5%, another sign that rising <em>real</em> yields, not inflation fear, are driving the bond selloff.</p><p>Tuesday was quieter but just as telling. Oil fell about 3.5% &mdash; normally a gift to stocks this year &mdash; and still the S&amp;P slipped 0.2%. The Conference Board&rsquo;s consumer confidence index dropped to 81.9, far below the roughly 89 expected, and job openings slid to 7.08 million. Soft consumer data and falling crude should have pulled yields down. They didn&rsquo;t. When good news for bonds can&rsquo;t lower yields, the selling pressure is structural, and momentum traders notice.</p><div class="ledger"><div class="row"><div class="day">Fri 9/25</div><div class="detail">Oil eases; MSFT, Costco lead. S&amp;P ends ~0.7% from its record.</div><div class="mv up">S&amp;P +0.5%</div></div><div class="row"><div class="day">Mon 9/28</div><div class="detail">10-yr ~5.24%, a 19-year high. AI-safety and Iran headlines hit tech. Gold −3.5%.</div><div class="mv down">S&amp;P −0.8%</div></div><div class="row"><div class="day">Tue 9/29</div><div class="detail">Oil −3.5%, confidence slumps to 81.9 &mdash; yields still won&rsquo;t fall.</div><div class="mv down">S&amp;P −0.2%</div></div><div class="row"><div class="day">Wed 9/30</div><div class="detail">PCE cooler than expected. Micron after the close. Quarter-end.</div><div class="mv flat">pending</div></div></div><h2>Breadth: the fourth week of warnings</h2><p>This is the signal that has not let up. Net new lows on NYSE-listed stocks &mdash; 52-week lows minus 52-week highs &mdash; ran to about −280 on Monday and −223 on Tuesday, readings that would be unremarkable in a correction and are extreme for an index this close to a record. The divergence began on Sept. 9. By one count it is the ninth such episode since 2010, and in only three of the previous eight was the S&amp;P higher three months later. That is not a sell signal on its own; it is a reminder that rallies on this little participation have historically struggled to extend.</p><p>Investors are voting with their cash, too. Roughly $32.8 billion has flowed into T-bill and ultra-short bond ETFs over the past 13 weeks &mdash; money that is being paid around 4% to wait. And the VIX, which hit a nine-month low of 14.21 just a week ago, has drifted back above 16. None of these is alarming alone. Together they describe a market that is near its high in price but not in conviction.</p><div class="pullquote">When falling oil and a slumping consumer can&rsquo;t pull yields down, the pressure isn&rsquo;t cyclical. It&rsquo;s structural &mdash; and narrow rallies are the first casualty.<span class="src">FinTrend Momentum Desk</span></div><table class="dtable"><thead><tr><th>Momentum signal</th><th class="r">Reading</th></tr></thead><tbody><tr><td>S&amp;P vs. record</td><td class="mono r down">Under 2% away, fading</td></tr><tr><td>Breadth (NYSE net new lows)</td><td class="mono r down">−223 Tue &mdash; deeply negative</td></tr><tr><td>Leadership (Nasdaq-100)</td><td class="mono r up">Holding &mdash; +0.2% Tue</td></tr><tr><td>Volatility (VIX)</td><td class="mono r down">Drifting up &mdash; ~16</td></tr><tr><td>Cash flows (T-bill ETFs)</td><td class="mono r down">+$32.8B over 13 weeks</td></tr></tbody></table><h2>This morning: the first crack in the bond case</h2><p>At 8:30 a.m. the Commerce Department delivered what bulls have been waiting for. Core PCE prices &mdash; the Fed&rsquo;s preferred inflation gauge &mdash; rose 0.2% in August, and the annual rate came in at 3.0%, well under the roughly 3.3%&ndash;3.4% forecasters expected. Headline PCE ran 3.4% against expectations near 3.7%. The economy isn&rsquo;t cracking to deliver it, either: second-quarter GDP was revised up to a 2.2% annual pace from 1.5%, and ADP counted 90,000 private jobs in September, above the 70,000 forecast.</p><p>Cooler inflation with solid growth is the combination most likely to take some steam out of October hike odds and give the long end room to breathe. But the last two sessions showed that this bond market does not reverse on a single good print. The momentum test today is whether stocks can rally <em>and hold it</em> into the close &mdash; with small caps and the equal-weight S&amp;P participating &mdash; or whether a morning pop fades as yields refuse to follow. Then, after the bell, Micron reports: analysts expect roughly $51 billion in quarterly revenue, and its guidance is the verdict on the AI leadership that has carried this market.</p><div class="takeaway"><div class="t">The momentum read</div><p>The S&amp;P came within about 0.7% of its record on Friday and has given back 0.9% since, as the 10-year pushed to 19-year highs above 5.2% and even falling oil and weak confidence data couldn&rsquo;t pull it lower. Breadth remains deeply negative, cash is flowing to T-bills, and volatility is creeping up. This morning&rsquo;s cooler PCE &mdash; core 3.0% year over year &mdash; is the first real opening for a turn. Watch whether yields follow and whether breadth joins a rally into the close; then let Micron&rsquo;s guidance tonight decide whether the leaders can keep carrying the load.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
