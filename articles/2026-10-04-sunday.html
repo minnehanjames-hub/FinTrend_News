@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fed Got Its Excuse. The Long End Didn’t Take It. — FinTrend News</title>
+<meta name="description" content="A 29,000-job report knocked October hike odds from roughly two-in-three to under one-in-four in a week. The 10-year still finished Friday at 5.28%. A note on why the bond market has stopped taking its cues from the Fed alone — and what Paris, London and the G7 have to do with your portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Sunday Macro Note</div>
+  <h1>The Fed Got Its Excuse. The Long End <em>Didn&rsquo;t Take It</em>.</h1>
+  <p class="dek">A 29,000-job report knocked October hike odds from roughly two-in-three to under one-in-four in a week. The 10-year still finished Friday at 5.28%. A note on why the bond market has stopped taking its cues from the Fed alone &mdash; and what Paris, London and the G7 have to do with your portfolio.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">AM</div>
+      <div>
+        <div class="name">Arshia Morshedian</div>
+        <div class="role">Macro Strategist</div>
+      </div>
+    </div>
+    <div class="date">SUN · OCT 4 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Two Sundays ago this note argued that the Fed had retired the soft-landing reflex. Last Sunday it argued that the bond market had taken over the job of tightening. This week delivered the cleanest test of that second claim we are likely to get. The labor market cracked: September payrolls rose just 29,000, July was revised to an outright loss, and unemployment rose to 4.2%. Rate-hike expectations collapsed accordingly. If the Fed were still the main force behind long-term yields, the 10-year should have fallen hard.</p><p>It didn&rsquo;t. The 10-year dipped to 5.17% in the minutes after the report and climbed back to 5.28% by the close &mdash; roughly where it started the day, and only six basis points below the 5.34% it touched on Thursday, its highest level since 2002. When expectations for the Fed move this much and the long end barely follows, the message is that something other than the central bank is setting the price of long-term money.</p><div class="scoreboard"><div class="cell"><div class="lbl">10-Yr Treasury</div><div class="val">≈ 5.28%</div><div class="chg down">Thu: 5.34%, 2002 high</div></div><div class="cell"><div class="lbl">UK 30-Yr Gilt</div><div class="val">&gt; 6%</div><div class="chg down">highest since 1998</div></div><div class="cell"><div class="lbl">France–Germany 10Y</div><div class="val">130+ bp</div><div class="chg down">widest since 2012</div></div><div class="cell"><div class="lbl">Oct Hike Odds</div><div class="val">&lt; 23%</div><div class="chg up">from 64% a week ago</div></div></div><h2>1. The labor market finally blinked</h2><p>The details were worse than the headline. Payrolls rose 29,000 against expectations of roughly 85,000 to 90,000, and revisions removed 60,000 jobs from July and August combined. The three-month average is now about 51,000. Health care, the most reliable source of hiring this cycle, added 17,000, about half its 12-month pace; financial activities lost jobs again. Average hourly earnings rose only 0.1% on the month and 3.0% from a year ago, which means wages are running below the 3.4% pace of headline PCE inflation. In plain terms, real pay is shrinking again &mdash; consistent with a Conference Board confidence index that fell to 81.9 on Tuesday and a University of Michigan sentiment reading near record lows.</p><p>For the Fed, the report changes the near-term arithmetic. The funds rate sits at 3.75%&ndash;4.00% after September&rsquo;s hike, and with forward guidance gone, markets trade every print. They slashed the odds of an October move to under 23%, from 64% a week earlier. A hold on Oct. 28 is now the base case. But a hold is not a pivot. Core PCE at 3.0% and an ISM manufacturing prices-paid index of 77.9 &mdash; up sharply from 71.1 &mdash; are not numbers that justify easing. The Fed has gained room to wait, not a reason to reverse.</p><h2>2. &hellip;but the long end barely noticed</h2><p>Here is the part that matters most. Wednesday and Friday formed, on paper, the most bond-friendly data run in months: inflation below forecasts, then hiring far below forecasts. The 10-year closed Wednesday at 5.29% and Friday at 5.28%. Two days of good news for bonds moved the benchmark yield by a single basis point.</p><p>Strip out the Fed and what remains is term premium &mdash; the extra compensation investors demand to lock up money for a decade rather than roll short-term bills. And term premium is being driven by forces a jobs report cannot touch: heavy government borrowing on both sides of the Atlantic, an energy shock that has kept headline inflation elevated, and an AI and data-center investment boom that is absorbing capital and lifting growth expectations. The 10-year just posted its biggest quarterly rise this century. Brent crude rose roughly 40% over the same quarter. Those two facts belong in the same sentence.</p><table class="dtable"><thead><tr><th>Signal</th><th class="r">What it says</th></tr></thead><tbody><tr><td>Payrolls +29K, jobless rate 4.2%</td><td class="mono r">Labor demand cooling</td></tr><tr><td>Oct hike odds 64% &rarr; &lt;23%</td><td class="mono r">Fed hold now the base case</td></tr><tr><td>10-yr 5.29% Wed &rarr; 5.28% Fri</td><td class="mono r">Long end ignoring the Fed</td></tr><tr><td>UK 30-yr gilt above 6%</td><td class="mono r">Fiscal premium is global</td></tr><tr><td>France spread 130+ bp</td><td class="mono r">Politics priced into sovereigns</td></tr><tr><td>ISM prices paid 77.9</td><td class="mono r">Pipeline inflation still hot</td></tr></tbody></table><div class="pullquote">October hike odds fell by two-thirds in a week. The 10-year finished Friday where it closed Wednesday. That gap is the term premium &mdash; and it is not the Fed&rsquo;s to fix.<span class="src">FinTrend Macro Desk</span></div><h2>3. Paris, London and the price of fiscal space</h2><p>If you want to see where the term premium is coming from, look at Europe. France&rsquo;s 10-year yield reached about 4.99% on Thursday, its highest since 2002, after its worst quarter since 1987. The gap over German Bunds widened past 130 basis points, the widest since the euro-area debt crisis in 2012. The trigger is fiscal: Prime Minister S&eacute;bastien Lecornu&rsquo;s minority government is targeting a deficit of 5.0% of GDP in 2027, down only modestly from 5.4%, with public debt near 119% of output and a record &euro;340 billion of medium- and long-term borrowing planned for next year. In Britain, the 30-year gilt yield crossed 6% for the first time since 1998.</p><p>The common thread is that bond investors are now pricing governments individually, by fiscal credibility and political stability, rather than taking their cue from central banks. Germany, with more room to borrow, saw its 10-year yield slip below 3.5% on Friday. That discrimination is healthy in the long run. In the short run it means the world&rsquo;s largest borrowers &mdash; the United States included &mdash; face a market that demands to be paid for duration, whatever the Fed does next.</p><h2>4. Oil: the G7 steps in, Tehran digs in</h2><p>On Friday the G7 agreed to release up to 100 million barrels of diesel, crude and other products through the International Energy Agency over four months, with a substantial share in the first 20 days. It is a direct response to the fuel squeeze that pushed U.S. diesel to records above $6.50 a gallon and European prices far above prewar levels, and it helped keep Brent near $102 after a session that swung between $98 and $103. Combined Gulf exports, including pipeline routes that bypass the Strait of Hormuz, ran at roughly three-quarters of prewar volumes in September.</p><p>The weekend offered no diplomatic relief. After President Trump rejected Iran&rsquo;s seven-day proposal for reopening the Strait, Iranian officials said Hormuz would stay closed until Tehran&rsquo;s conditions are met, and a commercial tanker was reported damaged by an unidentified projectile in the waterway. A strategic release is a cushion, not a cure. As long as the Strait is contested, energy will keep feeding both inflation expectations and the term premium.</p><h2>What it means for a portfolio</h2><p>Two things changed this week, and one didn&rsquo;t. The Fed path is softer: October now looks like a hold. The labor market is weaker: real wages are falling again. What didn&rsquo;t change is the price of long-term money &mdash; the variable that matters most for equity valuations, mortgages and corporate refinancing. That argues for keeping duration risk modest even as hike fears fade; for favoring businesses whose cash arrives now rather than in the 2030s; for recognizing that a Fed pause shows up first at the front end of the curve, not the long end; and for treating Europe&rsquo;s sovereign spreads as an early-warning system. Wednesday&rsquo;s minutes of the September meeting will show how many officials wanted more than one hike. The bond market will be listening for something else: whether anyone at the Fed is worried about the long end.</p><div class="takeaway"><div class="t">The macro read</div><p>A 29,000-job report, 60,000 of downward revisions and 4.2% unemployment cut October hike odds from 64% to under 23% in a week &mdash; the Fed now looks set to hold. But the 10-year finished Friday at 5.28%, a basis point from Wednesday&rsquo;s close, after touching 5.34% on Thursday, its highest since 2002. That is term premium, not Fed policy: record French borrowing, 6% British long bonds, and an oil shock the G7 is trying to cushion with a 100-million-barrel release while Tehran keeps the Strait shut. Softer Fed, stubborn long end. Keep duration modest and watch sovereign spreads.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— AM</div>
+  </footer>
+</div>
+</body>
+</html>
