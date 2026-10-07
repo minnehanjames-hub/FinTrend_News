@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: The Record Finally Falls — FinTrend News</title>
+<meta name="description" content="A week ago the S&amp;P’s high kept slipping away. On Tuesday it closed at 7,818.93, its first record since August, with the Nasdaq setting records on Monday and Tuesday. The leaders are back in charge. The question is who is following them — and this afternoon’s Fed minutes are the next test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: The Record <em>Finally Falls</em></h1>
+  <p class="dek">A week ago the S&amp;P&rsquo;s high kept slipping away. On Tuesday it closed at 7,818.93, its first record since August, with the Nasdaq setting records on Monday and Tuesday. The leaders are back in charge. The question is who is following them &mdash; and this afternoon&rsquo;s Fed minutes are the next test.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · OCT 7 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Wednesday this column was headlined for a record that kept slipping away. The S&amp;P 500 had just given back nearly a percent in two sessions, the 10-year Treasury was pressing to 19-year highs, and every approach to the August peak was being sold. A week later the picture has flipped. The index has climbed 2.2% from last Wednesday&rsquo;s close, the Nasdaq has set back-to-back records, and on Tuesday the S&amp;P finished at 7,818.93 &mdash; its first record close since mid-August.</p><p>What changed was the data, not the bond market&rsquo;s mood. Friday&rsquo;s 29,000-job report pushed October hike odds below 23% and gave stocks the opening they needed. Monday and Tuesday supplied the fuel momentum traders like best: takeover premiums, and an AI story with real money behind it. But the 10-year is still hovering near 5.3%, small caps fell on the day of the record, and the global rally faded overnight. A record is a signal. It isn&rsquo;t yet a trend.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500 (Tue)</div><div class="val">7,818.93</div><div class="chg up">+0.6% · record</div></div><div class="cell"><div class="lbl">Nasdaq (Tue)</div><div class="val">27,599.79</div><div class="chg up">+0.4% · record</div></div><div class="cell"><div class="lbl">Russell 2000 (Tue)</div><div class="val">2,830.30</div><div class="chg down">−0.6%</div></div><div class="cell"><div class="lbl">10-Yr Yield (Wed a.m.)</div><div class="val">≈ 5.28%</div><div class="chg flat">Mon close 5.31%</div></div></div><h2>How the high was reclaimed</h2><p>It started from a bad place. On Thursday the 10-year touched 5.34%, its highest since 2002, in a global bond selloff. Friday&rsquo;s weak jobs data broke that fever, and the S&amp;P rose 0.7%. On Monday the Nasdaq hit a record and the S&amp;P added another 0.7% to finish within 0.3% of its high, lifted by a wave of deals: Schneider Electric agreed to buy PTC for $205 a share in cash, about $22.6 billion, sending PTC up roughly a third, and C.H. Robinson agreed to buy RXO for $30.25 a share, lifting RXO more than 20% while the buyer&rsquo;s shares slid. Software peers caught a bid, with Autodesk among the gainers.</p><p>Tuesday added the AI-and-power angle. Constellation Energy jumped 13.5% after signing a 20-year agreement to supply Google with 890 megawatts of new nuclear capacity from upgrades across 11 of its reactors, pulling utilities up more than 2% as Vistra and GE Vernova followed. Lamb Weston gained 7.5% on better-than-expected results. The S&amp;P rose 0.6% to its record, the Dow added 0.5%, and the Nasdaq closed at a second straight high.</p><div class="ledger"><div class="row"><div class="day">Wed 9/30</div><div class="detail">Cooler PCE, hotter GDP. 10-yr closes at 5.29%; Micron beats after the bell.</div><div class="mv down">S&amp;P −0.3%</div></div><div class="row"><div class="day">Thu 10/1</div><div class="detail">10-yr touches 5.34%, a 2002 high, then eases. Europe sells off.</div><div class="mv up">S&amp;P +0.2%</div></div><div class="row"><div class="day">Fri 10/2</div><div class="detail">Payrolls +29,000; October hike odds drop below 23%. Nasdaq +1.2%.</div><div class="mv up">S&amp;P +0.7%</div></div><div class="row"><div class="day">Mon 10/5</div><div class="detail">PTC up ~a third, RXO 20%+ on buyouts. Nasdaq record; S&amp;P within 0.3% of high.</div><div class="mv up">S&amp;P +0.7%</div></div><div class="row"><div class="day">Tue 10/6</div><div class="detail">S&amp;P and Nasdaq records. Constellation +13.5% on Google deal. Russell −0.6%.</div><div class="mv up">S&amp;P +0.6%</div></div><div class="row"><div class="day">Wed 10/7</div><div class="detail">Asia and Europe slip. Fed minutes at 2 p.m.; PepsiCo Thursday.</div><div class="mv flat">pending</div></div></div><h2>Breadth: better, but the small caps blinked</h2><p>The question this column has asked for a month is participation, and this week&rsquo;s answer is mixed. The good news: the rally has broadened beyond semiconductors. Utilities, industrial software and logistics all contributed, and the Dow &mdash; last week&rsquo;s laggard &mdash; is up 0.7% so far this week. The less good news: the Russell 2000 fell 0.6% on the very day the S&amp;P set its record, and it is roughly flat for the week, down 0.1%, while the Nasdaq is up 1.5%. It also remains below where it closed on Sept. 25.</p><p>That matters because small caps are the cleanest read on whether a 5.3% 10-year is a tolerable cost of capital for the average company. They carry more floating-rate debt and more domestic exposure than the mega-caps that have led this market. When the index of 2,000 smaller companies sells off on a record day, it is telling you the rally is still being financed by the largest balance sheets. That can continue. It is just less durable than a record everyone participates in.</p><table class="dtable"><thead><tr><th>Momentum signal</th><th class="r">Reading</th></tr></thead><tbody><tr><td>S&amp;P vs. record</td><td class="mono r up">New high &mdash; 7,818.93</td></tr><tr><td>Leadership (Nasdaq)</td><td class="mono r up">Records Mon &amp; Tue</td></tr><tr><td>Small caps (Russell 2000)</td><td class="mono r down">−0.6% Tue; −0.1% WTD</td></tr><tr><td>Rates (10-yr)</td><td class="mono r down">~5.3% &mdash; near 2002 high</td></tr><tr><td>Deal flow</td><td class="mono r up">$22.6B PTC buyout leads</td></tr><tr><td>Fed (Oct hike odds)</td><td class="mono r up">Below 23% after payrolls</td></tr></tbody></table><div class="pullquote">Records built on deals and data are sturdier than records built on hope. But until small caps confirm, this is a leaders&rsquo; market &mdash; and leaders don&rsquo;t like surprises.<span class="src">FinTrend Momentum Desk</span></div><h2>This morning: the rally pauses, the Fed speaks</h2><p>Overnight the enthusiasm didn&rsquo;t travel. Japan&rsquo;s Nikkei fell 0.9%, South Korea&rsquo;s Kospi dropped 2%, and Paris and Frankfurt were each down about 0.4% in early trading. Brent crude edged up 0.7% to about $101, and the euro slipped to around $1.12, a reminder that Europe&rsquo;s bond markets are still wrestling with French fiscal risk. The 10-year was trading near 5.28%.</p><p>The test comes at 2 p.m., when the Fed releases the minutes of its September meeting &mdash; the one that produced a unanimous quarter-point hike to 3.75%&ndash;4.00%. The market has largely priced out an October move. Minutes that stress persistent inflation, with the ISM services prices index at 74.0 and manufacturers&rsquo; prices paid at 77.9, could push back on that and test whether the long end can stay below last Thursday&rsquo;s 5.34%. Then the earnings calendar takes over: PepsiCo on Thursday, Delta on Friday, the big banks and September CPI next week. Into the close, watch two things: whether the S&amp;P can hold above its old August high, and whether the Russell 2000 can rejoin the rally.</p><div class="takeaway"><div class="t">The momentum read</div><p>The S&amp;P closed at a record 7,818.93 on Tuesday, up 2.2% from last Wednesday&rsquo;s close, and the Nasdaq set records Monday and Tuesday &mdash; powered by a weak jobs report that took October hike odds below 23%, a $22.6 billion buyout of PTC, and Constellation&rsquo;s nuclear deal with Google. But the Russell 2000 fell 0.6% on record day and is flat for the week, and the 10-year remains near 5.3%. This afternoon&rsquo;s Fed minutes are the next test. A record that small caps don&rsquo;t confirm is a leaders&rsquo; rally, not yet a broad one.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
