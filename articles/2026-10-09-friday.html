@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Record, Then a Reality Check on AI — FinTrend News</title>
+<meta name="description" content="The S&amp;P set its first record since August on Tuesday and finished the week up 1.2% at 7,811.54. In between, the Fed’s minutes kept a year-end hike on the table, the 10-year touched 5.36%, and a report that OpenAI’s revenue is running about $20 billion below what had circulated gave the AI trade its roughest day in weeks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Friday Recap · Week of Oct 5</div>
+  <h1>A Record, Then a <em>Reality Check</em> on AI</h1>
+  <p class="dek">The S&amp;P set its first record since August on Tuesday and finished the week up 1.2% at 7,811.54. In between, the Fed&rsquo;s minutes kept a year-end hike on the table, the 10-year touched 5.36%, and a report that OpenAI&rsquo;s revenue is running about $20 billion below what had circulated gave the AI trade its roughest day in weeks.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">FRI · OCT 9 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">A week ago the question was whether earnings could take over from the Fed as the market&rsquo;s driver. By Tuesday the market had its answer, at least for a day: the S&amp;P 500 closed at a record 7,818.93, its first all-time high since August, and the Nasdaq set records on Monday and Tuesday on a wave of takeovers and an AI power deal. Then the week got harder. Wednesday&rsquo;s Fed minutes showed most officials still expect another hike by year-end, and the 10-year Treasury touched 5.36%, its highest since 2002. On Thursday, a Financial Times report that OpenAI&rsquo;s annualized revenue is running about $20 billion below the figure that had circulated knocked 1.3% off the Nasdaq.</p><p>Friday put most of it back. The S&amp;P rose 0.6% to 7,811.54, finishing the week up 1.2% and less than 0.1% below Tuesday&rsquo;s record. The Dow gained 0.8% on the day and 0.9% on the week, and the Nasdaq ended up 0.6%. The 10-year settled near 5.24%, well off Wednesday&rsquo;s peak. The exception was the same one this column flagged on Wednesday: the Russell 2000 fell 0.9% for the week, the only major index to finish lower.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,811.54</div><div class="chg up">wk +1.2%</div></div><div class="cell"><div class="lbl">Dow</div><div class="val">51,654.95</div><div class="chg up">wk +0.9%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">27,366.17</div><div class="chg up">wk +0.6%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">≈ 5.24%</div><div class="chg down">Wed touch 5.36% · 2002 high</div></div></div><h2>The week, day by day</h2><p>Two record days built on deals, two down days built on the Fed and on doubts about AI, and a Friday rebound that left the scoreboard looking calmer than the week felt. The split between the indexes says where the money went: into the largest companies and defensive sectors, and out of small caps.</p><div class="ledger"><div class="row"><div class="day">Mon 10/5</div><div class="detail">Schneider&ndash;PTC ($22.6B) and C.H. Robinson&ndash;RXO buyouts. Nasdaq record.</div><div class="mv up">S&amp;P +0.7%</div></div><div class="row"><div class="day">Tue 10/6</div><div class="detail">S&amp;P record at 7,818.93. Constellation +13.5% on its Google nuclear deal.</div><div class="mv up">S&amp;P +0.6%</div></div><div class="row"><div class="day">Wed 10/7</div><div class="detail">Minutes: most officials see a hike by year-end. 10-yr touches 5.36%.</div><div class="mv down">S&amp;P −0.2%</div></div><div class="row"><div class="day">Thu 10/8</div><div class="detail">FT: OpenAI run-rate ~$50B, not ~$70B. Nasdaq −1.3%; Brent +$4 to $104.28.</div><div class="mv down">S&amp;P −0.5%</div></div><div class="row"><div class="day">Fri 10/9</div><div class="detail">Delta cuts its 2026 outlook on fuel. SpaceX spectrum deal sinks telecoms.</div><div class="mv up">S&amp;P +0.6%</div></div></div><h2>Wednesday: the minutes make the case for one more</h2><p>The minutes of the Sept. 15&ndash;16 meeting were as hawkish as the market feared, which is partly why they did little damage. All 19 participants backed September&rsquo;s quarter-point hike to 3.75%&ndash;4.00%, and most said another increase would likely be appropriate by year-end. Officials pointed to three sources of price pressure: higher oil and fuel costs from the Middle East conflict, AI-related spending, and the lingering effect of tariffs. Several judged that policy had not been restrictive, or only mildly so, before the hike. And some worried that after more than five years of inflation above 2%, high inflation could start to feel normal.</p><p>The bond market tested that message before it accepted it. The 10-year touched 5.36% during the session &mdash; above last week&rsquo;s 5.34% and the highest since 2002 &mdash; before strong demand at a Treasury auction pulled it back toward 5.28%. Futures kept the odds of an October hike at roughly 20% to 25%, while still pricing a move by year-end. The S&amp;P slipped 0.2% from its record.</p><h2>Thursday: the AI trade gets audited</h2><p>The FT reported that OpenAI&rsquo;s annualized revenue was about $50 billion at the end of September, against the roughly $70 billion that had been circulating. For a market whose leaders are priced on the assumption that AI demand is compounding, a $20 billion gap in the industry&rsquo;s flagship customer was a reason to take profits. The Philadelphia Semiconductor Index fell as much as 4% before paring losses, Nvidia and Micron slid, and Microsoft and Oracle fell with them. The Nasdaq closed down 1.25% at 27,193 and the S&amp;P lost 0.5%, but the Dow eked out a 0.1% gain as energy and consumer staples rose.</p><p>Oil supplied the other half of the day. Brent jumped $4.08 to settle at $104.28 after fresh tanker attacks in the Gulf, reports that Washington was weighing strikes on Iran, and production shut-ins ahead of Hurricane Isaias. Prices eased only after President Trump said the U.S. would not attack Iran before the Nov. 3 midterms. PepsiCo, meanwhile, offered a preview of how consumer companies are handling the shock: it beat forecasts with adjusted earnings of $2.34 a share on $25.27 billion of revenue, then cut its 2026 core profit growth outlook to 2.5%&ndash;3.5% while raising its sales forecast. Volumes are holding up. Margins are not.</p><table class="dtable"><thead><tr><th>Index</th><th class="r">Close</th><th class="r">Week</th><th class="r">YTD</th></tr></thead><tbody><tr><td>S&amp;P 500</td><td class="mono r">7,811.54</td><td class="mono r up">+1.2%</td><td class="mono r up">+14.1%</td></tr><tr><td>Dow Jones</td><td class="mono r">51,654.95</td><td class="mono r up">+0.9%</td><td class="mono r up">+7.5%</td></tr><tr><td>Nasdaq Composite</td><td class="mono r">27,366.17</td><td class="mono r up">+0.6%</td><td class="mono r up">+17.7%</td></tr><tr><td>Russell 2000</td><td class="mono r">2,806.98</td><td class="mono r down">−0.9%</td><td class="mono r up">+13.1%</td></tr></tbody></table><h2>Friday: fuel bills and a telecom shock</h2><p>Delta made the energy shock concrete. The airline missed estimates for the first time in two years, with adjusted earnings of $1.72 a share against $1.76 expected and revenue of $17.59 billion. Its fuel bill rose 62% from a year earlier to $4.14 billion, as the price it paid per gallon climbed 60% to $3.61. Delta cut its 2026 earnings forecast to $5.10&ndash;$5.60 a share from $6.50&ndash;$7.50, citing about $6 billion of extra fuel costs, even as chief executive Ed Bastian insisted demand remains strong. The shares fell in early trading.</p><p>The day&rsquo;s biggest moves came from an unexpected direction. SpaceX agreed to buy a nationwide block of low-band wireless spectrum, and investors read it as a direct challenge to the carriers: T-Mobile, AT&amp;T and Verizon each fell roughly 10% or more by midday, while tower owner Crown Castle jumped about 11%. Communication services was the worst sector in the S&amp;P, down 1.6%. Health care and real estate led instead, helped by a 12% jump in Humana after regulators restored a four-star rating to its flagship Medicare Advantage plan.</p><p>The data was gloomy. The University of Michigan&rsquo;s preliminary October sentiment index fell to 46.3 from 48.1, below the 47.8 forecasters expected, and its gauge of current conditions dropped to 44.7. One-year inflation expectations rose to 4.7% and the five-to-ten-year measure to 3.5%. Brent edged up to settle at $104.72 as Isaias, now a major hurricane, forced producers to shut in more than 60% of U.S. Gulf oil output before landfall Friday night. Trump called talks with Tehran &ldquo;productive&rdquo; but said the blockade stays in place, and Iran&rsquo;s foreign minister said Tehran was reviewing the U.S. response to its proposal to reopen the Strait of Hormuz.</p><div class="pullquote">A market that set a record, absorbed a hawkish Fed, a 5.36% 10-year and a first crack in the AI revenue story, and still finished up 1.2% is a sturdy market. A Russell 2000 that fell on the week says it is still a narrow one.<span class="src">FinTrend Markets Desk</span></div><h2>The bottom line</h2><p>This was a good week on the scoreboard and an informative one underneath. The record proved the leaders can still pull the index higher with the long end above 5.2%. Thursday proved how sensitive those leaders are to any sign that AI revenue is growing more slowly than the spending behind it. And Delta and PepsiCo showed that the cost of a $100-plus oil price is now landing in corporate guidance, not just in consumer surveys. Next week the bond market is closed Monday for Columbus Day; JPMorgan, Goldman Sachs, Citigroup and Wells Fargo report Tuesday; September CPI lands Wednesday alongside Bank of America and Morgan Stanley; and retail sales, wholesale prices and TSMC follow Thursday.</p><div class="takeaway"><div class="t">The bottom line</div><p>The S&amp;P rose 1.2% to 7,811.54, a whisker below Tuesday&rsquo;s record, with the Dow up 0.9% and the Nasdaq 0.6%. Most Fed officials still see one more hike by year-end, the 10-year touched 5.36% before settling near 5.24%, and a report that OpenAI&rsquo;s revenue run-rate is about $50 billion &mdash; not $70 billion &mdash; gave the AI trade its first real audit. Delta&rsquo;s $6 billion fuel hit and PepsiCo&rsquo;s profit cut put the oil shock into guidance. Small caps fell 0.9%. Next up: the big banks and September CPI.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
