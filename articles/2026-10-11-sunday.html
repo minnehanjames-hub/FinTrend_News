@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fed Isn’t Watching Payrolls. It’s Watching Expectations. — FinTrend News</title>
+<meta name="description" content="A 29,000-job report should have closed the door on more hikes. The September minutes, a 46.3 sentiment reading and long-run inflation expectations at 3.5% explain why it hasn’t — and why Wednesday’s CPI matters more for what it says about the next five years than the next five weeks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Sunday Macro Note</div>
+  <h1>The Fed Isn&rsquo;t Watching Payrolls. <em>It&rsquo;s Watching Expectations.</em></h1>
+  <p class="dek">A 29,000-job report should have closed the door on more hikes. The September minutes, a 46.3 sentiment reading and long-run inflation expectations at 3.5% explain why it hasn&rsquo;t &mdash; and why Wednesday&rsquo;s CPI matters more for what it says about the next five years than the next five weeks.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">AM</div>
+      <div>
+        <div class="name">Arshia Morshedian</div>
+        <div class="role">Macro Strategist</div>
+      </div>
+    </div>
+    <div class="date">SUN · OCT 11 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Sunday this note argued that September&rsquo;s weak jobs report had given the Fed room to wait, and that the bond market had stopped taking its cues from the central bank alone. This week tested the first half of that claim. On Wednesday the minutes of the September meeting showed that most officials still expect another rate hike by year-end. The labor market has cooled sharply since that meeting &mdash; payrolls rose just 29,000 in September &mdash; yet nothing in the minutes, or in what Fed officials have said since, suggests the year-end hike is off the table.</p><p>The reason is not the labor market. It is inflation expectations. Officials wrote that after more than five years of inflation above 2%, high inflation could start to feel normal. On Friday the University of Michigan gave them fresh evidence for that worry: long-run inflation expectations rose to 3.5% even as consumer sentiment fell to 46.3. A central bank can look through a supply shock. It is much harder to look through a supply shock that households have started to price into the future.</p><div class="scoreboard"><div class="cell"><div class="lbl">10-Yr Treasury</div><div class="val">≈ 5.24%</div><div class="chg down">Wed: 5.36%, 2002 high</div></div><div class="cell"><div class="lbl">Brent Crude</div><div class="val">$104.72</div><div class="chg down">Fri settle</div></div><div class="cell"><div class="lbl">UMich Sentiment</div><div class="val">46.3</div><div class="chg down">from 48.1 in Sept</div></div><div class="cell"><div class="lbl">5–10Y Infl. Expect.</div><div class="val">3.5%</div><div class="chg down">from 3.4%</div></div></div><h2>1. What the minutes actually said</h2><p>September&rsquo;s quarter-point hike to 3.75%&ndash;4.00% was unanimous, and all 19 participants supported it, including the seven who don&rsquo;t vote. Most officials said another increase would likely be appropriate by year-end. They named three sources of pressure: higher oil and fuel prices from the conflict in the Middle East, AI-related investment spending, and the lingering effect of tariffs. Several judged that policy had been only mildly restrictive, or not restrictive at all, before the hike. Officials also noted that higher energy prices hit low- and moderate-income households hardest.</p><p>It is fair to ask whether the minutes are stale. The meeting took place before the September jobs report, when officials described the labor market as having strengthened a little and unemployment had fallen to 4.1%. It has since risen to 4.2%, and payrolls have slowed to a three-month average of about 51,000. Markets have adjusted: futures put the odds of an October hike at only 20% to 25%. But they still price a hike by year-end. That gap &mdash; a pause in October, a move in December &mdash; is the market saying it believes the Fed&rsquo;s concern runs deeper than one jobs report.</p><h2>2. The numbers a central banker worries about</h2><p>Friday&rsquo;s sentiment survey was bleak on every measure. The preliminary October index fell to 46.3 from 48.1, below the 47.8 forecasters expected, and the gauge of current conditions dropped to 44.7 from 50.9. Sentiment is now roughly 16% below where it stood in February, before the Iran war began, and not far from May&rsquo;s record low of 44.8. Survey director Joanne Hsu pointed to mounting frustration over the cost of living.</p><p>The more important figures were further down the release. Year-ahead inflation expectations rose to 4.7% from 4.6%, and the five-to-ten-year measure rose to 3.5% from 3.4%. Short-term expectations rising during an oil shock is normal. Long-term expectations rising is what turns a temporary price spike into a persistent one, because it changes how people bargain over wages and how businesses set prices. It is also exactly the risk the minutes described.</p><p>There is a counterargument, and it is a strong one. Wages are not keeping up with prices: average hourly earnings rose 3.0% over the past year, below the 3.4% pace of headline PCE inflation. That is the opposite of a wage-price spiral. Households are absorbing the energy shock through lower real incomes, which is itself a form of tightening &mdash; one that shows up in falling sentiment, cautious spending and the profit warnings that started arriving this week. The risk for the Fed is not only that it does too little. It is that it raises rates into a squeeze that is already doing the job.</p><table class="dtable"><thead><tr><th>Signal</th><th>What it says</th></tr></thead><tbody><tr><td class="mono">Minutes: &ldquo;most&rdquo; see a year-end hike</td><td>Fed bias still tightening</td></tr><tr><td class="mono">Oct hike odds 20&ndash;25%</td><td>A pause first, then a move</td></tr><tr><td class="mono">5&ndash;10Y expectations 3.5%</td><td>The Fed&rsquo;s real worry</td></tr><tr><td class="mono">Wages +3.0% vs PCE 3.4%</td><td>No wage-price spiral yet</td></tr><tr><td class="mono">UMich current conditions 44.7</td><td>Real incomes are being squeezed</td></tr><tr><td class="mono">10-yr touched 5.36% Wed</td><td>Term premium still in charge</td></tr></tbody></table><div class="pullquote">A central bank can look through a supply shock. It cannot look through a supply shock that households have started to price into the next five years.<span class="src">FinTrend Macro Desk</span></div><h2>3. Energy: three shocks in one week</h2><p>The oil market supplied fresh reasons for those expectations. On Saturday, a Houthi attack on King Khalid International Airport in Riyadh killed at least 12 people and wounded more than 300, according to Saudi aviation authorities &mdash; the third strike on the airport in a week. President Trump called it terrible and said he is weighing whether the U.S. should join the fight against the Iran-backed group. On Sunday, Iran&rsquo;s security chief Mohsen Rezaei called Washington&rsquo;s reply to Tehran&rsquo;s seven-day proposal for reopening the Strait of Hormuz &ldquo;insufficient,&rdquo; saying the Strait would stay closed to the U.S. until Iran&rsquo;s conditions are met.</p><p>Closer to home, Hurricane Isaias made landfall near Destin, Florida, late Friday as a Category 2 storm, after producers shut in roughly 70% of U.S. Gulf oil output &mdash; around 1.5 million barrels a day &mdash; and nearly 60% of gas production. Brent settled at $104.72 on Friday, almost $13 above U.S. crude. The distinction matters for the Fed. Gulf shut-ins will reverse in days or weeks. A contested Strait, which carried about a fifth of the world&rsquo;s oil before the war, will not. The longer energy stays above $100, the harder it is to argue that households should expect inflation to fall back to 2%.</p><h2>4. AI: the demand side gets questioned</h2><p>The minutes listed AI investment as a source of inflation, and it is worth taking that seriously in both directions. The data-center build-out is absorbing chips, power equipment and capital, and it has lifted growth forecasts. On Thursday, the Financial Times reported that OpenAI&rsquo;s annualized revenue was about $50 billion at the end of September, roughly $20 billion below the figure that had circulated. The Nasdaq fell 1.25%. A separate report that SpaceX plans to raise about $40 billion of debt to buy Nvidia chips underlined how much of the spending is now borrowed.</p><p>If AI revenue grows more slowly than AI spending, the build-out will eventually slow. That would remove a source of demand-driven inflation and some of the pressure on long-term rates &mdash; good news for bonds. It would also remove the earnings engine behind this year&rsquo;s equity gains. For now, one report is not a trend. But it is the first time this year the market has had to price the possibility that the AI cycle and the inflation cycle could turn together.</p><h2>What it means for a portfolio</h2><p>The Fed&rsquo;s path looks like a pause in October and a decision in December, and the deciding variable is expectations, not payrolls. That makes Wednesday&rsquo;s September CPI more important than a single month&rsquo;s data usually is. Forecasters expect a 0.6% monthly rise in headline prices, lifting the annual rate to about 3.6%&ndash;3.7% from 3.4%, with core inflation near 2.5% a year. A headline driven by gasoline is already priced. A core reading above the 0.2% monthly consensus, especially in services, would tell the Fed that the energy shock is spreading. Until that question is answered, keep duration modest, favor companies with pricing power over those exposed to squeezed consumers, and watch the five-year expectations number as closely as the jobs report. The banks report Tuesday and Wednesday; listen to what they say about consumer credit.</p><div class="takeaway"><div class="t">The macro read</div><p>September&rsquo;s minutes showed most Fed officials still expect another hike by year-end, despite a jobs market that has since cooled to 29,000 new jobs a month. The reason is inflation expectations: Michigan&rsquo;s long-run gauge rose to 3.5% as sentiment fell to 46.3. Wages at 3.0% are lagging prices, so households are absorbing the shock &mdash; which argues against overtightening. Energy kept the pressure on: a deadly Houthi strike in Riyadh, Iran calling the U.S. Hormuz reply &ldquo;insufficient,&rdquo; and a hurricane that shut about 70% of Gulf output. Wednesday&rsquo;s core CPI is the week&rsquo;s key number.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— AM</div>
+  </footer>
+</div>
+</body>
+</html>
