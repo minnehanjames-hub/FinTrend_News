@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Spenders Report. The Bond Market Is Listening. &mdash; FinTrend News</title>
+<meta name="description" content="The S&amp;P starts the week 2% below its record after the Nasdaq’s worst week since June. Netflix and SpaceX report Tuesday, Meta and Tesla on Wednesday, and the Fed is silent until its Oct. 27–28 meeting. The question has shifted from whether AI is growing to who pays for it, and at what yield.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Monday Outlook &middot; Week of Oct 19</div>
+  <h1>The AI Spenders Report. <em>The Bond Market Is Listening.</em></h1>
+  <p class="dek">The S&amp;P starts the week 2% below its record after the Nasdaq&rsquo;s worst week since June. Netflix and SpaceX report Tuesday, Meta and Tesla on Wednesday, and the Fed is silent until its Oct. 27&ndash;28 meeting. The question has shifted from whether AI is growing to who pays for it, and at what yield.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">JTM</div>
+      <div>
+        <div class="name">James Thomas Minnehan</div>
+        <div class="role">Senior Editor</div>
+      </div>
+    </div>
+    <div class="date">MON · OCT 19 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Monday I wrote that the banks would show us the economy from the inside, CPI would show us how the Fed sees it, and the two needed to agree for the record to hold. They didn&rsquo;t. The banks were fine: Goldman Sachs earned $17.01 a share against $13.02 expected, and Bank of America&rsquo;s net charge-off ratio improved to 0.44%. But September core CPI rose 0.3%, producer prices posted a 6.3% annual gain, and a chip rout that started in Seoul did the rest. The S&amp;P 500 fell 1.9% on the week to 7,659.44, about 2% below its Oct. 6 record close of 7,818.93. The Nasdaq lost 4.5%, its worst week since June.</p><p>The most important move was in bonds. The 10-year yield fell about 15 basis points to 5.09% despite the hottest wholesale inflation since 2022, because money left the AI trade for Treasuries. Semiconductors lost 11.4%, the cost of insuring CoreWeave&rsquo;s debt hit a record, and investors started asking a new question: not whether AI demand is real, but whether the companies building it can keep borrowing at these rates. This week the biggest spenders start answering. The Fed&rsquo;s quiet period began Saturday, so there will be no official voice to steer the market before the Oct. 27&ndash;28 meeting. U.S. futures edged higher overnight.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,659.44</div><div class="chg down">wk −1.9% · YTD +11.9%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">26,140.03</div><div class="chg down">wk −4.5% · YTD +12.5%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">5.09%</div><div class="chg up">≈ −15 bp on week</div></div><div class="cell"><div class="lbl">Brent Crude</div><div class="val">$109.86</div><div class="chg down">Fri settle · wk +4.9%</div></div></div><h2>1. Tuesday: Netflix, SpaceX and the industrials</h2><p>The week opens with industrials. GE Aerospace, RTX, General Motors, 3M and Northrop Grumman report before Tuesday&rsquo;s open; with Brent near $110 and gasoline at $4.33 a gallon, GM&rsquo;s read on pricing and demand matters as much as its earnings. After the close come Netflix, Capital One, United Airlines and Intuitive Surgical. Capital One is one of the cleaner reads on card credit after the big banks showed no sign of consumer stress, and United will show how much of the fuel shock airlines can pass on after Delta&rsquo;s warning this month of about $6 billion in extra fuel costs.</p><p>Netflix arrives in an unusual position. Last week it cut about 1,000 jobs, roughly 6% of its staff, and replaced chief content officer Bela Bajaria with former Disney executive Peter Rice, days before reporting. The company has guided to earnings of $0.82 a share and a 33.2% operating margin for the quarter. The shares fell 2.9% on Friday, sit more than 40% below their 52-week high and have fallen on each of the last six report days. Viewing grew just 2% in the first half, so the numbers to watch are engagement and progress toward roughly $3 billion of advertising revenue this year. SpaceX also reports after Tuesday&rsquo;s close, with a webcast at 4:30 p.m. ET. After reports this month that it plans to raise about $40 billion of debt to buy Nvidia chips, its spending plans are now part of the AI financing story.</p><h2>2. Wednesday: Meta, Tesla and the 20-year</h2><p>Wednesday is the week. Meta and Tesla report after the close, alongside IBM, Lam Research, Texas Instruments and SAP. Meta has guided third-quarter revenue to $61 billion to $64 billion; consensus sits near $63.3 billion, with earnings around $6.28 a share. In July it missed on earnings as costs surged, and it has guided 2026 capital spending to $130 billion to $145 billion and total expenses to $165 billion to $169 billion. The number that will move markets is not this quarter&rsquo;s revenue. It is how Meta frames 2027 spending &mdash; and how it plans to pay for it.</p><p>That is the link to last week. Bank of America estimates that Meta, Amazon, Alphabet, Microsoft and Oracle will spend about $807 billion on AI this year and that their combined free cash flow will turn negative in 2026. If Meta signals spending growth that outruns its cash generation, the market will read it as more bond supply and more pressure on the AI credit chain. If it signals discipline, it may calm the borrowers but hit the suppliers. Lam Research and Texas Instruments report the same evening, after semiconductors&rsquo; worst week since April 2025. Tesla, which delivered 486,532 vehicles in the quarter against estimates near 461,000, needs to show margins held up; its shares fell 2.1% on Friday after it unveiled a new Roadster.</p><p>The bond market gets its own test. The Treasury sells $13 billion of 20-year bonds on Wednesday and $26 billion of five-year inflation-protected securities on Thursday. Long bonds were bought as a haven last week. Weak demand at either auction would suggest that bid was about fear rather than value, and could send the 10-year back toward 5.2%.</p><table class="dtable"><thead><tr><th>This week&rsquo;s calendar</th><th>Why it matters</th></tr></thead><tbody><tr><td class="mono">Mon &middot; Fifth Third, Zions, Steel Dynamics; NAHB index</td><td>Regional banks, steel and housing demand</td></tr><tr><td class="mono">Tue &middot; GE, RTX, GM, 3M, Northrop (a.m.)</td><td>Industrial demand, fuel costs and pricing</td></tr><tr><td class="mono">Tue &middot; Netflix, SpaceX, Capital One, United (p.m.)</td><td>Content costs, AI debt, card credit, jet fuel</td></tr><tr><td class="mono">Wed &middot; Abbott, AT&amp;T, Thermo Fisher; $13B 20-yr auction</td><td>Is the long-bond haven bid real?</td></tr><tr><td class="mono">Wed &middot; Meta, Tesla, IBM, Lam, TI, SAP (p.m.)</td><td>AI capex &mdash; and who funds it</td></tr><tr><td class="mono">Thu &middot; P&amp;G, Blackstone, Valero, Union Pacific; claims; 5-yr TIPS</td><td>Trading down, private credit, real yields</td></tr><tr><td class="mono">Fri &middot; AmEx, SLB; flash PMIs; final UMich (10 a.m.)</td><td>Spending and long-run inflation expectations</td></tr><tr><td class="mono">All week &middot; Fed quiet period</td><td>No guidance before Oct. 27&ndash;28</td></tr></tbody></table><h2>3. Thursday and Friday: staples, private credit and sentiment</h2><p>Thursday brings Procter &amp; Gamble, Union Pacific, Lockheed Martin, Comcast, Valero and Blackstone before the open, with Western Digital after the close. P&amp;G, expected to earn about $1.89 a share, is the cleanest read on whether squeezed households are trading down. Blackstone matters for a different reason: it is one of the largest investors in data centers and private credit, and after a week in which data-center debt sold off, its comments on financing appetite will be parsed line by line. Valero will show what $100-plus crude is doing to refining margins. Weekly jobless claims, expected near 200,000 after 199,000, round out the morning.</p><p>Friday brings American Express and SLB, S&amp;P Global&rsquo;s flash PMIs for October and, at 10 a.m., the final University of Michigan survey. The preliminary reading showed sentiment at 46.3, year-ahead inflation expectations at 4.7% and the five-to-ten-year gauge at 3.5%. That last number is the one the Fed has said matters most. With officials silent, it is the closest thing to Fed guidance the market will get before the meeting.</p><div class="pullquote">Last week the market stopped asking whether AI is growing and started asking who is paying for it. On Wednesday, Meta has to answer that question in dollars.<span class="src">James Thomas Minnehan</span></div><h2>4. Oil, politics and the weekend</h2><p>Brent settled at $109.86 on Friday after touching $110 for the first time since May, then fell 1.8% to $107.86 in early Asian trading on Monday after President Trump put a package of congressionally passed Russia sanctions on hold &mdash; a step likely to keep more Russian energy flowing, and one that follows his deal to buy Russian diesel ahead of the Nov. 3 midterms. The Gulf offers no such relief. At least 23 ships have been attacked near the Strait of Hormuz this month, a supertanker caught fire after hitting a mine on Saturday, and on Sunday Iran&rsquo;s foreign minister said its conditions for reopening the strait, including an end to the U.S. blockade, still stand. Israel votes on Oct. 27, the day the Fed meeting begins. Until Hormuz traffic normalizes, any dip in oil is a policy discount, not a supply fix.</p><h2>5. Beyond Wall Street</h2><p>China said on Monday that its economy grew 4.5% from a year earlier in the third quarter, better than forecast and up from 4.3% in the second, on exports that rose 36% in the latest month. Its trade surplus reached $938 billion through September. That export strength helps keep global goods prices in check but deepens trade friction, with the EU already moving to curb Chinese imports. Indonesia fell another 5% on Monday, to its lowest since 2020, after MSCI warned it could drop the country to standalone status, while Seoul&rsquo;s Kospi rebounded 1.1%. In Latin America, Grupo Aeroportuario del Pacífico reports today and América Móvil on Tuesday, both useful reads on Mexican demand.</p><h2>The setup in one line</h2><p>The S&amp;P is 2% off its record, the Fed is likely on hold next week but leaning toward December, and the 10-year sits near 5.1%, well below this month&rsquo;s 5.36% high. The bullish path is a Meta outlook that shows AI spending funded from cash, solid demand at the bond auctions and steady inflation expectations on Friday. The bearish path is bigger spending plans backed by more borrowing, weak auctions and a Michigan survey that pushes long-run expectations above 3.5%. Watch Meta&rsquo;s capex language, the 20-year auction and whether semiconductors can stop falling.</p><div class="takeaway"><div class="t">The outlook</div><p>The S&amp;P starts the week at 7,659.44, 2% below its record, after the Nasdaq&rsquo;s worst week since June and a bond rally driven by AI credit fears rather than cooler inflation. Netflix and SpaceX report Tuesday; Meta, Tesla, Lam Research and Texas Instruments on Wednesday; P&amp;G and Blackstone Thursday; and Friday brings flash PMIs and the final Michigan survey. The Fed is silent before its Oct. 27&ndash;28 meeting, with a December hike about 74% priced. Meta&rsquo;s spending plans are the swing factor.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— JTM</div>
+  </footer>
+</div>
+</body>
+</html>
