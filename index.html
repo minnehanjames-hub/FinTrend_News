@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinTrend News</title>
+  <meta name="description" content="Market briefing, not noise. A Monday outlook, a midweek momentum check, a Friday recap and a Sunday macro note every week, plus a free Friday email." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -101,6 +102,16 @@
     a.brief-row:hover .brief-text span:first-child{color:var(--accent);}
 
     .lead-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+    .lead-headline a{color:inherit;text-decoration:none;}
+    .lead-headline a:hover{color:var(--accent);}
+    .lead-cta.top{margin-bottom:24px;}
+    .brief-empty{padding:14px 16px;font-size:13px;color:var(--muted);}
+    /* live week card */
+    .day-tab .tab-dot{display:inline-block;width:6px;height:6px;border-radius:999px;background:var(--accent);margin-left:6px;vertical-align:middle;}
+    .week-card-title{display:block;font-family:"Playfair Display",serif;font-size:20px;line-height:1.25;font-weight:700;color:var(--text);margin-bottom:10px;}
+    .week-card-title:hover{color:var(--accent);}
+    .week-card-read{display:inline-block;margin-top:4px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+    .week-card-format{font-size:12px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
     .lead-note{font-size:11px;color:var(--muted);margin-top:8px;}
 
     /* SIDEBAR */
@@ -255,36 +266,6 @@
     .riddle-text{font-size:13px;color:#d1d5db;line-height:1.7;border-left:2px solid rgba(244,193,93,0.30);padding-left:12px;margin-bottom:14px;font-style:italic;}
     .riddle-options{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
 
-    /* ASK AI WIDGET */
-    .ai-widget{position:fixed;right:calc(18px + env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:90000;display:none;font-family:"Inter",system-ui,sans-serif;}
-    body.ai-ready .ai-widget{display:block;}
-    .ai-fab{border:1px solid rgba(244,193,93,0.45);background:linear-gradient(135deg,#f4c15d,#f7d680);color:#050816;border-radius:999px;padding:12px 16px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;box-shadow:0 18px 40px rgba(0,0,0,0.45);cursor:pointer;display:flex;align-items:center;gap:9px;touch-action:manipulation;}
-    .ai-fab:hover{transform:translateY(-1px);}
-    .ai-fab-dot{width:8px;height:8px;border-radius:999px;background:#050816;box-shadow:0 0 0 4px rgba(5,8,22,0.14);}
-    .ai-panel{position:absolute;right:0;bottom:62px;width:min(380px,calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right)));max-height:min(620px,calc(100dvh - 112px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));display:none;flex-direction:column;border:1px solid rgba(244,193,93,0.28);background:rgba(15,23,42,0.98);box-shadow:0 24px 70px rgba(0,0,0,0.58);border-radius:18px;overflow:hidden;backdrop-filter:blur(12px);}
-    .ai-widget.open .ai-panel{display:flex;}
-    .ai-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 15px;border-bottom:1px solid rgba(148,163,184,0.20);background:rgba(2,6,23,0.42);}
-    .ai-panel-k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;}
-    .ai-panel-title{font-family:"Playfair Display",serif;font-size:18px;line-height:1.15;margin-top:2px;}
-    .ai-panel-sub{font-size:11px;color:var(--muted);line-height:1.4;margin-top:3px;}
-    .ai-close{border:0;background:transparent;color:var(--muted);font-size:24px;line-height:1;cursor:pointer;padding:0 2px;}
-    .ai-close:hover{color:var(--accent);}
-    .ai-messages{flex:1;min-height:180px;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain;}
-    .ai-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;}
-    .ai-msg.bot{align-self:flex-start;background:rgba(2,6,23,0.62);border:1px solid rgba(148,163,184,0.18);color:#e5e7eb;border-bottom-left-radius:4px;}
-    .ai-msg.user{align-self:flex-end;background:rgba(244,193,93,0.14);border:1px solid rgba(244,193,93,0.30);color:#fff7ed;border-bottom-right-radius:4px;}
-    .ai-limit{padding:8px 14px;border-top:1px solid rgba(148,163,184,0.14);font-size:11px;color:var(--muted);background:rgba(2,6,23,0.28);}
-    .ai-composer{border-top:1px solid rgba(148,163,184,0.20);padding:10px;background:rgba(2,6,23,0.38);}
-    .ai-form{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;}
-    .ai-input{width:100%;min-height:42px;max-height:96px;resize:none;border:1px solid rgba(148,163,184,0.32);border-radius:12px;background:#020617;color:var(--text);font-size:13px;line-height:1.4;padding:10px 11px;outline:none;font-family:"Inter",system-ui,sans-serif;}
-    .ai-input:focus{border-color:rgba(244,193,93,0.55);}
-    .ai-send{height:42px;border:0;border-radius:12px;background:var(--accent);color:#000;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;padding:0 13px;cursor:pointer;}
-    .ai-send:disabled,.ai-input:disabled{opacity:.45;cursor:not-allowed;}
-    .ai-lock{display:none;margin-top:9px;border:1px solid rgba(244,193,93,0.28);background:rgba(244,193,93,0.06);padding:10px;border-radius:12px;font-size:12px;color:#e5e7eb;line-height:1.45;}
-    .ai-lock a{color:var(--accent);font-weight:800;text-decoration:underline;text-underline-offset:3px;}
-    .ai-composer.locked .ai-form{display:none;}
-    .ai-composer.locked .ai-lock{display:block;}
-
     /* MOBILE */
     @media(max-width:480px){
       .wrap{padding:0 12px 60px;}
@@ -318,10 +299,6 @@
       .nav-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap;}
       .nav-bar::-webkit-scrollbar{display:none;}
       .nav-link{padding:12px 14px;font-size:10px;flex-shrink:0;}
-      .ai-widget{right:calc(12px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));}
-      .ai-panel{position:fixed;left:calc(12px + env(safe-area-inset-left));right:calc(12px + env(safe-area-inset-right));bottom:calc(72px + env(safe-area-inset-bottom));width:auto;max-height:calc(100dvh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom));border-radius:16px;}
-      .ai-messages{min-height:160px;}
-      .ai-fab{padding:11px 14px;margin-left:auto;}
     }
     @media(max-width:500px){
       .email-inputs,.top-email-inputs{flex-direction:column;}
@@ -373,7 +350,7 @@
 
     <nav class="nav-bar">
       <a class="nav-link" href="archive.html">Archive</a>
-      <a class="nav-link" href="#week-map">Week Map</a>
+      <a class="nav-link" href="#week-map">This Week</a>
       <a class="nav-link" href="#coverage">Coverage</a>
       <a class="nav-link" href="#brain-games">Brain Games</a>
       <a class="nav-link" href="#premium-section">Premium</a>
@@ -387,7 +364,7 @@
     </div>
 
     <!-- ── TOP EMAIL CAPTURE BAR ── -->
-    <div class="top-email-bar">
+    <div class="top-email-bar" id="subscribe">
       <div class="top-email-copy">
         <h4>Get the FinTrend weekly brief, free.</h4>
         <p>Every Friday — market recap, what moved and why. <em>Create a free account to be eligible for occasional free Premium giveaways.</em></p>
@@ -406,35 +383,20 @@
     <!-- FRONT PAGE -->
     <div class="front-page" style="margin-top:2px;">
       <div class="lead">
-        <div class="lead-kicker">Market Intelligence</div>
-        <h2 class="lead-headline">A <em>market brief</em> built<br>for fast decisions.</h2>
-        <p class="lead-deck">Clear drivers. Implications. Levels. No long story — just what matters and what changes the view. Published four times a week across one consistent framework.</p>
+        <div class="lead-kicker" id="leadKicker">Market Intelligence</div>
+        <h2 class="lead-headline" id="leadHeadline">A <em>market brief</em> built<br>for fast decisions.</h2>
+        <p class="lead-deck" id="leadDeck">Clear drivers. Implications. Levels. No long story — just what matters and what changes the view. Published four times a week across one consistent framework.</p>
+        <div class="lead-cta top">
+          <a class="btn btnPrimary" id="leadRead" href="archive.html" style="padding:10px 22px;font-size:12px;">Read the latest note</a>
+          <button class="btn btnGhost" id="cta-create-2" style="padding:10px 18px;font-size:12px;">Create Free Account</button>
+        </div>
         <div class="brief-table" id="latestBriefings">
           <div class="brief-table-head">
             <div class="brief-table-title">Latest Briefings</div>
-            <div class="brief-table-meta">Updated continuously</div>
+            <div class="brief-table-meta">Updated as we publish</div>
           </div>
-          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-27-monday.html">
-            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Mon · Jul 27</div>
-            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">Oil Breaks, Chips Break Too</span><span style="color:#9ca3af;font-size:12px;">Brent fell 11% on the US–Iran pause and the Dow rose, but Nvidia dropped 5% into the Fed and Big Tech week.</span></div>
-          </a>
-          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-26-sunday.html">
-            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Sun · Jul 26</div>
-            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">The Pause and the Print</span><span style="color:#9ca3af;font-size:12px;">A weekend pause could unwind the oil premium just as the FOMC, Big Tech earnings and Core PCE all land.</span></div>
-          </a>
-          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-24-friday.html">
-            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Fri · Jul 24</div>
-            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">When the Receipts Came Due</span><span style="color:#9ca3af;font-size:12px;">The Mag 7 shed ~$800B Thursday — not on a miss but on a promise to keep spending on AI. The S&P finished the week −0.6%.</span></div>
-          </a>
-          <a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="articles/2026-07-22-wednesday.html">
-            <div class="brief-tag" style="align-items:flex-start;line-height:1.3;">Wed · Jul 22</div>
-            <div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">Oil Takes the Wheel</span><span style="color:#9ca3af;font-size:12px;">Brent settled at $94.07 — a six-week high — on the 11th round of US strikes, and the 10-year retested May highs.</span></div>
-          </a>
+          <div id="briefRows"><div class="brief-empty">Loading the latest notes…</div></div>
           <div class="brief-footer">Educational content only · <a href="archive.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:2px;">Full archive →</a></div>
-        </div>
-        <div class="lead-cta">
-          <button class="btn btnPrimary" id="cta-create-2" style="padding:10px 22px;font-size:12px;">Create Free Account</button>
-          <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse Articles</a>
         </div>
         <div class="lead-note">No credit card required · Occasional free premium giveaways for members</div>
       </div>
@@ -442,9 +404,9 @@
         <div class="sb-block">
           <div class="sb-label">By the numbers</div>
           <div class="sb-stats">
-            <div class="sb-stat"><div class="sb-stat-num">180+</div><div class="sb-stat-label">Articles</div></div>
+            <div class="sb-stat"><div class="sb-stat-num" id="statArticles">200+</div><div class="sb-stat-label">Articles</div></div>
             <div class="sb-stat"><div class="sb-stat-num">4×</div><div class="sb-stat-label">Per week</div></div>
-            <div class="sb-stat"><div class="sb-stat-num">100%</div><div class="sb-stat-label">Signal</div></div>
+            <div class="sb-stat"><div class="sb-stat-num">Fri</div><div class="sb-stat-label">Free email</div></div>
             <div class="sb-stat"><div class="sb-stat-num">Free</div><div class="sb-stat-label">To start</div></div>
           </div>
         </div>
@@ -463,13 +425,13 @@
           <div class="premium-aside">
             <h4>Unlock the full playbook.</h4>
             <ul>
-              <li>Long-form sector reports</li>
-              <li>Drivers · Positioning · Catalysts · Levels</li>
-              <li>Full members dashboard</li>
-              <li>New reports as they publish</li>
+              <li>Weekly market thesis &amp; macro dashboard</li>
+              <li>Trade ideas &amp; high-priority alerts</li>
+              <li>Sector scorecards &amp; earnings previews</li>
+              <li>Watchlist &amp; three model portfolios</li>
             </ul>
             <a class="btn btnPrimary" id="compareBuyBtn" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" style="padding:9px 18px;font-size:11px;display:inline-block;">Buy Premium →</a>
-            <a class="btn btnPrimary" id="compareOpenPremiumBtn" href="premium.html" style="display:none;padding:9px 18px;font-size:11px;display:inline-block;">Open Premium →</a>
+            <a class="btn btnPrimary" id="compareOpenPremiumBtn" href="premium.html" style="display:none;padding:9px 18px;font-size:11px;">Open Premium →</a>
           </div>
         </div>
       </div>
@@ -477,13 +439,13 @@
 
     <!-- WEEK MAP -->
     <div class="section-head reveal" style="margin-top:36px;" id="week-map">
-      <div class="section-label">Week Map</div><div class="section-rule"></div>
+      <div class="section-label">This Week</div><div class="section-rule"></div>
     </div>
     <div class="week-map reveal">
       <div class="week-left">
-        <div style="font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:600;">4 Formats · One Framework</div>
-        <h3>The same structure,<br>every single week.</h3>
-        <p>Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead.</p>
+        <div style="font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:600;" id="weekRange">This week</div>
+        <h3>Four notes.<br>One framework.</h3>
+        <p>Monday sets the bias. Wednesday checks the momentum. Friday recaps what actually changed. Sunday maps the week ahead. Tap a day to see this week's note.</p>
         <div class="day-tabs">
           <button class="day-tab active" data-day="mon">Mon</button>
           <button class="day-tab" data-day="wed">Wed</button>
@@ -497,19 +459,6 @@
       </div>
       <div class="week-right">
         <div class="week-card" id="weekCard"></div>
-        <div style="margin-top:18px;">
-          <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Live Charts</div>
-          <div class="watch-tabs">
-            <button class="watch-tab active" data-symbol="FOREXCOM:SPXUSD">SPX</button>
-            <button class="watch-tab" data-symbol="OANDA:EURUSD">EURUSD</button>
-            <button class="watch-tab" data-symbol="COINBASE:BTCUSD">BTC</button>
-            <button class="watch-tab" data-symbol="OANDA:XAUUSD">Gold</button>
-          </div>
-          <div style="border:1px solid var(--border);border-top:0;padding:6px;">
-            <div id="watchChart"></div>
-            <div id="watchFallback" style="display:none;font-size:11px;color:var(--muted);margin-top:8px;">Chart unavailable. <a id="watchOpenTV" href="#" target="_blank" rel="noopener">Open on TradingView ↗</a></div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -517,6 +466,7 @@
     <div class="section-head reveal" style="margin-top:36px;" id="coverage">
       <div class="section-label">What You Get</div><div class="section-rule"></div>
     </div>
+    <a id="premium" aria-hidden="true"></a>
     <div class="compare-panel reveal" id="premium-section">
       <div class="compare-head">
         <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);">Membership</div>
@@ -530,9 +480,8 @@
             <li>All public market briefings</li>
             <li>Monday · Wednesday · Friday · Sunday formats</li>
             <li>Live chart access</li>
-            <li>Article archive (180+ pieces)</li>
-            <li>Week Map framework</li>
-            <li>Friday weekly recap email — free for everyone</li>
+            <li>Full article archive</li>
+                        <li>Friday weekly recap email — free for everyone</li>
             <li>Eligible for occasional free Premium giveaways</li>
           </ul>
         </div>
@@ -540,10 +489,11 @@
           <div class="compare-tier"><div class="compare-tier-name" style="color:var(--accent);">Premium</div><div class="badge gold">✦ Full access</div></div>
           <ul class="compare-list prem">
             <li>Everything in Free</li>
-            <li>Long-form sector reports</li>
-            <li>Drivers · Positioning · Catalysts · Levels</li>
-            <li>Full members dashboard</li>
-            <li>New reports as they publish</li>
+            <li>Weekly market thesis &amp; macro dashboard</li>
+            <li>Trade ideas &amp; high-priority alerts</li>
+            <li>Sector scorecards &amp; earnings previews</li>
+            <li>Watchlist &amp; three model portfolios</li>
+            <li>Premium email every Friday</li>
           </ul>
         </div>
       </div>
@@ -596,21 +546,9 @@
       </div>
     </div>
 
-    <!-- BOTTOM EXPLORE STRIP -->
-    <div class="email-strip reveal" style="margin-top:20px;">
-      <div class="email-strip-copy">
-        <h4>Four briefings a week. One framework.</h4>
-        <p>The free Friday email sign-up is at the top of the page. Browse everything published so far, or open the members dashboard.</p>
-      </div>
-      <div class="email-strip-form" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <a class="btn btnGhost" href="archive.html" style="padding:10px 18px;font-size:12px;">Browse the Archive →</a>
-        <a class="btn btnGhost" href="premium.html" style="padding:10px 18px;font-size:12px;">Premium Dashboard →</a>
-      </div>
-    </div>
-
     <footer>
       <p style="max-width:760px;margin:0 auto 8px;"><strong>Disclaimer:</strong> Informational + educational only. Not financial advice. Not a registered investment adviser.</p>
-      <p style="margin-top:10px;">Est. 2025 · © 2026 FinTrend News · <a href="archive.html">Archive</a></p>
+      <p style="margin-top:10px;">Est. 2025 · © <span id="footYear">2026</span> FinTrend News · <a href="archive.html">Archive</a> · <a href="unsubscribe.html">Unsubscribe</a></p>
       <p style="margin-top:10px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="#" id="openTos" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Terms of Service</a>
         <a href="#" id="openRefund" style="color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;">Refund Policy</a>
@@ -624,41 +562,14 @@
 
   <div class="modalBackdrop" id="refundModal"><div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;"><button class="modalClose" id="closeRefund">×</button><div class="modalK">FinTrend News</div><div class="modalH">Refund Policy</div><div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: February 2026</div><div style="font-size:13px;color:#d1d5db;line-height:1.75;"><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Overview</strong><br>FinTrend News offers digital subscription products. Because our content is delivered immediately upon purchase, we have a limited refund policy.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">7-Day Refund Window</strong><br>You may request a full refund within <strong style="color:#f4c15d;">7 days of your initial purchase</strong>. After 7 days, no refunds will be issued.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Cancellations</strong><br>You may cancel at any time. You retain access until the end of your paid period.</p><p style="margin-bottom:0;"><strong style="color:#f9fafb;">How to Request</strong><br>Email us with your account email and order details. We process requests within 3–5 business days.</p></div><div style="margin-top:20px;"><button class="btn btnGhost" id="closeRefund2" style="width:100%;">Close</button></div></div></div>
 
-  <div class="modalBackdrop" id="privacyModal"><div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;"><button class="modalClose" id="closePrivacy">×</button><div class="modalK">FinTrend News</div><div class="modalH">Privacy Policy</div><div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: February 2026</div><div style="font-size:13px;color:#d1d5db;line-height:1.75;"><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">What We Collect</strong><br>We collect your email and password when you create an account. Payment is processed by Stripe — we do not store card details. We collect anonymous usage data via Google Analytics.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">How We Use Your Data</strong><br>Your email is used to authenticate your account and send briefings. We do not sell your personal data.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Third-Party Services</strong><br><strong style="color:#e5e7eb;">Supabase</strong> (auth/database), <strong style="color:#e5e7eb;">Stripe</strong> (payments), <strong style="color:#e5e7eb;">Google Analytics</strong> (anonymous usage), <strong style="color:#e5e7eb;">TradingView</strong> (charts).</p><p style="margin-bottom:0;"><strong style="color:#f9fafb;">Your Rights</strong><br>You may request deletion of your account at any time. EU/UK users have additional rights under GDPR.</p></div><div style="margin-top:20px;"><button class="btn btnGhost" id="closePrivacy2" style="width:100%;">Close</button></div></div></div>
+  <div class="modalBackdrop" id="privacyModal"><div class="modal" role="dialog" aria-modal="true" style="max-width:600px;max-height:85vh;overflow-y:auto;"><button class="modalClose" id="closePrivacy">×</button><div class="modalK">FinTrend News</div><div class="modalH">Privacy Policy</div><div style="font-size:12px;color:#9ca3af;margin-bottom:16px;">Last updated: October 2026</div><div style="font-size:13px;color:#d1d5db;line-height:1.75;"><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">What We Collect</strong><br>We collect your email and password when you create an account. Payment is processed by Stripe — we do not store card details. We collect anonymous usage data via Google Analytics.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">How We Use Your Data</strong><br>Your email is used to authenticate your account and send the emails you signed up for. Every email includes an unsubscribe link, and you can also unsubscribe at fintrend.news/unsubscribe.html. We do not sell your personal data.</p><p style="margin-bottom:14px;"><strong style="color:#f9fafb;">Third-Party Services</strong><br><strong style="color:#e5e7eb;">Supabase</strong> (auth/database), <strong style="color:#e5e7eb;">Resend</strong> (email delivery), <strong style="color:#e5e7eb;">Stripe</strong> (payments), <strong style="color:#e5e7eb;">Google Analytics</strong> (anonymous usage), <strong style="color:#e5e7eb;">TradingView</strong> (charts).</p><p style="margin-bottom:0;"><strong style="color:#f9fafb;">Your Rights</strong><br>You may request deletion of your account at any time. EU/UK users have additional rights under GDPR.</p></div><div style="margin-top:20px;"><button class="btn btnGhost" id="closePrivacy2" style="width:100%;">Close</button></div></div></div>
 
   <!-- GIVEAWAY MODAL -->
-  <div class="modalBackdrop" id="giveawayModal"><div class="modal" role="dialog" aria-modal="true"><button class="modalClose" id="closeGiveaway">×</button><div class="modalK">FinTrend News</div><div class="modalH">Win Free Premium Access</div><div class="modalP">Every month we give away free Premium access to members of the FinTrend community. Create a free account to be automatically entered — no credit card, no catch.</div><div style="border:1px solid rgba(244,193,93,0.20);background:rgba(244,193,93,0.04);padding:14px;border-radius:4px;margin-bottom:14px;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:600;">What account holders get</div><ul style="list-style:none;padding:0;"><li style="font-size:12px;color:#d1d5db;padding:5px 0;border-bottom:1px solid rgba(148,163,184,0.07);display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Friday weekly recap email — same as everyone</li><li style="font-size:12px;color:#d1d5db;padding:5px 0;border-bottom:1px solid rgba(148,163,184,0.07);display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Eligible for monthly free Premium giveaways</li><li style="font-size:12px;color:#d1d5db;padding:5px 0;display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Access to full article archive (180+ pieces)</li></ul></div><div class="row"><button class="btn btnPrimary" id="giveawaySignupBtn" type="button">Create Free Account →</button><button class="btn btnGhost" id="closeGiveaway2" type="button">Maybe later</button></div></div></div>
+  <div class="modalBackdrop" id="giveawayModal"><div class="modal" role="dialog" aria-modal="true"><button class="modalClose" id="closeGiveaway">×</button><div class="modalK">FinTrend News</div><div class="modalH">Win Free Premium Access</div><div class="modalP">Every month we give away free Premium access to members of the FinTrend community. Create a free account to be automatically entered — no credit card, no catch.</div><div style="border:1px solid rgba(244,193,93,0.20);background:rgba(244,193,93,0.04);padding:14px;border-radius:4px;margin-bottom:14px;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:600;">What account holders get</div><ul style="list-style:none;padding:0;"><li style="font-size:12px;color:#d1d5db;padding:5px 0;border-bottom:1px solid rgba(148,163,184,0.07);display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Friday weekly recap email — same as everyone</li><li style="font-size:12px;color:#d1d5db;padding:5px 0;border-bottom:1px solid rgba(148,163,184,0.07);display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Eligible for monthly free Premium giveaways</li><li style="font-size:12px;color:#d1d5db;padding:5px 0;display:flex;gap:8px;"><span style="color:var(--accent);font-size:9px;margin-top:3px;">✦</span>Access to the full article archive</li></ul></div><div class="row"><button class="btn btnPrimary" id="giveawaySignupBtn" type="button">Create Free Account →</button><button class="btn btnGhost" id="closeGiveaway2" type="button">Maybe later</button></div></div></div>
 
   <div class="modalBackdrop" id="authModal"><div class="modal" role="dialog" aria-modal="true"><button class="modalClose" id="closeAuth">×</button><div class="modalK">FinTrend Account</div><div class="modalH" id="authTitle">Create Free Account</div><div class="modalP" id="authSubtitle">Create an account to unlock account-gated reads. No credit card.</div><form id="authForm"><input class="in" id="email" type="email" placeholder="Email" required /><div style="height:10px"></div><input class="in" id="password" type="password" placeholder="Password" required /><div class="row"><button class="btn btnPrimary" type="submit" id="authSubmit">Create Free Account</button><button class="btn btnGhost" type="button" id="toggleMode">Already have an account?</button></div><div class="msg" id="authMsg"></div></form></div></div>
 
   <div class="modalBackdrop" id="premiumModal"><div class="modal" role="dialog" aria-modal="true"><button class="modalClose" id="closePremium">×</button><div class="modalK">FinTrend Premium</div><div class="modalH">Upgrade to Premium</div><div class="modalP">Unlock sector reports and the full members dashboard.</div><div class="row"><a class="btn btnPrimary" href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener" id="payLink">Go Premium</a><button class="btn btnGhost" id="closePremium2" type="button">Not now</button></div></div></div>
-
-  <!-- ASK AI WIDGET -->
-  <div class="ai-widget" id="aiWidget">
-    <button class="ai-fab" id="aiFab" type="button" aria-expanded="false" aria-controls="aiPanel"><span class="ai-fab-dot"></span><span>Ask AI</span></button>
-    <section class="ai-panel" id="aiPanel" aria-label="FinTrend AI assistant">
-      <div class="ai-panel-head">
-        <div>
-          <div class="ai-panel-k">FinTrend AI</div>
-          <div class="ai-panel-title">Ask AI</div>
-          <div class="ai-panel-sub">Market questions, plain-English answers. Educational only.</div>
-        </div>
-        <button class="ai-close" id="aiClose" type="button" aria-label="Close Ask AI">×</button>
-      </div>
-      <div class="ai-messages" id="aiMessages"></div>
-      <div class="ai-limit" id="aiLimit"></div>
-      <div class="ai-composer" id="aiComposer">
-        <form class="ai-form" id="aiForm">
-          <textarea class="ai-input" id="aiInput" rows="1" maxlength="500" placeholder="Ask about rates, SPX, gold, BTC..."></textarea>
-          <button class="ai-send" id="aiSend" type="submit">Ask</button>
-        </form>
-        <div class="ai-lock" id="aiLock">
-          You've used your 3 free AI messages. Unlock Premium for full access:
-          <a href="https://buy.stripe.com/aFabJ0auNdEVbnR4m2ffy00" target="_blank" rel="noopener">Upgrade to Premium →</a>
-        </div>
-      </div>
-    </section>
-  </div>
 
   <script>
     document.getElementById("masthead-date").textContent = new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
@@ -757,16 +668,6 @@
         openIds.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=isPremium?"":"none";});
       }
 
-      const weekData={
-        mon:{title:"Monday · Outlook",meta:"Set the week's bias",desc:"Start with the driver. End with one level that changes your mind.",bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"]},
-        wed:{title:"Wednesday · Momentum",meta:"Mid-week reality check",desc:"What's working, what's fading, and whether the move is healthy or crowded.",bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"]},
-        fri:{title:"Friday · Recap",meta:"What changed (for real)",desc:"Did the driver change? Or just the story? You get the clean answer.",bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"]},
-        sun:{title:"Sunday · Macro Setup",meta:"The map into next week",desc:"What's priced in, what could surprise, and the one catalyst that matters most.",bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"]}
-      };
-      const weekCard=document.getElementById("weekCard");
-      function renderDay(key){const d=weekData[key];weekCard.innerHTML=`<div class="week-card-top"><div class="week-card-label">${d.title}</div><div class="week-card-meta">${d.meta}</div></div><div class="week-card-desc">${d.desc}</div><ul class="week-bullets">${d.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>`;}
-      renderDay("mon");
-      document.querySelectorAll(".day-tab").forEach(p=>{p.addEventListener("click",()=>{document.querySelectorAll(".day-tab").forEach(x=>x.classList.remove("active"));p.classList.add("active");renderDay(p.dataset.day);});});
 
       let tvWidgetsStarted=false;
       let pendingRotSymbol="FOREXCOM:SPXUSD";
@@ -926,137 +827,6 @@
       document.getElementById("riddle-next").addEventListener("click",()=>{rIdx++;renderRiddle();});renderRiddle();
     })();
 
-    // ── ASK AI WIDGET ──
-    (function(){
-      "use strict";
-      const AI_LIMIT=3;
-      const AI_USED_KEY="fintrend_ai_messages_used";
-      const AI_ENDPOINT="https://dxmdyperxyydqdshazcp.supabase.co/functions/v1/ask-ai";
-
-      const widget=document.getElementById("aiWidget");
-      const fab=document.getElementById("aiFab");
-      const close=document.getElementById("aiClose");
-      const messages=document.getElementById("aiMessages");
-      const form=document.getElementById("aiForm");
-      const input=document.getElementById("aiInput");
-      const send=document.getElementById("aiSend");
-      const composer=document.getElementById("aiComposer");
-      const limitText=document.getElementById("aiLimit");
-
-      function getUsed(){
-        try{
-          const n=parseInt(localStorage.getItem(AI_USED_KEY)||"0",10);
-          return Number.isFinite(n)?Math.min(Math.max(n,0),AI_LIMIT):0;
-        }catch(e){return 0;}
-      }
-
-      function setUsed(n){
-        try{
-          localStorage.setItem(AI_USED_KEY,String(Math.min(Math.max(n,0),AI_LIMIT)));
-        }catch(e){}
-      }
-
-      function addMessage(role,text){
-        const div=document.createElement("div");
-        div.className="ai-msg "+(role==="user"?"user":"bot");
-        div.textContent=text;
-        messages.appendChild(div);
-        messages.scrollTop=messages.scrollHeight;
-      }
-
-      function updateLimitUI(){
-        const used=getUsed();
-        const remaining=Math.max(0,AI_LIMIT-used);
-        limitText.textContent=remaining>0?`${remaining} free AI message${remaining===1?"":"s"} remaining.`:"Free AI limit reached.";
-        const locked=used>=AI_LIMIT;
-        composer.classList.toggle("locked",locked);
-        input.disabled=locked;
-        send.disabled=locked;
-      }
-
-      function openWidget(){
-        widget.classList.add("open");
-        fab.setAttribute("aria-expanded","true");
-        setTimeout(()=>{if(!input.disabled)input.focus();},80);
-      }
-
-      function closeWidget(){
-        widget.classList.remove("open");
-        fab.setAttribute("aria-expanded","false");
-      }
-
-      function gracefulFallback(){
-        return "FinTrend AI is temporarily unavailable, but here is the clean framework: identify the main driver, check the market reaction, mark the key level, then decide what would change the view. This is educational only, not financial advice.";
-      }
-
-      async function askBackend(question){
-        const controller=new AbortController();
-        const timer=setTimeout(()=>controller.abort(),12000);
-        try{
-          const res=await fetch(AI_ENDPOINT,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-              question,
-              source:"fintrend-news-index",
-              context:"FinTrend News market briefing assistant. Educational only, not financial advice."
-            }),
-            signal:controller.signal
-          });
-          clearTimeout(timer);
-          if(!res.ok)throw new Error("AI endpoint unavailable");
-          const contentType=res.headers.get("content-type")||"";
-          if(contentType.includes("application/json")){
-            const data=await res.json();
-            return data.reply||data.answer||data.message||gracefulFallback();
-          }
-          const text=(await res.text()).trim();
-          return text||gracefulFallback();
-        }catch(err){
-          clearTimeout(timer);
-          return gracefulFallback();
-        }
-      }
-
-      fab.addEventListener("click",()=>widget.classList.contains("open")?closeWidget():openWidget());
-      close.addEventListener("click",closeWidget);
-
-      input.addEventListener("input",()=>{
-        input.style.height="auto";
-        input.style.height=Math.min(input.scrollHeight,96)+"px";
-      });
-
-      form.addEventListener("submit",async(e)=>{
-        e.preventDefault();
-        if(getUsed()>=AI_LIMIT){updateLimitUI();return;}
-        const question=input.value.trim();
-        if(!question)return;
-        addMessage("user",question);
-        input.value="";
-        input.style.height="auto";
-        input.disabled=true;
-        send.disabled=true;
-        send.textContent="...";
-        const reply=await askBackend(question);
-        addMessage("bot",reply);
-        setUsed(getUsed()+1);
-        send.textContent="Ask";
-        updateLimitUI();
-        if(getUsed()<AI_LIMIT){
-          input.disabled=false;
-          send.disabled=false;
-          input.focus();
-        }
-      });
-
-      addMessage("bot","Ask me about market drivers, SPX, rates, gold, BTC, or how to read a move. You get 3 free AI messages in this browser.");
-      updateLimitUI();
-
-      document.addEventListener("fintrend:intro-complete",()=>document.body.classList.add("ai-ready"),{once:true});
-      window.addEventListener("load",()=>setTimeout(()=>document.body.classList.add("ai-ready"),4700));
-      window.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeWidget();});
-    })();
-
     // ── PAGE LOAD ANIMATION ──
     (function(){
       const cover=document.getElementById("page-cover"),coverLogo=document.getElementById("cover-logo"),coverName=document.getElementById("cover-name"),coverLine=document.getElementById("cover-line"),coverTag=document.getElementById("cover-tagline");
@@ -1088,30 +858,115 @@
       revealEls.forEach(el=>observer.observe(el));
     })();
 
-    // ── LATEST BRIEFINGS — auto-refresh from Supabase (falls back to hardcoded list) ──
+    // ── LIVE FRONT PAGE — latest notes, this week, article count (all from Supabase) ──
     (function(){
       "use strict";
-      var box=document.getElementById("latestBriefings");
-      if(!box)return;
-      var URL="https://dxmdyperxyydqdshazcp.supabase.co/rest/v1/free_articles";
+      var SB="https://dxmdyperxyydqdshazcp.supabase.co/rest/v1/free_articles";
       var KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4bWR5cGVyeHl5ZHFkc2hhemNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjMyNDQsImV4cCI6MjA4NDUzOTI0NH0.nMKF2wi8FWX0eYrDzSyJE_CPl8XgSMx27fPlcZ9gVzI";
-      function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
-      function dayLabel(iso){try{var d=new Date(iso);if(isNaN(d))return "";return d.toLocaleDateString("en-US",{weekday:"short"})+" · "+d.toLocaleDateString("en-US",{month:"short",day:"numeric"});}catch(e){return "";}}
-      fetch(URL+"?select=title,excerpt,url,published_at&order=published_at.desc&limit=4",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
-        .then(function(r){return r.ok?r.json():null;})
+      var HDR={apikey:KEY,Authorization:"Bearer "+KEY};
+      var TZ="America/New_York";
+      var FORMATS={
+        mon:{offset:0,day:"Monday",title:"Monday · Outlook",fmt:"Monday Outlook",desc:"Start with the driver. End with one level that changes your mind.",bullets:["Primary driver (rates / USD / credit / oil)","Base case + 1 alternative scenario","Key level + invalidation"]},
+        wed:{offset:2,day:"Wednesday",title:"Wednesday · Momentum",fmt:"Momentum Check",desc:"What's working, what's fading, and whether the move is healthy or crowded.",bullets:["Leadership + rotation snapshot","Crowding/stretch note (risk/reward)","What must happen next for the trend to continue"]},
+        fri:{offset:4,day:"Friday",title:"Friday · Recap",fmt:"Friday Recap",desc:"Did the driver change? Or just the story? You get the clean answer.",bullets:["What changed: driver vs narrative vs positioning","Winners/losers (with why)","Levels that matter into next week"]},
+        sun:{offset:6,day:"Sunday",title:"Sunday · Macro Setup",fmt:"Sunday Macro Note",desc:"What's priced in, what could surprise, and the one catalyst that matters most.",bullets:["Priced-in vs surprise framing","2–3 scenarios max","Catalyst calendar + watch points"]}
+      };
+      var ORDER=["mon","wed","fri","sun"];
+
+      function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+      function href(u){u=String(u||"");return /^https?:\/\//.test(u)?u:u.replace(/^\//,"");}
+      function clip(t,n){t=String(t||"").trim();if(t.length<=n)return t;var c=t.slice(0,n);return c.slice(0,c.lastIndexOf(" ")).replace(/[,;:]$/,"")+"…";}
+      function etKey(d){var p={};new Intl.DateTimeFormat("en-US",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(d).forEach(function(x){p[x.type]=x.value;});return p.year+"-"+p.month+"-"+p.day;}
+      function kd(k){return new Date(k+"T12:00:00Z");}
+      function addDays(k,n){var d=kd(k);d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
+      function fmt(k,o){return kd(k).toLocaleDateString("en-US",Object.assign({timeZone:"UTC"},o));}
+      var today=etKey(new Date());
+      var monday=addDays(today,-((kd(today).getUTCDay()+6)%7));
+      var y=document.getElementById("footYear");if(y)y.textContent=today.slice(0,4);
+
+      function kicker(a){
+        var sec=a.sector||"";
+        if(sec&&sec!=="Markets"&&sec!=="Macro")return sec;
+        var wd=new Date(a.published_at).toLocaleDateString("en-US",{weekday:"long",timeZone:TZ});
+        for(var i=0;i<ORDER.length;i++){if(FORMATS[ORDER[i]].day===wd)return FORMATS[ORDER[i]].fmt;}
+        return sec||"Market Note";
+      }
+
+      // Lead story + Latest Briefings table
+      function renderFront(rows){
+        var lead=rows[0];
+        if(lead){
+          var k=etKey(new Date(lead.published_at));
+          document.getElementById("leadKicker").textContent=kicker(lead)+" · "+fmt(k,{weekday:"short",month:"short",day:"numeric"});
+          document.getElementById("leadHeadline").innerHTML='<a href="'+esc(href(lead.url))+'">'+esc(lead.title)+"</a>";
+          document.getElementById("leadDeck").textContent=lead.excerpt||"";
+          var r=document.getElementById("leadRead");r.href=href(lead.url);r.textContent="Read the full note";
+        }
+        var list=rows.slice(1,5);
+        document.getElementById("briefRows").innerHTML=list.length?list.map(function(a){
+          var k=etKey(new Date(a.published_at));
+          return '<a class="brief-row" style="text-decoration:none;" href="'+esc(href(a.url))+'">'
+            +'<div class="brief-tag" style="align-items:flex-start;line-height:1.5;white-space:nowrap;">'+esc(fmt(k,{weekday:"short"}))+"<br>"+esc(fmt(k,{month:"short",day:"numeric"}))+"</div>"
+            +'<div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">'+esc(a.title)+"</span>"
+            +'<span style="color:#9ca3af;font-size:12px;">'+esc(clip(a.excerpt,170))+"</span></div></a>";
+        }).join(""):'<div class="brief-empty">Browse every note in the <a href="archive.html" style="color:var(--accent);">archive</a>.</div>';
+      }
+
+      // This Week: the four slots, filled with the notes actually published this week
+      var byDay={};
+      function renderDay(key){
+        var f=FORMATS[key],dk=addDays(monday,f.offset),a=byDay[dk],card=document.getElementById("weekCard");
+        if(!card)return;
+        if(a){
+          card.innerHTML='<div class="week-card-top"><div class="week-card-label">'+esc(f.title)+'</div><div class="week-card-meta">'+esc(fmt(dk,{month:"short",day:"numeric"}))+"</div></div>"
+            +'<a class="week-card-title" href="'+esc(href(a.url))+'">'+esc(a.title)+"</a>"
+            +'<div class="week-card-desc">'+esc(clip(a.excerpt,230))+"</div>"
+            +'<a class="week-card-read" href="'+esc(href(a.url))+'">Read the note →</a>'
+            +'<div class="week-card-format">'+esc(f.desc)+"</div>";
+        }else{
+          var when=dk>today?"Publishes "+fmt(dk,{weekday:"short",month:"short",day:"numeric"}):dk===today?"Publishes later today":fmt(dk,{month:"short",day:"numeric"});
+          card.innerHTML='<div class="week-card-top"><div class="week-card-label">'+esc(f.title)+'</div><div class="week-card-meta">'+esc(when)+"</div></div>"
+            +'<div class="week-card-desc">'+esc(f.desc)+"</div>"
+            +'<ul class="week-bullets">'+f.bullets.map(function(b){return"<li>"+esc(b)+"</li>";}).join("")+"</ul>";
+        }
+      }
+      function renderWeek(rows){
+        byDay={};
+        rows.forEach(function(a){var k=etKey(new Date(a.published_at));if(!byDay[k])byDay[k]=a;});
+        var wr=document.getElementById("weekRange");
+        if(wr)wr.textContent="Week of "+fmt(monday,{month:"short",day:"numeric"});
+        var active="mon";
+        ORDER.forEach(function(key){
+          var dk=addDays(monday,FORMATS[key].offset),tab=document.querySelector('.day-tab[data-day="'+key+'"]');
+          if(byDay[dk]){active=key;if(tab&&!tab.querySelector(".tab-dot"))tab.insertAdjacentHTML("beforeend",'<span class="tab-dot" aria-label="published"></span>');}
+        });
+        document.querySelectorAll(".day-tab").forEach(function(t){t.classList.toggle("active",t.dataset.day===active);});
+        renderDay(active);
+      }
+      document.querySelectorAll(".day-tab").forEach(function(t){
+        t.addEventListener("click",function(){
+          document.querySelectorAll(".day-tab").forEach(function(x){x.classList.remove("active");});
+          t.classList.add("active");renderDay(t.dataset.day);
+        });
+      });
+      renderWeek([]); // show the formats immediately; filled in when the data arrives
+
+      var now=encodeURIComponent(new Date().toISOString());
+      fetch(SB+"?select=title,excerpt,url,sector,published_at&published_at=lte."+now+"&order=published_at.desc&limit=16",{headers:HDR})
+        .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
         .then(function(rows){
-          if(!Array.isArray(rows)||!rows.length)return; // keep hardcoded fallback
-          var head='<div class="brief-table-head"><div class="brief-table-title">Latest Briefings</div><div class="brief-table-meta">Updated continuously</div></div>';
-          var body=rows.map(function(a){
-            return '<a class="brief-row" style="text-decoration:none;grid-template-columns:96px 1fr;" href="'+esc(a.url)+'">'
-              +'<div class="brief-tag" style="align-items:flex-start;line-height:1.3;">'+esc(dayLabel(a.published_at))+'</div>'
-              +'<div class="brief-text"><span style="display:block;color:#f9fafb;font-weight:600;margin-bottom:3px;">'+esc(a.title)+'</span>'
-              +'<span style="color:#9ca3af;font-size:12px;">'+esc(a.excerpt)+'</span></div></a>';
-          }).join("");
-          var foot='<div class="brief-footer">Educational content only · <a href="archive.html" style="color:var(--accent);text-decoration:underline;text-underline-offset:2px;">Full archive →</a></div>';
-          box.innerHTML=head+body+foot;
+          var seen={},clean=(rows||[]).filter(function(a){var u=href(a.url);if(!a.title||seen[u]||/archive\.html$/.test(u))return false;seen[u]=1;return true;});
+          if(!clean.length)throw new Error("empty");
+          renderFront(clean);renderWeek(clean);
         })
-        .catch(function(){/* keep hardcoded fallback */});
+        .catch(function(){
+          document.getElementById("briefRows").innerHTML='<div class="brief-empty">Browse every note in the <a href="archive.html" style="color:var(--accent);">archive</a>.</div>';
+        });
+
+      // Live article count for the sidebar stat
+      fetch(SB+"?select=url",{headers:Object.assign({Prefer:"count=exact",Range:"0-0"},HDR)})
+        .then(function(r){var cr=r.headers.get("content-range")||"";var n=parseInt(cr.split("/")[1],10);if(n>0){var el=document.getElementById("statArticles");if(el)el.textContent=(Math.floor(n/10)*10)+"+";}})
+        .catch(function(){});
     })();
   </script>
 </body>
