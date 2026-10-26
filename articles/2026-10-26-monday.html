@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fed Speaks at Two. Big Tech Answers at Four. &mdash; FinTrend News</title>
+<meta name="description" content="The S&amp;P starts the week 2.5% below its record after Meta’s cash outflow broke the AI rebound and Brent hit a four-year high. Wednesday brings the Fed at 2 p.m. and Microsoft and Alphabet after the close; Thursday brings GDP, PCE, the ECB, Amazon and Intel. Oil is lower this morning after President Trump ruled out a strike on Iran for now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Monday Outlook &middot; Week of Oct 26</div>
+  <h1>The Fed Speaks at Two. <em>Big Tech Answers at Four.</em></h1>
+  <p class="dek">The S&amp;P starts the week 2.5% below its record after Meta&rsquo;s cash outflow broke the AI rebound and Brent hit a four-year high. Wednesday brings the Fed at 2 p.m. and Microsoft and Alphabet after the close; Thursday brings GDP, PCE, the ECB, Amazon and Intel. Oil is lower this morning after President Trump ruled out a strike on Iran for now.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">JTM</div>
+      <div>
+        <div class="name">James Thomas Minnehan</div>
+        <div class="role">Senior Editor</div>
+      </div>
+    </div>
+    <div class="date">MON · OCT 26 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Monday I wrote that Meta would have to answer, in dollars, the question of who pays for AI. It did. In the third quarter Meta spent $34.91 billion on capital projects against $32.79 billion of operating cash flow, its first cash outflow in more than a decade, and it will issue a new class of non-voting shares that it says could help it raise capital. The stock fell 7% on Thursday, the chip index fell 6.7%, and the Nasdaq had its worst day since June. Then Houthi attacks in Saudi Arabia pushed Brent to its highest close since mid-2022. The S&amp;P 500 lost 0.5% on the week to 7,623.68, about 2.5% below its Oct. 6 record of 7,818.93, and the Nasdaq lost 0.7%.</p><p>Underneath, the week was healthier than the headline. The Russell 2000 rose 2.0%, the Dow 0.4%, and the 10-year yield fell to 4.99% from 5.09%. This week the market gets the rest of its answers in little more than a day: the Fed on Wednesday afternoon, Microsoft and Alphabet that evening, and on Thursday the first estimate of third-quarter growth, September inflation, the European Central Bank, Amazon and Intel. Oil fell about 2% overnight after President Trump said on Sunday there would be no strike on Iran that day, and U.S. stock futures edged higher.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,623.68</div><div class="chg down">wk −0.5% &middot; YTD +11.4%</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">25,955.34</div><div class="chg down">wk −0.7% &middot; YTD +11.7%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">4.99%</div><div class="chg up">≈ −10 bp on week</div></div><div class="cell"><div class="lbl">Brent Crude</div><div class="val">$116.72</div><div class="chg down">Fri settle &middot; wk +6.2%</div></div></div><h2>1. Wednesday, 2 p.m.: the Fed</h2><p>The Fed is expected to hold its target range at 3.75% to 4.00%. In a Reuters poll, 94 of 100 economists expect a hold and all 100 expect a hike in December; prediction markets put the odds of a hold near 94% and of a December hike near 80%. There are no new economic projections at this meeting, and Chair Kevin Warsh has made clear he dislikes forward guidance, so the statement and his 2:30 p.m. press conference are the whole message. Listen for three things: whether the statement keeps a tightening bias, how Warsh describes September&rsquo;s hike, and how many officials dissent in favor of another one. Beth Hammack, Lorie Logan and Neel Kashkari voted for a hike in July.</p><p>Warsh walks in with an economy that looks too hot for a dovish message. The flash composite PMI was 57.6 in October, and selling prices rose at the fastest rate in four years. Jobless claims fell to 194,000. Long-run inflation expectations in the Michigan survey held at 3.5%, above September&rsquo;s 3.4%. On the other side, the 10-year is back below 5% and the AI selloff is doing some of his tightening for him. My base case is a hawkish hold. The risk to markets is not a hike this week; it is language that makes December look settled while oil is still rising.</p><h2>2. Wednesday, 4 p.m.: Microsoft and Alphabet</h2><p>Two hours after Warsh finishes, Microsoft and Alphabet report. Both have guided to enormous spending: Microsoft to $255 billion to $260 billion of capital expenditures in its new fiscal year, Alphabet to $195 billion to $205 billion in 2026. Both also have the revenue to show for it. Microsoft guided Azure growth to about 45% for the September quarter after 43% in the June quarter, and Alphabet&rsquo;s cloud backlog stood at $514 billion at the end of June. After Meta, the market will grade them on a narrower test: does operating cash flow still cover capital spending, and what do they say about 2027? Meta showed what happens when the answer is no.</p><p>Amazon follows on Thursday after the close, with its call at 5 p.m. ET. AWS growth reaccelerated to 37% in the second quarter, and Amazon has been one of the largest spenders on data centers. Intel, Coinbase and Strategy report the same evening, and Robinhood on Tuesday. Apple reports on Nov. 2. Last week 83% of the S&amp;P 500 companies that reported beat estimates, and LSEG data show third-quarter earnings growth on track for more than 32%. The earnings are not the problem. The financing of next year&rsquo;s spending is.</p><table class="dtable"><thead><tr><th>This week&rsquo;s calendar</th><th>Why it matters</th></tr></thead><tbody><tr><td class="mono">Mon &middot; Verizon (a.m.); Cadence, Nucor (p.m.)</td><td>Telecom after Friday&rsquo;s SpaceX wireless report; steel</td></tr><tr><td class="mono">Tue &middot; FOMC begins; consumer confidence; new home sales</td><td>Households and housing at 7%-plus mortgage rates</td></tr><tr><td class="mono">Tue &middot; Israel election; Robinhood (p.m.)</td><td>Middle East politics; retail trading</td></tr><tr><td class="mono">Wed &middot; Fed decision 2 p.m.; Warsh 2:30 p.m.</td><td>Tightening bias and the December signal</td></tr><tr><td class="mono">Wed &middot; Microsoft, Alphabet (p.m.)</td><td>AI capex, cloud growth, cash coverage</td></tr><tr><td class="mono">Thu &middot; Q3 GDP and Sept. PCE (8:30 a.m.); claims; ECB</td><td>Growth, inflation and Europe&rsquo;s response</td></tr><tr><td class="mono">Thu &middot; Amazon, Intel, Coinbase (p.m.)</td><td>AWS, chips, crypto</td></tr><tr><td class="mono">Next week &middot; Apple (Nov. 2); midterms (Nov. 3)</td><td>Politics returns to the tape</td></tr></tbody></table><h2>3. Thursday: GDP, PCE and the ECB</h2><p>Thursday at 8:30 a.m. brings the first estimate of third-quarter GDP and September&rsquo;s personal income and spending report, which includes PCE inflation, the Fed&rsquo;s preferred gauge. The Atlanta Fed&rsquo;s GDPNow model put third-quarter growth at 3.5% as of Oct. 20, and PCE inflation is expected near 3.7%. A strong GDP number with sticky inflation would validate December; a soft one would test the Fed&rsquo;s resolve the day after it speaks. Weekly jobless claims come out at the same time.</p><p>The European Central Bank decides later that morning. It raised its deposit rate to 2.50% in September as energy prices kept euro-area inflation above target. Since then France&rsquo;s 10-year yield has risen above 5% for the first time since 2002 amid riots over living costs and a fight over a budget that seeks €54 billion of savings. Christine Lagarde has to balance an energy shock against a sovereign-debt problem in the bloc&rsquo;s second-largest economy.</p><div class="pullquote">Meta told us what AI costs. On Wednesday, the Fed tells us what money costs, and Microsoft and Alphabet tell us whether they can still afford both.<span class="src">James Thomas Minnehan</span></div><h2>4. Oil, Iran and the weekend</h2><p>Brent rose 6.2% last week to about $116.72 after Houthi attacks hit an airport in Dammam and an Aramco oil field, and after the New York Times reported that the U.S. and Israel had drawn up plans for renewed strikes on Iran after the Nov. 3 midterms. The Houthis said they attacked Saudi facilities again on Saturday, and Saudi Arabia said on Sunday it had intercepted more missiles and drones. On Saturday, U.S. diplomatic missions in the region reportedly tightened security after intelligence warnings about Iranian plots.</p><p>Then, on Sunday, Trump told reporters outside the White House that &ldquo;there will not be a strike today.&rdquo; Brent fell about 1.8% to around $114.60 in early Asian trading and U.S. crude about 2% to roughly $101. Iran&rsquo;s foreign minister has said Tehran is open to renewed talks, and Qatari mediators were reported to be in Tehran. That is a pause, not a resolution. Ed Yardeni warned that a renewed escalation could push oil back above its $120 peak, and cut his year-end S&amp;P 500 target to 7,900. Israel votes on Tuesday, the day the Fed meeting begins.</p><h2>5. Beyond Wall Street</h2><p>Asian markets were mostly lower on Monday. Tokyo&rsquo;s Nikkei 225 slipped 0.1% to 62,602.86 and Seoul&rsquo;s Kospi fell 1.1% to 5,494.29, while Hong Kong&rsquo;s Hang Seng edged up 0.2%. In Europe, French bond yields remain the pressure point ahead of Thursday&rsquo;s ECB decision, after the 10-year topped 5% last week and its premium over German Bunds reached the widest since the euro-area debt crisis. The common thread from Paris to Seoul is the same as on Wall Street: borrowing costs near multi-decade highs, energy prices rising again and investors sorting out who can afford both.</p><h2>The setup in one line</h2><p>The S&amp;P is 2.5% below its record, small caps are rising, the 10-year is just under 5% and Brent is near $115. The bullish path is a Fed hold that leaves December open without slamming the door, Microsoft and Alphabet showing cloud growth that covers their spending, an in-line PCE number and oil easing on talks. The bearish path is hawkish dissents and firm December language, capex guidance that outruns cash flow, a hot PCE and renewed strikes in the Gulf. Watch Warsh&rsquo;s words on December, Microsoft&rsquo;s capital spending and Thursday&rsquo;s PCE.</p><div class="takeaway"><div class="t">The outlook</div><p>The S&amp;P 500 starts the week at 7,623.68, 2.5% below its record, after Meta&rsquo;s first cash outflow in over a decade broke a three-day rebound and Brent rose 6.2% to its highest close since 2022. The Fed decides on Wednesday at 2 p.m., with a hold expected and a December hike priced near 80%; Microsoft and Alphabet report that evening, and Thursday brings Q3 GDP, September PCE, the ECB, Amazon and Intel. Oil is lower this morning after Trump ruled out an immediate strike on Iran. Cash coverage of AI spending and Warsh&rsquo;s December language are the swing factors.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— JTM</div>
+  </footer>
+</div>
+</body>
+</html>
