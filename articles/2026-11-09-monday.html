@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rebound Came Monday. CPI Comes Tuesday. &mdash; FinTrend News</title>
+<meta name="description" content="Stocks recovered most of last week’s losses as Brent fell 5.8% to $92.57 and chip stocks bounced, though Nvidia fell 4.3% on questions about its chief executive. October CPI lands Tuesday, CoreWeave reports that evening, the bond market closes Wednesday and PPI arrives Friday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Monday Outlook &middot; Week of Nov 9</div>
+  <h1>The Rebound Came Monday. <em>CPI Comes Tuesday.</em></h1>
+  <p class="dek">Stocks recovered most of last week&rsquo;s losses as Brent fell 5.8% to $92.57 and chip stocks bounced, though Nvidia fell 4.3% on questions about its chief executive. October CPI lands Tuesday, CoreWeave reports that evening, the bond market closes Wednesday and producer prices arrive Friday.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">JTM</div>
+      <div>
+        <div class="name">James Thomas Minnehan</div>
+        <div class="role">Senior Editor</div>
+      </div>
+    </div>
+    <div class="date">MON · NOV 9 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Monday I wrote that the market would learn what voters think of the power bill and what the labor market thinks of a 4% funds rate. It learned both. Democrats won Congress, Texas elected a governor who campaigned against data center projects, and on Thursday the S&amp;P 500 had its worst day since April 2025. Then payrolls rose 165,000. The S&amp;P lost 2.7% on the week to 7,376.86. Today it took most of that back: the S&amp;P 500 rose 2.3% to 7,549.94, its best day since April, the Dow 2.2% to 52,389.75 and the Nasdaq 2.7% to 25,253.14. Brent fell 5.8% to $92.57, down from more than $112 at the start of the month, after President Trump said renewed strikes on Iran were unlikely if talks progress. The S&amp;P is 3.4% below its record.</p><p>This week the market gets the number that matters most for December. October CPI comes out Tuesday at 8:30 a.m. The bond market closes Wednesday for Veterans Day while stocks trade. Producer prices close the week on Friday, and CoreWeave, the most closely watched of the debt-funded cloud builders, reports Tuesday evening.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,549.94</div><div class="chg up">Mon +2.3% &middot; 3.4% off record</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">25,253.14</div><div class="chg up">Mon +2.7% &middot; YTD +8.7%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">4.87%</div><div class="chg flat">+1 bp on Monday</div></div><div class="cell"><div class="lbl">Brent Crude</div><div class="val">$92.57</div><div class="chg up">Mon &minus;5.8%</div></div></div><h2>1. What turned the market on Monday</h2><p>Oil did most of the work. In an interview with CNN, Trump said a resumption of strikes was highly unlikely if the U.S. sees progress in negotiations,. Secretary of State Marco Rubio struck a harder tone on Sunday, calling some of Iran&rsquo;s demands for ending the war outrageous, which is a reminder that the talks are not close. But the market is trading direction, and the direction since the election has been toward de-escalation. Airlines and cruise lines led again: United rose 5.9% and Carnival 4%. All 11 S&amp;P 500 sectors gained, and advancers outnumbered decliners by more than four to one on the NYSE.</p><p>The AI names bounced hard, with one large exception. AMD rose 12.9% and Broadcom nearly 9%, and the semiconductor index gained more than 6% after falling more than 12% last week. Morgan Stanley and UBS both told clients that last week&rsquo;s selloff was overdone and that extreme restrictions on data center development were unlikely under a Democratic Congress, Reuters reported. Ken Polcari of SlateStone Wealth said Democrats can regulate AI but cannot stop it. Constellation Energy jumped 10.3% after a better-than-expected quarter, and CoreWeave rose 5.1% ahead of its report.</p><p>The exception was Nvidia, which fell 4.3%. The company is investigating chief executive Jensen Huang after he acknowledged an intimate relationship with a business executive whom U.S. intelligence reportedly concluded was gathering information for China, as the New York Times reported last month. Nvidia&rsquo;s board said it has no reason to believe national security or company secrets were compromised, and China&rsquo;s foreign ministry dismissed the allegations as smears. For the market, the issue is governance and key-person risk at the largest company in the index, arriving days after a 9.3% one-day drop in the stock.</p><h2>2. Tuesday: October CPI</h2><p>September&rsquo;s CPI rose 3.7% from a year earlier, and the Fed&rsquo;s preferred PCE gauge 3.6%. For October, Continuum Economics expects headline and core prices each to rise about 0.2% on the month. Because the 2025 government shutdown cancelled last October&rsquo;s report, the year-over-year comparison will be messier than usual, and the monthly figures are the ones to watch. Crude was more expensive through October than it is now, so the November report, due Dec. 10, will show more of the recent decline.</p><p>The Fed decides on Dec. 9, and after Friday&rsquo;s jobs report futures priced about a 77% chance of a hike. A core reading of 0.2% would keep the debate open, especially with Brent near $93. A reading of 0.4% or more would make December close to certain. Friday&rsquo;s producer price index will show whether pipeline pressure from energy and memory chips is easing; the ISM surveys earlier this month showed input prices still high but off their peaks.</p><table class="dtable"><thead><tr><th>This week&rsquo;s calendar</th><th>Why it matters</th></tr></thead><tbody><tr><td class="mono">Tue &middot; October CPI (8:30 a.m.); NFIB small business</td><td>The December hike case; core m/m is the number</td></tr><tr><td class="mono">Tue &middot; CoreWeave (p.m.)</td><td>Debt-funded AI capacity after record CDS spreads</td></tr><tr><td class="mono">Wed &middot; Veterans Day</td><td>Bond market closed; stocks open</td></tr><tr><td class="mono">Thu &middot; Jobless claims</td><td>Labor follow-through after the payroll beat</td></tr><tr><td class="mono">Late week &middot; Cisco, Applied Materials</td><td>Networking and chip-equipment demand</td></tr><tr><td class="mono">Fri &middot; October PPI (8:30 a.m.)</td><td>Pipeline inflation from energy and chips</td></tr></tbody></table><h2>3. CoreWeave and the cost of capital</h2><p>CoreWeave reports on Tuesday after the close, and it is the cleanest test of last week&rsquo;s thesis. The company borrows heavily to build capacity it leases to AI developers, and last week the cost of insuring its debt hit a record. Investors will want to hear about the pace of new data center deliveries, the terms of its financing and whether any projects face permitting delays after the election. A reassuring report would support Monday&rsquo;s bounce; a cautious one would confirm that the market was right to separate cash-funded AI from debt-funded AI.</p><div class="pullquote">Monday showed that the AI trade is not dead. Tuesday shows whether inflation lets the Fed treat it gently.<span class="src">James Thomas Minnehan</span></div><h2>4. Anthropic&rsquo;s IPO window</h2><p>Anthropic, which plans to list on the Nasdaq under the ticker ANT, has not yet filed a price range. Its first amendment to the prospectus came on Nov. 2, and The Information has reported a target listing during the week of Nov. 16. Valuation talk has come down with the market: Bloomberg reported on Friday that prospective buyers were discussing roughly $1.2 trillion to $1.3 trillion, below the $1.4 trillion to $1.5 trillion mentioned earlier, and the Financial Times reported a raise of $80 billion to $100 billion. How that book comes together will say a lot about whether last week&rsquo;s selloff was a public-market wobble or a wider repricing of AI.</p><h2>5. Beyond Wall Street</h2><p>Global markets bounced with New York. Tokyo&rsquo;s Nikkei 225 rose 2.3% after falling about 6% on Friday, and France&rsquo;s CAC 40 gained 1.2%; Shanghai edged up 0.3% and Hong Kong slipped 0.1%. The Bank of England&rsquo;s hike to 4.00% last week and the Reserve Bank of Australia&rsquo;s fifth increase this year leave the Fed as one of several central banks still tightening into an energy shock that is now fading. The 10-year Treasury yield ended Monday at 4.87%, well below October&rsquo;s peak above 5.30%.</p><h2>The setup in one line</h2><p>The S&amp;P 500 is 3.4% below its record after its best day since April, Brent is near $93 and the 10-year just under 4.9%. The bullish path is a 0.2% core CPI, a steady CoreWeave report, oil holding below $95 and a firm Anthropic book. The bearish path is a hot CPI that seals December, CoreWeave flagging financing or permitting delays, renewed strikes in the Gulf and more governance news at Nvidia. Watch core CPI on Tuesday morning and CoreWeave on Tuesday night.</p><div class="takeaway"><div class="t">The outlook</div><p>The S&amp;P 500 rose 2.3% on Monday to 7,549.94, its best day since April, recovering most of last week&rsquo;s 2.7% loss as Brent fell 5.8% to $92.57 on Trump&rsquo;s comments about Iran and chip stocks rebounded; Nvidia fell 4.3% on questions about its chief executive. October CPI lands Tuesday with a December hike priced near 77%, CoreWeave reports Tuesday evening, the bond market closes Wednesday and PPI arrives Friday. Anthropic&rsquo;s IPO, reportedly targeted for the week of Nov. 16, is the next test of AI valuations.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— JTM</div>
+  </footer>
+</div>
+</body>
+</html>
