@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: The Election Rally Left the Chips Behind &mdash; FinTrend News</title>
+<meta name="description" content="The Dow jumped 1,569 points and the S&amp;P 500 had its best day in three months after Democrats won control of Congress and Brent fell 8.7% below $95. But Nvidia fell 3.1% and CoreWeave 9.9% after Texas elected a governor who campaigned against data center projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: <em>The Election Rally Left the Chips Behind</em></h1>
+  <p class="dek">The Dow jumped 1,569 points and the S&amp;P 500 had its best day in three months after Democrats won control of Congress and Brent fell 8.7% below $95. But Nvidia fell 3.1% and CoreWeave 9.9% after Texas elected a governor who campaigned against data center projects.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · NOV 4 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">The market got the election result it could most easily price, and it spent Wednesday pricing two very different things. The Dow jumped 1,569.40 points, or 3.0%, to 53,356.12, and the S&amp;P 500 rose 1.6% to 7,688.62, its best day in three months, after Democrats won control of both chambers of Congress and Brent crude fell 8.7% to $94.62. The S&amp;P is now 1.4% higher for the week and 1.7% below its record. But the rally did not reach the stocks that carry the AI build-out. Nvidia fell 3.1% and was the heaviest weight on the index, and CoreWeave lost 9.9%, after Texas elected a governor who campaigned against data center projects.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,688.62</div><div class="chg up">wk +1.4% &middot; YTD +12.3%</div></div><div class="cell"><div class="lbl">Dow Jones</div><div class="val">53,356.12</div><div class="chg up">Wed +3.0% &middot; wk +3.1%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">4.88%</div><div class="chg up">from 4.95% election night</div></div><div class="cell"><div class="lbl">Brent Crude</div><div class="val">$94.62</div><div class="chg up">Wed &minus;8.7% &middot; 2-month low</div></div></div><h2>How the week has gone</h2><div class="ledger"><div class="row"><div class="day">Mon 11/2</div><div class="detail">Brent &minus;7.6% to $104.77; airlines and cruise lines rally and most S&amp;P stocks rise. Marvell &minus;12.7% on its Lumentum deal; Nvidia &minus;1.3%.</div><div class="mv down">S&amp;P &minus;0.5%</div></div><div class="row"><div class="day">Tue 11/3</div><div class="detail">Election day. Nvidia +2.3% leads a narrow gain while most stocks fall. Apple &minus;1.9% on its margin outlook. 10-yr 4.96% on job openings.</div><div class="mv up">S&amp;P +0.4%</div></div><div class="row"><div class="day">Wed 11/4</div><div class="detail">Democrats win Congress. Dow +1,569 pts as oil sinks below $95. Defense and oil stocks fall; HCA +10.3%. Nvidia &minus;3.1%, CoreWeave &minus;9.9%.</div><div class="mv up">S&amp;P +1.6%</div></div></div><p>Monday was a rotation day. The S&amp;P 500 opened up 1.1% and closed down 0.5% as AI stocks gave back an early bounce, but most stocks in the index rose, and nearly seven in ten stocks outside AI and tech gained. Brent fell 7.6% on hopes for Iran mediation, and the companies that burn fuel led: United Airlines rose 4.8%, Carnival 4.2% and Marriott 4.3% on stronger hotel trends. Marvell fell 12.7% after agreeing to buy Lumentum for 4.5 Marvell shares per Lumentum share, and Lumentum dropped 18.6%. The ISM manufacturing index came in stronger than expected at 55.5, and its prices gauge eased to 75.2 from 77.9.</p><p>Tuesday was the mirror image: the S&amp;P rose 0.4% even though most of its members fell, because Nvidia, Broadcom, Microsoft, Amazon and Meta all gained. Apple fell 1.9% after beating forecasts but guiding to lower margins in the holiday quarter as AI-driven demand raises memory chip costs. Palantir slipped 1.6% despite reporting 148% growth in U.S. commercial revenue. More job openings than expected pushed the 10-year yield up to 4.96%.</p><h2>Wednesday: the result and the reaction</h2><p>By Wednesday morning Democrats had won both the House and the Senate. Early in the day the AP and New York Times counts gave Democrats 228 House seats with several races uncalled, a gain of 19, and at least 54 Senate seats, with seven Republican seats flipped and Alaska and Mississippi still undecided. In Texas, Democrat Gina Hinojosa defeated Gov. Greg Abbott. President Trump said he retains full veto power, which means the new Congress can block his agenda more easily than it can pass its own. Deutsche Bank&rsquo;s Jim Reid described the outcome as a normal midterm by historical standards, and RBC&rsquo;s Jeremy Richardson said it matched what markets expected. Brian Jacobsen of Annex Wealth Management summed up the session in three words: &ldquo;Earnings trump elections.&rdquo;</p><p>The biggest market move was in oil. Vice President JD Vance attributed part of the Republican losses to the war with Iran, and traders read that as pressure to scale the war back. Brent fell 8.7% to $94.62, its lowest level in two months, and is now down about 17% since Friday. GasBuddy&rsquo;s Patrick De Haan said the national average for gasoline could fall below $4 a gallon if prices hold. Cheaper oil also helped bonds: the 10-year yield fell to 4.88% from 4.95% on election night.</p><h2>The winners and losers were political</h2><p>Sector moves read like a policy map. Defense contractors fell, with Lockheed Martin down 6.9%, Northrop Grumman 4.5% and General Dynamics 2.6%. Oil producers dropped with crude: Exxon Mobil lost 4.6% and ConocoPhillips 5.2%. Hospital operator HCA rose 10.3%, Dollar Tree 9.6%, and solar names First Solar and Enphase gained 4.6% and 3.7%. Trump Media &amp; Technology Group fell 24.5%, Tesla 3.3% and SpaceX 3.8%. Overseas, Paris rose about 2%, London 1.8% and Shanghai 2.2%; Tokyo fell 1.4%.</p><table class="dtable"><thead><tr><th>Momentum gauge</th><th>Reading</th></tr></thead><tbody><tr><td class="mono">S&amp;P 500 vs. record</td><td>1.7% below the Oct. 6 close of 7,818.93</td></tr><tr><td class="mono">Dow, week to date</td><td>+3.1%</td></tr><tr><td class="mono">Nasdaq / Russell 2000, week to date</td><td>+1.2% / +1.6%</td></tr><tr><td class="mono">10-yr yield</td><td>4.88%, vs. 4.93% last Friday</td></tr><tr><td class="mono">Brent crude</td><td>$94.62, from $113.43 last Friday</td></tr><tr><td class="mono">ISM services (Oct)</td><td>54.5 vs. 54.8 expected; prices 73.0 from 74.0</td></tr></tbody></table><h2>Why the chips sat out</h2><p>The AI leaders did not join the rally, and the reason was on the ballot. Electricity bills and the cost of living became campaign issues across party lines, and data center construction became a local fight in several states. Texas, where Hinojosa ran against data center projects, is home to a large share of planned U.S. capacity. Voters in an Ohio county approved a ban on large data centers where Meta had planned a facility. Analyst Dan Ives told ABC News the Senate result would create major hurdles for AI and tech legislation. Nvidia fell 3.1% and CoreWeave 9.9%. Alphabet, which had its worst day on record last Thursday, rose 3.2%.</p><div class="pullquote">The market liked divided government and cheaper oil. It did not like the idea that a data center now needs a permit from voters.<span class="src">Hunter William Lang</span></div><p>The tension is now plain. A Democratic Congress cannot pass much over a presidential veto, and that is the main reason the broad market rallied. But data center permits are mostly decided by states, counties and utility regulators, not by Congress, and that is where the election changed the most. For the companies whose growth depends on building more capacity faster, the relevant map is not Washington. It is Austin, Columbus and a few hundred county boards.</p><h2>Tonight and the rest of the week</h2><p>AppLovin reports after the close. On Thursday the Bank of England is expected to raise its rate for the first time since 2023, and productivity and jobless claims come out at 8:30 a.m. Friday brings the October jobs report, with economists expecting about 59,000 new jobs and a 4.2% unemployment rate after September&rsquo;s 29,000. Wednesday&rsquo;s ISM services survey showed activity still expanding at 54.5, slightly below forecasts, with its prices index easing to 73.0. A strong payroll number would keep the December hike case alive even with oil below $95.</p><div class="takeaway"><div class="t">The momentum read</div><p>The S&amp;P 500 rose 1.6% to 7,688.62, its best day in three months, and the Dow jumped 3.0% after Democrats won control of Congress and Brent fell 8.7% below $95 on expectations of pressure to scale back the war with Iran. The S&amp;P is up 1.4% for the week and 1.7% below its record. But Nvidia fell 3.1% and CoreWeave 9.9% after Texas elected a governor who campaigned against data center projects. Oil, defense and AI infrastructure lost; hospitals, discount retail and travel won. The Bank of England and Friday&rsquo;s jobs report come next.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
