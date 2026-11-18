@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nvidia Lost Its Founder. The S&amp;P 500 Still Won the Week. &mdash; FinTrend News</title>
+<meta name="description" content="Jensen Huang resigned Thursday and Nvidia lost just under $600 billion of market value, yet the S&amp;P 500 rose 2.5% for its first weekly gain since October. Hot consumer and producer prices pushed the 10-year Treasury yield to 5.15%, and a December rate hike is fully priced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Friday Recap &middot; Week of Nov 9</div>
+  <h1>Nvidia Lost Its Founder. <em>The S&amp;P 500 Still Won the Week.</em></h1>
+  <p class="dek">Jensen Huang resigned Thursday and Nvidia lost just under $600 billion of market value, yet the S&amp;P 500 rose 2.5% for its first weekly gain since October. Hot consumer and producer prices pushed the 10-year Treasury yield to 5.15%, and a December rate hike is fully priced.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">FRI · NOV 13 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">The S&amp;P 500 put together its first winning week since early October, and it did it in the week the AI boom lost its most famous face. Monday&rsquo;s oil-driven rally and Wednesday&rsquo;s CoreWeave rebound carried the index. Hot consumer and producer prices, a 10-year Treasury yield back above 5% and the resignation of Nvidia chief executive Jensen Huang on Thursday held it back. The S&amp;P 500 closed Friday at 7,561.67, up 2.5% for the week, its biggest weekly gain since August, according to the AP, and 3.3% below its Oct. 6 record. The Dow rose 2.1%, the Nasdaq 2.3% and the Russell 2000 1.3%. Nvidia fell more than 12% and lost just under $600 billion of market value. Futures now fully price a Fed hike on Dec. 9.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,561.67</div><div class="chg up">wk +2.5% &middot; 3.3% off record</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">25,136.27</div><div class="chg up">wk +2.3% &middot; YTD +8.2%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">5.15%</div><div class="chg down">+29 bp on week &middot; 4-wk high</div></div><div class="cell"><div class="lbl">PPI, Oct y/y</div><div class="val">6.5%</div><div class="chg down">highest since Nov. 2022</div></div></div><h2>The week, day by day</h2><div class="ledger"><div class="row"><div class="day">Mon 11/9</div><div class="detail">Brent &minus;5.8% to $92.57 as Trump calls new Iran strikes unlikely. AMD +12.9%; Nvidia &minus;4.3% as its board probes its CEO.</div><div class="mv up">S&amp;P +2.3%</div></div><div class="row"><div class="day">Tue 11/10</div><div class="detail">CPI +0.4%, core +0.3%; a December hike is fully priced. 2-yr +19 bp, 10-yr 4.99%. Nvidia &minus;5.4%.</div><div class="mv down">S&amp;P &minus;0.4%</div></div><div class="row"><div class="day">Wed 11/11</div><div class="detail">CoreWeave +24.7% on its results; tech the best sector. Nvidia +2.9%, then &minus;8% after hours on new reports about Huang.</div><div class="mv up">S&amp;P +1.3%</div></div><div class="row"><div class="day">Thu 11/12</div><div class="detail">Huang resigns; CFO Colette Kress becomes interim CEO. Nvidia &minus;14% early, &minus;4.3% at the close. Trump says he does not need an Iran deal; Brent +3.3%.</div><div class="mv down">S&amp;P &minus;0.4%</div></div><div class="row"><div class="day">Fri 11/13</div><div class="detail">PPI +0.3%, 6.5% from a year earlier. AMD &minus;8.8%, Cisco &minus;6%, Nvidia &minus;2%. 10-yr 5.15%.</div><div class="mv down">S&amp;P &minus;0.4%</div></div></div><table class="dtable"><thead><tr><th>Index</th><th class="r">Fri close</th><th class="r">Week</th><th class="r">YTD</th></tr></thead><tbody><tr><td>S&amp;P 500</td><td class="mono r">7,561.67</td><td class="mono r up">+2.5%</td><td class="mono r up">+10.5%</td></tr><tr><td>Dow Jones</td><td class="mono r">52,347.55</td><td class="mono r up">+2.1%</td><td class="mono r up">+8.9%</td></tr><tr><td>Nasdaq Composite</td><td class="mono r">25,136.27</td><td class="mono r up">+2.3%</td><td class="mono r up">+8.2%</td></tr><tr><td>Russell 2000</td><td class="mono r">2,790.49</td><td class="mono r up">+1.3%</td><td class="mono r up">+12.4%</td></tr></tbody></table><h2>Monday to Wednesday: oil, CPI and CoreWeave</h2><p>The week opened with a relief rally built on oil. President Trump told CNN that renewed strikes on Iran were highly unlikely if negotiations progress, Brent fell 5.8% to $92.57, and the S&amp;P 500 rose 2.3%, its best day since April. Chip stocks led: AMD rose 12.9% after falling hard the week before. Nvidia was the exception, falling 4.3% after its board opened an investigation into Huang&rsquo;s relationship with a business executive whom U.S. intelligence reportedly concluded was gathering information for China.</p><p>Tuesday&rsquo;s consumer price report settled the December debate. Prices rose 0.4% in October and core prices 0.3% for a third straight month, and by the close futures fully priced a quarter-point hike. The two-year Treasury yield jumped 19 basis points, its biggest one-day rise since April 2025, and the S&amp;P 500 slipped 0.4% as Nvidia fell another 5.4%.</p><p>Wednesday belonged to CoreWeave. The most closely watched of the debt-funded cloud builders beat forecasts, raised its outlook and said it expects to become profitable in 2028, and its stock jumped 24.7%, the biggest one-day gain in more than three months, according to Reuters. Technology was the best of the 11 sectors, up 2.7%, and Nvidia rose 2.9% to $173.73. The S&amp;P 500 closed up 1.3% at 7,619.38 and the Nasdaq 1.6% at 25,466.19, firmer than the late-morning levels in our Wednesday edition. That was the high point of the week.</p><h2>Thursday: Nvidia without Huang</h2><p>After Wednesday&rsquo;s close, the New York Times reported that Huang had also had a relationship with a senior Nvidia executive who reported directly to him, and the Wall Street Journal reported that the board was deliberating on his future. The stock fell more than 8% after hours. Before Thursday&rsquo;s open, Nvidia said Huang had resigned as president, chief executive and director, effective immediately, ending a 33-year run at the company he co-founded. Colette Kress, the chief financial officer since 2013, is interim CEO and keeps the finance role. Harvey C. Jones, a former Synopsys chief executive, became the board&rsquo;s first chair. The announcement gave no reason for the departure, and the board said it will consider internal and external candidates.</p><p>Nvidia fell as much as 14% at the open, then halved the loss and finished down 4.3%. Other chipmakers rose, and the AP read the moves as a sign that investors expect little lasting damage to the wider AI industry. The valuation reset is large. Nvidia traded at about 12 times expected earnings, its lowest multiple since 2012, according to LSEG data cited by Reuters, and it sits about a third below its Oct. 6 record close of $239.24. Bernstein&rsquo;s Stacy Rasgon downgraded the stock and cut his price target to $200 from $400, saying the business remains intact but questioning the investments and guarantees Nvidia has extended across the AI ecosystem.</p><p>Oil and rates added pressure. Trump wrote on Truth Social, &ldquo;We don&rsquo;t need a deal with Iran. Those days have long since passed,&rdquo; days after telling CNN that new strikes were unlikely if talks progressed. Brent rose 3.3% to $95.82, and energy stocks rose for a fourth straight session and led the market. The two-year yield rose 14 basis points to 4.87%, the highest since Oct. 14, and the 10-year climbed to 5.10%. A 30-year auction cleared at 5.441%. The dollar index reached a 19-month high. Jobless claims rose to 200,000, still low, while existing-home sales fell 5.5% to an annual rate of 3.75 million, the weakest since August 2010. The S&amp;P 500 slipped 0.4%; the Russell 2000 fell 1.7%.</p><div class="pullquote">Nvidia lost a founder and nearly $600 billion of value this week, and the S&amp;P 500 still rose 2.5%. For now the market is separating the company from the cycle.<span class="src">Hunter William Lang</span></div><h2>Friday: producer prices and another leg down in chips</h2><p>Producer prices rose 0.3% in October, below the 0.4% forecast, after an upwardly revised 1.4% in September. The annual rate rose to 6.5% from 6.3%, the highest since November 2022. Energy prices slipped 0.1% and diesel fell 7.9%, yet truck freight rose 3.9% and food 1.3%. Excluding food and energy, prices rose 0.3% on the month and 5.0% on the year; excluding food, energy and trade services, they rose 0.5% for a second month. Chris Osmond of Fifth Third Wealth Advisors said the pattern shows inflation spreading into the wider economy, which makes it harder for the Fed to treat it as temporary.</p><p>Fed officials spent Thursday and Friday making the same point. New York Fed President John Williams said the Fed has work to do to get inflation back to target. Chicago&rsquo;s Austan Goolsbee said inflation looks like it is going the wrong way, and San Francisco&rsquo;s Mary Daly said, &ldquo;We&rsquo;re going to need to, in all likelihood, raise interest rates.&rdquo; Cleveland&rsquo;s Beth Hammack, the most hawkish voter, said she prefers smaller and more frequent increases to a jumbo move. The 10-year yield ended the week at 5.15%, a four-week high, and the two-year at 4.87%.</p><p>Chip stocks took the brunt again. Nvidia fell 2%, AMD 8.8%, the worst in the S&amp;P 500, Broadcom 4.8% and Nebius more than 9%. Cisco fell more than 6% even after quarterly revenue rose 24% to $18.5 billion and it raised its full-year forecast to $74.8 billion to $75.8 billion, because product orders grew 21%, less than investors wanted. Beneath the index, the day was healthier: more than 60% of S&amp;P 500 stocks rose and the Dow edged up 0.1%. Angelo Kourkafas of Edward Jones said Nvidia&rsquo;s slide was a reminder of how concentrated the market&rsquo;s risk has become.</p><h2>Oil: a second weekly decline</h2><p>Brent settled at $95.84 on Friday, down 2.5% for the week, its second straight weekly decline. The International Energy Agency cut its 2026 demand forecast to 102.29 million barrels a day and raised its supply estimate, and now expects a surplus of about 2 million barrels a day this quarter. The risks run the other way too. U.S. Central Command said it shot down two Iranian drones aimed at a U.S. base in Bahrain, and Verisk Maplecroft counted 36 attacks on commercial ships in October, the most since the war began. Brent traded near $72 in late February, before the war began, so it is still about $24 a barrel higher.</p><h2>The bottom line</h2><p>The S&amp;P 500 rose 2.5% this week and is 3.3% below its record. The economy still looks strong and inflation is getting broader, not narrower: producer prices are rising 6.5% a year and the 10-year yield is back above 5.1%. A December hike is fully priced. The AI trade survived the loss of its best-known leader on Thursday, but chip stocks were sold again on Friday. Next week tests both stories at once. October retail sales come out Tuesday morning and Nvidia reports that evening, its first quarter under Kress. Fed minutes and big retailers follow Wednesday, and Anthropic is expected to begin trading Thursday under the ticker ANT, after setting a range of $70 to $78 a share.</p><div class="takeaway"><div class="t">The bottom line</div><p>The S&amp;P 500 gained 2.5% to 7,561.67, its first weekly gain since early October, despite Jensen Huang&rsquo;s resignation as Nvidia chief executive on Thursday. Nvidia fell more than 12% and lost just under $600 billion of value; CFO Colette Kress is interim CEO. October CPI rose 0.4% and PPI 6.5% from a year earlier, the 10-year yield rose 29 basis points to 5.15%, and a December hike is fully priced. Brent fell 2.5% to $95.84. Retail sales and Nvidia&rsquo;s results land Tuesday; Anthropic is expected to list Thursday.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
