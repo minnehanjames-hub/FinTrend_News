@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Check: Nvidia Beat Without Huang. The Market Wanted More. &mdash; FinTrend News</title>
+<meta name="description" content="The S&amp;P 500 fell four days in a row to its lowest close since July 29. Nvidia then beat forecasts with $115.8 billion of revenue and guided to $130 billion, but by late morning Wednesday its stock had reversed an early 2.7% gain, the Dow was down more than 500 points, and Anthropic prices its IPO tonight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Wednesday Momentum Check</div>
+  <h1>Momentum Check: <em>Nvidia Beat Without Huang. The Market Wanted More.</em></h1>
+  <p class="dek">The S&amp;P 500 fell four days in a row to its lowest close since July 29. Nvidia then beat forecasts with $115.8 billion of revenue and guided to $130 billion, but by late morning Wednesday its stock had reversed an early 2.7% gain, the Dow was down more than 500 points, and Anthropic prices its IPO tonight.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">HWL</div>
+      <div>
+        <div class="name">Hunter William Lang</div>
+        <div class="role">Markets Editor</div>
+      </div>
+    </div>
+    <div class="date">WED · NOV 18 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Four straight losses, one strong quarter and a market that would not reward it. The S&amp;P 500 fell 1.9% on Monday and 1.0% on Tuesday, to 7,340.53, its lowest close since July 29, for a four-day drop of 3.7%. After Tuesday&rsquo;s close Nvidia, in its first report since Jensen Huang resigned, said revenue doubled to $115.8 billion and guided to about $130 billion for the current quarter, both above forecasts. The stock rose nearly 5% after hours and 2.7% at Wednesday&rsquo;s open, then gave it all back. As of about 11 a.m. ET, Nvidia was down about 2%, the S&amp;P 500 was down 0.3% at 7,316.93 and the Dow was down 545 points, while the Nasdaq was up 0.2%; losses were widening toward midday. Anthropic is set to price its IPO tonight. Wednesday&rsquo;s figures here are intraday and will move by the close.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500 &middot; 11 a.m.</div><div class="val">7,316.93</div><div class="chg down">wk &minus;3.2% &middot; 6.4% off record</div></div><div class="cell"><div class="lbl">Nasdaq &middot; 11 a.m.</div><div class="val">24,382.47</div><div class="chg down">wk &minus;3.0% &middot; YTD +4.9%</div></div><div class="cell"><div class="lbl">Nvidia Q3 Revenue</div><div class="val">$115.8B</div><div class="chg up">+103% y/y &middot; Q4 guide &asymp;$130B</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">5.08%</div><div class="chg up">Wed a.m. &middot; &minus;7 bp since Fri</div></div></div><h2>How the week has gone</h2><div class="ledger"><div class="row"><div class="day">Mon 11/16</div><div class="detail">Chip index &minus;5.3%, Nvidia &minus;4.1%; VIX 23.4. WTI at its lowest since August; the dollar at its strongest since April 2025.</div><div class="mv down">S&amp;P &minus;1.9%</div></div><div class="row"><div class="day">Tue 11/17</div><div class="detail">Retail sales +0.2%. Banks and AI stocks fall; 17 of every 20 S&amp;P stocks lower. After the bell, Nvidia beats and raises.</div><div class="mv down">S&amp;P &minus;1.0%</div></div><div class="row"><div class="day">Wed 11/18</div><div class="detail">Intraday, about 11 a.m. ET: Nvidia reverses a 2.7% opening gain; TJX +9.9%, Target +5.8%. Dow &minus;545 points.</div><div class="mv down">S&amp;P &minus;0.3%</div></div></div><p>Monday was a chip selloff that turned into a broad one. The semiconductor index fell 5.3%, Nvidia 4.1% and Sandisk 8.6%, and only 145 S&amp;P 500 stocks rose. On Tuesday the losses spread further. The S&amp;P 500 swung between roughly flat and down 1.7% before closing 1.0% lower, the Dow fell 848.75 points, or 1.6%, to 50,759.42, and about 17 of every 20 stocks in the index declined. The Nasdaq touched its lowest level in about seven months during the session. Bank stocks fell on worries about how much the economy would suffer if AI spending pulled back, and JPMorgan lost 2.4%, a day after a technical problem slowed Zelle payments. Home Depot fell 2.4% despite a slight earnings beat, Disney 1.5% despite stronger revenue, and South Korea&rsquo;s Kospi closed at its lowest since February. Investors moved into Treasurys, and the 10-year yield eased to 5.10%.</p><h2>Tuesday morning: a tired consumer</h2><p>Retail sales rose 0.2% in October, in line with forecasts and down from 0.8% in September. Gasoline stations rose 1.5% after a 30.3% jump the month before; excluding them, sales rose just 0.1%. Auto dealers fell 1.6%, and excluding autos, sales rose 0.6%. The AP noted that an underlying measure of spending beat expectations, but with consumer prices up 0.4% in October, Heather Long of Navy Federal Credit Union said spending was negative after adjusting for inflation. The retailers this week have told the same mixed story: Home Depot is fighting a housing market chilled by expensive mortgages, while off-price and discount chains are doing well.</p><h2>Nvidia: the numbers held, the questions did not go away</h2><p>Nvidia&rsquo;s fiscal third quarter was strong by any measure. Revenue rose 103% from a year earlier to $115.84 billion, against about $108.85 billion expected and the company&rsquo;s own forecast of $108 billion. Adjusted earnings were $2.68 a share, against $2.47 expected. Data center revenue rose 110% to $107.6 billion. Nvidia guided fourth-quarter revenue to about $130 billion, plus or minus 3%, above the roughly $125 billion analysts expected, and raised its outlook for growth next fiscal year to 75% from 70%. Supply commitments rose to $390 billion from $279 billion, mainly multiyear memory purchases, and data center lease and cloud service commitments rose to $102 billion from $74 billion. &ldquo;Our demand is accelerating. Our supply is growing,&rdquo; Kress said.</p><p>The reasons for caution came in the same release and on the call. Nvidia will stop shipping its licensed Hopper data center products to China, which brought in $2.4 billion in the quarter, and guidance excludes them. It created a board committee to oversee national security and export compliance. Huang said on X on Tuesday that he would return as chief executive if the board decided that was best for the company, and board chair Harvey Jones said on the call that the board does not intend to bring him back. The Wall Street Journal reported that the SEC has opened an inquiry into whether Nvidia&rsquo;s disclosures misled investors, and Huang and general counsel Tim Teter are due before congressional committees early next month. Kress also said the company will be &ldquo;rigorously evaluating future investments, commitments, and guarantees,&rdquo; a direct answer to the worry that Nvidia has been financing part of its own demand.</p><p>Analysts mostly read the quarter as a beat. Jefferies said the beat-and-raise and higher outlook for next year &ldquo;run counter to negative AI sentiment,&rdquo; while noting that questions remain about the pace of the build-out. But the stock, which hit its lowest level since July 2025 on Tuesday, could not hold its early gain. CoreWeave fell 2.6% and Nebius also slid, while Broadcom held a gain of about 2%.</p><div class="pullquote">Nvidia delivered $116 billion of revenue and a bigger forecast, and the stock was red by mid-morning. The market is not asking whether AI demand is real. It is asking who runs the company that supplies it, and what that is worth.<span class="src">Hunter William Lang</span></div><h2>Wednesday morning: retailers up, the Dow down</h2><p>The day&rsquo;s winners were retailers. TJX rose 9.9% after a slightly better quarter and a chief executive who expects momentum to accelerate through the holidays, and Target rose 5.8% on better-than-expected profit and its strongest quarterly sales gain in roughly five years. Lowe&rsquo;s slipped 0.6% after a full-year profit forecast that only matched expectations. Homebuilders rose after housing starts beat forecasts. Energy lagged: Brent fell 1.4% to $91.85, and Exxon Mobil and Chevron fell about 2%. The 10-year yield eased to 5.08%. Gold fell to about $3,756 an ounce ahead of the Fed minutes. Abroad, London&rsquo;s FTSE 100 fell 0.7% after U.K. inflation reached its highest level in a year, while the Kospi rebounded 2%.</p><p>The pattern of the past two weeks has reversed. Early in November, AI stocks fell while most of the market held up. This week the AI names are swinging in both directions, but the selling has spread to banks, industrials and the Dow, which was down more than 1% late in the morning.</p><table class="dtable"><thead><tr><th>Momentum gauge</th><th>Reading</th></tr></thead><tbody><tr><td class="mono">S&amp;P 500 vs. record (11 a.m. ET)</td><td>6.4% below the Oct. 6 close of 7,818.93</td></tr><tr><td class="mono">S&amp;P 500 / Nasdaq, week to date (intraday)</td><td>&minus;3.2% / &minus;3.0%</td></tr><tr><td class="mono">Dow, week to date (intraday)</td><td>&minus;4.1%</td></tr><tr><td class="mono">10-yr yield (Wed morning)</td><td>5.08%, from 5.15% Friday</td></tr><tr><td class="mono">VIX (Mon close)</td><td>23.4, highest since Nov. 6</td></tr><tr><td class="mono">December hike odds (FedWatch, Tue)</td><td>Quarter point &asymp;97%</td></tr><tr><td class="mono">Brent crude (Wed morning)</td><td>&asymp;$91.85, &minus;1.4%</td></tr></tbody></table><h2>Anthropic prices tonight</h2><p>Anthropic closed its order book on Tuesday and is expected to set its price after the market closes today, with trading on the Nasdaq under the ticker ANT starting Thursday. The range is $70 to $78 for 825 million Class A shares, which at the top would raise about $64.35 billion at a valuation of roughly $1.4 trillion. Demand has run well ahead of supply: CNBC reported institutional orders of around $400 billion and retail demand approaching $100 billion, and said the company is considering enlarging the offering. The Wall Street Journal reported that the shares could price above $80, and Bloomberg said the deal was close to seven times oversubscribed. Strong demand for the listing alongside a falling Nasdaq suggests investors are rotating within AI rather than leaving it, but $64 billion of new stock has to be paid for with money that is currently sitting in other AI names.</p><h2>The rest of the week</h2><p>The minutes of the Fed&rsquo;s Oct. 27&ndash;28 meeting come out at 2 p.m. today; they will show how many officials already favored more than one more hike when the committee held with two dissents. Palo Alto Networks reports after the close. Thursday brings Anthropic&rsquo;s first trade, Walmart&rsquo;s results, weekly jobless claims and Trump&rsquo;s meeting with Xi in Shenzhen, plus remarks from Fed Vice Chair Philip Jefferson and Governor Barr. Friday has the University of Michigan&rsquo;s final November survey and speeches by Governors Waller and Cook. The Fed meets Dec. 8 and 9, with a quarter-point hike close to fully priced.</p><div class="takeaway"><div class="t">The momentum read</div><p>The S&amp;P 500 fell four straight days to 7,340.53 on Tuesday, its lowest close since July 29, as chip stocks, then banks, sold off. Nvidia&rsquo;s first report without Jensen Huang beat forecasts, with revenue up 103% to $115.8 billion and fourth-quarter guidance near $130 billion, but the board ruled out Huang&rsquo;s return, China Hopper sales are ending and the SEC is reportedly asking questions. As of about 11 a.m. ET Wednesday, Nvidia was down about 2%, the S&amp;P 500 0.3% and the Dow 545 points, while TJX and Target rallied. Fed minutes come at 2 p.m.; Anthropic prices tonight and trades Thursday.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— HWL</div>
+  </footer>
+</div>
+</body>
+</html>
