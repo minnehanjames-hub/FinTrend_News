@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Selloff Came Back Monday. Nvidia Answers Tuesday. &mdash; FinTrend News</title>
+<meta name="description" content="The S&amp;P 500 fell 1.9%, its worst day since Nov. 5, as chip stocks slid 5.3% and Nvidia lost another 4.1% ahead of its first report without Jensen Huang. Retail sales and Nvidia arrive Tuesday, Fed minutes and Anthropic’s IPO pricing Wednesday, and Trump meets Xi in Shenzhen Thursday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK5YVPJBR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KSK5YVPJBR');
+</script>
+<style>
+:root{
+  --bg1:#0b0f1f; --bg2:#0f1530;
+  --gold:#b8986a; --gold-soft:#d8bd93;
+  --up:#5dd39e; --down:#ef6b6b;
+  --ink:#eef1ff; --ink-dim:#b8bfd9; --ink-low:#7d85a8;
+  --line:rgba(184,152,106,.28);
+  --panel:rgba(255,255,255,.028);
+  --panel-line:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; padding:0;
+  background:linear-gradient(160deg,#0b0f1f 0%,#0f1530 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold-soft); text-decoration:none;}
+.wrap{max-width:760px; margin:0 auto; padding:0 28px 90px;}
+
+/* Masthead + nav */
+.masthead{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 0 18px; border-bottom:1px solid var(--line);
+}
+.brand{font-family:'DM Serif Display',Georgia,serif; font-size:1.5rem; letter-spacing:.01em; color:var(--ink);}
+.brand span{color:var(--gold);}
+.nav{display:flex; gap:22px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-low);}
+.nav a{color:var(--ink-low);}
+.nav a:hover{color:var(--gold-soft);}
+
+/* Kicker pill */
+.kicker{
+  display:inline-flex; align-items:center; gap:9px; margin:38px 0 20px;
+  padding:7px 15px; border:1px solid var(--line); border-radius:999px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft); background:rgba(184,152,106,.05);
+}
+.kicker .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,152,106,.18);}
+
+/* Headline + dek */
+h1{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400;
+  font-size:2.85rem; line-height:1.12; letter-spacing:-.01em; margin:0 0 18px;
+}
+h1 em{font-style:italic; color:var(--gold);}
+.dek{font-size:1.22rem; line-height:1.5; color:var(--ink-dim); margin:0 0 26px; font-weight:400;}
+
+/* Byline bar */
+.byline{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+}
+.byline .who{display:flex; align-items:center; gap:12px;}
+.byline .ini{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--bg1); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); font-weight:600;
+}
+.byline .name{font-size:.95rem; color:var(--ink);}
+.byline .role{font-size:.78rem; color:var(--ink-low);}
+.byline .date{font-family:'JetBrains Mono',monospace; font-size:.74rem; letter-spacing:.1em; color:var(--ink-low); text-align:right;}
+
+/* Body */
+.body p{margin:0 0 22px; color:var(--ink-dim);}
+.body p strong{color:var(--ink); font-weight:600;}
+.body .lead::first-letter{
+  font-family:'DM Serif Display',Georgia,serif; float:left; font-size:3.6rem;
+  line-height:.8; padding:6px 12px 0 0; color:var(--gold);
+}
+.body .lead{color:var(--ink);}
+h2{
+  font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:1.62rem;
+  margin:44px 0 16px; color:var(--ink); letter-spacing:-.01em;
+}
+
+/* Scoreboard */
+.scoreboard{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--panel-line); border:1px solid var(--panel-line); border-radius:12px;
+  overflow:hidden; margin:30px 0;
+}
+.scoreboard .cell{background:var(--bg1); padding:18px 16px;}
+.scoreboard .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-low); margin-bottom:9px;}
+.scoreboard .val{font-family:'DM Serif Display',Georgia,serif; font-size:1.35rem; color:var(--ink); line-height:1;}
+.scoreboard .chg{font-family:'JetBrains Mono',monospace; font-size:.76rem; margin-top:7px;}
+.up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--ink-low);}
+
+/* Ledger (day-by-day rows) */
+.ledger{margin:28px 0; border-top:1px solid var(--panel-line);}
+.ledger .row{
+  display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline;
+  padding:15px 0; border-bottom:1px solid var(--panel-line);
+}
+.ledger .day{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft);}
+.ledger .detail{color:var(--ink-dim); font-size:.95rem;}
+.ledger .mv{font-family:'JetBrains Mono',monospace; font-size:.82rem; text-align:right; white-space:nowrap;}
+
+/* Pull quote */
+.pullquote{
+  margin:34px 0; padding:6px 0 6px 26px; border-left:3px solid var(--gold);
+  font-family:'DM Serif Display',Georgia,serif; font-size:1.55rem; line-height:1.32; color:var(--ink);
+}
+.pullquote .src{display:block; margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-low);}
+
+/* Data table */
+.dtable{width:100%; border-collapse:collapse; margin:26px 0; font-size:.9rem;}
+.dtable th{
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-low); text-align:left; padding:11px 12px; border-bottom:1px solid var(--line);
+}
+.dtable th.r,.dtable td.r{text-align:right;}
+.dtable td{padding:12px; border-bottom:1px solid var(--panel-line); color:var(--ink-dim);}
+.dtable td.mono{font-family:'JetBrains Mono',monospace; font-size:.84rem; color:var(--ink);}
+.dtable tr:last-child td{border-bottom:none;}
+
+/* Takeaway box */
+.takeaway{
+  margin:38px 0; padding:24px 26px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(184,152,106,.14),rgba(184,152,106,.03));
+  border:1px solid var(--line);
+}
+.takeaway .t{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+.takeaway p{margin:0; color:var(--ink);}
+
+/* Disclaimer */
+.disclaimer{
+  margin:44px 0 0; padding:18px 20px; border:1px dashed var(--line); border-radius:10px;
+  font-size:.78rem; line-height:1.6; color:var(--ink-low);
+}
+
+/* Footer */
+.foot{
+  margin-top:40px; padding-top:26px; border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-low);
+  display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+}
+.foot .sig{color:var(--gold); font-size:.9rem; letter-spacing:.02em;}
+.foot a{color:var(--ink-low);}
+
+@media (max-width:680px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 70px;}
+  .nav{display:none;}
+  h1{font-size:2.1rem;}
+  .dek{font-size:1.08rem;}
+  .scoreboard{grid-template-columns:repeat(2,1fr);}
+  .ledger .row{grid-template-columns:70px 1fr; }
+  .ledger .mv{grid-column:2; text-align:left; margin-top:2px;}
+  .pullquote{font-size:1.3rem;}
+  .dtable{font-size:.82rem;}
+  .dtable th,.dtable td{padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">FinTrend<span>.</span>News</div>
+    <nav class="nav">
+  <a href="../index.html">Home</a>
+  <a href="../archive.html">Archive</a>
+  <a href="#">Premium</a>
+</nav>
+  </header>
+
+  <div class="kicker"><span class="dot"></span>Monday Outlook &middot; Week of Nov 16</div>
+  <h1>The Selloff Came Back Monday. <em>Nvidia Answers Tuesday.</em></h1>
+  <p class="dek">The S&amp;P 500 fell 1.9%, its worst day since Nov. 5, as chip stocks slid 5.3% and Nvidia lost another 4.1% ahead of its first report without Jensen Huang. Retail sales and Nvidia arrive Tuesday, Fed minutes and Anthropic&rsquo;s IPO pricing Wednesday, and Trump meets Xi in Shenzhen Thursday.</p>
+
+  <div class="byline">
+    <div class="who">
+      <div class="ini">JTM</div>
+      <div>
+        <div class="name">James Thomas Minnehan</div>
+        <div class="role">Senior Editor</div>
+      </div>
+    </div>
+    <div class="date">MON · NOV 16 · 2026</div>
+  </div>
+
+  <div class="body">
+    <p class="lead">Last Monday I wrote that the week would show whether inflation lets the Fed treat the AI trade gently. It showed that it will not. Consumer prices rose 0.4% in October, producer prices rose 6.5% from a year earlier, and a December hike is now fully priced. Then Nvidia lost its founder. The S&amp;P 500 still gained 2.5% for the week. Today the selling came back. The S&amp;P 500 fell 1.9% to 7,416.59, its worst day since Nov. 5 and its third straight loss. The Dow fell 1.4% to 51,608.17 and the Nasdaq 2.5% to 24,509.76. The semiconductor index dropped 5.3% and Nvidia 4.1%, and the VIX rose 21% to 23.4. The S&amp;P is 5.1% below its record and less than 1% above its Nov. 5 close.</p><p>This week the market gets the company it has been worried about and the deal it has been waiting for. October retail sales come out Tuesday morning, and Nvidia reports that evening, its first results since Huang resigned. The Fed&rsquo;s October minutes arrive Wednesday afternoon, and Anthropic is expected to price its IPO that evening and begin trading Thursday. President Trump meets Chinese President Xi Jinping at the APEC summit in Shenzhen on Thursday.</p><div class="scoreboard"><div class="cell"><div class="lbl">S&amp;P 500</div><div class="val">7,416.59</div><div class="chg down">Mon &minus;1.9% &middot; 5.1% off record</div></div><div class="cell"><div class="lbl">Nasdaq</div><div class="val">24,509.76</div><div class="chg down">Mon &minus;2.5% &middot; YTD +5.5%</div></div><div class="cell"><div class="lbl">10-Yr Yield</div><div class="val">5.12%</div><div class="chg up">&minus;3 bp on Monday</div></div><div class="cell"><div class="lbl">VIX</div><div class="val">23.4</div><div class="chg down">+21% &middot; highest close since Nov. 6</div></div></div><h2>1. What hit the market on Monday</h2><p>The selling started with chips and spread. Nvidia fell 4.1% and has now lost more than $2 trillion of market value since its October peak, slipping to the third-largest U.S. company for the first time in 18 months. Sandisk fell 8.6%, the worst in the S&amp;P 500, and Micron, Marvell, Intel, Dell and Vertiv lost roughly 7% to 8.5%. AMD fell 5.6%, Broadcom 3.8%, Alphabet 4.1% and Amazon 3.4%. Only 145 S&amp;P 500 stocks rose and 356 fell, but the equal-weight index lost a more modest 1.0%, and consumer staples and utilities gained. Tyson Foods rose 8.7% and Coca-Cola closed at a record.</p><p>The Nvidia story kept moving. Treasury Secretary Scott Bessent called for an outsider to replace Huang, while President Trump said he &ldquo;wouldn&rsquo;t mind&rdquo; seeing Huang reinstated; reports say the board is not considering bringing him back. Commerce Secretary Howard Lutnick has agreed to appear before the Senate Banking Committee over what officials knew about the relationship that set off the crisis. Elsewhere, L3Harris fell 2.6% after administration officials suggested the contractor may be at fault for Friday&rsquo;s nationwide FAA ground stop.</p><p>Other markets traded as if investors were reducing risk across the board. WTI crude fell 3.1% to $85.74, its lowest since late August, and Brent fell 3.5% to $92.44. Gold had its lowest close since September 2025, bitcoin futures their lowest since Aug. 18, and the dollar its highest close since April 2025. Treasury yields eased: the two-year fell to 4.83% and the 10-year to 5.12%. Futures still fully price a quarter-point hike on Dec. 9, while the odds of a half-point move slipped to 4% from 8%.</p><p>Fed Chair Kevin Warsh gave his first public remarks since the October meeting, opening a Fed conference on AI and productivity in San Francisco. He spent more time than usual on the downside, including the risk of widespread job losses or a steep drop in stock prices if AI investments fail to pay off, according to the AP, and he said nothing about interest rates or last week&rsquo;s inflation data. Governor Michael Barr said earlier in the day that AI investment has so far added to inflation pressure, while its productivity gains remain uncertain.</p><h2>2. Tuesday night: Nvidia&rsquo;s first report without Huang</h2><p>Nvidia reports fiscal third-quarter results after Tuesday&rsquo;s close. Management guided to about $108 billion of revenue and preliminary growth of about 70% next fiscal year. Options imply a one-day move of about 8%, compared with an average realized move of 4.8%. Interim chief executive Colette Kress, the finance chief since 2013, now has to answer questions about leadership as well as the numbers. Investors will listen for three things: whether demand from the largest cloud companies is still accelerating, whether any customers or senior staff have wavered since Huang left, and how Nvidia plans to handle the investments and guarantees it has extended to customers, which Bernstein&rsquo;s Stacy Rasgon flagged when he cut his price target in half last week.</p><div class="pullquote">Nvidia does not need a perfect quarter on Tuesday. It needs a credible one, delivered by someone other than the man who built it.<span class="src">James Thomas Minnehan</span></div><h2>3. Tuesday morning: the consumer</h2><p>October retail sales arrive at 8:30 a.m., after a 0.8% gain in September that was inflated by gasoline. Economists polled by Reuters expect about 0.2%. With consumer prices rising 0.4% in October and inflation-adjusted after-tax income down 0.3% in September, a gain of that size would mean spending fell in real terms. Home Depot and Disney report before the open. Target, TJX and Lowe&rsquo;s follow Wednesday morning and Walmart on Thursday, so by the end of the week the market will have a full read on how households are handling higher prices heading into the holidays.</p><table class="dtable"><thead><tr><th>This week&rsquo;s calendar</th><th>Why it matters</th></tr></thead><tbody><tr><td class="mono">Tue &middot; Retail sales (8:30 a.m.), industrial production; Home Depot, Disney</td><td>Real spending is likely falling; housing is weak</td></tr><tr><td class="mono">Tue &middot; Nvidia (p.m.)</td><td>First report under interim CEO Colette Kress</td></tr><tr><td class="mono">Wed &middot; Target, TJX, Lowe&rsquo;s; housing starts; U.K. CPI</td><td>Retail margins; housing with a 10-year above 5%</td></tr><tr><td class="mono">Wed &middot; FOMC minutes (2 p.m.); Anthropic pricing (p.m.)</td><td>How many officials want more than one hike; IPO demand</td></tr><tr><td class="mono">Thu &middot; Anthropic trades (ANT); Walmart; jobless claims</td><td>The largest AI listing yet; the consumer bellwether</td></tr><tr><td class="mono">Thu &middot; Trump meets Xi at APEC, Shenzhen</td><td>Chip export curbs, a truce that expires in January</td></tr><tr><td class="mono">Fri &middot; Michigan sentiment (final); Waller, Cook speak</td><td>Inflation expectations; two more Fed voices</td></tr></tbody></table><h2>4. Wednesday and Thursday: minutes, Anthropic and Shenzhen</h2><p>The minutes cover the Oct. 27&ndash;28 meeting, when the Fed held its rate at 3.75% to 4.00% and Governor Lisa Cook and Cleveland Fed President Beth Hammack dissented in favor of a hike. Since then CPI and PPI have run hot and the debate has moved to how fast to tighten; the minutes will show how many officials already favored more than one more increase.</p><p>Anthropic, which plans to list on the Nasdaq under the ticker ANT, is marketing 825 million Class A shares at $70 to $78 each. At the top of the range it would raise about $64.4 billion at a fully diluted valuation of roughly $1.4 trillion. Bloomberg reported a day into the roadshow that the book was already covered several times over. Pricing is expected Wednesday evening and trading Thursday. The deal arrives with chip stocks back near their Nov. 5 lows, which makes it the cleanest test of whether investors are rotating out of AI or only out of the most crowded AI stocks.</p><p>Trump travels to Asia this week, attending the ASEAN summit in Manila before going to Shenzhen for APEC, where he meets Xi on Thursday; the White House says the focus is trade. Chips will be hard to avoid. The Nvidia affair has given lawmakers new arguments for tighter export curbs, and the trade truce from last year&rsquo;s Busan meeting is due to be renewed before it expires in January.</p><h2>5. Beyond Wall Street</h2><p>Stock indexes fell across major global markets on Monday, led by semiconductor shares. In Europe, swaps priced about a 92% chance on Friday that the European Central Bank raises rates on Dec. 17, and the U.K. publishes October inflation on Wednesday after the Bank of England&rsquo;s hike to 4.00% this month. A dollar at its strongest since April 2025 tightens conditions for emerging markets and commodity importers at the same time that oil is falling, so the net effect abroad is mixed.</p><h2>The setup in one line</h2><p>The S&amp;P 500 is 5.1% below its record, the 10-year yield is 5.12% and Brent is near $92. The bullish path is a clean Nvidia beat with steady guidance, retail sales that hold up after inflation, minutes that do not add a second hike and a strong Anthropic debut. The bearish path is Nvidia guidance that disappoints or new governance news, a weak consumer, minutes that point to a longer series of hikes, and an IPO that drains money from the rest of the AI complex. Watch Nvidia on Tuesday night and the Anthropic price on Wednesday night.</p><div class="takeaway"><div class="t">The outlook</div><p>The S&amp;P 500 fell 1.9% Monday to 7,416.59, its worst day since Nov. 5, as the semiconductor index dropped 5.3% and Nvidia fell 4.1%, leaving it more than $2 trillion below its October peak. The VIX rose to 23.4, WTI fell to its lowest since August and the dollar hit its strongest since April 2025. Retail sales and Nvidia&rsquo;s results come Tuesday, the Fed&rsquo;s minutes and Anthropic&rsquo;s IPO pricing Wednesday, and Anthropic&rsquo;s Nasdaq debut and Trump&rsquo;s meeting with Xi Thursday. A December hike is fully priced.</p></div>
+    <div class="disclaimer">FinTrend News is a markets publication for informational purposes only and does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Figures are drawn from public sources believed reliable as of publication; markets move and data is revised. Do your own research and consult a licensed professional before acting.</div>
+  </div>
+
+  <footer class="foot">
+    <div>FinTrend News &middot; fintrend.news<br>&copy; 2026 &middot; All rights reserved</div>
+    <div class="sig">— JTM</div>
+  </footer>
+</div>
+</body>
+</html>
